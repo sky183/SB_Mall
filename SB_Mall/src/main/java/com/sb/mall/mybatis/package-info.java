@@ -5,4 +5,4 @@
  * @author chriskim
  *
  */
-package com.sb.mall.jdbc;
+package com.sb.mall.mybatis;
