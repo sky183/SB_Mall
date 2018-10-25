@@ -13,12 +13,15 @@
 			
 			<!-- 로고 및 메뉴바. -->
 			<div id="headerNavi">
+				<a href="<%=request.getContextPath()%>/">
 				<img id="headerLogo" src="img/SBCompanyLogo.png"> 
-				<a class="headerNaviText">Search</a>
-				<a class="headerNaviText">Join</a> 
-				<a class="headerNaviText">Q&A</a> 
-				<a class="headerNaviText">Product</a>
-				<a class="headerNaviText">HOME</a>
+				</a>
+				<a class="headerNaviText" >Search</a>
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/login">login</a>
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/join">Join</a> 
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/lo/qna">QnA</a> 
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/store">Store</a>
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/">HOME</a>
 			</div>
 
 		</div>
