@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+* {
+	padding : 0;
+	margin : 0;
+}
+
+body{
+	padding:0px;
+	margin:0px;
+}
+
+#headerBanner{
+	background-image: url(../img/headerBanner45.png);
+	width:100%;
+	height:650px;
+	/* background-size:300px 100px; */ 
+	background-repeat: no-repeat;
+	background-color: black;
+	background-size: 100%;
+}
+#headerFullWidth{
+	width:100%;
+	height:50px;
+	background-color:rgba(0,0,0,0.4);
+	position: fixed;
+}
+
+#headerLayout{
+	width:1200px;
+	padding-top:7px;
+	margin: 0 auto;
+}
+
+#headerLogo{
+	width:35px;
+}
+.fontOpenSans{
+	font-family: 'Open Sans', sans-serif;
+}
+.headerNaviText{
+	float:right;
+	font-family: 'Open Sans', sans-serif;
+	color:white;
+	padding-left: 30px;
+	padding-top:5px;
+	cursor: pointer;
+	/* font-family: 'Gothic A1', sans-serif; */
+	
+}
+.headerNaviText:hover {
+	color:#ffc828;
+}
+#BannerTextBox{
+	position: absolute;
+	top:180px;
+	left:300px;
+}
+#BannerText01{
+	
+}
+.BT_h1{
+	font-size: 42pt;
+	color:white;
+	border-bottom:2px solid #ffc828;
+}
+
+.BT_h4{
+	font-size: 16pt;
+	color:white;
+	font-weight: lighter;
+	opacity: 0.8;
+	height:2000px;
+}
+
+
+
+
+
+
+
+
