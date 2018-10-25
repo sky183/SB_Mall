@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/store/write")
 public class StoreWriteController {
 	
+
 	@RequestMapping(method=RequestMethod.GET)
 	public String storeWrite() {
 		return  "/store/boardEditor";
