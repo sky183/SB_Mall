@@ -19,7 +19,7 @@
 				</a>
 				<a class="headerNaviText" >Search</a>
 				<c:choose>
-				<c:when test="${memberInfo. == null}">
+				<c:when test="${memberInfo == null}">
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/login">login</a>
 				</c:when>
 				<c:otherwise>
