@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
+<link href="https://fonts.googleapis.com/css?family=Audiowide|Gothic+A1:900|Open+Sans:300,300i,400,400i" rel="stylesheet">
 </head>
 <body>
 
@@ -15,7 +18,7 @@
 			<!-- 로고 및 메뉴바. -->
 			<div id="headerNavi">
 				<a href="<%=request.getContextPath()%>/">
-				<img id="headerLogo" src="img/SBCompanyLogo.png"> 
+				<img id="headerLogo" src="<%=request.getContextPath()%>/img/SBCompanyLogo.png"> 
 				</a>
 				<a class="headerNaviText" >Search</a>
 				<c:choose>
