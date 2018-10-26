@@ -24,7 +24,7 @@
 
 <script>
 	
-	window.onload=Function(){
+	window.onload=function(){
 		var x = screen.width;
 		
 		var img = document.getElementsByClassName("headerBannerImg");
@@ -33,8 +33,8 @@
 			img[i].style.width=x;
 			
 		}
-		var time = ${serverTime};
-		alert(time);
+		/* var time = ${serverTime};
+		alert(time); */
 		
 		alert("z");
 	}
@@ -49,9 +49,13 @@
     <li data-target="#demo" data-slide-to="0" class="active"></li>
     <li data-target="#demo" data-slide-to="1"></li>
     <li data-target="#demo" data-slide-to="2"></li>
-    <li data-target="#demo" data-slide-to="3"></li>
+    <!-- <li data-target="#demo" data-slide-to="3"></li> -->
   </ul>
+  
+  
   <div class="carousel-inner">
+  
+  
     <div class="carousel-item active">
       <img src="<%=request.getContextPath()%>/img/headerBanner45.png" alt="Los Angeles" class="headerBannerImg">
       <div class="carousel-caption">
@@ -59,6 +63,8 @@
         <p>We had such a great time in LA!</p>
       </div>   
     </div>
+    
+    
     <div class="carousel-item">
       <img src="<%=request.getContextPath()%>/img/headerBanner45.png" alt="Chicago" class="headerBannerImg">
       <div class="carousel-caption">
@@ -66,6 +72,8 @@
         <p>Thank you, Chicago!</p>
       </div>   
     </div>
+    
+    
     <div class="carousel-item">
       <img src="<%=request.getContextPath()%>/img/headerBanner45.png" alt="New York" class="headerBannerImg">
       <div class="carousel-caption">
@@ -73,7 +81,11 @@
         <p>We love the Big Apple!</p>
       </div>   
     </div>
+    
+    
   </div>
+  
+  
   <a class="carousel-control-prev" href="#demo" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </a>

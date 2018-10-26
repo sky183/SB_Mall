@@ -1,6 +1,7 @@
 package com.sb.mall;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -27,13 +28,23 @@ public class HomeController {
 //		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
-		String formattedDate = dateFormat.format(date);
+		SimpleDateFormat Time = new SimpleDateFormat("HH:mm:ss");
+		SimpleDateFormat getHour = new SimpleDateFormat("HH");
+		SimpleDateFormat getMin = new SimpleDateFormat("mm");
+		SimpleDateFormat getSec = new SimpleDateFormat("ss");
+		
+		System.out.println("Time : "+ Time.format(date));
+		
+//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+//		
+//		String formattedDate = dateFormat.format(date);
 		
 		
 		
-		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("hour", getHour.format(date) );
+		model.addAttribute("min", getMin.format(date) );
+		model.addAttribute("sec", getSec.format(date) );
 		
 		return "home";
 	}
