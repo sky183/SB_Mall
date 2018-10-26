@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/default.css">
 </head>
 <body>
-${product}<br>
+<jsp:include page="../views/common/header.jsp"/>
+<jsp:include page="../views/store/headerBanner.jsp"/>
+<jsp:include page="../views/store/boardList.jsp"/>
 </body>
 </html>

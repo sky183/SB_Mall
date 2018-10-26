@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>storeBoard editor</title>
+<title>Store Board Editor</title>
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
@@ -29,12 +29,15 @@
 				}
 		});
 		
+		$('#productPhoto').change(function () {
+			alert(this.val);
+		});
+		
 	});
 	function sendCode() {
-        var f=document.sForm;
-        f.sTitle.value=$('#summerTitle').val();
-        f.sCode.value=$('#summernote').summernote('code');
-        f.submit();
+        $('#text').val($('#summernote').summernote('code'));
+        $('#sform').submit();
+        
     }
 	
 	function sendFile(file, el) {
@@ -70,13 +73,16 @@
 </head>
 <body>
 	<div id="summernoteBox">
-		<input type="text" id="summerTitle">
+		<form method="post" enctype="multipart/form-data" id="sform">
+			<input type="text" name="salesBoard.title"><br>
+			<input type="file" name="product.photoFile"><br>
+			<input type="text" name="product.productName"><br>
+			<input type="text" name="product.price"><br>
+			<textarea rows="3" cols="22" name="detail"></textarea><br>
+			<input type="hidden" name="salesBoard.text" id="text">
+		</form>
 		<div id="summernote"></div>
 		<button type="button" onclick="sendCode();">글쓰기</button>
 	</div>
-	<form class="submitForm" method="post" name="sForm">
-		<input type="hidden" name="sTitle"> 
-		<input type="hidden" name="sCode">
-	</form>
 </body>
 </html>
