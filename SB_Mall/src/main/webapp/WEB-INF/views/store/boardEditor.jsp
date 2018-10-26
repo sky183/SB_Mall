@@ -74,11 +74,11 @@
 <body>
 	<div id="summernoteBox">
 		<form method="post" enctype="multipart/form-data" id="sform">
-			<input type="text" name="salesBoard.title"><br>
-			<input type="file" name="product.photoFile"><br>
-			<input type="text" name="product.productName"><br>
-			<input type="text" name="product.price"><br>
-			<textarea rows="3" cols="22" name="detail"></textarea><br>
+			글제목 <input type="text" name="salesBoard.title"><br>
+			제품사진 <input type="file" name="product.photoFile"><br>
+			제품이름 <input type="text" name="product.productName"><br>
+			제품가격 <input type="number" name="product.price"><br>
+			제품설명 <textarea rows="3" cols="22" name="product.detail"></textarea><br>
 			<input type="hidden" name="salesBoard.text" id="text">
 		</form>
 		<div id="summernote"></div>
