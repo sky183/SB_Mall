@@ -23,7 +23,7 @@
 <body>
 
 <jsp:include page="/WEB-INF/views/common/headerbanner.jsp"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 <jsp:include page="/WEB-INF/views/common/dailyDeal.jsp"/>
 <jsp:include page="/WEB-INF/views/common/homeYoutube.jsp"/>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
