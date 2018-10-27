@@ -14,12 +14,12 @@ import com.sb.mall.service.ImgUploadService;
 
 
 @Controller
-public class StoreUploadController {
+public class SummerImgController {
 	
 	@Autowired
 	ImgUploadService imgUploadService;
 	
-	@RequestMapping("store/imgUpload")
+	@RequestMapping("store/summer/imgUpload")
 	public void imgUploadDo(MultipartFile file, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");

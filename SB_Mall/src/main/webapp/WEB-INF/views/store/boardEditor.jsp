@@ -46,7 +46,7 @@
       	$.ajax({
         	data: form_data,
         	type: "POST",
-        	url: '<%=request.getContextPath()%>/store/imgUpload',
+        	url: '<%=request.getContextPath()%>/store/summer/imgUpload',
         	cache: false,
         	contentType: false,
         	enctype: 'multipart/form-data',

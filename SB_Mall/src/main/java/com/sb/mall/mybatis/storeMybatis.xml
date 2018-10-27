@@ -4,9 +4,19 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.sb.mall.dao.StoreDao">
  	<insert id="insertSalesBoard"
- 		parameterType="com.sb.mall.model.SalesBoard">
+ 		parameterType="com.sb.mall.model.SalesBoard"
+ 		useGeneratedKeys="true" keyColumn="salesSeq" keyProperty="salesSeq">
+ 		insert into SalesBoard (title,text,viewSeq,writeDate,userSeq,productSeq)
+ 		value(#{title},#{text},0,now(),1,#{productSeq})
  	</insert>
  	<insert id="insertProduct"
- 		parameterType="com.sb.mall.model.Product">
+ 		parameterType="com.sb.mall.model.Product"
+ 		useGeneratedKeys="true" keyColumn="productSeq" keyProperty="productSeq">
+ 		insert into Product (price,productName,photo,detail) 
+ 		value(#{price},#{productName},#{photo},#{detail})
  	</insert>
+ 	<select id="selectListBoardList"
+ 		resultType="map">
+ 		SELECT distinct * FROM SalesBoard s,Product p where s.productSeq=p.productSeq;
+ 	</select>
  </mapper>

@@ -12,8 +12,24 @@
 	width: 70%;
 	margin: 0 auto;
 	background-color: white;
-	
 }
+
+.storeListView{
+	text-align: center;
+}
+.productThumb{
+	width: 300px;
+	height: 300px;
+	border:1px solid #a9a9a9;
+	border-radius: 10px;
+}
+.productBox{
+	display:inline-block;
+	width:  310px;
+	height: 400px;
+	overflow: hidden;
+}
+
 .storeSearchBar{
 	display:block;
 	height: 40px;
@@ -47,14 +63,14 @@
     outline: 0;
     cursor:pointer;
     float: right;
-    background-color: white;
 	background-image: url('<%=request.getContextPath()%>/img/searchBarIcon.png');
+	background-color: white;
 }
 </style>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script type="text/javascript">
 	$('document').ready(function() {
-		$('.storeListView').load('./store/boardListView');
+		$('.storeListView').load('<%=request.getContextPath()%>/store/boardListView');
 	});
 </script>
 </head>
@@ -73,10 +89,10 @@
 				</select>
 		</div>
 		<div class="storeListView">
-		dd
+		
 		</div>
 		<div class="storeListFooter">
-			<a href="./store/write">글쓰기</a>
+			<a href="<%=request.getContextPath()%>/store/write">글쓰기</a>
 		</div>
 	</div>
 </body>

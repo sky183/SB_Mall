@@ -1,6 +1,7 @@
 package com.sb.mall.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.model.StoreWriteCommend;
 import com.sb.mall.service.ImgUploadService;
+import com.sb.mall.service.StoreWriteService;
 
 @Controller
 @RequestMapping("/store/write")
@@ -20,6 +22,8 @@ public class StoreWriteController {
 	
 	@Autowired
 	ImgUploadService imgUploadService;
+	@Autowired
+	StoreWriteService storeWriteService;
 
 	@RequestMapping(method=RequestMethod.GET)
 	public String storeWrite() {
@@ -30,7 +34,7 @@ public class StoreWriteController {
 	public ModelAndView storeWriteDo(StoreWriteCommend storeWriteCommend,
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("store/result");
+		modelAndView.setViewName("redirect:boardListView");
 		//업로드폴더 중간경로 지정
 		String folderName = "product";
 		try {
@@ -40,13 +44,14 @@ public class StoreWriteController {
 					storeWriteCommend.getProduct().getPhotoFile(),folderName, request, response);
 			//product객체에 웹경로 저장. 
 			storeWriteCommend.getProduct().setPhoto(filePath);
-			System.out.println(storeWriteCommend.getProduct());
-			System.out.println(storeWriteCommend.getSalesBoard());
+			//제품판매 게시글 등록
+			storeWriteService.productAndBoardWrite(
+					storeWriteCommend.getProduct(), storeWriteCommend.getSalesBoard());
 		} catch (IOException e) {
-			return modelAndView;
+			System.out.println("파일등록실패");
+		} catch (SQLException e) {
+			System.out.println("게시글등록 실패");
 		}
-		modelAndView.addObject("product", storeWriteCommend.getProduct());
-		modelAndView.addObject("salesBoard",storeWriteCommend.getSalesBoard());
 		return  modelAndView;
 	}
 	
