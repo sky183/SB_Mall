@@ -29,16 +29,16 @@
 				}
 		});
 		
-		$('#productPhoto').change(function () {
-			alert(this.val);
-		});
-		
 	});
 	function sendCode() {
         $('#text').val($('#summernote').summernote('code'));
         $('#sform').submit();
         
     }
+	
+	function mathABS(e) {
+		e.value = Math.abs(e.value); //number 인풋에 자연수만 들어가도록 변경
+	}
 	
 	function sendFile(file, el) {
 		var form_data = new FormData();
@@ -77,8 +77,9 @@
 			글제목 <input type="text" name="salesBoard.title"><br>
 			제품사진 <input type="file" name="product.photoFile"><br>
 			제품이름 <input type="text" name="product.productName"><br>
-			제품가격 <input type="number" name="product.price"><br>
+			제품가격 <input type="number" name="product.price" min="0" oninput="mathABS(this)"><br>
 			제품설명 <textarea rows="3" cols="22" name="product.detail"></textarea><br>
+			<hr>
 			<input type="hidden" name="salesBoard.text" id="text">
 		</form>
 		<div id="summernote"></div>
