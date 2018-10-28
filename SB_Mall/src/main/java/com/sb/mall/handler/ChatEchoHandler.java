@@ -53,7 +53,7 @@ public class ChatEchoHandler extends TextWebSocketHandler {
 			// 메시지를 보낸 사용자는 받지 않기 위한 조건문
 			
 			if ( !session.getId().equals(webSocketSession) ) {
-				webSocketSession.sendMessage( new TextMessage(session.getId() + " -> " + message.getPayload()) );
+				webSocketSession.sendMessage( new TextMessage(session.getId() + "" + message.getPayload()) );
 			}
 			
 		}
