@@ -11,5 +11,9 @@ public interface StoreDao {
 	
 	public void insertSalesBoard(SalesBoard salesBoard) throws SQLException;
 	public void insertProduct(Product product) throws SQLException;
-	public List<Map<String,Object>> selectListBoardList() throws SQLException;
+	public List<Map<String,Object>> selectProAndSalList() throws SQLException;
+	public List<Map<String,Object>> selectProAndSal(int salSeq) throws SQLException;
+	public List<Product> selectProductList() throws SQLException;
+	public List<SalesBoard> selectSalBoardList() throws SQLException;
+	public void updateSalBoardCnt(int salSeq) throws SQLException;
 }

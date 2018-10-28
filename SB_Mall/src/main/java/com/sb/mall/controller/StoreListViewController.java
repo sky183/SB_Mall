@@ -21,8 +21,7 @@ public class StoreListViewController {
 	public ModelAndView getListView() {
 		ModelAndView modelAndView = new ModelAndView();
 		try {
-			List<Map<String,Object>> list = storeListViewService.ListView();
-			System.out.println(list);
+			List<Map<String,Object>> list = storeListViewService.proAndSalList();
 			modelAndView.addObject("viewList", list);
 		} catch (SQLException e) {
 			System.out.println("글 목록 로딩에 실패하였습니다.");

@@ -10,14 +10,20 @@
 <body>
 	<c:if test="${viewList!=null}">
 		<c:forEach var="productList" items="${viewList}">
-		<span class="productBox">
-			<img src="${productList.photo}" alt="사진없음" class="productThumb">
-			<br>
-			${productList.salesSeq}/${productList.title}
-			<br>
-		--------------------------------<br>
-		${productList.detail}<br>
-		</span>
+			<a href="<%=request.getContextPath()%>/store/board/${productList.salesSeq}"
+				class="nodeco"> 
+			<span class="productListBox"> 
+				<img src="${productList.photo}" alt="사진없음" class="productListThumb"
+					onerror="imgError(this)">
+					<br>
+					${productList.title} 
+					<br> <br> 
+					${productList.detail}
+					<br>
+					조회수:${productList.viewSeq}
+					<br>
+			</span>
+			</a>
 		</c:forEach>
 	</c:if>
 </body>

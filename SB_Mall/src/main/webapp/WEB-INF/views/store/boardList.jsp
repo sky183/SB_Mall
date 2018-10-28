@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.storeListContainer{
+#storeListContainer{
 	width: 70%;
 	margin: 0 auto;
 	background-color: white;
@@ -17,17 +17,28 @@
 .storeListView{
 	text-align: center;
 }
-.productThumb{
-	width: 300px;
-	height: 300px;
+.productListThumb{
+	width: 308px;
+	height: 308px;
+	margin-bottom:3px;;
 	border:1px solid #a9a9a9;
 	border-radius: 10px;
 }
-.productBox{
+.productListBox{
 	display:inline-block;
 	width:  310px;
 	height: 400px;
 	overflow: hidden;
+}
+.productListBox:hover{
+	background-color:#F2F2F2;
+}
+.nodeco{
+	color:black;
+	text-decoration: none !important;
+}
+.nodeco:active{
+	color:black;
 }
 
 .storeSearchBar{
@@ -72,10 +83,13 @@
 	$('document').ready(function() {
 		$('.storeListView').load('<%=request.getContextPath()%>/store/boardListView');
 	});
+	function imgError(e) {
+		e.src='<%=request.getContextPath()%>/img/noImage.png';
+	}
 </script>
 </head>
 <body>
-	<div class="storeListContainer">
+	<div id="storeListContainer">
 		<div class="storeSearchBar">
 				<div class="searchFormContainer">
 					<form method="post">

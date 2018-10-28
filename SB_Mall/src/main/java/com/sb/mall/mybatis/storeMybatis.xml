@@ -15,8 +15,20 @@
  		insert into Product (price,productName,photo,detail) 
  		value(#{price},#{productName},#{photo},#{detail})
  	</insert>
- 	<select id="selectListBoardList"
- 		resultType="map">
+ 	<select id="selectProAndSalList" resultType="map">
  		SELECT distinct * FROM SalesBoard s,Product p where s.productSeq=p.productSeq;
  	</select>
+ 	<select id="selectProAndSal" resultType="map">
+ 		SELECT distinct * FROM SalesBoard s,Product p where s.salesSeq=#{salSeq} 
+ 		and s.productSeq=p.productSeq;
+ 	</select>
+ 	<select id="selectProductList" resultType="com.sb.mall.model.Product">
+ 		SELECT * FROM Product order by productSeq desc;
+ 	</select>
+ 	<select id="selectSalBoardList" resultType="com.sb.mall.model.SalesBoard">
+ 		SELECT * FROM SalesBoard order by salesSeq desc;
+ 	</select>
+ 	<update id="updateSalBoardCnt">
+ 		update SalesBoard set viewSeq=viewSeq+1 where salesSeq=#{salSeq};
+ 	</update>
  </mapper>
