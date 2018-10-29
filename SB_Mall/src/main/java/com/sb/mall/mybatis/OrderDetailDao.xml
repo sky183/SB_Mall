@@ -11,6 +11,7 @@
 	</delete>
 
 	<select id="selectAll" resultType="List">
+		select * from orderdetail
 	</select>
 	
 	<select id="selectColumn" resultType="List" parameterType="map">

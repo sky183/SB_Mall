@@ -2,7 +2,7 @@ package com.sb.mall.model;
 
 public class Order {
 	private int orderSeq;
-	private int orderDetailNum;
+	private long orderDetailNum;
 	private int userSeq;
 	private int productSeq;
 	private int quantity;
@@ -15,10 +15,10 @@ public class Order {
 	public void setOrderSeq(int orderSeq) {
 		this.orderSeq = orderSeq;
 	}
-	public int getOrderDetailNum() {
+	public long getOrderDetailNum() {
 		return orderDetailNum;
 	}
-	public void setOrderDetailNum(int orderDetailNum) {
+	public void setOrderDetailNum(long orderDetailNum) {
 		this.orderDetailNum = orderDetailNum;
 	}
 	public int getUserSeq() {
