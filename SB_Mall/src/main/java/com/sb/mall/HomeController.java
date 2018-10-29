@@ -43,7 +43,7 @@ public class HomeController {
 		
 		
 		
-//		SimpleDateFormat Time = new SimpleDateFormat("HH:mm:ss");
+//	SimpleDateFormat Time = new SimpleDateFormat("HH:mm:ss");
 		SimpleDateFormat getHour = new SimpleDateFormat("HH");
 		SimpleDateFormat getMin = new SimpleDateFormat("mm");
 		SimpleDateFormat getSec = new SimpleDateFormat("ss");
