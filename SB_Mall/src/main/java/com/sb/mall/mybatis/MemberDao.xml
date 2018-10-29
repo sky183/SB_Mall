@@ -5,18 +5,11 @@
  <mapper namespace="com.sb.mall.dao.MemberDao">
  	<insert id="insert"
  		parameterType="com.sb.mall.model.MemberInfo"
- 		useGeneratedKeys="true" keyColumn="userSeq">
- 		insert into MemberInfo (userId,userPw,userName,address1,address2,regDate)
- 		values (#{userId},#{userPw},#{userName},#{address1},#{address2},now())
+ 		useGeneratedKeys="true" keyProperty="userSeq">
+ 		insert into MemberInfo (userId,userPw,userName,address1,address2,zipCode,phone)
+ 		values (#{userId},#{userPw},#{userName},#{address1},#{address2},#{zipCode},#{phone})
  	</insert>
- 	
- 	<!-- parameterTyape은 매개변수 타입, keyProperty는 mysql의 autoincreament 값을 받아온다. -->
-<!-- 	<insert id="insert"
-		parameterType="com.bit.model.MemberInfo" useGeneratedKeys="true"
-		keyProperty="userSeq">
-		insert into member (userid, password, username, userphoto) 
-		values (#{userId}, #{password},	#{userName}, #{userPhoto})
-	</insert> -->
+
 
 	<select id="selectById" resultType="com.sb.mall.model.MemberInfo">
 		select * from MemberInfo where	userid = #{userId}

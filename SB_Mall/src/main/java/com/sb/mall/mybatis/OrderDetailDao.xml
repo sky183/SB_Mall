@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.sb.mall.dao.OrderDetailDao">
+ 
+ 	<insert id="insert"	parameterType="com.sb.mall.model.OrderDetail">
+ 	</insert>
+ 	
+	<delete id="delete" parameterType="int">
+	</delete>
+
+	<select id="selectAll" resultType="com.sb.mall.model.OrderDetail">
+		select * from OrderDetail where status<![CDATA[<>]]>4
+	</select>
+	
+	<select id="selectColumn" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
+	</select>
+	
+	<select id="selectJoin" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
+	</select>
+	
+	<select id="selectMemberOrder" resultType="com.sb.mall.model.OrderDetail">
+	</select>
+	
+	<select id="selectOrderDetail" resultType="com.sb.mall.model.OrderDetail">
+	</select>
+	
+	
+ </mapper>

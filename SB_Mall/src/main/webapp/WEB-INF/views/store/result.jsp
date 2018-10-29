@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-${product}<br>
-<img alt="경로불명" src="${product.photo}">
-${salesBoard}
+${data}
 </body>
 </html>
