@@ -11,7 +11,7 @@
 	</delete>
 
 	<select id="selectAll" resultType="List">
-		select * from orderdetail
+		select * from OrderDetail where status<![CDATA[<>]]>4
 	</select>
 	
 	<select id="selectColumn" resultType="List" parameterType="map">

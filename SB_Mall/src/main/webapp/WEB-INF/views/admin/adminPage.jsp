@@ -78,7 +78,7 @@ td {
 		
 		$('#orderList').click(function() {
 				$.ajax({
-					url : '<%=request.getContextPath()%>' + '/memberList/viewType?type=memberList',
+					url : '<%=request.getContextPath()%>' + '/memberList/viewType?type=orderList',
 					data : {
 						viewType : $(this).val()
 					},
