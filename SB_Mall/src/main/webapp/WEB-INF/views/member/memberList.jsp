@@ -33,9 +33,9 @@
 			<td>${member.point}</td>
 			<td>${member.userAmount}</td>
 			<td><a
-				href="<%=request.getContextPath()%>/memberModify/${member.userId}">수정</a>
+				href="<%=request.getContextPath()%>/memberModify?userId=${member.userId}">수정</a>
 				<a
-				href="<%=request.getContextPath()%>/memberDelete/${member.userId}">탈퇴</a>
+				href="<%=request.getContextPath()%>/memberDelete?userId=${member.userId}">탈퇴</a>
 			</td>
 		</tr>
 	</c:forEach>

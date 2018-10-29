@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css?ver=2">
 <link href="https://fonts.googleapis.com/css?family=Audiowide|Gothic+A1:900|Open+Sans:300,300i,400,400i" rel="stylesheet">
 </head>
 <body>

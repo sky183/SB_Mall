@@ -4,11 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <table border="1" class="memList">
 	<tr>
+		<td>주문번호</td>
 		<td>주문상세번호</td>
 		<td>회원번호</td>
-		<td>결제수단</td>
-		<td>주문시간</td>
-		<td>주문상태</td>
+		<td>품목번호</td>
+		<td>주문수량</td>
+		<td>옵션</td>
 	</tr>
 	<c:forEach var="orderDetail" items="${orderDetails}">
 		<tr>

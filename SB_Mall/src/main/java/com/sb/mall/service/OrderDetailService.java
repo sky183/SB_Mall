@@ -12,7 +12,7 @@ import com.sb.mall.dao.OrderDetailDao;
 import com.sb.mall.model.OrderDetail;
 
 @Repository
-public class OrderDetailListService {
+public class OrderDetailService {
 	
 	@Autowired
 	SqlSessionTemplate sessionTemplate;

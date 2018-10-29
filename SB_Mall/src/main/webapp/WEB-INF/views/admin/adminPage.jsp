@@ -92,8 +92,11 @@ td {
 				});
 			});
 		
+
+		
 		/* $(document).ready의 끝 */
 	});
+	
 <%-- 			if ($(this).val() == 'JSON') {
 				$.getJSON('memberList/viewType?type=JSON', function(data) {
 					success : 
