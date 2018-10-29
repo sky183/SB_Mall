@@ -12,7 +12,7 @@
 
 
 	<select id="selectById" resultType="com.sb.mall.model.MemberInfo">
-		select * from MemberInfo where	userid = #{userId}
+		select * from MemberInfo where	userid =  #{userId}
 	</select>
 
 	<select id="selectAll" resultType="com.sb.mall.model.MemberInfo">
