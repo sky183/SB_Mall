@@ -6,24 +6,26 @@ import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import com.sb.mall.dao.LoginDaoInterface;
+import com.sb.mall.dao.MemberDao;
 import com.sb.mall.model.MemberInfo;
 
+@Repository
 public class LoginService {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	private LoginDaoInterface LoginDao;
+	private MemberDao Dao;
 
 	public boolean login(String id, String pw, HttpSession session) throws SQLException {
 
-		LoginDao = sqlSessionTemplate.getMapper(LoginDaoInterface.class);
+		Dao = sqlSessionTemplate.getMapper(MemberDao.class);
 
 		boolean result = false;
 
-		MemberInfo memberInfo = LoginDao.getMemberInfo(id);
+		MemberInfo memberInfo = Dao.selectById(id);
 
 		// 비밀번호 비교
 		if (memberInfo != null & memberInfo.getUserPw().equals(pw)) {
@@ -33,7 +35,7 @@ public class LoginService {
 			// 로그인 처리 : 세션에 사용자 데이터 저장
 			memberInfo.setUserPw("");
 
-			session.setAttribute("loginInfo", memberInfo);
+			session.setAttribute("memberInfo", memberInfo);
 
 			result = true;
 

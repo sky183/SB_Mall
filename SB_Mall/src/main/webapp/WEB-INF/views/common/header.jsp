@@ -20,12 +20,11 @@
 				<a href="<%=request.getContextPath()%>/">
 				<img id="headerLogo" src="<%=request.getContextPath()%>/img/SBCompanyLogo.png"> 
 				</a>
-				
 				<a class="headerNaviText" >Search</a>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/adminPage">admin</a>
 				<c:choose>
-				<c:when test="${memberInfo == null}">
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/login">login</a>
+				<c:when test='${memberInfo eq null}'>
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/Login">login</a>
 				</c:when>
 				<c:otherwise>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/logout">logout</a>

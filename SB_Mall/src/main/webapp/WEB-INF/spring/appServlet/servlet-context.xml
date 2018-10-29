@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -77,13 +78,16 @@
 			value="classpath:com/sb/mall/mybatis/*.xml" />
 	</beans:bean>
 
+	<!-- 채팅 관련 -->
 	<beans:bean id="echoHandler"
 		class="com.sb.mall.handler.ChatEchoHandler" />
-
+	<!-- 채팅 관련 -->
 	<websocket:handlers>
 		<websocket:mapping handler="echoHandler"
 			path="/echo-ws" />
 		<websocket:sockjs />
 	</websocket:handlers>
+
+
 
 </beans:beans>
