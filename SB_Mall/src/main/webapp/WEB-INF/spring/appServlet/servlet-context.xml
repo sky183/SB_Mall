@@ -23,6 +23,7 @@
 	<resources mapping="/css/**" location="/css/" />
 	<resources mapping="/img/**" location="/img/" />
 	<resources mapping="/file/**" location="/file/" />
+	<resources mapping="/slick/**" location="/slick/" />
 	<resources mapping="/js/**"
 		location="/WEB-INF/resources/js/**" />
 

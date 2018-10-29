@@ -1,9 +1,13 @@
 package com.sb.mall;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,13 +30,18 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model) throws SQLException {
 		
 		Date date = new Date();
+		List<Map<String, Object>> dailyList = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> newProductList = new ArrayList<Map<String, Object>>();
+		
+		dailyList = homeService.getDailyDeal();
+		
+		newProductList = homeService.getNewProduct();
+		
+		
 		
 //		SimpleDateFormat Time = new SimpleDateFormat("HH:mm:ss");
 		SimpleDateFormat getHour = new SimpleDateFormat("HH");
@@ -40,7 +49,8 @@ public class HomeController {
 		SimpleDateFormat getSec = new SimpleDateFormat("ss");
 		
 		
-		
+		model.addAttribute("dailyDeal", dailyList);
+		model.addAttribute("newProduct", newProductList);
 		
 		model.addAttribute("hour", getHour.format(date) );
 		model.addAttribute("min", getMin.format(date) );
