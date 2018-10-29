@@ -32,6 +32,8 @@ public class AdminListController {
 		
 		case "memberList":
 			
+			modelAndView.setViewName("member/memberList");
+			
 			List<MemberInfo> members = memService.getMemberList();
 
 			modelAndView.addObject("members", members);
@@ -39,7 +41,7 @@ public class AdminListController {
 			break;
 			
 		case "orderList":
-			modelAndView.setViewName("member/viewTypeJSON");
+			modelAndView.setViewName("orderDetail/orderDetailList");
 			
 			List<OrderDetail> orderDetails = orderService.getOrderDetailList();
 

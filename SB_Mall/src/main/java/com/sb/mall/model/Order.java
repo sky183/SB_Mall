@@ -7,7 +7,7 @@ public class Order {
 	private int productSeq;
 	private int quantity;
 	private String option;
-	private int status;
+
 	
 	public int getOrderSeq() {
 		return orderSeq;
@@ -39,12 +39,7 @@ public class Order {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
+
 	public String getOption() {
 		return option;
 	}
@@ -54,10 +49,9 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [orderSeq=" + orderSeq + ", orderDetailNum=" + orderDetailNum + ", userSeq=" + userSeq
-				+ ", productSeq=" + productSeq + ", quantity=" + quantity + ", option=" + option + ", status=" + status
-				+ "]";
+				+ ", productSeq=" + productSeq + ", quantity=" + quantity + ", option=" + option + "]";
 	}
-	
+
 	
 	
 }
