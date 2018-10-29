@@ -20,7 +20,7 @@ public class LoginController {
 	@Autowired // Spring Framework에서 지원하는 의존주입 용도의 어노테이션
 	private LoginService loginService;
 
-	@RequestMapping(method = RequestMethod.GET)  //get 방식으로  값을 받아와 String num에 저장 modelAndView로  리턴
+	@RequestMapping(method = RequestMethod.GET) // get 방식으로 값을 받아와 String num에 저장 modelAndView로 리턴
 	public ModelAndView getLoginForm(@RequestParam(value = "no", required = false) String num) {
 		return new ModelAndView("/common/loginForm");
 	}
@@ -35,8 +35,8 @@ public class LoginController {
 
 		if (userId != null && userPw != null) {
 // userId 또는 userPw가 null 이 아닌 경우 
-			if (LoginService.login(userId, userPw, session)) {
-			
+			if (loginService.login(userId, userPw, session)) {
+
 				modelAndView.setViewName("redirect:/");
 			}
 
