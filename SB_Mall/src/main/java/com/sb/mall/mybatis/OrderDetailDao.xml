@@ -10,17 +10,17 @@
 	<delete id="delete" parameterType="int">
 	</delete>
 
-	<select id="selectAll" resultType="List">
+	<select id="selectAll" resultType="com.sb.mall.model.OrderDetail">
 		select * from OrderDetail where status<![CDATA[<>]]>4
 	</select>
 	
-	<select id="selectColumn" resultType="List" parameterType="map">
+	<select id="selectColumn" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
 	</select>
 	
-	<select id="selectJoin" resultType="List" parameterType="map">
+	<select id="selectJoin" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
 	</select>
 	
-	<select id="selectMemberOrder" resultType="List">
+	<select id="selectMemberOrder" resultType="com.sb.mall.model.OrderDetail">
 	</select>
 	
 	<select id="selectOrderDetail" resultType="com.sb.mall.model.OrderDetail">

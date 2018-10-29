@@ -16,19 +16,19 @@
 	<delete id="delete" parameterType="int">
 	</delete>
 
-	<select id="selectAll" resultType="List">
+	<select id="selectAll" resultType="com.sb.mall.model.Order">
 	</select>
 	
-	<select id="selectColumn" resultType="List" parameterType="Map">
+	<select id="selectColumn" resultType="com.sb.mall.model.Order" parameterType="Map">
 	</select>
 	
-	<select id="selectJoin" resultType="List" parameterType="Map">
+	<select id="selectJoin" resultType="com.sb.mall.model.Order" parameterType="Map">
 	</select>
 	
-	<select id="selectMemberOrder" resultType="List">
+	<select id="selectMemberOrder" resultType="com.sb.mall.model.Order">
 	</select>
 	
-	<select id="select" resultType="List">
+	<select id="select" resultType="com.sb.mall.model.Order">
 	</select>
 	
 	<select id="selectOrder" resultType="com.sb.mall.model.Order">

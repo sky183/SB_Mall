@@ -6,7 +6,7 @@ import java.util.Date;
 public class OrderDetail {
 	private String orderDetailNum;
 	private int userSeq;
-	private String payment;
+	private int payment;
 	private Date orderTime;
 	private int status;
 
@@ -26,11 +26,11 @@ public class OrderDetail {
 		this.userSeq = userSeq;
 	}
 
-	public String getPayment() {
+	public int getPayment() {
 		return payment;
 	}
 
-	public void setPayment(String payment) {
+	public void setPayment(int payment) {
 		this.payment = payment;
 	}
 
