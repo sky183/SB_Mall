@@ -13,6 +13,6 @@ public interface OrderDetailDao {
 	public List<OrderDetail> selectColumn(Map<String, Object> map); //String where, String column
 	public List<OrderDetail> selectJoin(Map<String, Object> map); //String joinTable, String where, String column
 	public List<OrderDetail> selectMemberOrderDetail(String userId);
-	public OrderDetail selectOrderDetail(long OrderDetailNum);
+	public OrderDetail selectOrderDetail(String OrderDetailNum);
 
 }

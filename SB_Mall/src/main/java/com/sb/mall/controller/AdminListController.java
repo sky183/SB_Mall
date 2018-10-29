@@ -9,33 +9,46 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.model.MemberInfo;
+import com.sb.mall.model.OrderDetail;
 import com.sb.mall.service.MemberListService;
+import com.sb.mall.service.OrderDetailListService;
 
 @Controller
-public class MemberListController {
+public class AdminListController {
 
 	@Autowired
-	private MemberListService service;
+	private MemberListService memService;
+	
+	@Autowired
+	private OrderDetailListService orderService;
 
 	@RequestMapping("/memberList/viewType")
 	public ModelAndView getMemberList(@RequestParam(value = "type", defaultValue = "orderList") String type)
 			throws Exception {
 
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView modelAndView = new ModelAndView("/admin/adminPage");
 		
 		switch (type) {
+		
 		case "memberList":
-			modelAndView.setViewName("member/memberList");
+			
+			List<MemberInfo> members = memService.getMemberList();
+
+			modelAndView.addObject("members", members);
+			
 			break;
+			
 		case "orderList":
 			modelAndView.setViewName("member/viewTypeJSON");
+			
+			List<OrderDetail> orderDetails = orderService.getOrderDetailList();
+
+			modelAndView.addObject("orderDetails", orderDetails);
+			
 			break;
 	}
 		
-		List<MemberInfo> members = service.getMemberList();
-
-		modelAndView.addObject("members", members);
-
+		
 
 
 		return modelAndView;

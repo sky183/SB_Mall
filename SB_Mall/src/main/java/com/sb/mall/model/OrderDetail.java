@@ -4,15 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class OrderDetail {
-	private long orderDetailNum;
+	private String orderDetailNum;
 	private int userSeq;
 	private String payment;
 	private Date orderTime;
 	
-	public long getOrderDetailNum() {
+	public String getOrderDetailNum() {
 		return orderDetailNum;
 	}
-	public void setOrderDetailNum(long orderDetailNum) {
+	public void setOrderDetailNum(String orderDetailNum) {
 		this.orderDetailNum = orderDetailNum;
 	}
 	public int getUserSeq() {
