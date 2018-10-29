@@ -28,8 +28,9 @@ public class LoginService {
 		MemberInfo memberInfo = Dao.selectById(id);
 
 		// 비밀번호 비교
-		if (memberInfo != null & memberInfo.getUserPw().equals(pw)) {
-
+		if (memberInfo == null || !memberInfo.getUserPw().equals(pw)) {
+				
+		} else {
 			System.out.println("로그인처리");
 
 			// 로그인 처리 : 세션에 사용자 데이터 저장
@@ -38,7 +39,6 @@ public class LoginService {
 			session.setAttribute("memberInfo", memberInfo);
 
 			result = true;
-
 		}
 
 		return result;

@@ -27,7 +27,7 @@
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/Login">login</a>
 				</c:when>
 				<c:otherwise>
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/logout">logout</a>
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/member/logout">logout</a>
 				</c:otherwise>
 				</c:choose>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/join">Join</a> 
