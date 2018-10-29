@@ -1,5 +1,8 @@
 package com.sb.mall.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MemberInfo {
 	private int userSeq;
 	private String userId;
@@ -9,7 +12,7 @@ public class MemberInfo {
 	private String address2;
 	private int zipCode;
 	private String phone;
-	private String regDate;
+	private Date regDate;
 	private int gradeNum;
 	private int point;
 	private int userAmount;
@@ -70,12 +73,6 @@ public class MemberInfo {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getRegdate() {
-		return regDate;
-	}
-	public void setRegdate(String regdate) {
-		this.regDate = regdate;
-	}
 	public int getGradeNum() {
 		return gradeNum;
 	}
@@ -93,6 +90,12 @@ public class MemberInfo {
 	}
 	public void setUserAmount(int userAmount) {
 		this.userAmount = userAmount;
+	}
+	public String getRegDate() {
+		return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(regDate);
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	
 	

@@ -41,7 +41,7 @@ td {
 		<div class="memHeader">
 			<select name="viewType" id="viewType">
 				<option value="viewType">viewType</option>
-				<option value="HTML">HTML</option>
+				<option value="memberList">회원정보</option>
 				<option value="JSON">JSON</option>
 				<option value="XML">XML</option>
 			</select>
@@ -50,18 +50,7 @@ td {
 		<div id="type"></div>
 		
 		<table border="1" class="memList">
-		1
-<!-- 			<tr>
-				<td>아이디</td>
-				<td>비밀번호</td>
-				<td>이름</td>
-				<td colspan="2">사진</td>
-				<td>가입일</td>
-				<td>관리</td>
-			</tr> -->
-<!-- 			<tbody id="tbody">
-			
-			</tbody> -->
+		
 		</table>
 
 
