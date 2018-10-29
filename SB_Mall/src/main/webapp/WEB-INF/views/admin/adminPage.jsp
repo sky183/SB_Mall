@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-		<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,8 @@ table {
 }
 
 td {
-	padding: 10px 20px;
+	padding: 10px 0px;
+	text-align: center;
 }
 
 #memberPhoto {
@@ -27,47 +28,41 @@ td {
 	border: 1px solid #333333;
 	margin: 20px 0;
 }
+
+#adminWrapper {
+	margin: 100px 80px 50px 80px;
+}
 </style>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	<div id="adminWrapper">
+		<h1>매출 현황</h1>
+		<div>2018년</div>
+		<div>10월</div>
 
-	<div id="contents">
-		<h2>회원리스트</h2>
+
 
 		<hr>
-
-		<div class="memHeader">
-			<select name="viewType" id="viewType">
-				<option value="viewType">viewType</option>
-				<option value="memberList">회원정보</option>
-				<option value="JSON">JSON</option>
-				<option value="XML">XML</option>
-			</select>
-		</div>
-		
-		<div id="type"></div>
-		
-		<table border="1" class="memList">
-		
-		</table>
+		<button id="memberList">회원관리</button>
+		<button id="orderList">주문관리</button>
+		<div id="viewList"></div>
 
 
+
+		<!-- adminWrapper의 끝 -->
 	</div>
 
-<script>
+	<script>
 
 
 	$(document).ready(function() {
 		/* 기본 뷰타입으로 불러온다. */
-	 	 $('.memList').load('<%=request.getContextPath()%>' + '/memberList/viewType');   
-		$('#viewType').change(function() {
-			if ($(this).val() == 'viewType') {}
-			
-			if ($(this).val() == 'HTML') {
+	 	 $('#viewList').load('<%=request.getContextPath()%>' + '/memberList/viewType?type=orderList');   
+		$('#memberList').click(function() {
 				$.ajax({
-					url : '<%=request.getContextPath()%>' + '/memberList/viewType?type=HTML',
+					url : '<%=request.getContextPath()%>' + '/memberList/viewType?type=memberList',
 					data : {
 						viewType : $(this).val()
 					},
@@ -75,13 +70,31 @@ td {
 				        alert("Error!");
 				    },
 					success : function(data) {
-						$('.memList').empty();
-						$('.memList').append(data);
+						$('#viewList').empty();
+						$('#viewList').append(data);
 					}
 				});
-			}
-			
-			if ($(this).val() == 'JSON') {
+			});
+		
+		$('#orderList').click(function() {
+				$.ajax({
+					url : '<%=request.getContextPath()%>' + '/memberList/viewType?type=memberList',
+					data : {
+						viewType : $(this).val()
+					},
+					error : function(error) {
+				        alert("Error!");
+				    },
+					success : function(data) {
+						$('#viewList').empty();
+						$('#viewList').append(data);
+					}
+				});
+			});
+		
+		/* $(document).ready의 끝 */
+	});
+<%-- 			if ($(this).val() == 'JSON') {
 				$.getJSON('memberList/viewType?type=JSON', function(data) {
 					success : 
 						$('#type, #tbody').empty();
@@ -135,11 +148,11 @@ td {
 						});	
 					}
 				});
-			}
-		});
-	});
+			}  --%>
+/* 		}); */
+
 
 </script>
-	
+
 </body>
 </html>

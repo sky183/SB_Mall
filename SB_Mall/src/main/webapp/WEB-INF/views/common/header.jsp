@@ -22,7 +22,7 @@
 				</a>
 				
 				<a class="headerNaviText" >Search</a>
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/admin/adminPage">admin</a>
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/adminPage">admin</a>
 				<c:choose>
 				<c:when test="${memberInfo == null}">
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/login">login</a>

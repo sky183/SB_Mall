@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sb.mall.dao.OrderDao">
+	<insert id="insert" parameterType="com.sb.mall.model.Order"
+		useGeneratedKeys="true" keyProperty="orderSeq">
+	</insert>
+
+	<update id="update" parameterType="com.sb.mall.model.Order">
+	</update>
+
+	<update id="updateStatus" parameterType="Map">
+	</update>
+
+	<delete id="delete" parameterType="int">
+	</delete>
+
+	<select id="selectAll" resultType="List">
+	</select>
+	
+	<select id="selectColumn" resultType="List" parameterType="Map">
+	</select>
+	
+	<select id="selectJoin" resultType="List" parameterType="Map">
+	</select>
+	
+	<select id="selectMemberOrder" resultType="List">
+	</select>
+	
+	<select id="select" resultType="List">
+	</select>
+	
+	<select id="selectOrder" resultType="com.sb.mall.model.Order">
+	</select>
+
+
+
+
+</mapper>

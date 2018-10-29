@@ -18,7 +18,7 @@ public class MemberListController {
 	private MemberListService service;
 
 	@RequestMapping("/memberList/viewType")
-	public ModelAndView getMemberList(@RequestParam(value = "type", defaultValue = "memberList") String type)
+	public ModelAndView getMemberList(@RequestParam(value = "type", defaultValue = "orderList") String type)
 			throws Exception {
 
 		ModelAndView modelAndView = new ModelAndView();
@@ -27,13 +27,10 @@ public class MemberListController {
 		case "memberList":
 			modelAndView.setViewName("member/memberList");
 			break;
-		case "JSON":
+		case "orderList":
 			modelAndView.setViewName("member/viewTypeJSON");
 			break;
-		case "XML":
-			modelAndView.setViewName("member/viewTypeXML");
-			break;
-		}
+	}
 		
 		List<MemberInfo> members = service.getMemberList();
 
