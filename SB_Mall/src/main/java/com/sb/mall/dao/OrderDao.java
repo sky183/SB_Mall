@@ -7,7 +7,7 @@ import com.sb.mall.model.Order;
 
 public interface OrderDao {
 	
-	public int insert(Order order);
+	public int insertCart(Order order);
 	public int update(Order order);
 	public int updateStatus(Map<String, Object> map); //int orderSeq, int status
 	public int delete(int orderSeq);

@@ -96,6 +96,7 @@ ul{
         var queryString = $('#hForm').serialize();
         $.ajax({
 				    url : '<%=request.getContextPath()%>/store/order/addCart',
+				    type : 'POST',
 					data : queryString,
 					error : function(error) {
 				        alert("Error!");
@@ -117,7 +118,14 @@ ul{
 	<c:forEach var="board" items="${viewList}">
 		<form method="post" id="hForm">
 		<input type="hidden" value="${board.productSeq}" name="productSeq">
-		<input type="hidden" value="1" name="userSeq">
+		<c:choose>
+			<c:when test="${memberInfo!=null}">
+				<input type="hidden" value="${memberInfo.userSeq}" name="userSeq">
+			</c:when>
+			<c:otherwise>
+				<input type="hidden" value="0" name="userSeq">
+			</c:otherwise>
+		</c:choose>
 		<input type="hidden" id="quantity" name="quantity">
 		<input type="hidden" id="option" name="option">
 		</form>
@@ -131,12 +139,10 @@ ul{
 				<li id="boardProductName"><h2>${board.productName}</h2></li>
 				<li><p>가격: ${board.price}</p></li>
 				<li><p>등록일: ${board.writeDate}</p></li>
-				<li>
-				<p>
+				<li><p>
 				블랙 <input type="radio" value="black" name="color" checked="checked">
 				화이트 <input type="radio" value="white" name="color">
-				</p>
-				</li>
+				</p></li>
 				<li>
 				<p><select class="boardProductSel" id="selQuantity">
 				<option>2</option></select></p>

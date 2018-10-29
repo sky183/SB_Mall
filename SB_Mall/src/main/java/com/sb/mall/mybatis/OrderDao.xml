@@ -3,8 +3,10 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sb.mall.dao.OrderDao">
-	<insert id="insert" parameterType="com.sb.mall.model.Order"
+	<insert id="insertCart" parameterType="com.sb.mall.model.Order"
 		useGeneratedKeys="true" keyProperty="orderSeq">
+		insert into SB_Master.Order(orderDetailNum,userSeq,productSeq,quantity,`option`)
+		value(0,#{userSeq},#{productSeq},#{quantity},#{option})
 	</insert>
 
 	<update id="update" parameterType="com.sb.mall.model.Order">
