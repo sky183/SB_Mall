@@ -25,11 +25,12 @@ ul{
 </style>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script></script>
-<div>
-<h2>장바구니</h2>
-<hr>
-</div>
+
 <div id="cartListContainer">
+	<div id="">
+		<h2>장바구니</h2>
+	<hr>
+	</div>
 	<table id="cartTable">
 		<c:choose>
 			<c:when test="${cart!=null}">
