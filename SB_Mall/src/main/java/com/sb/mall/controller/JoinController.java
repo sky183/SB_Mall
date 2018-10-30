@@ -10,12 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.model.MemberInfo;
 import com.sb.mall.service.JoinService;
 
 @Controller 
+
+//joinSession추가
+@SessionAttributes("joinSession")
 
 @RequestMapping("/join") // 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
 public class JoinController {
@@ -39,13 +43,34 @@ public class JoinController {
 		modelAndView.setViewName("/join/joinResult");
 		
 		try {
-			int resultCnt = joinService.memberReg(memberInfo, request);
 			
-			System.out.println("controller - 신규 회원 의 IDX 값 : " + memberInfo.getUserId());
+			//joinSession에 memberInfo등록
+			joinService.joinResult(memberInfo, request);
+			request.getSession().setAttribute("joinSession", memberInfo);
+			modelAndView.addObject("joinSession", memberInfo);
 			
-			if(resultCnt==0) {
-				modelAndView.setViewName("join/joinFail");
-			}
+			//1. Session is not null
+			if (request.getSession().getAttribute("joinSession") != null) {
+				
+				System.out.println("Session is not null");
+				System.out.println("Session Check : "+request.getSession().getAttribute("joinSession"));
+				int resultCnt = joinService.joinResult(memberInfo, request);
+				
+				System.out.println("<Controller Message>");
+				System.out.println("가입한 회원 ID:" + memberInfo.getUserId());
+				//1.1 resultCnt == 0 
+				if(resultCnt==0) {
+					modelAndView.setViewName("join/joinFail");
+				}else {
+					System.out.println("RequestMethod.POST방식 가입완료");
+					
+				}
+				
+			}else {
+				//2. Session is not null
+				System.out.println("Session is null");
+			}//End of if (about Session)
+			
 			
 			
 		} catch (SQLException e) {
@@ -66,8 +91,7 @@ public class JoinController {
 			e.printStackTrace();
 		}
 		
-		
-		System.out.println("RequestMethod.POST 가입완료");
 		return modelAndView;
+		
 	}
 }
