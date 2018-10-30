@@ -11,6 +11,10 @@ body{
 	line-height: 1 !important;
 }
 
+a {
+	text-decoration: none;
+}
+
 #headerBanner{
 	background-image: url(../img/headerBanner45.png);
 	width:100%;

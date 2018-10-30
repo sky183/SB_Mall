@@ -8,6 +8,7 @@
 		<td>회원번호</td>
 		<td>결제수단</td>
 		<td>주문시간</td>
+		<td>결제금액</td>
 		<td>주문상태</td>
 	</tr>
 	<c:forEach var="orderDetail" items="${orderDetails}">
@@ -26,6 +27,7 @@
 				</c:choose></td>
 
 			<td>${orderDetail.orderTime}</td>
+			<td>${orderDetail.totalAmount}</td>
 			<td><a
 				href="<%=request.getContextPath()%>/orderDetailStatus/${orderDetail.orderDetailNum}">
 					<c:choose>
@@ -54,10 +56,7 @@
 
 $('#order').click(function() {
 	$.ajax({
-		url : '<%=request.getContextPath()%>' + '/orderDetail/' + $(this).attr('name'),
-	/* 	data : {
-			viewType : $(this).val()
-		}, */
+		url : '<%=request.getContextPath()%>' + '/orderList/' + $(this).attr('name'),
 		error : function(error) {
 	        alert("Error!");
 	    },

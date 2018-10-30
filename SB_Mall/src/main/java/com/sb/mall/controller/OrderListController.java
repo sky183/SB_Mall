@@ -20,50 +20,13 @@ import com.sb.mall.service.OrderDetailService;
 import com.sb.mall.service.OrderService;
 
 @Controller
-public class AdminListController {
+public class OrderListController {
 
-	@Autowired
-	private MemberListService memService;
-
-	@Autowired
-	private OrderDetailService orderDetailService;
-	
 	@Autowired
 	private OrderService orderService;
-
-	@RequestMapping("/memberList/viewType")
-	public ModelAndView getMemberList(@RequestParam(value = "type", defaultValue = "orderList") String type)
-			throws Exception {
-
-		ModelAndView modelAndView = new ModelAndView("/admin/adminPage");
-
-		switch (type) {
-
-		case "memberList":
-
-			modelAndView.setViewName("member/memberList");
-
-			List<MemberInfo> members = memService.getMemberList();
-
-			modelAndView.addObject("members", members);
-
-			break;
-
-		case "orderList":
-			modelAndView.setViewName("orderDetail/orderDetailList");
-
-			List<OrderDetail> orderDetails = orderDetailService.getOrderDetailList();
-
-			modelAndView.addObject("orderDetails", orderDetails);
-
-			break;
-		}
-		return modelAndView;
-	}
 	
-	@RequestMapping("/orderDetail/{orderDetailNum}")
-	public ModelAndView orderDetail(@PathVariable("orderDetailNum") String orderDetailNum,
-			HttpServletRequest request, HttpSession session) throws Exception {
+	@RequestMapping("/orderList/{orderDetailNum}")
+	public ModelAndView orderDetail(@PathVariable("orderDetailNum") String orderDetailNum) throws Exception {
 		
 		ModelAndView modelAndView = new ModelAndView("/admin/adminPage");
 		

@@ -21,7 +21,7 @@ public class OrderService {
 	
 	
 	@Transactional
-	public List<Order> getOrderByDetailNum(String orderDetailNum) throws Exception {
+	public List<Order> getOrderByDetailNum(String orderDetailNum) {
 
 		List<Order> orders = new ArrayList<Order>();
 

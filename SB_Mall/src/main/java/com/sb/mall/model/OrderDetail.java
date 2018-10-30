@@ -9,7 +9,8 @@ public class OrderDetail {
 	private int payment;
 	private Date orderTime;
 	private int status;
-
+	private int totalAmount;
+	
 	public String getOrderDetailNum() {
 		return orderDetailNum;
 	}
@@ -50,10 +51,20 @@ public class OrderDetail {
 		this.status = status;
 	}
 
+	public int getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(int totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderDetail [orderDetailNum=" + orderDetailNum + ", userSeq=" + userSeq + ", payment=" + payment
-				+ ", orderTime=" + orderTime + ", status=" + status + "]";
+				+ ", orderTime=" + orderTime + ", status=" + status + ", totalAmount=" + totalAmount + "]";
 	}
+	
+	
 
 }

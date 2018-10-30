@@ -5,7 +5,8 @@
 <mapper namespace="com.sb.mall.dao.OrderDao">
 	<insert id="insertCart" parameterType="com.sb.mall.model.Order"
 		useGeneratedKeys="true" keyProperty="orderSeq">
-		insert into SB_Master.Order(orderDetailNum,userSeq,productSeq,quantity,`option`)
+		insert into
+		`Order`(orderDetailNum,userSeq,productSeq,quantity,`option`)
 		value(0,#{userSeq},#{productSeq},#{quantity},#{option})
 	</insert>
 
@@ -20,19 +21,24 @@
 
 	<select id="selectAll" resultType="com.sb.mall.model.Order">
 	</select>
-	
-	<select id="selectColumn" resultType="com.sb.mall.model.Order" parameterType="Map">
+
+	<select id="selectColumn" resultType="com.sb.mall.model.Order"
+		parameterType="Map">
 	</select>
-	
-	<select id="selectJoin" resultType="com.sb.mall.model.Order" parameterType="Map">
+
+	<select id="selectJoin" resultType="com.sb.mall.model.Order"
+		parameterType="Map">
 	</select>
-	
-	<select id="selectMemberOrder" resultType="com.sb.mall.model.Order">
+
+	<select id="selectMemberOrder"
+		resultType="com.sb.mall.model.Order">
 	</select>
-	
-	<select id="select" resultType="com.sb.mall.model.Order">
+
+	<select id="select" resultType="com.sb.mall.model.Order"
+		parameterType="String">
+		select * from `Order` where orderDetailNum = #{orderDetailNum}
 	</select>
-	
+
 	<select id="selectOrder" resultType="com.sb.mall.model.Order">
 	</select>
 
