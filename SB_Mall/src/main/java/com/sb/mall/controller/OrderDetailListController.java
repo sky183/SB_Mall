@@ -1,33 +1,37 @@
 package com.sb.mall.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.model.OrderDetail;
-import com.sb.mall.service.OrderDetailService;
+import com.sb.mall.model.PageListView;
+import com.sb.mall.service.GetPagingService;
 
 @Controller
 public class OrderDetailListController {
 
 	@Autowired
-	private OrderDetailService orderDetailService;
+	private GetPagingService service;
+	
+	static final int COUNT_PER_PAGE = 3;
 
 	@RequestMapping("/orderDetailList")
-	public ModelAndView getMemberList() throws Exception {
+	public ModelAndView getDetailList(@RequestParam(value="page", defaultValue="1") int pageNumber)
+			throws Exception {
 
 		ModelAndView modelAndView = new ModelAndView("/admin/adminPage");
 
-		modelAndView.setViewName("orderDetail/orderDetailList");
+			modelAndView.setViewName("orderDetail/orderDetailList");
+			
+			PageListView listView = service.getList(pageNumber, COUNT_PER_PAGE, "orderDetailDao");
 
-		List<OrderDetail> orderDetails = orderDetailService.getOrderDetailList();
 
-		modelAndView.addObject("orderDetails", orderDetails);
+			modelAndView.addObject("viewData", listView);
 
 		return modelAndView;
 	}
+	
 
 }

@@ -40,6 +40,14 @@
 	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval #{interval}+1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()- interval #{interval} month))
 	</select>
 	
+	<select id="selectCount" resultType="int">
+		select count(*) from OrderDetail where status<![CDATA[<>]]>4 and orderDetailNum<![CDATA[<>]]>0
+	</select>
+	
+	<select id="selectList" resultType="com.sb.mall.model.OrderDetail">
+		select * from
+		OrderDetail where status<![CDATA[<>]]>4 and orderDetailNum<![CDATA[<>]]>0 limit #{param1}, #{param2}
+	</select>
 	
 	
 	

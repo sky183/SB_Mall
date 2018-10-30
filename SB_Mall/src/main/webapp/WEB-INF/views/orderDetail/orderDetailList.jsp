@@ -2,6 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="viewData" value="${viewData}"></c:set>
+<c:choose>
+	<c:when test="${viewData.isEmpty()}">
+	등록된 주문이 없습니다.
+		</c:when>
+	<c:otherwise>
 <table border="1" class="memList">
 	<tr>
 		<td>주문상세번호</td>
@@ -11,7 +17,7 @@
 		<td>결제금액</td>
 		<td>주문상태</td>
 	</tr>
-	<c:forEach var="orderDetail" items="${orderDetails}">
+	<c:forEach var="orderDetail" items="${viewData.objList}">
 		<tr>
 			<td>${orderDetail.orderDetailNum}</td>
 			<td><a
@@ -52,11 +58,32 @@
 	</c:forEach>
 	
 </table>
+<c:forEach varStatus="i" begin="1" end="${viewData.pageTotalCount}">
+			<a href="#" class="page" name="${i.index}">[${i.index}] </a>
+		</c:forEach>
+	</c:otherwise>
+</c:choose>
 <script>
 
 $('.order').click(function() {
 	$.ajax({
 		url : '<%=request.getContextPath()%>' + '/orderList/' + $(this).attr('name'),
+		error : function(error) {
+	        alert("Error!");
+	    },
+		success : function(data) {
+			$('#viewList').empty();
+			$('#viewList').append(data);
+		}
+	});
+});
+
+$('.page').click(function() {
+	$.ajax({
+		url : '<%=request.getContextPath()%>' + '/orderDetailList?page=' +  $(this).attr('name'),
+		data : {
+			viewType : $(this).val()
+		},
 		error : function(error) {
 	        alert("Error!");
 	    },
