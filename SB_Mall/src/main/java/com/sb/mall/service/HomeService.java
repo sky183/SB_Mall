@@ -1,5 +1,6 @@
 package com.sb.mall.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -17,12 +18,23 @@ public class HomeService {
 	
 	private HomeDao homeDao;
 	
-	public List<Map<String,Object>> getDailyDeal(){
+	public List<Map<String,Object>> getDailyDeal() throws SQLException{
 		
 		homeDao = sqlSessionTemplate.getMapper(HomeDao.class);
 		
-		return null;
+		System.out.println("homeSerivce 입장.");
+		
+		return homeDao.selectDailyDeal();
 	}
 	
-//	public List<E>
+	
+	public List<Map<String,Object>> getNewProduct() throws SQLException{
+		
+		homeDao = sqlSessionTemplate.getMapper(HomeDao.class);
+		
+		System.out.println("homeSerivce 입장.");
+		
+		return homeDao.selectNewProduct();
+	}
+	
 }

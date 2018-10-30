@@ -24,6 +24,7 @@
 	<resources mapping="/css/**" location="/css/" />
 	<resources mapping="/img/**" location="/img/" />
 	<resources mapping="/file/**" location="/file/" />
+	<resources mapping="/slick/**" location="/slick/" />
 	<resources mapping="/js/**"
 		location="/WEB-INF/resources/js/**" />
 
@@ -81,6 +82,13 @@
 	<!-- 채팅 관련 -->
 	<beans:bean id="echoHandler"
 		class="com.sb.mall.handler.ChatEchoHandler" />
+	
+	<!-- Service 등록 -->		
+	<beans:bean id="joinService"
+		class="com.sb.mall.service.JoinService"/>
+		
+	
+		
 	<!-- 채팅 관련 -->
 	<websocket:handlers>
 		<websocket:mapping handler="echoHandler"

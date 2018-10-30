@@ -14,5 +14,8 @@ public interface OrderDetailDao {
 	public List<OrderDetail> selectJoin(Map<String, Object> map); //String joinTable, String where, String column
 	public List<OrderDetail> selectMemberOrderDetail(String userId);
 	public OrderDetail selectOrderDetail(String OrderDetailNum);
+	public String thisMonthAmount();
+	public String preMonthAmount(int interval);
+	public String thisMonthAverage();
 
 }

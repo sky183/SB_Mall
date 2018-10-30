@@ -24,12 +24,8 @@ public class StoreBoardDetailService {
 	public List<Map<String,Object>> SalDetailView(int salSeq) throws SQLException{
 		storeDao = sqlSessionTemplate.getMapper(StoreDao.class);
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-		try {
 			 list = storeDao.selectProAndSal(salSeq);
 			 storeDao.updateSalBoardCnt(salSeq);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		return list;
 	}
 	

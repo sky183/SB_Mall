@@ -3,8 +3,11 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sb.mall.dao.OrderDao">
-	<insert id="insert" parameterType="com.sb.mall.model.Order"
+	<insert id="insertCart" parameterType="com.sb.mall.model.Order"
 		useGeneratedKeys="true" keyProperty="orderSeq">
+		insert into
+		`Order`(orderDetailNum,userSeq,productSeq,quantity,`option`)
+		value(0,#{userSeq},#{productSeq},#{quantity},#{option})
 	</insert>
 
 	<update id="update" parameterType="com.sb.mall.model.Order">
@@ -16,21 +19,31 @@
 	<delete id="delete" parameterType="int">
 	</delete>
 
-	<select id="selectAll" resultType="List">
+	<select id="selectCart" resultType="map">
+		SELECT * FROM `Order` o, Product p where userSeq=#{userSeq} 
+		and OrderDetailNum=0 and p.productSeq=o.productSeq;
 	</select>
-	
-	<select id="selectColumn" resultType="List" parameterType="Map">
+
+	<select id="selectAll" resultType="com.sb.mall.model.Order">
 	</select>
-	
-	<select id="selectJoin" resultType="List" parameterType="Map">
+
+	<select id="selectColumn" resultType="com.sb.mall.model.Order"
+		parameterType="Map">
 	</select>
-	
-	<select id="selectMemberOrder" resultType="List">
+
+	<select id="selectJoin" resultType="com.sb.mall.model.Order"
+		parameterType="Map">
 	</select>
-	
-	<select id="select" resultType="List">
+
+	<select id="selectMemberOrder"
+		resultType="com.sb.mall.model.Order">
 	</select>
-	
+
+	<select id="select" resultType="com.sb.mall.model.Order"
+		parameterType="String">
+		select * from `Order` where orderDetailNum = #{orderDetailNum}
+	</select>
+
 	<select id="selectOrder" resultType="com.sb.mall.model.Order">
 	</select>
 

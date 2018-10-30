@@ -1,8 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@	taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <meta charset="UTF-8">
+<head>
+  <title>My Now Amazing Webpage</title>
+  <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+  </head>
+
+  
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="slick/slick.min.js"></script>
+
 
 <script>
 
@@ -87,6 +101,7 @@
 	
 	
 </script>
+
 <body>
 
 <div class="defaultLayout dailyDeal">
@@ -112,12 +127,80 @@
 		</div>
 	</div>
 	
-	<!-- 슬라이더 div -->
-	<div id="dailySliderBox">
 	
-	
-	</div>
 </div>
 
+<!-- 슬라이더 div -->
+	<%-- <div id="dailySliderBox" class="blue">
+		<div class="slider center">
+			<c:forEach var="deal" items="${dailyDeal}">
+				<div class="dealsibal">
+					<img class ="dailyDealImg" src="<%=request.getContextPath()%>/img/SBCompanyLogo.png">
+					<h4>${deal.productName}</h4>
+					<h6>${deal.price}won</h6>
+					<h6><fmt:formatNumber value="${deal.price*0.94}" pattern="0"/>won</h6>
+				</div>
+			</c:forEach>
+		</div>
+	</div> --%>
+	
+<div class="blue">
+  <div class="content">
+    <div class="slider center">
+      <c:forEach var="deal" items="${dailyDeal}">
+	      <div>
+	        <div class="sibal">
+				<img class ="dailyDealImg" src="<%=request.getContextPath()%>/img/SBCompanyLogo.png">
+				<h4>${deal.productName}</h4>
+				<h6>${deal.price}won</h6>
+	        </div>
+	      </div>
+      </c:forEach>
+    </div>
+  </div>
+  </div>
+	
+	
+	
+	
+<script type="text/javascript">
+      /* $('.your-class').slick({
+    	  centerMode: true,
+    	  centerPadding: '60px',
+    	  slidesToShow: 3,
+    	  responsive: [
+    	    {
+    	      breakpoint: 768,
+    	      settings: {
+    	        arrows: false,
+    	        centerMode: true,
+    	        centerPadding: '40px',
+    	        slidesToShow: 3
+    	      }
+    	    },
+    	    {
+    	      breakpoint: 480,
+    	      settings: {
+    	        arrows: false,
+    	        centerMode: true,
+    	        centerPadding: '40px',
+    	        slidesToShow: 1
+    	      }
+    	    }
+    	  ]
+        
+      }); */
+      
+      $(".center").slick({
+    	  centerMode: true,
+    	  /* centerPadding: "0px", */
+    	  slidesToShow: 3,
+    	  draggable:false,
+    	  speed: 800,
+    	  variableWidth: true,
+    	  infinite: true
+    	  
+    	});
+  </script>
 </body>
 </html>

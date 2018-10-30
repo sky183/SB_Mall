@@ -10,21 +10,39 @@
 	<delete id="delete" parameterType="int">
 	</delete>
 
-	<select id="selectAll" resultType="List">
-		select * from OrderDetail where status<![CDATA[<>]]>4
+	<select id="selectAll" resultType="com.sb.mall.model.OrderDetail">
+		select * from OrderDetail where status<![CDATA[<>]]>4 and orderDetailNum<![CDATA[<>]]>0
 	</select>
 	
-	<select id="selectColumn" resultType="List" parameterType="map">
+	<select id="selectColumn" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
 	</select>
 	
-	<select id="selectJoin" resultType="List" parameterType="map">
+	<select id="selectJoin" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
 	</select>
 	
-	<select id="selectMemberOrder" resultType="List">
+	<select id="selectMemberOrder" resultType="com.sb.mall.model.OrderDetail">
 	</select>
 	
 	<select id="selectOrderDetail" resultType="com.sb.mall.model.OrderDetail">
 	</select>
+	
+	<select id="thisMonthAverage" resultType="String">
+		SELECT sum(totalAmount) / DAYOFMONTH(NOW()) totalAmount FROM OrderDetail WHERE
+	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval 1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()))
+	</select>
+	
+	<select id="thisMonthAmount" resultType="String">
+	SELECT sum(totalAmount) FROM OrderDetail WHERE
+	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval 1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()))
+	</select>
+	<select id="preMonthAmount" resultType="String" parameterType="int">
+	SELECT sum(totalAmount) FROM OrderDetail WHERE
+	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval #{interval}+1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()- interval #{interval} month))
+	</select>
+	
+	
+	
+	
 	
 	
  </mapper>

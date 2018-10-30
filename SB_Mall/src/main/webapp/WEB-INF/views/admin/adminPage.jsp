@@ -39,11 +39,15 @@ td {
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div id="adminWrapper">
 		<h1>매출 현황</h1>
-		<div>2018년</div>
-		<div>10월</div>
-
-
-
+		<script type=>
+		var d = new Date();
+		document.write('<h2>' + (d.getFullYear()) + '년 </h2>');
+		document.write('<h2>' + (d.getMonth() + 1) + '월 </h2>');
+		</script>
+		
+		<h2>이번달 매출 : ${thisMonth}</h2>
+		<h2>지난달 매출 : ${preMonth}</h2>
+		<h2>이번달 평균 : ${thisMonthAverage}</h2>
 		<hr>
 		<button id="memberList">회원관리</button>
 		<button id="orderList">주문관리</button>
@@ -59,10 +63,11 @@ td {
 
 	$(document).ready(function() {
 		/* 기본 뷰타입으로 불러온다. */
-	 	 $('#viewList').load('<%=request.getContextPath()%>' + '/memberList/viewType?type=orderList');   
+	 	 $('#viewList').load('<%=request.getContextPath()%>' + '/orderDetailList');  
+		
 		$('#memberList').click(function() {
 				$.ajax({
-					url : '<%=request.getContextPath()%>' + '/memberList/viewType?type=memberList',
+					url : '<%=request.getContextPath()%>' + '/memberList',
 					data : {
 						viewType : $(this).val()
 					},
@@ -78,7 +83,7 @@ td {
 		
 		$('#orderList').click(function() {
 				$.ajax({
-					url : '<%=request.getContextPath()%>' + '/memberList/viewType?type=orderList',
+					url : '<%=request.getContextPath()%>' + '/orderDetailList',
 					data : {
 						viewType : $(this).val()
 					},
@@ -92,8 +97,11 @@ td {
 				});
 			});
 		
+
+		
 		/* $(document).ready의 끝 */
 	});
+	
 <%-- 			if ($(this).val() == 'JSON') {
 				$.getJSON('memberList/viewType?type=JSON', function(data) {
 					success : 

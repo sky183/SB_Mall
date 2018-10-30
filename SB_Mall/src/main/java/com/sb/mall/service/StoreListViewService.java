@@ -24,36 +24,21 @@ public class StoreListViewService {
 	public List<Map<String,Object>> proAndSalList() throws SQLException{
 		storeDao=sqlSessionTemplate.getMapper(StoreDao.class);
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-		try {
 			list = storeDao.selectProAndSalList();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw e;
-		}
 		return list;
 	};
 	
 	public List<Product> productList() throws SQLException{
 		storeDao=sqlSessionTemplate.getMapper(StoreDao.class);
 		List<Product> list = new ArrayList<Product>();
-			try {
 				list = storeDao.selectProductList();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw e;
-			}
 		return list;
 	}
 	
 	public List<SalesBoard> salBoardList() throws SQLException{
 		storeDao=sqlSessionTemplate.getMapper(StoreDao.class);
 		List<SalesBoard> list = new ArrayList<SalesBoard>();
-		try {
 			list = storeDao.selectSalBoardList();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw e;
-		}
 		return list;
 	}
 	

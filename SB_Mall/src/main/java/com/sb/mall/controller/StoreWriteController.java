@@ -34,7 +34,7 @@ public class StoreWriteController {
 	public ModelAndView storeWriteDo(StoreWriteCommend storeWriteCommend,
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:boardListView");
+		modelAndView.setViewName("redirect:/store");
 		//업로드폴더 중간경로 지정
 		String folderName = "product";
 		try {

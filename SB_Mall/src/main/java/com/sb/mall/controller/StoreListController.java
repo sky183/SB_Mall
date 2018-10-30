@@ -20,13 +20,6 @@ public class StoreListController {
 			) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject(pageNumber);
-		/*List<Map<String, Object>> list=null;
-		try {
-			list = storeListViewService.ListView();
-		} catch (SQLException e) {
-			System.out.println("글목록 로딩에 실패하였습니다.");
-		}
-		modelAndView.addObject("viewList", list);*/
 		modelAndView.setViewName("storeBoard");
 		return modelAndView;
 	}

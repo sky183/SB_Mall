@@ -6,10 +6,11 @@ import java.util.Date;
 public class OrderDetail {
 	private String orderDetailNum;
 	private int userSeq;
-	private String payment;
+	private int payment;
 	private Date orderTime;
 	private int status;
-
+	private int totalAmount;
+	
 	public String getOrderDetailNum() {
 		return orderDetailNum;
 	}
@@ -26,11 +27,11 @@ public class OrderDetail {
 		this.userSeq = userSeq;
 	}
 
-	public String getPayment() {
+	public int getPayment() {
 		return payment;
 	}
 
-	public void setPayment(String payment) {
+	public void setPayment(int payment) {
 		this.payment = payment;
 	}
 
@@ -50,10 +51,20 @@ public class OrderDetail {
 		this.status = status;
 	}
 
+	public int getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(int totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderDetail [orderDetailNum=" + orderDetailNum + ", userSeq=" + userSeq + ", payment=" + payment
-				+ ", orderTime=" + orderTime + ", status=" + status + "]";
+				+ ", orderTime=" + orderTime + ", status=" + status + ", totalAmount=" + totalAmount + "]";
 	}
+	
+	
 
 }
