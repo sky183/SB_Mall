@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
@@ -77,12 +79,9 @@
 							</tr>
 							<tr>
 								<td>
-								
-									<div id="member_button">
-											
-											<input type="submit" value="가입완료"> 
-											<input type="submit" value="취소">
-									</div>
+									<button id="member_button">
+										가입완료
+									</button>
 								</td>
 							</tr>
 
@@ -95,6 +94,11 @@
 		<!-- End of Table -->
 	</div>
 
+<script>
+$('#member_button').click(function(){
+	location.href = '<%=request.getContextPath()%>/';
+});
+</script>
 
 
 

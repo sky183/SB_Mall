@@ -51,7 +51,7 @@
 											</td>
 										</tr>
 										<th>비밀번호 확인</th>
-										<td><input type="password" name="pw2" required></td>
+										<td><input type="password" name="userPwChck" required></td>
 										<tr>
 
 										<tr>

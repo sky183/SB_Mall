@@ -1,6 +1,5 @@
 package com.sb.mall.service;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -28,14 +27,7 @@ public class JoinService {
 		
 		memberDao = sqlSessionTemplate.getMapper(MemberDao.class);
 		
-		
-		//conn = ConnectionProvider.getConnection();
 		int resultCnt = 0 ;
-		
-		// 물리적 저장 경로
-		String uploadUri = "/uploadfile/userphoto";
-		// uploadUri 경로의 시스템 경로
-		String dir = request.getSession().getServletContext().getRealPath(uploadUri);
 		
 			resultCnt = memberDao.insert(memberInfo);
 			System.out.println("<Service Message>");

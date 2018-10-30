@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,12 +35,20 @@ public class JoinController {
 		return "/join/joinForm";
 	}
 	@RequestMapping(method = RequestMethod.POST)  //get 방식으로  값을 받아와 String num에 저장 modelAndView로  리턴
-	public ModelAndView getResultForm(@ModelAttribute("mInfo") MemberInfo memberInfo,
+	public ModelAndView getResultForm(@ModelAttribute("mInfo") MemberInfo memberInfo, @RequestParam("userPwChck") String userPwChck,
 			HttpServletRequest request) {
+		
+
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/join/joinResult");
+		
+		if (!memberInfo.getUserPw().equals(userPwChck)) {
+			modelAndView.setViewName("join/joinFail");
+			modelAndView.addObject("error", "비밀번호가 다릅니다.");
+			return modelAndView;
+		}
 		
 		try {
 			
@@ -65,24 +74,22 @@ public class JoinController {
 				System.out.println("Session is null");
 			}//End of if (about Session)
 			
-			
-			
 		} catch (SQLException e) {
 			modelAndView.setViewName("join/joinFail");
+			modelAndView.addObject("error", "이미 존재하는 아이디입니다.");
 			System.out.println("SQLExceptione");
-			e.printStackTrace();
 		} catch (IllegalStateException e) {
 			modelAndView.setViewName("join/joinFail");
+			modelAndView.addObject("error", "이미 존재하는 아이디입니다.");
 			System.out.println("IllegalStateException");
-			e.printStackTrace();
 		} catch (IOException e) {
 			modelAndView.setViewName("join/joinFail");
+			modelAndView.addObject("error", "이미 존재하는 아이디입니다.");
 			System.out.println("IOException");
-			e.printStackTrace();
 		}catch (Exception e) {
 			modelAndView.setViewName("join/joinFail");
 			System.out.println("Exception");
-			e.printStackTrace();
+			modelAndView.addObject("error", "이미 존재하는 아이디입니다.");
 		}
 		
 		return modelAndView;
