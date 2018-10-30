@@ -14,18 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sb.mall.service.LoginService;
 
 @Controller // 클라이언의 요청을 처리 한 뒤그 결과를 DispatcherServlet에게 알려 줌 Struts의 Action과 동일한 기능
-@RequestMapping("Login") // 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
 public class LoginController {
 
 	@Autowired // Spring Framework에서 지원하는 의존주입 용도의 어노테이션
 	private LoginService loginService;
-
-	@RequestMapping(method = RequestMethod.GET) // get 방식으로 값을 받아와 String num에 저장 modelAndView로 리턴
+	
+	// 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
+	@RequestMapping(value="Login", method = RequestMethod.GET) // get 방식으로 값을 받아와 String num에 저장 modelAndView로 리턴
 	public ModelAndView getLoginForm() {
 		return new ModelAndView("/common/loginForm");
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="Login", method = RequestMethod.POST)
 	public ModelAndView loginProcess(@RequestParam(value = "userId", required = false) String userId,
 			@RequestParam(value = "userPw", required = false) String userPw, HttpSession session) throws SQLException {
 
@@ -45,6 +45,11 @@ public class LoginController {
 		}
 
 		return modelAndView;
+	}
+	
+	@RequestMapping("loginError")
+	public String loginError() {
+		return "/error/loginError";
 	}
 
 }

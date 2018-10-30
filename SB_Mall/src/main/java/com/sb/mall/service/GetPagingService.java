@@ -18,51 +18,46 @@ public class GetPagingService {
 
 	@Autowired
 	SqlSessionTemplate sessionTemplate;
-
+	
+	// getList()의 매개변수 pageNumber는 표시할 페이지, countPerPage는 표시할 페이지 갯수, daoName은 적용할 Dao 변수이름을 적고 변수이름을 똑같이 생성해주면 된다 
 	private MemberDao memberDao;
-	
+
 	private OrderDao orderDao;
-	
+
 	private OrderDetailDao orderDetailDao;
 
-	// 한 페이지에 보여줄 메시지의 수
-/*	private static final int MESSAGE_COUNT_PER_PAGE = 10;*/
-	
-	//매개변수 페이지넘버는 표시할 페이지
 	@Transactional
 	public PageListView getList(int pageNumber, int countPerPage, String daoName) {
-		
-		if (daoName.equals("memberDao")) {
-			memberDao = sessionTemplate.getMapper(MemberDao.class);
-		} else if (daoName.equals("orderDao")) {
-			orderDao = sessionTemplate.getMapper(OrderDao.class);
-		} else if (daoName.equals("orderDetailDao")) {
-			orderDetailDao = sessionTemplate.getMapper(OrderDetailDao.class);
-		}
-
-		int currentPageNumber = pageNumber;
 
 		// 전체 메시지 구하기
-		//메세지 갯수
+		// 메세지 갯수
 		int objTotalCount = 0;
-		if (daoName.equals("memberDao")) {
-			objTotalCount = memberDao.selectCount();
-		} else if (daoName.equals("orderDao")) {
-			objTotalCount = orderDao.selectCount();
-		} else if (daoName.equals("orderDetailDao")) {
-			objTotalCount = orderDetailDao.selectCount();
-		}
-	
-		//메세지가 담길 리스트
+
+		// 표시할 페이지
+		int currentPageNumber = pageNumber;
+
+		// 메세지가 담길 리스트
 		List<Object> objList = null;
 		int firstRow = 0;
 		int endRow = 0;
-		//메세지 갯수가 0보다 크면 첫 행에는 표시할 페이지 -1  * 10을 한다 - 이것은 표시할 행의 시작 인덱스다.
-		//마지막 행에는 표시할 페이지 갯수를 적는다.
+
+		if (daoName.equals("memberDao")) {
+			memberDao = sessionTemplate.getMapper(MemberDao.class);
+			objTotalCount = memberDao.selectCount();
+		} else if (daoName.equals("orderDao")) {
+			orderDao = sessionTemplate.getMapper(OrderDao.class);
+			objTotalCount = orderDao.selectCount();
+		} else if (daoName.equals("orderDetailDao")) {
+			orderDetailDao = sessionTemplate.getMapper(OrderDetailDao.class);
+			objTotalCount = orderDetailDao.selectCount();
+		}
+
+		// 메세지 갯수가 0보다 크면 첫 행에는 표시할 페이지 -1 * 10을 한다 - 이것은 표시할 행의 시작 인덱스다.
+		// 마지막 행에는 표시할 페이지 갯수를 적는다.
 		if (objTotalCount > 0) {
 			firstRow = (pageNumber - 1) * countPerPage;
 			endRow = countPerPage;
-			//현재 페이지에 표시할 메세지를 가져온다.
+			// 현재 페이지에 표시할 메세지를 가져온다.
 			if (daoName.equals("memberDao")) {
 				objList = memberDao.selectList(firstRow, endRow);
 			} else if (daoName.equals("orderDao")) {
@@ -74,8 +69,7 @@ public class GetPagingService {
 			currentPageNumber = 0;
 			objList = Collections.emptyList();
 		}
-		
-		return new PageListView(objList, objTotalCount, currentPageNumber, countPerPage, firstRow,
-				endRow);
+
+		return new PageListView(objList, objTotalCount, currentPageNumber, countPerPage, firstRow, endRow);
 	}
 }

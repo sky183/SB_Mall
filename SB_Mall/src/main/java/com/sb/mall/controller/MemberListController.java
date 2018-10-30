@@ -11,9 +11,6 @@ import com.sb.mall.service.GetPagingService;
 
 @Controller
 public class MemberListController {
-
-/*	@Autowired
-	private MemberListService memService;*/
 	
 	@Autowired
 	private GetPagingService service;
@@ -31,10 +28,8 @@ public class MemberListController {
 			
 			PageListView listView = service.getList(pageNumber, COUNT_PER_PAGE, "memberDao");
 
-//			List<MemberInfo> members = service.getMemberList();
 
 			modelAndView.addObject("viewData", listView);
-//			modelAndView.addObject("members", members);
 
 		return modelAndView;
 	}
