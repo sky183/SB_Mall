@@ -21,7 +21,15 @@
 				<img id="headerLogo" src="<%=request.getContextPath()%>/img/SBCompanyLogo.png"> 
 				</a>
 				<a class="headerNaviText" >Search</a>
+				<c:choose>
+				<c:when test='${memberInfo.gradeNum == 3}'>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/adminPage">admin</a>
+				</c:when>
+				<c:otherwise>
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/myPage">myPage</a>
+				</c:otherwise>
+				</c:choose>
+				
 				<c:choose>
 				<c:when test='${memberInfo eq null}'>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/Login">login</a>
@@ -32,6 +40,7 @@
 				</c:choose>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/join">Join</a> 
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/lo/qna">QnA</a> 
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/order/cart">Cart</a>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/store">Store</a>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/">HOME</a>
 			</div>
