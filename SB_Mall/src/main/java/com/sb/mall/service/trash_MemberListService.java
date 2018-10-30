@@ -12,7 +12,7 @@ import com.sb.mall.dao.MemberDao;
 import com.sb.mall.model.MemberInfo;
 
 @Repository
-public class MemberListService {
+public class trash_MemberListService {
 	
 	@Autowired
 	SqlSessionTemplate sessionTemplate;

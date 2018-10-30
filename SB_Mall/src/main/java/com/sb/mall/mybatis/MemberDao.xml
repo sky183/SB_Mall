@@ -10,7 +10,6 @@
  		values (#{userId},#{userPw},#{userName},#{address1},#{address2},#{zipCode},#{phone})
  	</insert>
 
-
 	<select id="selectById" resultType="com.sb.mall.model.MemberInfo">
 		select * from MemberInfo where	userid = #{userId}
 	</select>
@@ -27,4 +26,14 @@
 	<delete id="delete" parameterType="String">
 		delete from MemberInfo where userid = #{userId}
 	</delete>
+	
+	<select id="selectCount" resultType="int">
+		select count(*) from MemberInfo
+	</select>
+	
+	<select id="selectList" resultType="com.sb.mall.model.MemberInfo">
+		select * from
+		MemberInfo order by userSeq desc limit #{param1},
+		#{param2}
+	</select>
  </mapper>

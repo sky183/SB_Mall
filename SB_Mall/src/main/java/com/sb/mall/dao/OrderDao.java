@@ -18,5 +18,7 @@ public interface OrderDao {
 	public List<Order> select(String orderDetailNum);
 	public List<Map<String,Object>> selectCart(int userSeq);
 	public Order selectOrder(int orderSeq);
+	public int selectCount();
+	public List<Object> selectList(int firstRow, int endRow);
 
 }

@@ -14,4 +14,8 @@ public interface MemberDao {
 	public int update(MemberInfo memberInfo);
 	
 	public int delete(String userId);
+	
+	public int selectCount();
+	
+	public List<Object> selectList(int firstRow, int endRow);
 }
