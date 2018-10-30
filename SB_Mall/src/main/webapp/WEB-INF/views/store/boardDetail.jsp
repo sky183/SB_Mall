@@ -83,6 +83,9 @@ ul{
 	color:white;
 	font-size: 20px;
 }
+#selQuantity{
+	height: 30px;
+}
 </style>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script type="text/javascript">
@@ -95,7 +98,7 @@ ul{
 		//$('#hForm').submit();
         var queryString = $('#hForm').serialize();
         $.ajax({
-				    url : '<%=request.getContextPath()%>/store/order/addCart',
+				    url : '<%=request.getContextPath()%>/order/addCart',
 				    type : 'POST',
 					data : queryString,
 					error : function(error) {
@@ -108,6 +111,10 @@ ul{
 	}
 	function buyProduct() {
 		
+	}
+	
+	function mathABS(e) {
+		e.value = Math.abs(e.value); //number 인풋에 자연수만 들어가도록 변경
 	}
 
 </script>
@@ -144,8 +151,7 @@ ul{
 				화이트 <input type="radio" value="white" name="color">
 				</p></li>
 				<li>
-				<p><select class="boardProductSel" id="selQuantity">
-				<option>2</option></select></p>
+				<p><input type="number" id="selQuantity" min="1" oninput="mathABS(this)"></p>
 				</li>
 				<li>
 				<p>

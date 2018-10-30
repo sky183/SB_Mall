@@ -27,6 +27,7 @@ public class StoreBoardDetailController {
 			List<Map<String,Object>> list = boardDetailService.SalDetailView(salSeq);
 			modelAndView.addObject("viewList", list);
 		} catch (SQLException e) {
+			modelAndView.addObject("errorMsg", "게시글 조회에 실패하였습니다.");
 			System.out.println("게시글 조회에 실패하였습니다.");
 		}
 		

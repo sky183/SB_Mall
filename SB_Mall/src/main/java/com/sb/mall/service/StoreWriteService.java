@@ -20,7 +20,6 @@ public class StoreWriteService {
 	
 	@Transactional
 	public void productAndBoardWrite(Product product,SalesBoard salesBoard) throws SQLException{
-		try {
 			storeDao=sqlSessionTemplate.getMapper(StoreDao.class);
 			storeDao.insertProduct(product);
 			// 생성된 product의 pk를 salesBoard객체에도 적용
@@ -28,10 +27,6 @@ public class StoreWriteService {
 			storeDao.insertSalesBoard(salesBoard);
 			System.out.println(product);
 			System.out.println(salesBoard);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw e;
-		}
 	}
 	
 }

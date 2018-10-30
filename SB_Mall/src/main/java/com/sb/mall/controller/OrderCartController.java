@@ -16,7 +16,7 @@ public class OrderCartController {
 	@Autowired
 	OrderCartService orderCartService;
 	
-	@RequestMapping(value="store/order/addCart",produces="application/text; charset=utf8")
+	@RequestMapping(value="order/addCart",produces="application/text; charset=utf8")
 	@ResponseBody
 	public String addCart(Order order) {
 		System.out.println(order);
