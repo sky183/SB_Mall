@@ -92,6 +92,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/store/**"/>
+			<mapping path="/order/**"/>
 			<beans:bean
 				class="com.sb.mall.interceptor.AuthCheckInterceptor" />
 		</interceptor>
