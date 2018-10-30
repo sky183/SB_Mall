@@ -87,7 +87,18 @@
 			path="/echo-ws" />
 		<websocket:sockjs />
 	</websocket:handlers>
-
-
-
+	
+	<!-- loginInterceptor 관련 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/store/**"/>
+			<beans:bean
+				class="com.sb.mall.interceptor.AuthCheckInterceptor" />
+		</interceptor>
+	</interceptors>
 </beans:beans>
+
+
+
+
+
