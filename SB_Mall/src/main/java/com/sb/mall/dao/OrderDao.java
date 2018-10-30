@@ -16,6 +16,7 @@ public interface OrderDao {
 	public List<Order> selectJoin(Map<String, Object> map); //String joinTable, String where, String column
 	public List<Order> selectMemberOrder(String userId);
 	public List<Order> select(String orderDetailNum);
+	public List<Map<String,Object>> selectCart(int userSeq);
 	public Order selectOrder(int orderSeq);
 
 }

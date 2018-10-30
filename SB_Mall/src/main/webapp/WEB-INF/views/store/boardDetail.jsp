@@ -85,6 +85,7 @@ ul{
 }
 #selQuantity{
 	height: 30px;
+	font-size: 20px;
 }
 </style>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>

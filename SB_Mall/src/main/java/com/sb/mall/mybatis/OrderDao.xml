@@ -19,6 +19,11 @@
 	<delete id="delete" parameterType="int">
 	</delete>
 
+	<select id="selectCart" resultType="map">
+		SELECT * FROM `Order` o, Product p where userSeq=#{userSeq} 
+		and OrderDetailNum=0 and p.productSeq=o.productSeq;
+	</select>
+
 	<select id="selectAll" resultType="com.sb.mall.model.Order">
 	</select>
 

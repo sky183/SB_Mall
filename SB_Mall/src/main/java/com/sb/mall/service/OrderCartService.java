@@ -1,6 +1,8 @@
 package com.sb.mall.service;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,13 @@ public class OrderCartService {
 	@Transactional
 	public void deleteCart(String orderSeq) {
 		
+	}
+	
+	public List<Map<String,Object>> selectCart(int userSeq) throws SQLException{
+		List<Map<String,Object>> list = null;
+		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
+		list= orderDao.selectCart(userSeq);
+		return list;
 	}
 	
 }
