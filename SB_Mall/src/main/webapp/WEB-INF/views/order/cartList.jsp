@@ -5,6 +5,10 @@
 ul{
    list-style:none;
 }
+#cartListContainer{
+	width: 1200px;
+	margin: 0 auto;
+}
 .cartImg{
 	height: 200px;
 	width: 200px;
@@ -25,7 +29,7 @@ ul{
 <h2>장바구니</h2>
 <hr>
 </div>
-<div>
+<div id="cartListContainer">
 	<table id="cartTable">
 		<c:choose>
 			<c:when test="${cart!=null}">
