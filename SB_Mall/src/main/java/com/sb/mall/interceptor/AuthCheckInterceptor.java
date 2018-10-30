@@ -16,7 +16,7 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		
 		// 세션에 로그인 정보 유부 확인 
-		// -> return true : 정상적인 Controller 실행
+		// -> return true : 정상적인 Controller 실행!
 		
 		HttpSession session = request.getSession(false);
 		
