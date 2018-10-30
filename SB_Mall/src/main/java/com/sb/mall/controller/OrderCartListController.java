@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sb.mall.model.MemberInfo;
 import com.sb.mall.service.OrderCartService;
 
 @Controller
@@ -22,12 +23,13 @@ public class OrderCartListController {
 	OrderCartService orderCartService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView viewCartList(HttpServletResponse response) {
+	public ModelAndView viewCartList(HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
+		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
 		modelAndView.setViewName("orderCart");
 		List<Map<String,Object>> list = null;
 		try {
-			list=orderCartService.selectCart(5);
+			list=orderCartService.selectCart(memberInfo.getUserSeq());
 			modelAndView.addObject("cart",list);
 		} catch (SQLException e) {
 			modelAndView.addObject("errorMsg","장바구니 조회에 실패하였습니다. DB오류");
