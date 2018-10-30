@@ -19,9 +19,8 @@ import com.sb.mall.service.JoinService;
 @Controller 
 
 //joinSession추가
-@SessionAttributes("joinSession")
-
 @RequestMapping("/join") // 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
+@SessionAttributes("memberInfo")
 public class JoinController {
 	
 	@Autowired
@@ -45,17 +44,13 @@ public class JoinController {
 		try {
 			
 			//joinSession에 memberInfo등록
-			joinService.joinResult(memberInfo, request);
-			request.getSession().setAttribute("joinSession", memberInfo);
-			modelAndView.addObject("joinSession", memberInfo);
+			int resultCnt = joinService.joinResult(memberInfo, request);
+			modelAndView.addObject("memberInfo", memberInfo);
 			
 			//1. Session is not null
-			if (request.getSession().getAttribute("joinSession") != null) {
+			if (memberInfo != null) {
 				
 				System.out.println("Session is not null");
-				System.out.println("Session Check : "+request.getSession().getAttribute("joinSession"));
-				int resultCnt = joinService.joinResult(memberInfo, request);
-				
 				System.out.println("<Controller Message>");
 				System.out.println("가입한 회원 ID:" + memberInfo.getUserId());
 				//1.1 resultCnt == 0 
@@ -63,7 +58,6 @@ public class JoinController {
 					modelAndView.setViewName("join/joinFail");
 				}else {
 					System.out.println("RequestMethod.POST방식 가입완료");
-					
 				}
 				
 			}else {

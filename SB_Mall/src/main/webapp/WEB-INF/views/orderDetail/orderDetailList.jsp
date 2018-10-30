@@ -46,7 +46,7 @@
 						<c:otherwise>
 						</c:otherwise>
 					</c:choose>
-			</a> <button id="order" name="${orderDetail.orderDetailNum}">주문상세</button>
+			</a> <button class="order" name="${orderDetail.orderDetailNum}">주문상세</button>
 			</td>
 		</tr>
 	</c:forEach>
@@ -54,7 +54,7 @@
 </table>
 <script>
 
-$('#order').click(function() {
+$('.order').click(function() {
 	$.ajax({
 		url : '<%=request.getContextPath()%>' + '/orderList/' + $(this).attr('name'),
 		error : function(error) {
