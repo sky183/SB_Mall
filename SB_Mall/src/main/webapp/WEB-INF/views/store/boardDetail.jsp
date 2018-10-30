@@ -151,7 +151,9 @@ ul{
 				화이트 <input type="radio" value="white" name="color">
 				</p></li>
 				<li>
-				<p><input type="number" id="selQuantity" min="1" oninput="mathABS(this)"></p>
+				<p>
+				<input type="number" id="selQuantity" value="1" min="1" oninput="mathABS(this)">
+				</p>
 				</li>
 				<li>
 				<p>
