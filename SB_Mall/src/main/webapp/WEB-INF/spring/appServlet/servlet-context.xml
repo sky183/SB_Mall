@@ -83,6 +83,9 @@
 	<beans:bean id="echoHandler"
 		class="com.sb.mall.handler.ChatEchoHandler" />
 	
+	<!-- <beans:bean id="myHandler"
+		class="com.sb.mall.handler.WebSocket" /> -->
+	
 	<!-- Service 등록 -->		
 	<beans:bean id="joinService"
 		class="com.sb.mall.service.JoinService"/>
@@ -94,6 +97,14 @@
 		<websocket:mapping handler="echoHandler"
 			path="/echo-ws" />
 		<websocket:sockjs />
+	</websocket:handlers>
+	
+	<websocket:handlers>
+		<websocket:mapping handler="myHandler"
+			path="/echo.do" />
+		<websocket:handshake-interceptors>
+			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
+		</websocket:handshake-interceptors>
 	</websocket:handlers>
 	
 	<!-- loginInterceptor 관련 -->
