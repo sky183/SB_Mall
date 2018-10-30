@@ -63,7 +63,7 @@ td {
 
 	$(document).ready(function() {
 		/* 기본 뷰타입으로 불러온다. */
-	 	 $('#viewList').load('<%=request.getContextPath()%>' + '/orderDetailList');  
+		$('#viewList').load('<%=request.getContextPath()%>' + '/orderDetailList');  
 		
 		$('#memberList').click(function() {
 				$.ajax({

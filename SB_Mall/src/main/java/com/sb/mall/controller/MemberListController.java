@@ -33,7 +33,4 @@ public class MemberListController {
 
 		return modelAndView;
 	}
-	
-	
-
 }

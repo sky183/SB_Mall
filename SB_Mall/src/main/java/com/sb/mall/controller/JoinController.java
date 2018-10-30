@@ -37,10 +37,7 @@ public class JoinController {
 	@RequestMapping(method = RequestMethod.POST)  //get 방식으로  값을 받아와 String num에 저장 modelAndView로  리턴
 	public ModelAndView getResultForm(@ModelAttribute("mInfo") MemberInfo memberInfo, @RequestParam("userPwChck") String userPwChck,
 			HttpServletRequest request) {
-		
-
-		
-		
+				
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/join/joinResult");
 		
@@ -56,13 +53,13 @@ public class JoinController {
 			int resultCnt = joinService.joinResult(memberInfo, request);
 			modelAndView.addObject("memberInfo", memberInfo);
 			
-			//1. Session is not null
+			//1. Session(memberInfo) is not null 일때 회원가입
 			if (memberInfo != null) {
 				
 				System.out.println("Session is not null");
 				System.out.println("<Controller Message>");
 				System.out.println("가입한 회원 ID:" + memberInfo.getUserId());
-				//1.1 resultCnt == 0 
+				//1.1 회원가입 실패시 : resultCnt == 0 
 				if(resultCnt==0) {
 					modelAndView.setViewName("join/joinFail");
 				}else {
@@ -70,7 +67,7 @@ public class JoinController {
 				}
 				
 			}else {
-				//2. Session is not null
+				//2. Session is not null 
 				System.out.println("Session is null");
 			}//End of if (about Session)
 			
@@ -94,5 +91,6 @@ public class JoinController {
 		
 		return modelAndView;
 		
-	}
-}
+	}// end of method (getResultForm)
+}// end of class (JoinController)
+
