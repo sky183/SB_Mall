@@ -38,8 +38,12 @@
 					<td>${member.gradeNum}</td>
 					<td>${member.point}</td>
 					<td>${member.userAmount}</td>
-					<td><a
-						href="<%=request.getContextPath()%>/memberModify?userId=${member.userId}">수정</a>
+					<td>
+					<button class="memberModify" name="${member.userId}">
+						수정
+					</button>
+<%-- 					<a
+						href="<%=request.getContextPath()%>/memberModify?userId=${member.userId}">수정</a> --%>
 						<a
 						href="<%=request.getContextPath()%>/memberDelete?userId=${member.userId}">탈퇴</a>
 					</td>
@@ -55,6 +59,22 @@
 $('.page').click(function() {
 	$.ajax({
 		url : '<%=request.getContextPath()%>' + '/memberList?page=' +  $(this).attr('name'),
+		data : {
+			viewType : $(this).val()
+		},
+		error : function(error) {
+	        alert("Error!");
+	    },
+		success : function(data) {
+			$('#viewList').empty();
+			$('#viewList').append(data);
+		}
+	});
+});
+
+$('.memberModify').click(function() {
+	$.ajax({
+		url : '<%=request.getContextPath()%>/memberModify?userId=' +  $(this).attr('name'),
 		data : {
 			viewType : $(this).val()
 		},
