@@ -1,6 +1,30 @@
 package com.sb.mall.service;
 
-import java.sql.SQLException;
+import java.util.List;
+
+import com.sb.mall.model.QnABoard;
+
+public interface QnAService {
+
+public void create(QnABoard qna) throws Exception;
+    
+    public List<QnABoard> listAll() throws Exception;
+    
+    public QnABoard read(Integer qnaSeq) throws Exception;
+    
+    public void delete(Integer qnaSeq) throws Exception;
+    
+    public void update(QnABoard qna) throws Exception;
+
+}
+
+
+
+
+
+
+
+/*import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +38,7 @@ import com.sb.mall.model.QnABoard;
 import com.sb.mall.model.MemberInfo;;
 
 @Service
-public class QnABoardListService {
+public class QnAService {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
@@ -42,3 +66,4 @@ public class QnABoardListService {
 	}
 	
 }
+*/

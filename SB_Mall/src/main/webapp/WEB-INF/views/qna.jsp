@@ -10,6 +10,6 @@
 <body>
 <jsp:include page="../views/common/header.jsp"/>
 <jsp:include page="../views/store/headerBanner.jsp"/>
-<jsp:include page="../views/qna/qnaBoard.jsp"/>
+<jsp:include page="../views/qna/qnaList.jsp"/>
 </body>
 </html>

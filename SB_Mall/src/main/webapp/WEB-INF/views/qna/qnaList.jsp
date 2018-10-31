@@ -20,17 +20,19 @@
             <th style="width:20%">조회수</th>
         </tr>
  
-    <c:forEach items="${boardList }" var="boardVO">
+    <c:forEach items="${ qnaList }" var="qnaBoard">
         <tr>
-            <td>${boardVO.b_no }</td>
-            <td><a href="/board/detail?b_no=${boardVO.b_no}">${boardVO.b_title }</a></td>
-            <td>${boardVO.b_writer }</td>
-            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.b_date }" /> </td>
-            <td><span> ${boardVO.b_count }</span> 
+            <td>${ qnaBoard.qnaSeq }</td>
+            <td><a href="/qna/detail?b_no=${ qnaBoard.qnaSeq }">${qnaBoard.qtitle }</a></td>
+            <td>${ qnaBoard.userSeq }</td>
+            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ qnaBoard.qwriteDate }" /> </td>
+            <td><span> ${ qnaBoard.qtext }</span> 
             </td>
         </tr>
     </c:forEach>
     </table>
+    
+    <a href="<%=request.getContextPath()%>/qna/qnawrite">글쓰기</a>
 	
 </body>
 </html>
