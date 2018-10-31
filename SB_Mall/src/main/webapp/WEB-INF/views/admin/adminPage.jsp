@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,9 +47,9 @@ td {
 		document.write('<h2>' + (d.getMonth() + 1) + '월 </h2>');
 		</script>
 		
-		<h2>이번달 매출 : ${thisMonth}</h2>
-		<h2>지난달 매출 : ${preMonth}</h2>
-		<h2>이번달 평균 : ${thisMonthAverage}</h2>
+		<h2>이번달 매출 : <fmt:formatNumber value="${thisMonth}" pattern=",###"/>원</h2>
+		<h2>지난달 매출 : <fmt:formatNumber value="${preMonth}" pattern="#,###"/>원</h2>
+		<h2>이번달 평균 : <fmt:formatNumber value="${thisMonthAverage}" pattern="##.##"/>원</h2>
 		<hr>
 		<button id="memberList">회원관리</button>
 		<button id="orderList">주문관리</button>

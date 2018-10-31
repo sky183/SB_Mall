@@ -104,9 +104,9 @@ $('.memberModify').click(function() {
 	var userId = $(this).attr('name');
 	var sessionGrade = '${memberInfo.gradeNum}';
 	var gradeNum = $(this).attr('grade');
-	if(sessionGrade != 3){
+	if(sessionGrade < 3){
 		alert("관리자만 수정 가능합니다.");
-	} else if(sessionId != userId && gradeNum == 3 ){
+	} else if(sessionId != userId && gradeNum >= 3 ){
 		alert("관리자는 본인만 수정 가능합니다.");
 	} else {
 		$.ajax({
