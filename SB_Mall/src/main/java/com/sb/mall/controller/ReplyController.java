@@ -31,21 +31,23 @@ public class ReplyController {
 		
 		String url= request.getHeader("referer");
 		String[] urlArr = url.split("/");
-		int param = Integer.parseInt(urlArr[urlArr.length-1]);
+		int salesSeq = Integer.parseInt(urlArr[urlArr.length-1]);
 		
 		int pageCount;
+		System.out.println("session : "+request.getSession().getAttribute("memberInfo"));
 		
-		
-		System.out.println(param);
+		System.out.println("nowPage : "+nowPage);
 		
 		List<Map<String, Object>> replyList = new ArrayList<Map<String, Object>>();
 		
 		
-		replyList= replyService.getReplys(param,nowPage);
-		pageCount = replyService.getReplyCount();
+		replyList= replyService.getReplys(salesSeq,nowPage);
+		pageCount = replyService.getReplyCount(salesSeq);
 		
 		modelAndView.addObject("replyList", replyList);
+		modelAndView.addObject("userSession", request.getSession().getAttribute("memberInfo"));
 		modelAndView.addObject("pageCnt", pageCount);
+		modelAndView.addObject("nowPage", nowPage);
 		modelAndView.setViewName("store/replyReturn");
 		
 		

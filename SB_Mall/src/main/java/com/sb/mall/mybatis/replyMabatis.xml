@@ -4,12 +4,21 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sb.mall.dao.ReplyDao">
+	<insert id="writeReply" parameterType="com.sb.mall.model.Reply">
+		insert into Reply(reply, userSeq, salesSeq) values(#{reply}, #{userSeq}, #{salesSeq})
+	</insert>
+
+
 	<select id="getReply" resultType="map">
-		select * from Reply r, MemberInfo m where salesSeq=#{param1} and r.userSeq=m.userSeq limit #{param2},5
+		select * from Reply r, MemberInfo m where salesSeq=#{param1} and r.userSeq=m.userSeq order by regTime desc limit #{param2},10
 	</select>
 	
 	<select id="getReplyCount" resultType="java.lang.Integer">
-		select count(*) from Reply
+		select count(*) from Reply where salesSeq=#{salesSeq} 
 	</select>
+	
+	<delete id="deleteReply" parameterType="java.lang.Integer">
+		delete from Reply where replySeq = #{userSeq}
+	</delete>
 
 </mapper>

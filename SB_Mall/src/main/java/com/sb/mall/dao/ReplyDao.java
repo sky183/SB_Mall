@@ -7,6 +7,8 @@ import com.sb.mall.model.Reply;
 
 public interface ReplyDao {
 	public List<Map<String, Object>> getReply(int salesSeq, int firstRow);
-	public int getReplyCount();
+	public int getReplyCount(int salesSeq);
+	public int writeReply(Reply reply);
+	public int deleteReply(int replySeq);
 
 }
