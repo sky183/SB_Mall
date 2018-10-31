@@ -2,6 +2,7 @@ package com.sb.mall.dao;
 
 import java.util.List;
 
+import com.sb.mall.model.Join_memberInfoAndOrder;
 import com.sb.mall.model.MemberInfo;
 
 public interface MemberDao {
@@ -18,4 +19,6 @@ public interface MemberDao {
 	public int selectCount();
 	
 	public List<Object> selectList(int firstRow, int endRow);
+	
+	public List<Join_memberInfoAndOrder> join_memberInfoAndOrder(String userId);
 }

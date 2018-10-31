@@ -36,4 +36,12 @@
 		MemberInfo order by userSeq desc limit #{param1},
 		#{param2}
 	</select>
+	
+	<select id="join_memberInfoAndOrder" resultType="com.sb.mall.model.Join_memberInfoAndOrder">
+		select 
+		mm.userId, mm.userName, mm.gradeNum, mm.point, mm.userAmount, 
+		oo.orderDetailNum, oo.payment, oo.orderTime, oo.totalAmount
+		from SB_Master.MemberInfo mm, SB_Master.OrderDetail oo
+		where mm.userSeq = oo.userSeq and mm.userId=${userId};
+	</select>
  </mapper>
