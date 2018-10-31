@@ -142,7 +142,7 @@ ul{
 		<input type="hidden" id="option" name="option">
 		</form>
 	<div id="boardProductContainer">
-		<div id="boardProductThumbBox">
+		<div id="boardProductThumbBox"> 
 			<img src="${board.photo}" alt="이미지없음" id="boardProductThumb" 
 				onerror="imgError(this)">
 		</div>

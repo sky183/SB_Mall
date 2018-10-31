@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sb.mall.dao.QnADao">
+ 		
+ 
+	<!-- QnA 게시판 추가하기 -->
+	<insert id="insertQnABoard" parameterType="com.sb.mall.model.QnABoard" 
+ 		useGeneratedKeys="true" keyColumn="qnaSeq" keyProperty="qnaSeq">
+		insert into QnABoard (qtitle,qtext,atext,qwriteDate,userSeq,qnaSeq)
+ 		value(#{qtitle},#{qtext},#{atext},SYSDATE(),1,#{qnaSeq})
+	</insert>
+	
+	<!-- QnA 게시판 리스트 보기 -->
+	<select id="selectQnAList" resultType="map">
+ 		SELECT distinct * FROM QnABoard q,MemberInfo m where q.userSeq=m.userSeq;
+ 	</select>
+	
+	<!-- QnA 게시판 삭제하기 -->
+	<select id="deleteQnABoardList">
+		DELETE from QnABoard where userSeq = #{userSeq}
+	</select>
+	
+	<select id="updateQnABoardList">
+		UPDATE QnABoard set qtitle = #{qtitle}, qtext = #{qtext}, atext = #{atext} where userSeq = #{userSeq}
+	</select>
+	
+	
+</mapper>
