@@ -5,9 +5,19 @@
 <mapper namespace="com.sb.mall.dao.OrderDao">
 	<insert id="insertCart" parameterType="com.sb.mall.model.Order"
 		useGeneratedKeys="true" keyProperty="orderSeq">
-		insert into
-		`Order`(orderDetailNum,userSeq,productSeq,quantity,`option`)
+		insert into `Order`(orderDetailNum,userSeq,productSeq,quantity,`option`)
 		value(0,#{userSeq},#{productSeq},#{quantity},#{option})
+	</insert>
+	
+	<insert id="insertOrderDetail" parameterType="com.sb.mall.model.OrderDetail">
+		insert into `OrderDetail`(orderDetailNum,userSeq,payment,orderTime,status,totalAmount)
+		value(#{orderDetailNum},#{userSeq},#{payment},now(),#{status},#{totalAmount})
+	</insert>
+	
+	<insert id="insertOrder" parameterType="com.sb.mall.model.Order"
+		useGeneratedKeys="true" keyProperty="orderSeq">
+		insert into `Order`(orderDetailNum,userSeq,productSeq,quantity,`option`)
+		value(#{orderDetailNum},#{userSeq},#{productSeq},#{quantity},#{option})
 	</insert>
 
 	<update id="update" parameterType="com.sb.mall.model.Order">
@@ -21,7 +31,16 @@
 
 	<select id="selectCart" resultType="map">
 		SELECT * FROM `Order` o, Product p where userSeq=#{userSeq} 
-		and OrderDetailNum=0 and p.productSeq=o.productSeq;
+		and OrderDetailNum=0 and p.productSeq=o.productSeq
+	</select>
+	
+	<select id="selectOrderAndProduct" resultType="map">
+		SELECT * FROM `Order` o, Product p where o.productSeq=#{productSeq}
+		and p.productSeq=o.productSeq
+	</select>
+	
+	<select id="selectProduct" resultType="com.sb.mall.model.Product">
+		SELECT * FROM Product where productSeq=#{productSeq}
 	</select>
 
 	<select id="selectAll" resultType="com.sb.mall.model.Order">
@@ -46,8 +65,5 @@
 
 	<select id="selectOrder" resultType="com.sb.mall.model.Order">
 	</select>
-
-
-
 
 </mapper>

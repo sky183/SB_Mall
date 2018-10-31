@@ -9,25 +9,41 @@ ul{
 	width: 1200px;
 	margin: 0 auto;
 }
+#cartListBox{
+	width: 100%;
+	margin: 0 auto;
+}
+#cartHeaderBox{
+	width: 100%;
+	margin: 50px 0;
+}
+#cartHeaderBox h2{
+	margin: 30px 20px;
+}
 .cartImg{
-	height: 200px;
-	width: 200px;
+	height: 100px;
+	width: 100px;
 }
 #cartTable{
+	width: 1200px;
 	border-collapse: collapse;
+	margin: 0 auto;
 }
 #cartTableHeader{
-	border: 1px solid #a9a9a9;
+	background-color: #F2F2F2;
 }
 #cartTable td{
 	padding:20px;
+	border: 1px solid #a9a9a9;
+	text-align: center;
 }
 </style>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script></script>
 
 <div id="cartListContainer">
-	<div id="">
+	<div id="carListBox">
+	<div id="cartHeaderBox">
 		<h2>장바구니</h2>
 	<hr>
 	</div>
@@ -66,4 +82,6 @@ ul{
 			</c:otherwise>
 		</c:choose>
 	</table>
+	</div>
 </div>
+<br>

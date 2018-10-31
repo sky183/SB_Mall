@@ -111,7 +111,10 @@ ul{
 				});
 	}
 	function buyProduct() {
-		
+		$('#quantity').val($('#selQuantity').val());
+		$('#option').val($('input[type=radio][name=color]:checked').val());
+		$("#hForm").attr("action", "<%=request.getContextPath()%>/order/insOrder");
+		$('#hForm').submit();
 	}
 	
 	function mathABS(e) {

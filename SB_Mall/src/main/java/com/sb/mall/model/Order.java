@@ -7,9 +7,12 @@ public class Order {
 	private int productSeq;
 	private int quantity;
 	private String option;
-	private int salePrice;
-
 	
+	@Override
+	public String toString() {
+		return "Order [orderSeq=" + orderSeq + ", orderDetailNum=" + orderDetailNum + ", userSeq=" + userSeq
+				+ ", productSeq=" + productSeq + ", quantity=" + quantity + ", option=" + option + "]";
+	}
 	public int getOrderSeq() {
 		return orderSeq;
 	}
@@ -40,29 +43,11 @@ public class Order {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
 	public String getOption() {
 		return option;
 	}
 	public void setOption(String option) {
 		this.option = option;
 	}
-
-	public int getSalePrice() {
-		return salePrice;
-	}
-	public void setSalePrice(int salePrice) {
-		this.salePrice = salePrice;
-	}
-	@Override
-	public String toString() {
-		return "Order [orderSeq=" + orderSeq + ", orderDetailNum=" + orderDetailNum + ", userSeq=" + userSeq
-				+ ", productSeq=" + productSeq + ", quantity=" + quantity + ", option=" + option + ", salePrice="
-				+ salePrice + "]";
-	}
-	
-	
-
-	
 	
 }
