@@ -1,12 +1,14 @@
 package com.sb.mall.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Reply {
 	private int replySeq;
 	private String reply;
-	private String regTime;
+	private Date regTime;
 	private int userSeq;
 	private int salesSeq;
-	
 	public int getReplySeq() {
 		return replySeq;
 	}
@@ -20,9 +22,9 @@ public class Reply {
 		this.reply = reply;
 	}
 	public String getRegTime() {
-		return regTime;
+		return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(regTime);
 	}
-	public void setRegTime(String regTime) {
+	public void setRegTime(Date regTime) {
 		this.regTime = regTime;
 	}
 	public int getUserSeq() {
@@ -37,5 +39,11 @@ public class Reply {
 	public void setSalesSeq(int salesSeq) {
 		this.salesSeq = salesSeq;
 	}
-
+	@Override
+	public String toString() {
+		return "Reply [replySeq=" + replySeq + ", reply=" + reply + ", regTime=" + regTime + ", userSeq=" + userSeq
+				+ ", salesSeq=" + salesSeq + "]";
+	}
+	
+	
 }
