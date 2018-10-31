@@ -20,7 +20,7 @@
 	
 	<update id="update" parameterType="com.sb.mall.model.MemberInfo">
 		update MemberInfo set userpw=#{userPw}, username=#{userName}, address1=#{address1}, address2=#{address2}
-		, zipCode=#{zipCode}, phone=#{phone}, gradenum=#{gradeNum} where userid=#{userId}
+		, zipCode=#{zipCode}, phone=#{phone}, gradenum=#{gradeNum}, point=#{point}, useramount=#{userAmount} where userid=#{userId}
 	</update>
 	
 	<delete id="delete" parameterType="String">
