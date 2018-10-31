@@ -1,11 +1,15 @@
 package com.sb.mall.controller;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,17 +24,40 @@ public class LoginController {
 	private LoginService loginService;
 	
 	// 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
-	@RequestMapping(value="Login", method = RequestMethod.GET) // get 방식으로 값을 받아와 String num에 저장 modelAndView로 리턴
-	public ModelAndView getLoginForm() {
-		return new ModelAndView("/common/loginForm");
+	@RequestMapping(value="Login", method = RequestMethod.GET) 
+	public ModelAndView getLoginForm(@CookieValue(value = "idcookie", required = false)String rememberId) {//쿠키값 불러온다.
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.setViewName("/common/loginForm");
+		modelAndView.addObject("idcookie",rememberId);
+		
+		
+		
+		
+
+		return modelAndView;
+		
+		
 	}
 
 	@RequestMapping(value="Login", method = RequestMethod.POST)
 	public ModelAndView loginProcess(@RequestParam(value = "userId", required = false) String userId,
-			@RequestParam(value = "userPw", required = false) String userPw, HttpSession session) throws SQLException {
+			@RequestParam(value = "userPw", required = false) String userPw, 
+			@RequestParam(value = "rememberId", required = false)String rememberId,
+			HttpSession session, HttpServletResponse response //쿠키 값 받아와서 처리
+			
+			
+			) throws SQLException {
 
+		System.out.println(rememberId);
 		ModelAndView modelAndView = new ModelAndView();
 
+		
+		if("on".equals(rememberId)) {
+			response.addCookie(new Cookie("idcookie", userId));//쿠키 생성
+			
+		}
 		modelAndView.setViewName("/common/loginFail");
 
 		if (userId != null && userPw != null) {
