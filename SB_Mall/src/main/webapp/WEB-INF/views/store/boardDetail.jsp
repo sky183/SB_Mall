@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,7 +149,9 @@ ul{
 		<div id="boardProductOptionBox">
 			<ul>
 				<li id="boardProductName"><h2>${board.productName}</h2></li>
-				<li><p>가격: ${board.price}</p></li>
+				<li>
+				<p>가격: <fmt:formatNumber value="${board.price}" pattern="###,###,###,###,###"/></p>
+				</li>
 				<li><p>등록일: ${board.writeDate}</p></li>
 				<li><p>
 				블랙 <input type="radio" value="black" name="color" checked="checked">

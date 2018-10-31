@@ -89,7 +89,7 @@ ul{
             }else{
             	$('#payment').val($('#orderPayment').val());
             	$('#hOrderForm')
-            	.attr('action','<%=request.getContextPath()%>/order/insOrder/complete');
+            	.attr('action','<%=request.getContextPath()%>/order/cartOrder/complete');
 				$('#hOrderForm').submit();
             }
 		});
@@ -98,6 +98,10 @@ ul{
 </script>	
 </head>
 <body>
+<form id="hOrderForm" method="post">
+	<input type="hidden" name="payment">
+	<input type="hidden" name="userSeqArr">
+</form>
 	<div class="orderContainer">
 	<div class="orderListBox">
 	<div class="orderHeaderBox">
@@ -106,7 +110,7 @@ ul{
 	</div>
 	<table class="orderTable">
 		<c:choose>
-			<c:when test="${order!=null&&product!=null}">
+			<c:when test="${orders!=null}">
 				<tr class="orderTableHeader">
 					<td>상품번호</td>
 					<td colspan="2">상품정보</td>
@@ -115,39 +119,32 @@ ul{
 					<td>수량</td>
 					<td>주문금액</td>
 				</tr>
-				<form id="hOrderForm" method="post">
-					<input type="hidden" name="order.productSeq" value="${order.productSeq}">
-					<input type="hidden" name="order.quantity" value="${order.quantity}">
-					<input type="hidden" name="order.option" value="${order.option}">
-					<input type="hidden" name="order.userSeq" value="${order.userSeq}">
-					<input type="hidden" name="orderDetail.payment" id="payment">
-					<input type="hidden" name="orderDetail.totalAmount" 
-					value="${product.price*order.quantity}">
-					<input type="hidden" name="orderDetail.userSeq" value="${order.userSeq}">
-					
-				</form>
+				<c:forEach var="order" items="${orders}">
+				
 				<tr>
-					<td>${product.productSeq}</td>
-					<td><img src="${product.photo}" alt="이미지없음" class="orderImg"></td>
+					<td>
+					${order.productSeq}
+					</td>
+					<td><img src="${order.photo}" alt="이미지없음" class="orderImg"></td>
 					<td>
 						<ul>
-							<li>${product.productName}</li>
-							<li>${product.detail}</li>
+							<li>${order.productName}</li>
+							<li>${order.detail}</li>
 						</ul>
 					</td>
 					<td>
-					<fmt:formatNumber value="${product.price}" 
-					pattern="###,###,###,###,###"/>
+					<fmt:formatNumber value="${order.price}" pattern="###,###,###,###,###"/>
 					</td>
 					<td>${order.option}</td>
 					<td>
-					<fmt:formatNumber value="${order.quantity}" 
-					pattern="###,###,###,###,###"/>
+					<fmt:formatNumber value="${order.quantity}" pattern="###,###,###,###,###"/>
 					</td>
 					<td>
-					<fmt:formatNumber value="${product.price*order.quantity}"
+					<fmt:formatNumber value="${order.price*order.quantity}" 
 					pattern="###,###,###,###,###"/>
+					</td>
 				</tr>
+				</c:forEach>
 			</c:when>
 			<c:otherwise>
 				구매할 상품이 존재하지 않습니다.
@@ -164,8 +161,9 @@ ul{
 			</select>
 		</div>
 		<div class="totalAmount">
-			<p>결제금액 : <fmt:formatNumber value="${product.price*order.quantity}" 
-						pattern="###,###,###,###,###"/></p>
+			<p>결제금액 : <fmt:formatNumber value="${totalAmount}" 
+			pattern="###,###,###,###,###"/></p>
+
 		</div>
 		
 	</div>
