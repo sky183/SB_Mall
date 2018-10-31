@@ -34,25 +34,26 @@
 
 			<td>${orderDetail.orderTime}</td>
 			<td>${orderDetail.totalAmount}</td>
-			<td><a
-				href="<%=request.getContextPath()%>/orderDetailStatus/${orderDetail.orderDetailNum}">
+			<td><span id="status">
+			<button class="status" name="${orderDetail.orderDetailNum}">
 					<c:choose>
 						<c:when test="${orderDetail.status == 0}">
-							<button class="button">입금미확인</button>
+							입금미확인
 						</c:when>
 						<c:when test="${orderDetail.status == 1}">
-							<button class="button">결제완료</button>
+							결제완료
 						</c:when>
 						<c:when test="${orderDetail.status == 2}">
-							<button class="button">배송전</button>
+							배송전
 						</c:when>
 						<c:when test="${orderDetail.status == 3}">
-							<button class="button">배송중</button>
+							배송중
 						</c:when>
 						<c:otherwise>
 						</c:otherwise>
 					</c:choose>
-			</a> <button class="order" name="${orderDetail.orderDetailNum}">주문상세</button>
+					</button></span>
+			 <button class="order" name="${orderDetail.orderDetailNum}">주문상세</button>
 			</td>
 		</tr>
 	</c:forEach>
@@ -64,6 +65,39 @@
 	</c:otherwise>
 </c:choose>
 <script>
+
+$('.status').click(function() {
+	$.ajax({
+		url : '<%=request.getContextPath()%>/orderDetailStatus/' + $(this).attr('name'),
+		dataType : "json",
+		error : function(error) {
+	        alert("Error!");
+	    },
+		success : function(orderDetail) {
+		/*  alert(orderDetail.status); 
+			$('.status[name='+orderDetail.orderDetailNum+']').attr('name', orderDetail.orderDetailNum); */
+			
+			switch (orderDetail.status) {
+			case 0: 
+				$('.status[name='+orderDetail.orderDetailNum+']').html("입금미확인");
+				break;
+			case 1: 
+				$('.status[name='+orderDetail.orderDetailNum+']').html("결제완료");
+				break;
+			case 2: 
+				$('.status[name='+orderDetail.orderDetailNum+']').html("배송전");
+				break;
+			case 3: 
+				$('.status[name='+orderDetail.orderDetailNum+']').html("배송중");
+				break;
+
+			default:
+				$('.status[name='+orderDetail.orderDetailNum+']').prop("disabled", true).html("배송완료");
+				break;
+			}
+		}
+	});
+});
 
 $('.order').click(function() {
 	$.ajax({

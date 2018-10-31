@@ -23,7 +23,9 @@
 	<select id="selectMemberOrder" resultType="com.sb.mall.model.OrderDetail">
 	</select>
 	
-	<select id="selectOrderDetail" resultType="com.sb.mall.model.OrderDetail">
+	<select id="selectOrderDetail" resultType="com.sb.mall.model.OrderDetail" parameterType="String">
+		select * from
+		OrderDetail where orderDetailNum = #{orderDetailNum}
 	</select>
 	
 	<select id="thisMonthAverage" resultType="String">
@@ -49,6 +51,13 @@
 		OrderDetail where status<![CDATA[<>]]>4 and orderDetailNum<![CDATA[<>]]>0 limit #{param1}, #{param2}
 	</select>
 	
+	<update id="updateStatus" parameterType="String">
+		UPDATE OrderDetail SET status = status +1
+		WHERE orderDetailNum = #{orderDetailNum}
+	</update>
+	
+	
+
 	
 	
 	
