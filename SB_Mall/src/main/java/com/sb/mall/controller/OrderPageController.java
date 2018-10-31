@@ -33,4 +33,9 @@ public class OrderPageController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("orer/cartOrder")
+	public ModelAndView cartOrder() {
+		return null;
+	}
+	
 }
