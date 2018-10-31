@@ -21,11 +21,14 @@
 <body>
 
 <jsp:include page="/WEB-INF/views/common/headerbanner.jsp"/>
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
 <jsp:include page="/WEB-INF/views/common/dailyDeal.jsp"/>
 <jsp:include page="/WEB-INF/views/common/homeYoutube.jsp"/>
+<jsp:include page="/WEB-INF/views/common/homeNewProduct.jsp"/>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 <jsp:include page="/WEB-INF/views/chatting/chat.jsp"/>
+
+
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 </body>
 </html>
