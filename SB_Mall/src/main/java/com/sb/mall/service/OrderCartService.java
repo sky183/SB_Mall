@@ -1,6 +1,7 @@
 package com.sb.mall.service;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,17 @@ public class OrderCartService {
 		List<Map<String,Object>> list = null;
 		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
 		list= orderDao.selectCart(userSeq);
+		return list;
+	}
+	
+	@Transactional
+	public List<Map<String,Object>> selectCartForOrder(List<Order> orderList) throws SQLException{
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("userSeq", orderList.get(0).getUserSeq());
+		map.put("orderList", orderList);
+		List<Map<String,Object>> list = null;
+		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
+		list= orderDao.selectCartForOrder(map);
 		return list;
 	}
 	

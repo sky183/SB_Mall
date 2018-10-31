@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sb.mall.model.MemberInfo;
 import com.sb.mall.model.StoreWriteCommend;
 import com.sb.mall.service.ImgUploadService;
 import com.sb.mall.service.StoreWriteService;
@@ -32,9 +34,11 @@ public class StoreWriteController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView storeWriteDo(StoreWriteCommend storeWriteCommend,
-			HttpServletRequest request, HttpServletResponse response) {
+			HttpServletRequest request, HttpServletResponse response,HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
+		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
 		modelAndView.setViewName("redirect:/store");
+		storeWriteCommend.getSalesBoard().setUserSeq(memberInfo.getUserSeq());
 		//업로드폴더 중간경로 지정
 		String folderName = "product";
 		try {

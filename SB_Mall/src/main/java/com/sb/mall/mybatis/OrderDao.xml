@@ -34,10 +34,20 @@
 		and OrderDetailNum=0 and p.productSeq=o.productSeq
 	</select>
 	
+	<select id="selectCartForOrder" parameterType="java.util.HashMap" resultType="map">
+		SELECT * FROM `Order` o, Product p where o.userSeq=#{userSeq} and
+		<foreach collection="list" item="item"
+			open="(" separator="or" close=")">
+			o.productSeq=#{item.productSeq} and o.option=#{item.option} 
+		</foreach>
+		and OrderDetailNum=0 and p.productSeq=o.productSeq
+	</select>
+	
 	<select id="selectOrderAndProduct" resultType="map">
 		SELECT * FROM `Order` o, Product p where o.productSeq=#{productSeq}
 		and p.productSeq=o.productSeq
 	</select>
+	
 	
 	<select id="selectProduct" resultType="com.sb.mall.model.Product">
 		SELECT * FROM Product where productSeq=#{productSeq}

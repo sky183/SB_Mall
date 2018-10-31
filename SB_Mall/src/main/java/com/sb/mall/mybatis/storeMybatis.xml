@@ -7,7 +7,7 @@
  		parameterType="com.sb.mall.model.SalesBoard"
  		useGeneratedKeys="true" keyColumn="salesSeq" keyProperty="salesSeq">
  		insert into SalesBoard (title,text,viewSeq,writeDate,userSeq,productSeq)
- 		value(#{title},#{text},0,now(),1,#{productSeq})
+ 		value(#{title},#{text},0,now(),#{userSeq},#{productSeq})
  	</insert>
  	<insert id="insertProduct"
  		parameterType="com.sb.mall.model.Product"

@@ -21,6 +21,7 @@ public interface OrderDao {
 	public List<Order> selectMemberOrder(String userId);
 	public List<Order> select(String orderDetailNum);
 	public List<Map<String,Object>> selectCart(int userSeq);
+	public List<Map<String,Object>> selectCartForOrder(Map<String,Object> map);
 	public List<Map<String,Object>> selectOrderAndProduct(int productSeq);
 	public Product selectProduct(int productSeq);
 	public Order selectOrder(int orderSeq);

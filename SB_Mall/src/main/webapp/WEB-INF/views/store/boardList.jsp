@@ -9,16 +9,17 @@
 <title>Insert title here</title>
 <style type="text/css">
 #storeListContainer{
-	width: 70%;
+	width: 1200px;
 	margin: 0 auto;
 	background-color: white;
 }
 
 .storeListView{
-	text-align: center;
+	width: auto;
+	margin: 0 auto;
 }
 .productListThumb{
-	width: 308px;
+	width: 289px;
 	height: 308px;
 	margin-bottom:3px;;
 	border:1px solid #a9a9a9;
@@ -26,9 +27,10 @@
 }
 .productListBox{
 	display:inline-block;
-	width:  310px;
+	width:  295.6px;
 	height: 400px;
 	overflow: hidden;
+	text-align: center;
 }
 .productListBox:hover{
 	background-color:#F2F2F2;

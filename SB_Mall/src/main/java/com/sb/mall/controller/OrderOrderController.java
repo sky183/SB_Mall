@@ -44,4 +44,10 @@ public class OrderOrderController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("order/cartOrder/complete")
+	public ModelAndView cartOrder() {
+		ModelAndView modelAndView = new ModelAndView();
+		return modelAndView;
+	}
+	
 }
