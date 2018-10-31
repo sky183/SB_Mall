@@ -37,7 +37,7 @@
 				<th>가입일</th><td><input type="text"  name="regDate" value="${member.regDate}"></td>
 			</tr>
 			<tr>
-				<c:if test="${sessionScope.memberInfo.gradeNum < 4 && member.gradeNum < 3}">
+				<c:if test="${sessionScope.memberInfo.gradeNum < 4 && member.gradeNum >= 3}">
 					<c:set var="readonly" value="readonly"></c:set>
 				</c:if>
 				
