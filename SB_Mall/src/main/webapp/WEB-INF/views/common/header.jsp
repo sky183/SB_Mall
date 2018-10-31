@@ -39,7 +39,7 @@
 				</c:otherwise>
 				</c:choose>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/join">Join</a> 
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/lo/qna">QnA</a> 
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/qna">QnA</a> 
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/order/cart">Cart</a>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/store">Store</a>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/">HOME</a>
