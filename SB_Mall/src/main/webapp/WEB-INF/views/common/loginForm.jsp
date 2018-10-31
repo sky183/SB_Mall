@@ -9,130 +9,133 @@
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
 <link rel="stylesheet" href="css/default.css">
-<style>
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- Custom styles for this template -->
+<link href="css/logincss.css" rel="stylesheet">
+
+<!-- <style>
 #contents {
 	margin: 50px 10px 50px 10px;
 }
-</style>
+</style> -->
 </head>
 <script type="text/javascript">
-/* 	/* alert('${idcookie}'); 
+	/* 	/* alert('${idcookie}'); 
 
 
 	 $(document).ready(function(){
 	 $('#login_id').val('${idcookie}'); 
 	 });
-	 
+	
+	 $(function() {
+	 //최초 쿠키에 login_id라는 쿠키값이 존재하면
+	 $(document).ready(function() {
+	 $('#login_id').val('${idcookie}');
+	 if (login_id != undefined) {
+	 //아이디에 쿠키값을 담는다
+	 $("#login_id").val('${idcookie}');
+	 //아이디저장 체크박스 체크를 해놓는다
+	 $("#rememberId").prop("checked", true);
+	 }
+
+	 //로그인 버튼 클릭시
+	 $("#login_button").click(function() {
+	 //아이디 미입력시
+	 if ($.trim($("#login_id").val()) == "") {
+	 alert("아이디를 입력하세요");
+	 return;
+	 //아이디 입력시
+	 } else if ($("input:checkbox[id='rememberId']").is(":checked")==false) {
+	 alert(0);
+	
+	 alert('1');
+	 }
+	 alert("로그인!!");
+	 $('#loginForm').submit();			
+	 })
+	 })
+	 }) */
 	$(function() {
 		//최초 쿠키에 login_id라는 쿠키값이 존재하면
-		$(document).ready(function() {
-			$('#login_id').val('${idcookie}');
-			if (login_id != undefined) {
-				//아이디에 쿠키값을 담는다
-				$("#login_id").val('${idcookie}');
-				//아이디저장 체크박스 체크를 해놓는다
-				$("#rememberId").prop("checked", true);
+		var login_id = $.cookie('idcookie');
+		if (login_id != undefined) {
+			//아이디에 쿠키값을 담는다
+			$("#login_id").val(login_id);
+			//아이디저장 체크박스 체크를 해놓는다
+			$("#rememberId").prop("checked", true);
+		}
+
+		//로그인 버튼 클릭시
+		$("#login_button").click(function() {
+			//아이디 미입력시
+			if ($.trim($("#login_id").val()) == "") {
+				alert("아이디를 입력하세요");
+				return;
+				//아이디 입력시
+			} else {
+				//아이디저장 체크되어있으면 쿠키저장
+				if ($("#rememberId").prop("checked")) {
+					//아이디저장 미체크면 쿠키에 정보가 있던간에 삭제
+				} else {
+					$.removeCookie("idcookie");
+				}
+			/* 	alert("로그인!!"); */
+				$('#loginForm').submit();
 			}
-
-			//로그인 버튼 클릭시
-			$("#login_button").click(function() {
-				//아이디 미입력시
-				if ($.trim($("#login_id").val()) == "") {
-					alert("아이디를 입력하세요");
-					return;
-					//아이디 입력시
-				} else if ($("input:checkbox[id='rememberId']").is(":checked")==false) {
-							alert(0);
-							
-							
-							
-							
-							alert('1');
-							}
-					alert("로그인!!");
-					$('#loginForm').submit();			
-			})
 		})
-	}) */
-	$(function(){
-	    //최초 쿠키에 login_id라는 쿠키값이 존재하면
-	    var login_id = $.cookie('idcookie');
-	    if(login_id != undefined) {
-	        //아이디에 쿠키값을 담는다
-	        $("#login_id").val(login_id);
-	        //아이디저장 체크박스 체크를 해놓는다
-	        $("#rememberId").prop("checked",true);
-	    }
-	     
-	    //로그인 버튼 클릭시
-	    $("#login_button").click(function(){
-	        //아이디 미입력시
-	        if($.trim($("#login_id").val()) == "") {
-	            alert("아이디를 입력하세요");
-	            return;
-	        //아이디 입력시
-	        } else {
-	            //아이디저장 체크되어있으면 쿠키저장
-	            if($("#rememberId").prop("checked")) {
-	            //아이디저장 미체크면 쿠키에 정보가 있던간에 삭제
-	            } else {
-	                $.removeCookie("idcookie");
-	            }
-	            alert("로그인!!");
-	            $('#loginForm').submit();
-	        }
-	    })
 	})
-
-
-
 </script>
 
 
 </head>
 
-<body>
+<body class="text-center">
 
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-	<div id="contents">
-		<h2>로그인</h2>
-
-		<hr>
-		<form method="post" id="loginForm">
-			<table>
-				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="userId" id="login_id"></td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type="password" name="userPw"></td>
-				</tr>
-				<tr>
-					<td colspan="2"></td> ${error}
-				</tr>
-
-				<tr>
-					<td colspan="2"><input type="button" id=login_button
-						value="로그인"></td>
-
-				</tr>
-
-				<tr>
-					<td>아이디저장</td>
-					<td><input type="checkbox" name="rememberId" id="rememberId"></td>
 
 
-				</tr>
+
+
+	<form method="post" id="loginForm" class="form-signin" >
+		<img class="mb-4" src="" alt=""
+			width="72" height="72">
+
+		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+		<label for="login_id" class="sr-only">ID</label> <input type="text"
+			name="userId" id="login_id" class="form-control" placeholder="Id"
+			required auotofocus> <label for="inputPassword"
+			class="sr-only">Password</label> <input type="password" name="userPw"
+			id="userPw" class="form-control" placeholder="Password"
+			required>
+	 ${error} 
+
+		<div class="checkbox mb-3">
+			<label> <input type="checkbox" name="rememberId"
+				id="rememberId"> Remember me
+			</label>
+
+		</div>
+
+
+		<button class="btn btn-lg btn-primary btn-block" type="button"
+			id=login_button>Sign in</button>
+		<p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
 
 
 
 
 
-			</table>
 
-		</form>
+
+
+
+
+	</form>
 
 	</div>
 
@@ -142,3 +145,6 @@
 
 </body>
 </html>
+
+
+
