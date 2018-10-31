@@ -98,7 +98,7 @@ $('.page').click(function() {
 	});
 });
 
-
+//회원 수정버튼
 $('.memberModify').click(function() {
 	var sessionId = '${memberInfo.userId}';
 	var userId = $(this).attr('name');
@@ -125,18 +125,17 @@ $('.memberModify').click(function() {
 	}
 });
 
+//회원 삭제버튼
 $('.memberDelete').click(function() {
 	$.ajax({
 		url : '<%=request.getContextPath()%>/memberDelete?userId=' +  $(this).attr('name'),
-		data : {
-			viewType : $(this).val()
-		},
 		error : function(error) {
 	        alert("Error!");
 	    },
-		success : function(data) {
+		success : function(result) {
+			alert(result);
 			$('#viewList').empty();
-			$('#viewList').append(data);
+			$('#viewList').load('<%=request.getContextPath()%>' + '/memberList');  
 		}
 	});
 });
