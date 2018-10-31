@@ -11,5 +11,6 @@
 <jsp:include page="../views/common/header.jsp"/>
 <jsp:include page="../views/store/headerBanner.jsp"/>
 <jsp:include page="../views/store/boardDetail.jsp"/>
+<%@ include file="../views/store/reply.jsp" %>
 </body>
 </html>

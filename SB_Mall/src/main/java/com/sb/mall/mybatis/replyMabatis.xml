@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sb.mall.dao.ReplyDao">
+	<select id="getReply" resultType="map">
+		select * from Reply r, MemberInfo m where salesSeq=#{param1} and r.userSeq=m.userSeq limit #{param2},5
+	</select>
+	
+	<select id="getReplyCount" resultType="java.lang.Integer">
+		select count(*) from Reply
+	</select>
+
+</mapper>
