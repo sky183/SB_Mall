@@ -22,7 +22,7 @@
 				</a>
 				<a class="headerNaviText" >Search</a>
 				<c:choose>
-				<c:when test='${memberInfo.gradeNum == 3}'>
+				<c:when test='${memberInfo.gradeNum >= 3}'>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/adminPage">admin</a>
 				</c:when>
 				<c:otherwise>

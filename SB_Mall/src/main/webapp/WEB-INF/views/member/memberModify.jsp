@@ -37,7 +37,11 @@
 				<th>가입일</th><td><input type="text"  name="regDate" value="${member.regDate}"></td>
 			</tr>
 			<tr>
-				<th>회원등급</th><td><input type="text"  name="gradeNum" value="${member.gradeNum}"></td>
+				<c:if test="${sessionScope.memberInfo.gradeNum < 4}">
+					<c:set var="readonly" value="readonly"></c:set>
+				</c:if>
+				
+				<th>회원등급</th><td><input type="text" name="gradeNum" ${readonly} value="${member.gradeNum}"></td>
 			</tr>
 			<tr>
 				<th>마일리지</th><td><input type="text"  name="point" value="${member.point}"></td>

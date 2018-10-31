@@ -106,7 +106,7 @@ $('.memberModify').click(function() {
 	var gradeNum = $(this).attr('grade');
 	if(sessionGrade < 3){
 		alert("관리자만 수정 가능합니다.");
-	} else if(sessionId != userId && gradeNum >= 3 ){
+	} else if(sessionId != userId && gradeNum >= 3 && sessionGrade < 4){
 		alert("관리자는 본인만 수정 가능합니다.");
 	} else {
 		$.ajax({
@@ -127,6 +127,15 @@ $('.memberModify').click(function() {
 
 //회원 삭제버튼
 $('.memberDelete').click(function() {
+	var sessionId = '${memberInfo.userId}';
+	var userId = $(this).attr('name');
+	var sessionGrade = '${memberInfo.gradeNum}';
+	var gradeNum = $(this).attr('grade');
+	if(sessionGrade < 3){
+		alert("관리자만 삭제 가능합니다.");
+	} else if(sessionId != userId && gradeNum >= 3 && sessionGrade < 4 ){
+		alert("관리자는 본인만 탈퇴 가능합니다.");
+	} else {
 	$.ajax({
 		url : '<%=request.getContextPath()%>/memberDelete?userId=' +  $(this).attr('name'),
 		error : function(error) {
@@ -138,6 +147,7 @@ $('.memberDelete').click(function() {
 			$('#viewList').load('<%=request.getContextPath()%>' + '/memberList');  
 		}
 	});
+	}
 });
 
 </script>
