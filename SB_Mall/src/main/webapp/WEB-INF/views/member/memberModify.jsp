@@ -37,7 +37,7 @@
 				<th>가입일</th><td><input type="text"  name="regDate" value="${member.regDate}"></td>
 			</tr>
 			<tr>
-				<c:if test="${sessionScope.memberInfo.gradeNum < 4}">
+				<c:if test="${sessionScope.memberInfo.gradeNum < 4 && member.gradeNum < 3}">
 					<c:set var="readonly" value="readonly"></c:set>
 				</c:if>
 				
@@ -57,6 +57,13 @@
 
 $('#modifyButton').click(function() {
 	var memberModify = $('#memberModify').serialize();
+	var sessionGrade = '${memberInfo.gradeNum}';
+	var gradeNum = $('input[name=gradeNum]').val();
+	if (gradeNum >= 3 && sessionGrade < 4) {
+		alert("회원등급 3 이상은 그랜드마스터만 가능합니다.");
+	} else if (gradeNum > 4) {
+		alert("회원등급은 4 까지만 존재합니다.");
+	} else {
 	$.ajax({
 		url : '<%= request.getContextPath() %>/memberModify_end',
 		type : 'POST',
@@ -69,6 +76,8 @@ $('#modifyButton').click(function() {
 			alert(result);
 		}
 	});
+	
+	}
 });
 </script>
 
