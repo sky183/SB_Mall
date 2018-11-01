@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,8 +61,8 @@
 </script>
 <style type="text/css">
 #summernoteBox{
-	width: 1000px;
-	margin: 0 auto;
+	width: 1200px;
+	margin: 100px auto;
 }
 #summerTitle{
 	width: 100%;
@@ -69,9 +70,18 @@
     border-radius: 5px;
     margin: 10px 0;
 }
+#summernoteBox input{
+	margin: 5px 10px;
+}
 </style>
 </head>
 <body>
+	<c:if test="${userGrade<3}">
+		<script type="text/javascript">
+			alert("운영진만 글 작성이 가능합니다.");
+			location.href="<%=request.getContextPath()%>/store";
+		</script>
+	</c:if>
 	<div id="summernoteBox">
 		<form method="post" enctype="multipart/form-data" id="sform">
 			글제목 <input type="text" name="salesBoard.title"><br>
@@ -83,7 +93,7 @@
 			<input type="hidden" name="salesBoard.text" id="text">
 		</form>
 		<div id="summernote"></div>
-		<button type="button" onclick="sendCode();">글쓰기</button>
+		<button type="button" class="storeBtn storeWriteBtn" onclick="sendCode();">글쓰기</button>
 	</div>
 </body>
 </html>
