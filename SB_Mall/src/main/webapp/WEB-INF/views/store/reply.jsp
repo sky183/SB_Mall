@@ -31,6 +31,12 @@
 		    	})	
 		    } --%>
 		    
+		    $('input[type="text"]').keydown(function() {
+		        if (event.keyCode === 13) {
+		            event.preventDefault();
+		        }
+		    });
+		    
 		  
 	    	
 		   function replyCall(page) {
@@ -64,6 +70,10 @@
 		   
 		   //댓글달기.
 		   $('#replyWrite').on('click',function(){
+			   var str = $('#replyText').val();
+			   str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+			   $('#replyText').val(str);
+			   
 			   var replyForm = $('#replyFormBox').serialize();
 			   $.ajax({
 				   	url:'<%=request.getContextPath()%>/replyWrite',
@@ -128,14 +138,17 @@
     	}
     	.replyInputText{
     		border:none;
-    		margin:20px;
-    		width:960px;
+    		margin:15px;
+    		width:970px;
+    		height:70px;
     		font-size: 14pt;
     	}
     	.reply_h3{
     		display: inline-block;
     		float: left;
     		margin-top:5px;
+    		color:#505050;
+    		font-weight: normal;
     	}
     	.replyInputBtn{
     		width:102px;
@@ -146,6 +159,40 @@
     		font-weight;
     		color:white;
     		
+    	}
+    	#replyGetBox{
+    		padding:20px;
+    	}
+    	.reply_h1{
+    		margin-top:30px;
+    		padding-bottom:10px;
+    		border-bottom: 2px solid #505050;
+    		font-size: 24pt;
+    	}
+    	.getReply_H4{
+    		display: inline-block;
+    		font-size: 10pt;
+    		color:#787878;
+    		font-weight: lighter;
+    	}
+    	.getReply_H5{
+    		display: inline-block;
+    		font-size: 10pt;
+    		color:#787878;
+    		font-weight: lighter;
+    	}
+    	.getReply_H2{
+    		padding:5px 20px;
+    		font-size: 14pt;
+    		color:#505050;
+    		font-weight: normal;
+    		line-height: 22pt;
+    	}
+    	.replyDelete{
+    		float: right;
+    	}
+    	.replyUnit{
+    		padding:15px;
     	}
     	
     	
@@ -158,8 +205,8 @@
     
     
     <div class="replylayout">
-    	<h1>상품 후기</h1>
-    	<hr>
+    	<h1 class="reply_h1" >상품 후기</h1>
+    	
     	
     	
     	<c:choose>
@@ -170,7 +217,7 @@
 		    			<input class="replyTextClass replyInputBtn" type="button" id="replyWrite" value="등록">
 		    			
 		    			<div class="replyTextBox replyTextClass">
-		    				<input class="replyInputText" type="text" id="replyText" name="reply" placeholder="댓글을 작성해주세요.">
+		    				<textarea class="replyInputText"  id="replyText" name="reply" placeholder="댓글을 작성해주세요."></textarea>
 		    			</div>
 		    			
 		    			<c:if test="${viewList!=null}">

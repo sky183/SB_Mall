@@ -6,10 +6,10 @@
 		
 		<div id="replyPaged">
 		<c:forEach var="reList" items="${replyList}">
-    		<div>
-    			<h4>${reList.userId}</h4>
-    			<h6>${reList.regTime}</h6>
-    			<h5>${reList.reply}</h5>
+    		<div class="replyUnit">
+    			<h4 class="getReply_H4">${reList.userId}</h4>
+    			<h5 class="getReply_H5">${reList.regTime}</h6>
+    			<h2 class="getReply_H2">${reList.reply}</h5>
     			<c:if test="${reList.userSeq==userSession.userSeq}">
     				<button class="replyDelete" value="${reList.replySeq}">삭제</button>
     			</c:if>
