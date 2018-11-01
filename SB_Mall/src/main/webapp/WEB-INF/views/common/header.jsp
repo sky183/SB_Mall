@@ -33,12 +33,12 @@
 				<c:choose>
 				<c:when test='${memberInfo eq null}'>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/Login">login</a>
+				<a class="headerNaviText" href="<%=request.getContextPath()%>/join">Join</a> 
 				</c:when>
 				<c:otherwise>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/member/logout">logout</a>
 				</c:otherwise>
 				</c:choose>
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/join">Join</a> 
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/qna">QnA</a> 
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/order/cart">Cart</a>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/store">Store</a>
