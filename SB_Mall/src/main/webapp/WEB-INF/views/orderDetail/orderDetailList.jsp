@@ -2,7 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Calendar"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <c:set var="viewData" value="${viewData}"></c:set>
 <c:choose>
 	<c:when test="${viewData.isEmpty()}">
@@ -47,7 +49,7 @@
 									</c:choose></td>
 
 								<td>${orderDetail.orderTime}</td>
-								<td>${orderDetail.totalAmount}</td>
+								<td><fmt:formatNumber value="${orderDetail.totalAmount}" pattern="#,###"/></td>
 								<td style="padding-top: 5px; padding-bottom: 5px; !important">
 								<button class="status btn btn-blue-grey"
 										name="${orderDetail.orderDetailNum}" data-toggle="modal" style="padding: 2px 5px; width: 80px; ">
@@ -69,7 +71,7 @@
 											</c:choose>
 										</button>
 									<button class="order memberDelete btn btn-blue-grey"
-										name="${orderDetail.orderDetailNum}" data-target="#modalCart" style="padding: 2px 5px; width: 80px">
+										name="${orderDetail.orderDetailNum}" data-toggle="modal" data-target="#modalOrder" style="padding: 2px 5px; width: 80px">
 										주문상세</button>
 								</td>
 							</tr>
@@ -127,6 +129,11 @@
 </c:choose>
 <script>
 
+//주문상세버튼
+$(document).ready(function() {
+	order();
+});
+
 $('.status').click(function() {
 	$.ajax({
 		url : '<%=request.getContextPath()%>/orderDetailStatus/' + $(this).attr('name'),
@@ -160,18 +167,19 @@ $('.status').click(function() {
 	});
 });
 
-$('.order').click(function() {
-	$.ajax({
-		url : '<%=request.getContextPath()%>' + '/orderList/' + $(this).attr('name'),
-		error : function(error) {
-	        alert("Error!");
-	    },
-		success : function(data) {
-			$('#viewList').empty();
-			$('#viewList').append(data);
-		}
+function order(){
+	$('.order').click(function() {
+		$.ajax({
+			url : '<%=request.getContextPath()%>' + '/orderList/' + $(this).attr('name'),
+			error : function(error) {
+		        alert("Error!");
+		    },
+			success : function(data) {
+				$('#popupOrder').html(data);
+			}
+		});
 	});
-});
+	}
 
 $('.page').click(function() {
 	$.ajax({

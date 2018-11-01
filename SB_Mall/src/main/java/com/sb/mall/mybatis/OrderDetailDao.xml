@@ -20,7 +20,7 @@
 	<select id="selectJoin" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
 	</select>
 	
-	<select id="selectMemberOrderDetail" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
+	<select id="selectMemberOrder" resultType="com.sb.mall.model.OrderDetail">
 	</select>
 	
 	<select id="selectOrderDetail" resultType="com.sb.mall.model.OrderDetail" parameterType="String">
@@ -30,21 +30,21 @@
 	
 	<select id="thisMonthAverage" resultType="String">
 		SELECT sum(totalAmount) / DAYOFMONTH(NOW()) totalAmount FROM OrderDetail WHERE
-	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval 1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()))
+	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval 1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()) and  status<![CDATA[>]]> 0)
 	</select>
 	
 	<select id="preMonthAverage" resultType="String"  parameterType="int">
-		SELECT sum(totalAmount) / DAYOFMONTH(NOW()) totalAmount FROM OrderDetail WHERE
-	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval #{interval}+1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()- interval #{interval} month))
+		SELECT sum(totalAmount) / DAYOFMONTH(LAST_DAY(NOW() - interval #{interval} month)) totalAmount FROM OrderDetail WHERE
+	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval #{interval}+1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()- interval #{interval} month)  and  status<![CDATA[>]]> 0)
 	</select>
 	
 	<select id="thisMonthAmount" resultType="String">
 	SELECT sum(totalAmount) FROM OrderDetail WHERE
-	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval 1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()))
+	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval 1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()) and  status<![CDATA[>]]> 0)
 	</select>
 	<select id="preMonthAmount" resultType="String" parameterType="int">
 	SELECT sum(totalAmount) FROM OrderDetail WHERE
-	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval #{interval}+1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()- interval #{interval} month))
+	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval #{interval}+1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()- interval #{interval} month) and  status<![CDATA[>]]> 0)
 	</select>
 	
 	<select id="selectCount" resultType="int">
@@ -53,7 +53,7 @@
 	
 	<select id="selectList" resultType="com.sb.mall.model.OrderDetail">
 		select * from
-		OrderDetail where status<![CDATA[<>]]>4 and orderDetailNum<![CDATA[<>]]>0 limit #{param1}, #{param2}
+		OrderDetail where status<![CDATA[<>]]>4 and orderDetailNum <![CDATA[<>]]>0 order by orderTime desc limit #{param1}, #{param2} 
 	</select>
 	
 	<update id="updateStatus" parameterType="String">
@@ -61,16 +61,10 @@
 		WHERE orderDetailNum = #{orderDetailNum}
 	</update>
 	
-	<select id="selectOrderDetail_userSqe" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
-		select * from OrderDetail where userSeq = #{userSeq}
-	</select>
-	
-	<select id="selectOrderDetail_Cnt" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
-		select count(*) from OrderDetail where userSeq = #{userSeq}
-	</select>
-	
-
-	
+	 <select id="selectOrderDetail_userSqe" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
+      select * from OrderDetail where userSeq = #{userSeq}
+   </select>
+		
 	
 	
 	

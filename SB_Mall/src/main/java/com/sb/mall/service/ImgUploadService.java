@@ -25,7 +25,7 @@ public class ImgUploadService {
 		// 저장될 이름
 		String str_filename = uuid.toString() + org_filename;
 		// 저장될 폴더 경로+파일이름
-		String filepath = realFolder + "\\"+ folderName +"\\" + str_filename;
+		String filepath = realFolder + "/"+ folderName +"/" + str_filename;
 		System.out.println("파일경로 : " + filepath);
 		File f = new File(filepath);
 		
