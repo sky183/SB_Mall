@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Cart</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/store.css">
 </head>
 <body>
 <jsp:include page="../views/common/header.jsp"/>
