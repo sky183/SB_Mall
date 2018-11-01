@@ -25,10 +25,11 @@ public class LoginController {
 	
 	// 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
 	@RequestMapping(value="Login", method = RequestMethod.GET) 
-	public ModelAndView getLoginForm(@CookieValue(value = "idcookie", required = false)String rememberId) {//쿠키값 불러온다.
-		
+	//쿠키 값 저장
+	public ModelAndView getLoginForm(@CookieValue(value = "idcookie", required = false)String rememberId) {
+		//ModelAndView 객체 생성
 		ModelAndView modelAndView = new ModelAndView();
-		
+		// loginForm으로 보내줌
 		modelAndView.setViewName("/common/loginForm");
 		modelAndView.addObject("idcookie",rememberId);
 		
@@ -42,10 +43,11 @@ public class LoginController {
 	}
 
 	@RequestMapping(value="Login", method = RequestMethod.POST)
+	// id,pw ,session,cookie 값  받아온다
 	public ModelAndView loginProcess(@RequestParam(value = "userId", required = false) String userId,
 			@RequestParam(value = "userPw", required = false) String userPw, 
 			@RequestParam(value = "rememberId", required = false)String rememberId,
-			HttpSession session, HttpServletResponse response //쿠키 값 받아와서 처리
+			HttpSession session, HttpServletResponse response 
 			
 			
 			) throws SQLException {
@@ -53,9 +55,9 @@ public class LoginController {
 		System.out.println(rememberId);
 		ModelAndView modelAndView = new ModelAndView();
 
-		
+		// 아이디저장 버튼이 on일 경우 쿠키생성
 		if("on".equals(rememberId)) {
-			response.addCookie(new Cookie("idcookie", userId));//쿠키 생성
+			response.addCookie(new Cookie("idcookie", userId));
 			
 		}
 		modelAndView.setViewName("/common/loginFail");
