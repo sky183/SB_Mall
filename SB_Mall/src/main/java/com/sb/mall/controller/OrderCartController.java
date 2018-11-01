@@ -1,6 +1,7 @@
 package com.sb.mall.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,13 @@ public class OrderCartController {
 	
 	@RequestMapping(value="order/deleteCart")
 	public String deleteCart(OrderList orderList) {
-		List<Order> list = orderList.getOrderList();
+		
+		List<Order> list = new ArrayList<Order>();
+		for(Order order : orderList.getOrderList() ) {
+			if(order.getUserSeq()!=0) { //받아온 리스트중 0번유저(빈값) 제거
+				list.add(order);
+			}
+		}
 		System.out.println(list);
 		try {
 			orderCartService.deleteCart(list);

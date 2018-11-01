@@ -1,6 +1,7 @@
 package com.sb.mall.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -50,8 +51,13 @@ public class OrderPageController {
 	public ModelAndView cartOrder(OrderList orderList) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("orderCartOrder");
-		List<Order> paramList = orderList.getOrderList();
-		System.out.println(orderList);
+		List<Order> paramList = new ArrayList<Order>();
+		for(Order order : orderList.getOrderList() ) {
+			if(order.getUserSeq()!=0) { //받아온 리스트중 0번유저(빈값) 제거
+				paramList.add(order);
+			}
+		}
+		System.out.println(paramList);
 		List<Map<String,Object>> list = null;
 		try {
 			list = orderCartService.selectCartForOrder(paramList);

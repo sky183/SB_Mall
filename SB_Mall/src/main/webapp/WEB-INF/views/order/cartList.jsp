@@ -71,8 +71,6 @@ var aa;
 					<td>수량</td>
 					<td>주문금액</td>
 				</tr>
-				<form method="post" id="hCartForm">
-					
 				<c:forEach var="cartItem" items="${cart}" varStatus="i">
 				<tr>
 					<td><input type="checkbox" name="selectItem"  class="selectItem"
@@ -98,17 +96,8 @@ var aa;
 					pattern="###,###,###,###,###"/>
 					</td>
 				</tr>
-				<input type="hidden" name="orderList[${i.index}].productSeq" 
-				class="${cartItem.productSeq}${cartItem.option} hInput" 
-				value="${cartItem.productSeq}" disabled>
-				<input type="hidden" name="orderList[${i.index}].option" 
-				class="${cartItem.productSeq}${cartItem.option} hInput" 
-				value="${cartItem.option}" disabled>
-				<input type="hidden" name="orderList[${i.index}].userSeq" 
-				class="${cartItem.productSeq}${cartItem.option} hInput"  
-				value="${cartItem.userSeq}" disabled>
 				</c:forEach>
-				</form>
+				
 			</c:when>
 			<c:otherwise>
 				장바구니에 담긴 상품이 없습니다.
@@ -122,5 +111,20 @@ var aa;
 	<div class="cartOrderBtnBox">
 		<input type="button" class="cartOrderBtn storeBtn" value="주문하기"> 
 	</div>
+	<form method="post" id="hCartForm">
+		<c:if test="${cart!=null}">
+			<c:forEach var="cartItem" items="${cart}" varStatus="i">
+				<input type="hidden" name="orderList[${i.index}].productSeq"
+					class="${cartItem.productSeq}${cartItem.option} hInput"
+					value="${cartItem.productSeq}" disabled> 
+				<input type="hidden" name="orderList[${i.index}].option"
+					class="${cartItem.productSeq}${cartItem.option} hInput"
+					value="${cartItem.option}" disabled> 
+				<input type="hidden" name="orderList[${i.index}].userSeq"
+					class="${cartItem.productSeq}${cartItem.option} hInput"
+					value="${cartItem.userSeq}" disabled>
+			</c:forEach>
+		</c:if>
+	</form>
 </div>
 <br>
