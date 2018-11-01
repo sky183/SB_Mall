@@ -9,7 +9,7 @@
             등록된 주문이 없습니다.
         </c:when>
 	<c:otherwise>
-		<div class="px-4">
+		<div class="px-4"> 
 
 			<div class="table-wrapper">
 				<!--Table-->
