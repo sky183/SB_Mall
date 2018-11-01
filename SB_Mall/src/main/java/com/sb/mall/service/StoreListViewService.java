@@ -21,10 +21,10 @@ public class StoreListViewService {
 	private StoreDao storeDao;
 	
 
-	public List<Map<String,Object>> proAndSalList() throws SQLException{
+	public List<Map<String,Object>> proAndSalList(String tag) throws SQLException{
 		storeDao=sqlSessionTemplate.getMapper(StoreDao.class);
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-			list = storeDao.selectProAndSalList();
+			list = storeDao.selectProAndSalList(tag);
 		return list;
 	};
 	

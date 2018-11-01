@@ -3,7 +3,24 @@
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Calendar"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%
+Calendar cal = Calendar.getInstance();
 
+cal.add(cal.MONTH, 0);
+
+SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMM");
+
+String year = dateFormat.format(cal.getTime()).substring(0,4);
+
+String month = dateFormat.format(cal.getTime()).substring(4,6);
+
+request.setAttribute("year", year);
+
+request.setAttribute("month", month);
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,35 +45,84 @@ h2 {
 	padding: 10px;
 }
 
-
 #adminWrapper {
-	margin: 100px 80px 50px 80px;
+	width : 1200px;
+	margin: 100px auto 50px auto;
 }
-
 
 #popup th, #popup td{
 	padding: 12px;
 } 
 
+table .th-lg, table td {
+    min-width: 5rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+}
+
 </style>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['월별', '매출액(단위:만원)'],
+          ['${month-5}월', ${fifthMonth}],
+          ['${month-4}월', ${fourthMonth}],
+          ["${month-3}월", ${thirdMonth}],
+          ["${month-2}월", ${secondMonth}],
+          ["${month-1}월", ${preMonth}],
+          ["${month}월", ${thisMonth}]
+        ]);
+
+        var options = {
+          title: 'Chess opening moves',
+          width: 600,
+          legend: { position: 'none' },
+          bars: 'red', // Required for Material Bar Charts.
+          axes: {
+            x: {
+              0: { side: 'top', label: '매출액'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "60%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+    </script>
+    
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div id="adminWrapper">
 		<h1>매출 현황</h1>
-		<script type=>
-		var d = new Date();
-		document.write('<h2>' + (d.getFullYear()) + '년 </h2>');
-		document.write('<h2>' + (d.getMonth() + 1) + '월 </h2>');
-		</script>
+		<h2>${year}년 ${month}월</h2>
 		
-		<h2>이번달 매출 : <fmt:formatNumber value="${thisMonth}" pattern=",###"/>원</h2>
-		<h2>지난달 매출 : <fmt:formatNumber value="${preMonth}" pattern="#,###"/>원</h2>
-		<h2>이번달 평균 : <fmt:formatNumber value="${thisMonthAverage}" pattern="##.##"/>원</h2>
+		<h2>이번달매출 : <fmt:formatNumber value="${thisMonth}" pattern="#,###"/>원</h2>
+		<h2>${month-1}월 매출 : <fmt:formatNumber value="${preMonth}" pattern="#,###"/>원</h2>
+		<h2>${month-2}월 매출 : <fmt:formatNumber value="${secondMonth}" pattern="#,###"/>원</h2>
+		<h2>${month-3}월 매출 : <fmt:formatNumber value="${thirdMonth}" pattern="#,###"/>원</h2>
+		<h2>${month-4}월 매출 : <fmt:formatNumber value="${fourthMonth}" pattern="#,###"/>원</h2>
+		<h2>${month-5}월 매출 : <fmt:formatNumber value="${fifthMonth}" pattern="#,###"/>원</h2>
+		<h2>이번달 평균 : <fmt:formatNumber value="${thisMonthAverage}" pattern="#,###"/>원</h2>
+		<h2>지난달 평균 : <fmt:formatNumber value="${preMonthAverage}" pattern="#,###"/>원</h2>
+		<div style=" margin: 10px auto; text-align: center;" ><h2>${year}년 </h2>
+		<div id="top_x_div" style="width: 600px; height: 300px; margin: 10px auto;"></div>
+		</div>
+		<br>
+		
 		<hr>
+		
+		<br>
+		
+		
+	<div style="border: none; !important"> <!-- class="card card-cascade narrower"  -->
 		    <!--Card image-->
-    <div class="view view-cascade gradient-card-header peach-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+    <div class="view view-cascade gradient-card-header special-color narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
         <div>
 
@@ -75,7 +141,8 @@ h2 {
 
     </div>
     <!--/Card image-->
-		<div id="viewList"></div>
+	<div id="viewList"></div>
+	</div>
 
 <!-- Modal: modalCart -->
 <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -83,7 +150,7 @@ h2 {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <!--Header-->
-      <div class="modal-header">
+      <div class="modal-header" style="border: none">
         <h4 class="modal-title" id="myModalLabel">회원 수정</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -106,12 +173,8 @@ h2 {
   </div>
 </div>
 		</div>
-
-
-
 		<!-- adminWrapper의 끝 -->
-	</div>
-
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<script>
 
 	$(document).ready(function() {
@@ -165,7 +228,7 @@ h2 {
 				type : 'POST',
 				data : memberModify,
 				error : function(error) {
-			        alert("Error!");
+					alert("장난치삼?");
 			    },
 				success : function(result) {
 					alert(result);

@@ -22,15 +22,23 @@
 
 	<update id="updateOrders">
 		update `Order` 
+		<set>
 		<foreach collection="list" item="orderList" open="" separator="" close="" index="index">
 			<if test="index==0">
-			set orderDetailNum=#{orderList.orderDetailNum} 
-			where userSeq=#{orderList.userSeq} and orderDetailNum=0 and
+				orderDetailNum=#{orderList.orderDetailNum} 
+			</if>
+		</foreach>
+		</set>
+		<where>
+		<foreach collection="list" item="orderList" open="" separator="" close="" index="index">
+			<if test="index==0">
+				and userSeq=#{orderList.userSeq} and orderDetailNum=0 and
 			</if>
 		</foreach>
 		<foreach collection="list" item="orderList" open="(" separator="or" close=")" index="index">
 			productSeq=#{orderList.productSeq} and `option`=#{orderList.option}
 		</foreach>
+		</where>
 	</update>
 
 	<update id="updateDuplicateCart" parameterType="com.sb.mall.model.Order">
@@ -44,6 +52,20 @@
 
 	<update id="updateStatus" parameterType="Map">
 	</update>
+	
+	<delete id="deleteCart" >
+		delete from `Order` 
+		<where>
+		<foreach collection="list" item="orderList" open="" separator="" close="" index="index">
+			<if test="index==0">
+				userSeq=#{orderList.userSeq} and orderDetailNum=0 and
+			</if>
+		</foreach>
+		<foreach collection="list" item="orderList" open="(" separator="or" close=")" index="index">
+			productSeq=#{orderList.productSeq} and `option`=#{orderList.option}
+		</foreach>
+		</where>
+	</delete>
 
 	<delete id="delete" parameterType="int">
 	</delete>

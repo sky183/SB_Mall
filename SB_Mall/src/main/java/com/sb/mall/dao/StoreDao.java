@@ -10,7 +10,7 @@ public interface StoreDao {
 	
 	public void insertSalesBoard(SalesBoard salesBoard);
 	public void insertProduct(Product product);
-	public List<Map<String,Object>> selectProAndSalList();
+	public List<Map<String,Object>> selectProAndSalList(String tag);
 	public List<Map<String,Object>> selectProAndSal(int salSeq);
 	public List<Product> selectProductList();
 	public List<SalesBoard> selectSalBoardList();
