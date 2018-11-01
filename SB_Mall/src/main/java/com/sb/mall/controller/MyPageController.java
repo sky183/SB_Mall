@@ -1,6 +1,8 @@
 package com.sb.mall.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -28,16 +30,19 @@ public class MyPageController {
 	@RequestMapping("/myPage")
 	public ModelAndView myPage(HttpSession session, HttpServletRequest request) {
 		
-		MemberInfo memberInfo = new MemberInfo();
-		OrderDetail orderDetail = new OrderDetail();
-		
-		
 		ModelAndView modelAndView = new ModelAndView("myPage");
 		
+		MemberInfo memberInfo = new MemberInfo();
+		
+		
+		/*Session*/
 		 Object object = session.getAttribute("memberInfo");
 		 MemberInfo member = (MemberInfo) object;
 		 String userId = member.getUserId();
 		 int userSeq = member.getUserSeq();
+		 
+		 //주문내역
+		 List<OrderDetail> orderDetail = mypageService2.getOrderDetail(userSeq);
 		 
 		 System.out.println("Controller Sql 실행");
 		 if (userId.equals(null)) {
@@ -47,10 +52,10 @@ public class MyPageController {
 			System.out.println("세션에 저장된 회원아이디"+member.getUserId());
 			System.out.println("세션에 저장된 회원번호"+member.getUserSeq());
 			
-			if (orderDetail.getUserSeq() == member.getUserSeq()) {
+			if (!orderDetail.isEmpty()) {
 				System.out.println("주문내역 있음");
 				memberInfo = mypageService.myPageService(userId);
-				orderDetail = mypageService2.myPageService2(userSeq);
+				orderDetail = mypageService2.getOrderDetail(userSeq);
 				
 				modelAndView.addObject(memberInfo);			
 				modelAndView.addObject(orderDetail);			

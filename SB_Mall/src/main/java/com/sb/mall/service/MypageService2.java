@@ -1,6 +1,8 @@
 package com.sb.mall.service;
 
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,25 +20,16 @@ public class MypageService2 {
 	SqlSessionTemplate sessionTemplate;
 	
 	private OrderDetailDao orderDetailDao;
+	private List<OrderDetail> orderDetail;
 	
-	private OrderDetail orderDetail;
-	
-		public OrderDetail myPageService2(int userSeq) {
+		public List<OrderDetail> getOrderDetail(int userSeq) {
 		System.out.println("MypageService2 실행");
-		orderDetailDao = sessionTemplate.getMapper(OrderDetailDao.class);
 		
-		
-			
-		orderDetail = orderDetailDao.selectOrderDetail2(userSeq);
-		if (orderDetail.getUserSeq() != userSeq) {
-			System.out.println("주문내역이 없습니다.");
-			System.out.println("MypageService2 종료");
-			return orderDetail;
-		}else {
-			System.out.println(orderDetail.toString());
-			System.out.println("MypageService2 종료");
-			return orderDetail;	
-		}		
+		System.out.println("주문한 회원의 번호: "+userSeq);
+		orderDetailDao = sessionTemplate.getMapper(OrderDetailDao.class);	
+		orderDetail = orderDetailDao.selectOrderDetail_userSqe(userSeq);
+		System.out.println(orderDetail.toString());
+		return orderDetail;	
 	}
 
 }
