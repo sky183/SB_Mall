@@ -64,9 +64,10 @@
 					<!--Table body-->
 				</table>
 				<!--Table-->
+				<br>
 				<div style="text-align: center; cursor: pointer;">
 				<c:if test="${viewData.currentPageNumber < viewData.pageTotalCount}">
-					<p class="page" name="${viewData.currentPageNumber + 1}">${viewData.currentPageNumber}/${viewData.pageTotalCount}<br><i class="fa fa-chevron-down" aria-hidden="true"></i></p>
+					<p class="page" name="${viewData.currentPageNumber + 1}"><i class="fa fa-chevron-down" aria-hidden="true"></i> ${viewData.currentPageNumber}/${viewData.pageTotalCount}<br></p>
 				</c:if>
 				</div>
 			</div>

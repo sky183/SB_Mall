@@ -11,9 +11,9 @@
             등록된 주문이 없습니다.
         </c:when>
 	<c:otherwise>
-		<div class="px-4"> 
+		<div class="px-4" style="text-align: center;"> 
 
-			<div class="table-wrapper">
+			<div class="table-wrapper" style="text-align: center;">
 				<!--Table-->
 				<table class="memList table table-hover mb-0">
 
@@ -79,6 +79,7 @@
 					</tbody>
 					<!--Table body-->
 				</table>
+				<br>
 				<!--Table-->
 				<nav aria-label="Page navigation example">
 					<ul class="pagination pg-dark">

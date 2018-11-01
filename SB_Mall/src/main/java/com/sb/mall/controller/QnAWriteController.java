@@ -13,7 +13,7 @@ import com.sb.mall.model.QnABoard;
 import com.sb.mall.service.QnAWriteService;
 
 @Controller
-@RequestMapping("/qna/qnaWrite")
+@RequestMapping("/qnaWrite")
 public class QnAWriteController {
 	
 	@Autowired

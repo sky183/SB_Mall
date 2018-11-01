@@ -182,7 +182,7 @@ table .th-lg, table td {
 		<h2>지난달 평균 : <fmt:formatNumber value="${preMonthAverage}" pattern="#,###"/>원</h2> --%>
 		
 		<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
-		<div style="border-radius: 10px; padding: 10px 15px; background-color: #787878; color: #ffc828; display: inline-block; font-size: 22px;">${year}년</div>
+		<div style="border-radius: 10px; padding: 10px 15px; background-color: #787878; color: #ffc828; margin-bottom : 40px; display: inline-block; font-size: 22px;">${year}년</div>
 	
 		
 		
