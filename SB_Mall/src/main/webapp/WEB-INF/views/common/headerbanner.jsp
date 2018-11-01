@@ -71,7 +71,9 @@
     
     
     <div class="carousel-item">
-      <img src="<%=request.getContextPath()%>/img/xiaomi04.png" alt="Chicago" class="headerBannerImg">
+   	  <a href="http://localhost:8889/mall/store/board/10">
+      	<img src="<%=request.getContextPath()%>/img/xiaomi05.png" alt="Chicago" class="headerBannerImg">
+      </a>
       <div class="BannerDiv02">
       	<div  class="BannerDiv02_inner">
 	        <h3 class="Banner02_h3">Xiaomi Segway</h3>
@@ -82,9 +84,11 @@
 	        <div class="BannerDiv02_Detail">
 	        	<h5 class="Banner02_h5">최대속도 : </h5><h2 class="Banner02_h2"> 20</h2><h3 class="Banner02_h3_2">km/h</h3>
 	        </div>
-	        <div class="BannerDiv02_Detail">
+	        <div class="BannerDiv02_Detail lastDetail">
 	        	<h5 class="Banner02_h5">주행거리 : </h5><h2 class="Banner02_h2"> 50</h2><h3 class="Banner02_h3_2">km</h3>
 	        </div>
+	        <p class="MiniDetail">- 본 상품은 자사와 단독 계약으로 판매중입니다.</p>
+	        <p class="MiniDetail">- 본 상품은 인기품목으로 조기품절 될 수 있습니다.</p>
         </div>
       </div>   
     </div>
