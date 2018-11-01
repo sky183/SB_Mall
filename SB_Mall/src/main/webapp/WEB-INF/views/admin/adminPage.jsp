@@ -28,22 +28,6 @@ h2 {
 	padding: 10px;
 }
 
-table {
-	margin-top: 10px;
-}
-
-td {
-	padding: 10px 0px;
-	text-align: center;
-}
-
-#memberPhoto {
-	background-size: 100%;
-	width: 150px;
-	height: 150px;
-	border: 1px solid #333333;
-	margin: 20px 0;
-}
 
 #adminWrapper {
 	margin: 100px 80px 50px 80px;
@@ -51,7 +35,7 @@ td {
 
 
 #popup th, #popup td{
-	padding: 8px;
+	padding: 12px;
 } 
 
 </style>
@@ -71,8 +55,26 @@ td {
 		<h2>지난달 매출 : <fmt:formatNumber value="${preMonth}" pattern="#,###"/>원</h2>
 		<h2>이번달 평균 : <fmt:formatNumber value="${thisMonthAverage}" pattern="##.##"/>원</h2>
 		<hr>
-		<button id="memberList">회원관리</button>
-		<button id="orderList">주문관리</button>
+		    <!--Card image-->
+    <div class="view view-cascade gradient-card-header peach-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+
+        <div>
+
+        </div>
+
+        <a href="" class="white-text mx-3">회원 및 주문관리</a>
+
+        <div>
+            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+                <i class="fa fa-columns mt-0" id="memberList"> 회원관리</i>
+            </button>
+            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+                <i class="fa fa-th-large mt-0" id="orderList"> 주문관리</i>
+            </button>
+        </div>
+
+    </div>
+    <!--/Card image-->
 		<div id="viewList"></div>
 
 <!-- Modal: modalCart -->

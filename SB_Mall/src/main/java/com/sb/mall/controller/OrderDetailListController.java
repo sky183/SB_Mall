@@ -15,7 +15,7 @@ public class OrderDetailListController {
 	@Autowired
 	private GetPagingService service;
 	
-	static final int COUNT_PER_PAGE = 3;
+	static final int COUNT_PER_PAGE = 10;
 
 	@RequestMapping("/orderDetailList")
 	public ModelAndView getDetailList(@RequestParam(value="page", defaultValue="1") int pageNumber)

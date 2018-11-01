@@ -29,7 +29,12 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
-<!-- Custom styles for this template -->
+
+<style>
+body {
+	background-color: #f5f5f5;
+}
+</style>
 </head>
 <body>
 
@@ -40,9 +45,9 @@
 	<div id="contents">
 		<div style="margin: 30px auto 20px auto; width: 600px;">
 			<!-- Default form register -->
-			<form class="text-center border border-light p-5" method="post">
+			<form class="text-center  p-5" method="post">
 
-				<p class="h4 mb-4">회원가입</p>
+				<p class="h4 mb-4"><b>회원가입</b></p>
 
 				<input type="email" id="defaultRegisterFormFirstName"
 					class="form-control" placeholder="E-mail (Id)" name="userId"
@@ -102,8 +107,7 @@
 
 				<!-- Sign up button -->
 				<div id="member_button">
-					<button class="btn btn-info my-4 btn-block" type="submit">Sign
-						in</button>
+					<button class="btn my-4 btn-block" style="background-color: #ffc828; font-size: 18px;" type="submit">회원 가입</button>
 				</div>
 
 				<!-- Social register -->
