@@ -54,15 +54,15 @@ public class MyPageController {
 			
 			if (!orderDetail.isEmpty()) {
 				System.out.println("주문내역 있음");
-				memberInfo = mypageService.myPageService(userId);
+				memberInfo = mypageService.getMemberInfo(userId);
 				orderDetail = mypageService2.getOrderDetail(userSeq);
 				
-				modelAndView.addObject(memberInfo);			
-				modelAndView.addObject(orderDetail);			
+				modelAndView.addObject("memberInfo",memberInfo);			
+				modelAndView.addObject("orderDetail",orderDetail);			
 			}else {
 				System.out.println("주문내역 없음");
-				memberInfo = mypageService.myPageService(userId);
-				modelAndView.addObject(memberInfo);			
+				memberInfo = mypageService.getMemberInfo(userId);
+				modelAndView.addObject("memberInfo",memberInfo);			
 			}
 		}
 		 

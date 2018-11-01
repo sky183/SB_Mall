@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,9 +39,9 @@
 	</table>
 
 
-<c:set var="viewData" value="${viewData}"></c:set>
+
 <c:choose>
-	<c:when test="${viewData.isEmpty()}">
+	<c:when test="${empty orderDetail}">
             등록된 주문이 없습니다.
         </c:when>
 	<c:otherwise>
@@ -66,14 +67,14 @@
 
 					<!--Table body-->
 					<tbody>
-						<c:forEach var="orderDetail" items="${viewData.objList}">
+						<c:forEach var="order" items="${orderDetail}">
 							<tr>
-								<td>${orderDetail.orderDetailNum}</td>
+								<td>${order.orderDetailNum}</td>
 								<td><a
-									href="<%=request.getContextPath()%>/memberInfo/member?userSeq=${orderDetail.userSeq}">${orderDetail.userSeq}</a>
+									href="<%=request.getContextPath()%>/memberInfo/member?userSeq=${order.userSeq}">${order.userSeq}</a>
 								</td>
 								<td><c:choose>
-										<c:when test="${orderDetail.payment == 0}">
+										<c:when test="${order.payment == 0}">
                                      	           무통장
                                             </c:when>
 										<c:otherwise>
@@ -81,22 +82,22 @@
                                             </c:otherwise>
 									</c:choose></td>
 
-								<td>${orderDetail.orderTime}</td>
-								<td>${orderDetail.totalAmount}</td>
+								<td>${order.orderTime}</td>
+								<td>${order.totalAmount}</td>
 								<td style="padding-top: 5px; padding-bottom: 5px; !important">
 								<button class="status btn btn-blue-grey"
-										name="${orderDetail.orderDetailNum}" data-toggle="modal" style="padding: 2px 5px; width: 80px; ">
+										name="${order.orderDetailNum}" data-toggle="modal" style="padding: 2px 5px; width: 80px; ">
 											<c:choose>
-												<c:when test="${orderDetail.status == 0}">
+												<c:when test="${order.status == 0}">
                                                      	  입금미확인
                                                     </c:when>
-												<c:when test="${orderDetail.status == 1}">
+												<c:when test="${order.status == 1}">
                                                    	  결제완료
                                                     </c:when>
-												<c:when test="${orderDetail.status == 2}">
+												<c:when test="${order.status == 2}">
                          	                 	              배송전
                                                     </c:when>
-												<c:when test="${orderDetail.status == 3}">
+												<c:when test="${order.status == 3}">
                                                 	        배송중
                                                     </c:when>
 												<c:otherwise>
@@ -104,7 +105,7 @@
 											</c:choose>
 										</button>
 									<button class="order memberDelete btn btn-blue-grey"
-										name="${orderDetail.orderDetailNum}" data-target="#modalCart" style="padding: 2px 5px; width: 80px">
+										name="${order.orderDetailNum}" data-target="#modalCart" style="padding: 2px 5px; width: 80px">
 										주문상세</button>
 								</td>
 							</tr>
@@ -113,7 +114,7 @@
 					<!--Table body-->
 				</table>
 				<!--Table-->
-				<nav aria-label="Page navigation example">
+				<%-- <nav aria-label="Page navigation example">
 					<ul class="pagination pg-dark">
 						<c:choose>
 							<c:when test="${viewData.currentPageNumber == 1}">
@@ -154,7 +155,7 @@
 							</c:otherwise>
 						</c:choose>
 					</ul>
-				</nav>
+				</nav> --%>
 			</div>
 		</div>
 

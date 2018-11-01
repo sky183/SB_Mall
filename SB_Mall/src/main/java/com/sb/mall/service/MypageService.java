@@ -18,7 +18,7 @@ public class MypageService {
 	private MemberInfo memberInfo;
 	
 //	public Join_memberInfoAndOrder myPageService(int userSeq) {
-		public MemberInfo myPageService(String userId) {
+		public MemberInfo getMemberInfo(String userId) {
 		System.out.println("MypageService 실행");
 		//sql 실행
 		memberDao = sessionTemplate.getMapper(MemberDao.class);
