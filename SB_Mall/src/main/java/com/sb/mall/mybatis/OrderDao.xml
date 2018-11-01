@@ -20,6 +20,25 @@
 		value(#{orderDetailNum},#{userSeq},#{productSeq},#{quantity},#{option})
 	</insert>
 
+	<update id="updateOrders">
+		update `Order` 
+		<foreach collection="list" item="orderList" open="" separator="" close="" index="index">
+			<if test="index==0">
+			set orderDetailNum=#{orderList.orderDetailNum} 
+			where userSeq=#{orderList.userSeq} and orderDetailNum=0 and
+			</if>
+		</foreach>
+		<foreach collection="list" item="orderList" open="(" separator="or" close=")" index="index">
+			productSeq=#{orderList.productSeq} and `option`=#{orderList.option}
+		</foreach>
+	</update>
+
+	<update id="updateDuplicateCart" parameterType="com.sb.mall.model.Order">
+		update `Order`set quantity=quantity+#{quantity} 
+		where userSeq=#{userSeq} and productSeq=#{productSeq} and `option`=#{option}
+		and orderDetailNum=0
+	</update>
+
 	<update id="update" parameterType="com.sb.mall.model.Order">
 	</update>
 
@@ -28,17 +47,24 @@
 
 	<delete id="delete" parameterType="int">
 	</delete>
+	
+	<select id="checkDuplicateCart" 
+	parameterType="com.sb.mall.model.Order" resultType="com.sb.mall.model.Order" >
+		SELECT * FROM `Order` where 
+		OrderDetailNum=0 and userSeq=#{userSeq} and productSeq=#{productSeq} and `option`=#{option}
+	</select>
 
 	<select id="selectCart" resultType="map">
 		SELECT * FROM `Order` o, Product p where userSeq=#{userSeq} 
 		and OrderDetailNum=0 and p.productSeq=o.productSeq
 	</select>
 	
-	<select id="selectCartForOrder" parameterType="java.util.HashMap" resultType="map">
-		SELECT * FROM `Order` o, Product p where o.userSeq=#{userSeq} and
-		<foreach collection="list" item="item"
-			open="(" separator="or" close=")">
-			o.productSeq=#{item.productSeq} and o.option=#{item.option} 
+	<select id="selectCartForOrder" resultType="map">
+		SELECT * FROM `Order` o, Product p where
+		<foreach collection="list" item="orderList" open="(" separator="or" close=")">
+			o.userSeq=#{orderList.userSeq} 
+			and o.productSeq=#{orderList.productSeq} 
+			and o.option=#{orderList.option} 
 		</foreach>
 		and OrderDetailNum=0 and p.productSeq=o.productSeq
 	</select>

@@ -55,7 +55,7 @@ public class OrderService {
 		Order order = command.getOrder();
 		orderDetail.setOrderDetailNum(orderDetailNum);
 		order.setOrderDetailNum(orderDetailNum);
-		Dao.insertOrderDetail(command.getOrderDetail());
+		Dao.insertOrderDetail(orderDetail);
 		Dao.insertOrder(order);
 	}
 	
@@ -67,4 +67,18 @@ public class OrderService {
 		return product;
 	}
 	
+	@Transactional
+	public void insertOrdersAndDetail(OrderOrderCommand command) throws SQLException {
+		String orderDetailNum = new SimpleDateFormat("yyyyMMddssSSS").format(new Date());
+		Dao = sessionTemplate.getMapper(OrderDao.class);
+		OrderDetail orderDetail = command.getOrderDetail();
+		List<Order> orderList = command.getOrders();
+		for(Order order : orderList) {
+			order.setOrderDetailNum(orderDetailNum);
+			System.out.println(order);
+		}
+		orderDetail.setOrderDetailNum(orderDetailNum);
+		Dao.insertOrderDetail(orderDetail);
+		Dao.updateOrders(orderList);
+	}
 }

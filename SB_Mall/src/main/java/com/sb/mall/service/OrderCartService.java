@@ -24,7 +24,14 @@ public class OrderCartService {
 	@Transactional
 	public void addCart(Order order) throws SQLException {
 		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
-		orderDao.insertCart(order);
+		List<Order> checklist=orderDao.checkDuplicateCart(order);
+		System.out.println(checklist.isEmpty());
+		if(checklist.isEmpty()) {
+			orderDao.insertCart(order);
+		}else {
+			orderDao.updateDuplicateCart(order);
+		}
+		
 	}
 	
 	@Transactional
@@ -46,7 +53,7 @@ public class OrderCartService {
 		map.put("orderList", orderList);
 		List<Map<String,Object>> list = null;
 		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
-		list= orderDao.selectCartForOrder(map);
+		list= orderDao.selectCartForOrder(orderList);
 		return list;
 	}
 	

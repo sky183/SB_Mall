@@ -98,10 +98,6 @@ ul{
 </script>	
 </head>
 <body>
-<form id="hOrderForm" method="post">
-	<input type="hidden" name="payment">
-	<input type="hidden" name="userSeqArr">
-</form>
 	<div class="orderContainer">
 	<div class="orderListBox">
 	<div class="orderHeaderBox">
@@ -120,7 +116,6 @@ ul{
 					<td>주문금액</td>
 				</tr>
 				<c:forEach var="order" items="${orders}">
-				
 				<tr>
 					<td>
 					${order.productSeq}
@@ -171,5 +166,19 @@ ul{
 			<input type="button" class="payBtn" id="insPayBtn" value="결제하기">
 		</div>
 </div>
+
+<form id="hOrderForm" method="post"> <!-- 컨트롤러전달 객체생성용 히든폼 -->
+	<input type="hidden" name="orderDetail.payment" id="payment">
+	<input type="hidden" name="orderDetail.totalAmount" id="totalAmount" value="${totalAmount}">
+	<c:forEach var="order" items="${orders}" varStatus="i">
+		<c:if test="${i.index==0}">
+			<input type="hidden" name="orderDetail.userSeq" id="userSeq" value="${order.userSeq}">
+		</c:if>
+		<input type="hidden" name="orders[${i.index}].userSeq" value="${order.userSeq}">
+		<input type="hidden" name="orders[${i.index}].productSeq" value="${order.productSeq}">
+		<input type="hidden" name="orders[${i.index}].quantity" value="${order.quantity}">
+		<input type="hidden" name="orders[${i.index}].option" value="${order.option}">
+	</c:forEach>
+</form>
 </body>
 </html>

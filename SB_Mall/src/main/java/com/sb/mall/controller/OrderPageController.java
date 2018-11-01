@@ -4,14 +4,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.model.MemberInfo;
 import com.sb.mall.model.Order;
 import com.sb.mall.model.OrderList;
 import com.sb.mall.model.Product;
@@ -27,7 +25,7 @@ public class OrderPageController {
 	@Autowired
 	OrderCartService orderCartService;
 	
-	@RequestMapping("order/insOrder")
+	@RequestMapping(value="order/insOrder", method=RequestMethod.POST)
 	public ModelAndView order(Order order) {
 		ModelAndView modelAndView = new ModelAndView();
 		Product product = null;
@@ -43,20 +41,16 @@ public class OrderPageController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("order/cartOrder")
-	public ModelAndView cartOrder(HttpSession session,OrderList orderList) {
-		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
+	@RequestMapping(value="order/insOrder" ,method=RequestMethod.GET)
+	public String order() {
+		return "redirect:/store";
+	}
+	
+	@RequestMapping(value="order/cartOrder" ,method=RequestMethod.POST)
+	public ModelAndView cartOrder(OrderList orderList) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("orderCartOrder");
 		List<Order> paramList = orderList.getOrderList();
-		/*List<Order> orderList = new ArrayList<Order>();
-		for(int i=0;i<selProduct.length;i++) {
-			Order order = new Order();
-			order.setProductSeq(Integer.parseInt(selProduct[i].split("/")[0]));
-			order.setOption(selProduct[i].split("/")[1]);
-			order.setUserSeq(memberInfo.getUserSeq());
-			orderList.add(order);
-		}*/
 		System.out.println(orderList);
 		List<Map<String,Object>> list = null;
 		try {
@@ -67,12 +61,16 @@ public class OrderPageController {
 		}
 		int totalAmount=0;
 		for(Map<String,Object> map : list) {
-			totalAmount+=(int)map.get("price")*(int)map.get("quantity");
-			System.out.println(totalAmount);
+			totalAmount+=(int)map.get("price")*(int)map.get("quantity"); //주문금액 총합
 		}
 		modelAndView.addObject("totalAmount", totalAmount);
 		modelAndView.addObject("orders", list);
 		return modelAndView;
+	}
+	
+	@RequestMapping(value="order/cartOrder" ,method=RequestMethod.GET)
+	public String cartOrder() {
+		return "redirect:/order/cart";
 	}
 	
 }

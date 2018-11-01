@@ -13,6 +13,8 @@ public interface OrderDao {
 	public int insertOrder(Order order);
 	public int insertOrderDetail(OrderDetail orderDetail);
 	public int update(Order order);
+	public int updateOrders(List<Order> orderList);
+	public int updateDuplicateCart(Order order);
 	public int updateStatus(Map<String, Object> map); //int orderSeq, int status
 	public int delete(int orderSeq);
 	public List<Order> selectAll();
@@ -20,8 +22,9 @@ public interface OrderDao {
 	public List<Order> selectJoin(Map<String, Object> map); //String joinTable, String where, String column
 	public List<Order> selectMemberOrder(String userId);
 	public List<Order> select(String orderDetailNum);
+	public List<Order> checkDuplicateCart(Order order);
 	public List<Map<String,Object>> selectCart(int userSeq);
-	public List<Map<String,Object>> selectCartForOrder(Map<String,Object> map);
+	public List<Map<String,Object>> selectCartForOrder(List<Order> orderList);
 	public List<Map<String,Object>> selectOrderAndProduct(int productSeq);
 	public Product selectProduct(int productSeq);
 	public Order selectOrder(int orderSeq);

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -20,7 +21,7 @@ public class OrderOrderController {
 	@Autowired
 	OrderService orderService;
 
-	@RequestMapping("order/insOrder/complete")
+	@RequestMapping(value="order/insOrder/complete",method=RequestMethod.POST)
 	public ModelAndView insOrder(OrderOrderCommand command,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("orderCompletePage");
@@ -39,15 +40,37 @@ public class OrderOrderController {
 			modelAndView.addObject("message","주문에 실패하였습니다.");
 			System.out.println("주문에 실패하였습니다.");
 			e.printStackTrace();
+			return modelAndView;
 		}
 		modelAndView.addObject("message", "주문이 완료되었습니다.");
 		return modelAndView;
 	}
 	
-	@RequestMapping("order/cartOrder/complete")
-	public ModelAndView cartOrder() {
+	@RequestMapping(value="order/insOrder/complete",method=RequestMethod.GET)
+	public String insOrder() {
+		return "redirect:/store"; 
+	}
+	
+	@RequestMapping(value="order/cartOrder/complete",method=RequestMethod.POST)
+	public ModelAndView cartOrder(OrderOrderCommand command) {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("orderCompletePage");
+		try {
+			orderService.insertOrdersAndDetail(command);
+		} catch (SQLException e) {
+			modelAndView.addObject("message","주문에 실패하였습니다.");
+			System.out.println("주문에 실패하였습니다.");
+			e.printStackTrace();
+			return modelAndView;
+		}
+		modelAndView.addObject("message", "주문이 완료되었습니다.");
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="order/cartOrder/complete",method=RequestMethod.GET)
+	public String cartOrder() {
+		return "redirect:/order/cart"; 
+	}
+		
 	
 }

@@ -65,19 +65,37 @@ ul{
 </style>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script>
-	var hInputArr=[];
+var aa;
 	$(document).ready(function() {
 		
 		$('.cartOrderBtn').click(function() {
-			hInputArr=[];
-			$('#hCartForm').attr('action','<%=request.getContextPath()%>/order/cartOrder');
-			<%-- location.href="<%=request.getContextPath()%>/order/cartOrder"; --%>
-			/* var hInputSel=$('input[name=selectItem]:checked');
-			for(var i=0;i<hInputSel.length;i++){
-				hInputArr.push(hInputSel[i].value);
-			} */
-			//$('#selProduct').val(hInputArr);
-			$('#hCartForm').submit();
+			if($('input[name="selectItem"]:checked').length>0){ //최소 하나의 상품이 선택되었을때
+				$('#hCartForm').attr('action','<%=request.getContextPath()%>/order/cartOrder');
+				$('#hCartForm').submit();
+			}else{
+				alert('구입하실 물품을 선택해 주세요.');
+			}
+			
+		});
+		
+		$('.selectItem').click(function () { //체크박스 히든인풋을 활성,비활성하여 상품값을 선택적으로 전송
+			var selector = "."+$(this)[0].value;
+			if($(this)[0].checked==true){
+				$(selector).attr("disabled",false);	
+			}else{
+				$(selector).attr("disabled",true);
+			}
+		});
+		
+		$('#checkAllItems').click(function () { //체크박스 전체
+			if($(this)[0].checked==true){
+				$("input[name=selectItem]").prop("checked",true);
+				$('.hInput').attr("disabled",false);	
+			}else{
+				$("input[name=selectItem]").prop("checked",false);
+				$('.hInput').attr("disabled",true);
+			}
+			
 		});
 		
 	});
@@ -93,7 +111,7 @@ ul{
 		<c:choose>
 			<c:when test="${cart!=null}">
 				<tr id="cartTableHeader">
-					<td><input type="checkbox" id="checkAllItems"></td>
+					<td><input type="checkbox" name="checkAllItems" id="checkAllItems"></td>
 					<td>상품번호</td>
 					<td colspan="2">상품정보</td>
 					<td>상품가격</td>
@@ -105,8 +123,8 @@ ul{
 					
 				<c:forEach var="cartItem" items="${cart}" varStatus="i">
 				<tr>
-					<td><input type="checkbox" name="selectItem" 
-					value="${i.index}">
+					<td><input type="checkbox" name="selectItem"  class="selectItem"
+					value='${cartItem.productSeq}${cartItem.option}'>
 					</td>
 					<td>${cartItem.productSeq}</td>
 					<td><img src="${cartItem.photo}" alt="이미지없음" class="cartImg"></td>
@@ -129,11 +147,14 @@ ul{
 					</td>
 				</tr>
 				<input type="hidden" name="orderList[${i.index}].productSeq" 
-				value="${cartItem.productSeq}">
+				class="${cartItem.productSeq}${cartItem.option} hInput" 
+				value="${cartItem.productSeq}" disabled>
 				<input type="hidden" name="orderList[${i.index}].option" 
-				value="${cartItem.option}">
-				<input type="hidden" name="orderList[${i.index}].userSeq"
-				value="${cartItem.userSeq}">
+				class="${cartItem.productSeq}${cartItem.option} hInput" 
+				value="${cartItem.option}" disabled>
+				<input type="hidden" name="orderList[${i.index}].userSeq" 
+				class="${cartItem.productSeq}${cartItem.option} hInput"  
+				value="${cartItem.userSeq}" disabled>
 				</c:forEach>
 				</form>
 			</c:when>

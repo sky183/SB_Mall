@@ -55,7 +55,21 @@ ul{
 #boardProductOptionBox>ul>li>p{
 	padding: 10px;
 }
+#boardDetailHeader{
+	border-bottom:1px solid #a9a9a9;
+}
+#boardDetailHeader p{
+	display: inline-block;
+	padding: 15px 20px;
+	font-size:20px;
+	font-weight: bold;
+	background-color: #F2F2F2;
+	border-radius: 10px 10px 0 0;
+}
 #boardTextContainer{
+	min-height: 500px;
+	border-bottom:1px solid #a9a9a9;
+	margin:20px auto;
 }
 #boardReplyContainer{
 }
@@ -174,21 +188,17 @@ ul{
 			<br>
 		</div>
 	</div>
-	<h3>상세설명</h3>
-	<hr>
+	<div id="boardDetailHeader">
+	<p>상세설명</p>
+	</div>
 	<br>
 	<div id="boardTextContainer">
 		${board.text}
 	</div>
 	</c:forEach>
 </c:if>
-	<hr>
-	<br>
-	<h3>댓글</h3>
-	<hr>
 	<br>
 	<div id="boardReplyContainer">
-	댓글내용
 	</div>
 </div>
 </body>
