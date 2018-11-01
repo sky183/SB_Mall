@@ -98,11 +98,14 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 	<form method="post" id="loginForm" class="form-signin">
+		<div>
 		<img class="mb-4"
 			src="<%=request.getContextPath()%>/img/SBCompanyLogo.png" alt=""
 			width="72" height="72"> <br>
+			<h1 class="loginMainFont" style="color:#282828; font-family: 'Open Sans',sans-serif; font-size:32pt; font-weight:bolder; display:inline-block;">SB Company</h1>
+		</div>
 			<br>
-			<br>
+			
 		<!-- <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> -->
 		<label for="login_id" class="sr-only">ID</label> <input type="text"
 			name="userId" id="login_id" class="form-control" placeholder="아이디"
@@ -113,9 +116,10 @@
 		 	${error} 
 
 		<div class="checkbox mb-3">
-			<label> <input type="checkbox" name="rememberId"
-				id="rememberId">아이디 저장
-			</label>
+			<input type="checkbox" name="rememberId"
+				id="rememberId"> 
+				<label for="rememberId" id="rememberIdLabel">아이디 저장 </label>
+			
 
 		</div>
 

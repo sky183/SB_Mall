@@ -20,24 +20,53 @@ body {
 #login_button{
     background-color: #ffc828 !important;
     border: none;
-    color :#505050;
+    color :#282828;
+    font-size: 20pt;
+    font-weight: bold;
     
 }
+.loginMainFont{
+	font-family: 'Open Sans',sans-serif;
+}
+.text-center{
+	text-align: inherit !important;
+}
 .form-signin {
+	text-align:center;
   width: 100%;
-  max-width: 330px;
+  max-width: 530px;
   padding: 15px;
-  margin: auto;
+  margin: 0 auto;
 }
 .form-signin .checkbox {
   font-weight: 400;
+  text-align: left !important;
+}
+#rememberId{
+	margin-left:0px !important;
+	
+}
+#rememberIdLabel{
+	font-size: 12pt;
+	font-weight: bold;
+	color:#707070;
+}
+.checkbox{
+	padding:0px!important;
 }
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
   height: auto;
-  padding: 10px;
-  font-size: 16px;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none !important;
+  
+}
+.form-control{
+	font-size: 20pt !important;
+	font-weight: bold;
+	color:#282828;
 }
 .form-signin .form-control:focus {
   
