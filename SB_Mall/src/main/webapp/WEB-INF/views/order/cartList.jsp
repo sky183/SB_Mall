@@ -2,67 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<style>
-ul{
-   list-style:none;
-}
-#cartListContainer{
-	width: 1200px;
-	margin: 0 auto;
-}
-#cartListBox{
-	width: 100%;
-	margin: 0 auto;
-}
-#cartHeaderBox{
-	width: 100%;
-	margin: 50px 0;
-}
-#cartHeaderBox h2{
-	margin: 30px 20px;
-}
-.cartImg{
-	height: 100px;
-	width: 100px;
-}
-#cartTable{
-	width: 1200px;
-	border-collapse: collapse;
-	margin: 0 auto;
-}
-#cartTableHeader{
-	background-color: #F2F2F2;
-}
-#cartTable td{
-	padding:20px;
-	border-bottom: 1px solid #a9a9a9;
-	text-align: center;
-}
-.cartOrderBtn{
-	outline: none;
-	border: 0px;
-	border-radius: 10px;
-	background-color:#FEC828;
-	font-size:20px;
-	color:white;
-	padding:10px 20px;
-}
-.cartOrderBtn:hover{
-	cursor: pointer;
-}
-.cartOrderBtn:active{
-	box-shadow:0 0 1pt 1pt #5882FA;
-}
-.cartOrderBtnBox{
-	width: 120px;
-	margin: 20px auto;
-}
-.orderPayBox{
-	width:100%;
-	margin: 10px 0;
-	border-bottom: 1px solid #a9a9a9;
-}
-</style>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script>
 var aa;
@@ -76,6 +15,19 @@ var aa;
 				alert('구입하실 물품을 선택해 주세요.');
 			}
 			
+		});
+		
+		$('.cartdeleteBtn').click(function() {
+			if($('input[name="selectItem"]:checked').length>0){ //최소 하나의 상품이 선택되었을때
+				if (confirm("정말 삭제하시겠습니까??") == true){
+					$('#hCartForm').attr('action','<%=request.getContextPath()%>/order/deleteCart');
+					$('#hCartForm').submit();
+				}else{//취소
+				    return;
+				}
+			}else{
+				alert('삭제하실 물품을 선택해 주세요.');
+			}
 		});
 		
 		$('.selectItem').click(function () { //체크박스 히든인풋을 활성,비활성하여 상품값을 선택적으로 전송
@@ -164,8 +116,11 @@ var aa;
 		</c:choose>
 	</table>
 	</div>
+	<div class="cartSubBtnBox">
+	<input type="button" class="cartdeleteBtn storeBtn" value="선택상품삭제"> 
+	</div>
 	<div class="cartOrderBtnBox">
-		<input type="button" class="cartOrderBtn" value="주문하기"> 
+		<input type="button" class="cartOrderBtn storeBtn" value="주문하기"> 
 	</div>
 </div>
 <br>

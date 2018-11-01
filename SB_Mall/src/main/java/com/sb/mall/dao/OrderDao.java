@@ -17,6 +17,7 @@ public interface OrderDao {
 	public int updateDuplicateCart(Order order);
 	public int updateStatus(Map<String, Object> map); //int orderSeq, int status
 	public int delete(int orderSeq);
+	public int deleteCart(List<Order> orderList);
 	public List<Order> selectAll();
 	public List<Order> selectColumn(Map<String, Object> map); //String where, String column
 	public List<Order> selectJoin(Map<String, Object> map); //String joinTable, String where, String column

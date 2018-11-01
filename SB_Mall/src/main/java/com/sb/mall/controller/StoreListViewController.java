@@ -20,10 +20,10 @@ public class StoreListViewController {
 	
 	@ResponseBody
 	@RequestMapping("store/boardListView")
-	public ModelAndView getListView() {
+	public ModelAndView getListView(String tag) {
 		ModelAndView modelAndView = new ModelAndView();
 		try {
-			List<Map<String,Object>> list = storeListViewService.proAndSalList();
+			List<Map<String,Object>> list = storeListViewService.proAndSalList(tag);
 			modelAndView.addObject("viewList", list);
 		} catch (SQLException e) {
 			modelAndView.addObject("errorMsg", "글 목록 조회에 실패하였습니다.");

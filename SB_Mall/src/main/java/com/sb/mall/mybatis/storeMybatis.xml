@@ -15,8 +15,15 @@
  		insert into Product (price,productName,photo,detail) 
  		value(#{price},#{productName},#{photo},#{detail})
  	</insert>
- 	<select id="selectProAndSalList" resultType="map">
- 		SELECT distinct * FROM SalesBoard s,Product p where s.productSeq=p.productSeq;
+ 	<select id="selectProAndSalList" resultType="map" parameterType="string">
+ 		SELECT distinct * FROM SalesBoard s,Product p 
+ 		<where>
+ 			<if test="value!=null">
+ 				(p.productName LIKE CONCAT('%',#{tag},'%') 
+ 				or s.title LIKE CONCAT('%',#{tag},'%')) and
+ 			</if>
+ 			s.productSeq=p.productSeq
+ 		</where>
  	</select>
  	<select id="selectProAndSal" resultType="map">
  		SELECT distinct * FROM SalesBoard s,Product p where s.salesSeq=#{salSeq} 
