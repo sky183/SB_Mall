@@ -151,8 +151,10 @@
 	      <div>
 	        <div class="sibal">
 				<img class ="dailyDealImg" src="<%=request.getContextPath()%>/img/SBCompanyLogo.png">
-				<h4>${deal.productName}</h4>
-				<h6>${deal.price}won</h6>
+					<h4 class="dailyDeal_h4">${deal.productName}</h4>
+					<h6 class="dailyDeal_h6">
+					<fmt:formatNumber value="${deal.price}"  pattern="#,###"/>won</h6>
+					<h6 class="dailyDealSale_h6"><fmt:formatNumber value="${deal.price*0.9}"  pattern="#,###"/>won</h6>
 	        </div>
 	      </div>
       </c:forEach>
