@@ -118,23 +118,25 @@
     	.replylayout{
     		width:1200px;
     		margin: 0 auto;
+    		margin-bottom: 100px;
     	}
     	.replyTextClass{
-    	float:right;
-    	display: inline-block;
-    	height:100px;
-    	border: 1px solid #505050;
+	    	float:right;
+	    	display: inline-block;
+	    	height:100px;
+	    	border: 1px solid #787878;
     	}
+    	
     	.replyInputBox{
     		height:100px;
     		margin:20px 0;
     		
     	}  
-    	.replyTextBox{
-    		width:1000px;	
-    		height:100px;
-    		background-color: white;
-    		border-radius: 10px 0 0 10px;
+    	.replyTextAreaBox{
+    		/* width:1000px;	
+    		height:100px; */
+    		background-color: red !important;
+    		border-radius: 5px 0px 0px 5px !important;
     	}
     	.replyInputText{
     		border:none;
@@ -142,6 +144,7 @@
     		width:970px;
     		height:70px;
     		font-size: 14pt;
+    		color:#282828;
     	}
     	.reply_h3{
     		display: inline-block;
@@ -149,50 +152,99 @@
     		margin-top:5px;
     		color:#505050;
     		font-weight: normal;
+    		
     	}
     	.replyInputBtn{
     		width:102px;
     		height:102px;
     		border:none;
-    		background-color: #505050;
+    		background-color: #787878;
     		font-size: 20px;
     		font-weight;
     		color:white;
+    		border-radius: 0px 10px 10px 0px;
     		
     	}
     	#replyGetBox{
-    		padding:20px;
+    		padding:20px 0;
     	}
     	.reply_h1{
     		margin-top:30px;
     		padding-bottom:10px;
     		border-bottom: 2px solid #505050;
     		font-size: 24pt;
+    		color:#282828;
     	}
     	.getReply_H4{
     		display: inline-block;
     		font-size: 10pt;
     		color:#787878;
-    		font-weight: lighter;
+    		font-weight: normal;
     	}
     	.getReply_H5{
     		display: inline-block;
     		font-size: 10pt;
     		color:#787878;
-    		font-weight: lighter;
+    		font-weight: normal;
+    	}
+    	#replyFrame{
+    		width:1000px;
+    		word-break:break-all;
     	}
     	.getReply_H2{
     		padding:5px 20px;
     		font-size: 14pt;
-    		color:#505050;
+    		color:#282828;
     		font-weight: normal;
     		line-height: 22pt;
+    		
     	}
     	.replyDelete{
     		float: right;
+    		width:40px;
+    		height:25px;
+    		background-color: #f0f0f0;
+    		border: none;
+    		font-size:9pt;
+    		color:#787878;
+    		font-weight: normal;
+    		border-radius: 5px;
     	}
+    	
+    	.replyDelete:hover{
+    		background-color: #ffc828;
+    		color:white;
+    		
+    	}
+    	
     	.replyUnit{
-    		padding:15px;
+    		padding:15px 0;
+    		border-bottom: 1px solid #f0f0f0;
+    		
+    	}
+    	
+    	#replyPageBox{
+    		text-align: center;
+    		
+    		
+    	}
+    	.pageSelect{
+    		width:40px;
+    		height:40px;
+    		border: 1px solid #787878;
+    		color:#787878;
+    		font-size: 12pt;
+    		border-radius: 5px;
+    	}
+    	
+    	.pageSelect:hover{
+    		background-color: #787878 !important;
+    		color:white;
+    	}
+    	.pageActive{
+    		border: 1px solid #787878 !important;
+    		background-color: #787878 !important;
+    		color:white;
     	}
     	
     	
@@ -212,12 +264,12 @@
     	<c:choose>
 		    <c:when test="${memberInfo!=null}">
 		    	<div class="replyInputBox">
-		    		<h3 class="reply_h3">댓글 쓰기</h3>
+		    		<h3 class="reply_h3">후기 쓰기</h3>
 		    		<form id="replyFormBox">
 		    			<input class="replyTextClass replyInputBtn" type="button" id="replyWrite" value="등록">
 		    			
-		    			<div class="replyTextBox replyTextClass">
-		    				<textarea class="replyInputText"  id="replyText" name="reply" placeholder="댓글을 작성해주세요."></textarea>
+		    			<div class="replyTextClass replyTextAreaBox" style="border-radius:10px 0px 0px 10px;">
+		    					<textarea class="replyInputText"  id="replyText" name="reply"  style="resize: none;" placeholder="댓글을 작성해주세요."></textarea>
 		    			</div>
 		    			
 		    			<c:if test="${viewList!=null}">

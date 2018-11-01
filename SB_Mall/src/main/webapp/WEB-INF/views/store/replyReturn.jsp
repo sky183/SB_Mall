@@ -8,11 +8,13 @@
 		<c:forEach var="reList" items="${replyList}">
     		<div class="replyUnit">
     			<h4 class="getReply_H4">${reList.userId}</h4>
-    			<h5 class="getReply_H5">${reList.regTime}</h6>
-    			<h2 class="getReply_H2">${reList.reply}</h5>
+    			<h5 class="getReply_H5">${reList.regTime}</h5>
     			<c:if test="${reList.userSeq==userSession.userSeq}">
     				<button class="replyDelete" value="${reList.replySeq}">삭제</button>
     			</c:if>
+    			<div id="replyFrame">
+    			<h2 class="getReply_H2">${reList.reply}</h2>
+    			</div>
     		</div>
     		
     	</c:forEach>
@@ -22,10 +24,10 @@
     	<c:forEach var="i"  begin="1" end="${pageCnt}" step="1">
     		<c:choose>
 	    		<c:when test="${i==nowPage}">
-	    			<button name="nowPage" class="pageSelect pageActive" style="width:100px">${i}</button>
+	    			<button name="nowPage" class="pageSelect pageActive">${i}</button>
 	    		</c:when>
 	    		<c:otherwise>
-	    			<button name="nowPage" class="pageSelect" style="width:100px">${i}</button>
+	    			<button name="nowPage" class="pageSelect">${i}</button>
 	    		</c:otherwise>
     		</c:choose>
     	</c:forEach>
