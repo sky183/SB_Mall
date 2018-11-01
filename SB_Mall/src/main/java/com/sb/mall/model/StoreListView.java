@@ -1,24 +1,24 @@
 package com.sb.mall.model;
 
 import java.util.List;
+import java.util.Map;
 
-
-public class PageListView {
-	private int objTotalCount;
+public class StoreListView {
+	
+	private int totalCount;
 	private int currentPageNumber;
-	private List<Object> objList;
+	private List<Map<String,Object>> storeList;
 	private int pageTotalCount;
-	private int objCountPerPage;
+	private int countPerPage;
 	private int firstRow;
 	private int endRow;
 	
-	
-	public PageListView(List<Object> objList, int objtotalCount, int currentPageNumber,
-			int objCountPerPage, int firstRow, int endRow) {
-		this.objList = objList;
-		this.objTotalCount = objtotalCount;
+	public StoreListView(List<Map<String,Object>> storeList, int totalCount, int currentPageNumber,
+			int countPerPage, int firstRow, int endRow) {
+		this.storeList = storeList;
+		this.totalCount = totalCount;
 		this.currentPageNumber = currentPageNumber;
-		this.objCountPerPage = objCountPerPage;
+		this.countPerPage = countPerPage;
 		this.firstRow = firstRow;
 		this.endRow = endRow;
 		calculatePageTotalCount();
@@ -28,11 +28,11 @@ public class PageListView {
 	//메세지 총 갯수가 0이 아니면 메세지 페이지 총 갯수는 메세지 총 갯수 / 10이다.
 	//여기서 메세지 총 갯수를 10으로 나눈 나머지가 0보다 크면 페이지 총 갯수에 하나 더 추가해준다.
 	private void calculatePageTotalCount() {
-		if (objTotalCount == 0) {
+		if (totalCount == 0) {
 			pageTotalCount = 0;
 		} else {
-			pageTotalCount = objTotalCount / objCountPerPage;
-			if (objTotalCount % objCountPerPage > 0) {
+			pageTotalCount = totalCount / countPerPage;
+			if (totalCount % countPerPage > 0) {
 				pageTotalCount++;
 			}
 		}
@@ -40,32 +40,35 @@ public class PageListView {
 	}
 	
 	public boolean isEmpty() {
-		return objTotalCount == 0;
+		return totalCount == 0;
 	}
-	
-	public int getObjTotalCount() {
-		return objTotalCount;
+
+	public int gettotalCount() {
+		return totalCount;
 	}
-	
+
 	public int getCurrentPageNumber() {
 		return currentPageNumber;
 	}
-	public List<Object> getObjList() {
-		return objList;
+
+	public List<Map<String, Object>> getStoreList() {
+		return storeList;
 	}
+
 	public int getPageTotalCount() {
 		return pageTotalCount;
 	}
-	public int getObjCountPerPage() {
-		return objCountPerPage;
+
+	public int getcountPerPage() {
+		return countPerPage;
 	}
+
 	public int getFirstRow() {
 		return firstRow;
 	}
+
 	public int getEndRow() {
 		return endRow;
 	}
-
-
 	
 }

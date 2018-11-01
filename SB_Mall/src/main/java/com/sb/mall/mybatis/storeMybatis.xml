@@ -15,15 +15,16 @@
  		insert into Product (price,productName,photo,detail) 
  		value(#{price},#{productName},#{photo},#{detail})
  	</insert>
- 	<select id="selectProAndSalList" resultType="map" parameterType="string">
+ 	<select id="selectProAndSalList" resultType="map">
  		SELECT distinct * FROM SalesBoard s,Product p 
  		<where>
- 			<if test="value!=null">
- 				(p.productName LIKE CONCAT('%',#{tag},'%') 
- 				or s.title LIKE CONCAT('%',#{tag},'%')) and
+ 			<if test="param1!=null">
+ 				(p.productName LIKE CONCAT('%',#{param1},'%') 
+ 				or s.title LIKE CONCAT('%',#{param1},'%')) and
  			</if>
- 			s.productSeq=p.productSeq
+ 			s.productSeq=p.productSeq  
  		</where>
+ 		order by ${param2} limit #{param3},#{param4}
  	</select>
  	<select id="selectProAndSal" resultType="map">
  		SELECT distinct * FROM SalesBoard s,Product p where s.salesSeq=#{salSeq} 
@@ -34,6 +35,16 @@
  	</select>
  	<select id="selectSalBoardList" resultType="com.sb.mall.model.SalesBoard">
  		SELECT * FROM SalesBoard order by salesSeq desc;
+ 	</select>
+ 	<select id="countProAndSalList" resultType="int">
+ 		SELECT count(*) from SalesBoard s,Product p 
+ 		<where>
+ 			<if test="value!=null">
+ 				(p.productName LIKE CONCAT('%',#{param1},'%') 
+ 				or s.title LIKE CONCAT('%',#{param1},'%')) and
+ 			</if>
+ 			s.productSeq=p.productSeq
+ 		</where>
  	</select>
  	<update id="updateSalBoardCnt">
  		update SalesBoard set viewSeq=viewSeq+1 where salesSeq=#{salSeq};
