@@ -1,0 +1,317 @@
+@charset "UTF-8";
+ul{
+   list-style:none;
+}
+a{
+	text-decoration: none;
+}
+a:visited{
+	color: black;
+}
+a:focus{
+	outline: 
+}
+.storeBtn{
+	padding: 10px 15px;
+	background-color: #F2F2F2;
+	border: 1px solid #a9a9a9;
+	
+}
+.storeBtn:hover{
+	cursor: pointer;
+}
+
+.orderContainer{
+	width: 1200px;
+	margin: 0 auto;
+}
+.orderListBox{
+	width: 100%;
+	margin: 0 auto;
+}
+.orderHeaderBox{
+	width: 100%;
+	margin: 50px 0;
+}
+.orderHeaderBox h2{
+	margin: 30px 20px;
+}
+.orderImg{
+	height: 100px;
+	width: 100px;
+}
+.orderTable{
+	width: 1200px;
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+.orderTableHeader{
+	background-color: #F2F2F2;
+}
+.orderTable td{
+	padding:20px;
+	border-bottom: 1px solid #a9a9a9;
+	text-align: center;
+}
+
+.orderPayBox{
+	width:100%;
+	margin: 10px 0;
+	border-bottom: 1px solid #a9a9a9;
+}
+.paymentBox{
+	display: inline-block;
+	margin: 20px 20px 20px 0;
+}
+.orderPayment{
+	height: 30px;
+}
+.totalAmount{
+	display: inline-block;
+	float: right;
+	margin: 20px 0 20px 20px;
+}
+.payBtnBox{
+	float:right;
+	margin: 10px;
+	text-align: center;
+}
+
+#orderMessage{
+	padding: 150px 10px 100px 10px;
+	text-align: center;
+}
+#orderMessage h1{
+	margin: 80px;
+}
+
+.paymentBox{
+	display: inline-block;
+	margin: 20px 20px 20px 0;
+}
+.orderPayment{
+	height: 30px;
+}
+.totalAmount{
+	display: inline-block;
+	float: right;
+	margin: 20px 0 20px 20px;
+}
+
+#cartListContainer{
+	width: 1200px;
+	margin: 0 auto;
+}
+#cartListBox{
+	width: 100%;
+	margin: 0 auto;
+}
+#cartHeaderBox{
+	width: 100%;
+	margin: 50px 0;
+}
+#cartHeaderBox h2{
+	margin: 30px 20px;
+}
+.cartImg{
+	height: 100px;
+	width: 100px;
+}
+#cartTable{
+	width: 1200px;
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+#cartTableHeader{
+	background-color: #F2F2F2;
+}
+#cartTable td{
+	padding:20px;
+	border-bottom: 1px solid #a9a9a9;
+	text-align: center;
+}
+
+.cartSubBtnBox{
+	margin: 10px auto;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #a9a9a9;
+}
+.cartOrderBtnBox{
+	float: right;
+	margin: 10px;
+}
+.cartdeleteBtn{
+	padding: 5px;
+	background-color: #F2F2F2;
+	border: 1px solid #a9a9a9;
+}
+.orderPayBox{
+	width:100%;
+	margin: 10px 0;
+	border-bottom: 1px solid #a9a9a9;
+}
+
+#boardDetailContainer{
+	width: 1200px;
+	margin: 0 auto;
+	background-color: white;
+	word-wrap:break-word;
+}
+#boardProductContainer{
+	width: 100%;
+	margin: 20px auto;
+	overflow: hidden;
+}
+#boardProductThumbBox{
+	float:left;
+	display: inline-block;
+	width: 400px;
+	height: 400px;
+}
+#boardProductThumb{
+	display: inline-block;
+	width: 100%;
+	height: 99%;
+	border:1px solid #a9a9a9;
+	border-radius: 10px;
+}
+#boardProductName{
+	border-bottom: 1px solid black;
+	padding:10px; 
+}
+#boardProductOptionBox{
+	float:left;
+	display:inline-block;
+	width: 800px;
+	height: 400px;
+	
+}
+#boardProductOptionBox>ul{
+	margin-left: 20px;
+}
+#boardProductOptionBox>ul>li{
+	overflow: hidden;
+}
+#boardProductOptionBox>ul>li>p{
+	padding: 10px;
+}
+#boardDetailHeader{
+	border-bottom:1px solid #a9a9a9;
+}
+#boardDetailHeader p{
+	display: inline-block;
+	padding: 15px 20px;
+	font-size:20px;
+	font-weight: bold;
+	background-color: #F2F2F2;
+	border-radius: 10px 10px 0 0;
+}
+#boardTextContainer{
+	min-height: 500px;
+	border-bottom:1px solid #a9a9a9;
+	margin:20px auto;
+}
+#boardReplyContainer{
+}
+.boardProductSel{
+	height: 30px;
+	width: 90%;
+}
+.boardBtn{
+	display: inline-block;
+	margin-left: 20px;
+	padding: 10px 15px;
+	margin:5px 20px;
+	width: 200px;
+	background-color: #FEC828;
+	border: 0px;
+	border-radius: 10px;
+}
+.boardBtn:hover{
+	cursor: pointer;
+}
+.boardBtn:active{
+	box-shadow:0 0 1pt 1pt #5882FA;
+}
+.boardBtnMsg{
+	color:white;
+	font-size: 20px;
+}
+#selQuantity{
+	height: 30px;
+	font-size: 20px;
+}
+#storeListContainer{
+	width: 1200px;
+	margin: 0 auto;
+	background-color: white;
+}
+
+.storeListView{
+	width: auto;
+	margin: 0 auto;
+}
+.productListThumb{
+	width: 289px;
+	height: 308px;
+	margin-bottom:3px;;
+	border:1px solid #a9a9a9;
+	border-radius: 10px;
+}
+.productListBox{
+	display:inline-block;
+	width:  295.6px;
+	height: 400px;
+	overflow: hidden;
+	text-align: center;
+}
+.productListBox:hover{
+	background-color:#F2F2F2;
+}
+.nodeco{
+	color:black;
+	text-decoration: none !important;
+}
+.nodeco:active{
+	color:black;
+}
+
+.storeSearchBar{
+	display:block;
+	height: 40px;
+	margin: 100px 0 20px 0;
+	word-wrap:break-word;
+	border-bottom: 1px solid #a9a9a9;
+}
+.searchFormContainer{
+	width: 250px;
+	height: 30px;
+	float: right;
+	border: 1px solid #a9a9a9;
+    border-radius: 5px;
+    vertical-align: middle;
+    margin-right: 20px; 
+}
+.searchText{
+	width: 200px;
+	height: 25px;
+	margin: 2px 0px 2px 3px;
+	float: left;
+	border: 0;
+}
+.searchButton{
+	width: 40px;
+	height: 30px;
+	border: 0px;
+	border-radius: 5px;
+	background-size: 30px;
+    background-repeat: no-repeat;
+    cursor:pointer;
+    float: right;
+	background-image: url('../img/searchBarIcon.png');
+	background-color: white;
+}
+.storeHeaderBanner{
+		height:400px;
+		width:100%;
+	}

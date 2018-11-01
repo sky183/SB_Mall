@@ -7,79 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-ul{
-   list-style:none;
-}
-.orderContainer{
-	width: 1200px;
-	margin: 0 auto;
-}
-.orderListBox{
-	width: 100%;
-	margin: 0 auto;
-}
-.orderHeaderBox{
-	width: 100%;
-	margin: 50px 0;
-}
-.orderHeaderBox h2{
-	margin: 30px 20px;
-}
-.orderImg{
-	height: 100px;
-	width: 100px;
-}
-.orderTable{
-	width: 1200px;
-	border-collapse: collapse;
-	margin: 0 auto;
-}
-.orderTableHeader{
-	background-color: #F2F2F2;
-}
-.orderTable td{
-	padding:20px;
-	border-bottom: 1px solid #a9a9a9;
-	text-align: center;
-}
-.payBtn{
-	outline: none;
-	border: 0px;
-	border-radius: 10px;
-	background-color:#FEC828;
-	font-size:20px;
-	color:white;
-	padding:10px 20px;
-}
-.payBtn:hover{
-	cursor: pointer;
-}
-.payBtn:active{
-	box-shadow:0 0 1pt 1pt #5882FA;
-}
-.orderPayBox{
-	width:100%;
-	margin: 10px 0;
-	border-bottom: 1px solid #a9a9a9;
-}
-.paymentBox{
-	display: inline-block;
-	margin: 20px 20px 20px 0;
-}
-.orderPayment{
-	height: 30px;
-}
-.totalAmount{
-	display: inline-block;
-	float: right;
-	margin: 20px 0 20px 20px;
-}
-.payBtnBox{
-	margin: 10px;
-	text-align: center;
-}
-</style>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -163,7 +90,7 @@ ul{
 		
 	</div>
 	<div class="payBtnBox">
-			<input type="button" class="payBtn" id="insPayBtn" value="결제하기">
+			<input type="button" class="payBtn storeBtn" id="insPayBtn" value="결제하기">
 		</div>
 </div>
 

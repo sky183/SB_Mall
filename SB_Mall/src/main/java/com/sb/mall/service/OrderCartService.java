@@ -35,8 +35,9 @@ public class OrderCartService {
 	}
 	
 	@Transactional
-	public void deleteCart(String orderSeq) {
-		
+	public void deleteCart(List<Order> orderList) throws SQLException {
+		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
+		orderDao.deleteCart(orderList);
 	}
 	
 	public List<Map<String,Object>> selectCart(int userSeq) throws SQLException{
