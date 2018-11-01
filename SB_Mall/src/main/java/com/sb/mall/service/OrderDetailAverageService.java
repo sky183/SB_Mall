@@ -16,15 +16,22 @@ public class OrderDetailAverageService {
 	private OrderDetailDao Dao;
 
 	@Transactional
-	public String getAverage() {
+	public String getAverage(int interval) {
 
 		String result = "";
 
 		Dao = sessionTemplate.getMapper(OrderDetailDao.class);
+		
+		if (interval == 0) {
+			result = Dao.thisMonthAverage();
+		} else {
+			result =  Dao.preMonthAverage(interval);
+		}
 
-		result = Dao.thisMonthAverage();
+		
 
 		return result;
 	}
+	
 
 }
