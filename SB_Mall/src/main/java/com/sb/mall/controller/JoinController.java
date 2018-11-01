@@ -39,7 +39,7 @@ public class JoinController {
 			HttpServletRequest request) {
 				
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/join/joinResult");
+		modelAndView.setViewName("/home");
 		
 		if (!memberInfo.getUserPw().equals(userPwChck)) {
 			modelAndView.setViewName("join/joinFail");
@@ -67,9 +67,8 @@ public class JoinController {
 				}
 				
 			}else {
-				//2. Session is not null 
 				System.out.println("Session is null");
-			}//End of if (about Session)
+			}
 			
 		} catch (SQLException e) {
 			modelAndView.setViewName("join/joinFail");

@@ -2,16 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
-	
-	<%-- <form action="<%= request.getContextPath() %>/memberModify_end" method="POST"> --%>
-	<form id="memberModify">
-	<h1>회원 수정</h1>
-		<table border="1" class="memList" method="post">
-			<tr>
-				<th>회원번호</th><td><input type="text" readonly name="userSeq" value="${member.userSeq}"></td>
-			</tr>
 			<tr>
 				<th>아이디</th><td><input type="text" readonly name="userId" value="${member.userId}"></td>
 			</tr>
@@ -49,35 +39,4 @@
 			<tr>
 				<th>총구매액</th><td><input type="text"  name="userAmount" value="${member.userAmount}"></td>
 			</tr>
-		</table>
-				<input type="button" id="modifyButton" value="수정하기"/>
-		
-	</form>
-<script >
-
-$('#modifyButton').click(function() {
-	var memberModify = $('#memberModify').serialize();
-	var sessionGrade = '${memberInfo.gradeNum}';
-	var gradeNum = $('input[name=gradeNum]').val();
-	if (gradeNum >= 3 && sessionGrade < 4) {
-		alert("회원등급 3 이상은 그랜드마스터만 가능합니다.");
-	} else if (gradeNum > 4) {
-		alert("회원등급은 4 까지만 존재합니다.");
-	} else {
-	$.ajax({
-		url : '<%= request.getContextPath() %>/memberModify_end',
-		type : 'POST',
-		data : memberModify,
-/*  		dataType : 'json', */
-		error : function(error) {
-	        alert("Error!");
-	    },
-		success : function(result) {
-			alert(result);
-		}
-	});
-	
-	}
-});
-</script>
 

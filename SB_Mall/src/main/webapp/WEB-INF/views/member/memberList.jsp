@@ -39,10 +39,10 @@
 					<td>${member.point}</td>
 					<td>${member.userAmount}</td>
 					<td>
-					<button class="memberModify" name="${member.userId}" grade="${member.gradeNum}">
+					<button type="button" class="memberModify btn btn-primary" name="${member.userId}" grade="${member.gradeNum}" data-toggle="modal" data-target="#modalCart">
 						수정
 					</button>
-					<button class="memberDelete" name="${member.userId}"  grade="${member.gradeNum}">
+					<button class="memberDelete btn btn-primary" name="${member.userId}"  grade="${member.gradeNum}">
 						탈퇴
 					</button>
 					</td>
@@ -85,10 +85,10 @@ $('.page').click(function() {
 						'<td>' + member.point + '</td>' +
 						'<td>' + member.userAmount + '</td>' +
 						'<td>' + 
-						'<button class="memberModify" name="' + member.userId + '">' +
+						'<button class="memberModify btn btn-primary" name="' + member.userId + '" grade="' + member.gradeNum + '" data-toggle="modal" data-target="#modalCart">' +
 							'수정' +
 						'</button>' +
-						'<button class="memberDelete" name="' + member.userId + '">' +
+						'<button class="memberDelete btn btn-primary" name="' + member.userId + '">' +
 							'탈퇴' +
 						'</button>' +
 						'</td>' +
@@ -118,8 +118,9 @@ $('.memberModify').click(function() {
 	        alert("Error!");
 	    },
 		success : function(data) {
-			$('#viewList').empty();
-			$('#viewList').append(data);
+		/* 	$('#viewList').empty(); */
+			$('#popup').html(data);
+/* 			$('#background').css('display', 'block'); */
 		}
 	});
 	}

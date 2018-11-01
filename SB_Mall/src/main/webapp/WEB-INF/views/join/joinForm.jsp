@@ -1,11 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="css/default.css">
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>join</title>
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Bootstrap core CSS -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css"
+	rel="stylesheet">
+<!-- JQuery -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
+<!-- Custom styles for this template -->
 </head>
 <body>
 
@@ -14,98 +38,96 @@
 	<br>
 	<br>
 	<div id="contents">
+		<div style="margin: 30px auto 20px auto; width: 600px;">
+			<!-- Default form register -->
+			<form class="text-center border border-light p-5" method="post">
 
-		<basefont size="6">
-		<table width="940" border="1">
-			<!-- Start Table -->
-			<%String context = request.getContextPath(); %>
-			<form method="POST">
-			<%-- <form action="<%=context%>/join/joinResult" method="POST"> --%>
-				<!-- Start Form -->
-				<tr>
-					<td>
-						<center>
-							<h1>회원가입</h1>
-						</center>
-					</td>
-				</tr>
-				<tr height="327px">
-					<td colspan="2" align="left" valign="top" style="">
-						<!--내용시작-->
-						<table width="780">
-							<tr>
-								<td>Test</td>
-							</tr>
-							<tr>
-								<td>
-									<!--테이블 시작-->
-									<table width="940" style="padding: 5px 0 5px 0;">
-										<tr>
-											<th>메일주소</th>
-											<td><input type="text" name="userId" required></td>
-										</tr>
+				<p class="h4 mb-4">회원가입</p>
 
-										<tr>
-											<th>비밀번호</th>
-											<td><input type="password" name="userPw" required>
-											</td>
-										</tr>
-										<th>비밀번호 확인</th>
-										<td><input type="password" name="userPwChck" required></td>
-										<tr>
+				<input type="email" id="defaultRegisterFormFirstName"
+					class="form-control" placeholder="E-mail (Id)" name="userId"
+					required> <small id="defaultRegisterFormPasswordHelpBlock"
+					class="form-text text-muted mb-4">메일주소를 정확히 입력해주세요.</small>
 
-										<tr>
-											<th>이름</th>
-											<td><input type="text" name="userName" required></td>
-										</tr>
-										
-										<tr>
-											<th>우편번호</th>
-											<td><input type="text" name="zipCode" required></td>
-										</tr>
-										
-										<tr>
-											<th>주소</th>
-											<td><input type="text" name="address1" size="50"><br/>
-												<input type="text" name="address2" size="50"></td>
-										</tr>
-										<tr>
-											<th>핸드폰 번호</th>
-											<td><input type="text" name="phone"></td>
-										</tr>
-										
-										
-									</table>
-								</td>
-							</tr>
+				<div class="form-row mb-4">
+					<div class="col">
+
+						<input type="password" id="defaultRegisterFormPassword"
+							class="form-control" name="userPw" required placeholder="비밀번호"
+							aria-describedby="defaultRegisterFormPasswordHelpBlock">
+					</div>
+					<div class="col">
+
+						<input type="password" id="defaultRegisterFormPassword"
+							class="form-control" name="userPwChck" required
+							placeholder="비밀번호 확인"
+							aria-describedby="defaultRegisterFormPasswordHelpBlock">
+					</div>
+				</div>
+
+				<input type="text" id="defaultRegisterFormLastName"
+					class="form-control" name="userName" required placeholder="이름">
+
+				<small id="defaultRegisterFormPasswordHelpBlock"
+					class="form-text text-muted mb-4"></small> <input type="text"
+					id="defaultRegisterPhonePassword" class="form-control"
+					placeholder="휴대폰 번호"
+					aria-describedby="defaultRegisterFormPhoneHelpBlock" name="phone" required> <small
+					id="defaultRegisterFormPhoneHelpBlock"
+					class="form-text text-muted mb-4" > -
+					를 빼고 입력하세요 </small> <input type="text" id="defaultRegisterPhonePassword"
+					class="form-control" placeholder="우편번호" name="zipCode" required
+					aria-describedby="defaultRegisterFormPhoneHelpBlock"> <small
+					id="defaultRegisterFormPhoneHelpBlock"
+					class="form-text text-muted mb-4"> </small>
+
+				<div class="form-row mb-4">
+					<div class="col">
+						<input type="text" id="defaultRegisterPhonePassword"
+							class="form-control" placeholder="주소"
+							aria-describedby="defaultRegisterFormPhoneHelpBlock"
+							name="address1">
+					</div>
+					<div class="col">
+						<input type="text" id="defaultRegisterPhonePassword"
+							class="form-control" placeholder="상세주소"
+							aria-describedby="defaultRegisterFormPhoneHelpBlock"
+							name="address2">
+					</div>
+				</div>
+				<small id="defaultRegisterFormPhoneHelpBlock"
+					class="form-text text-muted mb-4"> 주소를 정확히 입력하세요. 상품 주문시
+					사용됩니다. </small>
 
 
+				<!-- Sign up button -->
+				<div id="member_button">
+					<button class="btn btn-info my-4 btn-block" type="submit">Sign
+						in</button>
+				</div>
 
-							<tr height="2" bgcolor="#ffc8c3">
-								<td></td>
-							</tr>
-							<tr>
-								<td>
-								
-									<div id="member_button">
-										<center>
-											
-											<input type="submit" value="가입완료"> 
-											<input type="submit" value="취소">
-										</center>
-									</div>
-								</td>
-							</tr>
+				<!-- Social register -->
+				<p>or sign up with:</p>
 
-						</table>
-					</td>
-				</tr>
+				<a type="button" class="light-blue-text mx-2"> <i
+					class="fa fa-facebook"></i>
+				</a> <a type="button" class="light-blue-text mx-2"> <i
+					class="fa fa-twitter"></i>
+				</a> <a type="button" class="light-blue-text mx-2"> <i
+					class="fa fa-linkedin"></i>
+				</a> <a type="button" class="light-blue-text mx-2"> <i
+					class="fa fa-github"></i>
+				</a>
+
+				<hr>
+
+				<p>
+					By clicking <em>Sign up</em> you agree to our <a href=""
+						target="_blank">terms of service</a> and <a href=""
+						target="_blank">terms of service</a>.
+				</p>
 			</form>
-			<!-- end of Form -->
-
-		</table>
-		<!-- End of Table -->
-		</basefont>
+		</div>
 	</div>
 
 

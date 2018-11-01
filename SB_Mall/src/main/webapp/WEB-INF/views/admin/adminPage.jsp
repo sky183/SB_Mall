@@ -9,6 +9,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css" rel="stylesheet">
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 <style>
 h2 {
 	padding: 10px;
@@ -34,6 +48,12 @@ td {
 #adminWrapper {
 	margin: 100px 80px 50px 80px;
 }
+
+
+#popup th, #popup td{
+	padding: 8px;
+} 
+
 </style>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 </head>
@@ -55,13 +75,42 @@ td {
 		<button id="orderList">주문관리</button>
 		<div id="viewList"></div>
 
+<!-- Modal: modalCart -->
+<div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">회원 수정</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+	<form id="memberModify">
+    <div class="modal-body">
+            <table id="popup" class="table table-hover">
+            </table>
+       </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <input type="button" class="btn btn-outline-primary" data-dismiss="modal" value="닫기">
+        <input type="button" id="modifyButton" class="btn btn-primary" data-dismiss="modal" value="수정">
+      </div>
+		
+	</form>
+    </div>
+  </div>
+</div>
+		</div>
+
 
 
 		<!-- adminWrapper의 끝 -->
 	</div>
 
 	<script>
-
 
 	$(document).ready(function() {
 		/* 기본 뷰타입으로 불러온다. */
@@ -99,67 +148,33 @@ td {
 				});
 			});
 		
-
+		
+		$('#modifyButton').click(function() {
+			var memberModify = $('#memberModify').serialize();
+			var sessionGrade = '${memberInfo.gradeNum}';
+			var gradeNum = $('input[name=gradeNum]').val();
+			if (gradeNum >= 3 && sessionGrade < 4) {
+				alert("회원등급 3 이상은 그랜드마스터만 가능합니다.");
+			} else if (gradeNum > 4) {
+				alert("회원등급은 4 까지만 존재합니다.");
+			} else {
+			$.ajax({
+				url : '<%= request.getContextPath() %>/memberModify_end',
+				type : 'POST',
+				data : memberModify,
+				error : function(error) {
+			        alert("Error!");
+			    },
+				success : function(result) {
+					alert(result);
+				}
+			});
+			
+			}
+		});
 		
 		/* $(document).ready의 끝 */
 	});
-	
-<%-- 			if ($(this).val() == 'JSON') {
-				$.getJSON('memberList/viewType?type=JSON', function(data) {
-					success : 
-						$('#type, #tbody').empty();
-						$('#type').append(JSON.stringify(data)+"<hr>"); 
-						$.each(data, function(key, value) {
-						$('#tbody').append(
- 								'<tr>' + 
-								'<td>' + value.userId + '</td><td>' +
-								 value.password + '</td><td>' +
-								 value.userName + '</td><td>' +
-								 value.userPhoto + '</td>' +
-								'<td id="memberPhoto" style="' +
-								'background-image: url(\'' + '<%=request.getContextPath()%>' + '/uploadfile/userphoto/' + value.userPhoto + '\');"></td><td>' +
-								value.regDate + '</td><td>' +
-								'<a	href="' + '<%=request.getContextPath()%>' + '/memberModify/'+ value.userId + '">수정</a>' +
-								'<a	href="' + '<%=request.getContextPath()%>' + '/memberDelete/'+ value.userId +'/'+ value.userPhoto +'">삭제</a></td>' + 
-								'<tr>' 
-						);
-					});
-
-				});
-			}
-			if ($(this).val() == 'XML') {
-				$.ajax({
-					url : 'memberList/viewType?type=XML',
-					error : function(error) {
-				        alert('error');
-				    },
-					success : function(data) {
-						$('#type, #tbody').empty();
-						$('#type').append($(data).text()+'<hr>');
-						$(data).find('members').find('member').each(function(){
-								var userid = $(this).find('userid').text().trim()
-								var password = $(this).find('password').text().trim()
-								var username = $(this).find('username').text().trim()
-								var userphoto = $(this).find('userphoto').text().trim()
-								var regdate = $(this).find('regdate').text().trim()
-								$('#tbody').append(
-									'<tr>' + 
-									'<td>' + userid + '</td><td>' +
-									password + '</td><td>' +
-									username + '</td><td>' +
-									userphoto + '</td>' +
-									'<td id="memberPhoto" style="' +
-									'background-image: url(\'' + '<%=request.getContextPath()%>' + '/uploadfile/userphoto/' + userphoto + '\');"></td><td>' +
-									regdate + '</td><td>' +
-									'<a	href="' + '<%=request.getContextPath()%>' + '/memberModify/'+ userid + '">수정</a>' +
-									'<a	href="' + '<%=request.getContextPath()%>' + '/memberDelete/'+ userid +'/'+ userphoto +'">삭제</a></td>' + 
-									'<tr>' 
-							);
-						});	
-					}
-				});
-			}  --%>
-/* 		}); */
 
 
 </script>

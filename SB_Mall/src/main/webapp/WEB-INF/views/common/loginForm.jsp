@@ -97,10 +97,6 @@
 
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-
-
-
-
 	<form method="post" id="loginForm" class="form-signin" >
 		<img class="mb-4" src="" alt=""
 			width="72" height="72">
