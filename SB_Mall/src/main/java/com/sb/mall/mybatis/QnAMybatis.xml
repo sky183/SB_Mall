@@ -3,37 +3,34 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- <mapper namespace="com.sb.mall.dao.QnADao"> -->
-<mapper namespace="com.sb.mall.mybatis.QnAMybatis">
+<mapper namespace="com.sb.mall.dao.QnADao">
  		
  
 	<!-- 게시판 추가하기 -->
-    <insert id="insertQnA">
-        insert into QnABoard (qtitle,qtext,atext,qwriteDate,userSeq,qnaSeq)
- 		value(#{qtitle},#{qtext},#{atext},SYSDATE(),#{userSeq},#{qnaSeq})
+    <insert id="create" parameterType="com.sb.mall.model.QnABoard"
+ 		useGeneratedKeys="true" keyProperty="qnaSeq">
+        insert into QnABoard (qtitle,qtext,userSeq)
+ 		value (#{qtitle},#{qtext},#{userSeq})
     </insert>
     
     <!-- 게시판 리스트보기 -->
-    <select id="listQnA" resultType="com.sb.mall.model.QnABoard">
-    <![CDATA[
-    
+    <select id="listAll" resultType="com.sb.mall.model.QnABoard">
         select * from QnABoard 
         order by qnaSeq DESC
-    ]]>
     </select>
     
     <!-- 게시판 상세보기 -->
-    <select id="detailQnA" resultType="com.sb.mall.model.QnABoard">
+    <select id="read" resultType="com.sb.mall.model.QnABoard">
             select * from QnABoard where qnaSeq = #{qnaSeq}
     </select>
  
     <!-- 게시판 삭제하기 -->
-    <delete id="deleteQnA">
+    <delete id="delete">
         delete from QnABoard where qnaSeq = #{qnaSeq}
     </delete>
     
     <!-- 게시판 수정하기 -->
-    <update id="updateQnA">
+    <update id="update">
         update QnABoard set qtitle=#{qtitle} , qtext = #{qtext} where qnaSeq = #{qnaSeq}
     </update>
 

@@ -40,18 +40,14 @@
 </h1>
     
     <!-- <form id="qnaFormBox"> -->
-    <form action="/qna/qnawrite" method="POST">
+    <form action="qnaWrite" method="POST">
         <div class="createForm">
             <label >제목</label>
-            <input type="text" id="qTitle" class="createForm" placeholder = "QnA 제목">
+            <input type="text" name="qtitle" class="createForm" placeholder = "QnA 제목">
         </div>
         <div class="createForm">
             <label >내용</label>
-            <textarea rows="4" cols="15" id="qText" class="createForm" placeholder = "QnA 내용"></textarea>
-        </div>
-        <div class="createForm">
-            <label >작성자</label>
-            <input type="text" name="b_writer" class="createForm" placeholder = "작성자">
+            <textarea rows="4" cols="15" name="qtext" class="createForm" placeholder = "QnA 내용"></textarea>
         </div>
 
         <div class="Formfooter">
