@@ -18,26 +18,24 @@
 			<!-- 로고 및 메뉴바. -->
 			<div id="headerNavi">
 				<a href="<%=request.getContextPath()%>/">
-				<img id="headerLogo" src="<%=request.getContextPath()%>/img/SBCompanyLogo.png"> 
+					<img id="headerLogo" src="<%=request.getContextPath()%>/img/SBCompanyLogo.png"> 
 				</a>
 				<a class="headerNaviText" >Search</a>
 				<c:choose>
-				<c:when test='${memberInfo.gradeNum >= 3}'>
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/adminPage">admin</a>
-				</c:when>
-				<c:otherwise>
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/myPage">myPage</a>
-				</c:otherwise>
+					<c:when test='${memberInfo.gradeNum >= 3}'>
+						<a class="headerNaviText" href="<%=request.getContextPath()%>/adminPage">admin</a>
+					</c:when>
 				</c:choose>
 				
 				<c:choose>
-				<c:when test='${memberInfo eq null}'>
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/Login">login</a>
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/join">Join</a> 
-				</c:when>
-				<c:otherwise>
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/member/logout">logout</a>
-				</c:otherwise>
+					<c:when test='${memberInfo eq null}'>
+						<a class="headerNaviText" href="<%=request.getContextPath()%>/Login">login</a>
+						<a class="headerNaviText" href="<%=request.getContextPath()%>/join">Join</a> 
+					</c:when>
+					<c:otherwise>
+						<a class="headerNaviText" href="<%=request.getContextPath()%>/myPage">myPage</a>
+						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/logout">logout</a>
+					</c:otherwise>
 				</c:choose>
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/qna">QnA</a> 
 				<a class="headerNaviText" href="<%=request.getContextPath()%>/order/cart">Cart</a>

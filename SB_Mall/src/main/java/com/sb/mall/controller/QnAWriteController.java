@@ -1,37 +1,52 @@
 package com.sb.mall.controller;
 
-import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.sb.mall.model.MemberInfo;
 import com.sb.mall.model.QnABoard;
-import com.sb.mall.service.QnAService;
+import com.sb.mall.service.QnAWriteService;
 
 @Controller
-@RequestMapping("/qna/")
-public class QnABoardController {
+@RequestMapping("/qna/qnaWrite")
+public class QnAWriteController {
 	
-	@Inject
-    private QnAService service;
+	@Autowired
+	QnAWriteService qnaWriteService;
     
-    @RequestMapping(value="/qnaWrite",method=RequestMethod.GET)
-    public void createGET(QnABoard board, Model model) throws Exception{
-        System.out.println("/qna/qnaWrite 입니다. GET방식");
-        
+    @RequestMapping(method=RequestMethod.GET)
+    public String createGET() {
+    	
+		return "qna/qnaWrite";
+    	
     }
     
-    @RequestMapping(value = "/qnaWrite",method=RequestMethod.POST )
-    public String createPOST(QnABoard board, Model model) throws Exception{
-        System.out.println("/qna/qnaWrite POST방식 입니다.");
-        System.out.println(board.toString());
-        
-        service.create(board);
-        model.addAttribute("result", "성공");
-        
-        return "/qna/success";
+    @RequestMapping(method=RequestMethod.POST )
+    public ModelAndView createPOST(QnABoard qnaBoard, HttpSession session) {
+    		
+    	ModelAndView modelAndView = new ModelAndView();
+    	
+    	System.out.println("qnaBoard : " + qnaBoard);
+    	
+    	MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
+    	
+    	System.out.println("memberInfo : " + memberInfo);
+    	
+    	modelAndView.setViewName("redirect:/qna");
+    	
+    	qnaBoard.setUserSeq(memberInfo.getUserSeq());
+    	
+    	System.out.println("qnaBoard : " + qnaBoard);
+    	
+    	qnaWriteService.qnaWrite(memberInfo, qnaBoard);
+    	
+    	
+        return modelAndView;
     }
 
 	

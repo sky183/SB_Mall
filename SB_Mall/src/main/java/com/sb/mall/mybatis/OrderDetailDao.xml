@@ -20,7 +20,7 @@
 	<select id="selectJoin" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
 	</select>
 	
-	<select id="selectMemberOrder" resultType="com.sb.mall.model.OrderDetail">
+	<select id="selectMemberOrderDetail" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
 	</select>
 	
 	<select id="selectOrderDetail" resultType="com.sb.mall.model.OrderDetail" parameterType="String">
@@ -61,6 +61,13 @@
 		WHERE orderDetailNum = #{orderDetailNum}
 	</update>
 	
+	<select id="selectOrderDetail_userSqe" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
+		select * from OrderDetail where userSeq = #{userSeq}
+	</select>
+	
+	<select id="selectOrderDetail_Cnt" resultType="com.sb.mall.model.OrderDetail" parameterType="map">
+		select count(*) from OrderDetail where userSeq = #{userSeq}
+	</select>
 	
 
 	

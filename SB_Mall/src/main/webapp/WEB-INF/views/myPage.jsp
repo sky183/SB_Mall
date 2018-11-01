@@ -10,9 +10,7 @@
 </head>
 <body>
 <!-- Header -->
-<jsp:include page="/WEB-INF/views/chatting/chat.jsp"/>
 <jsp:include page="../views/common/header.jsp"/>
-<jsp:include page="../views/store/headerBanner.jsp"/>
 <jsp:include page="../views/myPage/mypageDetail.jsp"/>
 
 
