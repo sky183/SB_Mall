@@ -36,7 +36,7 @@
 		/* var time = ${serverTime};
 		alert(time); */
 		
-		alert("z");
+	/* 	alert("z"); */
 	}
 
 

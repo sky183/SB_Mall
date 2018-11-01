@@ -136,7 +136,6 @@ $('.memberModify').click(function() {
 				'<th>관리자만 수정 가능합니다.</th>' + 
 				'</tr>');
 	} else if(sessionId != userId && gradeNum >= 3 && sessionGrade < 4){
-		alert("관리자는 본인만 수정 가능합니다.");
 		$('#popup').html(
 				'<tr>' + 
 				'<th>관리자의 수정은 본인만 가능합니다. 단, 그랜드마스터는 제외.</th>' + 

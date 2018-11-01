@@ -344,6 +344,8 @@ table .th-lg, table td {
 		
 		/* $(document).ready의 끝 */
 	});
+	
+	
 
 
 </script>
