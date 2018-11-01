@@ -48,8 +48,9 @@
 
 								<td>${orderDetail.orderTime}</td>
 								<td>${orderDetail.totalAmount}</td>
-								<td><span id="status">
-										<button class="status" name="${orderDetail.orderDetailNum}">
+								<td style="padding-top: 5px; padding-bottom: 5px; !important">
+								<button class="status btn btn-blue-grey"
+										name="${orderDetail.orderDetailNum}" data-toggle="modal" style="padding: 2px 5px; width: 80px; ">
 											<c:choose>
 												<c:when test="${orderDetail.status == 0}">
                                                      	  입금미확인
@@ -67,8 +68,9 @@
 												</c:otherwise>
 											</c:choose>
 										</button>
-								</span>
-									<button class="order" name="${orderDetail.orderDetailNum}">주문상세</button>
+									<button class="order memberDelete btn btn-blue-grey"
+										name="${orderDetail.orderDetailNum}" data-target="#modalCart" style="padding: 2px 5px; width: 80px">
+										주문상세</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -77,7 +79,7 @@
 				</table>
 				<!--Table-->
 				<nav aria-label="Page navigation example">
-					<ul class="pagination pg-blue">
+					<ul class="pagination pg-dark">
 						<c:choose>
 							<c:when test="${viewData.currentPageNumber == 1}">
 								<li class="page-item"><a class="page page-link"
@@ -88,11 +90,24 @@
 									name="${viewData.currentPageNumber - 1}">Previous</a></li>
 							</c:otherwise>
 						</c:choose>
+						
+						
 						<c:forEach varStatus="i" begin="1"
 							end="${viewData.pageTotalCount}">
-							<li class="page-item"><a class="page page-link"
+							<c:choose>
+							<c:when test="${i.index == viewData.currentPageNumber}">
+								<li class="page-item active" style="back"><a class="page page-link"
+								name="${i.index}">${i.index}<span class="sr-only">(current)</span></a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page page-link"
 								name="${i.index}">${i.index}</a></li>
+							</c:otherwise>
+							</c:choose>
+							
 						</c:forEach>
+						
+						
 						<c:choose>
 							<c:when test="${viewData.currentPageNumber == viewData.pageTotalCount}">
 								<li class="page-item"><a class="page page-link"

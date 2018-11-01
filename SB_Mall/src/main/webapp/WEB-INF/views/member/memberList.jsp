@@ -8,50 +8,70 @@
 	등록된 회원이 없습니다.
 		</c:when>
 	<c:otherwise>
-		<table border="1" class="memList">
-			<tr>
-				<td>회원번호</td>
-				<td>아이디</td>
-				<td>비밀번호</td>
-				<td>회원이름</td>
-				<td>주소1</td>
-				<td>주소2</td>
-				<td>우편번호</td>
-				<td>전화번호</td>
-				<td>가입일</td>
-				<td>회원등급</td>
-				<td>마일리지</td>
-				<td>총구매액</td>
-				<td>관리</td>
-			</tr>
-			<c:forEach var="member" items="${viewData.objList}">
-				<tr>
-					<td>${member.userSeq}</td>
-					<td>${member.userId}</td>
-					<td>${member.userPw}</td>
-					<td>${member.userName}</td>
-					<td>${member.address1}</td>
-					<td>${member.address2}</td>
-					<td>${member.zipCode}</td>
-					<td>${member.phone}</td>
-					<td>${member.regDate}</td>
-					<td>${member.gradeNum}</td>
-					<td>${member.point}</td>
-					<td>${member.userAmount}</td>
-					<td>
-					<button type="button" class="memberModify btn btn-primary" name="${member.userId}" grade="${member.gradeNum}" data-toggle="modal" data-target="#modalCart">
-						수정
-					</button>
-					<button class="memberDelete btn btn-primary" name="${member.userId}"  grade="${member.gradeNum}">
-						탈퇴
-					</button>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
-		<c:if test="${viewData.currentPageNumber < viewData.pageTotalCount}">
-		<button class="page" name="${viewData.currentPageNumber + 1}">${viewData.currentPageNumber}/${viewData.pageTotalCount}</button>
-		</c:if>
+		<div class="px-4"">
+
+			<div class="table-wrapper">
+				<!--Table-->
+				<table class="memList table table-hover mb-0">
+
+					<!--Table head-->
+					<thead>
+						<tr>
+
+							<th class="th-lg">회원번호</th>
+							<th class="th-lg">아이디</th>
+							<th class="th-lg">비밀번호</th>
+							<th class="th-lg">회원이름</th>
+							<th class="th-lg">주소1</th>
+							<th class="th-lg">전화번호</th>
+							<th class="th-lg">가입일</th>
+							<th class="th-lg">회원등급</th>
+							<th class="th-lg">마일리지</th>
+							<th class="th-lg">총구매액</th>
+							<th class="th-lg">관리</th>
+						</tr>
+
+					</thead>
+					<!--Table head-->
+
+					<!--Table body-->
+					<tbody>
+						<c:forEach var="member" items="${viewData.objList}">
+							<tr>
+								<td>${member.userSeq}</td>
+								<td>${member.userId}</td>
+								<td>${member.userPw}</td>
+								<td>${member.userName}</td>
+								<td>${member.address1}</td>
+								<td>${member.phone}</td>
+								<td>${member.regDate}</td>
+								<td>${member.gradeNum}</td>
+								<td>${member.point}</td>
+								<td>${member.userAmount}</td>
+								<td style="padding-top: 5px; padding-bottom: 5px; !important">
+									<button type="button" class="memberModify btn btn-blue-grey"
+										name="${member.userId}" grade="${member.gradeNum}"
+										data-toggle="modal" data-target="#modalCart"
+										style="padding: 2px 5px; margin-top: 0; margin-bottom: 5px;">수정</button>
+									<button class="memberDelete btn btn-blue-grey"
+										name="${member.userId}" grade="${member.gradeNum}"
+										style="padding: 2px 5px; margin-top: 0; margin-bottom: 0;">
+										탈퇴</button>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+					<!--Table body-->
+				</table>
+				<!--Table-->
+				<div style="text-align: center; cursor: pointer;">
+				<c:if test="${viewData.currentPageNumber < viewData.pageTotalCount}">
+					<p class="page" name="${viewData.currentPageNumber + 1}">${viewData.currentPageNumber}/${viewData.pageTotalCount}<br><i class="fa fa-chevron-down" aria-hidden="true"></i></p>
+				</c:if>
+				</div>
+			</div>
+		</div>
+
 	</c:otherwise>
 </c:choose>
 <script>
@@ -77,37 +97,50 @@ $('.page').click(function() {
 						'<td>' + member.userPw + '</td>' +
 						'<td>' + member.userName + '</td>' +
 						'<td>' + member.address1 + '</td>' +
-						'<td>' + member.address2 + '</td>' +
-						'<td>' + member.zipCode + '</td>' +
 						'<td>' + member.phone + '</td>' +
 						'<td>' + member.regDate + '</td>' +
 						'<td>' + member.gradeNum + '</td>' +
 						'<td>' + member.point + '</td>' +
 						'<td>' + member.userAmount + '</td>' +
-						'<td>' + 
-						'<button class="memberModify btn btn-primary" name="' + member.userId + '" grade="' + member.gradeNum + '" data-toggle="modal" data-target="#modalCart">' +
+						'<td style="padding-top: 5px; padding-bottom: 5px; !important">' + 
+						'<button class="memberModify btn btn-blue-grey" name="' + member.userId + '" grade="' + member.gradeNum + '" data-toggle="modal" data-target="#modalCart"  style="padding: 2px 5px; margin-top: 0; margin-bottom: 5px;">' +
 							'수정' +
 						'</button>' +
-						'<button class="memberDelete btn btn-primary" name="' + member.userId + '">' +
+						'<button class="memberDelete btn btn-blue-grey" name="' + member.userId + '" grade="' + member.gradeNum + '"  style="padding: 2px 5px;">' +
 							'탈퇴' +
 						'</button>' +
 						'</td>' +
 					'</tr>')
 				});
+				memberModify();
+				memberDelete();
 		}
 	});
 });
 
 //회원 수정버튼
+$(document).ready(function() {
+	memberModify();
+	memberDelete();
+});
+
+function memberModify(){
 $('.memberModify').click(function() {
 	var sessionId = '${memberInfo.userId}';
 	var userId = $(this).attr('name');
 	var sessionGrade = '${memberInfo.gradeNum}';
 	var gradeNum = $(this).attr('grade');
 	if(sessionGrade < 3){
-		alert("관리자만 수정 가능합니다.");
+		$('#popup').html(
+				'<tr>' + 
+				'<th>관리자만 수정 가능합니다.</th>' + 
+				'</tr>');
 	} else if(sessionId != userId && gradeNum >= 3 && sessionGrade < 4){
 		alert("관리자는 본인만 수정 가능합니다.");
+		$('#popup').html(
+				'<tr>' + 
+				'<th>관리자의 수정은 본인만 가능합니다. 단, 그랜드마스터는 제외.</th>' + 
+				'</tr>');
 	} else {
 		$.ajax({
 		url : '<%=request.getContextPath()%>/memberModify?userId=' +  $(this).attr('name'),
@@ -115,7 +148,7 @@ $('.memberModify').click(function() {
 			viewType : $(this).val()
 		},
 		error : function(error) {
-	        alert("Error!");
+	        alert("장난치삼?");
 	    },
 		success : function(data) {
 		/* 	$('#viewList').empty(); */
@@ -125,8 +158,10 @@ $('.memberModify').click(function() {
 	});
 	}
 });
+}
 
 //회원 삭제버튼
+function memberDelete(){
 $('.memberDelete').click(function() {
 	var sessionId = '${memberInfo.userId}';
 	var userId = $(this).attr('name');
@@ -135,12 +170,12 @@ $('.memberDelete').click(function() {
 	if(sessionGrade < 3){
 		alert("관리자만 삭제 가능합니다.");
 	} else if(sessionId != userId && gradeNum >= 3 && sessionGrade < 4 ){
-		alert("관리자는 본인만 탈퇴 가능합니다.");
+		alert("관리자의 탈퇴는 본인만 가능합니다. 단, 그랜드마스터는 제외.");
 	} else {
 	$.ajax({
 		url : '<%=request.getContextPath()%>/memberDelete?userId=' +  $(this).attr('name'),
 		error : function(error) {
-	        alert("Error!");
+			alert("장난치삼?");
 	    },
 		success : function(result) {
 			alert(result);
@@ -150,5 +185,6 @@ $('.memberDelete').click(function() {
 	});
 	}
 });
+}
 
 </script>

@@ -28,8 +28,12 @@ public class StoreWriteController {
 	StoreWriteService storeWriteService;
 
 	@RequestMapping(method=RequestMethod.GET)
-	public String storeWrite() {
-		return  "/store/boardEditor";
+	public ModelAndView storeWrite(HttpSession session) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/storeWrite");
+		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
+		modelAndView.addObject("userGrade", memberInfo.getGradeNum());
+		return  modelAndView;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)

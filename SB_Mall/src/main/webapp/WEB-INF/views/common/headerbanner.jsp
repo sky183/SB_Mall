@@ -57,19 +57,35 @@
   
   
     <div class="carousel-item active">
-      <img src="<%=request.getContextPath()%>/img/headerBanner45.png" alt="Los Angeles" class="headerBannerImg">
-      <div class="carousel-caption">
-        <h3>Los Angeles</h3>
-        <p>We had such a great time in LA!</p>
+      <img src="<%=request.getContextPath()%>/img/xiaomi01.png" alt="Los Angeles" class="headerBannerImg">
+      <div class="BannerDiv01">
+     	 <div class="BannerDiv01_inner">
+	        <h3 class="Banner01_h3">Xiaomi</h3>
+	        <h4 class="Banner01_h4">Foldable Electric Scooter</h4>
+	        <div class="BuyItNowBox">
+	        	<a href="http://localhost:8889/mall/store/board/13" class="HomeBannerBuyItNow">Buy it now</a>
+	        </div>
+        </div>
       </div>   
     </div>
     
     
     <div class="carousel-item">
-      <img src="<%=request.getContextPath()%>/img/headerBanner45.png" alt="Chicago" class="headerBannerImg">
-      <div class="carousel-caption">
-        <h3>Chicago</h3>
-        <p>Thank you, Chicago!</p>
+      <img src="<%=request.getContextPath()%>/img/xiaomi04.png" alt="Chicago" class="headerBannerImg">
+      <div class="BannerDiv02">
+      	<div  class="BannerDiv02_inner">
+	        <h3 class="Banner02_h3">Xiaomi Segway</h3>
+	        <h4 class="Banner02_h4">샤오미 나인봇 Ninebot</h4>
+	        <div class="BannerDiv02_Detail">
+	        	<h5 class="Banner02_h5">제품무게 : </h5><h2 class="Banner02_h2"> 13.5</h2><h3 class="Banner02_h3_2">kg</h3>
+	        </div>
+	        <div class="BannerDiv02_Detail">
+	        	<h5 class="Banner02_h5">최대속도 : </h5><h2 class="Banner02_h2"> 20</h2><h3 class="Banner02_h3_2">km/h</h3>
+	        </div>
+	        <div class="BannerDiv02_Detail">
+	        	<h5 class="Banner02_h5">주행거리 : </h5><h2 class="Banner02_h2"> 50</h2><h3 class="Banner02_h3_2">km</h3>
+	        </div>
+        </div>
       </div>   
     </div>
     

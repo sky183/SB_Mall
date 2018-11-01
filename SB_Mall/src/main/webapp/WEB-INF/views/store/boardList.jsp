@@ -54,14 +54,18 @@
 						<input type="button" value="" class="searchButton">
 				</div>
 				<select>
-					<option>hh</option>
+					<option>20개보기</option>
 				</select>
 		</div>
 		<div class="storeListView">
 		
 		</div>
 		<div class="storeListFooter">
-			<a href="<%=request.getContextPath()%>/store/write">글쓰기</a>
+		dd
+			<c:if test="${userGrade>=3}">
+				<a class="storeBtn storeWriteBtn" 
+				href="<%=request.getContextPath()%>/store/write">글쓰기</a>
+			</c:if>
 		</div>
 	</div>
 </body>

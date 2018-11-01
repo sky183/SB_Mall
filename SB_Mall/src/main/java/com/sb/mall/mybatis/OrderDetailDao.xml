@@ -33,6 +33,11 @@
 	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval 1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()))
 	</select>
 	
+	<select id="preMonthAverage" resultType="String"  parameterType="int">
+		SELECT sum(totalAmount) / DAYOFMONTH(NOW()) totalAmount FROM OrderDetail WHERE
+	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval #{interval}+1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()- interval #{interval} month))
+	</select>
+	
 	<select id="thisMonthAmount" resultType="String">
 	SELECT sum(totalAmount) FROM OrderDetail WHERE
 	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval 1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()))

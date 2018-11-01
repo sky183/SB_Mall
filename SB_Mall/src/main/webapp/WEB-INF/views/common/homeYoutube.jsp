@@ -25,7 +25,7 @@
 				vehicles from foldable bikes and scooters to unicycles and hoverboards <br>
 				are becoming more popular as good.<br>
 			</h4>
-			<button class="youtubeBtn">Buy it now</button>
+			<a href="https://www.youtube.com/watch?time_continue=3&v=VeSh9IZgKtk"class="youtubeBtn">Read More</a>
 		
 		</div>
 	</div>

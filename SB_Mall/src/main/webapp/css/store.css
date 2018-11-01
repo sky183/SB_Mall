@@ -312,6 +312,15 @@ a:focus{
 	background-color: white;
 }
 .storeHeaderBanner{
-		height:400px;
-		width:100%;
-	}
+	height:400px;
+	width:100%;
+}
+.storeListFooter{
+	padding: 30px 0;
+	border-bottom: 1px solid #a9a9a9;
+	text-align: center;
+}
+.storeWriteBtn{
+	float:right;
+	margin-right: 30px; 
+}
