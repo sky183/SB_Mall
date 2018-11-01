@@ -83,7 +83,7 @@
 				} else {
 					$.removeCookie("idcookie");
 				}
-			/* 	alert("로그인!!"); */
+				/* 	alert("로그인!!"); */
 				$('#loginForm').submit();
 			}
 		})
@@ -97,29 +97,32 @@
 
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-	<form method="post" id="loginForm" class="form-signin" >
-		<img class="mb-4" src="" alt=""
-			width="72" height="72">
-
-		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+	<form method="post" id="loginForm" class="form-signin">
+		<img class="mb-4"
+			src="<%=request.getContextPath()%>/img/SBCompanyLogo.png" alt=""
+			width="72" height="72"> <br>
+			<br>
+			<br>
+		<!-- <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> -->
 		<label for="login_id" class="sr-only">ID</label> <input type="text"
-			name="userId" id="login_id" class="form-control" placeholder="Id"
-			required auotofocus> <label for="inputPassword"
+			name="userId" id="login_id" class="form-control" placeholder="아이디"
+			required auotofocus> <br> <label for="inputPassword"
 			class="sr-only">Password</label> <input type="password" name="userPw"
-			id="userPw" class="form-control" placeholder="Password"
-			required>
-	 ${error} 
+			id="userPw" class="form-control" placeholder="비밀번호" required>
+		 	
+		 	${error} 
 
 		<div class="checkbox mb-3">
 			<label> <input type="checkbox" name="rememberId"
-				id="rememberId"> Remember me
+				id="rememberId">아이디 저장
 			</label>
 
 		</div>
 
 
 		<button class="btn btn-lg btn-primary btn-block" type="button"
-			id=login_button>Sign in</button>
+			id=login_button>로그인</button>
+		<br>
 		<p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
 
 
@@ -133,14 +136,9 @@
 
 	</form>
 
-	</div>
-
-
-
-
-
 </body>
 </html>
+
 
 
 
