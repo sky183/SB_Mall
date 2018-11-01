@@ -60,7 +60,12 @@ table .th-lg, table td {
     padding-right: 0.3rem;
 }
 
+#sales h3 {
+	font-weight: bold;
+}
+
 </style>
+
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -70,6 +75,11 @@ table .th-lg, table td {
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
           ['월별', '매출액(단위:만원)'],
+          ['${month-9}월', ${tenthMonth}],
+          ['${month-8}월', ${ninethMonth}],
+          ['${month-7}월', ${eighthMonth}],
+          ['${month-6}월', ${seventhMonth}],
+          ['${month-5}월', ${sixthMonth}],
           ['${month-5}월', ${fifthMonth}],
           ['${month-4}월', ${fourthMonth}],
           ["${month-3}월", ${thirdMonth}],
@@ -80,7 +90,7 @@ table .th-lg, table td {
 
         var options = {
           title: 'Chess opening moves',
-          width: 600,
+          width: 1200,
           legend: { position: 'none' },
           bars: 'red', // Required for Material Bar Charts.
           axes: {
@@ -94,33 +104,98 @@ table .th-lg, table td {
         var chart = new google.charts.Bar(document.getElementById('top_x_div'));
         chart.draw(data, options);
       };
+      
     </script>
+     <script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        ["${month-1}월", ${preMonthAverage}, "silver"],
+        ["${month}월",  ${thisMonthAverage}, "gold"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+/*         title: "", */
+        width: 400,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+
     
 </head>
 <body>
 	<div id="adminWrapper">
-		<h1>매출 현황</h1>
-		<h2>${year}년 ${month}월</h2>
+
+		<div style="text-align: center;">
+		<h1 style="font-weight: bold; margin-bottom: 20px">매출 현황</h1>
+		<div style="border-radius: 10px; padding: 10px 15px; background-color: #787878; color: #ffc828; display: inline-block; font-size: 22px;">${year}년</div>
+		<div style="border-radius: 10px; padding: 10px 15px; background-color: #787878; color: #ffc828; display: inline-block; font-size: 22px;">${month}월</div>
+		</div>
 		
-		<h2>이번달매출 : <fmt:formatNumber value="${thisMonth}" pattern="#,###"/>원</h2>
-		<h2>${month-1}월 매출 : <fmt:formatNumber value="${preMonth}" pattern="#,###"/>원</h2>
+		<div id="sales" style="width: 1200px; margin: 0 auto; margin-top: 5px;">
+		
+		<div id="barchart_values" style="width: 480px; display: inline-block;"></div>
+		<div style="width: 700px; display: inline-block;">
+			<div style="border-bottom: 1px solid #787878; padding: 10px 0;">
+				<h3>${month}월 매출  </h3>
+				<h5><fmt:formatNumber value="${thisMonth}" pattern="#,###"/>원</h5>
+			</div>
+			
+			<div style="border-bottom: 1px solid #787878;  padding: 10px 0;">
+				<h3>지난달 매출  </h3>
+				<h5><fmt:formatNumber value="${preMonth}" pattern="#,###"/>원</h5>
+			</div>
+
+			<div style="border-bottom: 1px solid #787878;  padding: 10px 0;">
+				<h3>${month}월 평균 </h3>
+				<h5><fmt:formatNumber value="${thisMonthAverage}" pattern="#,###"/>원</h5>
+			</div>
+			
+			<div style="border-bottom: 1px solid #787878;  padding: 10px 0;">
+				<h3>지난달 평균 </h3>
+				<h5><fmt:formatNumber value="${preMonthAverage}" pattern="#,###"/>원</h5>
+			</div>
+			</div>
+		</div>
+		
+<%-- 		<h2>${month-1}월 매출 : <fmt:formatNumber value="${preMonth}" pattern="#,###"/>원</h2>
 		<h2>${month-2}월 매출 : <fmt:formatNumber value="${secondMonth}" pattern="#,###"/>원</h2>
 		<h2>${month-3}월 매출 : <fmt:formatNumber value="${thirdMonth}" pattern="#,###"/>원</h2>
 		<h2>${month-4}월 매출 : <fmt:formatNumber value="${fourthMonth}" pattern="#,###"/>원</h2>
 		<h2>${month-5}월 매출 : <fmt:formatNumber value="${fifthMonth}" pattern="#,###"/>원</h2>
 		<h2>이번달 평균 : <fmt:formatNumber value="${thisMonthAverage}" pattern="#,###"/>원</h2>
-		<h2>지난달 평균 : <fmt:formatNumber value="${preMonthAverage}" pattern="#,###"/>원</h2>
-		<div style=" margin: 10px auto; text-align: center;" ><h2>${year}년 </h2>
-		<div id="top_x_div" style="width: 600px; height: 300px; margin: 10px auto;"></div>
+		<h2>지난달 평균 : <fmt:formatNumber value="${preMonthAverage}" pattern="#,###"/>원</h2> --%>
+		
+		<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+		<div style="border-radius: 10px; padding: 10px 15px; background-color: #787878; color: #ffc828; display: inline-block; font-size: 22px;">${year}년</div>
+	
+		
+		
+		<div id="top_x_div" style="width: 900px; height: 350px;"></div>
 		</div>
 		<br>
-		
 		<hr>
 		
 		<br>
+		<br>
 		
 		
-	<div style="border: none; !important"> <!-- class="card card-cascade narrower"  -->
+	<div> <!-- class="card card-cascade narrower"  -->
 		    <!--Card image-->
     <div class="view view-cascade gradient-card-header special-color narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 

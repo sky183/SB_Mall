@@ -29,6 +29,11 @@ public class AdminPageController {
 		String thirdMonth = amountService.getAmount(3);
 		String fourthMonth = amountService.getAmount(4);
 		String fifthMonth = amountService.getAmount(5);
+		String sixthMonth = amountService.getAmount(5);
+		String seventhMonth = amountService.getAmount(5);
+		String eighthMonth = amountService.getAmount(5);
+		String ninethMonth = amountService.getAmount(5);
+		String tenthMonth = amountService.getAmount(5);
 		String thisMonthAverage = averageService.getAverage(0);
 		String preMonthAverage = averageService.getAverage(1);
 		
@@ -38,6 +43,11 @@ public class AdminPageController {
 		modelAndView.addObject("thirdMonth", thirdMonth);
 		modelAndView.addObject("fourthMonth", fourthMonth);
 		modelAndView.addObject("fifthMonth", fifthMonth);
+		modelAndView.addObject("sixthMonth", sixthMonth);
+		modelAndView.addObject("seventhMonth", seventhMonth);
+		modelAndView.addObject("eighthMonth", eighthMonth);
+		modelAndView.addObject("ninethMonth", ninethMonth);
+		modelAndView.addObject("tenthMonth", tenthMonth);
 		modelAndView.addObject("thisMonthAverage", thisMonthAverage);
 		modelAndView.addObject("preMonthAverage", preMonthAverage);
 		
