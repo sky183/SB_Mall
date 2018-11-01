@@ -26,11 +26,11 @@ public class QnAWriteAnsController {
 	QnAWriteAnsService_end qnaWriteAnsService_end;
 	
 	@RequestMapping(value="/qna/qnaWriteAns/{qnaSeq}", method=RequestMethod.GET)
-	public ModelAndView replyGET(@PathVariable(value="qnaSeq") int qnaSeq) {
+	public ModelAndView replyGET(@PathVariable(value="qnaSeq") int qnaSeq, QnABoard qnaBoard) {
 		
 		ModelAndView modelAndView = new ModelAndView("qna/qnaWriteAns");
 		
-		QnABoard qnaBoard = qnaWriteAnsService.qnaWriteAns(qnaSeq);
+		qnaWriteAnsService.qnaWriteAns(qnaBoard);
 		
 		System.out.println("게시판번호 : " + qnaSeq);
 		System.out.println(qnaBoard.toString());
@@ -45,23 +45,23 @@ public class QnAWriteAnsController {
 	
 	@RequestMapping(value="/qna/qnaWriteAns/{qnaSeq}", method=RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
-	public String replyPOST(QnABoard qnaBoard, HttpServletResponse httpServletResponse) {
+	public ModelAndView replyPOST(QnABoard qnaBoard, HttpServletResponse httpServletResponse) {
+		
+		ModelAndView modelAndView = new ModelAndView();
 		
 		httpServletResponse.setHeader("Content-Type", "text/html; charset=utf-8");
 		
-		String result = "";
+		modelAndView.addObject("qnaBoard", qnaBoard);
 		
-		try {
+		qnaWriteAnsService.qnaWriteAns(qnaBoard);
 			
-			qnaWriteAnsService_end.qnaWriteAns_end(qnaBoard);
+		System.out.println(qnaBoard.toString());
+		
+		System.out.println("== 수정완료 ==");
+		
+		modelAndView.setViewName("redirect:/qna");
 			
-			System.out.println("== 수정완료 ==");
-			result = "수정완료";
-			
-		} catch (Exception e) {
-			result = "수정실패";
-		}
-		return result;
+		return modelAndView;
 	}
 	
 }

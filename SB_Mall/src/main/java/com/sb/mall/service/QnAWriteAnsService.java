@@ -17,22 +17,16 @@ public class QnAWriteAnsService {
 	private QnABoard qnaboard;
 
 	@Transactional
-	public QnABoard qnaWriteAns(int qnaSeq) {
-		
-		QnABoard qnaBoard = new QnABoard();
+	public void qnaWriteAns(QnABoard qnaBoard) {
 		
 		qnaDao = sqlSessionTemplate.getMapper(QnADao.class);
 		
-		qnaBoard = qnaDao.reply(qnaSeq);
-		
-		if (qnaSeq == qnaBoard.getQnaSeq()) {
-			qnaboard = qnaBoard;
-		} else {
-			System.out.println("조회 가능한 QnA가 없음");
+		try {
+			qnaDao.reply(qnaBoard);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-			System.out.println("qnaDao : " + qnaDao);
-		
-			return qnaboard;
 			
 	}
 

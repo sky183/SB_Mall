@@ -14,13 +14,10 @@
 	
 
 	$(document).ready(function() {
-		$("#openText").hide();
+		$(".openText").hide();
 		
-		$('#hideText').click(function() {
-			$('#openText').each(function(i, e){
-				
-				$('#openText').toggle(200, 'linear');
-			});
+		$('.hideText').click(function() {
+			$('.openText').toggle(200, 'linear');
 		});
 	});
 	
@@ -29,7 +26,9 @@
 </head>
 <body>
 
+	<br><br>
 	<a href="<%=request.getContextPath()%>/qna/qnaWrite">문의하기</a>
+	<br><br><br>
 
 	<table class="table table-board" border="1px" width="80%"
 		align="center">
@@ -54,17 +53,17 @@
         			</c:otherwise>
         			</c:choose></td>
 					<td>${ qnaBoard.qnaSeq }</td>
-					<td><a href="#this" id='hideText'>${ qnaBoard.qtitle }</a></td>
+					<td><a href="#this" class='hideText'>${ qnaBoard.qtitle }</a></td>
 					<td>${ qnaBoard.userSeq }</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 							value="${ qnaBoard.qwriteDate }" /></td>
 					<td><a href="<%=request.getContextPath()%>/qna/qnaWriteAns/${ qnaBoard.qnaSeq }">답글쓰기</a></td>
 				</tr>
 				<tr>
-					<td colspan="6" id="openText" >${ qnaBoard.qtext }</td>
+					<td colspan="6" class="openText" >${ qnaBoard.qtext }</td>
 				</tr>
 				<tr>
-					<td colspan="6" id="openText" >${ qnaBoard.atext }</td>
+					<td colspan="6" class="openText" >${ qnaBoard.atext }</td>
 				</tr>
 			</c:forEach>
 		</c:if>

@@ -15,15 +15,13 @@ public class QnAWriteAnsService_end {
 	
 	private QnADao qnaDao;
 	
-	public int qnaWriteAns_end(QnABoard updateQnA) throws Exception {
+	public void qnaWriteAns_end(QnABoard updateQnA) throws Exception {
 		
 		int updateQnACnt;
 		
 		qnaDao = sessionTemplate.getMapper(QnADao.class);
 		
-		updateQnACnt = qnaDao.reply(updateQnA);
-		
-		return updateQnACnt;
+		qnaDao.reply(updateQnA);
 		
 	}
 	
