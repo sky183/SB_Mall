@@ -8,6 +8,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script>
+
+	
+
+	$(document).ready(function() {
+		$("#openText").hide();
+		
+		$('#hideText').click(function() {
+			$('#openText').each(function(i, e){
+				
+				$('#openText').toggle(200, 'linear');
+			});
+		});
+	});
+	
+</script>
+
 </head>
 <body>
 
@@ -24,11 +42,14 @@
 			<c:forEach items="${ qnaList }" var="qnaBoard">
 				<tr>
 					<td>${ qnaBoard.qnaSeq }</td>
-					<td><a href="">${qnaBoard.qtitle }</a></td>
+					<td><a href="#this" id='hideText'>${ qnaBoard.qtitle }</a></td>
 					<td>${ qnaBoard.userSeq }</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 							value="${ qnaBoard.qwriteDate }" /></td>
 					<td><span> ${ qnaBoard.qtext }</span></td>
+				</tr>
+				<tr>
+					<td colspan="5" id="openText" >${ qnaBoard.qtext }</td>
 				</tr>
 			</c:forEach>
 		</c:if>
@@ -37,4 +58,5 @@
 	<a href="<%=request.getContextPath()%>/qna/qnaWrite">글쓰기</a>
 
 </body>
+
 </html>
