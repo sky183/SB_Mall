@@ -47,6 +47,9 @@
  		</where>
  	</select>
  	<update id="updateSalBoardCnt">
- 		update SalesBoard set viewSeq=viewSeq+1 where salesSeq=#{salSeq};
+ 		update SalesBoard set viewSeq=viewSeq+1 where salesSeq=#{salSeq}
  	</update>
+ 	<delete id="deleteProduct">
+ 		delete from `Product` where productSeq=#{salSeq}
+ 	</delete>
  </mapper>

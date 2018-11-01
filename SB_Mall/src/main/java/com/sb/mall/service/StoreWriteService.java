@@ -25,8 +25,6 @@ public class StoreWriteService {
 			// 생성된 product의 pk를 salesBoard객체에도 적용
 			salesBoard.setProductSeq(product.getProductSeq()); 
 			storeDao.insertSalesBoard(salesBoard);
-			System.out.println(product);
-			System.out.println(salesBoard);
 	}
 	
 }

@@ -35,7 +35,6 @@ public class StoreListViewController {
 					getPagingService.getStoreList(pageNumber, countPerPage, 
 							"StoreListView", tag, sortType);
 			modelAndView.addObject("viewList", list);
-			System.out.println(sortType);
 		} catch (SQLException e) {
 			modelAndView.addObject("errorMsg", "글 목록 조회에 실패하였습니다.");
 			System.out.println("글 목록 조회에 실패하였습니다.");

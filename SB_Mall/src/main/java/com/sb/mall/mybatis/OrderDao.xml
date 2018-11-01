@@ -47,6 +47,20 @@
 		and orderDetailNum=0
 	</update>
 
+	<update id="updateUserPoint">
+		update MemberInfo
+		<set >
+			`point`=`point`+#{param1}*
+			(select percent from 
+			(select percent from Grade g,MemberInfo m 
+			where m.userSeq=#{param2} and g.gradeNum=m.gradeNum) `per`), 
+			userAmount=userAmount+#{param1}
+		</set>
+		<where>
+			userSeq=#{param2}
+		</where>
+	</update>
+
 	<update id="update" parameterType="com.sb.mall.model.Order">
 	</update>
 

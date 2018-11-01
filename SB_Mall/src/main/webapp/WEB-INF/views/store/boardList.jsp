@@ -31,7 +31,7 @@
 			var tag =  $("#searchForm").serialize();
 			$.ajax({
 				url : '<%=request.getContextPath()%>/store/boardListView',
-				type : 'POST',
+				type : 'GET',
 				data : tag,
 				error : function(error) {
 			        alert("Error!");

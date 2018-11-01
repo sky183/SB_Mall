@@ -212,6 +212,8 @@ a:focus{
 	margin:20px auto;
 }
 #boardReplyContainer{
+	width: 100%;
+	height: 50px;
 }
 .boardProductSel{
 	height: 30px;
@@ -338,6 +340,10 @@ a:focus{
 .storeWriteBtn{
 	float:right;
 	margin-right: 30px; 
+}
+.storeDeleteBtn{
+	float:right;
+	margin: 0px 20px 20px 0; 
 }
 .boardListSelect{
 	width: 80px;

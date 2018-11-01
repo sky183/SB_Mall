@@ -16,5 +16,6 @@ public interface StoreDao {
 	public List<Map<String,Object>> selectProAndSal(int salSeq);
 	public List<Product> selectProductList();
 	public List<SalesBoard> selectSalBoardList();
+	public void deleteProduct(int salSeq);
 	public void updateSalBoardCnt(int salSeq);
 }

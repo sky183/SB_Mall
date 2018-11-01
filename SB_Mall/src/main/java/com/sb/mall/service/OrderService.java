@@ -55,6 +55,8 @@ public class OrderService {
 		Order order = command.getOrder();
 		orderDetail.setOrderDetailNum(orderDetailNum);
 		order.setOrderDetailNum(orderDetailNum);
+		
+		Dao.updateUserPoint(orderDetail.getTotalAmount(), order.getUserSeq());
 		Dao.insertOrderDetail(orderDetail);
 		Dao.insertOrder(order);
 	}
@@ -73,11 +75,14 @@ public class OrderService {
 		Dao = sessionTemplate.getMapper(OrderDao.class);
 		OrderDetail orderDetail = command.getOrderDetail();
 		List<Order> orderList = command.getOrders();
+		int userSeq = 0;
 		for(Order order : orderList) {
 			order.setOrderDetailNum(orderDetailNum);
-			System.out.println(order);
+			userSeq=order.getUserSeq();
 		}
 		orderDetail.setOrderDetailNum(orderDetailNum);
+		
+		Dao.updateUserPoint(orderDetail.getTotalAmount(), userSeq);
 		Dao.insertOrderDetail(orderDetail);
 		Dao.updateOrders(orderList);
 	}
