@@ -34,7 +34,10 @@
         update QnABoard set qtitle=#{qtitle} , qtext = #{qtext} where qnaSeq = #{qnaSeq}
     </update>
 
-	
+	<!-- 게시판 답글달기 (관리자만 가능) -->
+	<update id="reply">
+        update QnABoard set atext = #{atext} where qnaSeq = #{qnaSeq}
+    </update>
 	
 	
 	
