@@ -30,14 +30,13 @@
 	margin: 80px;
 }
 .confirmBtn{
-	width: 150px;
 	outline: none;
 	border: 0px;
 	border-radius: 10px;
 	background-color:#FEC828;
 	font-size:20px;
 	color:white;
-	padding:10px 0px;
+	padding:10px 20px;
 	text-align: center;
 }
 .confirmBtn:hover{
@@ -58,7 +57,7 @@
 			</div>
 			<div id="orderMessage">
 				<h1>${message}</h1>
-				<input class="confirmBtn" value="쇼핑계속하기">
+				<a class="confirmBtn" href="<%=request.getContextPath()%>/store">쇼핑계속하기</a>
 			</div>
 		</div>
 	</div>

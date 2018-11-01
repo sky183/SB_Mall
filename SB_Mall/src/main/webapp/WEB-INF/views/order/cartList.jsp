@@ -35,7 +35,7 @@ ul{
 }
 #cartTable td{
 	padding:20px;
-	border: 1px solid #a9a9a9;
+	border-bottom: 1px solid #a9a9a9;
 	text-align: center;
 }
 .cartOrderBtn{
