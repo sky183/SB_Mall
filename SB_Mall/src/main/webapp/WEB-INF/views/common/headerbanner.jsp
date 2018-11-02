@@ -35,8 +35,6 @@
 		}
 		/* var time = ${serverTime};
 		alert(time); */
-		
-		alert("z");
 	}
 
 
