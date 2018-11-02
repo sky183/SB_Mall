@@ -91,6 +91,10 @@
 		secCnt(); 
 		
 		
+		$('.dailyDealImg').on('click',function(){
+			var alt = $(this).attr('alt');
+			location.href="<%=request.getContextPath()%>/store/board/"+alt;
+		})
 		
 		
 		
@@ -150,7 +154,7 @@
       <c:forEach var="deal" items="${dailyDeal}">
 	      <div>
 	        <div class="sibal">
-				<img class ="dailyDealImg" src="<%=request.getContextPath()%>/img/SBCompanyLogo.png">
+				<img class ="dailyDealImg" alt="${deal.salesSeq}" src="${deal.photo}">
 					<h4 class="dailyDeal_h4">${deal.productName}</h4>
 					<h6 class="dailyDeal_h6">
 					<fmt:formatNumber value="${deal.price}"  pattern="#,###"/>won</h6>

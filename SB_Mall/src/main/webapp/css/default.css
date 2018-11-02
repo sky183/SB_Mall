@@ -388,7 +388,7 @@ a {
 	margin-bottom:5px;
 	color:#505050;
 	font-size: 16pt;
-	
+	font-weight: bold;
 }
 .newProh6{
 	color:#787878;
@@ -426,7 +426,7 @@ a {
 
 
 .blue{
-  background: white;
+  background: white !important;
   color: #fff;
   height:600px;
 }
