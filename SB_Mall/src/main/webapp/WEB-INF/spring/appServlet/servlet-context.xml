@@ -80,45 +80,42 @@
 	</beans:bean>
 
 	<!-- 채팅 관련 -->
-	<beans:bean id="echoHandler"
-		class="com.sb.mall.handler.ChatEchoHandler" />
-	
-	<!-- <beans:bean id="myHandler"
-		class="com.sb.mall.handler.WebSocket" /> -->
-	
-	<!-- Service 등록 -->		
+	<beans:bean class="com.sb.mall.handler.ChatEchoHandler" id="ChatEchoHandler"/>
+
+	<!-- <beans:bean id="myHandler" class="com.sb.mall.handler.WebSocket" /> -->
+
+	<!-- Service 등록 -->
 	<beans:bean id="joinService"
-		class="com.sb.mall.service.JoinService"/>
-		
-	
-		
-	<!-- 채팅 관련 -->
+		class="com.sb.mall.service.JoinService" />
+
+
+
 	<websocket:handlers>
-		<websocket:mapping handler="echoHandler"
-			path="/echo-ws" />
+		<websocket:mapping path="/echo-ws" handler="ChatEchoHandler" />
+		<websocket:handshake-interceptors>
+			<beans:bean class="com.sb.mall.interceptor.ChatHandshakeInterceptor" />
+		</websocket:handshake-interceptors>
+		<!-- HTTPSESSION값을 가져오기 위하여 -->
 		<websocket:sockjs />
 	</websocket:handlers>
 	
-<!-- 	<websocket:handlers>
-		<websocket:mapping handler="myHandler"
-			path="/echo.do" />
-		<websocket:handshake-interceptors>
-			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
-		</websocket:handshake-interceptors>
-	</websocket:handlers> -->
-	
+
+	<!-- <websocket:handlers> <websocket:mapping handler="myHandler" path="/echo.do" 
+		/> <websocket:handshake-interceptors> <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" 
+		/> </websocket:handshake-interceptors> </websocket:handlers> -->
+
 	<!-- loginInterceptor 관련 -->
 	<interceptors>
 		<interceptor>
-			<mapping path="/store/**"/>
-			<mapping path="/order/**"/>
-			<mapping path="/adminPage"/>
-			<mapping path="/admin/**"/>
-			<mapping path="/member**"/>
-			<mapping path="/reply**"/>
-			<mapping path="/qna**"/>
-			<mapping path="/order**"/>
-			<mapping path="/myPage"/>
+			<mapping path="/store/**" />
+			<mapping path="/order/**" />
+			<mapping path="/adminPage" />
+			<mapping path="/admin/**" />
+			<mapping path="/member**" />
+			<mapping path="/reply**" />
+			<mapping path="/qna**" />
+			<mapping path="/order**" />
+			<mapping path="/myPage" />
 			<beans:bean
 				class="com.sb.mall.interceptor.AuthCheckInterceptor" />
 		</interceptor>

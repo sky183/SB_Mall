@@ -28,7 +28,8 @@
 		$(".openText").hide();
 		
 		$('.hideText').click(function() {
-			$('.openText').toggle(200, 'linear');
+			var qnaSeq = $(this).attr('name');
+			$('.openText[name=' + qnaSeq + ']').toggle(200, 'linear');
 		});
 	});
 	
@@ -84,7 +85,7 @@ table .th-lg, table td {
 		<c:if test="${qnaList!=null}">
 			<c:forEach items="${ qnaList }" var="qnaBoard">
 				<tr>
-					<td><c:set var="data" value="미답변" />
+					<td><%-- <c:set var="data" value="미답변" /> --%>
 					<c:choose>
 					<c:when test="${ qnaBoard.atext eq null }">
         			미답변
@@ -94,17 +95,17 @@ table .th-lg, table td {
         			</c:otherwise>
         			</c:choose></td>
 					<td>${ qnaBoard.qnaSeq }</td>
-					<td><a href="#this" class='hideText'>${ qnaBoard.qtitle }</a></td>
+					<td><a href="#this" class='hideText' name="${ qnaBoard.qnaSeq}">${ qnaBoard.qtitle }</a></td>
 					<td>${ qnaBoard.userSeq }</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 							value="${ qnaBoard.qwriteDate }" /></td>
 					<td><a href="" class="qnaAns" name="${ qnaBoard.qnaSeq}" data-toggle="modal" data-target="#modalAnsForm">답글쓰기</a></td>
 				</tr>
 				<tr>
-					<td colspan="6" class="openText" >${ qnaBoard.qtext }</td>
+					<td colspan="6" style="text-align: center;" class="openText" name="${ qnaBoard.qnaSeq}">${ qnaBoard.qtext }</td>
 				</tr>
 				<tr>
-					<td colspan="6" class="openText" >${ qnaBoard.atext }</td>
+					<td colspan="6" style="text-align: center;" class="openText" name="${ qnaBoard.qnaSeq}">${ qnaBoard.atext }</td>
 				</tr>
 			</c:forEach>
 		</c:if>
@@ -157,7 +158,7 @@ table .th-lg, table td {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">문의하기</h4>
+                <h4 class="modal-title w-100 font-weight-bold">답변하기</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -1,19 +1,31 @@
 package com.sb.mall.handler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.server.ServerHttpRequest;
+import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-public class ChatEchoHandler extends TextWebSocketHandler {
+import com.sb.mall.model.MemberInfo;
 
-	
+public class ChatEchoHandler extends TextWebSocketHandler {
+   
+	HttpSession sessions;
+			
 	private Logger logger = LoggerFactory.getLogger(ChatEchoHandler.class);
 	
 	private List<WebSocketSession> connectedUsers;
@@ -23,8 +35,15 @@ public class ChatEchoHandler extends TextWebSocketHandler {
 		connectedUsers = new ArrayList<WebSocketSession>();
 	}
 	
+/*	public HttpSession sess (HttpServletRequest request, HttpServletResponse resp) throws IOException {
+		HttpSession sessions = request.getSession(true);
+		
+		
+		
+		return sessions;
+	}*/
 	
-	// 접속 관련 이벤트메서드
+	// 접속 관련 이벤트메서드 (클라이언트 연결 이후 실행됨)
 	// @param WebSocketSession 접속한 사용자
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -36,8 +55,8 @@ public class ChatEchoHandler extends TextWebSocketHandler {
 		
 	}
 
-	
-	// 2가지 이벤트 처리
+	/*
+	// 2가지 이벤트 처리함 (클라이언트가 웹소켓 서버로 메시지를 전송했을때 실행됨)
 	// 1. Send : 클라이언트가 서버에게 메시지 보냄
 	// 2. Emit : 서버에 연결되어 있는 클라이언트들에게 메시지 보냄
 	// @param WebSocketSession 메시지를 보낸 클라이언트
@@ -58,7 +77,38 @@ public class ChatEchoHandler extends TextWebSocketHandler {
 			
 		}
 		
-	}
+	}*/
+	
+	
+	// 웹소켓 서버측에 텍스트 메시지가 접수되면 호출되는 메소드
+    @Override
+    public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
+        String payloadMessage = (String) message.getPayload();
+        System.out.println("서버에 도착한 메시지:"+payloadMessage);
+        
+        /*ServerHttpRequest requests = null;
+        
+        System.out.println("1");
+        
+        ServletServerHttpRequest ssreq = (ServletServerHttpRequest) requests;
+        
+        System.out.println("2");
+        
+        
+        System.out.println("3");
+        
+        Object SessionMemberInfo = (Object)req.getSession().getAttribute("memberInfo");
+        MemberInfo memberInfo = (MemberInfo) SessionMemberInfo;
+        
+        System.out.println(memberInfo.getUserId());*/
+        
+        Map<String, Object> map = session.getAttributes();
+        String userName = (String)map.get("userName");
+        System.out.println("전송자 아이디:"+userName);
+        
+        session.sendMessage(new TextMessage(userName + payloadMessage));
+    }
+	
 	
 	// 클라이언트가 서버와 연결 종료
 	// @param WebSocketSession 연결을 끊은 클라이언트
