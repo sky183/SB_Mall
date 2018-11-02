@@ -60,7 +60,7 @@
          <input type="text" class="form-control mb-2" value="평민" readonly>
     </c:when>
     <c:when test="${memberInfo.gradeNum == 2}">
-   		 <input type="text" class="form-control mb-2" value="귀족" readonly>
+   		 <input type="text" class="form-control mb-2" value="귀족" readonly> 
     </c:when>
     <c:when test="${memberInfo.gradeNum == 3}">
    		 <input type="text" class="form-control mb-2" value="다이아" readonly>
