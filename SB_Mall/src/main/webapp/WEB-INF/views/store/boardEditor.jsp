@@ -84,11 +84,11 @@
 	</c:if>
 	<div id="summernoteBox">
 		<form method="post" enctype="multipart/form-data" id="sform">
-			글제목 <input type="text" name="salesBoard.title"><br>
-			제품사진 <input type="file" name="product.photoFile"><br>
-			제품이름 <input type="text" name="product.productName"><br>
-			제품가격 <input type="number" name="product.price" min="0" oninput="mathABS(this)"><br>
-			제품설명 <textarea rows="3" cols="22" name="product.detail"></textarea><br>
+			글제목 <input type="text" name="salesBoard.title" required="required"><br>
+			제품사진 <input type="file" name="product.photoFile" required="required"><br>
+			제품이름 <input type="text" name="product.productName" required="required"><br>
+			제품가격 <input type="number" name="product.price" min="0" oninput="mathABS(this)" required="required"><br>
+			제품설명 <textarea rows="3" cols="22" name="product.detail" required="required"></textarea><br>
 			<hr>
 			<input type="hidden" name="salesBoard.text" id="text">
 		</form>
