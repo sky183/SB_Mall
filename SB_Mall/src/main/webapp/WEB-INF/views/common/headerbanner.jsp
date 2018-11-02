@@ -66,7 +66,7 @@
 	        <h3 class="Banner01_h3">Xiaomi</h3>
 	        <h4 class="Banner01_h4">Foldable Electric Scooter</h4>
 	        <div class="BuyItNowBox">
-	        	<a href="http://localhost:8889/mall/store/board/13" class="HomeBannerBuyItNow">Buy it now</a>
+	        	<a href="<%=request.getContextPath() %>/store/board/13" class="HomeBannerBuyItNow">Buy it now</a>
 	        </div>
         </div>
       </div>   
