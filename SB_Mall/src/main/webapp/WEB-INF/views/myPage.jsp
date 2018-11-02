@@ -63,7 +63,7 @@
    		 <input type="text" class="form-control mb-2" value="귀족" readonly>
     </c:when>
     <c:when test="${memberInfo.gradeNum == 3}">
-   		 <input type="text" class="form-control mb-2" value="브론즈" readonly>
+   		 <input type="text" class="form-control mb-2" value="다이아" readonly>
     </c:when>
     <c:when test="${memberInfo.gradeNum == 4}">
    		 <input type="text" class="form-control mb-2" value="그랜드마스터" readonly>
