@@ -181,21 +181,12 @@ table .th-lg, table td {
 
 <script>
 $('.qnaAns').click(function() {
-/* 	var sessionId = '${memberInfo.userId}';
-	var userId = $(this).attr('name');
+
 	var sessionGrade = '${memberInfo.gradeNum}';
-	var gradeNum = $(this).attr('grade');
 	if(sessionGrade < 3){
-		$('#popup').html(
-				'<tr>' + 
-				'<th>관리자만 수정 가능합니다.</th>' + 
-				'</tr>');
-	} else if(sessionId != userId && gradeNum >= 3 && sessionGrade < 4){
-		$('#popup').html(
-				'<tr>' + 
-				'<th>관리자의 수정은 본인만 가능합니다. 단, 그랜드마스터는 제외.</th>' + 
-				'</tr>');
-	} else { */
+		$('#qnaAns').html(
+				'관리자만 수정 가능합니다.');
+	} else { 
 		$.ajax({
 		url : '<%=request.getContextPath()%>/qna/qnaWriteAns/' +  $(this).attr('name'),
 		error : function(error) {
@@ -205,7 +196,7 @@ $('.qnaAns').click(function() {
 			$('#qnaAns').html(data);
 		}
 	});
-/* 	} */
+ 	} 
 });
 </script>
 
