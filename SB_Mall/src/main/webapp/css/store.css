@@ -339,7 +339,8 @@ a:focus{
 }
 .storeWriteBtn{
 	float:right;
-	margin-right: 30px; 
+	margin-right: 30px;
+	color:black;
 }
 .storeDeleteBtn{
 	float:right;

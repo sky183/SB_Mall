@@ -48,16 +48,15 @@
 	</update>
 
 	<update id="updateUserPoint">
-		update MemberInfo
-		<set >
-			`point`=`point`+#{param1}*
-			(select percent from 
-			(select percent from Grade g,MemberInfo m 
-			where m.userSeq=#{param2} and g.gradeNum=m.gradeNum) `per`), 
-			userAmount=userAmount+#{param1}
+		update MemberInfo m,Grade g
+		<set>
+			m.point=m.point+${param1}*g.percent,
+			m.userAmount=m.userAmount+${param1},
+			m.gradeNum=
+			(select ifnull(max(gradeNum),0) from Grade where <![CDATA[amount<=m.userAmount]]>)
 		</set>
 		<where>
-			userSeq=#{param2}
+			userSeq=#{param2} and m.gradeNum=g.gradeNum
 		</where>
 	</update>
 
