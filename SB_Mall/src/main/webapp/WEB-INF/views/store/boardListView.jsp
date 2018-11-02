@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${viewList!=null}">
-		<c:forEach var="productList" items="${viewList}">
+	<c:if test="${!viewList.isEmpty()}">
+		<c:forEach var="productList" items="${viewList.storeList}">
 			<a href="<%=request.getContextPath()%>/store/board/${productList.salesSeq}"
 				class="nodeco"> 
 			<span class="productListBox"> 
@@ -25,6 +25,24 @@
 			</span>
 			</a>
 		</c:forEach>
+			<%-- [${viewList.currentPageNumber}/${viewList.pageTotalCount}] --%>
+		<div class="storeListPaging">
+		<c:forEach varStatus="i" begin="1" end="${viewList.pageTotalCount}">
+			<c:choose>
+				<c:when test="${i.count==viewList.currentPageNumber}">
+					<span class="storeBtn storePagingBtn selectedPagingBtn">${i.count}</span>
+				</c:when>
+				<c:otherwise>
+					<button value="${i.count}" class="storeBtn storePagingBtn" 
+					onclick="afnc(this)">${i.count}</button>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach> 
+		</div>
+		<input type="hidden" class="pageNumber" name="pageNumber"
+			value="${viewList.currentPageNumber}">
+		<input type="hidden" class="countPerPage" name="countPerPage"
+			value="${viewList.countPerPage}">
 	</c:if>
 </body>
 </html>

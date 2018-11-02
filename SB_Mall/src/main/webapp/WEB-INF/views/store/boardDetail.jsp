@@ -9,6 +9,17 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script type="text/javascript">
+	
+	$(document).ready(function () {
+		$('.storeDeleteBtn').click(function () {
+			if (confirm("정말 삭제하시겠습니까??") == true){
+				$('#storeDeleteForm').submit();
+			}else{//취소
+			    return;
+			}
+		});
+	});
+	
 	function imgError(e) {
 		e.src='<%=request.getContextPath()%>/img/noImage.png'
 	}
@@ -70,7 +81,9 @@
 				<li>
 				<p>가격: <fmt:formatNumber value="${board.price}" pattern="###,###,###,###,###"/></p>
 				</li>
-				<li><p>등록일: ${board.writeDate}</p></li>
+				<li><p>
+				등록일: <fmt:formatDate value="${board.writeDate}" pattern="yyyy-MM-dd HH:mm"/>
+				</p></li>
 				<li><p>
 				블랙 <input type="radio" value="black" name="color" checked="checked">
 				화이트 <input type="radio" value="white" name="color">
@@ -103,6 +116,13 @@
 </c:if>
 	<br>
 	<div id="boardReplyContainer">
+		<c:if test="${userGrade>=3}">
+			<form method="post" action="<%=request.getContextPath()%>/store/deleteBoard" id="storeDeleteForm">
+				<input type="hidden" value="${salSeq}" name="salSeq">
+				<input type="button" class="storeBtn storeDeleteBtn" value="글삭제">
+			</form>
+		</c:if>
+		
 	</div>
 </div>
 </body>

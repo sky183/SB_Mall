@@ -24,19 +24,20 @@
 				<th>전화번호</th><td><input type="text"  name="phone" value="${member.phone}"></td>
 			</tr>
 			<tr>
-				<th>가입일</th><td><input type="text"  name="regDate" value="${member.regDate}"></td>
+				<th>가입일</th><td><input type="text"  name="regDate" readonly value="${member.regDate}"></td>
 			</tr>
 			<tr>
-				<c:if test="${sessionScope.memberInfo.gradeNum < 4 && member.gradeNum >= 3}">
+				<c:if test="${(sessionScope.memberInfo.gradeNum < 4 && member.gradeNum >= 3) || sessionScope.memberInfo.gradeNum < 3}">
 					<c:set var="readonly" value="readonly"></c:set>
 				</c:if>
+				
 				
 				<th>회원등급</th><td><input type="text" name="gradeNum" ${readonly} value="${member.gradeNum}"></td>
 			</tr>
 			<tr>
-				<th>마일리지</th><td><input type="text"  name="point" value="${member.point}"></td>
+				<th>마일리지</th><td><input type="text"  name="point" ${readonly} value="${member.point}"></td>
 			</tr>
 			<tr>
-				<th>총구매액</th><td><input type="text"  name="userAmount" value="${member.userAmount}"></td>
+				<th>총구매액</th><td><input type="text"  name="userAmount" readonly value="${member.userAmount}"></td>
 			</tr>
 

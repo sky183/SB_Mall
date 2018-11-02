@@ -112,6 +112,13 @@
 		<interceptor>
 			<mapping path="/store/**"/>
 			<mapping path="/order/**"/>
+			<mapping path="/adminPage"/>
+			<mapping path="/admin/**"/>
+			<mapping path="/member**"/>
+			<mapping path="/reply**"/>
+			<mapping path="/qna**"/>
+			<mapping path="/order**"/>
+			<mapping path="/myPage"/>
 			<beans:bean
 				class="com.sb.mall.interceptor.AuthCheckInterceptor" />
 		</interceptor>

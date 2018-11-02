@@ -29,6 +29,7 @@ public interface OrderDao {
 	public List<Map<String,Object>> selectOrderAndProduct(int productSeq);
 	public Product selectProduct(int productSeq);
 	public Order selectOrder(int orderSeq);
+	public void updateUserPoint(int totalAmount,int userSeq);
 	public int selectCount();
 	public List<Object> selectList(int firstRow, int endRow);
 

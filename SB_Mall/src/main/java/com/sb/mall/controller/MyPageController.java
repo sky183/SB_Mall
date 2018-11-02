@@ -32,24 +32,31 @@ public class MyPageController {
 		
 		ModelAndView modelAndView = new ModelAndView("myPage");
 		
-		MemberInfo memberInfo = new MemberInfo();
+//		MemberInfo memberInfo = new MemberInfo();
 		
 		
 		/*Session*/
-		 Object object = session.getAttribute("memberInfo");
+/*		 Object object = session.getAttribute("memberInfo");
 		 MemberInfo member = (MemberInfo) object;
-		 String userId = member.getUserId();
+		 String userId = member.getUserId();*/
+		 MemberInfo member = (MemberInfo)session.getAttribute("memberInfo");
 		 int userSeq = member.getUserSeq();
 		 
 		 //주문내역
-		 List<OrderDetail> orderDetail = mypageService2.getOrderDetail(userSeq);
-		 
+		 try {
+			 List<OrderDetail> orderDetail = mypageService2.getOrderDetail(userSeq);
+			 modelAndView.addObject("orderDetail", orderDetail);	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+/*		 
 		 System.out.println("Controller Sql 실행");
 		 if (userId.equals(null)) {
 			 System.out.println("로그인 필요");
 			
-		}else {
-			System.out.println("세션에 저장된 회원아이디"+member.getUserId());
+		}else {*/
+/*			System.out.println("세션에 저장된 회원아이디"+member.getUserId());
 			System.out.println("세션에 저장된 회원번호"+member.getUserSeq());
 			
 			if (!orderDetail.isEmpty()) {
@@ -63,8 +70,8 @@ public class MyPageController {
 				System.out.println("주문내역 없음");
 				memberInfo = mypageService.getMemberInfo(userId);
 				modelAndView.addObject("memberInfo",memberInfo);			
-			}
-		}
+			}*/
+//		}
 		 
 		 
 		return modelAndView;

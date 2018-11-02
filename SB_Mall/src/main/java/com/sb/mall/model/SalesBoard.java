@@ -1,5 +1,7 @@
 package com.sb.mall.model;
 
+import java.text.SimpleDateFormat;
+
 public class SalesBoard {
 	
 	private int SalesSeq;
@@ -40,7 +42,7 @@ public class SalesBoard {
 		this.viewSeq = viewSeq;
 	}
 	public String getWriteDate() {
-		return writeDate;
+		return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(writeDate);
 	}
 	public void setWriteDate(String writeDate) {
 		this.writeDate = writeDate;

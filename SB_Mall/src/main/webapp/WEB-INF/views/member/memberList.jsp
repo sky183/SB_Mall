@@ -64,9 +64,10 @@
 					<!--Table body-->
 				</table>
 				<!--Table-->
+				<br>
 				<div style="text-align: center; cursor: pointer;">
 				<c:if test="${viewData.currentPageNumber < viewData.pageTotalCount}">
-					<p class="page" name="${viewData.currentPageNumber + 1}">${viewData.currentPageNumber}/${viewData.pageTotalCount}<br><i class="fa fa-chevron-down" aria-hidden="true"></i></p>
+					<p class="page" name="${viewData.currentPageNumber + 1}"><i class="fa fa-chevron-down" aria-hidden="true"></i> ${viewData.currentPageNumber}/${viewData.pageTotalCount}<br></p>
 				</c:if>
 				</div>
 			</div>
@@ -136,7 +137,6 @@ $('.memberModify').click(function() {
 				'<th>관리자만 수정 가능합니다.</th>' + 
 				'</tr>');
 	} else if(sessionId != userId && gradeNum >= 3 && sessionGrade < 4){
-		alert("관리자는 본인만 수정 가능합니다.");
 		$('#popup').html(
 				'<tr>' + 
 				'<th>관리자의 수정은 본인만 가능합니다. 단, 그랜드마스터는 제외.</th>' + 

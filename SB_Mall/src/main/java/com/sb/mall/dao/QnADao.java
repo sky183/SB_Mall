@@ -16,6 +16,8 @@ public interface QnADao {
     
     public void update(QnABoard qna) throws Exception;
     
+    public void reply(QnABoard qna) throws Exception;
+    
     
 	
 /*	public int insertQnABoard(QnABoard qnaBoard);

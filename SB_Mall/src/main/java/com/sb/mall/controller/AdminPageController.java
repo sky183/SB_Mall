@@ -29,11 +29,11 @@ public class AdminPageController {
 		String thirdMonth = amountService.getAmount(3);
 		String fourthMonth = amountService.getAmount(4);
 		String fifthMonth = amountService.getAmount(5);
-		String sixthMonth = amountService.getAmount(5);
-		String seventhMonth = amountService.getAmount(5);
-		String eighthMonth = amountService.getAmount(5);
-		String ninethMonth = amountService.getAmount(5);
-		String tenthMonth = amountService.getAmount(5);
+		String sixthMonth = amountService.getAmount(6);
+		String seventhMonth = amountService.getAmount(7);
+		String eighthMonth = amountService.getAmount(8);
+		String ninethMonth = amountService.getAmount(9);
+		String tenthMonth = amountService.getAmount(10);
 		String thisMonthAverage = averageService.getAverage(0);
 		String preMonthAverage = averageService.getAverage(1);
 		

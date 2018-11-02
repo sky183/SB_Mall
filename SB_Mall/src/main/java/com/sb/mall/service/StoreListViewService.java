@@ -24,7 +24,7 @@ public class StoreListViewService {
 	public List<Map<String,Object>> proAndSalList(String tag) throws SQLException{
 		storeDao=sqlSessionTemplate.getMapper(StoreDao.class);
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-			list = storeDao.selectProAndSalList(tag);
+			/*list = storeDao.selectProAndSalList(tag);*/
 		return list;
 	};
 	

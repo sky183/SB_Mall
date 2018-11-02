@@ -75,11 +75,11 @@ table .th-lg, table td {
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
           ['월별', '매출액(단위:만원)'],
-          ['${month-9}월', ${tenthMonth}],
-          ['${month-8}월', ${ninethMonth}],
-          ['${month-7}월', ${eighthMonth}],
-          ['${month-6}월', ${seventhMonth}],
-          ['${month-5}월', ${sixthMonth}],
+          ['${month-10}월', ${tenthMonth}],
+          ['${month-9}월', ${ninethMonth}],
+          ['${month-8}월', ${eighthMonth}],
+          ['${month-7}월', ${seventhMonth}],
+          ['${month-6}월', ${sixthMonth}],
           ['${month-5}월', ${fifthMonth}],
           ['${month-4}월', ${fourthMonth}],
           ["${month-3}월", ${thirdMonth}],
@@ -182,7 +182,7 @@ table .th-lg, table td {
 		<h2>지난달 평균 : <fmt:formatNumber value="${preMonthAverage}" pattern="#,###"/>원</h2> --%>
 		
 		<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
-		<div style="border-radius: 10px; padding: 10px 15px; background-color: #787878; color: #ffc828; display: inline-block; font-size: 22px;">${year}년</div>
+		<div style="border-radius: 10px; padding: 10px 15px; background-color: #787878; color: #ffc828; margin-bottom : 40px; display: inline-block; font-size: 22px;">${year}년</div>
 	
 		
 		
@@ -219,7 +219,7 @@ table .th-lg, table td {
 	<div id="viewList"></div>
 	</div>
 
-<!-- Modal: modalCart -->
+<!-- Modal: 회원수정 -->
 <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -247,6 +247,35 @@ table .th-lg, table td {
     </div>
   </div>
 </div>
+
+<!-- Modal: 주문상세 -->
+<div class="modal fade" id="modalOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 900px !important; margin: 30px auto !important;" role="document">
+    <div class="modal-content"">
+      <!--Header-->
+      <div class="modal-header" style="border: none">
+        <h4 class="modal-title" id="myModalLabel">주문 내역</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+    <div class="modal-body">
+            <table id="popupOrder" class="table table-hover">
+            
+            </table>
+       </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <input type="button" class="btn btn-outline-primary" data-dismiss="modal" value="닫기">
+      </div>
+		
+    </div>
+  </div>
+</div>
+
+
 		</div>
 		<!-- adminWrapper의 끝 -->
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -315,6 +344,8 @@ table .th-lg, table td {
 		
 		/* $(document).ready의 끝 */
 	});
+	
+	
 
 
 </script>
