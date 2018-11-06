@@ -30,7 +30,7 @@ public class StoreWriteController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView storeWrite(HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/storeWrite");
+		modelAndView.setViewName("store/storeWrite");
 		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
 		modelAndView.addObject("userGrade", memberInfo.getGradeNum());
 		return  modelAndView;

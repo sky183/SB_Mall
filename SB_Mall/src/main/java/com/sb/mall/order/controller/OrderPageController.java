@@ -50,7 +50,7 @@ public class OrderPageController {
 	@RequestMapping(value="order/cartOrder" ,method=RequestMethod.POST)
 	public ModelAndView cartOrder(OrderList orderList) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("orderCartOrder");
+		modelAndView.setViewName("order/orderCartOrder");
 		List<Order> paramList = new ArrayList<Order>();
 		for(Order order : orderList.getOrderList() ) {
 			if(order.getUserSeq()!=0) { //받아온 리스트중 0번유저(빈값) 제거

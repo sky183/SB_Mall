@@ -24,7 +24,7 @@ public class OrderOrderController {
 	@RequestMapping(value="order/insOrder/complete",method=RequestMethod.POST)
 	public ModelAndView insOrder(OrderOrderCommand command,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("orderCompletePage");
+		modelAndView.setViewName("order/orderCompletePage");
 		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
 		RedirectView redirectView = new RedirectView();
 		redirectView.setExposeModelAttributes(false); //redirect시 get 파라미터값 보이지 않게해줌

@@ -27,7 +27,7 @@ public class StoreBoardDetailController {
 			HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
 		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
-		modelAndView.setViewName("storeBoardDetail");
+		modelAndView.setViewName("store/storeBoardDetail");
 		try {
 			List<Map<String,Object>> list = boardDetailService.SalDetailView(salSeq);
 			modelAndView.addObject("userGrade",memberInfo.getGradeNum());
