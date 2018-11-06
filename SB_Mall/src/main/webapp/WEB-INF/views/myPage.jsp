@@ -244,7 +244,7 @@ $('.order').click(function() {
 
 $('.memberModify').click(function() {
 		$.ajax({
-		url : '<%=request.getContextPath()%>/memberModify?userId=' +  '${memberInfo.userId}',
+		url : '<%=request.getContextPath()%>/member/memberModify?userId=' +  '${memberInfo.userId}',
 		data : {
 			viewType : $(this).val()
 		},
@@ -261,7 +261,7 @@ $('.memberModify').click(function() {
 
 $('#modifyButton').click(function() {
 	$.ajax({
-		url : '<%= request.getContextPath() %>/memberModify_end',
+		url : '<%= request.getContextPath() %>/member/memberModify_end',
 		type : 'POST',
 		data : memberModify,
 		error : function(error) {
@@ -280,7 +280,7 @@ $('.memberDelete').click(function() {
 	
 	if (del) {
 	$.ajax({
-		url : '<%=request.getContextPath()%>/memberDelete?userId=' +  '${memberInfo.userId}',
+		url : '<%=request.getContextPath()%>/member/memberDelete?userId=' +  '${memberInfo.userId}',
 		error : function(error) {
 			alert("장난치삼?");
 	    },
