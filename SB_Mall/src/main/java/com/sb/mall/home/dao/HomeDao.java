@@ -1,4 +1,4 @@
-package com.sb.mall.dao;
+package com.sb.mall.home.dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -9,5 +9,5 @@ public interface HomeDao {
 	public List<Map<String, Object>> selectDailyDeal() throws SQLException;
 	public List<Map<String, Object>> selectNewProduct() throws SQLException;
 	
-
+	
 }
