@@ -1,4 +1,4 @@
-package com.sb.mall.controller;
+package com.sb.mall.home.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.model.MemberInfo;
-import com.sb.mall.service.JoinService;
+import com.sb.mall.member.model.MemberInfo;
+import com.sb.mall.member.service.MemberJoinService;
 
 @Controller 
 
@@ -25,14 +25,14 @@ import com.sb.mall.service.JoinService;
 public class JoinController {
 	
 	@Autowired
-	private JoinService joinService;
+	private MemberJoinService joinService;
 	
 		
 	@RequestMapping(method = RequestMethod.GET) 
 	public String getJoinForm() {
 		System.out.println("HOME 에서 JOIN 클릭");
 		
-		return "/join/joinForm";
+		return "/join/memberJoinForm";
 	}
 	@RequestMapping(method = RequestMethod.POST)  //get 방식으로  값을 받아와 String num에 저장 modelAndView로  리턴
 	public ModelAndView getResultForm(@ModelAttribute("mInfo") MemberInfo memberInfo, @RequestParam("userPwChck") String userPwChck,

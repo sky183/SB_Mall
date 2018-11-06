@@ -1,4 +1,4 @@
-package com.sb.mall.handler;
+package com.sb.mall.chat.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +14,16 @@ import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-public class ChatEchoHandler extends TextWebSocketHandler {
+public class ChatEchoService extends TextWebSocketHandler {
    
 	HttpSession sessions;
 			
-	private Logger logger = LoggerFactory.getLogger(ChatEchoHandler.class);
+	private Logger logger = LoggerFactory.getLogger(ChatEchoService.class);
 	
 	private List<WebSocketSession> connectedUsers;
 	
 	// 서버에 연결한 사용자들 저장
-	public ChatEchoHandler() {
+	public ChatEchoService() {
 		connectedUsers = new ArrayList<WebSocketSession>();
 	}
 	

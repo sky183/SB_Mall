@@ -1,4 +1,4 @@
-package com.sb.mall.controller;
+package com.sb.mall.member.controller;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.model.MemberInfo;
-import com.sb.mall.service.MemberModifyService;
-import com.sb.mall.service.MemberModifyService_end;
+import com.sb.mall.member.model.MemberInfo;
+import com.sb.mall.member.service.MemberModifyService;
+import com.sb.mall.member.service.MemberModifyService_end;
 
 
 
@@ -25,7 +25,7 @@ public class MemberModifyController {
 	@Autowired
 	private MemberModifyService_end memberModifyService_end;
 		
-	@RequestMapping("/memberModify")
+	@RequestMapping("/member/memberModify")
 	public ModelAndView getMemberModify(@RequestParam("userId") String userId) {
 		
 		System.out.println("MemberModifyController");

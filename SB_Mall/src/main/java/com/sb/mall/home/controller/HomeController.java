@@ -1,4 +1,4 @@
-package com.sb.mall;
+package com.sb.mall.home.controller;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -17,7 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sb.mall.service.HomeService;
+import com.sb.mall.home.service.HomeService;
 
 /**
  * Handles requests for the application home page.

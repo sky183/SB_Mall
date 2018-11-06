@@ -1,4 +1,4 @@
-package com.sb.mall.service;
+package com.sb.mall.member.service;
 
 import java.sql.SQLException;
 
@@ -12,7 +12,7 @@ import com.sb.mall.member.dao.MemberDao;
 import com.sb.mall.member.model.MemberInfo;
 
 @Repository
-public class LoginService {
+public class MemberLoginService {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;

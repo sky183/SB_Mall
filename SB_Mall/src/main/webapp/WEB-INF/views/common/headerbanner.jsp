@@ -35,8 +35,7 @@
 		}
 		/* var time = ${serverTime};
 		alert(time); */
-<<<<<<< HEAD
-=======
+
 		
 	/* 	alert("z"); */
 >>>>>>> branch 'master' of https://github.com/sky183/SB_Mall.git

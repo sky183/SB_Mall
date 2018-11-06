@@ -1,4 +1,4 @@
-package com.sb.mall.model;
+package com.sb.mall.member.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

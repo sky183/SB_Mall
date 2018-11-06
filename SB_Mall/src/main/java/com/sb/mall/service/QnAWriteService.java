@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.dao.QnADao;
-import com.sb.mall.model.MemberInfo;
+import com.sb.mall.member.model.MemberInfo;
 import com.sb.mall.model.QnABoard;
 
 @Service

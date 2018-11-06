@@ -76,19 +76,17 @@
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="mapperLocations"
+<<<<<<< HEAD
 			value="classpath:com/sb/mall/**/mybatis/*.xml" />
+=======
+			value="classpath:com/sb/mall/*/mybatis/*.xml" />
+>>>>>>> branch 'master' of https://github.com/sky183/SB_Mall.git
 	</beans:bean>
 
 	<!-- 채팅 관련 -->
-	<beans:bean class="com.sb.mall.handler.ChatEchoHandler" id="ChatEchoHandler"/>
+	<beans:bean class="com.sb.mall.chat.service.ChatEchoService" id="ChatEchoHandler"/>
 
 	<!-- <beans:bean id="myHandler" class="com.sb.mall.handler.WebSocket" /> -->
-
-	<!-- Service 등록 -->
-	<beans:bean id="joinService"
-		class="com.sb.mall.service.JoinService" />
-
-
 
 	<websocket:handlers>
 		<websocket:mapping path="/echo-ws" handler="ChatEchoHandler" />

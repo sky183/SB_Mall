@@ -1,4 +1,4 @@
-package com.sb.mall.controller;
+package com.sb.mall.member.controller;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sb.mall.service.MemberDeleteService;
+import com.sb.mall.member.service.MemberDeleteService;
 
 @Controller
 public class MemberDeleteController {
@@ -16,7 +16,7 @@ public class MemberDeleteController {
 	@Autowired
 	private MemberDeleteService memberDeleteService;
 	
-	@RequestMapping(value="/memberDelete", produces = "application/text; charset=utf8")
+	@RequestMapping(value="/member/memberDelete", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String getMemberDelete(@RequestParam("userId") String userId, HttpServletResponse httpServletResponse) {
 		

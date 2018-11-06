@@ -4,14 +4,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
-import com.sb.mall.model.MemberInfo;
+import com.sb.mall.member.model.MemberInfo;
 
 public class ChatHandshakeInterceptor extends HttpSessionHandshakeInterceptor {
 
