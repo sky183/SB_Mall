@@ -137,7 +137,7 @@ $(document).ready(function() {
 
 $('.status').click(function() {
 	$.ajax({
-		url : '<%=request.getContextPath()%>/orderDetailStatus/' + $(this).attr('name'),
+		url : '<%=request.getContextPath()%>/order/orderDetailStatus/' + $(this).attr('name'),
 		dataType : "json",
 		error : function(error) {
 	        alert("Error!");
@@ -171,7 +171,7 @@ $('.status').click(function() {
 function order(){
 	$('.order').click(function() {
 		$.ajax({
-			url : '<%=request.getContextPath()%>' + '/orderList/' + $(this).attr('name'),
+			url : '<%=request.getContextPath()%>' + '/order/orderList/' + $(this).attr('name'),
 			error : function(error) {
 		        alert("Error!");
 		    },
@@ -184,7 +184,7 @@ function order(){
 
 $('.page').click(function() {
 	$.ajax({
-		url : '<%=request.getContextPath()%>' + '/orderDetailList?page=' +  $(this).attr('name'),
+		url : '<%=request.getContextPath()%>' + '/order/orderDetailList?page=' +  $(this).attr('name'),
 		data : {
 			viewType : $(this).val()
 		},

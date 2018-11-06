@@ -230,7 +230,7 @@
 
 $('.order').click(function() {
 	$.ajax({
-		url : '<%=request.getContextPath()%>' + '/orderList/' + $(this).attr('name'),
+		url : '<%=request.getContextPath()%>' + '/order/orderList/' + $(this).attr('name'),
 		error : function(error) {
 	        alert("Error!");
 	    },
@@ -252,9 +252,7 @@ $('.memberModify').click(function() {
 	        alert("장난치삼?");
 	    },
 		success : function(data) {
-		/* 	$('#viewList').empty(); */
 			$('#popup').html(data);
-/* 			$('#background').css('display', 'block'); */
 		}
 	});
 });

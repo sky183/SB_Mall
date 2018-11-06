@@ -15,7 +15,7 @@ public class OrderDetailStatusController {
 	@Autowired
 	private OrderDetailStatusService service;
 
-	@RequestMapping("/orderDetailStatus/{orderDetailNum}")
+	@RequestMapping("/order/orderDetailStatus/{orderDetailNum}")
 	@ResponseBody
 	public OrderDetail orderDetail(@PathVariable("orderDetailNum") String orderDetailNum) throws Exception {
 
