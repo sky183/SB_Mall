@@ -31,7 +31,7 @@ public class MemberModifyService {
 		}
 		
 		return memberResult;
-	}
+	}//end of Method(memberModify)
 	
 	public int memberModify_end(MemberInfo updateMember) {
 		
@@ -41,6 +41,8 @@ public class MemberModifyService {
 		
 		updateMemberCnt = memberDao.update(updateMember);
 		
+		System.out.println(updateMember);
+		
 		/*if (userId.equals(memberInfo.getUserId())) {
 			memberResult = memberInfo;
 		}else {
@@ -48,6 +50,6 @@ public class MemberModifyService {
 		}*/
 		
 		return updateMemberCnt;
-	}
+	}//end of Method(memberModify_end)
 
 }
