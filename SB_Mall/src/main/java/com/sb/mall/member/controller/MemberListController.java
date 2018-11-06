@@ -1,4 +1,4 @@
-package com.sb.mall.controller;
+package com.sb.mall.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
