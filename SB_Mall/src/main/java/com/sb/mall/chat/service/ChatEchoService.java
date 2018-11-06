@@ -1,37 +1,29 @@
-package com.sb.mall.handler;
+package com.sb.mall.chat.service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.server.ServerHttpRequest;
-import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.sb.mall.model.MemberInfo;
-
-public class ChatEchoHandler extends TextWebSocketHandler {
+public class ChatEchoService extends TextWebSocketHandler {
    
 	HttpSession sessions;
 			
-	private Logger logger = LoggerFactory.getLogger(ChatEchoHandler.class);
+	private Logger logger = LoggerFactory.getLogger(ChatEchoService.class);
 	
 	private List<WebSocketSession> connectedUsers;
 	
 	// 서버에 연결한 사용자들 저장
-	public ChatEchoHandler() {
+	public ChatEchoService() {
 		connectedUsers = new ArrayList<WebSocketSession>();
 	}
 	

@@ -80,7 +80,7 @@
 	</beans:bean>
 
 	<!-- 채팅 관련 -->
-	<beans:bean class="com.sb.mall.handler.ChatEchoHandler" id="ChatEchoHandler"/>
+	<beans:bean class="com.sb.mall.chat.service.ChatEchoService" id="ChatEchoHandler"/>
 
 	<!-- <beans:bean id="myHandler" class="com.sb.mall.handler.WebSocket" /> -->
 
