@@ -23,7 +23,7 @@ public class OrderDetailListController {
 
 		ModelAndView modelAndView = new ModelAndView("/admin/adminPage");
 
-			modelAndView.setViewName("order/orderDetailList");
+			modelAndView.setViewName("order/option/orderDetailList");
 			
 			PageListView listView = service.getList(pageNumber, COUNT_PER_PAGE, "orderDetailDao");
 

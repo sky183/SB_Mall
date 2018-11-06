@@ -24,7 +24,7 @@ public class OrderListController {
 		
 		List<Order> orders = orderService.getOrderByDetailNum(orderDetailNum);
 		
-		modelAndView.setViewName("order/orderList");
+		modelAndView.setViewName("order/option/orderList");
 		
 		modelAndView.addObject("orders", orders);
 
