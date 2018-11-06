@@ -1,4 +1,4 @@
-package com.sb.mall.controller;
+package com.sb.mall.home.controller;
 
 import java.util.List;
 
@@ -11,18 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.model.Join_memberInfoAndOrder;
-import com.sb.mall.model.MemberInfo;
+import com.sb.mall.member.model.MemberInfo;
+import com.sb.mall.member.service.MemberMypageService;
+import com.sb.mall.member.service.MypageService2;
 import com.sb.mall.model.OrderDetail;
-import com.sb.mall.service.MypageService;
-import com.sb.mall.service.MypageService2;
 
 @Controller
 @SessionAttributes("memberInfo")
 public class MyPageController {
 
 	@Autowired
-	MypageService mypageService;
+	MemberMypageService mypageService;
 
 	@Autowired
 	MypageService2 mypageService2;
@@ -38,7 +37,7 @@ public class MyPageController {
 
 		// 주문내역
 		try {
-			List<OrderDetail> orderDetail = mypageService2.getOrderDetail(userSeq);
+			List<OrderDetail> orderDetail = mypageService.getOrderDetail(userSeq);
 			modelAndView.addObject("orderDetail", orderDetail);
 		} catch (Exception e) {
 		}

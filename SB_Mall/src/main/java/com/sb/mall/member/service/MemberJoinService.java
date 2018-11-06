@@ -1,4 +1,4 @@
-package com.sb.mall.service;
+package com.sb.mall.member.service;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,10 +9,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sb.mall.dao.MemberDao;
-import com.sb.mall.model.MemberInfo;
+import com.sb.mall.member.dao.MemberDao;
+import com.sb.mall.member.model.MemberInfo;
 
-public class JoinService {
+public class MemberJoinService {
 		
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;

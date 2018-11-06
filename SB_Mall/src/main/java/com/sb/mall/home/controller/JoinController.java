@@ -1,4 +1,4 @@
-package com.sb.mall.controller;
+package com.sb.mall.home.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.model.MemberInfo;
-import com.sb.mall.service.JoinService;
+import com.sb.mall.member.model.MemberInfo;
+import com.sb.mall.member.service.MemberJoinService;
 
 @Controller 
 
@@ -25,7 +25,7 @@ import com.sb.mall.service.JoinService;
 public class JoinController {
 	
 	@Autowired
-	private JoinService joinService;
+	private MemberJoinService joinService;
 	
 		
 	@RequestMapping(method = RequestMethod.GET) 

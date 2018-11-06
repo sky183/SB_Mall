@@ -1,4 +1,4 @@
-package com.sb.mall.controller;
+package com.sb.mall.home.controller;
 
 import java.sql.SQLException;
 import java.util.Arrays;

@@ -297,7 +297,7 @@ $('.memberDelete').click(function() {
 
 
 <!-- Header -->
-<jsp:include page="../views/common/header.jsp"/>
+<jsp:include page="../../views/common/header.jsp"/>
 
 </body>
 </html>
