@@ -87,7 +87,7 @@
 	<websocket:handlers>
 		<websocket:mapping path="/echo-ws" handler="ChatEchoHandler" />
 		<websocket:handshake-interceptors>
-			<beans:bean class="com.sb.mall.interceptor.ChatHandshakeInterceptor" />
+			<beans:bean class="com.sb.mall.home.interceptor.ChatHandshakeInterceptor" />
 		</websocket:handshake-interceptors>
 		<!-- HTTPSESSION값을 가져오기 위하여 -->
 		<websocket:sockjs />
@@ -108,7 +108,7 @@
 			<mapping path="/reply**" />
 			<mapping path="/qna/**" />
 			<beans:bean
-				class="com.sb.mall.interceptor.AuthCheckInterceptor" />
+				class="com.sb.mall.home.interceptor.AuthCheckInterceptor" />
 		</interceptor>
 	</interceptors>
 </beans:beans>
