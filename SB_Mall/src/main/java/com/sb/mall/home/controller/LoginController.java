@@ -73,7 +73,7 @@ public class LoginController {
 	
 	@RequestMapping("/error/loginError")
 	public String loginError() {
-		return "/error/loginError";
+		return "error/loginError";
 	}
 
 	@RequestMapping("/member/logout") // 요청한 주소로 들어온다
