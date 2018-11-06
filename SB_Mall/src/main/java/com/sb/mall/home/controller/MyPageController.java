@@ -22,10 +22,10 @@ public class MyPageController {
 	@Autowired
 	MemberMypageService mypageService;
 
-	@RequestMapping("/myPage")
+	@RequestMapping("member/myPage")
 	public ModelAndView myPage(HttpSession session, HttpServletRequest request) {
 
-		ModelAndView modelAndView = new ModelAndView("myPage/memberMyPage");
+		ModelAndView modelAndView = new ModelAndView("/myPage");
 
 		MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
 		int userSeq = memberInfo.getUserSeq();
