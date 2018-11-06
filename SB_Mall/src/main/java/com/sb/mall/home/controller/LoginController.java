@@ -23,7 +23,7 @@ public class LoginController {
 	private MemberLoginService loginService;
 
 	// 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
-	@RequestMapping(value = "member/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
 	// 쿠키 값 저장
 	public ModelAndView getLoginForm(@CookieValue(value = "idcookie", required = false) String rememberId) {
 		// ModelAndView 객체 생성

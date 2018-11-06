@@ -18,7 +18,7 @@ public class MemberListController {
 	
 	static final int COUNT_PER_PAGE = 10;
 
-	@RequestMapping("/memberList")
+	@RequestMapping("/member/memberList")
 	public ModelAndView getMemberList(@RequestParam(value="page", defaultValue="1") int pageNumber)
 			throws Exception {
 		
@@ -35,20 +35,13 @@ public class MemberListController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/memberListAdd")
+	
+	@RequestMapping("/member/memberListAdd")
 	@ResponseBody
 	public PageListView getMemberAdd(@RequestParam(value="page", defaultValue="1") int pageNumber)
 			throws Exception {
 		
-		
-/*		ModelAndView modelAndView = new ModelAndView("/admin/adminPage");*/
-		
-/*		modelAndView.setViewName("member/memberList");*/
-		
 		PageListView listView = service.getList(pageNumber, COUNT_PER_PAGE, "memberDao");
-		
-	/*	
-		modelAndView.addObject("viewData", listView);*/
 		
 		return listView;
 	}
