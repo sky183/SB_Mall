@@ -5,6 +5,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.text.SimpleDateFormat"%>
+<style>
+.order_last_td {
+	width : 220px !important;
+	padding-top: 5px !important; 
+	padding-bottom: 5px !important;
+}
+</style>
 <c:set var="viewData" value="${viewData}"></c:set>
 <c:choose>
 	<c:when test="${viewData.isEmpty()}">
@@ -50,7 +57,7 @@
 
 								<td>${orderDetail.orderTime}</td>
 								<td><fmt:formatNumber value="${orderDetail.totalAmount}" pattern="#,###"/></td>
-								<td style="padding-top: 5px; padding-bottom: 5px; !important">
+								<td class="order_last_td">
 								<button class="status btn btn-blue-grey"
 										name="${orderDetail.orderDetailNum}" data-toggle="modal" style="padding: 2px 5px; width: 80px; ">
 											<c:choose>

@@ -3,14 +3,28 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
-.last_td {
-width : 105px;
-padding : 0; 
+ .member_last_td {
+width : 105px !important;
+padding : 0 !important; 
 padding-top: 5px !important;
 }
 
-.membermodify, memberDelete {
-padding: 2px 5px; margin-top: 0; margin-bottom: 0;
+.memberModify, .memberDelete {
+padding: 2px 5px !important; 
+margin-top: 0 !important; 
+margin-bottom: 0 !important;
+} 
+
+.addPage {
+text-align: center; 
+cursor: pointer; 
+border-bottom: 0.5px solid black; 
+border-top: 0.5px solid black; 
+background-color: gray;
+}
+
+.addPage p  {
+margin-bottom: auto;
 }
 </style>
 <c:set var="viewData" value="${viewData}"></c:set>
@@ -59,7 +73,7 @@ padding: 2px 5px; margin-top: 0; margin-bottom: 0;
 								<td>${member.gradeNum}</td>
 								<td>${member.point}</td>
 								<td>${member.userAmount}</td>
-								<td class="last_td" style="padding : 0; padding-top: 5px !important;">
+								<td class="member_last_td" style="padding : 0; padding-top: 5px !important;">
 									<button type="button" class="memberModify btn btn-blue-grey"
 										name="${member.userId}" grade="${member.gradeNum}"
 										data-toggle="modal" data-target="#modalCart"
@@ -76,7 +90,7 @@ padding: 2px 5px; margin-top: 0; margin-bottom: 0;
 				</table>
 				<!--Table-->
 				<br>
-				<div style="text-align: center; cursor: pointer;">
+				<div class="addPage">
 				<c:if test="${viewData.currentPageNumber < viewData.pageTotalCount}">
 					<p class="page" name="${viewData.currentPageNumber + 1}"><i class="fa fa-chevron-down" aria-hidden="true"></i> ${viewData.currentPageNumber}/${viewData.pageTotalCount}<br></p>
 				</c:if>
@@ -97,7 +111,9 @@ $('.page').click(function() {
 		success : function(viewData) {
 				$.each(viewData.objList, function(key, member) {
 					if (viewData.currentPageNumber < viewData.pageTotalCount) {
-						$('.page').attr('name', viewData.currentPageNumber + 1).html(viewData.currentPageNumber + '/' + viewData.pageTotalCount)
+						$('.page').attr('name', viewData.currentPageNumber + 1).html(
+								'<i class="fa fa-chevron-down" aria-hidden="true"></i>' +
+								viewData.currentPageNumber + '/' + viewData.pageTotalCount)
 					} else {
 						$('.page').remove();
 					}
@@ -114,7 +130,7 @@ $('.page').click(function() {
 						'<td>' + member.gradeNum + '</td>' +
 						'<td>' + member.point + '</td>' +
 						'<td>' + member.userAmount + '</td>' +
-						'<td>' + 
+						'<td class="member_last_td">' + 
 						'<button class="memberModify btn btn-blue-grey" name="' + member.userId + '" grade="' + member.gradeNum + '" data-toggle="modal" data-target="#modalCart">' +
 							'수정' +
 						'</button>' +
