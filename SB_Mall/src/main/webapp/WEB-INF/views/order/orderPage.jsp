@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/store.css">
 </head>
 <body>
-<jsp:include page="../views/common/header.jsp"/>
-<jsp:include page="../views/store/headerBanner.jsp"/>
-<jsp:include page="../views/order/insOrderDetail.jsp"/>
+<jsp:include page="../common/header.jsp"/>
+<jsp:include page="../store/headerBanner.jsp"/>
+<jsp:include page="insOrderDetail.jsp"/>
 </body>
 </html>

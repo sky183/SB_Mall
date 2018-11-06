@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cart</title>
+<title>Insert title here</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/store.css">
 </head>
 <body>
-<jsp:include page="../views/store/headerBanner.jsp"/>
-<jsp:include page="../views/store/boardEditor.jsp"/>
-<jsp:include page="../views/common/header.jsp"/>
+<jsp:include page="../common/header.jsp"/>
+<jsp:include page="headerBanner.jsp"/>
+<jsp:include page="boardDetail.jsp"/>
+<%@ include file="../store/reply.jsp" %>
 </body>
 </html>

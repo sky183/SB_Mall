@@ -1,31 +1,34 @@
-package com.sb.mall.service;
-
-import java.util.List;
+package com.sb.mall.QnA.service;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.QnA.dao.QnADao;
 import com.sb.mall.QnA.model.QnABoard;
+import com.sb.mall.member.model.MemberInfo;
 
 @Service
-public class QnAListViewService {
+public class QnAWriteService {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	private QnADao qnaDao;
 	
-	public List<QnABoard> qnaAndMemList() {
-		qnaDao=sqlSessionTemplate.getMapper(QnADao.class);
-		List<QnABoard> list = null;
+	@Transactional
+	public void qnaWrite(MemberInfo memberInfo, QnABoard qnaBoard) {
+		
+		qnaDao = sqlSessionTemplate.getMapper(QnADao.class);
+		
 		try {
-			list = qnaDao.listAll();
+			qnaBoard.setUserSeq(memberInfo.getUserSeq());
+			qnaDao.create(qnaBoard);
+			System.out.println("qnaDao : " + qnaDao);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return list;
-	};
+	}
 	
 }

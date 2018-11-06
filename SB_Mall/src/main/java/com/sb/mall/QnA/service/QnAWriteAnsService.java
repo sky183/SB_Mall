@@ -1,4 +1,4 @@
-package com.sb.mall.service;
+package com.sb.mall.QnA.service;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,28 +7,27 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.QnA.dao.QnADao;
 import com.sb.mall.QnA.model.QnABoard;
-import com.sb.mall.member.model.MemberInfo;
 
 @Service
-public class QnAWriteService {
-	
+public class QnAWriteAnsService {
+
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	private QnADao qnaDao;
-	
+	private QnABoard qnaboard;
+
 	@Transactional
-	public void qnaWrite(MemberInfo memberInfo, QnABoard qnaBoard) {
+	public void qnaWriteAns(QnABoard qnaBoard) {
 		
 		qnaDao = sqlSessionTemplate.getMapper(QnADao.class);
 		
 		try {
-			qnaBoard.setUserSeq(memberInfo.getUserSeq());
-			qnaDao.create(qnaBoard);
-			System.out.println("qnaDao : " + qnaDao);
+			qnaDao.reply(qnaBoard);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+			
 	}
-	
+
 }

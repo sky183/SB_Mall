@@ -1,4 +1,4 @@
-package com.sb.mall.service;
+package com.sb.mall.QnA.service;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
