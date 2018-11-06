@@ -3,24 +3,24 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.sb.mall.dao.QnADao">
+<mapper namespace="com.sb.mall.QnA.dao.QnADao">
  		
  
 	<!-- 게시판 추가하기 -->
-    <insert id="create" parameterType="com.sb.mall.model.QnABoard"
+    <insert id="create" parameterType="com.sb.mall.QnA.model.QnABoard"
  		useGeneratedKeys="true" keyProperty="qnaSeq">
         insert into QnABoard (qtitle,qtext,userSeq)
  		value (#{qtitle},#{qtext},#{userSeq})
     </insert>
     
     <!-- 게시판 리스트보기 -->
-    <select id="listAll" resultType="com.sb.mall.model.QnABoard">
+    <select id="listAll" resultType="com.sb.mall.QnA.model.QnABoard">
         select * from QnABoard 
         order by qnaSeq DESC
     </select>
     
     <!-- 게시판 상세보기 -->
-    <select id="read" resultType="com.sb.mall.model.QnABoard">
+    <select id="read" resultType="com.sb.mall.QnA.model.QnABoard">
             select * from QnABoard where qnaSeq = #{qnaSeq}
     </select>
  
