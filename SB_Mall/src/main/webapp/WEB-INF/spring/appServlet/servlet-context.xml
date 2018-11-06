@@ -76,7 +76,7 @@
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="mapperLocations"
-			value="classpath:com/sb/mall/mybatis/*.xml" />
+			value="classpath:com/sb/mall/*/mybatis/*.xml" />
 	</beans:bean>
 
 	<!-- 채팅 관련 -->

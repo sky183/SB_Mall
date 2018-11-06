@@ -9,9 +9,19 @@
     		<div class="replyUnit">
     			<h4 class="getReply_H4">${reList.userId}</h4>
     			<h5 class="getReply_H5">${reList.regTime}</h5>
-    			<c:if test="${reList.userSeq==userSession.userSeq}">
-    				<button class="replyDelete" value="${reList.replySeq}">삭제</button>
-    			</c:if>
+    			
+    			<c:choose>
+	    			<c:when test="${reList.userSeq==userSession.userSeq}">
+	    				<button class="replyDelete" value="${reList.replySeq}">삭제</button>
+	    				<button class="replyDelete" value="${reList.replySeq}">수정</button>
+	    			</c:when>
+	    			<c:when test="${userSession.gradeNum==3 && reList.gradeNum<3}">
+	    				<button class="replyDelete" value="${reList.replySeq}">삭제</button>
+	    			</c:when>
+	    			<c:when test="${userSession.gradeNum==4}">
+	    				<button class="replyDelete" value="${reList.replySeq}">삭제</button>
+	    			</c:when>
+    			</c:choose>
     			<div id="replyFrame">
     			<h2 class="getReply_H2">${reList.reply}</h2>
     			</div>
