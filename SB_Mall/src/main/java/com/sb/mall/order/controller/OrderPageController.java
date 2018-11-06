@@ -38,7 +38,7 @@ public class OrderPageController {
 		}
 		modelAndView.addObject("order",order);
 		modelAndView.addObject("product", product);
-		modelAndView.setViewName("orderPage");
+		modelAndView.setViewName("order/orderPage");
 		return modelAndView;
 	}
 	

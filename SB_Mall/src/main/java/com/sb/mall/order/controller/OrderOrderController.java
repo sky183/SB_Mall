@@ -54,7 +54,7 @@ public class OrderOrderController {
 	@RequestMapping(value="order/cartOrder/complete",method=RequestMethod.POST)
 	public ModelAndView cartOrder(OrderOrderCommand command) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("orderCompletePage");
+		modelAndView.setViewName("order/orderCompletePage");
 		try {
 			orderService.insertOrdersAndDetail(command);
 		} catch (SQLException e) {
