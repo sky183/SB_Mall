@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.model.MemberInfo;
+import com.sb.mall.member.model.MemberInfo;
 import com.sb.mall.service.OrderCartService;
 
 @Controller

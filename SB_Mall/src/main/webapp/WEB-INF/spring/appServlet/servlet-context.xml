@@ -84,12 +84,6 @@
 
 	<!-- <beans:bean id="myHandler" class="com.sb.mall.handler.WebSocket" /> -->
 
-	<!-- Service 등록 -->
-	<beans:bean id="joinService"
-		class="com.sb.mall.service.JoinService" />
-
-
-
 	<websocket:handlers>
 		<websocket:mapping path="/echo-ws" handler="ChatEchoHandler" />
 		<websocket:handshake-interceptors>

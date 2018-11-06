@@ -25,7 +25,7 @@ public class MemberModifyController {
 	@Autowired
 	private MemberModifyService_end memberModifyService_end;
 		
-	@RequestMapping("/memberModify")
+	@RequestMapping("/member/memberModify")
 	public ModelAndView getMemberModify(@RequestParam("userId") String userId) {
 		
 		System.out.println("MemberModifyController");

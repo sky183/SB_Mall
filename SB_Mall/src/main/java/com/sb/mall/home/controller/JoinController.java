@@ -32,7 +32,7 @@ public class JoinController {
 	public String getJoinForm() {
 		System.out.println("HOME 에서 JOIN 클릭");
 		
-		return "/join/joinForm";
+		return "/join/memberJoinForm";
 	}
 	@RequestMapping(method = RequestMethod.POST)  //get 방식으로  값을 받아와 String num에 저장 modelAndView로  리턴
 	public ModelAndView getResultForm(@ModelAttribute("mInfo") MemberInfo memberInfo, @RequestParam("userPwChck") String userPwChck,

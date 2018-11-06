@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.member.dao.MemberDao;
 import com.sb.mall.member.model.MemberInfo;
 
+@Repository
 public class MemberJoinService {
 		
 	@Autowired

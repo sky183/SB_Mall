@@ -16,7 +16,7 @@ public class MemberDeleteController {
 	@Autowired
 	private MemberDeleteService memberDeleteService;
 	
-	@RequestMapping(value="/memberDelete", produces = "application/text; charset=utf8")
+	@RequestMapping(value="/member/memberDelete", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String getMemberDelete(@RequestParam("userId") String userId, HttpServletResponse httpServletResponse) {
 		

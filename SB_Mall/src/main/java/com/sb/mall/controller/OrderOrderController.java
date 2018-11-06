@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.sb.mall.model.MemberInfo;
+import com.sb.mall.member.model.MemberInfo;
 import com.sb.mall.model.OrderOrderCommand;
 import com.sb.mall.service.OrderService;
 
