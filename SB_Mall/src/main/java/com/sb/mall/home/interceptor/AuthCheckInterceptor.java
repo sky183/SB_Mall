@@ -1,4 +1,4 @@
-package com.sb.mall.interceptor;
+package com.sb.mall.home.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package com.sb.mall.interceptor;
+package com.sb.mall.home.interceptor;
 
 import java.util.Map;
 
