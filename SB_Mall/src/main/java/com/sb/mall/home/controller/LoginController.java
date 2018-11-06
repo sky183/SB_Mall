@@ -23,7 +23,7 @@ public class LoginController {
 	private MemberLoginService loginService;
 
 	// 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
-	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/login", method = RequestMethod.GET) 		//url 주소
 	// 쿠키 값 저장
 	public ModelAndView getLoginForm(@CookieValue(value = "idcookie", required = false) String rememberId) {
 		// ModelAndView 객체 생성
@@ -60,7 +60,7 @@ public class LoginController {
 			if (loginService.login(userId, userPw, session)) {
 				modelAndView.setViewName("redirect:/");
 			} else {
-				modelAndView.setViewName("login/loginForm");
+				modelAndView.setViewName("loginForm");		//경로
 				modelAndView.addObject("error", "아이디 또는 비밀번호가 틀렸습니다.");
 			}
 
