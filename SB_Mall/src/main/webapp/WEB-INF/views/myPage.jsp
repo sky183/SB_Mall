@@ -259,9 +259,9 @@ $('.memberModify').click(function() {
 
 $('#modifyButton').click(function() {
 	$.ajax({
-		url : '<%= request.getContextPath() %>/member/memberModify_end',
+		url : '<%= request.getContextPath() %>/member/memberModify',
 		type : 'POST',
-		data : memberModify,
+		data : $('#memberModify').serialize(),
 		error : function(error) {
 			alert("장난치삼?");
 	    },

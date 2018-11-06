@@ -34,6 +34,8 @@ public class MemberModifyController {
 		
 		System.out.println("회원ID :"+userId);
 		System.out.println(member.toString());
+		
+		//View에 로그인한 現 회원정보 담아서 리턴
 		modelAndView.addObject("member",member);
 		
 		return modelAndView;
