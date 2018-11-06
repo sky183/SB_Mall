@@ -22,17 +22,17 @@
 				</a>
 				<c:choose>
 					<c:when test='${memberInfo.gradeNum >= 3}'>
-						<a class="headerNaviText" href="<%=request.getContextPath()%>/adminPage">admin</a>
+						<a class="headerNaviText" href="<%=request.getContextPath()%>/admin/adminPage">admin</a>
 					</c:when>
 				</c:choose>
 				
 				<c:choose>
 					<c:when test='${memberInfo eq null}'>
-						<a class="headerNaviText" href="<%=request.getContextPath()%>/Login">login</a>
-						<a class="headerNaviText" href="<%=request.getContextPath()%>/join">Join</a> 
+						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/Login">login</a>
+						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/join">Join</a> 
 					</c:when>
 					<c:otherwise>
-						<a class="headerNaviText" href="<%=request.getContextPath()%>/myPage">myPage</a>
+						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/myPage">myPage</a>
 						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/logout">logout</a>
 					</c:otherwise>
 				</c:choose>
