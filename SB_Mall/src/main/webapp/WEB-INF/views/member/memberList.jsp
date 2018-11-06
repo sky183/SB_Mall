@@ -2,6 +2,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<style>
+.last_td {
+width : 105px;
+padding : 0; 
+padding-top: 5px !important;
+}
+
+.membermodify, memberDelete {
+padding: 2px 5px; margin-top: 0; margin-bottom: 0;
+}
+</style>
 <c:set var="viewData" value="${viewData}"></c:set>
 <c:choose>
 	<c:when test="${viewData.isEmpty()}">
@@ -48,11 +59,11 @@
 								<td>${member.gradeNum}</td>
 								<td>${member.point}</td>
 								<td>${member.userAmount}</td>
-								<td style="padding-top: 5px; padding-bottom: 5px; !important">
+								<td class="last_td" style="padding : 0; padding-top: 5px !important;">
 									<button type="button" class="memberModify btn btn-blue-grey"
 										name="${member.userId}" grade="${member.gradeNum}"
 										data-toggle="modal" data-target="#modalCart"
-										style="padding: 2px 5px; margin-top: 0; margin-bottom: 5px;">수정</button>
+										style="padding: 2px 5px; margin-top: 0; margin-bottom: 0;">수정</button>
 									<button class="memberDelete btn btn-blue-grey"
 										name="${member.userId}" grade="${member.gradeNum}"
 										style="padding: 2px 5px; margin-top: 0; margin-bottom: 0;">
@@ -78,7 +89,7 @@
 <script>
 $('.page').click(function() {
 	$.ajax({
-		url : '<%=request.getContextPath()%>' + '/memberListAdd?page=' +  $(this).attr('name'),
+		url : '<%=request.getContextPath()%>' + '/member/memberListAdd?page=' +  $(this).attr('name'),
 		dataType : "json",
 		error : function(error) {
 	        alert("Error!");
@@ -103,11 +114,11 @@ $('.page').click(function() {
 						'<td>' + member.gradeNum + '</td>' +
 						'<td>' + member.point + '</td>' +
 						'<td>' + member.userAmount + '</td>' +
-						'<td style="padding-top: 5px; padding-bottom: 5px; !important">' + 
-						'<button class="memberModify btn btn-blue-grey" name="' + member.userId + '" grade="' + member.gradeNum + '" data-toggle="modal" data-target="#modalCart"  style="padding: 2px 5px; margin-top: 0; margin-bottom: 5px;">' +
+						'<td>' + 
+						'<button class="memberModify btn btn-blue-grey" name="' + member.userId + '" grade="' + member.gradeNum + '" data-toggle="modal" data-target="#modalCart">' +
 							'수정' +
 						'</button>' +
-						'<button class="memberDelete btn btn-blue-grey" name="' + member.userId + '" grade="' + member.gradeNum + '"  style="padding: 2px 5px;">' +
+						'<button class="memberDelete btn btn-blue-grey" name="' + member.userId + '" grade="' + member.gradeNum + '">' +
 							'탈퇴' +
 						'</button>' +
 						'</td>' +
@@ -143,7 +154,7 @@ $('.memberModify').click(function() {
 				'</tr>');
 	} else {
 		$.ajax({
-		url : '<%=request.getContextPath()%>/memberModify?userId=' +  $(this).attr('name'),
+		url : '<%=request.getContextPath()%>/member/memberModify?userId=' +  $(this).attr('name'),
 		data : {
 			viewType : $(this).val()
 		},
@@ -173,14 +184,14 @@ $('.memberDelete').click(function() {
 		alert("관리자의 탈퇴는 본인만 가능합니다. 단, 그랜드마스터는 제외.");
 	} else {
 	$.ajax({
-		url : '<%=request.getContextPath()%>/memberDelete?userId=' +  $(this).attr('name'),
+		url : '<%=request.getContextPath()%>/member/memberDelete?userId=' +  $(this).attr('name'),
 		error : function(error) {
 			alert("장난치삼?");
 	    },
 		success : function(result) {
 			alert(result);
 			$('#viewList').empty();
-			$('#viewList').load('<%=request.getContextPath()%>' + '/memberList');  
+			$('#viewList').load('<%=request.getContextPath()%>' + '/member/memberList');  
 		}
 	});
 	}
