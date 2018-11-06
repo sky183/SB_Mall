@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.model.Join_memberInfoAndOrder;
 import com.sb.mall.model.MemberInfo;
-import com.sb.mall.model.OrderDetail;
+import com.sb.mall.order.model.OrderDetail;
 import com.sb.mall.service.MypageService;
 import com.sb.mall.service.MypageService2;
 

@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.dao.MemberDao;
-import com.sb.mall.dao.OrderDao;
-import com.sb.mall.dao.OrderDetailDao;
-import com.sb.mall.dao.StoreDao;
 import com.sb.mall.model.PageListView;
-import com.sb.mall.model.StoreListView;
+import com.sb.mall.order.dao.OrderDao;
+import com.sb.mall.order.dao.OrderDetailDao;
+import com.sb.mall.store.dao.StoreDao;
+import com.sb.mall.store.model.StoreListView;
 
 @Repository
 public class GetPagingService {

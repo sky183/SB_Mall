@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sb.mall.dao.MemberDao;
-import com.sb.mall.dao.OrderDao;
-import com.sb.mall.dao.OrderDetailDao;
 import com.sb.mall.model.MemberInfo;
-import com.sb.mall.model.OrderDetail;
+import com.sb.mall.order.dao.OrderDao;
+import com.sb.mall.order.dao.OrderDetailDao;
+import com.sb.mall.order.model.OrderDetail;
 
 @Repository
 public class MypageService2 {
