@@ -283,11 +283,11 @@ table .th-lg, table td {
 
 	$(document).ready(function() {
 		/* 기본 뷰타입으로 불러온다. */
-		$('#viewList').load('<%=request.getContextPath()%>' + '/orderDetailList');  
+		$('#viewList').load('<%=request.getContextPath()%>' + '/order/orderDetailList');  
 		
 		$('#memberList').click(function() {
 				$.ajax({
-					url : '<%=request.getContextPath()%>' + '/memberList',
+					url : '<%=request.getContextPath()%>' + '/member/memberList',
 					data : {
 						viewType : $(this).val()
 					},
@@ -303,7 +303,7 @@ table .th-lg, table td {
 		
 		$('#orderList').click(function() {
 				$.ajax({
-					url : '<%=request.getContextPath()%>' + '/orderDetailList',
+					url : '<%=request.getContextPath()%>' + '/order/orderDetailList',
 					data : {
 						viewType : $(this).val()
 					},
@@ -328,7 +328,7 @@ table .th-lg, table td {
 				alert("회원등급은 4 까지만 존재합니다.");
 			} else {
 			$.ajax({
-				url : '<%= request.getContextPath() %>/memberModify_end',
+				url : '<%= request.getContextPath() %>/member/memberModify',
 				type : 'POST',
 				data : memberModify,
 				error : function(error) {
@@ -342,7 +342,6 @@ table .th-lg, table td {
 			}
 		});
 		
-		/* $(document).ready의 끝 */
 	});
 	
 	

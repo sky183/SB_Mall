@@ -12,20 +12,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.member.model.MemberInfo;
 import com.sb.mall.member.service.MemberModifyService;
-import com.sb.mall.member.service.MemberModifyService_end;
 
 
 
 @Controller
+@RequestMapping("/member/memberModify")
 public class MemberModifyController {
 
 	@Autowired
 	private MemberModifyService memberModifyService;
 	
-	@Autowired
-	private MemberModifyService_end memberModifyService_end;
-		
-	@RequestMapping("/member/memberModify")
+	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView getMemberModify(@RequestParam("userId") String userId) {
 		
 		System.out.println("MemberModifyController");
@@ -42,7 +39,7 @@ public class MemberModifyController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/memberModify_end", method=RequestMethod.POST, produces = "application/text; charset=utf8")
+	@RequestMapping(method=RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String getMemberModify_end(MemberInfo memberInfo, HttpServletResponse httpServletResponse) {
 		System.out.println("<**수정시작**>");
@@ -51,18 +48,13 @@ public class MemberModifyController {
 		
 		String result = "";
 		try {
-			memberModifyService_end.memberModify_end(memberInfo);
+			memberModifyService.memberModify_end(memberInfo);
 
 			System.out.println("<**수정완료**>");
 			result = "수정완료";  
 		} catch (Exception e) {
 			result = "수정실패";
-			
-			// TODO: handle exception
 		}
-
-		/*modelAndView.addObject(memberInfo);*/
-		
 		return result;
 	}
 	

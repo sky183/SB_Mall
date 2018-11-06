@@ -17,7 +17,7 @@ public class OrderListController {
 	@Autowired
 	private OrderService orderService;
 	
-	@RequestMapping("/orderList/{orderDetailNum}")
+	@RequestMapping("/order/orderList/{orderDetailNum}")
 	public ModelAndView orderDetail(@PathVariable("orderDetailNum") String orderDetailNum) throws Exception {
 		
 		ModelAndView modelAndView = new ModelAndView("/admin/adminPage");

@@ -11,7 +11,7 @@ import com.sb.mall.order.service.OrderDetailAverageService;
 
 
 @Controller
-@RequestMapping("/adminPage")
+@RequestMapping("/admin/adminPage")
 public class AdminPageController {
 	
 	@Autowired
@@ -22,7 +22,7 @@ public class AdminPageController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView adminPage() {
 		
-		ModelAndView modelAndView = new ModelAndView("/admin/adminPage");
+		ModelAndView modelAndView = new ModelAndView("/adminPage");
 		
 		String thisMonth = amountService.getAmount(0);
 		String preMonth = amountService.getAmount(1);

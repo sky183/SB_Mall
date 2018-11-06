@@ -32,5 +32,22 @@ public class MemberModifyService {
 		
 		return memberResult;
 	}
+	
+	public int memberModify_end(MemberInfo updateMember) {
+		
+		int updateMemberCnt;
+		
+		memberDao = sessionTemplate.getMapper(MemberDao.class);
+		
+		updateMemberCnt = memberDao.update(updateMember);
+		
+		/*if (userId.equals(memberInfo.getUserId())) {
+			memberResult = memberInfo;
+		}else {
+			System.out.println("조회 가능한 member가 없음");
+		}*/
+		
+		return updateMemberCnt;
+	}
 
 }

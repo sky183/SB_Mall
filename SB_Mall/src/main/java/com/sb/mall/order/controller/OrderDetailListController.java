@@ -17,13 +17,13 @@ public class OrderDetailListController {
 	
 	static final int COUNT_PER_PAGE = 10;
 
-	@RequestMapping("/orderDetailList")
+	@RequestMapping("/order/orderDetailList")
 	public ModelAndView getDetailList(@RequestParam(value="page", defaultValue="1") int pageNumber)
 			throws Exception {
 
 		ModelAndView modelAndView = new ModelAndView("/admin/adminPage");
 
-			modelAndView.setViewName("orderDetail/orderDetailList");
+			modelAndView.setViewName("order/orderDetailList");
 			
 			PageListView listView = service.getList(pageNumber, COUNT_PER_PAGE, "orderDetailDao");
 
