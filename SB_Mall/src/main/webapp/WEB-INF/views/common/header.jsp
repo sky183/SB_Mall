@@ -28,7 +28,7 @@
 				
 				<c:choose>
 					<c:when test='${memberInfo eq null}'>
-						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/Login">login</a>
+						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/login">login</a>
 						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/join">Join</a> 
 					</c:when>
 					<c:otherwise>

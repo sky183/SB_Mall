@@ -29,7 +29,7 @@ public class LoginController {
 		// ModelAndView 객체 생성
 		ModelAndView modelAndView = new ModelAndView();
 		// loginForm으로 보내줌
-		modelAndView.setViewName("/login/loginForm");
+		modelAndView.setViewName("loginForm");
 		modelAndView.addObject("idcookie", rememberId);
 
 		return modelAndView;

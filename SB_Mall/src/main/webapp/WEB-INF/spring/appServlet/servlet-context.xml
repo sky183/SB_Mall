@@ -107,6 +107,9 @@
 			<mapping path="/member/**" />
 			<mapping path="/reply**" />
 			<mapping path="/qna/**" />
+			<exclude-mapping path="/member/login" />
+
+
 			<beans:bean
 				class="com.sb.mall.home.interceptor.AuthCheckInterceptor" />
 		</interceptor>
