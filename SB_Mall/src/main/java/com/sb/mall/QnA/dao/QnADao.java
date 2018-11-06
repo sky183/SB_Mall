@@ -1,8 +1,8 @@
-package com.sb.mall.dao;
+package com.sb.mall.QnA.dao;
 
 import java.util.List;
 
-import com.sb.mall.model.QnABoard;
+import com.sb.mall.QnA.model.QnABoard;
 
 public interface QnADao {
 

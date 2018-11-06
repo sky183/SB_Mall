@@ -13,8 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.member.model.MemberInfo;
 import com.sb.mall.member.service.MemberMypageService;
-import com.sb.mall.member.service.MypageService2;
-import com.sb.mall.model.OrderDetail;
+import com.sb.mall.order.model.OrderDetail;
 
 @Controller
 @SessionAttributes("memberInfo")
@@ -22,9 +21,6 @@ public class MyPageController {
 
 	@Autowired
 	MemberMypageService mypageService;
-
-	@Autowired
-	MypageService2 mypageService2;
 
 	@RequestMapping("/myPage")
 	public ModelAndView myPage(HttpSession session, HttpServletRequest request) {

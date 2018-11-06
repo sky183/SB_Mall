@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.service.OrderDetailAmountService;
-import com.sb.mall.service.OrderDetailAverageService;
+import com.sb.mall.order.service.OrderDetailAmountService;
+import com.sb.mall.order.service.OrderDetailAverageService;
+
 
 @Controller
 @RequestMapping("/adminPage")

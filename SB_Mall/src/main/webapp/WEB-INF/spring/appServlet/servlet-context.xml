@@ -76,11 +76,7 @@
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="mapperLocations"
-<<<<<<< HEAD
 			value="classpath:com/sb/mall/**/mybatis/*.xml" />
-=======
-			value="classpath:com/sb/mall/*/mybatis/*.xml" />
->>>>>>> branch 'master' of https://github.com/sky183/SB_Mall.git
 	</beans:bean>
 
 	<!-- 채팅 관련 -->

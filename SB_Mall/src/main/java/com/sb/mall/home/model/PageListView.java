@@ -1,4 +1,4 @@
-package com.sb.mall.model;
+package com.sb.mall.home.model;
 
 import java.util.List;
 

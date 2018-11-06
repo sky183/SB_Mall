@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.service.GetPagingService;
+import com.sb.mall.member.service.MemberPagingService;
 import com.sb.mall.store.model.StoreListView;
 import com.sb.mall.store.service.StoreListViewService;
 
@@ -20,7 +20,7 @@ public class StoreListViewController {
 	StoreListViewService storeListViewService;
 	
 	@Autowired
-	GetPagingService getPagingService;
+	MemberPagingService getPagingService;
 	
 	
 	@RequestMapping("store/boardListView")

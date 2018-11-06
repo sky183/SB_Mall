@@ -1,4 +1,4 @@
-package com.sb.mall.service;
+package com.sb.mall.member.service;
 
 import java.sql.SQLException;
 import java.util.Collections;
@@ -10,22 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-<<<<<<< HEAD
-import com.sb.mall.dao.MemberDao;
-=======
-import com.sb.mall.dao.OrderDao;
-import com.sb.mall.dao.OrderDetailDao;
-import com.sb.mall.dao.StoreDao;
+import com.sb.mall.home.model.PageListView;
 import com.sb.mall.member.dao.MemberDao;
->>>>>>> branch 'master' of https://github.com/sky183/SB_Mall.git
-import com.sb.mall.model.PageListView;
 import com.sb.mall.order.dao.OrderDao;
 import com.sb.mall.order.dao.OrderDetailDao;
 import com.sb.mall.store.dao.StoreDao;
 import com.sb.mall.store.model.StoreListView;
 
 @Repository
-public class GetPagingService {
+public class MemberPagingService {
 
 	@Autowired
 	SqlSessionTemplate sessionTemplate;

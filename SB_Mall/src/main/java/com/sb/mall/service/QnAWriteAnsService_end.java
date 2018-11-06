@@ -4,8 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sb.mall.dao.QnADao;
-import com.sb.mall.model.QnABoard;
+import com.sb.mall.QnA.dao.QnADao;
+import com.sb.mall.QnA.model.QnABoard;
 
 @Repository
 public class QnAWriteAnsService_end {

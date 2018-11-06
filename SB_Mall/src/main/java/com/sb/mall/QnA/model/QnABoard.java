@@ -1,4 +1,4 @@
-package com.sb.mall.model;
+package com.sb.mall.QnA.model;
 
 import java.util.Date;
 

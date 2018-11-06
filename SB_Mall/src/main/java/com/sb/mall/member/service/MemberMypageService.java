@@ -6,10 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sb.mall.dao.OrderDetailDao;
 import com.sb.mall.member.dao.MemberDao;
 import com.sb.mall.member.model.MemberInfo;
-import com.sb.mall.model.OrderDetail;
+import com.sb.mall.order.dao.OrderDetailDao;
+import com.sb.mall.order.model.OrderDetail;
 
 @Repository
 public class MemberMypageService {

@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.model.PageListView;
-import com.sb.mall.service.GetPagingService;
+import com.sb.mall.home.model.PageListView;
+import com.sb.mall.member.service.MemberPagingService;
 
 @Controller
 public class MemberListController {
 	
 	@Autowired
-	private GetPagingService service;
+	private MemberPagingService service;
 	
 	static final int COUNT_PER_PAGE = 10;
 
