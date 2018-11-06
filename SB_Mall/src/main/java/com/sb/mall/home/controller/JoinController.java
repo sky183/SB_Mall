@@ -20,7 +20,7 @@ import com.sb.mall.member.service.MemberJoinService;
 @Controller 
 
 //joinSession추가
-@RequestMapping("/join") // 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
+@RequestMapping("member/join") // 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
 @SessionAttributes("memberInfo")
 public class JoinController {
 	
@@ -32,8 +32,9 @@ public class JoinController {
 	public String getJoinForm() {
 		System.out.println("HOME 에서 JOIN 클릭");
 		
-		return "/join/memberJoinForm";
+		return "/joinForm";
 	}
+	
 	@RequestMapping(method = RequestMethod.POST)  //get 방식으로  값을 받아와 String num에 저장 modelAndView로  리턴
 	public ModelAndView getResultForm(@ModelAttribute("mInfo") MemberInfo memberInfo, @RequestParam("userPwChck") String userPwChck,
 			HttpServletRequest request) {
@@ -42,7 +43,7 @@ public class JoinController {
 		modelAndView.setViewName("/home");
 		
 		if (!memberInfo.getUserPw().equals(userPwChck)) {
-			modelAndView.setViewName("join/joinFail");
+			modelAndView.setViewName("error/joinError");
 			modelAndView.addObject("error", "비밀번호가 다릅니다.");
 			return modelAndView;
 		}
@@ -61,7 +62,7 @@ public class JoinController {
 				System.out.println("가입한 회원 ID:" + memberInfo.getUserId());
 				//1.1 회원가입 실패시 : resultCnt == 0 
 				if(resultCnt==0) {
-					modelAndView.setViewName("join/joinFail");
+					modelAndView.setViewName("error/memberjoinError");
 				}else {
 					System.out.println("RequestMethod.POST방식 가입완료");
 				}
