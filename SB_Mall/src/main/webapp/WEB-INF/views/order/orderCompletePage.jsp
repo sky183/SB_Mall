@@ -10,7 +10,7 @@
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
-<jsp:include page="../store/headerBanner.jsp"/>
-<jsp:include page="orderComplete.jsp"/>
+<jsp:include page="../store/include/headerBanner.jsp"/>
+<jsp:include page="include/orderComplete.jsp"/>
 </body>
 </html>

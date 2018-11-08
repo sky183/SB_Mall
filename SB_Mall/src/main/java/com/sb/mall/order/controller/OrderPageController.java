@@ -38,7 +38,7 @@ public class OrderPageController {
 		}
 		modelAndView.addObject("order",order);
 		modelAndView.addObject("product", product);
-		modelAndView.setViewName("order/orderPage");
+		modelAndView.setViewName("order/orderInsOrderPage");
 		return modelAndView;
 	}
 	
@@ -50,7 +50,7 @@ public class OrderPageController {
 	@RequestMapping(value="order/cartOrder" ,method=RequestMethod.POST)
 	public ModelAndView cartOrder(OrderList orderList) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("order/orderCartOrder");
+		modelAndView.setViewName("order/orderCartOrderPage");
 		List<Order> paramList = new ArrayList<Order>();
 		for(Order order : orderList.getOrderList() ) {
 			if(order.getUserSeq()!=0) { //받아온 리스트중 0번유저(빈값) 제거

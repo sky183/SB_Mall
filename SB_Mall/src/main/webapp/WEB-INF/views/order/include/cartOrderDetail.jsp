@@ -55,15 +55,15 @@
 						</ul>
 					</td>
 					<td>
-					<fmt:formatNumber value="${order.price}" pattern="###,###,###,###,###"/>
+					<fmt:formatNumber value="${order.price}" pattern="#,###"/>
 					</td>
 					<td>${order.option}</td>
 					<td>
-					<fmt:formatNumber value="${order.quantity}" pattern="###,###,###,###,###"/>
+					<fmt:formatNumber value="${order.quantity}" pattern="#,###"/>
 					</td>
 					<td>
 					<fmt:formatNumber value="${order.price*order.quantity}" 
-					pattern="###,###,###,###,###"/>
+					pattern="#,###"/>
 					</td>
 				</tr>
 				</c:forEach>
@@ -84,7 +84,7 @@
 		</div>
 		<div class="totalAmount">
 			<p>결제금액 : <fmt:formatNumber value="${totalAmount}" 
-			pattern="###,###,###,###,###"/></p>
+			pattern="#,###"/></p>
 
 		</div>
 		
