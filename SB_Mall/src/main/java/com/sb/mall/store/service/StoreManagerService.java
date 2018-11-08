@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sb.mall.store.dao.StoreDao;
 
 @Service
-public class StoreDeleteService {
+public class StoreManagerService {
 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
@@ -20,7 +20,7 @@ public class StoreDeleteService {
 	@Transactional
 	public void deleteStore(int salSeq) throws SQLException{
 		storeDao=sqlSessionTemplate.getMapper(StoreDao.class);
-		storeDao.deleteProduct(salSeq);
+		storeDao.deleteSalesBoard(salSeq);
 	}
 	
 }

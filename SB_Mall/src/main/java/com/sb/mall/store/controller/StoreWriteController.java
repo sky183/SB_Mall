@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sb.mall.member.model.MemberInfo;
 import com.sb.mall.store.model.StoreWriteCommend;
 import com.sb.mall.store.service.ImgUploadService;
-import com.sb.mall.store.service.StoreWriteService;
+import com.sb.mall.store.service.StoreAdminService;
 
 @Controller
 @RequestMapping("/store/write")
@@ -25,7 +25,7 @@ public class StoreWriteController {
 	@Autowired
 	ImgUploadService imgUploadService;
 	@Autowired
-	StoreWriteService storeWriteService;
+	StoreAdminService storeAdminService;
 
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView storeWrite(HttpSession session) {
@@ -53,7 +53,7 @@ public class StoreWriteController {
 			//product객체에 웹경로 저장. 
 			storeWriteCommend.getProduct().setPhoto(filePath);
 			//제품판매 게시글 등록
-			storeWriteService.productAndBoardWrite(
+			storeAdminService.productAndBoardWrite(
 					storeWriteCommend.getProduct(), storeWriteCommend.getSalesBoard());
 		} catch (IOException e) {
 			System.out.println("파일등록실패");

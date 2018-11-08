@@ -12,7 +12,7 @@ import com.sb.mall.store.model.Product;
 import com.sb.mall.store.model.SalesBoard;
 
 @Service
-public class StoreWriteService {
+public class StoreAdminService {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
@@ -26,5 +26,12 @@ public class StoreWriteService {
 			salesBoard.setProductSeq(product.getProductSeq()); 
 			storeDao.insertSalesBoard(salesBoard);
 	}
+	
+	@Transactional
+	public void deleteStore(int salSeq) throws SQLException{
+		storeDao=sqlSessionTemplate.getMapper(StoreDao.class);
+		storeDao.deleteSalesBoard(salSeq);
+	}
+	
 	
 }

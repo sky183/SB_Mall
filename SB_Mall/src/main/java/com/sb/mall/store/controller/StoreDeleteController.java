@@ -7,18 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sb.mall.store.service.StoreDeleteService;
+import com.sb.mall.store.service.StoreAdminService;
 
 @Controller
 public class StoreDeleteController {
 	
 	@Autowired
-	StoreDeleteService storeDeleteService;
+	StoreAdminService storeAdminService;
 	
 	@RequestMapping("store/deleteBoard")
 	public String deleteStore(@RequestParam(value="salSeq")int salSeq) {
 		try {
-			storeDeleteService.deleteStore(salSeq);
+			storeAdminService.deleteStore(salSeq);
 		} catch (SQLException e) {
 			System.out.println("게시글 삭제에 실패하였습니다.");
 			e.printStackTrace();

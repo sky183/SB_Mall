@@ -18,6 +18,14 @@
 			    return;
 			}
 		});
+		
+		$('.storeModifyBtn').click(function () {
+			if (confirm("게시글을 수정하시겠습니까??") == true){
+				$('#storeModifyForm').submit();
+			}else{//취소
+			    return;
+			}
+		});
 	});
 	
 	function imgError(e) {
@@ -117,9 +125,13 @@
 	<br>
 	<div id="boardReplyContainer">
 		<c:if test="${userGrade>=3}">
+			<form method="get" action="<%=request.getContextPath()%>/store/ModifyBoard" id="storeModifyForm">
+				<input type="hidden" value="${salSeq}" name="salSeq">
+				<input type="button" class="storeBtn storeAdminBtn storeModifyBtn" value="글수정">
+			</form>
 			<form method="post" action="<%=request.getContextPath()%>/store/deleteBoard" id="storeDeleteForm">
 				<input type="hidden" value="${salSeq}" name="salSeq">
-				<input type="button" class="storeBtn storeDeleteBtn" value="글삭제">
+				<input type="button" class="storeBtn storeAdminBtn storeDeleteBtn" value="글삭제">
 			</form>
 		</c:if>
 		
