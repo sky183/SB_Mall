@@ -22,7 +22,7 @@ public class AdminPageController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView adminPage() {
 		
-		ModelAndView modelAndView = new ModelAndView("/adminPage");
+		ModelAndView modelAndView = new ModelAndView("/view/adminPage");
 		
 		String thisMonth = amountService.getAmount(0);
 		String preMonth = amountService.getAmount(1);
