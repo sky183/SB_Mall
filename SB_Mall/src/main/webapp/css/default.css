@@ -10,7 +10,9 @@ body{
 	margin:0px;
 	line-height: 1 !important;
 }
-
+button{
+	line-height: inherit !important;
+}
 a {
 	text-decoration: none !important;
 }
@@ -43,6 +45,7 @@ a {
 
 #headerLogo{
 	width:35px;
+	padding:4px 0;
 }
 .fontOpenSans{
 	font-family: 'Open Sans', sans-serif;

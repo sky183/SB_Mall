@@ -173,7 +173,7 @@
 <div class="modal fade" id="modalOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" style="max-width: 900px !important; margin: 30px auto !important;" role="document">
-    <div class="modal-content"">
+    <div class="modal-content">
       <!--Header-->
       <div class="modal-header" style="border: none">
         <h4 class="modal-title" id="myModalLabel">주문 내역</h4>
@@ -295,7 +295,7 @@ $('.memberDelete').click(function() {
 
 
 <!-- Header -->
-<jsp:include page="../views/common/header.jsp"/>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 </body>
 </html>
