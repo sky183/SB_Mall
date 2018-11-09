@@ -20,10 +20,10 @@
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/views/common/headerbanner.jsp"/>
-<jsp:include page="/WEB-INF/views/common/dailyDeal.jsp"/>
-<jsp:include page="/WEB-INF/views/common/homeYoutube.jsp"/>
-<jsp:include page="/WEB-INF/views/common/homeNewProduct.jsp"/>
+<jsp:include page="/WEB-INF/views/home/include/headerbanner.jsp"/>
+<jsp:include page="/WEB-INF/views/home/include/dailyDeal.jsp"/>
+<jsp:include page="/WEB-INF/views/home/include/homeYoutube.jsp"/>
+<jsp:include page="/WEB-INF/views/home/include/homeNewProduct.jsp"/>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 <jsp:include page="/WEB-INF/views/common/chat.jsp"/>
 

@@ -14,7 +14,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/headerbanner.jsp"/>
+<jsp:include page="../views/home/include/headerbanner.jsp"/>
 <jsp:include page="../views/qna/qnaList.jsp"/>
 <jsp:include page="../views/common/header.jsp"/>
 </body>

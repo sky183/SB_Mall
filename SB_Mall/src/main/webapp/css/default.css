@@ -12,7 +12,7 @@ body{
 }
 
 a {
-	text-decoration: none;
+	text-decoration: none !important;
 }
 
 #headerBanner{
@@ -28,7 +28,6 @@ a {
 /* header */
 #headerFullWidth{
 	width:100%;
-	height:50px;
 	background-color:rgba(0,0,0,0.4);
 	top:0px;
 	position: fixed;
@@ -37,7 +36,6 @@ a {
 
 #headerLayout{
 	width:1200px;
-	padding-top:7px;
 	margin: 0 auto;
 }
 
@@ -53,17 +51,61 @@ a {
 	float:right;
 	font-family: 'Open Sans', sans-serif;
 	color:white !important;
-	padding-left: 30px;
-	padding-top:5px;
 	cursor: pointer;
 	text-decoration: none;
 	/* font-family: 'Gothic A1', sans-serif; */
 	
 }
+
+.naviBigMenu{
+	padding:13px 40px 13px 10px;
+	background-color: rgba(0,0,0,0);
+	border: none;
+	color:white;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 13pt;
+	font-weight: lighter;
+}
+
+.naviBigMenuEnd{
+	padding:13px 0 13px 10px;
+}
 .headerNaviText:hover {
 	color:#ffc828 !important;
 	text-decoration: none !important;
 }
+.naviDrop:hover .dropNaviBar{
+	display: block !important;
+}
+.naviDrop:hover .naviBigMenu{
+	color:#ffc828 !important;
+}
+
+.dropNaviBar{
+	display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropNaviBar a{
+	float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.naviDrop_Atag:hover{
+	color:#ffc828 !important;
+}
+
+
+
+
+
+
 
 /* headerBanner */
 
@@ -426,11 +468,13 @@ a {
 
 
 .blue{
-  background: white !important;
+  background-color: white !important;
   color: #fff;
   height:600px;
 }
-
+.dailyDealMidBox{
+	height:600px;
+}
 .content {
     margin: auto;
     width:1200px;

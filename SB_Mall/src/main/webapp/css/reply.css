@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+    	.replylayout{
+    		width:1200px;
+    		margin: 0 auto;
+    		margin-bottom: 100px;
+    	}
+    	.replyTextClass{
+	    	float:right;
+	    	display: inline-block;
+	    	height:100px;
+	    	border: 1px solid #787878;
+    	}
+    	
+    	.replyInputBox{
+    		height:100px;
+    		margin:20px 0;
+    		
+    	}  
+    	.replyTextAreaBox{
+    		/* width:1000px;	
+    		height:100px; */
+    		background-color: red !important;
+    		border-radius: 5px 0px 0px 5px !important;
+    	}
+    	.replyInputText{
+    		border:none;
+    		margin:15px;
+    		width:970px;
+    		height:70px;
+    		font-size: 14pt;
+    		color:#282828;
+    	}
+    	.reply_h3{
+    		display: inline-block;
+    		float: left;
+    		margin-top:5px;
+    		color:#505050;
+    		font-weight: normal;
+    		
+    	}
+    	.replyInputBtn{
+    		width:102px;
+    		height:102px;
+    		border:none;
+    		background-color: #787878;
+    		font-size: 20px;
+    		font-weight;
+    		color:white;
+    		border-radius: 0px 10px 10px 0px;
+    		
+    	}
+    	#replyGetBox{
+    		padding:20px 0;
+    	}
+    	.reply_h1{
+    		margin-top:30px;
+    		padding-bottom:10px;
+    		border-bottom: 2px solid #505050;
+    		font-size: 24pt;
+    		color:#282828;
+    	}
+    	.getReply_H4{
+    		display: inline-block;
+    		font-size: 10pt;
+    		color:#787878;
+    		font-weight: normal;
+    	}
+    	.getReply_H5{
+    		display: inline-block;
+    		font-size: 10pt;
+    		color:#787878;
+    		font-weight: normal;
+    	}
+    	.replyFrame{
+    		width:1000px;
+    		word-break:break-all;
+    	}
+    	.getReply_H2{
+    		padding:5px 20px;
+    		font-size: 14pt;
+    		color:#282828;
+    		font-weight: normal;
+    		line-height: 22pt;
+    		
+    	}
+    	.replyBtn{
+    		float: right;
+    		width:40px;
+    		height:25px;
+    		background-color: #f0f0f0;
+    		border: none;
+    		font-size:9pt;
+    		color:#787878;
+    		font-weight: normal;
+    		border-radius: 5px;
+    	}
+    	.replyBtn{
+    		float: right;
+    		width:40px;
+    		height:25px;
+    		background-color: #f0f0f0;
+    		border: none;
+    		font-size:9pt;
+    		color:#787878;
+    		font-weight: normal;
+    		border-radius: 5px;
+    	}
+    	
+    	.replyDelete:hover{
+    		background-color: #ffc828;
+    		color:white;
+    		
+    	}
+    	
+    	.replyUnit{
+    		padding:15px 0;
+    		border-bottom: 1px solid #f0f0f0;
+    		
+    	}
+    	
+    	#replyPageBox{
+    		text-align: center;
+    		
+    		
+    	}
+    	.pageSelect{
+    		width:40px;
+    		height:40px;
+    		border: 1px solid #787878;
+    		color:#787878;
+    		font-size: 12pt;
+    		border-radius: 5px;
+    	}
+    	
+    	.pageSelect:hover{
+    		background-color: #787878 !important;
+    		color:white;
+    	}
+    	.pageActive{
+    		border: 1px solid #787878 !important;
+    		background-color: #787878 !important;
+    		color:white;
+    	}
+    	#replyModifyBigBox{
+    		width:100%;
+    		height:100%;
+    		display: none;
+    		position: fixed;
+    		top:0px;
+    		left:0px;
+    		background-color:rgba(0,0,0,0.5);
+    	}
+    	#replyModifyForm{
+    		width:760px;
+    		padding:20px;
+    		background-color: white;
+    		margin:0 auto;
+    		margin-top:250px;
+    	}
+    	
+    	
+    	
+    	

@@ -4,15 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@	taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<meta charset="UTF-8">
-<head>
-  <title>My Now Amazing Webpage</title>
   <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-  </head>
-
   
-
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="slick/slick.min.js"></script>
@@ -105,8 +99,6 @@
 	
 	
 </script>
-
-<body>
 
 <div class="defaultLayout dailyDeal">
 
@@ -208,5 +200,3 @@
     	  
     	});
   </script>
-</body>
-</html>

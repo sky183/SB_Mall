@@ -3,14 +3,13 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css?ver=2">
 <link href="https://fonts.googleapis.com/css?family=Audiowide|Gothic+A1:900|Open+Sans:300,300i,400,400i" rel="stylesheet">
-</head>
 <body> 
+	<c:if test="${errorMsg!=null}">
+	   <script type="text/javascript">
+	      alert('${errorMsg}');
+	   </script>
+	</c:if>
 
 	<div id="headerFullWidth">
 		<div id="headerLayout">
@@ -20,26 +19,52 @@
 				<a href="<%=request.getContextPath()%>/">
 					<img id="headerLogo" src="<%=request.getContextPath()%>/img/SBCompanyLogo.png"> 
 				</a>
+					<a class="headerNaviText naviBigMenuEnd" href="">Search</a>
 				<c:choose>
 					<c:when test='${memberInfo.gradeNum >= 3}'>
-						<a class="headerNaviText" href="<%=request.getContextPath()%>/admin/adminPage">admin</a>
+						<a class="headerNaviText naviBigMenu" href="<%=request.getContextPath()%>/admin/adminPage">admin</a>
 					</c:when>
 				</c:choose>
 				
 				<c:choose>
 					<c:when test='${memberInfo eq null}'>
-						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/login">login</a>
-						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/join">Join</a> 
+						<a class="headerNaviText naviBigMenu" href="<%=request.getContextPath()%>/member/login">login</a>
+						<a class="headerNaviText naviBigMenu" href="<%=request.getContextPath()%>/member/join">Join</a> 
 					</c:when>
 					<c:otherwise>
-						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/myPage">myPage</a>
-						<a class="headerNaviText" href="<%=request.getContextPath()%>/member/logout">logout</a>
+						<a class="headerNaviText naviBigMenu" href="<%=request.getContextPath()%>/member/myPage">myPage</a>
+						<a class="headerNaviText naviBigMenu" href="<%=request.getContextPath()%>/member/logout">logout</a>
 					</c:otherwise>
 				</c:choose>
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/qna">QnA</a> 
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/order/cart">Cart</a>
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/store">Store</a>
-				<a class="headerNaviText" href="<%=request.getContextPath()%>/">HOME</a>
+				
+				<!-- 커뮤니티 -->
+				<div class="headerNaviText naviDrop">
+					<button class="naviBigMenu">Community</button> 
+					
+					<div class="dropNaviBar">
+						<a class="naviDrop_Atag" href="<%=request.getContextPath()%>/qna">QnA</a>
+						<a class="naviDrop_Atag" href="">crowdFunding</a>
+						<a class="naviDrop_Atag" href="">crowdFunding</a>
+						<a class="naviDrop_Atag" href="">지하철</a>
+					</div>
+				</div>
+				
+				
+				<!--  장바구니 -->
+				<a class="headerNaviText naviBigMenu" href="<%=request.getContextPath()%>/order/cart">Cart</a>
+				
+				<!-- 스토어 -->
+				<div class="headerNaviText naviDrop">
+					<button class="naviBigMenu" >Store</button>
+					
+					<div class="dropNaviBar">
+						<a class="naviDrop_Atag" href="<%=request.getContextPath()%>/store">Store</a>
+						<a class="naviDrop_Atag" href="<%=request.getContextPath()%>/store">crowdFunding</a>
+					</div>
+				</div>
+				
+				<!-- 메인페이지 -->
+				<a class="headerNaviText naviBigMenu" href="<%=request.getContextPath()%>/">HOME</a>
 			</div>
 
 		</div>
@@ -47,4 +72,3 @@
 
 
 </body>
-</html>

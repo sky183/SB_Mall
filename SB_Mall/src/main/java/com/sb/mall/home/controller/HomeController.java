@@ -56,7 +56,7 @@ public class HomeController {
 		model.addAttribute("min", getMin.format(date) );
 		model.addAttribute("sec", getSec.format(date) );
 		
-		return "home";
+		return "view/home";
 	}
 	
 }
