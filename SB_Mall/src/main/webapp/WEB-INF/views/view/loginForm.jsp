@@ -24,6 +24,24 @@
 </style> -->
 </head>
 <script type="text/javascript">
+
+
+$('document').ready(function() { 		
+	// input타입 text,password  
+	$('input[type="text"],input[type="password"]').keyup(function(){
+		//엔터 쳤을때
+		if(event.keyCode ==13){
+			//엔터의 기본 기능을 없앤다
+			event.preventDefault();
+			//클릭 했을때 로그인 버튼으로	
+			$('#login_button').trigger('click');
+		}
+	});
+});
+
+
+
+
 	$(function() {
 		//최초 쿠키에 login_id라는 쿠키값이 존재하면
 		var login_id = $.cookie('idcookie');

@@ -29,7 +29,7 @@ public class LoginController {
 		// ModelAndView 객체 생성
 		ModelAndView modelAndView = new ModelAndView();
 		// loginForm으로 보내줌
-		modelAndView.setViewName("loginForm");
+		modelAndView.setViewName("view/loginForm");
 		modelAndView.addObject("idcookie", rememberId);
 
 		return modelAndView;
@@ -60,7 +60,7 @@ public class LoginController {
 			if (loginService.login(userId, userPw, session)) {
 				modelAndView.setViewName("redirect:/");
 			} else {
-				modelAndView.setViewName("loginForm");		//경로
+				modelAndView.setViewName("view/loginForm");		//경로
 				modelAndView.addObject("error", "아이디 또는 비밀번호가 틀렸습니다.");
 			}
 
