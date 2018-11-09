@@ -46,8 +46,14 @@
  			s.productSeq=p.productSeq
  		</where>
  	</select>
+ 	<select id="selectSalBoard" resultType="com.sb.mall.store.model.SalesBoard">
+ 		SELECT * FROM SalesBoard where salesSeq=#{salSeq}
+ 	</select>
  	<update id="updateSalBoardCnt">
  		update SalesBoard set viewSeq=viewSeq+1 where salesSeq=#{salSeq}
+ 	</update>
+ 	<update id="updateSalesBoard">
+ 		update SalesBoard set title=#{title},text=#{text} where salesSeq=#{salesSeq}
  	</update>
  	<delete id="deleteSalesBoard">
  		delete from `SalesBoard` where salesSeq=#{salSeq}

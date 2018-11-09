@@ -33,5 +33,20 @@ public class StoreAdminService {
 		storeDao.deleteSalesBoard(salSeq);
 	}
 	
+	@Transactional
+	public void updateSalesBoard(SalesBoard salesBoard) throws SQLException {
+		storeDao=sqlSessionTemplate.getMapper(StoreDao.class);
+		storeDao.updateSalesBoard(salesBoard);
+	}
+	
+	public SalesBoard selectSalesBoard(int salSeq) throws SQLException{
+		storeDao=sqlSessionTemplate.getMapper(StoreDao.class);
+		SalesBoard salesBoard = storeDao.selectSalBoard(salSeq);
+		if(salesBoard==null) {
+			throw new SQLException();
+		}
+		return salesBoard;
+	}
+	
 	
 }
