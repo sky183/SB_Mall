@@ -26,7 +26,7 @@ public class OrderCartListController {
 	public ModelAndView viewCartList(HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
 		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
-		modelAndView.setViewName("orderCart");
+		modelAndView.setViewName("view/orderCart");
 		List<Map<String,Object>> list = null;
 		try {
 			list=orderCartService.selectCart(memberInfo.getUserSeq());

@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 
 public class SalesBoard {
 	
-	private int SalesSeq;
+	private int salesSeq;
 	private String title;
 	private String text;
 	private int viewSeq;
@@ -14,14 +14,14 @@ public class SalesBoard {
 	
 	@Override
 	public String toString() {
-		return "SalesBoard [SalesSeq=" + SalesSeq + ", title=" + title + ", text=" + text + ", viewSeq=" + viewSeq
+		return "SalesBoard [salesSeq=" + salesSeq + ", title=" + title + ", text=" + text + ", viewSeq=" + viewSeq
 				+ ", writeDate=" + writeDate + ", userSeq=" + userSeq + ", productSeq=" + productSeq + "]";
 	}
 	public int getSalesSeq() {
-		return SalesSeq;
+		return salesSeq;
 	}
 	public void setSalesSeq(int salesSeq) {
-		SalesSeq = salesSeq;
+		this.salesSeq = salesSeq;
 	}
 	public String getTitle() {
 		return title;

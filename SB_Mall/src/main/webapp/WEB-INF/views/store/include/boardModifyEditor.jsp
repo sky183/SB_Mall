@@ -29,12 +29,17 @@
 			        }
 				}
 		});
-		
+		$('#title').val('${salesBoard.title}');
+		$('.panel-body').html('${salesBoard.text}');
 	});
 	function sendCode() {
         $('#text').val($('#summernote').summernote('code'));
         $('#sform').submit();
         
+    }
+	
+	function viewBoard() {
+        location.href="<%=request.getContextPath()%>/store/board/${param.salSeq}";
     }
 	
 	function mathABS(e) {
@@ -78,22 +83,21 @@
 <body>
 	<c:if test="${userGrade<3}">
 		<script type="text/javascript">
-			alert("운영진만 글 작성이 가능합니다.");
+			alert("운영진만 수정이 가능합니다.");
 			location.href="<%=request.getContextPath()%>/store";
 		</script>
 	</c:if>
 	<div id="summernoteBox">
 		<form method="post" enctype="multipart/form-data" id="sform">
-			글제목 <input type="text" name="salesBoard.title" required="required"><br>
-			제품사진 <input type="file" name="product.photoFile" required="required"><br>
-			제품이름 <input type="text" name="product.productName" required="required"><br>
-			제품가격 <input type="number" name="product.price" min="0" oninput="mathABS(this)" required="required"><br>
-			제품설명 <textarea rows="3" cols="22" name="product.detail" required="required"></textarea><br>
+			글제목 <input type="text" name="title" required="required" id="title"><br>
 			<hr>
-			<input type="hidden" name="salesBoard.text" id="text">
+			<input type="hidden" name="text" id="text">
+			<input type="hidden" name="salesSeq" value="${param.salSeq}">
 		</form>
 		<div id="summernote"></div>
-		<button type="button" class="storeBtn storeWriteBtn" onclick="sendCode();">글쓰기</button>
+		<button type="button" class="storeBtn storeWriteBtn" onclick="sendCode();">수정완료</button>
+		<button type="button" class="storeBtn storeWriteBtn" onclick="viewBoard();">목록으로</button>
 	</div>
+		
 </body>
 </html>
