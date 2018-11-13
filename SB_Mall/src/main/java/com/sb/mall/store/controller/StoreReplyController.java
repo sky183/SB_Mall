@@ -48,7 +48,7 @@ public class StoreReplyController {
 		modelAndView.addObject("userSession", request.getSession().getAttribute("memberInfo"));
 		modelAndView.addObject("pageCnt", pageCount);
 		modelAndView.addObject("nowPage", nowPage);
-		modelAndView.setViewName("store/replyReturn");
+		modelAndView.setViewName("store/store/replyReturn");
 		
 		
 		return modelAndView;

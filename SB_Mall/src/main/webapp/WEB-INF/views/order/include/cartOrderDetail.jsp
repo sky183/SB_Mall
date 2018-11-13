@@ -62,7 +62,7 @@
 					<fmt:formatNumber value="${order.quantity}" pattern="#,###"/>
 					</td>
 					<td>
-					<fmt:formatNumber value="${order.price*order.quantity}" 
+					<fmt:formatNumber value="${order.salePrice}" 
 					pattern="#,###"/>
 					</td>
 				</tr>
