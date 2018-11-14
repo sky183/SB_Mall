@@ -1,74 +1,74 @@
 package com.sb.mall.member.service;
 
-import javax.mail.MessagingException;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMessage.RecipientType;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-
-//import com.bitcamp.memberboard.member.model.Member;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
 public class MemberMailService {
-	@Autowired
-//	private MailSender mailSender;//실질적으로 메일을 보내주는 역할
-	private JavaMailSender mailSender;//HTML형식으로 메일을 보내주기 위해 JavaMailSender로 선언
+
+   @Autowired
+   private JavaMailSender mailSender;
 
 
+   // 파일 첨부 보내기, 이미지 본문 첨부
+   public void sendMail(String userId, String userName, String filePath, HttpSession session) throws IOException {
 
-	/*Mail 보내기*/
-	public void sendMail(String memberemail) {
+      MimeMessage message = mailSender.createMimeMessage();
 
-		// Context of mail(Mailaddress)
-		System.out.println("Sending Email...<sendMail>");
-		System.out.println("수신자 : "+memberemail);
-		
-		SimpleMailMessage message = new SimpleMailMessage();
+      String file = session.getServletContext().getRealPath("WEB-INF/views") + filePath;
+      InputStream is = new FileInputStream(file);
+      String htmlContent = "";
+      
+      //스트링 버퍼를 이용하여 inputStream을 스트링으로 변환하고 utf-8로 변환하는 방법
+      String UTF8 = "utf8";
+      StringBuffer buffer = new StringBuffer();
+      int BUFFER_SIZE = 8192;
+      BufferedReader br = new BufferedReader(new InputStreamReader(is, UTF8), BUFFER_SIZE);
+      String str;
+      
+      while ((str = br.readLine()) != null) {
+         htmlContent += str;
+      }
 
-		message.setSubject("[Simple] 회원 가입 안내");
-		message.setFrom("isincorp@gmail.com");
-		message.setText("회원 가입을 환영합니다.");
-		message.setTo(memberemail);
+      try {
 
-		try {
+         MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 
-			// mailSender가 메일 발송처리
-			mailSender.send(message);
+         messageHelper.setSubject("[공지] 회원 가입 안내");
+         messageHelper.setText(htmlContent, true);
+         messageHelper.setFrom("bitcamp1114@gmail.com", "SB_Company");
+         messageHelper.setTo(new InternetAddress(userId, userName, "utf-8"));       
+         
+/*         // 파일 첨부
+         messageHelper.addAttachment(MimeUtility.encodeText("사용자관리.xlsx", "UTF-8", "B"), new FileDataSource("C:/OpenProject/사용자관리.xlsx"));
+         
+         // 파일 첨부2 - 이미지파일만 가능, 본문에 미리보기 기능 추가
+         messageHelper.addInline("qwer", new FileDataSource("C:/OpenProject/qwer.jpg"));*/
+         
+         //메일 보내기
+         mailSender.send(message);
 
-		} catch (MailException ex) {
+      } catch (MailException e) {
 
-			ex.printStackTrace();
-		}
-		System.out.println("end");
+         e.printStackTrace();
+         return;
 
-	}
+      } catch (Throwable e) {
 
-	/*HTML형식 Mail 보내기*/
-	public void mailSendHtml(String email) {
+         e.printStackTrace();
+         return;
 
-		System.out.println("Sending Email...<mailSendHtml>");
-		System.out.println("수신자 : "+email);
-		MimeMessage message = mailSender.createMimeMessage();
-
-		try {
-			message.setSubject("[안내] 회원가입을 축하합니다.", "utf-8");
-			String htmlStr = "<B>Hello</B> Sir <br> " + "Thanks for join in this site <br>"
-					+ "<a href=\"http://www.naver.com\">to go Site</a>";
-
-			message.setText(htmlStr, "utf-8", "html");
-
-			message.addRecipient(RecipientType.TO, new InternetAddress(email));
-			
-			mailSender.send(message);
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("end");
-	}
-
+      }
+   }
 }

@@ -196,7 +196,6 @@
 			<version>4.3.17.RELEASE</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>javax.websocket</groupId>
 			<artifactId>javax.websocket-api</artifactId>
@@ -227,7 +226,6 @@
 		</dependency>
 		
 		<!-- 메일 설정 시작 -->
-		<!-- ======================================================== -->
 		<!-- javax.mail/mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>
