@@ -1,6 +1,5 @@
 package com.sb.mall.store.controller;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,52 +14,54 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.member.model.MemberInfo;
 import com.sb.mall.store.model.StoreWriteCommend;
-import com.sb.mall.store.service.ImgUploadService;
 import com.sb.mall.store.service.StoreAdminService;
 
 @Controller
 @RequestMapping("/store/write")
 public class StoreWriteController {
-	
-	@Autowired
-	ImgUploadService imgUploadService;
+
 	@Autowired
 	StoreAdminService storeAdminService;
 
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView storeWrite(HttpSession session) {
+
 		ModelAndView modelAndView = new ModelAndView();
+
 		modelAndView.setViewName("store/storeWritePage");
-		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
+
+		MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
+
 		modelAndView.addObject("userGrade", memberInfo.getGradeNum());
-		return  modelAndView;
+
+		return modelAndView;
+
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView storeWriteDo(StoreWriteCommend storeWriteCommend,
-			HttpServletRequest request, HttpServletResponse response,HttpSession session) {
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ModelAndView storeWriteDo(StoreWriteCommend storeWriteCommend, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
+
 		ModelAndView modelAndView = new ModelAndView();
-		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
+
+		MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
+
 		modelAndView.setViewName("redirect:/store");
+
 		storeWriteCommend.getSalesBoard().setUserSeq(memberInfo.getUserSeq());
-		//업로드폴더 중간경로 지정
-		String folderName = "product";
+
 		try {
-			//파일 업로드. 동시에 엑세스가능한 웹경로도 지정해준다. 
-			String filePath = request.getContextPath()+"/"+
-					imgUploadService.imgUpload(
-					storeWriteCommend.getProduct().getPhotoFile(),folderName, request, response);
-			//product객체에 웹경로 저장. 
-			storeWriteCommend.getProduct().setPhoto(filePath);
-			//제품판매 게시글 등록
-			storeAdminService.productAndBoardWrite(
-					storeWriteCommend.getProduct(), storeWriteCommend.getSalesBoard());
-		} catch (IOException e) {
-			System.out.println("파일등록실패");
+
+			// 제품판매 게시글 등록
+			storeAdminService.productAndBoardWrite(storeWriteCommend.getProduct(), storeWriteCommend.getSalesBoard());
+
 		} catch (SQLException e) {
+
 			System.out.println("게시글등록 실패");
+
 		}
-		return  modelAndView;
+
+		return modelAndView;
 	}
-	
+
 }
