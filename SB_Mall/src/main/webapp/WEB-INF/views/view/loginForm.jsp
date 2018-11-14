@@ -20,7 +20,7 @@
 <!-- <style>
 #contents {
 	margin: 50px 10px 50px 10px;
-}
+} 
 </style> -->
 </head> 
 <script type="text/javascript">
