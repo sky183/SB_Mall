@@ -32,7 +32,7 @@ public class StoreWriteController {
 
 		MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
 		modelAndView.addObject("userGrade", memberInfo.getGradeNum());
-
+ 
 		return modelAndView;
 
 	}
