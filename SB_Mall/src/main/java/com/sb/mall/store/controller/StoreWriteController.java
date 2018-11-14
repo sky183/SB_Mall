@@ -28,7 +28,7 @@ public class StoreWriteController {
 
 		ModelAndView modelAndView = new ModelAndView();
 
-		modelAndView.setViewName("store/storeWritePage");
+		modelAndView.setViewName("store/store/storeWritePage");
 
 		MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
 		modelAndView.addObject("userGrade", memberInfo.getGradeNum());

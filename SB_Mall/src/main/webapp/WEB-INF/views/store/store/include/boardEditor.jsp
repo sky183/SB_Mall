@@ -42,22 +42,57 @@
 	}
 	
 	function sendFile(file, el) {
+		var str = file.name;
+	     var filename = guid() + str;
+	      console.log(filename);
 		var form_data = new FormData();
       	form_data.append('file', file);
+      	form_data.append('filename', filename);
       	$.ajax({
         	data: form_data,
         	type: "POST",
-        	url: '<%=request.getContextPath()%>/store/summer/imgUpload',
+        	url: 'http://52.79.226.226/file/store/summer/imgUpload',
         	cache: false,
         	contentType: false,
         	enctype: 'multipart/form-data',
         	processData: false,
         	success: function(img_name) {
+        		
           		$(el).summernote('editor.insertImage', 
-          						'<%=request.getContextPath()%>/'+img_name);
+          						img_name);
         	}
       	});
     }
+	
+	 function fileUpload(file) {
+	      var str = file.value.substring(file.value.lastIndexOf("\\")+1); 
+	      var filename = guid() + str;
+	      console.log(filename);
+	      var form_data = new FormData();
+	      	form_data.append('file', file.files[0]);
+	      	form_data.append('filename', filename);
+	      	$.ajax({
+	        	data: form_data,
+	        	type: "POST",
+	        	url: 'http://52.79.226.226/file/store/store/imgUpload',
+	        	contentType: false,
+	        	processData: false,
+	        	enctype: 'multipart/form-data',
+	        	success: function(img_name) {
+	        		$("#filename").val(img_name);
+	        	}
+	      	});
+	    }
+	 
+	 function guid() {
+		  function s4() {
+		    return Math.floor((1 + Math.random()) * 0x10000)
+		      .toString(16)
+		      .substring(1);
+		  }
+		  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+		    s4() + '-' + s4() + s4() + s4();
+		}
 </script>
 <style type="text/css">
 #summernoteBox{
@@ -85,7 +120,9 @@
 	<div id="summernoteBox">
 		<form method="post" enctype="multipart/form-data" id="sform">
 			글제목 <input type="text" name="salesBoard.title" required="required"><br>
-			제품사진 <input type="file" name="product.photoFile" required="required"><br>
+			제품사진 <input type="file" name="uploadfile" required="required" onchange="fileUpload(this)"><br>
+			<!--  추가된 코드-->
+				  <input type="hidden" id="filename" name="product.photo">
 			제품이름 <input type="text" name="product.productName" required="required"><br>
 			제품가격 <input type="number" name="product.price" min="0" oninput="mathABS(this)" required="required"><br>
 			제품설명 <textarea rows="3" cols="22" name="product.detail" required="required"></textarea><br>
