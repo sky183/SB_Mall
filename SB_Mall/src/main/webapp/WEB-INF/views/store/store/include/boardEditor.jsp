@@ -93,8 +93,6 @@
 		  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
 		    s4() + '-' + s4() + s4() + s4();
 		}
-
-
 </script>
 <style type="text/css">
 #summernoteBox{

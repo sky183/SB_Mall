@@ -5,8 +5,8 @@
 <mapper namespace="com.sb.mall.order.dao.OrderDao">
 	<insert id="insertCart" parameterType="com.sb.mall.order.model.Order"
 		useGeneratedKeys="true" keyProperty="orderSeq">
-		insert into `Order`(orderDetailNum,userSeq,productSeq,quantity,`option`)
-		value(0,#{userSeq},#{productSeq},#{quantity},#{option})
+		insert into `Order`(orderDetailNum,userSeq,productSeq,quantity,`option`,`salePrice`)
+		value(0,#{userSeq},#{productSeq},#{quantity},#{option},#{salePrice})
 	</insert>
 	
 	<insert id="insertOrderDetail" parameterType="com.sb.mall.order.model.OrderDetail">
@@ -23,26 +23,26 @@
 	<update id="updateOrders">
 		update `Order` 
 		<set>
-		<foreach collection="list" item="orderList" open="" separator="" close="" index="index">
+		<foreach collection="list" item="orders" open="" separator="" close="" index="index">
 			<if test="index==0">
-				orderDetailNum=#{orderList.orderDetailNum} 
+				orderDetailNum=#{orders.orderDetailNum} 
 			</if>
 		</foreach>
 		</set>
 		<where>
-		<foreach collection="list" item="orderList" open="" separator="" close="" index="index">
+		<foreach collection="list" item="orders" open="" separator="" close="" index="index">
 			<if test="index==0">
-				and userSeq=#{orderList.userSeq} and orderDetailNum=0 and
+				and userSeq=#{orders.userSeq} and orderDetailNum=0 and
 			</if>
 		</foreach>
-		<foreach collection="list" item="orderList" open="(" separator="or" close=")" index="index">
-			productSeq=#{orderList.productSeq} and `option`=#{orderList.option}
+		<foreach collection="list" item="orders" open="(" separator="or" close=")" index="index">
+			productSeq=#{orders.productSeq} and `option`=#{orders.option}
 		</foreach>
 		</where>
 	</update>
 
 	<update id="updateDuplicateCart" parameterType="com.sb.mall.order.model.Order">
-		update `Order`set quantity=quantity+#{quantity} 
+		update `Order`set quantity=quantity+#{quantity}, salePrice=salePrice+#{salePrice} 
 		where userSeq=#{userSeq} and productSeq=#{productSeq} and `option`=#{option}
 		and orderDetailNum=0
 	</update>
@@ -69,13 +69,13 @@
 	<delete id="deleteCart" >
 		delete from `Order` 
 		<where>
-		<foreach collection="list" item="orderList" open="" separator="" close="" index="index">
+		<foreach collection="list" item="orders" open="" separator="" close="" index="index">
 			<if test="index==0">
-				userSeq=#{orderList.userSeq} and orderDetailNum=0 and
+				userSeq=#{orders.userSeq} and orderDetailNum=0 and
 			</if>
 		</foreach>
-		<foreach collection="list" item="orderList" open="(" separator="or" close=")" index="index">
-			productSeq=#{orderList.productSeq} and `option`=#{orderList.option}
+		<foreach collection="list" item="orders" open="(" separator="or" close=")" index="index">
+			productSeq=#{orders.productSeq} and `option`=#{orders.option}
 		</foreach>
 		</where>
 	</delete>
@@ -96,10 +96,10 @@
 	
 	<select id="selectCartForOrder" resultType="map">
 		SELECT * FROM `Order` o, Product p where
-		<foreach collection="list" item="orderList" open="(" separator="or" close=")">
-			o.userSeq=#{orderList.userSeq} 
-			and o.productSeq=#{orderList.productSeq} 
-			and o.option=#{orderList.option} 
+		<foreach collection="list" item="orders" open="(" separator="or" close=")">
+			o.userSeq=#{orders.userSeq} 
+			and o.productSeq=#{orders.productSeq} 
+			and o.option=#{orders.option} 
 		</foreach>
 		and OrderDetailNum=0 and p.productSeq=o.productSeq
 	</select>

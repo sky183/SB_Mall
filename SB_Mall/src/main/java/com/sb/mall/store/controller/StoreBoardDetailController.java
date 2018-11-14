@@ -27,7 +27,7 @@ public class StoreBoardDetailController {
 			HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
 		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
-		modelAndView.setViewName("store/storeBoardDetailPage");
+		modelAndView.setViewName("store/store/storeBoardDetailPage");
 		try {
 			List<Map<String,Object>> list = boardDetailService.SalDetailView(salSeq);
 			modelAndView.addObject("userGrade",memberInfo.getGradeNum());
@@ -44,7 +44,7 @@ public class StoreBoardDetailController {
 	@RequestMapping(value="store/board/{salSeq}",method=RequestMethod.POST)
 	public ModelAndView boardDetailViewDo(@PathVariable("salSeq") int salSeq) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("store/resultPage");
+		modelAndView.setViewName("store/store/resultPage");
 		return modelAndView;
 	}
 	

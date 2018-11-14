@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.order.model.Order;
-import com.sb.mall.order.model.OrderList;
+import com.sb.mall.order.model.OrderOrderCommand;
 import com.sb.mall.order.service.OrderCartService;
 import com.sb.mall.order.service.OrderService;
 import com.sb.mall.store.model.Product;
@@ -48,19 +48,19 @@ public class OrderPageController {
 	}
 	
 	@RequestMapping(value="order/cartOrder" ,method=RequestMethod.POST)
-	public ModelAndView cartOrder(OrderList orderList) {
+	public ModelAndView cartOrder(OrderOrderCommand orderCommand) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("order/orderCartOrderPage");
-		List<Order> paramList = new ArrayList<Order>();
-		for(Order order : orderList.getOrderList() ) {
+		List<Order> orders = new ArrayList<Order>();
+		for(Order order : orderCommand.getOrders() ) {
 			if(order.getUserSeq()!=0) { //받아온 리스트중 0번유저(빈값) 제거
-				paramList.add(order);
+				orders.add(order);
 			}
 		}
-		System.out.println(paramList);
+		System.out.println(orders);
 		List<Map<String,Object>> list = null;
 		try {
-			list = orderCartService.selectCartForOrder(paramList);
+			list = orderCartService.selectCartForOrder(orders);
 		} catch (SQLException e) {
 			modelAndView.addObject("errorMsg", "주문목록 생성에 실패하였습니다.");
 			e.printStackTrace();
@@ -68,6 +68,9 @@ public class OrderPageController {
 		int totalAmount=0;
 		for(Map<String,Object> map : list) {
 			totalAmount+=(int)map.get("price")*(int)map.get("quantity"); //주문금액 총합
+		}
+		for(Order order : orders) {
+			totalAmount+=order.getSalePrice();
 		}
 		modelAndView.addObject("totalAmount", totalAmount);
 		modelAndView.addObject("orders", list);

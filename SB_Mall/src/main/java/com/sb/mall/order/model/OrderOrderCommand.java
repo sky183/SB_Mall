@@ -7,10 +7,12 @@ public class OrderOrderCommand {
 	private Order order;
 	private List<Order> orders;
 	private OrderDetail orderDetail;
+	private int listType;
 	
 	@Override
 	public String toString() {
-		return "OrderOrderCommand [order=" + order + ", orders=" + orders + ", orderDetail=" + orderDetail + "]";
+		return "OrderOrderCommand [order=" + order + ", orders=" + orders + ", orderDetail=" + orderDetail
+				+ ", listType=" + listType + "]";
 	}
 
 	public Order getOrder() {
@@ -35,6 +37,14 @@ public class OrderOrderCommand {
 
 	public void setOrderDetail(OrderDetail orderDetail) {
 		this.orderDetail = orderDetail;
+	}
+
+	public int getListType() {
+		return listType;
+	}
+
+	public void setListType(int listType) {
+		this.listType = listType;
 	}
 	
 }
