@@ -36,14 +36,30 @@ public class JoinController {
 	public String getJoinForm() {
 		System.out.println("HOME 에서 JOIN 클릭");
 		
-		return "/joinForm";
+		return "view/joinForm";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)  //get 방식으로  값을 받아와 String num에 저장 modelAndView로  리턴
-	public ModelAndView getResultForm(MemberInfo memberInfo, @RequestParam("userPwChck") String userPwChck,
-			HttpServletRequest request, HttpSession session) {
-				
+	/*주소API POPUP화면*/
+	@RequestMapping("/popup/jusoPopup")
+	public String addressAIP() {
+		System.out.println("실행");
+		
+		return "/popup/jusoPopup";
+	}
+	
+	//가입시 입력한 정보를 POST방식으로 받아옴
+	@RequestMapping(method = RequestMethod.POST)  
+	public ModelAndView getResultForm(
+			MemberInfo memberInfo, 
+			@RequestParam("userPwChck") String userPwChck, //비밀번호 재 확인할 변수
+			HttpServletRequest request, 
+			HttpSession session
+			) {
+		
+		//모델 뷰 생성
 		ModelAndView modelAndView = new ModelAndView();
+		
+		//리턴할 경로 저장
 		modelAndView.setViewName("/home");
 		
 		//메일 보내기용 userid(가입시 입력된 Email)
@@ -51,6 +67,7 @@ public class JoinController {
 		String userName = memberInfo.getUserName();
 		String filePath = "/member/memberWelcome.jsp";
 		
+		//비밀번호 재 확인
 		if (!memberInfo.getUserPw().equals(userPwChck)) {
 			modelAndView.setViewName("error/joinError");
 			modelAndView.addObject("error", "비밀번호가 다릅니다.");
@@ -66,24 +83,28 @@ public class JoinController {
 			//1. Session(memberInfo) is not null 일때 회원가입
 			if (memberInfo != null) {
 				
-				System.out.println("Session is not null");
+				System.out.println("1. Session is not null");
 				System.out.println("<Controller Message>");
 				System.out.println("가입한 회원 ID:" + memberInfo.getUserId());
 				//1.1 회원가입 실패시 : resultCnt == 0 
 				if(resultCnt==0) {
+					System.out.println("1.1 회원가입 실패");
+					
 					modelAndView.setViewName("error/memberjoinError");
+				
 				}else {
-					System.out.println("RequestMethod.POST방식 가입완료");
+					System.out.println("1.2 회원가입 성공");
+					System.out.println("-RequestMethod.POST방식 가입완료");
 					
 					noti.sendMail(userId, userName, filePath ,session);
+					System.out.println("-메일보내기 완료");
 					
-					System.out.println("메일보내기 완료");
 					modelAndView.setViewName("view/home");
 				}
 				
-			}else {
-				System.out.println("Session is null");
-			}
+			}/*else {
+				System.out.println("2. Session is null");
+			}*/
 			
 		} catch (SQLException e) {
 			modelAndView.setViewName("join/joinFail");

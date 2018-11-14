@@ -132,7 +132,7 @@
 			<mapping path="/reply**" />
 			<mapping path="/qna/**" />
 			<exclude-mapping path="/member/login" />
-			<exclude-mapping path="/member/join" />
+			<exclude-mapping path="/member/join/**" />
 
 
 			<beans:bean
