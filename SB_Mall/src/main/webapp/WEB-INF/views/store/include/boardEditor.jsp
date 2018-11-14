@@ -51,7 +51,7 @@
       	$.ajax({
         	data: form_data,
         	type: "POST",
-        	url: 'http://52.79.226.226/file/upload/product',
+        	url: 'http://52.79.226.226/file/store/summer/imgUpload',
         	cache: false,
         	contentType: false,
         	enctype: 'multipart/form-data',
@@ -74,7 +74,7 @@
 	      	$.ajax({
 	        	data: form_data,
 	        	type: "POST",
-	        	url: 'http://52.79.226.226/file/upload/salesboard',
+	        	url: 'http://52.79.226.226/file/store/store/imgUpload',
 	        	contentType: false,
 	        	processData: false,
 	        	enctype: 'multipart/form-data',
@@ -93,6 +93,8 @@
 		  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
 		    s4() + '-' + s4() + s4() + s4();
 		}
+
+
 </script>
 <style type="text/css">
 #summernoteBox{

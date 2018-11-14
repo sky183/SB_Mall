@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.member.model.MemberInfo;
 import com.sb.mall.member.service.MemberJoinService;
+import com.sb.mall.member.service.MemberMailService;
 
 @Controller 
 
@@ -27,6 +28,9 @@ public class JoinController {
 	@Autowired
 	private MemberJoinService joinService;
 	
+	@Autowired
+	private MemberMailService noti;
+	
 		
 	@RequestMapping(method = RequestMethod.GET) 
 	public String getJoinForm() {
@@ -36,11 +40,16 @@ public class JoinController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)  //get 방식으로  값을 받아와 String num에 저장 modelAndView로  리턴
-	public ModelAndView getResultForm(@ModelAttribute("mInfo") MemberInfo memberInfo, @RequestParam("userPwChck") String userPwChck,
-			HttpServletRequest request) {
+	public ModelAndView getResultForm(MemberInfo memberInfo, @RequestParam("userPwChck") String userPwChck,
+			HttpServletRequest request, HttpSession session) {
 				
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/home");
+		
+		//메일 보내기용 userid(가입시 입력된 Email)
+		String userId = memberInfo.getUserId();
+		String userName = memberInfo.getUserName();
+		String filePath = "/member/memberWelcome.jsp";
 		
 		if (!memberInfo.getUserPw().equals(userPwChck)) {
 			modelAndView.setViewName("error/joinError");
@@ -65,6 +74,11 @@ public class JoinController {
 					modelAndView.setViewName("error/memberjoinError");
 				}else {
 					System.out.println("RequestMethod.POST방식 가입완료");
+					
+					noti.sendMail(userId, userName, filePath ,session);
+					
+					System.out.println("메일보내기 완료");
+					modelAndView.setViewName("view/home");
 				}
 				
 			}else {
