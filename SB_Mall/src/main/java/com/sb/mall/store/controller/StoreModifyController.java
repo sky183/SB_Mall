@@ -22,7 +22,7 @@ public class StoreModifyController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView modifyBoard(int salSeq,RedirectAttributes rttr) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("store/include/boardModifyEditor");
+		modelAndView.setViewName("store/store/include/boardModifyEditor");
 		try {
 			SalesBoard salesBoard = storeAdminService.selectSalesBoard(salSeq);
 			modelAndView.addObject("salesBoard",salesBoard);

@@ -39,7 +39,7 @@ public class StoreListViewController {
 			modelAndView.addObject("errorMsg", "글 목록 조회에 실패하였습니다.");
 			System.out.println("글 목록 조회에 실패하였습니다.");
 		}
-		modelAndView.setViewName("store/include/boardListView");
+		modelAndView.setViewName("store/store/include/boardListView");
 		return modelAndView;
 	}
 

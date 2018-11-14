@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sb.mall.order.model.Order;
-import com.sb.mall.order.model.OrderList;
+import com.sb.mall.order.model.OrderOrderCommand;
 import com.sb.mall.order.service.OrderCartService;
 
 @Controller
@@ -31,10 +31,10 @@ public class OrderCartController {
 	}
 	
 	@RequestMapping(value="order/deleteCart")
-	public String deleteCart(OrderList orderList) {
+	public String deleteCart(OrderOrderCommand orderCommand) {
 		
 		List<Order> list = new ArrayList<Order>();
-		for(Order order : orderList.getOrderList() ) {
+		for(Order order : orderCommand.getOrders() ) {
 			if(order.getUserSeq()!=0) { //받아온 리스트중 0번유저(빈값) 제거
 				list.add(order);
 			}

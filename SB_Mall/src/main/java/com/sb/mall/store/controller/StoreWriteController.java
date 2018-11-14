@@ -31,7 +31,6 @@ public class StoreWriteController {
 		modelAndView.setViewName("store/storeWritePage");
 
 		MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
-
 		modelAndView.addObject("userGrade", memberInfo.getGradeNum());
 
 		return modelAndView;
@@ -51,7 +50,6 @@ public class StoreWriteController {
 		storeWriteCommend.getSalesBoard().setUserSeq(memberInfo.getUserSeq());
 
 		try {
-
 			// 제품판매 게시글 등록
 			storeAdminService.productAndBoardWrite(storeWriteCommend.getProduct(), storeWriteCommend.getSalesBoard());
 

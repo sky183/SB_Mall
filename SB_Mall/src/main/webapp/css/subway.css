@@ -1,0 +1,42 @@
+@charset "UTF-8";
+*{
+	padding:0px;
+	margin: 0px;
+}
+#SubwayTimeBigBox{
+	display: none;
+	width: 100%;
+	position: fixed;
+}
+
+#SubwayTimeMidBox{
+	width:800px;
+	margin: 0 auto;
+}
+.timeBoxDir{
+	display: inline-block;
+	width: 380px;
+}
+.dirUp, .dirDown{
+	overflow: auto;
+	width: 380px;
+	height: 500px;
+	display: inline-block;
+}
+
+.timeBoxH4{
+	margin-bottom: 2px;
+}
+.timeBoxH6{
+	margin-bottom: 15px;
+}
+
+.SubwayMap{
+	width:1000px;
+	height:450px;
+	margin: 0 auto;
+	overflow: hidden;	
+}
+
+
+

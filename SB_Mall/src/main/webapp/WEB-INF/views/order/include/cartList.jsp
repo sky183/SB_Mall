@@ -114,13 +114,13 @@ var aa;
 	<form method="post" id="hCartForm">
 		<c:if test="${cart!=null}">
 			<c:forEach var="cartItem" items="${cart}" varStatus="i">
-				<input type="hidden" name="orderList[${i.index}].productSeq"
+				<input type="hidden" name="orders[${i.index}].productSeq"
 					class="${cartItem.productSeq}${cartItem.option} hInput"
 					value="${cartItem.productSeq}" disabled> 
-				<input type="hidden" name="orderList[${i.index}].option"
+				<input type="hidden" name="orders[${i.index}].option"
 					class="${cartItem.productSeq}${cartItem.option} hInput"
 					value="${cartItem.option}" disabled> 
-				<input type="hidden" name="orderList[${i.index}].userSeq"
+				<input type="hidden" name="orders[${i.index}].userSeq"
 					class="${cartItem.productSeq}${cartItem.option} hInput"
 					value="${cartItem.userSeq}" disabled>
 			</c:forEach>
