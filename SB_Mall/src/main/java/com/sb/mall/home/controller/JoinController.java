@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.member.model.MemberInfo;
 import com.sb.mall.member.service.MemberJoinService;
+import com.sb.mall.member.service.MemberMailService;
 
 @Controller 
 
@@ -26,6 +27,9 @@ public class JoinController {
 	
 	@Autowired
 	private MemberJoinService joinService;
+	
+	@Autowired
+	private MemberMailService noti;
 	
 		
 	@RequestMapping(method = RequestMethod.GET) 
@@ -41,6 +45,9 @@ public class JoinController {
 				
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/home");
+		
+		//메일 보내기용 userid(가입시 입력된 Email)
+		String userId = request.getParameter("userId");
 		
 		if (!memberInfo.getUserPw().equals(userPwChck)) {
 			modelAndView.setViewName("error/joinError");
@@ -65,6 +72,12 @@ public class JoinController {
 					modelAndView.setViewName("error/memberjoinError");
 				}else {
 					System.out.println("RequestMethod.POST방식 가입완료");
+					
+					noti.sendMail(userId);
+					
+					
+					System.out.println("메일보내기 완료");
+					modelAndView.setViewName("view/home");
 				}
 				
 			}else {

@@ -83,6 +83,30 @@
 	<beans:bean class="com.sb.mall.chat.service.ChatEchoService" id="ChatEchoHandler"/>
 
 	<!-- <beans:bean id="myHandler" class="com.sb.mall.handler.WebSocket" /> -->
+	
+	<!-- Email 관련 -->
+	<beans:bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+												<!-- JavaMailSenderImpl : Interface -->
+		<beans:property name="host" value="smtp.gmail.com" />
+		<beans:property name="port" value="587" /><!-- 465 or 25 -->
+		<!-- 보내는 사람의 Email ID -->
+		<beans:property name="username" value="bitcamp1114@gmail.com" />
+		<!-- 보내는 사람의 Email Password -->
+		<beans:property name="password" value="bitcamp123!" />
+		<beans:property name="defaultEncoding" value="utf-8" />
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<beans:prop key="mail.transport.protocol">smtp</beans:prop>
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.debug">true</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="regNoti"
+      class="com.sb.mall.member.service.MemberMailService"/>
 
 	<websocket:handlers>
 		<websocket:mapping path="/echo-ws" handler="ChatEchoHandler" />
