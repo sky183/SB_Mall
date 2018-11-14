@@ -61,6 +61,7 @@
 					<div class="dropNaviBar">
 						<a class="naviDrop_Atag" href="<%=request.getContextPath()%>/store">Store</a>
 						<a class="naviDrop_Atag" href="<%=request.getContextPath()%>/store">crowdFunding</a>
+						<a class="naviDrop_Atag" href="<%=request.getContextPath()%>/crowdWritePage">crowdWritePage</a>
 					</div>
 				</div>
 				
