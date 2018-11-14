@@ -22,7 +22,7 @@
 	margin: 50px 10px 50px 10px;
 }
 </style> -->
-</head>
+</head> 
 <script type="text/javascript">
 
 
