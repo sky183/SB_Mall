@@ -16,14 +16,24 @@ public class MemberInfo {
 	private int gradeNum;
 	private int point;
 	private int userAmount;
+	private int regID;
 	
 	@Override
 	public String toString() {
 		return "MemberInfo [userSeq=" + userSeq + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
 				+ ", address1=" + address1 + ", address2=" + address2 + ", zipCode=" + zipCode + ", phone=" + phone
 				+ ", regDate=" + regDate + ", gradeNum=" + gradeNum + ", point=" + point + ", userAmount=" + userAmount
-				+ "]";
+				+ ", regID=" + regID + "]";
 	}
+
+	public int getRegID() {
+		return regID;
+	}
+
+	public void setRegID(int regID) {
+		this.regID = regID;
+	}
+
 	
 	public int getUserSeq() {
 		return userSeq;

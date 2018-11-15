@@ -98,9 +98,21 @@ function jusoCallBack(roadAddrPart1,addrDetail,zipNo){
 							aria-describedby="defaultRegisterFormPasswordHelpBlock">
 					</div>
 				</div>
+				<div class="form-row mb-4">
+					<div class="col">
 
-				<input type="text" id="defaultRegisterFormLastName"
+						<input type="text" id="defaultRegisterFormLastName"
 					class="form-control" name="userName" required placeholder="이름">
+					</div>
+					<div class="col">
+
+						<input type="text" id="defaultRegisterFormLastName"
+					class="form-control" name="regID" required placeholder="생년월일">
+					</div>
+				</div>
+
+				
+				
 
 				<small id="defaultRegisterFormPasswordHelpBlock"
 					class="form-text text-muted mb-4"></small> <input type="text"
