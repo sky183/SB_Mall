@@ -21,8 +21,7 @@ public class MemberJoinService {
 	
 	private MemberDao memberDao;
 	
-		
-	
+	/*회원가입 Methos*/
 	@Transactional
 	public int joinResult(MemberInfo memberInfo, HttpServletRequest request) 
 			throws SQLException, IllegalStateException, IOException {
@@ -38,4 +37,5 @@ public class MemberJoinService {
 		return resultCnt;
 		
 	}
+	
 }

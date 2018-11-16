@@ -6,6 +6,9 @@
 <head> 
 <meta charset="UTF-8">
 <title>join</title>
+<!-- JQuery -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,9 +20,6 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css"
 	rel="stylesheet">
-<!-- JQuery -->
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
@@ -62,6 +62,31 @@ function jusoCallBack(roadAddrPart1,addrDetail,zipNo){
 		
 }
 
+function idDuplicateCheck() {
+	var userId = $('#defaultRegisterFormFirstName').val();
+	
+	alert(userId);
+	/* $.ajax({
+		type: 'POST',//보내는 방식
+		url:'join/IDDuplicateCheck',//보낼 url 주소
+		data: {userID : userId}, //userId를 userID이름으로 전송
+		success : function(result){
+			console.log(result);
+			if (result == 1) {
+				$('#checkMessage').html('사용할 수 있는 아이디 입니다.');
+				$('#checkType').attr('class','modal-content paner-success';)
+			}else{
+				
+				$('#checkMessage').html('사용할 수 없는 아이디 입니다.');
+				$('#checkType').attr('class','modal-content paner-warning';)
+			}
+			$('#checkModal').modal("show");
+		}
+	})  */
+}
+
+
+
 </script>
 
 </head>
@@ -78,41 +103,43 @@ function jusoCallBack(roadAddrPart1,addrDetail,zipNo){
 
 				<p class="h4 mb-4"><b>회원가입</b></p>
 
-				<input type="email" id="defaultRegisterFormFirstName"
+			
+					<input type="email" id="defaultRegisterFormFirstName"
 					class="form-control" placeholder="E-mail (Id)" name="userId"
-					required> <small id="defaultRegisterFormPasswordHelpBlock"
+					required> 
+				
+					<!-- 중복검사 Button -->
+					<input type="button" onClick="idDuplicateCheck();" value="중복검사" class="btn my-4 btn-block" 
+					style="background-color: #ffc828; font-size: 10px;" height="20px"/>
+					
+					<small id="defaultRegisterFormPasswordHelpBlock"
 					class="form-text text-muted mb-4">메일주소를 정확히 입력해주세요.</small>
-
+				
 				<div class="form-row mb-4">
 					<div class="col">
 
-						<input type="password" id="defaultRegisterFormPassword"
-							class="form-control" name="userPw" required placeholder="비밀번호"
-							aria-describedby="defaultRegisterFormPasswordHelpBlock">
+						<input type="password" id="defaultRegisterFormPassword1"
+							class="form-control" name="userPw" 
+							aria-describedby="defaultRegisterFormPasswordHelpBlock"
+							onkeyup="passwordCheckFunction()"
+							required placeholder="비밀번호"
+							>
 					</div>
 					<div class="col">
 
-						<input type="password" id="defaultRegisterFormPassword"
-							class="form-control" name="userPwChck" required
-							placeholder="비밀번호 확인"
-							aria-describedby="defaultRegisterFormPasswordHelpBlock">
+						<input type="password" id="defaultRegisterFormPassword2"
+							class="form-control" name="userPwChck" 
+							aria-describedby="defaultRegisterFormPasswordHelpBlock"
+							onkeyup="passwordCheckFunction()"
+							required placeholder="비밀번호 확인"
+							>
 					</div>
 				</div>
-				<div class="form-row mb-4">
-					<div class="col">
+				<!-- 비밀번호 확인 -->
+				<h6 style="color: red;" id="password_check"> 비밀번호를 정확히 입력해 주세요</h6>
 
-						<input type="text" id="defaultRegisterFormLastName"
+				<input type="text" id="defaultRegisterFormLastName"
 					class="form-control" name="userName" required placeholder="이름">
-					</div>
-					<div class="col">
-
-						<input type="text" id="defaultRegisterFormLastName"
-					class="form-control" name="regID" required placeholder="생년월일">
-					</div>
-				</div>
-
-				
-				
 
 				<small id="defaultRegisterFormPasswordHelpBlock"
 					class="form-text text-muted mb-4"></small> <input type="text"
@@ -122,11 +149,10 @@ function jusoCallBack(roadAddrPart1,addrDetail,zipNo){
 					id="defaultRegisterFormPhoneHelpBlock"
 					class="form-text text-muted mb-4" > -
 					를 빼고 입력하세요 </small> 
-				 
-				<!-- 주소API -->
-				<input type="button" onClick="goPopup();" value="주소검색" class="btn my-4 btn-block" style="background-color: #ffc828; font-size: 18px;"
 				
-				height="25px"/>
+				<!-- 주소API -->
+				<input type="button" onClick="goPopup();" value="주소검색" class="btn my-4 btn-block" 
+				style="background-color: #ffc828; font-size: 10px;" height="25px"/>
 					
 				<div class="form-row mb-4" id="callBackDiv">
 				
@@ -183,8 +209,89 @@ function jusoCallBack(roadAddrPart1,addrDetail,zipNo){
 			</form>
 		</div>
 	</div>
+	<%
+		String messageContent = null;
+		if(session.getAttribute("messageContent") != null){
+			messageContent = (String)session.getAttribute("messageContent");
+		}
+		String messageType = null;
+		if(session.getAttribute("messageType") != null){
+			messageType = (String)session.getAttribute("messageType");
+		}
+		if(messageContent != null){
+		%>
+		<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-hidden = "true">
+			<div class="vertical-aligment-helper">
+				<div class="modal-dialog vertical-align-center">
+					<div class="modal-content" <% if(messageType.equals("오류 메시지")) out.println("penel-warning"); else out.println("penel-success"); %>>
+						<div class="modal-header panel-heading">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span>
+								<span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title">
+								<%=messageType %>
+							</h4>
+						</div>
+						<div class="modal-body">
+							<%=messageContent%>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn=primary" data-dismiss="modal">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$('#messageModal').modal("show");
+		</script>
+		
+		<%
+		session.removeAttribute("messageContent");
+		session.removeAttribute("messageType");
+		}
+	
+		%>
+		<div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-hidden = "true">
+			<div class="vertical-aligment-helper">
+				<div class="modal-dialog vertical-align-center">
+					<div id="checkType" class="modal-content panel-info" >
+						<div class="modal-header panel-heading">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span>
+								<span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title">
+								확인 메시지
+							</h4>
+						</div>
+						<div class="modal-body" id="checkMessage">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn=primary" data-dismiss="modal">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-
+<script>
+function passwordCheckFunction() {
+	var pw1 = $('#defaultRegisterFormPassword1').val();
+	var pw2 = $('#defaultRegisterFormPassword2').val();
+	if (pw1 != pw2) {
+		/*Test후 아래문장 삭제 후 주석해제*/
+		//$('#password_check').html('입력한 비밀번호 [password1 :'+pw1 + '] [password2 :'+pw2+']');
+		$('#password_check').html('비밀번호가 서로 일치하지 않습니다.');
+	}else{
+		/*Test후 아래문장 삭제 후 주석해제*/
+		//$('#password_check').html('입력한 비밀번호 [password1 :'+pw1 + '] [password2 :'+pw2+']');
+		$('#password_check').html('');
+		
+	}
+}
+</script>
 
 
 </body>
