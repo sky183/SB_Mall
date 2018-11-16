@@ -80,8 +80,8 @@ public class JoinController {
 			int resultCnt = joinService.joinResult(memberInfo, request);
 			modelAndView.addObject("memberInfo", memberInfo);
 			
-			//1. Session(memberInfo) is not null && 중복아이디가 없을때 회원가입
-			if (memberInfo != null && memberInfo.getUserId() != request.getParameter("userId")) {
+			//1. Session(memberInfo) is not null 일때 회원가입
+			if (memberInfo != null) {
 				
 				System.out.println("1. Session is not null");
 				System.out.println("<Controller Message>");
