@@ -25,7 +25,7 @@ public class MyPageController {
 	@RequestMapping("member/myPage")
 	public ModelAndView myPage(HttpSession session, HttpServletRequest request) {
 
-		ModelAndView modelAndView = new ModelAndView("/myPage");
+		ModelAndView modelAndView = new ModelAndView("view/myPage");
 
 		MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
 		int userSeq = memberInfo.getUserSeq();
