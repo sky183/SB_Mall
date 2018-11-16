@@ -36,7 +36,9 @@
 		MemberInfo order by userSeq desc limit #{param1},
 		#{param2}
 	</select>
+	<select id = "find_id" parameterType = "String" resultType="String">
+		select userId from MemberInfo where username = #{userName}
+</select>
 	
 	 
-	
  </mapper>
