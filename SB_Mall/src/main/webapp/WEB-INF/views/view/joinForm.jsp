@@ -137,9 +137,21 @@ function idDuplicateCheck() {
 				</div>
 				<!-- 비밀번호 확인 -->
 				<h6 style="color: red;" id="password_check"> 비밀번호를 정확히 입력해 주세요</h6>
+				
+				<div class="form-row mb-4">
+               		<div class="col">
 
-				<input type="text" id="defaultRegisterFormLastName"
-					class="form-control" name="userName" required placeholder="이름">
+                 		 <input type="text" id="defaultRegisterFormLastName"
+              			 class="form-control" name="userName" required placeholder="이름">
+              		 </div>
+              		 <div class="col">
+
+                  		<input type="text" id="defaultRegisterFormLastName"
+             			  class="form-control" name="regID" required placeholder="생년월일">
+              		 </div>
+          	  	</div>
+				
+
 
 				<small id="defaultRegisterFormPasswordHelpBlock"
 					class="form-text text-muted mb-4"></small> <input type="text"

@@ -139,6 +139,17 @@
 				class="com.sb.mall.home.interceptor.AuthCheckInterceptor" />
 		</interceptor>
 	</interceptors>
+	
+	<!-- <<의존설정을 위해 빈객체 등록>> -->
+	<!-- 암호화 -->
+	<beans:bean id="sha256" class="com.sb.mall.member.service.Sha256"></beans:bean>
+	
+	<!-- 복호화 -->
+	<beans:bean id="aES256Util" class="com.sb.mall.member.service.AES256Util">
+	<!-- 키의 길이가 16자리 설정 노출위험이 있어서 클래스 내에서 직접 설정하는것을 권장 -->
+		<!-- <beans:constructor-arg value="0000000000000000" /> -->
+	</beans:bean>
+	
 </beans:beans>
 
 
