@@ -27,7 +27,7 @@
 
 
 $('document').ready(function() { 		
-	// input타입 text,password  
+	  
 	$('input[type="text"],input[type="password"]').keyup(function(){
 		//엔터 쳤을때
 		if(event.keyCode ==13){
@@ -92,32 +92,36 @@ $('document').ready(function() {
 		<br>
 
 		<!-- <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> -->
-		<label for="login_id" class="sr-only">ID</label> <input type="text"
-			name="userId" id="login_id" class="form-control" placeholder="아이디"
-			required auotofocus> <br> <label for="inputPassword"
-			class="sr-only">Password</label> <input type="password" name="userPw"
-			id="userPw" class="form-control" placeholder="비밀번호" required>
+		<label for="login_id" class="sr-only">ID</label> 
+		<input type="text"name="userId" id="login_id" class="form-control" 
+		placeholder="아이디" required auotofocus> <br> 
+		<label for="inputPassword"class="sr-only">Password</label>
+			 <input type="password" name="userPw"id="userPw"
+			  class="form-control" placeholder="비밀번호" required>
 
 		${error}
 
+			<!--아이디 저장기능  -->
 		<div class="checkbox mb-3">
-			<input type="checkbox" name="rememberId" id="rememberId"> <label
-				for="rememberId" id="rememberIdLabel">아이디 저장 </label>
+			<input type="checkbox" name="rememberId" id="rememberId"> 
+			<label for="rememberId" id="rememberIdLabel">아이디 저장 </label>
 
 
 		</div>
 
-
+		<!--로그인 버튼  -->
 		<button class="btn btn-lg btn-primary btn-block" type="button"
 			id=login_button>로그인</button>
 		<br>
+		<!--아이디찾기  -->
+		<a href="<%=request.getContextPath()%>/member/find_id">아이디찾기 </a>
 		<p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
-
 
 
 	</form>
 
 </body>
+
 </html>
 
 
