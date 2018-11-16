@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.member.model.MemberInfo;
+import com.sb.mall.member.service.AES256Util;
 import com.sb.mall.member.service.MemberJoinService;
 import com.sb.mall.member.service.MemberMailService;
+import com.sb.mall.member.service.Sha256;
 
 @Controller 
 
@@ -30,6 +32,14 @@ public class JoinController {
 	
 	@Autowired
 	private MemberMailService noti;
+	
+	/*암호화 관련 의존주입 2018.11.16*/
+	@Autowired
+	private Sha256 sha256;
+	
+	/*암호화 관련 의존주입 2018.11.16*/
+	@Autowired
+	private AES256Util aES256Util;
 	
 		
 	@RequestMapping(method = RequestMethod.GET) 
@@ -62,7 +72,7 @@ public class JoinController {
 		//리턴할 경로 저장
 		modelAndView.setViewName("/home");
 		
-		//메일 보내기용 userid(가입시 입력된 Email)
+		/*2018.11.15 메일 보내기용 userid(가입시 입력된 Email)*/
 		String userId = memberInfo.getUserId();
 		String userName = memberInfo.getUserName();
 		String filePath = "/member/memberWelcome.jsp";
@@ -73,6 +83,14 @@ public class JoinController {
 			modelAndView.addObject("error", "비밀번호가 다릅니다.");
 			return modelAndView;
 		}
+		
+		/*2018.11.16 암호화 패치*/
+		System.out.println("The Password you inputed :" + memberInfo.getUserPw());
+		String encryptionPW = sha256.encrypt(memberInfo.getUserPw());
+		System.out.println("be encryption password :" + encryptionPW);
+		memberInfo.setUserPw(encryptionPW);
+		
+		
 		
 		try {
 			
