@@ -27,10 +27,10 @@ public class MemberFindController {
 	
 	// 아이디 찾기
 	@RequestMapping(value = "/member/find_id", method = RequestMethod.POST)
-	public String find_id(HttpServletResponse response,@RequestParam("userName") String userName,Model md) throws Exception{
+	public String find_id(HttpServletResponse response,@RequestParam("userName") String userName,@RequestParam("phone") String phone,Model md) throws Exception{
 	
 	
-	 md.addAttribute("id",findService.findId(response,userName));
+	 md.addAttribute("id",findService.findId(response,userName,phone));
 		
 		
 		return "login/find_id";

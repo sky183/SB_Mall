@@ -20,6 +20,6 @@ public interface MemberDao {
 	
 	public List<Object> selectList(int firstRow, int endRow);
 	
-	public String find_id(String userName);
+	public String find_id(String userName,String phone);
 	
 }
