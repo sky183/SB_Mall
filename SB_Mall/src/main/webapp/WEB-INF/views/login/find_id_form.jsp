@@ -20,6 +20,8 @@
 						<label>이름</label>
 						<input class="w3-input" type="text" id="userName" name="userName" required>
 					</p>
+					<label>핸드폰번호</label>
+					<input class="w3-input" type="text" id="phone" name="phone" required>
 					<p class="w3-center">
 						<button type="submit" id=findBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">find</button>
 						<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>

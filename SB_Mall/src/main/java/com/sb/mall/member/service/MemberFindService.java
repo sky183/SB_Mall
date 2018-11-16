@@ -19,7 +19,7 @@ public class MemberFindService {
 	private MemberDao Dao;
 
 	
-	public String findId(HttpServletResponse response ,String userName) throws Exception{
+	public String findId(HttpServletResponse response ,String userName,String phone) throws Exception{
 
 		Dao = sqlsessionTemplates.getMapper(MemberDao.class);
 	
@@ -27,7 +27,7 @@ public class MemberFindService {
 		PrintWriter out = response.getWriter();
 		
 		
-		String id = Dao.find_id(userName);
+		String id = Dao.find_id(userName,phone);
 
 		if (id == null) {
 			
