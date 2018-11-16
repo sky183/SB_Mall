@@ -171,13 +171,13 @@ function idDuplicateCheck() {
 					<!-- 우편번호 -->
 					<input type="text" id="zipNo"
 					class="form-control" placeholder="우편번호" name="zipCode" required
-					aria-describedby="defaultRegisterFormPhoneHelpBlock"> 
+					aria-describedby="defaultRegisterFormPhoneHelpBlock" readonly="readonly"> 
 						
 					<!-- 주소 -->
 					<input type="text" id="roadAddrPart1" 
 							class="form-control" placeholder="주소"
 							aria-describedby="defaultRegisterFormPhoneHelpBlock"
-							name="address1">
+							name="address1" readonly="readonly">
 
 					<!-- 상세주소 -->
 						<input type="text" id="addrDetail"
