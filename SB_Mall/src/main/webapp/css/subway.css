@@ -35,7 +35,11 @@
 	width:1000px;
 	height:450px;
 	margin: 0 auto;
-	overflow: hidden;	
+	overflow: auto;	
+}
+.subwayMapImage{
+	width:2000px;
+	
 }
 
 

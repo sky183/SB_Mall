@@ -206,7 +206,7 @@
 		<button class="SubwaySize">+</button>
 		<button class="SubwaySize">-</button>
 		<div class="SubwayMap">
-			<img class="subwayMaps" src="<%=request.getContextPath()%>/img/subwayMap.jpeg">
+			<img class="subwayMapImage" src="<%=request.getContextPath()%>/img/subwayMap-01.png">
 		</div>
 	</div>
 	<div id="subwayBigBox">

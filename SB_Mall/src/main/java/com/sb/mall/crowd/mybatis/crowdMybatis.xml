@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.sb.mall.crowd.dao.CrowdDao">
+	
+	<insert id="insertCrowdBoard"
+		parameterType="com.sb.mall.crowd.model.crowdBoard"
+		useGeneratedKeys="true" keyColumn="crowdBoardSeq" keyProperty="crowdBoardSeq">
+		
+	insert into CrowdBoard (userSeq,title,text,writeDate,salesDay,targetPrice)
+	value(#{userSeq},#{title},#{text},#{writeDate},#{salesDay},#{targetPrice})
+	
+	</insert>
+	
+	<insert id="insertCrowdProduct"
+		parameterType="com.sb.mall.crowd.model.crowdProduct"
+		useGeneratedKeys="true" keyColumn="productSeq" keyProperty="productSeq">
+		
+		insert into Product (crowdBoardSeq,price,productName,photo,detail) 
+ 		value(#{crowdBoardSeq},#{price},#{productName},#{photo},#{detail})
+ 		
+	</insert>
+	
+	<insert id="insertCrowdGoods"
+		parameterType="com.sb.mall.crowd.model.crowdGoods">
+		
+		insert into Goods (goodsNo,productSeq,goodsName,goodsPrice,goodsPhoto) 
+ 		value(#{goodsNo},#{productSeq},#{goodsName},#{goodsPrice},#{goodsPhoto})
+		
+	</insert>
+	
+	<insert id="insertCrowdOption"
+		parameterType="com.sb.mall.crowd.model.crowdOption">
+		
+		insert into GoodsOption (goodsNo,opt1Name,opt1Price,opt2Name,opt2Price) 
+ 		value(#{goodsNo},#{opt1Name},#{opt1Price},#{opt2Name},#{opt2Price})
+		
+	</insert>
+	
+	<select id="selectCrowdBoard" resultType="map">
+	
+	select * from CrowdBoard order by writeDate desc limit limit #{param1},#{param2}
+	
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

@@ -5,10 +5,10 @@
 
 <mapper namespace="com.sb.mall.home.dao.HomeDao">
 	<select id="selectDailyDeal" resultType="map">
-		select * from SalesBoard s, Product p where s.productSeq=p.productSeq order by viewSeq Desc limit 0,5
+		select * from SalesBoard s, Product p where s.salesSeq=p.salesSeq order by viewSeq Desc limit 0,5
 	</select>
 	
 	<select id="selectNewProduct" resultType="map">
-		select * from SalesBoard s, Product p where s.productSeq=p.productSeq order by writeDate Desc limit 0,8
+		select * from SalesBoard s, Product p where s.salesSeq=p.salesSeq order by writeDate Desc limit 0,8
 	</select>
 </mapper>

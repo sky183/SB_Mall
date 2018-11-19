@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+*{
+	padding:0px;
+	margin:0px;
+}
+h1,h2,h3,h4,h5,h6{
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+}
+#crowdWriteBigBanner{
+	width:100%;
+	background-color: #3c3c3c;
+}
+#crowdWriteMidBanner{
+	width:1000px;
+	margin: 0 auto;
+	text-align: center;
+}
+.rowdWriteBannerH3{
+	padding-bottom:30px;
+	padding-top:70px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	color:white;
+	font-size: 28pt;
+}
+#crowdWriteBixBox{
+	width:1000px;
+	margin: 0 auto;
+	
+}
+.goodsTitle{
+	display:inline-block;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.goodsListTitle{
+	display: inline-block;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.pludMinusbtn{
+	display: inline-block;
+}
+
+
+
+
+
+
+/* 리모컨 */
+#writeRemote{
+	position: fixed;
+	width: 280px;
+	left: 0px;
+	top:33%;
+	padding:10px;
+	background-color: #f0f0f0;
+	border-radius: 0px 10px 10px 0px;
+}
+.remoteAddBox{
+	
+}
+.remoteList{
+	margin-top:10px;
+}
+.remoteImgBox,.remoteNameBox,.remoteDelBox{
+	display: inline-block;
+}
+.remoteImgBox{
+	width:50px;
+	height: 50px;
+	margin-right: 10px;
+}
+.rmtImg{
+	width:50px;
+	height:50px;
+	vertical-align: middle;
+}
+.remoteNameBox{
+	/* height: 50px; */
+	vertical-align: middle;
+}
+.remoteName{
+	padding-top:17px;
+	padding-bottom:17px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.remoteDelBox{
+	float: right;
+	padding-top:18px;
+	padding-bottom:18px;
+}
+.remoteDel{
+	
+}
+.rmtNm{
+	display: inline-block;
+	font-size: 12pt;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.rmtPri{
+	display: inline-block;
+	font-size: 10pt;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	line-height: 15pt;
+}
+
+
+
+
+

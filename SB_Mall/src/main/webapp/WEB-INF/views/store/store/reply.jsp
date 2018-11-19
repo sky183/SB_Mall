@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/reply.css">
     <script>
      var nowReply
-   	var tmp;
+   	 var tmp;
      var tmp2;
      var tmp3;
 	    $(document).ready(function(){
