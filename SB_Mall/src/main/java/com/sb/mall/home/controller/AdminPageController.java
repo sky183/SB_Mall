@@ -24,33 +24,16 @@ public class AdminPageController {
 		
 		ModelAndView modelAndView = new ModelAndView("/view/adminPage");
 		
-		String thisMonth = amountService.getAmount(0);
-		String preMonth = amountService.getAmount(1);
-		String secondMonth = amountService.getAmount(2);
-		String thirdMonth = amountService.getAmount(3);
-		String fourthMonth = amountService.getAmount(4);
-		String fifthMonth = amountService.getAmount(5);
-		String sixthMonth = amountService.getAmount(6);
-		String seventhMonth = amountService.getAmount(7);
-		String eighthMonth = amountService.getAmount(8);
-		String ninethMonth = amountService.getAmount(9);
-		String tenthMonth = amountService.getAmount(10);
-		String thisMonthAverage = averageService.getAverage(0);
-		String preMonthAverage = averageService.getAverage(1);
+		String[] salAmount = null;
+		String[] salAverage = null; 
 		
-		modelAndView.addObject("thisMonth", thisMonth);
-		modelAndView.addObject("preMonth", preMonth);
-		modelAndView.addObject("secondMonth", secondMonth);
-		modelAndView.addObject("thirdMonth", thirdMonth);
-		modelAndView.addObject("fourthMonth", fourthMonth);
-		modelAndView.addObject("fifthMonth", fifthMonth);
-		modelAndView.addObject("sixthMonth", sixthMonth);
-		modelAndView.addObject("seventhMonth", seventhMonth);
-		modelAndView.addObject("eighthMonth", eighthMonth);
-		modelAndView.addObject("ninethMonth", ninethMonth);
-		modelAndView.addObject("tenthMonth", tenthMonth);
-		modelAndView.addObject("thisMonthAverage", thisMonthAverage);
-		modelAndView.addObject("preMonthAverage", preMonthAverage);
+		for (int i = 0; i < 11; i++) {
+			salAmount[i] = amountService.getAmount(i);
+			salAverage[i] = averageService.getAverage(i);
+		}
+		
+		modelAndView.addObject("salAmount", salAmount);
+		modelAndView.addObject("salAverage", salAverage);
 		
 		return modelAndView;
 	}

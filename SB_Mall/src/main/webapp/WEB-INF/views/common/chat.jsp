@@ -216,13 +216,6 @@ top: 10px;
 		
 	}
 	
-	var worker = new SharedWorker("shared.js");
-    worker.port.addEventListener("message", function(e) {
-        console.log("Got message: " + e.data);
-    }, false);
-    worker.port.start();
-    worker.port.postMessage("start");
-	
 </script>
 
 

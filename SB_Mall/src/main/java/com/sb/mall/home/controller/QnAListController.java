@@ -1,4 +1,4 @@
-package com.sb.mall.QnA.Controller;
+package com.sb.mall.home.controller;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class QnAListController {
 		List<QnABoard> list = qnaService.qnaAndMemList();
 
 		modelAndView.addObject("qnaList", list);
-		modelAndView.setViewName("qna");
+		modelAndView.setViewName("view/qna");
 		return modelAndView;
 	}
 	
