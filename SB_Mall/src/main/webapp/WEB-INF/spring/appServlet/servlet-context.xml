@@ -132,6 +132,7 @@
 			<mapping path="/member/**" />
 			<mapping path="/reply**" />
 			<mapping path="/qna/**" />
+			<mapping path="/crowd/**" />
 			<exclude-mapping path="/member/login" />
 			<exclude-mapping path="/member/join/**" />
 			<exclude-mapping path="/member/find/**" />
@@ -150,6 +151,12 @@
 	<!-- 키의 길이가 16자리 설정 노출위험이 있어서 클래스 내에서 직접 설정하는것을 권장 -->
 		<!-- <beans:constructor-arg value="0000000000000000" /> -->
 	</beans:bean>
+	
+	<beans:bean id="regNoti2"
+      class="com.sb.mall.member.service.SimpleRegistrationNotifier"/>
+
+   <context:component-scan
+      base-package="com.sb.mall" />
 	
 </beans:beans>
 
