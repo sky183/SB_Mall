@@ -176,7 +176,7 @@ body {
 				<!-- Sign up button -->
 				<div id="member_button">
 					<button class="btn my-4 btn-block"
-						style="background-color: #ffc828; font-size: 18px;" type="button"
+						style="background-color: #ffc828; font-size: 18px;" type="submit"
 						onclick="checkFunction()">회원 가입</button>
 				</div>
 
@@ -242,7 +242,7 @@ body {
 		if (!( mailJ.test($('#defaultRegisterFormFirstName').val()) )) {
 
 			//출력될 Label
-			$('#defaultRegisterFormPasswordHelpBlock').text("Email형식에 맞지 않습니다.");
+			$('#id_Duplicate_Check').text("Email형식에 맞지 않습니다.");
 
 		} else {
 			//2.정규식에 맞을때
