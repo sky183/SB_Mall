@@ -3,7 +3,7 @@ package com.sb.mall.store.model;
 public class GoodsOption {
 	
 	private int optionSeq;
-	private int goodsNo;
+	private String goodsNo;
 	private String opt1Name;
 	private int opt1Price;
 	private int opt1Val;
@@ -26,11 +26,11 @@ public class GoodsOption {
 		this.optionSeq = optionSeq;
 	}
 
-	public int getGoodsNo() {
+	public String getGoodsNo() {
 		return goodsNo;
 	}
 
-	public void setGoodsNo(int goodsNo) {
+	public void setGoodsNo(String goodsNo) {
 		this.goodsNo = goodsNo;
 	}
 

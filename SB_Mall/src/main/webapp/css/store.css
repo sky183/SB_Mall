@@ -258,6 +258,7 @@ a:focus{
 	align-items: stretch;
 	align-content: space-between;
 }
+
 .productListThumb{
 	width: 289px;
 	height: 308px;
@@ -365,4 +366,106 @@ a:focus{
 .selectedPagingBtn:hover{
 	cursor: default;
 }
+#summernoteBox{
+	width: 1100px;
+	margin: 100px auto;
+}
+#summerTitle{
+	width: 100%;
+    border: 1px solid #a9a9a9;
+    border-radius: 5px;
+    margin: 10px 0;
+}
 
+#productUpload{
+	width: auto;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between; 
+	flex-flow:wrap row;
+	align-items: stretch;
+	align-content: space-between;
+	border-bottom: 1px solid #a9a9a9;
+	padding-bottom:10px;
+	margin-bottom:10px;
+}
+#productFormBox{
+	width: 60%;
+	display: inline-block;
+}
+#productFormBox input,textarea{
+	width: 100%;
+	height: 25px;
+	border: 1px solid #a9a9a9;
+	border-radius: 5px;
+}
+#productFormBox p{
+	font-size:15px;
+	margin: 5px 0;
+}
+#productFormBox textarea{
+	width: 100%;
+	height: 60px;
+}
+#productView{
+	width: 39%;
+	display: inline-block;
+	text-align: center;
+}
+#productUploadImg{
+	width: 300px;
+}
+
+#goodsUpload p{
+	font-size:15px;
+	margin: 5px 0;
+}
+
+#goodsListBox{
+	width: 100%;
+	height: 300px;
+	border: 1px solid #a9a9a9;
+	overflow-y: scroll;
+	padding: 10px 0;
+}
+#goodsListBox label{
+	width: 100%;
+}
+.goodsListItem{
+	width: 100%;
+	display: block;
+	height: 100px;
+	font-size: 15px;
+	border: 1px solid #c8c8c8;
+	display: flex;
+	justify-content: space-between; 
+	flex-flow:wrap row;
+	align-items: stretch;
+	align-content: space-between;
+	
+}
+.goodsListItem span{
+	margin: auto 0;
+}
+.goodsListItem:hover{
+	background-color: #f0f0f0 !important;
+}
+.goodsImgBox{
+	text-align: center;
+	width:150px;
+}
+.goodsImgBox img{
+	width: 80px;
+	height: 80px;
+}
+.goodsNameBox{
+	width: 700px;
+}
+.goodsPriceBox{
+	width: 200px;
+}
+
+.storeThumb{
+	border:1px solid #a9a9a9;
+	border-radius: 5px;
+}

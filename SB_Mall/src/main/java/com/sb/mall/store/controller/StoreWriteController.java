@@ -48,7 +48,8 @@ public class StoreWriteController {
 		modelAndView.setViewName("redirect:/store");
 
 		storeWriteCommend.getSalesBoard().setUserSeq(memberInfo.getUserSeq());
-
+		System.out.println(storeWriteCommend.getGoods());
+		System.out.println(storeWriteCommend.getGoodsOptions());
 		try {
 			// 제품판매 게시글 등록
 			storeAdminService.productAndBoardWrite(storeWriteCommend.getProduct(), storeWriteCommend.getSalesBoard());

@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Goods {
 	
-	private int goodsNo;
+	private String goodsNo;
 	private int productSeq;
 	private String goodsName;
 	private int goodsPrice;
@@ -17,11 +17,11 @@ public class Goods {
 				+ goodsPrice + ", goodsPhoto=" + goodsPhoto + ", goodsFile=" + goodsFile + "]";
 	}
 
-	public int getGoodsNo() {
+	public String getGoodsNo() {
 		return goodsNo;
 	}
 
-	public void setGoodsNo(int goodsNo) {
+	public void setGoodsNo(String goodsNo) {
 		this.goodsNo = goodsNo;
 	}
 
