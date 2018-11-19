@@ -114,7 +114,9 @@ $('document').ready(function() {
 			id=login_button>로그인</button>
 		<br>
 		<!--아이디찾기  -->
-		<a href="<%=request.getContextPath()%>/member/find_id">아이디찾기 </a>
+		<a href="<%=request.getContextPath()%>/member/find/find_id">아이디찾기 </a>
+		<br>
+		<a href="<%=request.getContextPath()%>/member/find/find_pw">비밀번호찾기 </a>
 		<p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
 
 

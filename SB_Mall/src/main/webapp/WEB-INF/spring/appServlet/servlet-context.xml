@@ -134,7 +134,7 @@
 			<mapping path="/qna/**" />
 			<exclude-mapping path="/member/login" />
 			<exclude-mapping path="/member/join/**" />
-			<exclude-mapping path="/member/find_id/**" />
+			<exclude-mapping path="/member/find/**" />
 
 			<beans:bean
 				class="com.sb.mall.home.interceptor.AuthCheckInterceptor" />

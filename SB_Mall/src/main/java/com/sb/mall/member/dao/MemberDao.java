@@ -22,4 +22,6 @@ public interface MemberDao {
 	
 	public String find_id(String userName,String phone);
 	
+	public String find_pw(String userId, String userName);
+	
 }

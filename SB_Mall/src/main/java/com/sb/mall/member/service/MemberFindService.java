@@ -18,19 +18,17 @@ public class MemberFindService {
 
 	private MemberDao Dao;
 
-	
-	public String findId(HttpServletResponse response ,String userName,String phone) throws Exception{
+	public String findId(HttpServletResponse response, String userName, String phone) throws Exception {
 
 		Dao = sqlsessionTemplates.getMapper(MemberDao.class);
-	
+
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		
-		
-		String id = Dao.find_id(userName,phone);
+
+		String id = Dao.find_id(userName, phone);
 
 		if (id == null) {
-			
+
 			out.println("<script>");
 			out.println("alert('가입된 아이디가 없습니다.');");
 			out.println("history.go(-1);");
@@ -39,8 +37,36 @@ public class MemberFindService {
 
 			return null;
 
-		}else {
+		} else {
 			return id;
+		}
+
+	}
+
+	public String findPw(HttpServletResponse response, String userId, String userName) throws Exception {
+
+		Dao = sqlsessionTemplates.getMapper(MemberDao.class);
+
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+
+		System.out.println(userId);
+		System.out.println(userName);
+		
+		String pw = Dao.find_pw(userId, userName);
+
+		if (pw == null) {
+
+			out.println("<script>");
+			out.println("alert('아이디와 이름이 일치하지 않습니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+
+			return null;
+
+		} else {
+			return pw;
 		}
 
 	}

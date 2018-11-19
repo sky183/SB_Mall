@@ -36,6 +36,7 @@
 		MemberInfo order by userSeq desc limit #{param1},
 		#{param2}
 	</select>
+	
 	<!--파라미터 타입은 입력값 ,리설트타입은 출력값   -->
 	<select id = "find_id" parameterType = "String" resultType="String">
 	
@@ -43,7 +44,13 @@
 				<!--여러개를 받아올때 param1   -->
 			select userId from MemberInfo where username = #{param1} and phone = #{param2}
 		
+		<!--비밀번호 찾기  -->
+</select> 
+		<select id = "find_pw" parameterType="String" resultType="String">
+
+		select userPw from MemberInfo where userId = #{param1} and userName = #{param2}
+
+
 </select>
-	
 	 
  </mapper>
