@@ -113,31 +113,40 @@ body {
 				
 				<!-- 비밀번호 유효성 Message 출력 -->
 				<small id="password_check"
-					for="defaultRegisterFormFirstName"
 					class="form-text text-muted mb-4">비밀번호를 정확히 입력해 주세요.</small>
-				<!-- <h6 style="color: red;" id="password_check">비밀번호를 정확히 입력해 주세요</h6> -->
 
 				<div class="form-row mb-4">
 					<div class="col">
 
 						<input type="text" id="userName" class="form-control"
-							name="userName" required placeholder="이름">
+							name="userName" required placeholder="이름"
+							onkeyup="nameCheckFunction()">
 					</div>
 					<div class="col">
 
 						<input type="text" id="userBirthday" class="form-control"
-							name="regID" required placeholder="생년월일">
+							name="regID" required placeholder="0000/00/00"
+							onkeyup="birthdayCheckFunction()">
 					</div>
 				</div>
 
+				<!-- 이름 유효성 Message 출력 -->
+				<small id="name_check"
+					class="form-text text-muted mb-4"></small>
+				<!-- 생년월일 유효성 Message 출력 -->
+				<small id="birthday_check"
+					class="form-text text-muted mb-4"></small>
 
 
 				<small 
 					class="form-text text-muted mb-4"></small> <input type="text"
-					id="defaultRegisterPhonePassword" class="form-control"
+					id="phoneNumber" class="form-control"
 					placeholder="휴대폰 번호"
 					aria-describedby="defaultRegisterFormPhoneHelpBlock" name="phone"
-					required> <small id="defaultRegisterFormPhoneHelpBlock"
+					required
+					onkeyup="phoneNumber_CheckFunction()"
+					> 
+				<small id="phoneNumber_check"
 					class="form-text text-muted mb-4"> - 를 빼고 입력하세요 </small>
 
 				<!-- 주소API -->
@@ -279,30 +288,64 @@ body {
     		var pw2 = $('#defaultRegisterFormPassword2').val();
     		
     		
-			//1.정규식에 부합하지 않을때
-			if ( !(pwJ.test($('#password_check').val()) ) ) {
+			//1.정규식에 부합할때
+    			
+			if ( pwJ.test($('#defaultRegisterFormPassword1').val())) {
                 
-				$('#password_check').html('영문(대소문자 구분), 숫자, 특수문자 조합, 9~12자리를 입력해 주세요.(공백불가).. 입력한 비밀번호 [password1 :'+pw1 + '] [password2 :'+pw2+']');                
-            
-			} else {
-            //2.정규식에 부합할때
-            	/* lab.textContent = "8~20자의 영어,숫자,특수문자를 혼합하여 입력해 주세요.(공백불가)"; */
-   				$('#password_check').html('8~20자의 영어,숫자,특수문자를 혼합하여 입력해 주세요.(공백불가).');
-            	
-    			if (pw1 != pw2) {
+            	/* lab.textContent = "8~20자의 영어,숫자를 혼합하여 입력해 주세요.(공백불가)"; */
+   				$('#password_check').html('<h6 style="color: green;">비밀번호 형식에 맞습니다.</h6>');
+   				$('#password_check').css('color', 'green');
+   				
+   				if (pw1 != pw2) {
     				/*Test후 아래문장 삭제 후 주석해제*/
-    				$('#password_check').html('비밀번호가 서로 일치하지 않습니다.');
+    				$('#password_check').html('<h6 style="color: red;">비밀번호가 서로 일치하지 않습니다.</h6>');
     			} else {
     				/*Test후 아래문장 삭제 후 주석해제*/
     				//$('#password_check').html('입력한 비밀번호 [password1 :'+pw1 + '] [password2 :'+pw2+']');
     				$('#password_check').html('');
 
     			}
+            
+			} else {
+            //2.정규식에 부합하지않을때
+				$('#password_check').html('<h6 style="color: red;">비밀번호 형식에 맞지 않습니다.</h6><br>입력한 비밀번호 [password1 :'+pw1 + '] [password2 :'+pw2+']');                
+   				$('#password_check').css('color', 'red');
             	
-                document.getElementById('i_USERPW').style.background = "#fff url(https://static.nid.naver.com/images/ui/join/pc_icon_safe_180417.png) 0 0 no-repeat";
-                lab.textContent = "";
             }
 			
+		}
+		
+		/*이름 정규식*/
+		function nameCheckFunction() {
+			if (nameJ.test($('#userName').val())) {
+				
+				$('#name_check').html('<h6 style="color: green;"> 적합</h6>');                
+			}else{
+				$('#name_check').html('<h6 style="color: red;">부적합</h6>');                
+				
+			}
+		}
+		
+		/*생년월일 정규식*/
+		function birthdayCheckFunction() {
+			if (birthJ.test($('#userBirthday').val())) {
+				
+				$('#birthday_check').html('<h6 style="color: green;"> 적합</h6>');                
+			}else{
+				$('#birthday_check').html('<h6 style="color: red;">부적합</h6>');                
+				
+			}
+		}
+		
+		/*휴대폰번호 정규식*/
+		function phoneNumber_CheckFunction() {
+			if (phoneJ.test($('#phoneNumber').val())) {
+				
+				$('#phoneNumber_check').html('<h6 style="color: green;"> 적합</h6>');                
+			}else{
+				$('#phoneNumber_check').html('<h6 style="color: red;">부적합</h6>');                
+				
+			}
 		}
 	</script>
 
