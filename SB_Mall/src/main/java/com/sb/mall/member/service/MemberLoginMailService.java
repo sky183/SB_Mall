@@ -12,7 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 
 //import com.bitcamp.memberboard.member.model.Member;
 
-public class SimpleRegistrationNotifier {
+public class MemberLoginMailService {
    @Autowired
 //   private MailSender mailSender;//실질적으로 메일을 보내주는 역할
    private JavaMailSender mailSender;//HTML형식으로 메일을 보내주기 위해 JavaMailSender로 선언
@@ -36,8 +36,8 @@ public class SimpleRegistrationNotifier {
       SimpleMailMessage message = new SimpleMailMessage();
 
       message.setSubject("[Simple] 회원 가입 안내");
-      message.setFrom("비밀번호는"+ resultpw );
-      message.setText("회원 가입을 환영합니다.");
+      message.setFrom("isincorp@gmail.com");
+      message.setText("회원 가입을 환영합니다. 회원님의 비밀번호는 :" + resultpw + " 입니다.");
       message.setTo(memberemail);
 
       try {

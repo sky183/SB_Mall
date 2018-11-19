@@ -153,7 +153,7 @@
 	</beans:bean>
 	
 	<beans:bean id="regNoti2"
-      class="com.sb.mall.member.service.SimpleRegistrationNotifier"/>
+      class="com.sb.mall.member.service.MemberLoginMailService"/>
 
    <context:component-scan
       base-package="com.sb.mall" />

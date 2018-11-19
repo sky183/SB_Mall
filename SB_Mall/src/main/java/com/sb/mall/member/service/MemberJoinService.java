@@ -38,4 +38,29 @@ public class MemberJoinService {
 		
 	}
 	
+	/*아이디 중복 체크 Methos*/
+	@Transactional
+	public int idCheckResult(String userId, HttpServletRequest request) 
+			throws SQLException, IllegalStateException, IOException {
+		System.out.println("<Service Message>");
+		System.out.println("중복검사 할 ID:"+ userId);
+		
+		//DB에 입력한 아이디 조회 후 객체 생성
+		memberDao = sqlSessionTemplate.getMapper(MemberDao.class);
+		MemberInfo user = memberDao.selectById(userId);
+		
+		if (user != null) {
+			System.out.println("가입 불가");
+			return 1;
+			
+		}else {
+			System.out.println("가입 가능 :" + userId);
+			return 0;
+			
+		}
+		
+		
+		
+	}
+	
 }

@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -56,6 +58,26 @@ public class JoinController {
 		
 		return "/popup/jusoPopup";
 	}
+	
+	/*아이디 중복검사 2018.11.19*/
+	@RequestMapping("/id_DuplicateCheck")
+	@ResponseBody
+	public int idDuplicate(String userId, HttpServletRequest request) {
+		System.out.println("<<아이디 중복검사 Controller>>");
+		System.out.println("중복검사 할 아이디 : "+userId);
+		
+		int id_Check = 0;
+		try {
+			id_Check = joinService.idCheckResult(userId, request);
+		} catch (IllegalStateException | SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return id_Check;
+	}
+	
 	
 	//가입시 입력한 정보를 POST방식으로 받아옴
 	@RequestMapping(method = RequestMethod.POST)  

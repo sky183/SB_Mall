@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sb.mall.member.service.MemberFindService;
 import com.sb.mall.member.service.MemberMailService;
-import com.sb.mall.member.service.SimpleRegistrationNotifier;
+import com.sb.mall.member.service.MemberLoginMailService;
 
 @Controller
 public class MemberFindController {
@@ -20,7 +20,7 @@ public class MemberFindController {
 	private MemberFindService findService;
 	
 	@Autowired
-	private SimpleRegistrationNotifier noti2;
+	private MemberLoginMailService noti2;
 
 	// find_id 으로 요청이들어오면 "/member/find_id_form".jsp 파일을 응답해주는 내용
 	// 아이디 찾기 버튼 클릭시 아이디 찾기 폼으로 이동
@@ -52,12 +52,14 @@ public class MemberFindController {
 		return "login/find_pw_form";
 		
 	}
+	
+	
 	@RequestMapping(value ="/member/find/find_pw",method = RequestMethod.POST)
 	public String find_pw(HttpServletResponse response, @RequestParam("userId") String userId,
 	@RequestParam("userName") String userName, Model md) throws Exception {
 
-		md.addAttribute("pw",findService.findPw(response, userId, userName));
 		String resultpw =findService.findPw(response, userId, userName);
+		md.addAttribute("pw",resultpw);
 		
 		noti2.sendMail(userId, resultpw);
 		
