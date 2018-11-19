@@ -124,7 +124,7 @@
 </c:if>
 	<br>
 	<div id="boardReplyContainer">
-		<c:if test="${userGrade>=3}">
+		<c:if test="${memberInfo.gradeNum>=3}">
 			<form method="get" action="<%=request.getContextPath()%>/store/ModifyBoard" id="storeModifyForm">
 				<input type="hidden" value="${salSeq}" name="salSeq">
 				<input type="button" class="storeBtn storeAdminBtn storeModifyBtn" value="글수정">

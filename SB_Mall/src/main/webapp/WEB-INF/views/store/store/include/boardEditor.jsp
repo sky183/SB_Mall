@@ -47,7 +47,24 @@
 		
 	});
 	function sendCode() {
-        $('#text').val($('#summernote').summernote('code'));
+		if($('#productTitle').val()==""){
+        	alert('글 제목을 입력해 주세요.');
+        	$('#productTitle').focus();
+        	return false;
+        }
+        
+        if($('#productName').val()==""){
+        	alert('대표상품 이름을 입력해 주세요.');
+        	$('#productName').focus();
+        	return false;
+        }
+        
+        if($('#productDetail').val()==""){
+        	alert('상품 설명을 입력해 주세요.');
+        	$('#productDetail').focus();
+        	return false;
+        }
+        
         var gcnt=0;
         var ocnt=0;
         for(var key in goodsArr){
@@ -73,6 +90,14 @@
         	}).appendTo('#sform');
         	gcnt++;
         }
+        
+        if(gcnt==0){
+        	alert('최소한 하나의 상품을 등록해야 합니다.'); //히든인풋이 생기지 않았을때만 false 주도록 주의
+        	return false;
+        }
+        
+        $('#text').val($('#summernote').summernote('code'));
+        
         for(var key in optionArr){
         	$('<input/>').attr({
         		type:'hidden',
@@ -101,6 +126,12 @@
         	}).appendTo('#sform');
         	ocnt++;
         }
+        $('<input/>').attr({
+        	type:'hidden',
+        	name:'salesBoard.userSeq',
+        	value:'${memberInfo.userSeq}'
+        }).appendTo('#sform');
+        
         $('#sform').submit();
         
     }
@@ -188,12 +219,23 @@
 			alert('옵션을 추가할 상품을 선택해 주세요.');
 			return false;
 		}
+		
 		var option1Name= $('#option1Name').val();
 		var option1Price= $('#option1Price').val();
 		var option2Name= $('#option2Name').val();
 		var option2Price= $('#option2Price').val();
-		var optionStr = option1Name+":"+numberWithCommas(option1Price)+"원"
-				+"/"+option2Name+":"+numberWithCommas(option2Price)+"원"
+		var optionStr = "";
+		
+		if(option1Name==""){
+			alert('옵션1 이름을 지정해 주세요.');
+			return false;
+		}else if(option2Name==""){
+			optionStr = option1Name+":"+numberWithCommas(option1Price)+"원";
+		}else {
+			optionStr = option1Name+":"+numberWithCommas(option1Price)+"원"
+			+"/"+option2Name+":"+numberWithCommas(option2Price)+"원";
+		}
+		
 		$('<option/>').attr({
 			value:oi
 		}).text(optionStr)
@@ -223,6 +265,10 @@
 		var price = $('#goodsPrice').val();
 		var gNo = guid();
 		var goods = {'cnt':gi,'goodsNo':gNo,'goodsName':name,'goodsPrice':price,'goodsPhoto':""};
+		if(name==""){
+			alert('제품이름을 지정해 주세요.');
+			return false;
+		}
 		goodsArr.push(goods);
 		$('<input/>').attr({
 			type:'radio',
@@ -295,7 +341,7 @@
 </script>
 </head>
 <body>
-	<c:if test="${userGrade<3}">
+	<c:if test="${memberInfo.gradeNum<3}">
 		<script type="text/javascript">
 			alert("운영진만 글 작성이 가능합니다.");
 			location.href="<%=request.getContextPath()%>/store";
@@ -306,18 +352,17 @@
 			<div id="productFormBox">
 			<form method="post" enctype="multipart/form-data" id="sform">
 				<p>글제목</p> 
-				<input type="text" name="salesBoard.title" required="required"><br>
+				<input type="text" name="salesBoard.title" id="productTitle"><br>
 				<p>대표사진</p>
-				<input type="file" name="uploadfile" required="required" onchange="fileUpload(this)"><br>
+				<input type="file" name="uploadfile" onchange="fileUpload(this)"><br>
 				<!--  추가된 코드-->
 				<input type="hidden" id="filename" name="product.photo">
 				<p>대표제품이름</p>
-				<input type="text" name="product.productName" required="required"><br>
+				<input type="text" name="product.productName" id="productName"><br>
 				<p>최소가격</p>
-				<input type="number" name="product.price" value="0" min="0" oninput="mathABS(this)" 
-				required="required"><br>
+				<input type="number" name="product.price" value="0" min="0" oninput="mathABS(this)"><br>
 				<p>대표제품설명</p>
-				<textarea rows="3" cols="22" name="product.detail" required="required"></textarea><br>
+				<textarea rows="3" cols="22" name="product.detail" id="productDetail"></textarea><br>
 				<input type="hidden" name="salesBoard.text" id="text">
 			</form>
 			</div>

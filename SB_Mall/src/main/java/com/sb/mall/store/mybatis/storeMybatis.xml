@@ -12,8 +12,23 @@
  	<insert id="insertProduct"
  		parameterType="com.sb.mall.store.model.Product"
  		useGeneratedKeys="true" keyColumn="productSeq" keyProperty="productSeq">
- 		insert into Product (price,productName,photo,detail) 
- 		value(#{price},#{productName},#{photo},#{detail})
+ 		insert into Product (price,salesSeq,productName,photo,detail) 
+ 		value(#{price},#{salesSeq},#{productName},#{photo},#{detail})
+ 	</insert>
+ 	<insert id="insertGoods" parameterType="HashMap">
+ 		insert into Goods (goodsNo,productSeq,goodsName,goodsPrice,goodsPhoto)
+ 		values 
+ 		<foreach collection="goodsList" item="goods" separator=",">
+ 			(#{goods.goodsNo},#{productSeq},#{goods.goodsName},#{goods.goodsPrice},#{goods.goodsPhoto})
+ 		</foreach>
+ 	</insert>
+ 	<insert id="insertGoodsOption"
+ 		useGeneratedKeys="true" keyColumn="optionSeq" keyProperty="optionSeq">
+ 		insert into GoodsOption (goodsNo,opt1Name,opt1Price,opt2Name,opt2Price)
+ 		values 
+ 		<foreach collection="list" item="opt" separator=",">
+ 			(#{opt.goodsNo},#{opt.opt1Name},#{opt.opt1Price},#{opt.opt2Name},#{opt.opt2Price})
+ 		</foreach>
  	</insert>
  	<select id="selectProAndSalList" resultType="map">
  		SELECT distinct * FROM SalesBoard s,Product p 
@@ -22,13 +37,13 @@
  				(p.productName LIKE CONCAT('%',#{param1},'%') 
  				or s.title LIKE CONCAT('%',#{param1},'%')) and
  			</if>
- 			s.productSeq=p.productSeq  
+ 			s.salesSeq=p.salesSeq  
  		</where>
  		order by ${param2} limit #{param3},#{param4}
  	</select>
  	<select id="selectProAndSal" resultType="map">
  		SELECT distinct * FROM SalesBoard s,Product p where s.salesSeq=#{salSeq} 
- 		and s.productSeq=p.productSeq;
+ 		and s.salesSeq=p.salesSeq;
  	</select>
  	<select id="selectProductList" resultType="com.sb.mall.store.model.Product">
  		SELECT * FROM Product order by productSeq desc;
@@ -43,7 +58,7 @@
  				(p.productName LIKE CONCAT('%',#{param1},'%') 
  				or s.title LIKE CONCAT('%',#{param1},'%')) and
  			</if>
- 			s.productSeq=p.productSeq
+ 			s.salesSeq=p.salesSeq
  		</where>
  	</select>
  	<select id="selectSalBoard" resultType="com.sb.mall.store.model.SalesBoard">

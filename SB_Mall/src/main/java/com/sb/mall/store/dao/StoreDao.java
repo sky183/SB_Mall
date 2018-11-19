@@ -1,8 +1,10 @@
 package com.sb.mall.store.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sb.mall.store.model.GoodsOption;
 import com.sb.mall.store.model.Product;
 import com.sb.mall.store.model.SalesBoard;
 
@@ -10,6 +12,8 @@ public interface StoreDao {
 	
 	public void insertSalesBoard(SalesBoard salesBoard);
 	public void insertProduct(Product product);
+	public void insertGoods(HashMap<String, Object> goodsMap);
+	public void insertGoodsOption(List<GoodsOption> goodsOptions);
 	public List<Map<String,Object>> selectProAndSalList(
 			String tag,String sortType,int firstRow,int endRow);
 	public int countProAndSalList(String tag);

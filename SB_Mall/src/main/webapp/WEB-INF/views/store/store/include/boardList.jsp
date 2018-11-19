@@ -83,7 +83,7 @@
 		<div class="storeListView">
 			
 		</div>
-		<c:if test="${userGrade>=3}">
+		<c:if test="${memberInfo.gradeNum>=3}">
 				<a class="storeBtn storeWriteBtn" 
 				href="<%=request.getContextPath()%>/store/write">글쓰기</a>
 			</c:if>
