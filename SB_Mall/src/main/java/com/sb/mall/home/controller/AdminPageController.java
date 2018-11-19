@@ -1,5 +1,8 @@
 package com.sb.mall.home.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +27,12 @@ public class AdminPageController {
 		
 		ModelAndView modelAndView = new ModelAndView("/view/adminPage");
 		
-		String[] salAmount = null;
-		String[] salAverage = null; 
+		List<String> salAmount = new ArrayList();
+		List<String> salAverage = new ArrayList();
 		
-		for (int i = 0; i < 11; i++) {
-			salAmount[i] = amountService.getAmount(i);
-			salAverage[i] = averageService.getAverage(i);
+		for (int i = 0; i <= 11; i++) {
+			salAmount.add(amountService.getAmount(i));
+			salAverage.add(averageService.getAverage(i));
 		}
 		
 		modelAndView.addObject("salAmount", salAmount);

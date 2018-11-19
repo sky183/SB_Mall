@@ -68,17 +68,18 @@ table .th-lg, table td {
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
           ['월별', '매출액(단위:만원)'],
-          ['${month-10}월', ${tenthMonth}],
-          ['${month-9}월', ${ninethMonth}],
-          ['${month-8}월', ${eighthMonth}],
-          ['${month-7}월', ${seventhMonth}],
-          ['${month-6}월', ${sixthMonth}],
-          ['${month-5}월', ${fifthMonth}],
-          ['${month-4}월', ${fourthMonth}],
-          ["${month-3}월", ${thirdMonth}],
-          ["${month-2}월", ${secondMonth}],
-          ["${month-1}월", ${preMonth}],
-          ["${month}월", ${thisMonth}]
+          ["${month-11}월", ${salAmount.get(11)}],
+          ["${month-10}월", ${salAmount.get(10)}],
+          ["${month-9}월", ${salAmount.get(9)}],
+          ["${month-8}월", ${salAmount.get(8)}],
+          ["${month-7}월", ${salAmount.get(7)}],
+          ["${month-6}월", ${salAmount.get(6)}],
+          ["${month-5}월", ${salAmount.get(5)}],
+          ["${month-4}월", ${salAmount.get(4)}],
+          ["${month-3}월", ${salAmount.get(3)}],
+          ["${month-2}월", ${salAmount.get(2)}],
+          ["${month-1}월", ${salAmount.get(1)}],
+          ["${month}월", ${salAmount.get(0)}]
         ]);
 
         var options = {
@@ -105,8 +106,8 @@ table .th-lg, table td {
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
         ["Element", "Density", { role: "style" } ],
-        ["${month-1}월", ${preMonthAverage}, "silver"],
-        ["${month}월",  ${thisMonthAverage}, "gold"]
+        ["${month-1}월", ${salAverage.get(1)}, "silver"],
+        ["${month}월",  ${salAverage.get(0)}, "gold"]
       ]);
 
       var view = new google.visualization.DataView(data);
@@ -146,22 +147,22 @@ table .th-lg, table td {
 		<div style="width: 700px; display: inline-block;">
 			<div style="border-bottom: 1px solid #787878; padding: 10px 0;">
 				<h3>${month}월 매출  </h3>
-				<h5><fmt:formatNumber value="${thisMonth}" pattern="#,###"/>원</h5>
+				<h5><fmt:formatNumber value="${salAmount.get(0)}" pattern="#,###"/>원</h5>
 			</div>
 			
 			<div style="border-bottom: 1px solid #787878;  padding: 10px 0;">
 				<h3>지난달 매출  </h3>
-				<h5><fmt:formatNumber value="${preMonth}" pattern="#,###"/>원</h5>
+				<h5><fmt:formatNumber value="${salAmount.get(1)}" pattern="#,###"/>원</h5>
 			</div>
 
 			<div style="border-bottom: 1px solid #787878;  padding: 10px 0;">
 				<h3>${month}월 평균 </h3>
-				<h5><fmt:formatNumber value="${thisMonthAverage}" pattern="#,###"/>원</h5>
+				<h5><fmt:formatNumber value="${salAverage.get(0)}" pattern="#,###"/>원</h5>
 			</div>
 			
 			<div style="border-bottom: 1px solid #787878;  padding: 10px 0;">
 				<h3>지난달 평균 </h3>
-				<h5><fmt:formatNumber value="${preMonthAverage}" pattern="#,###"/>원</h5>
+				<h5><fmt:formatNumber value="${salAverage.get(1)}" pattern="#,###"/>원</h5>
 			</div>
 			</div>
 		</div>
