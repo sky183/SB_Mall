@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +24,13 @@
 				<h3>아이디 찾기 검색결과</h3>
 			</div>
 			<div>
-				<h5>
-					${id }
+			<!--리스트로 받아온 객체를 forEach문으로 각각 표현  -->
+			<c:forEach var="findid" items="${id}">
+			
+			<!--객체뒤에 .찍고 표현하고 싶은 변수를 씀  -->
+				고객님의 아이디는 : ${findid.userId} 입니다. <br>
+			</c:forEach>
 				
-				</h5>
 				<p class="w3-center">
 					<button type="button" id=loginBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">Login</button>
 					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>

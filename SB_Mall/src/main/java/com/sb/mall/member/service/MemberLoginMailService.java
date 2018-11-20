@@ -35,9 +35,9 @@ public class MemberLoginMailService {
       
       SimpleMailMessage message = new SimpleMailMessage();
 
-      message.setSubject("[Simple] 회원 가입 안내");
+      message.setSubject("[Simple] 비밀번호안내");
       message.setFrom("isincorp@gmail.com");
-      message.setText("회원 가입을 환영합니다. 회원님의 비밀번호는 :" + resultpw + " 입니다.");
+      message.setText("회원님의 비밀번호는 :" + resultpw + " 입니다.");
       message.setTo(memberemail);
 
       try {
@@ -62,8 +62,11 @@ public class MemberLoginMailService {
 
       try {
          message.setSubject("[안내] 회원가입을 축하합니다.", "utf-8");
-         String htmlStr = "<B>Hello</B> Sir <br> " + "Thanks for join in this site <br>"
-               + "<a href=\"http://www.naver.com\">to go Site</a>";
+         String htmlStr = 
+        		 "<B>Hello</B> Sir <br> " + 
+        		 "Thanks for join in this site <br>"+ 
+        				 "<h1><%= %></h1>"+
+        		 "<a href=\"http://www.naver.com\">to go Site</a>";
 
          message.setText(htmlStr, "utf-8", "html");
 

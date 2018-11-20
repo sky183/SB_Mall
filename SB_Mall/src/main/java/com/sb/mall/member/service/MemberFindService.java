@@ -1,6 +1,7 @@
 package com.sb.mall.member.service;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sb.mall.member.dao.MemberDao;
+import com.sb.mall.member.model.MemberInfo;
 
 @Repository
 public class MemberFindService {
@@ -18,14 +20,14 @@ public class MemberFindService {
 
 	private MemberDao Dao;
 
-	public String findId(HttpServletResponse response, String userName, String phone) throws Exception {
+	public List<MemberInfo> findId(HttpServletResponse response, String userName, String phone) throws Exception {
 
 		Dao = sqlsessionTemplates.getMapper(MemberDao.class);
 
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 
-		String id = Dao.find_id(userName, phone);
+		List<MemberInfo> id = Dao.find_id(userName, phone);
 
 		if (id == null) {
 

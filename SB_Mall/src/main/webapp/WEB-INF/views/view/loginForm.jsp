@@ -22,25 +22,24 @@
 	margin: 50px 10px 50px 10px;
 } 
 </style> -->
-</head> 
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
+</head>
 <script type="text/javascript">
 
+	$('document').ready(function() {
 
-$('document').ready(function() { 		
-	  
-	$('input[type="text"],input[type="password"]').keyup(function(){
-		//엔터 쳤을때
-		if(event.keyCode ==13){
-			//엔터의 기본 기능을 없앤다
-			event.preventDefault();
-			//클릭 했을때 로그인 버튼으로	
-			$('#login_button').trigger('click');
-		}
+		$('input[type="text"],input[type="password"]').keyup(function() {
+			//엔터 쳤을때
+			if (event.keyCode == 13) {
+				//엔터의 기본 기능을 없앤다
+				event.preventDefault();
+				//클릭 했을때 로그인 버튼으로	
+				$('#login_button').trigger('click');
+			}
+		});
 	});
-});
-
-
-
 
 	$(function() {
 		//최초 쿠키에 login_id라는 쿠키값이 존재하면
@@ -71,14 +70,106 @@ $('document').ready(function() {
 			}
 		})
 	})
+	$(document).ready(function(){
+			Kakao.init("6185270da1b2e6df01f9aae9195154e8");
+			function getKakaotalkUserProfile(){
+				Kakao.API.request({
+					url: '/v1/user/me',
+					success: function(res) {
+						$("#kakao-profile").append(res.properties.nickname);
+						$("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname+"님의 프로필 사진"}));
+					},
+					fail: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			function createKakaotalkLogin(){
+				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
+				var loginBtn = $("<a/>",{"class":"kakao-login-btn","text":"로그인"});
+				loginBtn.click(function(){
+					Kakao.Auth.login({
+						persistAccessToken: true,
+						persistRefreshToken: true,
+						success: function(authObj) {
+							getKakaotalkUserProfile();
+							createKakaotalkLogout();
+						},
+						fail: function(err) {
+							console.log(err);
+						}
+					});
+				});
+				$("#kakao-logged-group").prepend(loginBtn)
+			}
+			function createKakaotalkLogout(){
+				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
+				var logoutBtn = $("<a/>",{"class":"kakao-logout-btn","text":"로그아웃"});
+				logoutBtn.click(function(){
+					Kakao.Auth.logout();
+					createKakaotalkLogin();
+					$("#kakao-profile").text("");
+				});
+				$("#kakao-logged-group").prepend(logoutBtn);
+			}
+			if(Kakao.Auth.getRefreshToken()!=undefined&&Kakao.Auth.getRefreshToken().replace(/ /gi,"")!=""){
+				createKakaotalkLogout();
+				getKakaotalkUserProfile();
+			}else{
+				createKakaotalkLogin();
+			}
+		});
 </script>
 
 
-</head>
+<!--카카오톡 로그인  -->
 
 <body class="text-center">
+	<!-- <a id="kakao-login-btn"></a>
+		<a href="http://developers.kakao.com/logout"></a>
+	<script type='text/javascript'>
+		//<![CDATA[
+		// 사용할 앱의 JavaScript 키를 설정해 주세요.
+		Kakao.init('6185270da1b2e6df01f9aae9195154e8');
+		// 카카오 로그인 버튼을 생성합니다.
+		Kakao.Auth.createLoginButton({
+			container : '#kakao-login-btn',
+			success : function(authObj) {
+
+				//로그인 성공시 , api를 호출합니다.
+				Kakao.API.request({
+
+					url : '/v1/user/me',
+					success : function(res) {
+						console.log(res);
+
+						var userId = res.id; //유저의 고유한 아이디
+						var userEmail = res.kaccount_email; //유저의 이메일
+
+						console.log(userId);
+						console.log(userEmail);
+
+					},
+					fail : function(err) {
+						alert(JSON.stringify(err));
+					}
+				});
+			},
+			fail : function(err) {
+				alert(JSON.stringify(err));
+
+			}
+		});
+		//]]>
+	</script>
+ -->
+
 
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
+
+
+
 
 	<form method="post" id="loginForm" class="form-signin">
 		<div>
@@ -92,19 +183,18 @@ $('document').ready(function() {
 		<br>
 
 		<!-- <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> -->
-		<label for="login_id" class="sr-only">ID</label> 
-		<input type="text"name="userId" id="login_id" class="form-control" 
-		placeholder="아이디" required auotofocus> <br> 
-		<label for="inputPassword"class="sr-only">Password</label>
-			 <input type="password" name="userPw"id="userPw"
-			  class="form-control" placeholder="비밀번호" required>
+		<label for="login_id" class="sr-only">ID</label> <input type="text"
+			name="userId" id="login_id" class="form-control" placeholder="아이디"
+			required auotofocus> <br> <label for="inputPassword"
+			class="sr-only">Password</label> <input type="password" name="userPw"
+			id="userPw" class="form-control" placeholder="비밀번호" required>
 
 		${error}
 
-			<!--아이디 저장기능  -->
+		<!--아이디 저장기능  -->
 		<div class="checkbox mb-3">
-			<input type="checkbox" name="rememberId" id="rememberId"> 
-			<label for="rememberId" id="rememberIdLabel">아이디 저장 </label>
+			<input type="checkbox" name="rememberId" id="rememberId"> <label
+				for="rememberId" id="rememberIdLabel">아이디 저장 </label>
 
 
 		</div>
@@ -114,14 +204,18 @@ $('document').ready(function() {
 			id=login_button>로그인</button>
 		<br>
 		<!--아이디찾기  -->
-		<a href="<%=request.getContextPath()%>/member/find/find_id">아이디찾기 </a>
-		<br>
-		<a href="<%=request.getContextPath()%>/member/find/find_pw">비밀번호찾기 </a>
+		<a href="<%=request.getContextPath()%>/member/find/find_id">아이디찾기
+		</a> <br> <a href="<%=request.getContextPath()%>/member/find/find_pw">비밀번호찾기
+		</a>
+
+
 		<p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
 
 
 	</form>
 
+<div id="kakao-logged-group"></div>
+	<div id="kakao-profile"></div>
 </body>
 
 </html>

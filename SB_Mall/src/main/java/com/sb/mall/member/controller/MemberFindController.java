@@ -35,6 +35,7 @@ public class MemberFindController {
 	public String find_id(HttpServletResponse response, @RequestParam("userName") String userName,
 			@RequestParam("phone") String phone, Model md) throws Exception {
 
+		
 		md.addAttribute("id", findService.findId(response, userName, phone));
 		
 				

@@ -20,7 +20,7 @@ public interface MemberDao {
 	
 	public List<Object> selectList(int firstRow, int endRow);
 	
-	public String find_id(String userName,String phone);
+	public List<MemberInfo> find_id(String userName,String phone);
 	
 	public String find_pw(String userId, String userName);
 	

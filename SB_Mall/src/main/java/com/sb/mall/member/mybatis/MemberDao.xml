@@ -10,47 +10,63 @@
  		values (#{userId},#{userPw},#{userName},#{address1},#{address2},#{zipCode},#{phone},${birth})
  	</insert>
 
-	<select id="selectById" resultType="com.sb.mall.member.model.MemberInfo">
-		select * from MemberInfo where	userid = #{userId}
+	
+	<select id="selectById"
+		resultType="com.sb.mall.member.model.MemberInfo">
+		select * from MemberInfo where userid = #{userId}
 	</select>
 
-	<select id="selectAll" resultType="com.sb.mall.member.model.MemberInfo">
+	<select id="selectAll"
+		resultType="com.sb.mall.member.model.MemberInfo">
 		select * from MemberInfo
 	</select>
-	
-	<update id="update" parameterType="com.sb.mall.member.model.MemberInfo">
-		update MemberInfo set userpw=#{userPw}, username=#{userName}, address1=#{address1}, address2=#{address2}
-		, zipCode=#{zipCode}, phone=#{phone}, gradenum=#{gradeNum}, point=#{point}, useramount=#{userAmount} where userid=#{userId}
+
+	<update id="update"
+		parameterType="com.sb.mall.member.model.MemberInfo">
+		update MemberInfo set userpw=#{userPw},
+		username=#{userName}, address1=#{address1}, address2=#{address2}
+		,
+		zipCode=#{zipCode}, phone=#{phone}, gradenum=#{gradeNum},
+		point=#{point}, useramount=#{userAmount} where userid=#{userId}
 	</update>
-	
+
 	<delete id="delete" parameterType="String">
-		delete from MemberInfo where userid = #{userId}
+		delete from MemberInfo where
+		userid = #{userId}
 	</delete>
-	
+
 	<select id="selectCount" resultType="int">
-		select count(*) from MemberInfo
+		select count(*) from
+		MemberInfo
 	</select>
-	
-	<select id="selectList" resultType="com.sb.mall.member.model.MemberInfo">
+
+	<select id="selectList"
+		resultType="com.sb.mall.member.model.MemberInfo">
 		select * from
-		MemberInfo order by userSeq desc limit #{param1},
+		MemberInfo order by userSeq desc limit
+		#{param1},
 		#{param2}
 	</select>
+
+	<!--파라미터 타입은 입력값 ,리설트타입은 출력값 -->
+	<select id="find_id" parameterType="String" resultType="com.sb.mall.member.model.MemberInfo">
+
+		<!-- select userId from MemberInfo where username = #{userName} and phone 
+			= #{phone} -->
+		<!--여러개를 받아올때 param1 -->
+		select * from MemberInfo where username = #{param1} and phone =
+		#{param2}
+
+	</select>
 	
-	<!--파라미터 타입은 입력값 ,리설트타입은 출력값   -->
-	<select id = "find_id" parameterType = "String" resultType="String">
-	
-		<!-- select userId from MemberInfo where username = #{userName} and phone = #{phone} -->
-				<!--여러개를 받아올때 param1   -->
-			select userId from MemberInfo where username = #{param1} and phone = #{param2}
-		
-		<!--비밀번호 찾기  -->
-</select> 
-		<select id = "find_pw" parameterType="String" resultType="String">
+	<!--비밀번호 찾기 -->
+	<select id="find_pw" parameterType="String" resultType="String">
+		select
+		userPw from MemberInfo where userId = #{param1} and userName =
+		#{param2}
 
-		select userPw from MemberInfo where userId = #{param1} and userName = #{param2}
+	</select>
 
 
-</select>
-	 
- </mapper>
+
+</mapper>

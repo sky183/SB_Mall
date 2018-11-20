@@ -8,12 +8,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.sb.mall.member.service.MemberLoginService;
 
 @Controller // 클라이언의 요청을 처리 한 뒤그 결과를 DispatcherServlet에게 알려 줌 Struts의 Action과 동일한 기능
@@ -23,7 +25,7 @@ public class LoginController {
 	private MemberLoginService loginService;
 
 	// 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
-	@RequestMapping(value = "/member/login", method = RequestMethod.GET) 		//url 주소
+	@RequestMapping(value = "/member/login", method = RequestMethod.GET) // url 주소
 	// 쿠키 값 저장
 	public ModelAndView getLoginForm(@CookieValue(value = "idcookie", required = false) String rememberId) {
 		// ModelAndView 객체 생성
@@ -54,13 +56,12 @@ public class LoginController {
 
 		}
 
-
 		if (userId != null && userPw != null) {
 // userId 또는 userPw가 null 이 아닌 경우 
 			if (loginService.login(userId, userPw, session)) {
 				modelAndView.setViewName("redirect:/");
 			} else {
-				modelAndView.setViewName("view/loginForm");		//경로
+				modelAndView.setViewName("view/loginForm"); // 경로
 				modelAndView.addObject("error", "아이디 또는 비밀번호가 틀렸습니다.");
 			}
 
@@ -69,8 +70,6 @@ public class LoginController {
 		return modelAndView;
 	}
 
-	
-	
 	@RequestMapping("/error/loginError")
 	public String loginError() {
 		return "error/loginError";
@@ -85,7 +84,5 @@ public class LoginController {
 		return "redirect:/";
 
 	}
-	
-	
-}
 
+}
