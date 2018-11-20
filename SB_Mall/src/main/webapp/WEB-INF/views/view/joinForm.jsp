@@ -331,7 +331,7 @@ body {
    				//1.2 비밀번호가 서로 일치하면 auth : true >가입 가능
     			/*Test후 아래문장 삭제 후 주석해제*/
     			//$('#password_Output_ID').html('입력한 비밀번호 [password1 :'+pw1 + '] [password2 :'+pw2+']');
-    			$('#password_Output_ID').html('');
+    			$('#password_Output_ID').html('<h6 style="color: green;">비밀번호가 서로 일치합니다.</h6>');
     			$('#password_ID').attr('auth', 'true')
 
     		}
@@ -456,68 +456,72 @@ body {
 		}
 	}//End of method /*[5].휴대폰번호 정규식*/
 	
-	/*[6].주소 입력 확인*/
+	/*[6].상세주소 입력 확인*/
 	//출력 테그 id: addressAPI_Output_ID
-	$('#addrDetail').focusout(function addressAPI() {
-		var check = $(this).val();
-		if (check < 1) {
-			$('#addressAPI_Output_ID').html('<h6 style="color: red;">회원가입 불가</h6>');                
-		    $('#addrDetail').attr('auth', 'false');
-    		console.log('addrDetail Auth : false');
-		}else{
-			$('#addressAPI_Output_ID').html('<h6 style="color: green;">회원가입 가능</h6>');                
-		    $('#addrDetail').attr('auth', 'true');
-    		console.log('addrDetail Auth : true');
-			
-		}
-	});
-	
-
+	$('#addrDetail').focusout(
+			function addressAPI() {
+				var check = $(this).val();
+				if (check < 1) {
+					$('#addressAPI_Output_ID').html('<h6 style="color: red;">부적합</h6>');                
+				    $('#addrDetail').attr('auth', 'false');
+    				console.log('addrDetail Auth : false');
+				}else{
+					$('#addressAPI_Output_ID').html('<h6 style="color: green;">적합</h6>');                
+				    $('#addrDetail').attr('auth', 'true');
+    				console.log('addrDetail Auth : true');
 		
+				}
+			}
+		);
 		 
-		/*[7]. Final 유효성 최종 확인 후 submit*/
-		function checkFunction() {
+	/*[7]. Final 유효성 최종 확인 후 submit*/
+	function checkFunction() {
 	            
-	    	//Auth속성이 설정된 그룹
-	        var auth_group = ["#email_ID","#password_ID","#userName_ID","#userBirthday_ID","#phoneNumber_ID","#addrDetail"];
-	        //입력 그룹의 각 유효성 통과 여부(auth 속성이 true) - true가 아니면 return한다.
+	   	//Auth속성이 설정된 그룹
+		var auth_group = ["#email_ID","#password_ID","#userName_ID","#userBirthday_ID","#phoneNumber_ID","#addrDetail"];
+	    //입력 그룹의 각 유효성 통과 여부(auth 속성이 true) - true가 아니면 return한다.
 	    	
-	        for (var i = 0; i < auth_group.length; i++) {
-	        	//auth_group 속성이 true가  아닐때 return 
-	        	//auth(auth_group[i]) : 테그에 설정된 auth값
-	            if (auth(auth_group[i])){
-	        		console.log(auth_group[i]+' Auth : '+auth(auth_group[i]));
-	            }else{
-	        	//auth_group 속성이 false일때 아래 문장 출력
-	        		console.log(auth_group[i]+' Auth : '+auth(auth_group[i]));
-	        		alert(auth_group[i]+' Auth : '+auth(auth_group[i]));
-	            	return;
-	        	}
-	        }// end of for
-	        
-	        
-	        
+	    for (var i = 0; i < auth_group.length; i++) {
+	    	//1. auth_group 속성이 true가  아닐때 return 
+	        //auth(auth_group[i]) : 테그에 설정된 auth값
+	        if (auth(auth_group[i])){
+	        	console.log(auth_group[i]+' Auth : '+auth(auth_group[i]));
+	        		
+	        	//1.1 모든 auth 설정이 true일때
+	        	if (auth_group.length = 5) {
+					$('#addressAPI_Output_ID').html('<h6 style="color: green;">회원가입 가능</h6>');                
+				}else{
+	        	//1.2 auth 설정이 false일때
+					$('#addressAPI_Output_ID').html('<h6 style="color: red;">회원가입 불가</h6>');                
+				}
+	  		}else{
+	        //2. auth_group 속성이 false일때 아래 문장 출력
+	        	console.log(auth_group[i]+' Auth : '+auth(auth_group[i]));
+	        	alert(auth_group[i]+' Auth : '+auth(auth_group[i]));
+	            return;
+	        }
+	  	}// end of for
 	                        
-	        //auth 속성이 true인지 확인 - auth는 사용자 정의 속성으로 만든것이며 true이면 입력 유효성 통과한것
-	        function auth(e) {
+	   	//auth 속성이 true인지 확인 - auth는 사용자 정의 속성으로 만든것이며 true이면 입력 유효성 통과한것
+		function auth(e) {
 					
-	            //입력테그에 부여한 auth속성이 true일때
- 	            if ($(e).attr('auth') == 'true') {
+	    	//입력테그에 부여한 auth속성이 true일때
+ 	        if ($(e).attr('auth') == 'true') {
  	            	
-	        		console.log('성공');
-	                return true;
-	            } else {
-	        		console.log('실패');
-	                $(e).focus();
-	                return false;
-	        	}
-	        }// end of function auth(e)
+	        	console.log('성공');
+	            return true;
+	       	} else {
+	        	console.log('실패');
+	            $(e).focus();
+	            return false;
+	        }
+	 	}// end of function auth(e)
 	            
-	        //모든 유효성 통과하여 반복문을 빠져나오면 submit한다.
-	        alert("가입을 축하합니다!");
-	   		$("#form").submit();
+		//모든 유효성 통과하여 반복문을 빠져나오면 submit한다.
+	    alert("가입을 축하합니다!");
+	   	$("#form").submit();
 
-		}//End of method /*[6]. Final 유효성 최종 확인 후 submit*/ 
+	}//End of method /*[6]. Final 유효성 최종 확인 후 submit*/ 
 	</script>
 
 
