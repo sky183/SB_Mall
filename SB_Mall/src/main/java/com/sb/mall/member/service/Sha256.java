@@ -4,6 +4,9 @@ import java.security.MessageDigest;
 
 public class Sha256 {
 	public static String encrypt(String planText) {
+		
+		System.out.println("<<Sha256 암호화 처리중..>>");
+		
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.update(planText.getBytes());

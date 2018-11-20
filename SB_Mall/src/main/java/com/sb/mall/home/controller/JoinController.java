@@ -70,7 +70,6 @@ public class JoinController {
 		try {
 			id_Check = joinService.idCheckResult(userId, request);
 		} catch (IllegalStateException | SQLException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -87,6 +86,13 @@ public class JoinController {
 			HttpServletRequest request, 
 			HttpSession session
 			) {
+		
+		
+		
+		System.out.println("<JoinController>");
+		System.out.println("<getResultForm>");
+		
+		System.out.println(memberInfo.getUserName());
 		
 		//모델 뷰 생성
 		ModelAndView modelAndView = new ModelAndView();
@@ -112,6 +118,8 @@ public class JoinController {
 		System.out.println("be encryption password :" + encryptionPW);
 		memberInfo.setUserPw(encryptionPW);
 		
+		System.out.println("<회원정보>");
+		System.out.println(memberInfo.toString());
 		
 		
 		try {
@@ -130,7 +138,7 @@ public class JoinController {
 				if(resultCnt==0) {
 					System.out.println("1.1 회원가입 실패");
 					
-					modelAndView.setViewName("error/memberjoinError");
+					modelAndView.setViewName("error/joinError");
 				
 				}else {
 					System.out.println("1.2 회원가입 성공");

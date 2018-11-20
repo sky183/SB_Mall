@@ -38,7 +38,7 @@ public class MemberJoinService {
 		
 	}
 	
-	/*아이디 중복 체크 Methos*/
+	/*아이디 중복 체크 Method*/
 	@Transactional
 	public int idCheckResult(String userId, HttpServletRequest request) 
 			throws SQLException, IllegalStateException, IOException {
@@ -58,8 +58,6 @@ public class MemberJoinService {
 			return 0;
 			
 		}
-		
-		
 		
 	}
 	
