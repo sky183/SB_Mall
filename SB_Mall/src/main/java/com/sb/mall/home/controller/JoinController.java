@@ -29,42 +29,47 @@ import com.sb.mall.member.service.Sha256;
 @SessionAttributes("memberInfo")
 public class JoinController {
 	
+	/*1.회원가입 관련 의존주입(insert)*/
 	@Autowired
 	private MemberJoinService joinService;
 	
+	/*2.메일 송신 관련 의존주입*/
 	@Autowired
 	private MemberMailService noti;
 	
-	/*암호화 관련 의존주입 2018.11.16*/
+	/*3.암호화 관련 의존주입 2018.11.16*/
 	@Autowired
 	private Sha256 sha256;
 	
-	/*암호화 관련 의존주입 2018.11.16*/
+	/*4.암호화 관련 의존주입 2018.11.16*/
 	@Autowired
 	private AES256Util aES256Util;
 	
-		
+	/*[1] Join 첫 화면 불러오는 Method*/
 	@RequestMapping(method = RequestMethod.GET) 
 	public String getJoinForm() {
-		System.out.println("HOME 에서 JOIN 클릭");
+		System.out.println("<<**JoinController**>>");
+		System.out.println("/*[1] Join 첫 화면 불러오는 Method*/");
 		
 		return "view/joinForm";
 	}
 	
-	/*주소API POPUP화면*/
+	/*[3]주소API POPUP화면 Method*/
 	@RequestMapping("/popup/jusoPopup")
 	public String addressAIP() {
-		System.out.println("실행");
+		System.out.println("<<**JoinController**>>");
+		System.out.println("/*[3]주소API POPUP화면 Method*/");
 		
 		return "/popup/jusoPopup";
 	}
 	
-	/*아이디 중복검사 2018.11.19*/
+	/*[5]아이디 중복검사 Method 2018.11.19*/
 	@RequestMapping("/id_DuplicateCheck")
 	@ResponseBody
 	public int idDuplicate(String userId, HttpServletRequest request) {
-		System.out.println("<<아이디 중복검사 Controller>>");
-		System.out.println("중복검사 할 아이디 : "+userId);
+		System.out.println("<<**JoinController**>>");
+		System.out.println("/*[4]아이디 중복검사 Method 2018.11.19*/");
+		System.out.println("중복검사 할 아이디 : ["+userId+"]");
 		
 		int id_Check = 0;
 		try {
@@ -78,7 +83,7 @@ public class JoinController {
 	}
 	
 	
-	//가입시 입력한 정보를 POST방식으로 받아옴
+	/*[2] 회원가입시 DB에 회원정보 저장하는 Method*/
 	@RequestMapping(method = RequestMethod.POST)  
 	public ModelAndView getResultForm(
 			MemberInfo memberInfo, 
@@ -89,10 +94,9 @@ public class JoinController {
 		
 		
 		
-		System.out.println("<JoinController>");
-		System.out.println("<getResultForm>");
-		
-		System.out.println(memberInfo.getUserName());
+		System.out.println("<<**JoinController**>>");
+		System.out.println("/*[2] 회원가입시 DB에 회원정보 저장하는 Method*/");
+		System.out.println("The Name is inputed this site : " + memberInfo.getUserName());
 		
 		//모델 뷰 생성
 		ModelAndView modelAndView = new ModelAndView();
@@ -105,18 +109,20 @@ public class JoinController {
 		String userName = memberInfo.getUserName();
 		String filePath = "/member/memberWelcome.jsp";
 		
-		//비밀번호 재 확인
+		/*//비밀번호 재 확인
 		if (!memberInfo.getUserPw().equals(userPwChck)) {
 			modelAndView.setViewName("error/joinError");
-			modelAndView.addObject("error", "비밀번호가 다릅니다.");
+			modelAndView.addObject("error","The password is different");
 			return modelAndView;
-		}
+		}*/
 		
 		/*2018.11.16 암호화 패치*/
+		System.out.println("/*[5] 2018.11.16 암호화 패치*/");
 		System.out.println("The Password you inputed :" + memberInfo.getUserPw());
 		String encryptionPW = sha256.encrypt(memberInfo.getUserPw());
 		System.out.println("be encryption password :" + encryptionPW);
 		memberInfo.setUserPw(encryptionPW);
+		System.out.println("암호화 처리 완료");
 		
 		System.out.println("<회원정보>");
 		System.out.println(memberInfo.toString());
@@ -131,21 +137,23 @@ public class JoinController {
 			//1. Session(memberInfo) is not null 일때 회원가입
 			if (memberInfo != null) {
 				
-				System.out.println("1. Session is not null");
+				System.out.println("[2].1. Session is not null");
 				System.out.println("<Controller Message>");
 				System.out.println("가입한 회원 ID:" + memberInfo.getUserId());
 				//1.1 회원가입 실패시 : resultCnt == 0 
 				if(resultCnt==0) {
-					System.out.println("1.1 회원가입 실패");
+					System.out.println("[2].1.1 회원가입 실패");
 					
 					modelAndView.setViewName("error/joinError");
 				
 				}else {
-					System.out.println("1.2 회원가입 성공");
-					System.out.println("-RequestMethod.POST방식 가입완료");
+					System.out.println("[2].1.2 회원가입 성공");
 					
+					System.out.println("[Start of send Email]");
 					noti.sendMail(userId, userName, filePath ,session);
-					System.out.println("-메일보내기 완료");
+					System.out.println("[End of send Email]");
+					
+					System.out.println("End of Method(회원가입 Method)");
 					
 					modelAndView.setViewName("view/home");
 				}

@@ -280,7 +280,7 @@ body {
 
 		} else {
 		//2).정규식에 맞을때
-		//2.1 중복검사
+		//	1 중복검사
 			$.ajax({
 				type : 'POST',
 				url : 'join/id_DuplicateCheck',
@@ -389,6 +389,7 @@ body {
 	    var yearNow = today.getFullYear();
 		 
 	    //by솔또리
+	    //1.입력된 생년월일이 8자 이하일때 : 정상으로 간주  > 로직 수행
 		if (dateStr.length <=8) {
 			
 	    if (year < 1900 || year > yearNow){
@@ -434,7 +435,7 @@ body {
 		}//end of if
 		
 		}else{
-			//8자 초과시 출력문
+			//1.입력된 생년월일이 8자 초과할때 :  auth:false
 	     	$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">8자리 이상 벗어날 수 없습니다.</h6>'); 
 	    	$('#userBirthday_ID').attr('auth', 'false');
 		}
