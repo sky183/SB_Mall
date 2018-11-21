@@ -82,3 +82,12 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.kakao-login-btn {
+	
+	cursor: pointer;
+	
+}
+.kakao-logout-btn{
+	
+	cursor: pointer;
+}
