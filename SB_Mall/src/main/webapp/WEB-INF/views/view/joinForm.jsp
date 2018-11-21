@@ -135,6 +135,14 @@ body {
 							onkeyup="nameCheck_Function()"
 							auth="false"
 							>
+						
+						<!-- 성별 입력 테그 -->
+						<select id="userGender_ID" form="form" class="form-control"
+							name="gender" 
+							> 
+  							<option value="남성">남성</option>
+  							<option value="여성">여성</option>
+						</select>
 					</div>
 					<div class="col">
 
@@ -474,8 +482,10 @@ body {
 				}
 			}
 		);
+	
+	
 		 
-	/*[7]. Final 유효성 최종 확인 후 submit*/
+	/*[0]. Final 유효성 최종 확인 후 submit*/
 	function checkFunction() {
 	            
 	   	//Auth속성이 설정된 그룹
@@ -524,7 +534,6 @@ body {
 
 	}//End of method /*[6]. Final 유효성 최종 확인 후 submit*/ 
 	</script>
-
 
 </body>
 </html>

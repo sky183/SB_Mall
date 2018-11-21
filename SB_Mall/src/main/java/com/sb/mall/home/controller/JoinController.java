@@ -97,6 +97,7 @@ public class JoinController {
 		System.out.println("<<**JoinController**>>");
 		System.out.println("/*[2] 회원가입시 DB에 회원정보 저장하는 Method*/");
 		System.out.println("The Name is inputed this site : " + memberInfo.getUserName());
+		System.out.println(memberInfo.getGender());
 		
 		//모델 뷰 생성
 		ModelAndView modelAndView = new ModelAndView();

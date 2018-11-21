@@ -6,8 +6,8 @@
  	<insert id="insert"
  		parameterType="com.sb.mall.member.model.MemberInfo"
  		useGeneratedKeys="true" keyProperty="userSeq">
- 		insert into MemberInfo (userId,userPw,userName,address1,address2,zipCode,phone,birth)
- 		values (#{userId},#{userPw},#{userName},#{address1},#{address2},#{zipCode},#{phone},${birth})
+ 		insert into MemberInfo (userId,userPw,userName,address1,address2,zipCode,phone,birth,gender)
+ 		values (#{userId},#{userPw},#{userName},#{address1},#{address2},#{zipCode},#{phone},#{birth},#{gender})
  	</insert>
 
 	

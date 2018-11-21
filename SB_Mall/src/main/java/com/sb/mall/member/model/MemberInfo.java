@@ -17,13 +17,32 @@ public class MemberInfo {
 	private int point;
 	private int userAmount;
 	private int birth;
+	private String gender;
 	
+	
+
 	@Override
 	public String toString() {
 		return "MemberInfo [userSeq=" + userSeq + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
 				+ ", address1=" + address1 + ", address2=" + address2 + ", zipCode=" + zipCode + ", phone=" + phone
 				+ ", regDate=" + regDate + ", gradeNum=" + gradeNum + ", point=" + point + ", userAmount=" + userAmount
-				+ ", birth=" + birth + "]";
+				+ ", birth=" + birth + ", gender=" + gender + "]";
+	}
+
+	public int getBirth() {
+		return birth;
+	}
+
+	public void setBirth(int birth) {
+		this.birth = birth;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public int getRegID() {
