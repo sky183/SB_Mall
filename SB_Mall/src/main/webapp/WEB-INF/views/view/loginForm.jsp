@@ -63,7 +63,7 @@
 			}
 		})
 	})
-	//카카오 로그인 
+	//카카오 
 	$(document).ready(function() {
 		//자바스크립트 키
 		Kakao.init("6185270da1b2e6df01f9aae9195154e8");
@@ -82,7 +82,7 @@
 			}
 		});
 	}
-		//로그인 
+		//카카오로그인 
 		function createKakaotalkLogin() {	
 			$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
 							
@@ -171,8 +171,13 @@
 		<br>
 		<!--아이디찾기  -->
 		<a href="<%=request.getContextPath()%>/member/find/find_id">아이디찾기
-		</a> <br> <a href="<%=request.getContextPath()%>/member/find/find_pw">비밀번호찾기
-		</a> <br>
+		</a>
+		 <br>
+		<!--비밀번호 찾기  -->
+		 <a href="<%=request.getContextPath()%>/member/find/find_pw">비밀번호찾기
+		</a>
+		 <br>
+		<!--카카오관련  -->
 		<div id="kakao-logged-group"></div>
 
 		<div id="kakao-profile"></div>

@@ -26,7 +26,7 @@ public class MemberFindService {
 
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-
+		
 		List<MemberInfo> id = Dao.find_id(userName, phone);
 
 		if (id == null) {
@@ -39,7 +39,10 @@ public class MemberFindService {
 
 			return null;
 
-		} else {
+		} else {	
+		
+		
+			
 			return id;
 		}
 
@@ -51,7 +54,7 @@ public class MemberFindService {
 
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-
+		
 		System.out.println(userId);
 		System.out.println(userName);
 		
@@ -63,11 +66,18 @@ public class MemberFindService {
 			out.println("alert('아이디와 이름이 일치하지 않습니다.');");
 			out.println("history.go(-1);");
 			out.println("</script>");
-			out.close();
+			out.flush();
 
 			return null;
 
-		} else {
+		} else  {
+		
+			out.println("<script>");
+			out.println("alert('등록하신 이메일로 비밀번호가 전송되었습니다.');");
+			out.println("</script>");
+			out.flush();
+
+			
 			return pw;
 		}
 
