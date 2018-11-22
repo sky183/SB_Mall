@@ -22,6 +22,7 @@ public interface AdminDao {
 	public Long salesYear(Object obj);
 	public Long salesYearPre(int interval);
 	public Long averageMonth(Object obj);
+	public Long averageThisMonth();
 	public Long averageMonthPre(int interval);
 	//주문상태
 	public List<Map<String, Integer>> orderStatus();

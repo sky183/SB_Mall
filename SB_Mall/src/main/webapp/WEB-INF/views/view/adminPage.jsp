@@ -57,7 +57,7 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 	<div id="navi">
 	
 		<div class="align-right">
-		
+			
 			<h5>이번달 매출 : <fmt:formatNumber value="${salAmount.get(0)}" pattern="#,###"/>원</h5>
 		
 		</div>

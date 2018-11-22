@@ -1,5 +1,8 @@
 package com.sb.mall.home.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import javax.servlet.http.Cookie;
@@ -8,17 +11,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.sb.mall.member.service.AES256Util;
 import com.sb.mall.member.service.MemberLoginService;
-import com.sb.mall.member.service.Sha256;
 
 @Controller // 클라이언의 요청을 처리 한 뒤그 결과를 DispatcherServlet에게 알려 줌 Struts의 Action과 동일한 기능
 public class LoginController {
@@ -28,7 +28,7 @@ public class LoginController {
 	
 	/*3.암호화 관련 의존주입 2018.11.16*/
 	@Autowired
-	private Sha256 sha256;
+	private AES256Util aes256;
 	
 	// 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
 	@RequestMapping(value = "/member/login", method = RequestMethod.GET) // url 주소
@@ -51,7 +51,7 @@ public class LoginController {
 			@RequestParam(value = "rememberId", required = false) String rememberId, HttpSession session,
 			HttpServletResponse response
 
-	) throws SQLException {
+	) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 
 		System.out.println(rememberId);
 		ModelAndView modelAndView = new ModelAndView();
@@ -70,7 +70,7 @@ public class LoginController {
 			/*2018.11.16 암호화 패치*/
 			System.out.println("/*[5] 2018.11.16 암호화 패치*/");
 			System.out.println("The Password you inputed :" + userPw);
-			String encryptionPW = sha256.encrypt(userPw);
+			String encryptionPW = aes256.encrypt(userPw);
 			System.out.println("be encryption password :" + encryptionPW);
 			userPw = (encryptionPW);
 			System.out.println("암호화 처리 완료");
