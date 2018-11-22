@@ -1,7 +1,5 @@
 package com.sb.mall.store.model;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class Goods {
 	
 	private String goodsNo;
@@ -9,12 +7,11 @@ public class Goods {
 	private String goodsName;
 	private int goodsPrice;
 	private String goodsPhoto;
-	private MultipartFile goodsFile;
 	
 	@Override
 	public String toString() {
 		return "Goods [goodsNo=" + goodsNo + ", productSeq=" + productSeq + ", goodsName=" + goodsName + ", goodsPrice="
-				+ goodsPrice + ", goodsPhoto=" + goodsPhoto + ", goodsFile=" + goodsFile + "]";
+				+ goodsPrice + ", goodsPhoto=" + goodsPhoto + "]";
 	}
 
 	public String getGoodsNo() {
@@ -55,14 +52,6 @@ public class Goods {
 
 	public void setGoodsPhoto(String goodsPhoto) {
 		this.goodsPhoto = goodsPhoto;
-	}
-
-	public MultipartFile getGoodsFile() {
-		return goodsFile;
-	}
-
-	public void setGoodsFile(MultipartFile goodsFile) {
-		this.goodsFile = goodsFile;
 	}
 	
 }

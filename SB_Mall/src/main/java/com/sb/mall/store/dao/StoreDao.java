@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sb.mall.store.model.Goods;
 import com.sb.mall.store.model.GoodsOption;
 import com.sb.mall.store.model.Product;
 import com.sb.mall.store.model.SalesBoard;
@@ -17,9 +18,11 @@ public interface StoreDao {
 	public List<Map<String,Object>> selectProAndSalList(
 			String tag,String sortType,int firstRow,int endRow);
 	public int countProAndSalList(String tag);
-	public List<Map<String,Object>> selectProAndSal(int salSeq);
+	public Map<String,Object> selectProAndSal(int salSeq);
 	public List<Product> selectProductList();
 	public List<SalesBoard> selectSalBoardList();
+	public List<Goods> selectGoodsList(int productSeq);
+	public List<GoodsOption> selectGoodsOptionList(String goodsNo);
 	public SalesBoard selectSalBoard(int salSeq);
 	public void deleteSalesBoard(int salSeq);
 	public void updateSalesBoard(SalesBoard salesBoard);

@@ -18,7 +18,6 @@
 	var goodsArr=[];
 	var goodsPhotoName="";
 	var optionArr=[];
-	var aa;
 	var gi=0; //상품수카운트
 	var oi=0; //옵션수카운트
 	var radioClick = function(e){
@@ -160,7 +159,6 @@
     }
 	
 	 function fileUpload(file) {
-		 aa=file;
 	      var str = file.value.substring(file.value.lastIndexOf("\\")+1); 
 	      var filename = guid() + str;
 	      var form_data = new FormData();
@@ -183,7 +181,6 @@
 	}
 	 
 	 function goodsUpload(file,gi) {
-		 aa=file;
 	      var str = file.value.substring(file.value.lastIndexOf("\\")+1); 
 	      var filename = guid() + str;
 	      var form_data = new FormData();
@@ -249,7 +246,6 @@
 	}
 	
 	function deleteOption(th,i) {
-		aa=th;
 		cnt=$("select[id='goodsOptionSel"+i+"'] option:selected").val();
 		$("select[id='goodsOptionSel"+i+"'] option:selected").remove();
 		for(var key in optionArr){

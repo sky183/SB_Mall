@@ -1,8 +1,7 @@
 package com.sb.mall.store.service;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,12 +20,12 @@ public class StoreBoardDetailService {
 	private StoreDao storeDao;
 	
 	@Transactional
-	public List<Map<String,Object>> SalDetailView(int salSeq) throws SQLException{
+	public Map<String,Object> SalDetailView(int salSeq) throws SQLException{
 		storeDao = sqlSessionTemplate.getMapper(StoreDao.class);
-		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-			 list = storeDao.selectProAndSal(salSeq);
+		Map<String,Object> proAndSal = new HashMap<String, Object>();
+			 proAndSal = storeDao.selectProAndSal(salSeq);
 			 storeDao.updateSalBoardCnt(salSeq);
-		return list;
+		return proAndSal;
 	}
 	
 }

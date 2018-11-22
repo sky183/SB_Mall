@@ -6,8 +6,8 @@
  	<insert id="insertSalesBoard"
  		parameterType="com.sb.mall.store.model.SalesBoard"
  		useGeneratedKeys="true" keyColumn="salesSeq" keyProperty="salesSeq">
- 		insert into SalesBoard (title,text,viewSeq,writeDate,userSeq,productSeq)
- 		value(#{title},#{text},0,now(),#{userSeq},#{productSeq})
+ 		insert into SalesBoard (title,text,viewSeq,writeDate,userSeq)
+ 		value(#{title},#{text},0,now(),#{userSeq})
  	</insert>
  	<insert id="insertProduct"
  		parameterType="com.sb.mall.store.model.Product"
@@ -43,13 +43,19 @@
  	</select>
  	<select id="selectProAndSal" resultType="map">
  		SELECT distinct * FROM SalesBoard s,Product p where s.salesSeq=#{salSeq} 
- 		and s.salesSeq=p.salesSeq;
+ 		and s.salesSeq=p.salesSeq
  	</select>
  	<select id="selectProductList" resultType="com.sb.mall.store.model.Product">
- 		SELECT * FROM Product order by productSeq desc;
+ 		SELECT * FROM Product order by productSeq desc
  	</select>
  	<select id="selectSalBoardList" resultType="com.sb.mall.store.model.SalesBoard">
- 		SELECT * FROM SalesBoard order by salesSeq desc;
+ 		SELECT * FROM SalesBoard order by salesSeq desc
+ 	</select>
+ 	<select id="selectGoodsList" resultType="com.sb.mall.store.model.Goods">
+ 		SELECT * FROM Goods where productSeq=#{param1}
+ 	</select>
+ 	<select id="selectGoodsOptionList" resultType="com.sb.mall.store.model.GoodsOption">
+ 		SELECT * FROM GoodsOption where goodsNo=#{param1} order by opt1Name
  	</select>
  	<select id="countProAndSalList" resultType="int">
  		SELECT count(*) from SalesBoard s,Product p 
