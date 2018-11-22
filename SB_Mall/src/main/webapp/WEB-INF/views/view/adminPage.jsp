@@ -48,7 +48,6 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 		var num = ${salAmount.get(x)};
 	    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
-	
 </script>
 </head>
 <body>
@@ -69,6 +68,39 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 		
 		<h5>지난달 매출 : <fmt:formatNumber value="${salAmount.get(1)}" pattern="#,###"/>원</h5>
 		
+		<h5>총 방문자 : <fmt:formatNumber value="${admin.visitTotal}" pattern="#,###"/>명</h5>
+		<h5>오늘의 방문자 : <fmt:formatNumber value="${admin.visitToday}" pattern="#,###"/>명</h5>
+		<h5>어제의 방문자 : <fmt:formatNumber value="${admin.visitPreday}" pattern="#,###"/>명</h5>
+		<h5>오늘의 주문수 : <fmt:formatNumber value="${admin.orderToday}" pattern="#,###"/>건</h5>
+		<h5>어제의 주문수 : <fmt:formatNumber value="${admin.orderPreday}" pattern="#,###"/>건</h5>
+		<h5>오늘의 매출 : <fmt:formatNumber value="${admin.salesToday}" pattern="#,###"/>원</h5>
+		<h5>어제의 매출 : <fmt:formatNumber value="${admin.salesPreday}" pattern="#,###"/>원</h5>
+		<h5>${month0}월 매출 : <fmt:formatNumber value="${admin.salesThisMonth}" pattern="#,###"/>원</h5>
+		<h5>${month0}월 평균매출 : <fmt:formatNumber value="${admin.averageThisMonth}" pattern="#,###"/>원</h5>
+		<c:forEach items="${admin.orderStatus}" var="statusMap">
+			<h5>
+			<c:choose>
+				<c:when test="${statusMap.status == 0}">
+					결제전
+				</c:when>
+				<c:when test="${statusMap.status == 1}">
+					결제완료
+				</c:when>
+				<c:when test="${statusMap.status == 2}">
+					배송준비
+				</c:when>
+				<c:when test="${statusMap.status == 3}">
+					배송중
+				</c:when>
+				<c:when test="${statusMap.status == 4}">
+					배송완료				
+				</c:when>
+	     </c:choose>
+			 : <fmt:formatNumber value="${statusMap.count}" pattern="#,###"/>건</h5>
+		</c:forEach>
+		<h5>오늘의 가입자 : <fmt:formatNumber value="${admin.joinToday}" pattern="#,###"/>명</h5>
+		<h5>어제의 가입자 : <fmt:formatNumber value="${admin.joinPreDay}" pattern="#,###"/>명</h5>
+				
 	<!-- navi의 끝 -->
 	</div>
 	

@@ -76,8 +76,12 @@
 	<beans:bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
-		<beans:property name="mapperLocations"
-			value="classpath:com/sb/mall/**/mybatis/*.xml" />
+		<beans:property name="mapperLocations">
+		<beans:list>
+			<beans:value>classpath:com/sb/mall/**/mybatis/*.xml</beans:value>
+			<beans:value>classpath:com/sb/mall/**/dao/*.xml</beans:value>
+		</beans:list>
+		</beans:property>
 	</beans:bean>
 
 	<!-- 채팅 관련 -->

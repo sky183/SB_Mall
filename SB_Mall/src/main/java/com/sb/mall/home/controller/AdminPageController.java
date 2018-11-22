@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sb.mall.admin.model.AdminVO;
+import com.sb.mall.admin.service.AdminService;
 import com.sb.mall.order.service.OrderDetailAmountService;
 import com.sb.mall.order.service.OrderDetailAverageService;
 
@@ -21,6 +23,8 @@ public class AdminPageController {
 	OrderDetailAmountService amountService;
 	@Autowired
 	OrderDetailAverageService averageService;
+	@Autowired
+	AdminService adminService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView adminPage() {
@@ -37,8 +41,12 @@ public class AdminPageController {
 			salAverage.add(averageService.getAverage(i));
 		}
 		
+		AdminVO admin = new AdminVO();
+		admin = adminService.getAdminReport(admin);
+		
 		modelAndView.addObject("salAmount", salAmount);
 		modelAndView.addObject("salAverage", salAverage);
+		modelAndView.addObject("admin", admin);
 		
 		return modelAndView;
 	}
