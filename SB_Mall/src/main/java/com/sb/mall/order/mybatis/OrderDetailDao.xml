@@ -30,12 +30,12 @@
 	
 	<select id="thisMonthAverage" resultType="String">
 		SELECT sum(totalAmount) / DAYOFMONTH(NOW()) totalAmount FROM OrderDetail WHERE
-	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval 1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()) and  status<![CDATA[>]]> 0)
+	month(orderTime) = month(now()) and year(orderTime) = year(now()) and status <![CDATA[>]]> 0 and totalAmount <![CDATA[>]]> 0
 	</select>
 	
 	<select id="preMonthAverage" resultType="String"  parameterType="int">
 		SELECT sum(totalAmount) / DAYOFMONTH(LAST_DAY(NOW() - interval #{interval} month)) totalAmount FROM OrderDetail WHERE
-	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval #{interval}+1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()- interval #{interval} month)  and  status<![CDATA[>]]> 0)
+	month(orderTime) = month(now() - interval #{interval} month) and year(orderTime) = year(now() - interval #{interval} month) and status <![CDATA[>]]> 0 and  totalAmount <![CDATA[>]]> 0
 	</select>
 	
 	<select id="thisMonthAmount" resultType="String">
@@ -44,7 +44,7 @@
 	</select>
 	<select id="preMonthAmount" resultType="String" parameterType="int">
 	SELECT sum(totalAmount) FROM OrderDetail WHERE
-	( orderTime <![CDATA[>]]> LAST_DAY(NOW() - interval #{interval}+1 month) AND orderTime <![CDATA[<=]]> LAST_DAY(NOW()- interval #{interval} month) and  status<![CDATA[>]]> 0)
+	month(orderTime) = month(now() - interval #{interval} month) and year(orderTime) = year(now() - interval #{interval} month) and status <![CDATA[>]]> 0 and  totalAmount <![CDATA[>]]> 0
 	</select>
 	
 	<select id="selectCount" resultType="int">

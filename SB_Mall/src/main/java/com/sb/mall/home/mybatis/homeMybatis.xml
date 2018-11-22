@@ -11,4 +11,12 @@
 	<select id="selectNewProduct" resultType="map">
 		select * from SalesBoard s, Product p where s.salesSeq=p.salesSeq order by writeDate Desc limit 0,8
 	</select>
+
+	<insert id="visitToday">
+		insert into VisitGuest value (1, curdate())
+	</insert>
+	
+	<update id="visitCount">
+		update VisitGuest set visitCount = visitCount + 1  where visitDate = curDate()
+	</update>
 </mapper>

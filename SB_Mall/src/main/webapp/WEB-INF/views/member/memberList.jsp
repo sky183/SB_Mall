@@ -45,7 +45,7 @@ margin-bottom: auto;
 
 							<th class="th-lg">회원번호</th>
 							<th class="th-lg">아이디</th>
-							<th class="th-lg">비밀번호</th>
+					<!-- 		<th class="th-lg">비밀번호</th> -->
 							<th class="th-lg">회원이름</th>
 							<th class="th-lg">주소1</th>
 							<th class="th-lg">전화번호</th>
@@ -65,7 +65,7 @@ margin-bottom: auto;
 							<tr>
 								<td>${member.userSeq}</td>
 								<td>${member.userId}</td>
-								<td>${member.userPw}</td>
+	<%-- 							<td>${member.userPw}</td> --%>
 								<td>${member.userName}</td>
 								<td>${member.address1}</td>
 								<td>${member.phone}</td>
@@ -122,7 +122,7 @@ $('.page').click(function() {
 						'<tr>' + 
 						'<td>' + member.userSeq + '</td>' + 
 						'<td>' + member.userId + '</td>' +
-						'<td>' + member.userPw + '</td>' +
+		/* 				'<td>' + member.userPw + '</td>' + */
 						'<td>' + member.userName + '</td>' +
 						'<td>' + member.address1 + '</td>' +
 						'<td>' + member.phone + '</td>' +

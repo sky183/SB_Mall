@@ -139,6 +139,13 @@
 
 			<beans:bean
 				class="com.sb.mall.home.interceptor.AuthCheckInterceptor" />
+				
+		<!-- 방문자수 조회 인터셉터 -->
+		</interceptor>
+		<interceptor>
+			<mapping path="/**" />
+			<beans:bean
+				class="com.sb.mall.home.interceptor.VisitCountInterceptor" />
 		</interceptor>
 	</interceptors>
 	

@@ -8,6 +8,8 @@ public interface HomeDao {
 	
 	public List<Map<String, Object>> selectDailyDeal() throws SQLException;
 	public List<Map<String, Object>> selectNewProduct() throws SQLException;
+	public int visitToday() throws SQLException;
+	public int visitCount() throws SQLException;
 	
 	
 }

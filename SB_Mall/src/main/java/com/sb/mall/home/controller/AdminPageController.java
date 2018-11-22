@@ -27,7 +27,9 @@ public class AdminPageController {
 		
 		ModelAndView modelAndView = new ModelAndView("/view/adminPage");
 		
+		//최근 1년 월별 총매출
 		List<String> salAmount = new ArrayList();
+		//최근 1년 월별 평균매출
 		List<String> salAverage = new ArrayList();
 		
 		for (int i = 0; i <= 11; i++) {

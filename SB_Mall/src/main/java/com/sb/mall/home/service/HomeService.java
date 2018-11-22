@@ -22,7 +22,7 @@ public class HomeService {
 		
 		homeDao = sqlSessionTemplate.getMapper(HomeDao.class);
 		
-		System.out.println("homeSerivce 입장.");
+//		System.out.println("homeSerivce 입장.");
 		
 		return homeDao.selectDailyDeal();
 	}
@@ -32,7 +32,7 @@ public class HomeService {
 		
 		homeDao = sqlSessionTemplate.getMapper(HomeDao.class);
 		
-		System.out.println("homeSerivce 입장.");
+//		System.out.println("homeSerivce 입장.");
 		
 		return homeDao.selectNewProduct();
 	}

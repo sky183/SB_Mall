@@ -14,6 +14,7 @@ public class CrowdBoardService {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
+	
 	private CrowdDao crowdDao;
 	
 	public List<Map<String, Object>> getCrowdBoard(int crowdPageCount,int pageShowCnt){
