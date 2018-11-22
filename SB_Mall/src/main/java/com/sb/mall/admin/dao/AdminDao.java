@@ -8,12 +8,12 @@ public interface AdminDao {
 	//오늘이나 며칠 전 값을 조회하고 싶으면 메서드 이름 뒤에 Pre가 붙은 메서드에 원하는 숫자를 넣는다. 0을 넣으면 오늘 , -1을 넣으면 하루전 이런식
 	
 	//방문수
-	public int visitCountTotal();
-	public int visitCountDay(Object obj);
-	public int visitCountDayPre(int interval);
+	public Integer visitCountTotal();
+	public Integer visitCountDay(Object obj);
+	public Integer visitCountDayPre(int interval);
 	//주문수
-	public int orderDayCount(Object obj);
-	public int orderDayCountPre(int interval);
+	public Integer orderDayCount(Object obj);
+	public Integer orderDayCountPre(int interval);
 	//매출
 	public Long salesDay(Object obj);
 	public Long salesDayPre(int interval);
@@ -27,7 +27,7 @@ public interface AdminDao {
 	//주문상태
 	public List<Map<String, Integer>> orderStatus();
 	//가입자
-	public int joinCount(Object obj);
-	public int joinCountPre(int interval);
+	public Integer joinCount(Object obj);
+	public Integer joinCountPre(int interval);
 	
 }

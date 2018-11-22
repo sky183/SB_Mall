@@ -6,27 +6,27 @@
  	
  	<!--  -->
  	<select id="visitCountTotal" resultType="int">
-		select sum(visitCount) from VisitGuest
+		select ifnull(sum(visitCount),0) from VisitGuest
 	</select>
 	<!--  -->
 	<select id="visitCountDay" resultType="int">
-		SELECT visitcount FROM VisitGuest WHERE date(visitDate) = date(#{obj})
+		SELECT ifnull(sum(visitcount),0) FROM VisitGuest WHERE date(visitDate) = date(#{obj})
 	</select>
 	<!--  -->
 	<select id="visitCountDayPre" resultType="int">
-		SELECT visitcount FROM VisitGuest WHERE date(visitDate) = curDate() - interval #{interval} day
+		SELECT ifnull(sum(visitcount),0) FROM VisitGuest WHERE date(visitDate) = curDate() - interval #{interval} day
 	</select>
 	<!--  -->
 	<select id="orderDayCount" resultType="int">
-		SELECT count(*) orderCount FROM OrderDetail WHERE date(orderTime) = date(#{obj}) and status  <![CDATA[>]]> 0
+		SELECT ifnull(count(*),0) orderCount FROM OrderDetail WHERE date(orderTime) = date(#{obj}) and status  <![CDATA[>]]> 0
 	</select>
 	<!--  -->
 	<select id="orderDayCountPre" resultType="int">
-		SELECT count(*) orderCount FROM OrderDetail WHERE date(orderTime) = date(now() - interval #{interval} day) and status <![CDATA[>]]> 0;
+		SELECT ifnull(count(*),0) orderCount FROM OrderDetail WHERE date(orderTime) = date(now() - interval #{interval} day) and status <![CDATA[>]]> 0;
 	</select>
 	<!--  -->
 	<select id="salesDay" resultType="Long">
-		SELECT sum(totalAmount) totalAmount FROM OrderDetail where date(orderTime) = date(#{obj}) and status <![CDATA[>]]> 0
+		SELECT ifnull(sum(totalAmount),0) totalAmount FROM OrderDetail where date(orderTime) = date(#{obj}) and status <![CDATA[>]]> 0
 	</select>
 	<!--  -->
 	<select id="salesDayPre" resultType="Long">
@@ -34,7 +34,7 @@
 	</select>
 	<!--  -->
 	<select id="salesMonth" resultType="Long">
-		SELECT sum(totalAmount) totalAmount FROM OrderDetail where month(orderTime) = month(#{obj}) and year(orderTime) = year(#{obj}) and  status <![CDATA[>]]> 0
+		SELECT ifnull(sum(totalAmount), 0) totalAmount FROM OrderDetail where month(orderTime) = month(#{obj}) and year(orderTime) = year(#{obj}) and  status <![CDATA[>]]> 0
 	</select>
 	<!--  -->
 	<select id="salesMonthPre" resultType="Long">
@@ -62,7 +62,7 @@
 	</select>
 	<!--  -->
 	<select id="orderStatus" resultType="map">
-		SELECT status, count(status) count FROM SB_Master.OrderDetail group by status order by status;
+		SELECT status, ifnull(count(status), 0) count FROM SB_Master.OrderDetail group by status order by status;
 	</select>
 	<!--  -->
 	<select id="joinCount" resultType="int">
