@@ -33,7 +33,7 @@ var setOpt2BackColor = function(e) {
 }
 var goodsRadioClick = function(e) {
 	var gno = e.dataset.gno;
-	//goodsNo에 맞는 옵션목록1  받아오기
+	//goodsNo에 맞는 옵션목록1  받아오기!
 	$.ajax({
 		url:'<%=request.getContextPath()%>/store/getGoodsOptionList?goodsNo='+ gno,
 		type:'GET',
