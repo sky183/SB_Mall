@@ -4,12 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <title>Insert title here</title>
 
 <script>
 	var pageShowCnt = 16;
 	
-	$(document).ready(function(){
+	 $(document).ready(function(){
 		
 		function getCrowdBoar(crowdPageCount){
 			$.ajax({
@@ -20,6 +22,12 @@
 					alert('오류입니다.');
 				},
 				success:function(data){
+					var crList = $(data).filter('.crBoardUnit').html();
+					
+				
+					
+						$('.crBoardList').html(crList[i]);
+					
 					
 				}
 				
@@ -43,7 +51,12 @@
 </head>
 <body>
 
-<div>
+<div class="crBoardBigBox">
+	
+	<div></div>
+	
+	<div class="crBoardList">
+	</div>
 
 </div>
 

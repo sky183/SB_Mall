@@ -6,7 +6,7 @@
 <mapper namespace="com.sb.mall.crowd.dao.CrowdDao">
 	
 	<insert id="insertCrowdBoard"
-		parameterType="com.sb.mall.crowd.model.crowdBoard"
+		parameterType="com.sb.mall.crowd.model.CrowdBoard"
 		useGeneratedKeys="true" keyColumn="crowdBoardSeq" keyProperty="crowdBoardSeq">
 		
 	insert into CrowdBoard (userSeq,title,text,writeDate,salesDay,targetPrice)
@@ -15,37 +15,37 @@
 	</insert>
 	
 	<insert id="insertCrowdProduct"
-		parameterType="com.sb.mall.crowd.model.crowdProduct"
-		useGeneratedKeys="true" keyColumn="productSeq" keyProperty="productSeq">
+		parameterType="com.sb.mall.crowd.model.CrowdProduct"
+		useGeneratedKeys="true" keyColumn="crProductSeq" keyProperty="crProductSeq">
 		
-		insert into Product (crowdBoardSeq,price,productName,photo,detail) 
- 		value(#{crowdBoardSeq},#{price},#{productName},#{photo},#{detail})
+		insert into CrowdProduct (crowdBoardSeq,crPrice,crProductName,crPhoto,crDetail) 
+ 		value(#{crowdBoardSeq},#{crPrice},#{crProductName},#{crPhoto},#{crDetail})
  		
 	</insert>
 	
 	<insert id="insertCrowdGoods"
-		parameterType="com.sb.mall.crowd.model.crowdGoods">
+		parameterType="com.sb.mall.crowd.model.CrowdGoods">
 		
-		insert into Goods (goodsNo,productSeq,goodsName,goodsPrice,goodsPhoto) 
- 		value(#{goodsNo},#{productSeq},#{goodsName},#{goodsPrice},#{goodsPhoto})
+		insert into CrowdGoods (crGoodsNo,crProductSeq,crGoodsName,crGoodsPrice,crGoodsPhoto) 
+ 		value(#{crGoodsNo},#{crProductSeq},#{crGoodsName},#{crGoodsPrice},#{crGoodsPhoto})
 		
 	</insert>
 	
 	<insert id="insertCrowdOption"
-		parameterType="com.sb.mall.crowd.model.crowdOption">
+		parameterType="com.sb.mall.crowd.model.CrowdOption">
 		
-		insert into GoodsOption (goodsNo,opt1Name,opt1Price,opt2Name,opt2Price) 
- 		value(#{goodsNo},#{opt1Name},#{opt1Price},#{opt2Name},#{opt2Price})
+		insert into CrowdGoodsOption (crGoodsNo,crOpt1Name,crOpt1Amount,crOpt1Price,crOpt2Name,crOpt2Price,crOpt2Amount) 
+ 		value(#{crGoodsNo},#{crOpt1Name},#{crOpt1Price},#{crOpt1Amount},#{crOpt2Name},#{crOpt2Price},#{crOpt2Amount})
 		
 	</insert>
 	
 	<select id="selectCrowdBoard" resultType="map">
-	
-	select * from CrowdBoard order by writeDate desc limit limit #{param1},#{param2}
-	
+		select * from CrowdBoard b,Product p where b.crowdBoardSeq = p.crowdBoardSeq order by writeDate desc limit #{param1},#{param2}
 	</select>
 	
-	
+	<!-- <select id="selectOrder">
+		
+	</select> -->
 	
 	
 	

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.crowd.dao.CrowdDao;
-import com.sb.mall.crowd.model.crowdWriteCommand;
+import com.sb.mall.crowd.model.CrowdWriteCommand;
 
 @Repository
 public class CrowdWriteService {
@@ -17,7 +17,7 @@ public class CrowdWriteService {
 	private CrowdDao crowdDao;
 	
 	@Transactional
-	public boolean insertCrowdCommand(crowdWriteCommand command) {
+	public boolean insertCrowdCommand(CrowdWriteCommand command) {
 			crowdDao = sqlSessionTemplate.getMapper(CrowdDao.class);
 			
 			int totalTry = command.getGoodsList().size()+command.getOptionList().size()+2;
@@ -27,7 +27,7 @@ public class CrowdWriteService {
 			//board 등록
 			int boardSC = crowdDao.insertCrowdBoard(command.getCrowdBoard());
 			int crowdBoardSeq = command.getCrowdBoard().getCrowdBoardSeq();
-			if(crowdBoardSeq>0) {
+			if(boardSC>0) {
 				sussecc++;
 			}else {
 				fail++;
@@ -42,12 +42,12 @@ public class CrowdWriteService {
 			}else {
 				fail++;
 			}
-			int productSeq = command.getCrowdProduct().getProductSeq();
+			int productSeq = command.getCrowdProduct().getCrProductSeq();
 			
 			//goods 등록
 			//product와 goods연결
 			for(int i=0; i<command.getGoodsList().size(); i++) {
-				command.getGoodsList().get(i).setProductSeq(productSeq);
+				command.getGoodsList().get(i).setCrProductSeq(productSeq);
 				int goodsSC = crowdDao.insertCrowdGoods(command.getGoodsList().get(i));
 				if(goodsSC>0) {
 					sussecc++;

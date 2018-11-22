@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.crowd.model.crowdWriteCommand;
+import com.sb.mall.crowd.model.CrowdWriteCommand;
 import com.sb.mall.crowd.service.CrowdWriteService;
 
 @Controller
@@ -23,7 +23,7 @@ public class CrowdWriteController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView crowdWrite(crowdWriteCommand crowdWriteCommand) {
+	public ModelAndView crowdWrite(CrowdWriteCommand crowdWriteCommand) {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		

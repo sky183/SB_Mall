@@ -29,10 +29,19 @@ public class CrowdBoardController {
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView getCrowdBoard(@RequestParam(value="crowdPageCount", defaultValue="1")int crowdPageCount, 
 						@RequestParam(value="pageShowCnt", defaultValue="16")int pageShowCnt){
+		System.out.println("게시판 가져오는 컨트롤러 입장.");
+		ModelAndView modelAndView = new ModelAndView();
 		List<Map<String, Object>> list= new ArrayList<Map<String, Object>>();
+		
+		System.out.println("crowdPageCount : "+crowdPageCount+", pageShowCnt"+pageShowCnt);
 		
 		list = boardService.getCrowdBoard(crowdPageCount, pageShowCnt);
 		
-		return null;
+		System.out.println(list);
+		
+		modelAndView.addObject("crBoard", list);
+		modelAndView.setViewName("store/crowdFunding/option/crowdBoardOption");
+		
+		return modelAndView;
 	}
 }

@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class crowdBoard {
+public class CrowdBoard {
 	private int crowdBoardSeq;
 	private int userSeq;
 	private String title;
@@ -13,6 +13,7 @@ public class crowdBoard {
 	private Date writeDate;
 	private Date salesDay;
 	private int targetPrice;
+	private int totalOrderPrice;
 	
 	public int getCrowdBoardSeq() {
 		return crowdBoardSeq;
@@ -66,11 +67,17 @@ public class crowdBoard {
 		this.targetPrice = targetPrice;
 	}
 	
+	public int getTotalOrderPrice() {
+		return totalOrderPrice;
+	}
+	public void setTotalOrderPrice(int totalOrderPrice) {
+		this.totalOrderPrice = totalOrderPrice;
+	}
 	@Override
 	public String toString() {
 		return "crowdBoard [crowdBoardSeq=" + crowdBoardSeq + ", userSeq=" + userSeq + ", title=" + title + ", text="
 				+ text + ", viewSeq=" + viewSeq + ", writeDate=" + writeDate + ", salesDay=" + salesDay
-				+ ", targetPrice=" + targetPrice + "]";
+				+ ", targetPrice=" + targetPrice + ", totalOrderPrice=" + totalOrderPrice + "]";
 	}
 	
 	

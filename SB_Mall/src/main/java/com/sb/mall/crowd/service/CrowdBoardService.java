@@ -21,10 +21,7 @@ public class CrowdBoardService {
 		
 		int startBoard = (crowdPageCount-1)*pageShowCnt;
 		
-		crowdDao.selectCrowdBoard(startBoard, pageShowCnt);
-		
-		
-		return null;
+		return crowdDao.selectCrowdBoard(startBoard, pageShowCnt);
 	}
 	
 	
