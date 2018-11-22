@@ -117,7 +117,7 @@ public class JoinController {
 			return modelAndView;
 		}*/
 		
-		/*2018.11.16 암호화 패치*/
+		/*2018.11.16 암호화 패치*/ 
 		System.out.println("/*[5] 2018.11.16 암호화 패치*/");
 		System.out.println("The Password you inputed :" + memberInfo.getUserPw());
 		String encryptionPW = sha256.encrypt(memberInfo.getUserPw());
