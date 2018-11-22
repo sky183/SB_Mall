@@ -16,14 +16,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.sb.mall.member.service.AES256Util;
 import com.sb.mall.member.service.MemberLoginService;
+import com.sb.mall.member.service.Sha256;
 
 @Controller // 클라이언의 요청을 처리 한 뒤그 결과를 DispatcherServlet에게 알려 줌 Struts의 Action과 동일한 기능
 public class LoginController {
 
 	@Autowired // Spring Framework에서 지원하는 의존주입 용도의 어노테이션
 	private MemberLoginService loginService;
-
+	
+	/*3.암호화 관련 의존주입 2018.11.16*/
+	@Autowired
+	private Sha256 sha256;
+	
 	// 요청에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
 	@RequestMapping(value = "/member/login", method = RequestMethod.GET) // url 주소
 	// 쿠키 값 저장
@@ -56,9 +62,22 @@ public class LoginController {
 
 		}
 
+		// userId 또는 userPw가 null 이 아닌 경우 
 		if (userId != null && userPw != null) {
-// userId 또는 userPw가 null 이 아닌 경우 
+			System.out.println("userId "+userId);
+			System.out.println("userPw "+userPw);
+			
+			/*2018.11.16 암호화 패치*/
+			System.out.println("/*[5] 2018.11.16 암호화 패치*/");
+			System.out.println("The Password you inputed :" + userPw);
+			String encryptionPW = sha256.encrypt(userPw);
+			System.out.println("be encryption password :" + encryptionPW);
+			userPw = (encryptionPW);
+			System.out.println("암호화 처리 완료");
+			
 			if (loginService.login(userId, userPw, session)) {
+				
+				
 				modelAndView.setViewName("redirect:/");
 			} else {
 				modelAndView.setViewName("view/loginForm"); // 경로
