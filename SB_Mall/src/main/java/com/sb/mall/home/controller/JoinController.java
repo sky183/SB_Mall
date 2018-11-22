@@ -59,9 +59,9 @@ public class JoinController {
 	public String addressAIP() {
 		System.out.println("<<**JoinController**>>");
 		System.out.println("/*[3]주소API POPUP화면 Method*/");
-		
 		return "/popup/jusoPopup";
 	}
+
 	
 	/*[5]아이디 중복검사 Method 2018.11.19*/
 	@RequestMapping("/id_DuplicateCheck")

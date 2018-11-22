@@ -34,6 +34,18 @@
 body {
 	background-color: #f5f5f5;
 }
+
+.form_name {
+	width: 122px !important;
+}
+.form_gender {
+	width: 122px !important;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.form_birth {
+	width: 247px !important;
+}
 </style>
 
 <!-- 주소 API -->
@@ -127,27 +139,28 @@ body {
 					class="form-text text-muted mb-4">비밀번호를 정확히 입력해 주세요.</small>
 
 				<div class="form-row mb-4">
-					<div class="col">
-						
 						<!-- 이름 입력 테그 -->
-						<input type="text" id="userName_ID" class="form-control"
+						<input type="text" id="userName_ID" class="form-control form_name"
 							name="userName" required placeholder="(*) 성명"
 							onkeyup="nameCheck_Function()"
 							auth="false"
 							>
 						
 						<!-- 성별 입력 테그 -->
-						<select id="userGender_ID" form="form" class="form-control"
+						<select id="userGender_ID" form="form" class="form-control form_gender"
 							name="gender" 
 							> 
   							<option value="남성">남성</option>
   							<option value="여성">여성</option>
 						</select>
-					</div>
+					<!-- <div class="col">
+						
+						
+					</div> -->
 					<div class="col">
 
 						<!-- 생년월일 입력 테그 -->
-						<input type="text" id="userBirthday_ID" class="form-control"
+						<input type="text" id="userBirthday_ID" class="form-control form_birth"
 							name="regID" required placeholder="(*) 0000/00/00"
 							auth="false"
 							>
