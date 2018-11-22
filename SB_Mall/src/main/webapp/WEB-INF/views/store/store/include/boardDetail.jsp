@@ -145,6 +145,17 @@ var addGoodsList= function() {
 	var opt1Price=$('input[name=opt1Radio]:checked').data('price');
 	var opt2Name=$('input[name=opt2Radio]:checked').data('name');
 	var opt2Price=$('input[name=opt2Radio]:checked').data('price');
+	var duplInsCart = false;
+	$('#insCartList>li').each(function(index, item){ 
+		if(item.dataset.goodsno==goodsNo && item.dataset.opt1name==opt1Name && item.dataset.opt2name==opt2Name){
+			duplInsCart = true;
+		}
+	});
+	
+	if(duplInsCart){
+		alert('이미 등록된 물품입니다.');
+		return false;
+	}
 	
 	$('<li/>').attr({
 		id:'insCartLi'+insCnt,
@@ -184,11 +195,23 @@ var addGoodsList= function() {
 		id:'insCartNumber'+insCnt,
 		'class':'insCartNumber',
 		'data-inscnt':insCnt,
-		oninput:'changeCartPrice(this)',
+		oninput:'changeInsCartPrice(this)',
 		value:1,
 		min:0,
 		max:9999
 	}).appendTo('#insCartNumberBox'+insCnt);
+	$('<button/>').attr({
+		'class':'insCartNumBtn',
+		type:'button',
+		value:insCnt,
+		onclick:'minusInsCartNum(this)'
+	}).text('-').appendTo('#insCartBox'+insCnt);
+	$('<button/>').attr({
+		'class':'insCartNumBtn',
+		type:'button',
+		value:insCnt,
+		onclick:'plusInsCartNum(this)'
+	}).text('+').appendTo('#insCartBox'+insCnt);
 	$('<span/>').attr({
 		id:'insCartPrice'+insCnt,
 		'class': 'insCartPrice',
@@ -349,7 +372,7 @@ var removeGoodsList = function(e) {
 		$("#hForm").attr("action", "<%=request.getContextPath()%>/order/insOrder");
 		$('#hForm').submit();
 	}
-	function changeCartPrice(e) {
+	function changeInsCartPrice(e) {
 		var insCnt = e.dataset.inscnt;
 		e.value = Math.abs(e.value); //number 인풋에 자연수만 들어가도록 변경
 		if(e.value>9999){
@@ -358,6 +381,16 @@ var removeGoodsList = function(e) {
 		var calprice =$('#insCartPrice'+insCnt).data('price')*e.value;
 		$('#insCartPrice'+insCnt).text(numberWithCommas(calprice)+"원");
 		$('#insCartPrice'+insCnt).data('calprice',calprice);
+	}
+	function plusInsCartNum(e) {
+		var selector = $('#insCartNumber'+e.value)
+		selector.val(Number(selector.val())+1);
+		$(selector).trigger('input');
+	}
+	function minusInsCartNum(e) {
+		var selector = $('#insCartNumber'+e.value)
+		selector.val(Number(selector.val())-1);
+		$(selector).trigger('input');
 	}
 	
 	function numberWithCommas(x) {

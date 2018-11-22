@@ -13,6 +13,9 @@ a:focus{
 p{
 	margin: 0px;
 }
+h1,h2,h3{
+	margin: 0px;
+}
 .storeBtn{
 	padding: 10px 15px;
 	background-color: #F2F2F2;
@@ -161,7 +164,8 @@ p{
 	float: right;
 }
 #boardSelectLi{
-	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #c8c8c8;
 }
 #boardSelectContainer{
 	position: relative;
@@ -233,9 +237,21 @@ p{
 	height: 80px;
 	width: 80px;
 }
+#insCartList{
+	padding-bottom: 20px;
+	border-bottom: 1px solid #c8c8c8;
+}
+
 #insCartList>li>div{
 	background-color: #f0f0f0;
 	border: 1px solid #c8c8c8;
+}
+.insCartNumBtn{
+	height: 30px;
+	width: 30px;
+	background-color: white;
+	border: 1px solid #c8c8c8;
+	vertical-align:middle;
 }
 .insCartDetail{
 
@@ -257,8 +273,9 @@ p{
 	display:inline-block;
 	border: 1px solid #c8c8c8;
 	height: 30px;
-	margin: 0 10px;
+	margin: 10px 10px;
 	background-color: white;
+	vertical-align: middle;
 }
 .insCartNumber{
 	height: 30px;
@@ -277,7 +294,8 @@ p{
 }
 .insCartPrice{
 	float: right;
-	margin: 10px;
+	margin: 15px;
+	vertical-align: middle;
 }
 .boardSelectorHeader{
 	border: 1px solid #f0f0f0;
@@ -358,6 +376,7 @@ p{
 }
 .boardBtn{
 	display: inline-block;
+	margin-top: 10px;
 	padding: 10px 15px;
 	width: 150px;
 	background-color: #FEC828;
