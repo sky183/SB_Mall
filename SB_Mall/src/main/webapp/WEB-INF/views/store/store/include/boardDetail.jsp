@@ -224,6 +224,7 @@ var addGoodsList= function() {
 
 var removeGoodsList = function(e) {
 	$('#insCartLi'+e.value).remove();
+	changeInsCartTotalPrice();
 }
 
 	$(document).ready(function () {
@@ -394,6 +395,11 @@ var removeGoodsList = function(e) {
 	function changeInsCartTotalPrice() {
 		var totalPrice=0;
 		$('#insCartListTotal').text('');
+		
+		if($('.insCartPrice').length==0){ //임시카트에 담긴 제품이 없을때
+			return false;
+		}
+		
 		$('.insCartPrice').each(function(index,item) {
 			totalPrice+=Number(item.dataset.calprice);
 		});
