@@ -38,6 +38,9 @@ public class MemberLoginService {
 
 			session.setAttribute("memberInfo", memberInfo);
 
+			//세션 시간
+			session.setMaxInactiveInterval(60*60*2);
+			
 			result = true;
 		}
 
