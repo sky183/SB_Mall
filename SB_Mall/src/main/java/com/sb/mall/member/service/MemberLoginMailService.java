@@ -1,5 +1,9 @@
 package com.sb.mall.member.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -16,7 +20,9 @@ public class MemberLoginMailService {
    @Autowired
 //   private MailSender mailSender;//실질적으로 메일을 보내주는 역할
    private JavaMailSender mailSender;//HTML형식으로 메일을 보내주기 위해 JavaMailSender로 선언
-
+   
+	@Autowired
+	private AES256Util aes256;
    /*
     * public void sendMail(Member member) { SimpleMailMessage message = new
     * SimpleMailMessage(); message.setSubject("[Simple] 회원 가입을 축하합니다.");
@@ -27,17 +33,19 @@ public class MemberLoginMailService {
     */
 
    /*Mail 보내기*/
-   public void sendMail(String memberemail,String resultpw) {
+   public void sendMail(String memberemail,String resultpw) throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 
       // Context of mail(Mailaddress)
       System.out.println("Sending Email...<sendMail>");
       System.out.println("수신자 : "+memberemail);
       
       SimpleMailMessage message = new SimpleMailMessage();
-
+      
+      String decryptionPW = aes256.decrypt(resultpw);
+      
       message.setSubject("[Simple] 비밀번호안내");
       message.setFrom("isincorp@gmail.com");
-      message.setText("회원님의 비밀번호는 :" + resultpw + " 입니다.");
+      message.setText("회원님의 비밀번호는 :" + decryptionPW + " 입니다.");
       message.setTo(memberemail);
 
       try {
