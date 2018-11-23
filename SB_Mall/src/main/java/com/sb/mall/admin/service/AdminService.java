@@ -28,6 +28,8 @@ public class AdminService {
 		//어제의 방문수
 		admin.setVisitPreday(dao.visitCountDayPre(1));
 		
+		//총 주문수
+		admin.setOrderTotal(dao.orderCountTotal());
 		//오늘의 주문수
 		admin.setOrderToday(dao.orderDayCountPre(0));
 		//어제의 주문수
@@ -39,6 +41,8 @@ public class AdminService {
 		admin.setSalesPreday(dao.salesDayPre(1));
 		//이번달 총 매출
 		admin.setSalesThisMonth(dao.salesMonthPre(0));
+		//지난달 총 매출
+		admin.setSalesPreMonth(dao.salesMonthPre(1));
 		//이번달 평균
 		admin.setAverageThisMonth(dao.averageMonthPre(0));
 		//주문상태

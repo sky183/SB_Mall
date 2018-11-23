@@ -12,6 +12,7 @@ public interface AdminDao {
 	public Integer visitCountDay(Object obj);
 	public Integer visitCountDayPre(int interval);
 	//주문수
+	public Integer orderCountTotal();
 	public Integer orderDayCount(Object obj);
 	public Integer orderDayCountPre(int interval);
 	//매출

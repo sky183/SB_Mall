@@ -64,60 +64,136 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 			<div><a href="<%=request.getContextPath()%>/admin/staff">직원관리</a></div>
 		</div>
 		 
-		<div id="report" class="text-left">
-		
-			<div class="text-left inline-block item ">
-				<h5>이번달 매출 : </h5>
-			</div>
-			<div class="text-right inline-block value">
-				<h5><fmt:formatNumber value="${salAmount.get(0)}" pattern="#,###"/>원</h5>
-			</div>
-			
-			<div class="text-left inline-block item">
-				<h5>지난달 매출 : </h5>
-			</div>
-			<div class="text-right inline-block value">
-				<h5><fmt:formatNumber value="${salAmount.get(1)}" pattern="#,###"/>원</h5>
-			</div>
-			
-			<div class="text-left inline-block item">
-				<h5>오늘의 매출 : </h5>
-			</div>
-			<div class="text-right inline-block value">
-				<h5><fmt:formatNumber value="${admin.salesToday}" pattern="#,###"/>원</h5>
-			</div>
-			
-			<div class="text-left inline-block item">
-				<h5>어제의 매출 : </h5>
-			</div>
-			<div class="text-right inline-block value">
-				<h5><fmt:formatNumber value="${admin.salesPreday}" pattern="#,###"/>원</h5>
-			</div>
-			
+		<div id="report" class="text-center">
+			<div class="text-center inline-block result-left background3">
+				<div class="today-visit display-table width100">
+					<h5 class="vertical-middle display-cell color-white">오늘 방문자</h5>
+				</div>
 				
-			<div class="text-left inline-block item">
-				<h5>오늘 방문자 : </h5>
-			</div>
-			<div class="text-right inline-block value">
-				<h5><fmt:formatNumber value="${admin.visitToday}" pattern="#,###"/>명</h5>
+				<div class="visit-value display-table width100 border-white background7">
+					<h5 class="vertical-middle display-cell"><fmt:formatNumber value="${admin.visitToday}" pattern="#,###"/>명</h5>
+				</div>
+			
+			</div><div class="text-center inline-block result-left background4">
+				<div class="today-join display-table width100">
+					<h5 class="vertical-middle display-cell color-white">오늘 가입자</h5>
+				</div>
+				
+				<div class="join-value display-table width100 border-white background7">
+					<h5 class="vertical-middle display-cell"><fmt:formatNumber value="${admin.joinToday}" pattern="#,###"/>명</h5>
+				</div>
 			</div>
 			
-			<div class="text-left inline-block item">
-				<h5>어제 방문자 : </h5>
-			</div>
-			<div class="text-right inline-block value">
-				<h5><fmt:formatNumber value="${admin.visitPreday}" pattern="#,###"/>명</h5>
-			</div>
+			<div class="salesBox">
 			
+				<div class="text-left inline-block item">
+					<h5 class="color1">총 주문수</h5>
+				</div>
+				<div class="text-left inline-block color1">
+					:
+				</div>
+				<div class="text-right inline-block value color1">
+					<h5><fmt:formatNumber value="${admin.orderTotal}" pattern="#,###"/>건</h5>
+				</div>
+				
+				<c:forEach items="${admin.orderStatus}" var="statusMap" end="4">
+					<div class="text-left inline-block item ">
+						<h5>
+							<c:choose>
+									<c:when test="${statusMap.status == 0}">
+										결제전
+									</c:when>
+									<c:when test="${statusMap.status == 1}">
+										결제완료
+									</c:when>
+									<c:when test="${statusMap.status == 2}">
+										배송준비
+									</c:when>
+									<c:when test="${statusMap.status == 3}">
+										배송중
+									</c:when>
+									<c:when test="${statusMap.status == 4}">
+										배송완료				
+									</c:when>
+						     </c:choose>
+					     </h5>
+					</div>
+					<div class="text-left inline-block ">
+						:
+					</div>
+					<div class="text-right inline-block value">
+						 <h5><fmt:formatNumber value="${statusMap.count}" pattern="#,###"/>건</h5>
+					</div>
+				</c:forEach>
+				
+			</div>
 		</div>
 		
 	<!-- left-content 의 끝 -->
 	</div>
 	
+	
+	
 	<div id="right-content" class="inline-block">
 	
 		<div id="header-content">
-		
+			
+			<div class="top-report">
+								
+				<div class="report-box">
+					<div class="icon-box">
+						아이콘
+					</div>
+					
+					<div class="result-box">
+						<div class="this-result">
+							<h5>오늘의 주문수 : <fmt:formatNumber value="${admin.orderToday}" pattern="#,###"/>건</h5>
+						</div>
+						
+						<div class="pre-result">
+							<h5>어제의 주문수 : <fmt:formatNumber value="${admin.orderPreday}" pattern="#,###"/>건</h5>
+						</div>
+					</div>
+				</div>
+				
+				<div class="report-box">
+					<div class="icon-box">
+						아이콘
+					</div>
+					
+					<div class="result-box">
+						<div class="this-result">
+							<h5>오늘의 매출 : <fmt:formatNumber value="${admin.salesToday}" pattern="#,###"/>원</h5>
+						</div>
+							
+						<div class="pre-result">
+							<h5>어제의 매출 : <fmt:formatNumber value="${admin.salesPreday}" pattern="#,###"/>원</h5>
+						</div>
+					</div>
+				</div>
+				
+				<div class="report-box">
+					<div class="icon-box">
+						아이콘
+					</div>
+					
+					<div class="result-box">
+						<div class="this-result">
+							<h5>${month0}월 매출 : <fmt:formatNumber value="${admin.salesThisMonth}" pattern="#,###"/>원</h5>
+						</div>
+						
+						<div class="pre-result">
+							<h5>${month1}월 매출 : <fmt:formatNumber value="${admin.salesPreMonth}" pattern="#,###"/>원</h5>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="bottom-report">
+			
+			</div>
+			
 		</div>
 		
 		<div id="main-content">

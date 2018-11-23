@@ -8,12 +8,14 @@ public class AdminVO {
 	private int visitTotal; //총 방문자 수
 	private int visitToday; //오늘의 방문자수
 	private int visitPreday; //어제의 방문자수
+	private int orderTotal;
 	private int orderToday; //오늘의 주문수
 	private int orderPreday; //어제의 주문수
 	//매출
 	private Long salesToday; //오늘의 매출
 	private Long salesPreday; //어제의 매출
 	private Long salesThisMonth; //이번달 총 매출
+	private Long salesPreMonth;
 	private Long averageThisMonth; //이번달 평균
 	//주문상태
 	private List<Map<String, Integer>> orderStatus; //주문 상태 조회
@@ -39,6 +41,7 @@ public class AdminVO {
 	public void setVisitPreday(int visitPreday) {
 		this.visitPreday = visitPreday;
 	}
+	
 	public int getOrderToday() {
 		return orderToday;
 	}
@@ -93,13 +96,26 @@ public class AdminVO {
 	public void setJoinPreDay(int joinPreDay) {
 		this.joinPreDay = joinPreDay;
 	}
+	public int getOrderTotal() {
+		return orderTotal;
+	}
+	public void setOrderTotal(int orderTotal) {
+		this.orderTotal = orderTotal;
+	}
+
+	public Long getSalesPreMonth() {
+		return salesPreMonth;
+	}
+	public void setSalesPreMonth(Long salesPreMonth) {
+		this.salesPreMonth = salesPreMonth;
+	}
 	@Override
 	public String toString() {
 		return "AdminVO [visitTotal=" + visitTotal + ", visitToday=" + visitToday + ", visitPreday=" + visitPreday
-				+ ", orderToday=" + orderToday + ", orderPreday=" + orderPreday + ", salesToday=" + salesToday
-				+ ", salesPreday=" + salesPreday + ", salesThisMonth=" + salesThisMonth + ", averageThisMonth="
-				+ averageThisMonth + ", orderStatus=" + orderStatus + ", joinToday=" + joinToday + ", joinPreDay="
-				+ joinPreDay + "]";
+				+ ", orderTotal=" + orderTotal + ", orderToday=" + orderToday + ", orderPreday=" + orderPreday
+				+ ", salesToday=" + salesToday + ", salesPreday=" + salesPreday + ", salesThisMonth=" + salesThisMonth
+				+ ", salesPreMonth=" + salesPreMonth + ", averageThisMonth=" + averageThisMonth + ", orderStatus="
+				+ orderStatus + ", joinToday=" + joinToday + ", joinPreDay=" + joinPreDay + "]";
 	}
 	
 	

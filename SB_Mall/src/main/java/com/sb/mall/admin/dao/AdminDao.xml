@@ -17,6 +17,10 @@
 		SELECT ifnull(sum(visitcount),0) FROM VisitGuest WHERE date(visitDate) = curDate() - interval #{interval} day
 	</select>
 	<!--  -->
+	<select id="orderCountTotal" resultType="int">
+		SELECT ifnull(count(*),0) orderCount FROM OrderDetail WHERE status  <![CDATA[>]]> 0
+	</select>
+	<!--  -->
 	<select id="orderDayCount" resultType="int">
 		SELECT ifnull(count(*),0) orderCount FROM OrderDetail WHERE date(orderTime) = date(#{obj}) and status  <![CDATA[>]]> 0
 	</select>

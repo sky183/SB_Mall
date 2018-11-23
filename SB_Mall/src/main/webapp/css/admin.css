@@ -3,28 +3,47 @@
 .text-left {text-align: left;}
 .text-right {text-align:right;}
 .text-center {text-align:center;}
+.none{display: none;}
 .block{display: block;}
 .inline-block{display: inline-block;}
-.none{display: none;}
 .float-left{float: left;}
 .float-right{float: right;}
 .absolute{position: absolute;}
 .relative{position: relative;}
 .fixed{position: fixed;}
+.vertical-top{vertical-align: top;}
+.vertical-middle{vertical-align: middle;}
+.vertical-bottom{vertical-align: bottom;}
 .overflow-hidden{overflow: hidden;}
 .overflow-visible{overflow: visible;}
 .overflow-scroll{overflow: scroll;}
 .overflow-auto{overflow: auto;}
-.background1{background-color: #ffc828;}
+.background1{background-color: #ffc828;} 
 .background2{background-color: #282828;}
 .background3{background-color: #505050;}
 .background4{background-color: #787878;}
 .background5{background-color: #f0f0f0;}
 .background6{background-color: #c8c8c8;}
+.background7{background-color: #a0a0a0;}
 .font10{font-size: 10px;}
-/* 임시 속성 */
+.color1{color: #ffc828;} 
+.color2{color: #282828;}
+.color3{color: #505050;}
+.color4{color: #787878;}
+.color5{color: #f0f0f0;}
+.color6{color: #c8c8c8;}
+.color-white{color: #ffffff;}
+.display-table{display: table;}
+.display-cell{display: table-cell;}
+.width100{width:100%;}
+.height100{height:100%;}
+.border-white{border: 1px solid #ffffff;}
+
 *{
+	 	box-sizing: border-box;
+/* 임시 속성 */
 /*  	border: 0.5px solid black;  */
+
 }
 
 /* 레이아웃별 속성 */
@@ -39,27 +58,45 @@
 	width: 200px;
 	height: 100%;
 	vertical-align: top;
-	background-color: #ffc828;
+	background-color: #f0f0f0;
 }
 /* 좌측 메뉴 */
 #navigation {
-	padding : 10px 0 80px 0;
-	height: 150px;
+	padding-top: 30px;
+	margin-bottom: 30px;
 }
 #navigation div{
-	margin-bottom: 5px;
+	border-top: 1px solid #ffffff;
+}
+
+#navigation div:last-child{
+	border-bottom: 1px solid #ffffff;
 }
 #navigation a{
-	display: block;
-	height: 25px;
 	padding-top: 3px;
-	background-color: #f0f0f0;
+	padding-bottom: 3px;
+	display: block;
 	color: black;
+}
+#navigation a:hover{
+	background-color: #505050;
 }
 /* 좌측 리포트 */
 #report {
-	display: block;
-	height: 650px;
+	display: inline-block;
+/* 	height: 650px; */
+}
+.result-left {
+	width: 95px;
+	vertical-align: middle;
+}
+.today-visit, .today-join {
+	height: 25px;
+	border: 1px solid #ffffff;
+	
+}
+.visit-value, .join-value {
+	height: 50px;
 }
 .item{
 	margin-left: 3px;
@@ -67,7 +104,7 @@
 }
 .value{
 	margin-right: 3px;
-	width: 95px;
+	width: 50px;
 }
 /* 우측 */
 #right-content {
@@ -99,17 +136,35 @@
 	display: inline-block;
 	vertical-align: top;
 }
-# {
+.salesBox{
+	margin-top: 10px;
+}
+.top-report{
+	text-align: center;
+}
+.report-box{
+	display: inline-block;
+	width: 250px;
+}
+.icon-box{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 60px;
+	display: inline-block;
+}
+.result-box{
+	vertical-align: top;
+	display: inline-block;
+	width: 170px;
 	
 }
-# {
+.this-result{
 	
 }
-# {
+.pre-result{
 	
 }
-# {
-	
+.{
 }
 
 
