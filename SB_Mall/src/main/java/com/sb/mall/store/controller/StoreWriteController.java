@@ -33,7 +33,7 @@ public class StoreWriteController {
 	public ModelAndView storeWriteDo(StoreWriteCommend storeWriteCommend, HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:/store");
+		modelAndView.setViewName("redirect:crowd/crowdBoard");
 
 		try {
 			// 제품판매 게시글 등록

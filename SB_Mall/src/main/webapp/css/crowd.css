@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+.boardMidBox{
+	margin: 0 0 35px 0;
+    /* padding: 10px 0; */
+    display: inline-block;
+}
+.boardPhotoBox{
+	width: 230px;
+    border-radius: 10px;
+    height: 230px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.boardPhoto{
+	width: 100%;
+}
+.viewImg{
+	width: 50px;
+}
+.midBannerBox{
+	text-align: center;
+	    width: 100%;
+    background-color: #3c3c3c;
+}
+.rowdWriteBannerH3{
+    padding-bottom: 30px;
+    padding-top: 70px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: white;
+    font-size: 28pt;
+}
+.crBoardBigBox{
+	width: 1000px;
+	margin: 0 auto;
+}
+.crBoardList{
+	padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.userOptBox{
+	padding-top:20px;
+	padding-bottom: 20px;
+	margin: 10px 0;
+}
+.selectBox{
+	display: inline-block;
+}
+.searchBox{
+	display: inline-block;
+	float:right;
+}
+.boardTitleBox{
+	display: inline-block;
+}
+.boardTitle{
+	display: inline-block;
+}
+.viewBox{
+	display: inline-block;
+	float: right;
+}
+.ib{
+	display: inline-block;
+}
+.viewImg{
+	vertical-align: middle;
+	width: 20px;
+}
+.viewH6{
+	vertical-align: middle;
+	font-size: 10pt;
+	color:#dcdcdc;
+}
+.titleBox{
+	margin-bottom: 5px;
+}
+.targetBox{
+	
+}
+.targetBar{
+	height: 5px;
+	background-color: #f0f0f0;
+	margin-bottom: 5px;
+}
+.achieveBar{
+	width: 10%;
+	height:5px;
+	background-color: #ffc828;
+}

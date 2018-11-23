@@ -4,18 +4,25 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class CrowdProduct {
 	private int crProductSeq;
+	private String productNo;
 	private int crowdBoardSeq;
 	private int crPrice;
 	private String crProductName;
 	private String crPhoto;
 	private MultipartFile photoFile;
 	private String crDetail;
-	
 	public int getCrProductSeq() {
 		return crProductSeq;
 	}
+	
 	public void setCrProductSeq(int crProductSeq) {
 		this.crProductSeq = crProductSeq;
+	}
+	public String getProductNo() {
+		return productNo;
+	}
+	public void setProductNo(String productNo) {
+		this.productNo = productNo;
 	}
 	public int getCrowdBoardSeq() {
 		return crowdBoardSeq;
@@ -53,14 +60,13 @@ public class CrowdProduct {
 	public void setCrDetail(String crDetail) {
 		this.crDetail = crDetail;
 	}
+	
 	@Override
 	public String toString() {
-		return "crowdProduct [crProductSeq=" + crProductSeq + ", crowdBoardSeq=" + crowdBoardSeq + ", crPrice="
-				+ crPrice + ", crProductName=" + crProductName + ", crPhoto=" + crPhoto + ", photoFile=" + photoFile
-				+ ", crDetail=" + crDetail + "]";
+		return "CrowdProduct [crProductSeq=" + crProductSeq + ", productNo=" + productNo + ", crowdBoardSeq="
+				+ crowdBoardSeq + ", crPrice=" + crPrice + ", crProductName=" + crProductName + ", crPhoto=" + crPhoto
+				+ ", photoFile=" + photoFile + ", crDetail=" + crDetail + "]";
 	}
-	
-	
 	
 	
 	

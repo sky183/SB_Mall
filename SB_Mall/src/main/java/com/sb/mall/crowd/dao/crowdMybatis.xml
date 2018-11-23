@@ -23,6 +23,15 @@
  		
 	</insert>
 	
+	<insert id="insertCrowdProductNull"
+		parameterType="com.sb.mall.crowd.model.CrowdProduct"
+		useGeneratedKeys="true" keyColumn="crProductSeq" keyProperty="crProductSeq">
+		
+		insert into CrowdProduct (crowdBoardSeq, productNo, crPrice,crProductName,crDetail) 
+ 		value(#{crowdBoardSeq},#{productNo}, #{crPrice},#{crProductName},#{crDetail})
+ 		
+	</insert>
+	
 	<insert id="insertCrowdGoods"
 		parameterType="com.sb.mall.crowd.model.CrowdGoods">
 		
@@ -34,13 +43,21 @@
 	<insert id="insertCrowdOption"
 		parameterType="com.sb.mall.crowd.model.CrowdOption">
 		
-		insert into CrowdGoodsOption (crGoodsNo,crOpt1Name,crOpt1Amount,crOpt1Price,crOpt2Name,crOpt2Price,crOpt2Amount) 
- 		value(#{crGoodsNo},#{crOpt1Name},#{crOpt1Price},#{crOptAmount},#{crOpt2Name},#{crOpt2Price})
+		insert into CrowdGoodsOption (crGoodsNo,crOpt1Name,crOptAmount,crOpt1Price,crOpt2Name,crOpt2Price) 
+ 		value(#{crGoodsNo},#{crOpt1Name},#{crOptAmount},#{crOpt1Price},#{crOpt2Name},#{crOpt2Price})
 		
 	</insert>
 	
+	<insert id="insertCrProductPhoto" parameterType="com.sb.mall.crowd.model.CrowdProductPhoto">
+		insert into CrowdProductPhoto (productNo,crPhotoList) value(#{productNo},#{crPhotoList})
+	</insert>
+	
 	<select id="selectCrowdBoard" resultType="map">
-		select * from CrowdBoard b,Product p where b.crowdBoardSeq = p.crowdBoardSeq order by writeDate desc limit #{param1},#{param2}
+		select * from CrowdBoard b,CrowdProduct p where b.crowdBoardSeq = p.crowdBoardSeq order by writeDate desc limit #{param1},#{param2}
+	</select>
+	
+	<select id="getBoardPageCnt" resultType="int">
+		select count(*) from CrowdBoard
 	</select>
 	
 	<!-- <select id="selectOrder">

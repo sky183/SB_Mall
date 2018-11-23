@@ -32,7 +32,7 @@ public class CrowdWriteController {
 		
 		if(result) {
 			System.out.println("게시글 등록 성공, 펀딩 게시판으로 이동합니다.");
-			modelAndView.setViewName("view/store/crowdFunding/crowdBoard");
+			modelAndView.setViewName("redirect:/crowd/crowdBoard");
 		}
 		
 		

@@ -21,8 +21,23 @@ public class CrowdBoardController {
 	private CrowdBoardService boardService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public String crowdPage() {
-		return "view/store/crowdFunding/crowdBoard";
+	public ModelAndView crowdPage(@RequestParam(value="crowdPageCount", defaultValue="1")int nowPage, 
+			@RequestParam(value="pageShowCnt", defaultValue="16")int pageShowCnt) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		List<Map<String, Object>> list= new ArrayList<Map<String, Object>>();
+		list = boardService.getCrowdBoard(nowPage, pageShowCnt);
+		System.out.println("게시판 get");
+		System.out.println("List.Length : "+list.size());
+		System.out.println("photo : "+list.get(0));
+		int paging = boardService.getBoardPageCnt(pageShowCnt);
+		
+		modelAndView.addObject("boardList", list);
+		modelAndView.addObject("paging", paging);
+		modelAndView.addObject("nowPage", nowPage);
+		modelAndView.setViewName("view/store/crowdFunding/crowdBoard");
+		
+		return modelAndView;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)

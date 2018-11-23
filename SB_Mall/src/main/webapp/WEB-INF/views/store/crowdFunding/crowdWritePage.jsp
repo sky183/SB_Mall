@@ -145,7 +145,7 @@
 						+'		<div class="optTitleBox">'
 						+'			<h3 class="goodsTitle">옵션</h3>'
 						+'			<!-- 옵션 추가 버튼 -->'
-						+'			<div class="addBtnBox"><h6 class="plusBtnText optionBtnPlus plusMinusbtn" optPlusBtn="optionBoxNum'+goodsCount+'" optCount="0">+</h6></div>'
+						+'			<div class="addBtnBox"><h6 class="plusBtnText optionBtnPlus plusMinusbtn" goodsNo="goodsList'+goodsCount+'" optPlusBtn="optionBoxNum'+goodsCount+'" optCount="1">+</h6></div>'
 						+'		</div>'
 						+'		<br>'
 							
@@ -180,7 +180,7 @@
 						+'					<input class="optionInput" type="number" name="optionList['+optionCount+'].crOpt2Price" placeholder="옵션2의 추가금액" oninput="mathABS(this)">'
 						+'				</div>'
 						+'				<div class="optDelBtn2">'
-						+'					<h6 class="optMinusCss optionBtnMinus" id="goodsList'+goodsCount+'_Opt0" btn="goodsList1">-</h6>'
+						+'					<h6 class="optMinusCss optionBtnMinus" id="goodsList'+goodsCount+'_Opt0" btn="optionBoxNum'+goodsCount+'">-</h6>'
 						+'				</div>'
 						+'			</div>'
 						+'		</div>'
@@ -258,10 +258,10 @@
 	    function optionAdd(){
 		    $('.optionBtnPlus').on('click',function(){
 				var goodsList = $(this).attr('optPlusBtn');
+				var goodsNoFk = $(this).attr('goodsNo');
 				var btnNum = $(this).attr('plus');
-				var goodsNo = $('.'+goodsList+'').find('input[class="goodsNoPk"]').val();
-				
-				if($(this).attr('optCount')<4){
+				var goodsNo = $('.'+goodsNoFk+'').find('input[class="goodsNoPk"]').val();
+				if($(this).attr('optCount')<5){
 					var optNum = $(this).attr('optCount');
 					optionCount++;
 					/* var optCount=$(this).attr('optCount'); */
@@ -656,7 +656,7 @@
 						<div class="optTitleBox">
 							<h3 class="goodsTitle">옵션</h3>
 							<!-- 옵션 추가 버튼 -->
-							<div class="addBtnBox"><h6 class="plusBtnText optionBtnPlus plusMinusbtn" optPlusBtn="optionBoxNum0" optCount="0">+</h6></div>
+							<div class="addBtnBox"><h6 class="plusBtnText optionBtnPlus plusMinusbtn" goodsNo="goodsList0" optPlusBtn="optionBoxNum0" optCount="1">+</h6></div>
 						</div>
 						<br>
 						
