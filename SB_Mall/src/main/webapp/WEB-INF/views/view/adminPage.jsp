@@ -63,7 +63,7 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 			<div><a href="<%=request.getContextPath()%>/admin/member">회원관리</a></div>
 			<div><a href="<%=request.getContextPath()%>/admin/staff">직원관리</a></div>
 		</div>
-		 
+		  
 		<div id="report" class="text-center">
 			<div class="text-center inline-block result-left background3">
 				<div class="today-visit display-table width100">
