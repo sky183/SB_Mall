@@ -169,7 +169,7 @@ body {
 
 						<!-- 생년월일 입력 테그 -->
 						<input type="text" id="userBirthday_ID" class="form-control form_birth"
-							name="regID" required placeholder="(*) 0000/00/00"
+							name="regID" required placeholder="(*) ex) 19001010"
 							auth="false"
 							>
 					</div>
@@ -300,17 +300,17 @@ body {
 				/* error : alert('Error'), */
 				success : function(data) {
 					//Console 창으로 data확인
-					console.log('중복아이디 : 1, 사용가능 아이디 : 0');
-					console.log('Result (from JoinController.java) : ['+data+']' );
 
 					if (data == 0) {
 						$('#email_Output_ID').html('<h6 style="color: green;">사용할 수 있는 아이디 입니다.</h6>');
 						$('#email_ID').attr('auth', 'true')
+						console.log('email_ID auth : true');
 							
 					} else {
 
 						$('#email_Output_ID').html('<h6 style="color: red;">중복된 아이디 입니다.</h6>');
 						$('#email_ID').attr('auth', 'false')
+						console.log('email_ID auth : false');
 					}//end of if (data == 0)
 				
 				}//end of success : function(data)

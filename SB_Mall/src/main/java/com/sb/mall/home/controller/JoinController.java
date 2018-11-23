@@ -78,7 +78,6 @@ public class JoinController {
 			e.printStackTrace();
 		}
 		
-		
 		return id_Check;
 	}
 	
