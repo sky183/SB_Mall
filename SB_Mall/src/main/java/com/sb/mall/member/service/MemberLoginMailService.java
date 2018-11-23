@@ -62,7 +62,7 @@ public class MemberLoginMailService {
    }
 
    /*HTML형식 Mail 보내기*/
-   public void mailSendHtml(String email) {
+   public void mailSendHtml(String email,String pw) {
 
       System.out.println("Sending Email...<mailSendHtml>");
       System.out.println("수신자 : "+email);
@@ -73,7 +73,7 @@ public class MemberLoginMailService {
          String htmlStr = 
         		 "<B>Hello</B> Sir <br> " + 
         		 "Thanks for join in this site <br>"+ 
-        				 "<h1><%= %></h1>"+
+        				 "<h1>"+pw+"</h1>"+
         		 "<a href=\"http://www.naver.com\">to go Site</a>";
 
          message.setText(htmlStr, "utf-8", "html");
