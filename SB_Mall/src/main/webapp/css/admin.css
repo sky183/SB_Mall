@@ -32,7 +32,7 @@
 .color4{color: #787878;}
 .color5{color: #f0f0f0;}
 .color6{color: #c8c8c8;}
-.color-white{color: #ffffff;}
+.color-white{color: #ffffff !important;}
 .display-table{display: table;}
 .display-cell{display: table-cell;}
 .width100{width:100%;}
@@ -80,6 +80,7 @@
 }
 #navigation a:hover{
 	background-color: #505050;
+	color: #ffffff;
 }
 /* 좌측 리포트 */
 #report {

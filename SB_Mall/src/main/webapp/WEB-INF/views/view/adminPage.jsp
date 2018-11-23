@@ -56,7 +56,7 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 	<div id="left-content" class="inline-block fixed">
 	
 		<div id="navigation" class="text-center">
-			<div><a href="<%=request.getContextPath()%>/admin/adminPage">메인</a></div>
+			<div class="background3"><a href="<%=request.getContextPath()%>/admin/adminPage" class="color-white">메인</a></div>
 			<div><a href="<%=request.getContextPath()%>/admin/visit">접속통계</a></div>
 			<div><a href="<%=request.getContextPath()%>/admin/order">주문관리</a></div>
 			<div><a href="<%=request.getContextPath()%>/admin/sales">매출관리</a></div>
