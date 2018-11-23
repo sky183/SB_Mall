@@ -128,6 +128,10 @@ public class JoinController {
 		System.out.println("<회원정보>");
 		System.out.println(memberInfo.toString());
 		
+		System.out.println("Session time Setting");
+		session.setMaxInactiveInterval(7200); 
+		System.out.println("Session time Setting End");
+		
 		
 		try {
 			

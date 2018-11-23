@@ -137,6 +137,14 @@ body {
 				<!-- 비밀번호 유효성 Message 출력 -->
 				<small id="password_Output_ID"
 					class="form-text text-muted mb-4">비밀번호를 정확히 입력해 주세요.</small>
+				<small id="password_Output_ID1"
+					class="form-text text-muted mb-4"></small>
+				<small id="password_Output_ID2"
+					class="form-text text-muted mb-4"></small>
+				<small id="password_Output_ID3"
+					class="form-text text-muted mb-4"></small>
+				<small id="password_Output_ID4"
+					class="form-text text-muted mb-4"></small>
 
 				<div class="form-row mb-4">
 						<!-- 이름 입력 테그 -->
@@ -265,27 +273,10 @@ body {
 	
 	//모든 공백 체크 정규식
 	var empJ = /\s/g;
-	//아이디 정규식
-	var idJ = /^[a-z0-9]{4,12}$/;
-	
-	// 비밀번호 정규식 (영문(대소문자 구분), 숫자, 특수문자 조합, 9~12자리)
-	var pwPattern = /^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-z])(?=.*[A-Z]).{9,12}$/;
-	
-	// 비밀번호 정규식
-	var pwJ = /^[A-Za-z0-9]{8,20}$/;
-
-	// 이름 정규식
-	var nameJ = /^[가-힣]{2,6}$/;;
-	// 생일 정규식
-	var birthJ = /^[1-2]{1}[0-9]{3}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}$/;
 	
 	// 이메일 검사 정규식
 	var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	// 휴대폰 번호 정규식
-	var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
-
-	
-	
+		
 	/*1.Email 정규식 + 실시간 중복검사*/
 	//정규식 조건-(조건에 해당되지 않을때 false를 반환)
 	function emailDuplicateCheck_Function() {
@@ -329,59 +320,101 @@ body {
 		}//end of if
 		
 	}//End of method /*1.Email 정규식 + 실시간 중복검사*/
-
 	
-	/*[2]. 비밀번호 재확인*/
+
+	// 비밀번호 정규식
+	var newPassword_RE = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+	
+	/*[2]. 비밀번호 정규식 (원본)*/
 	function passwordCheck_Function() {
 			
     	var pw1 = $('#password_ID').val();
     	var pw2 = $('#reconfirmPassword_ID').val();
     		
 		//1.정규식에 부합할때
-		if ( pwJ.test($('#password_ID').val())) {
+		if ( newPassword_RE.test(pw1)) {
                 
-           	/* lab.textContent = "8~20자의 영어,숫자를 혼합하여 입력해 주세요.(공백불가)"; */
-   			$('#password_Output_ID').html('<h6 style="color: green;">비밀번호 형식에 맞습니다.</h6>');
-   			$('#password_Output_ID').css('color', 'green');
-   				
    			if (pw1 != pw2) {
    				//1.1 비밀번호가 서로 일치하지 않을때 auth : false
-    			$('#password_Output_ID').html('<h6 style="color: red;">비밀번호가 서로 일치하지 않습니다.</h6>');
-    			$('#password_ID').attr('auth', 'false')
+    			$('#password_Output_ID').html('입력한 비밀번호(테스트 종료 후 삭제) <br>[password1 :'+pw1 + '] <br>[password2 :'+pw2+']');  
+    			$('#password_Output_ID1').html('<h6 style="color: red;">비밀번호가 서로 일치하지 않습니다.</h6>');
+    			$('#password_Output_ID2').html('<h6 style="color: green;">8자 이상</h6>');                
+    			$('#password_Output_ID3').html('<h6 style="color: green;">숫자,대문자,특수문자 포함</h6>');                
+    			 
+    			$('#password_ID').attr('auth', 'false');
     		} else {
    				//1.2 비밀번호가 서로 일치하면 auth : true >가입 가능
-    			/*Test후 아래문장 삭제 후 주석해제*/
-    			//$('#password_Output_ID').html('입력한 비밀번호 [password1 :'+pw1 + '] [password2 :'+pw2+']');
-    			$('#password_Output_ID').html('<h6 style="color: green;">비밀번호가 서로 일치합니다.</h6>');
-    			$('#password_ID').attr('auth', 'true')
+   				
+   				$('#password_Output_ID').html('입력한 비밀번호(테스트 종료 후 삭제) <br>[password1 :'+pw1 + '] <br>[password2 :'+pw2+']');  
+    			$('#password_Output_ID1').html('<h6 style="color: green;">비밀번호가 서로 일치합니다.</h6>');
+    			$('#password_Output_ID2').html('<h6 style="color: green;"></h6>');                
+    			$('#password_Output_ID3').html('<h6 style="color: green;"></h6>');  
+   				
+    			$('#password_ID').attr('auth', 'true');
 
     		}
             
 		} else {
             //2.정규식에 부합하지않을때
-			$('#password_Output_ID').html('<h6 style="color: red;">비밀번호 형식에 맞지 않습니다.</h6><br>입력한 비밀번호 [password1 :'+pw1 + '] [password2 :'+pw2+']');                
-   			$('#password_Output_ID').css('color', 'red');
-    		$('#password_ID').attr('auth', 'false')
+            
+            if(pw1.length>=8){
             	
+   				$('#password_Output_ID').html('입력한 비밀번호(테스트 종료 후 삭제) <br>[password1 :'+pw1 + '] <br>[password2 :'+pw2+']');  
+    			$('#password_Output_ID1').html('<h6 style="color: red;">비밀번호가 서로 일치하지 않습니다.</h6>');
+    			$('#password_Output_ID2').html('<h6 style="color: red;">8자 이상</h6>');                
+    			$('#password_Output_ID3').html('<h6 style="color: red;">숫자,대문자,특수문자 포함</h6>'); 
+            	
+	    		$('#password_ID').attr('auth', 'false')
+            	
+            }else{
+   				$('#password_Output_ID').html('입력한 비밀번호(테스트 종료 후 삭제) <br>[password1 :'+pw1 + '] <br>[password2 :'+pw2+']');  
+    			$('#password_Output_ID1').html('<h6 style="color: red;">비밀번호가 서로 일치하지 않습니다.</h6>');
+    			$('#password_Output_ID2').html('<h6 style="color: red;">8자 이상</h6>');                
+    			$('#password_Output_ID3').html('<h6 style="color: red;">숫자,대문자,특수문자 포함</h6>'); 
+            	
+	    		$('#password_ID').attr('auth', 'false')
+            	
+            }
 		}
 		
 	}//End of method /*비밀번호 재확인*/
-		
+	
 	/*[3]. 이름 정규식*/
+	var nameCheck1 = /^[가-힣]{1,}$/;
+	var nameCheck2 = /^[a-zA-Z]{1,}$/;
+	var koreaName = /^[가-힣]{2,6}$/;
+	var englishName = /^[a-zA-Z]{2,}$/;
 	function nameCheck_Function() {
 		
 		var name = $('#userName_ID').val();
 		console.log(name);
 		
-		if (nameJ.test($('#userName_ID').val())) {
-				
-			$('#nameAndBirthDay_Output_ID').html('<h6 style="color: green;"> 적합</h6>');                
-    		$('#userName_ID').attr('auth', 'true')
+		if (nameCheck1.test(name)) {
+			console.log('한글 이름');
+			if (koreaName.test(name)) {
+				$('#nameAndBirthDay_Output_ID').html('<h6 style="color: green;"> 적합</h6>');                
+	    		$('#userName_ID').attr('auth', 'true')
+			}else{
+				$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">정확한 한글 이름을 입력 해 주세요</h6>');                
+	    		$('#userName_ID').attr('auth', 'false')
+					
+			}
+		}else if(nameCheck2.test(name)){
+				console.log('영문 이름');
+			if (englishName.test(name)) {
+				$('#nameAndBirthDay_Output_ID').html('<h6 style="color: green;"> correct</h6>');                
+	    		$('#userName_ID').attr('auth', 'true')
+			}else{
+				$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">Please enter the correct name</h6>');                
+	    		$('#userName_ID').attr('auth', 'false')
+					
+			}
 		}else{
-			$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">부적합</h6>');                
-    		$('#userName_ID').attr('auth', 'false')
-				
+				$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">한글, 영어 외 사용불가</h6>');                
+	    		$('#userName_ID').attr('auth', 'false')
+			
 		}
+		
 	}//End of method /*[3]이름 정규식*/
 		
 		
@@ -398,6 +431,9 @@ body {
 		}
 	} 
 	*/
+	
+	// 생일 정규식
+	var birthJ = /^[1-2]{1}[0-9]{3}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}$/;
 		 
 	$('#userBirthday_ID').focusout(function birthdayCheckFunction() {
 	
@@ -461,21 +497,44 @@ body {
 	    	$('#userBirthday_ID').attr('auth', 'false');
 		}
 	})//End of method /*[4]. 생년월일 유효성 체크*/
-
+	
+	
+	
 	/*[5].휴대폰번호 정규식*/
+	var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+	var numberCheck1 = /^01[0|1|6|7|8|9]{1,}$/;
+	
 	function phoneNumber_CheckFunction() {
-		if (phoneJ.test($('#phoneNumber_ID').val())) {
+		
+		var phoneNumber = $('#phoneNumber_ID').val();
+		
+			
+			if (phoneJ.test(phoneNumber)) {
+				console.log('숫자입력 확인' + phoneNumber);
+					
+				//2018.11.23 입력된 폰번호 10자 이상 입력시 유효성 로직 수행
+				if (phoneNumber.length >= 10) {
+					$('#phoneNumber_Output_ID').html('<h6 style="color: green;"> 적합</h6>');                
+			    	$('#phoneNumber_ID').attr('auth', 'true')
+		    		console.log('phoneNumber_ID auth : true');
 				
-			$('#phoneNumber_Output_ID').html('<h6 style="color: green;"> 적합</h6>');                
-	    	$('#phoneNumber_ID').attr('auth', 'true')
-	    	console.log('phoneNumber_ID auth : true');
-		}else{
 				
-			$('#phoneNumber_Output_ID').html('<h6 style="color: red;">부적합</h6>');                
-	    	$('#phoneNumber_ID').attr('auth', 'false')
-	    	console.log('phoneNumber_ID : false');
-				
-		}
+				}else{
+				//2018.11.23 입력된 폰번호 10자 미만 입력시 아래 문장 출력
+					$('#phoneNumber_Output_ID').html('<h6 style="color: red;">핸드폰 번호 뒷자리를 정확히 입력 해 주세요</h6>');                
+			    	$('#phoneNumber_ID').attr('auth', 'false')
+			    	console.log('phoneNumber_ID : false');
+				}//End of if (phoneNumber.length >= 10)
+		    	
+			}else{
+					
+				$('#phoneNumber_Output_ID').html('<h6 style="color: red;">번호를 정확히 입력 해 주세요</h6>');                
+		    	$('#phoneNumber_ID').attr('auth', 'false')
+		    	console.log('phoneNumber_ID : false');
+					
+			}//End of if (phoneJ.test(phoneNumber))
+		
+		
 	}//End of method /*[5].휴대폰번호 정규식*/
 	
 	/*[6].상세주소 입력 확인*/
