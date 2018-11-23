@@ -138,13 +138,13 @@ var opt2RadioClick = function () {
 }
 
 var addGoodsList= function() {
-	var goodsNo=$('input[name=goodsRadio]:checked').data('gno');
-	var goodsName=$('input[name=goodsRadio]:checked').data('gname');
-	var goodsPrice=$('input[name=goodsRadio]:checked').data('price');
-	var opt1Name=$('input[name=opt1Radio]:checked').data('name');
-	var opt1Price=$('input[name=opt1Radio]:checked').data('price');
-	var opt2Name=$('input[name=opt2Radio]:checked').data('name');
-	var opt2Price=$('input[name=opt2Radio]:checked').data('price');
+	var goodsNo=$('input[name=goodsRadio]:checked').attr('data-gno');
+	var goodsName=$('input[name=goodsRadio]:checked').attr('data-gname');
+	var goodsPrice=Number($('input[name=goodsRadio]:checked').attr('data-price'));
+	var opt1Name=$('input[name=opt1Radio]:checked').attr('data-name');
+	var opt1Price=Number($('input[name=opt1Radio]:checked').attr('data-price'));
+	var opt2Name=$('input[name=opt2Radio]:checked').attr('data-name');
+	var opt2Price=Number($('input[name=opt2Radio]:checked').attr('data-price'));
 	var duplInsCart = false;
 	$('#insCartList>li').each(function(index, item){ 
 		if(item.dataset.goodsno==goodsNo && item.dataset.opt1name==opt1Name && item.dataset.opt2name==opt2Name){
@@ -152,7 +152,7 @@ var addGoodsList= function() {
 		}
 	});
 	
-	if(duplInsCart){
+	if(duplInsCart){ //같은 옵션의 제품이 추가되어 있을시 두번 추가시키지 않고  false
 		alert('이미 등록된 물품입니다.');
 		return false;
 	}
@@ -218,6 +218,7 @@ var addGoodsList= function() {
 		'data-price':goodsPrice+opt1Price+opt2Price,
 		'data-calprice':goodsPrice+opt1Price+opt2Price
 	}).text(numberWithCommas(goodsPrice+opt1Price+opt2Price)+'원').appendTo('#insCartBox'+insCnt);
+	changeInsCartTotalPrice();
 	insCnt++;
 }
 
@@ -287,7 +288,7 @@ var removeGoodsList = function(e) {
 							'class':'goodsListItemName'
 						}).text(data[key].goodsName).appendTo('#la'+gid);
 						
-						$('<span/>').text(numberWithCommas(data[key].goodsPrice)+' 원').appendTo('#la'+gid);
+						$('<span/>').text(numberWithCommas(data[key].goodsPrice)+'원').appendTo('#la'+gid);
 					}
 				}
 			});
@@ -372,15 +373,43 @@ var removeGoodsList = function(e) {
 		$("#hForm").attr("action", "<%=request.getContextPath()%>/order/insOrder");
 		$('#hForm').submit();
 	}
+	var aw;
 	function changeInsCartPrice(e) {
 		var insCnt = e.dataset.inscnt;
 		e.value = Math.abs(e.value); //number 인풋에 자연수만 들어가도록 변경
 		if(e.value>9999){
 			e.value=9999;
 		}
-		var calprice =$('#insCartPrice'+insCnt).data('price')*e.value;
+		var calprice =$('#insCartPrice'+insCnt).attr('data-price')*e.value;
 		$('#insCartPrice'+insCnt).text(numberWithCommas(calprice)+"원");
-		$('#insCartPrice'+insCnt).data('calprice',calprice);
+		$('#insCartPrice'+insCnt).attr('data-calprice',calprice);
+		
+		var totalPrice=0;
+		$('.insCartPrice').each(function(index,item) {
+			totalPrice+=Number(item.dataset.calprice);
+		});
+		$('#insCartListTotalPrice').attr('data-price',totalPrice);
+		$('#insCartListTotalPrice').text(numberWithCommas(totalPrice)+'원');
+	}
+	function changeInsCartTotalPrice() {
+		var totalPrice=0;
+		$('#insCartListTotal').text('');
+		$('.insCartPrice').each(function(index,item) {
+			totalPrice+=Number(item.dataset.calprice);
+		});
+		
+		$('<div/>').attr({
+		}).appendTo('#insCartListTotal');
+		$('<strong/>').attr({
+			'class':'insCartListTotalLeft'
+		}).text('결제예정금액').appendTo('#insCartListTotal>div');
+		$('<span/>').attr({
+			'class':'insCartListTotalRight'
+		}).appendTo('#insCartListTotal>div');
+		$('<strong/>').attr({
+			id:'insCartListTotalPrice',
+			'data-price':totalPrice
+		}).text(numberWithCommas(totalPrice)+'원').appendTo('#insCartListTotal>div>span');
 	}
 	function plusInsCartNum(e) {
 		var selector = $('#insCartNumber'+e.value)
@@ -464,6 +493,9 @@ var removeGoodsList = function(e) {
 				<li>
 					<ul id="insCartList">
 					</ul>
+				</li>
+				<li id="insCartListTotal">
+					
 				</li>
 				<li>
 					<p>
