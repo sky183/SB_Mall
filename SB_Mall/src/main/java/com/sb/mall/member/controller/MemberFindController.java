@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sb.mall.member.model.MemberInfo;
+import com.sb.mall.member.service.AES256Util;
 import com.sb.mall.member.service.MemberFindService;
 import com.sb.mall.member.service.MemberLoginMailService;
 import com.sb.mall.member.service.MemberModifyService;
@@ -29,6 +30,8 @@ public class MemberFindController {
 	
 	@Autowired
 	private MemberModifyService memberUpdateSerivce;
+	@Autowired
+	private AES256Util aes256;
 
 	// find_id 으로 요청이들어오면 "/member/find_id_form".jsp 파일을 응답해주는 내용
 	// 아이디 찾기 버튼 클릭시 아이디 찾기 폼으로 이동
@@ -77,22 +80,21 @@ public class MemberFindController {
 		//userId로 데이터베이스를 조회해서 memberInfo 가져오기
 		memberInfo=memberInfoService.getMemberInfo(userId);
 		System.out.println("조회된유저정보"+memberInfo.toString());
+		String encryptionPW = aes256.encrypt(pw);
 		
 		//난수로 변경된  비밀번호를 저장 
-		memberInfo.setUserPw(pw);
+		memberInfo.setUserPw(encryptionPW);
 		
 		//업데이트문
 		memberUpdateSerivce.memberModify_end(memberInfo);
 		
 		
-		//비밀번호확인
-		String afterPW = memberInfo.getUserPw();
 		
-		System.out.println(afterPW);
+		
 		//메일보내기
 		noti2.mailSendHtml(userId,pw);
-		//모델객체에 바뀐비밀번호 담기
-		md.addAttribute("pw",afterPW);
+//		//모델객체에 바뀐비밀번호 담기
+//		md.addAttribute("pw",afterPW);
 		
 		return "login/find_pw";
 	}

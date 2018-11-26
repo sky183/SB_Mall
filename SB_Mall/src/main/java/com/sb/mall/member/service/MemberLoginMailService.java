@@ -69,12 +69,12 @@ public class MemberLoginMailService {
       MimeMessage message = mailSender.createMimeMessage();
 
       try {
-         message.setSubject("[안내] 회원가입을 축하합니다.", "utf-8");
+         message.setSubject("[SB] 비밀번호 찾기 안내", "utf-8");
          String htmlStr = 
         		 "<B>Hello</B> Sir <br> " + 
-        		 "Thanks for join in this site <br>"+ 
-        				 "<h1>"+pw+"</h1>"+
-        		 "<a href=\"http://www.naver.com\">to go Site</a>";
+        		 "고객님의 임시 비밀번호입니다 <br>"+ 
+        				 "<h1>임시비밀번호:"+pw+"</h1>"+
+        		 "<a href=\"http://localhost/mall/member/login\">to go Site</a>";
 
          message.setText(htmlStr, "utf-8", "html");
 
