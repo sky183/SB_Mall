@@ -1,6 +1,9 @@
 package com.sb.mall.home.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -117,12 +120,26 @@ public class JoinController {
 		}*/
 		
 		/*2018.11.16 암호화 패치*/ 
-		System.out.println("/*[5] 2018.11.16 암호화 패치*/");
-		System.out.println("The Password you inputed :" + memberInfo.getUserPw());
-		String encryptionPW = sha256.encrypt(memberInfo.getUserPw());
-		System.out.println("be encryption password :" + encryptionPW);
-		memberInfo.setUserPw(encryptionPW);
-		System.out.println("암호화 처리 완료");
+		try {
+			System.out.println("/*[5] AES256Util 2018.11.16 암호화 패치*/");
+			System.out.println("The Password you inputed :" + memberInfo.getUserPw());
+			String encryptionPW = null;
+			encryptionPW = aES256Util.encrypt(memberInfo.getUserPw());
+			System.out.println("be encryption password :" + encryptionPW);
+			memberInfo.setUserPw(encryptionPW);
+			System.out.println("암호화 처리 완료");
+			
+		} catch (NoSuchAlgorithmException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (GeneralSecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		
 		System.out.println("<회원정보>");
 		System.out.println(memberInfo.toString());
