@@ -9,7 +9,7 @@ body{
 	padding:0px;
 	margin:0px;
 	line-height: inherit !important;
-	min-width: 1300px !important;
+/* 	min-width: 1300px !important; */ /* 성범 변경 */
 }
 button{
 	line-height: inherit !important;
@@ -38,7 +38,7 @@ a {
 }
 
 #headerLayout{
-	width:1200px;
+	width:1000px; /* 성범 변경 */
 	margin: 0 auto;
 }
 
@@ -590,6 +590,7 @@ a {
 	
 	
 }
+
 
 
 

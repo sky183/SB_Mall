@@ -1,53 +1,111 @@
 package com.sb.mall.home.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sb.mall.admin.model.AdminVO;
-import com.sb.mall.admin.service.AdminService;
+import com.sb.mall.admin.service.AdminMainService;
+import com.sb.mall.admin.service.AdminPagingService;
+import com.sb.mall.home.model.PageListView;
 import com.sb.mall.order.service.OrderDetailAmountService;
 import com.sb.mall.order.service.OrderDetailAverageService;
 
 
 @Controller
-@RequestMapping("/admin/adminPage")
 public class AdminPageController {
 	
 	@Autowired
-	OrderDetailAmountService amountService;
+	private OrderDetailAmountService amountService;
 	@Autowired
-	OrderDetailAverageService averageService;
+	private OrderDetailAverageService averageService;
 	@Autowired
-	AdminService adminService;
+	private AdminMainService adminService;
+	@Autowired
+	private AdminPagingService service;
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView adminPage() {
+	static final int COUNT_PER_PAGE = 10;
+	
+	//관리자페이지 메인
+	@RequestMapping(value="/admin/adminPage", method=RequestMethod.GET)
+	public ModelAndView adminPage(@RequestParam(value="page", defaultValue="1") int membPageNum) throws JsonProcessingException {
 		
 		ModelAndView modelAndView = new ModelAndView("/view/adminPage");
 		
-		//최근 1년 월별 총매출
-		List<String> salAmount = new ArrayList();
-		//최근 1년 월별 평균매출
-		List<String> salAverage = new ArrayList();
-		
-		for (int i = 0; i <= 11; i++) {
-			salAmount.add(amountService.getAmount(i));
-			salAverage.add(averageService.getAverage(i));
-		}
-		
+		//메인 어드민 총 정보
 		AdminVO admin = new AdminVO();
+		
+		//상품 Top5 저장할 맵(상품 이름, 상품 매출)
+		Map<String, Object> top5Map = new HashMap<String, Object>();
+		//이번년도 월별 매출 리스트
+		List<Map<String, Object>> salesMonthThisYearAverage = new ArrayList<Map<String,Object>>();
+		
+		//모든 어드민 정보 가져오기
 		admin = adminService.getAdminReport(admin);
 		
-		modelAndView.addObject("salAmount", salAmount);
-		modelAndView.addObject("salAverage", salAverage);
+		//리스트에서 상품 리스트 맵을 읽어서 그것을 각각 key 값만 맵에 저장(상품 이름, 상품 매출)
+		admin.getProductTop5().forEach((goodsItem) -> {
+			top5Map.put((String)goodsItem.get("goodsName"), goodsItem.get("salePrice"));
+		});
+		//월별 매출 및 평균 리스트 값 할당
+		salesMonthThisYearAverage=admin.getSalesMonthThisYearAverage();
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String top5MapJson = mapper.writeValueAsString( top5Map );
+		String salesJson = mapper.writeValueAsString(salesMonthThisYearAverage);
+		String orderStatus = mapper.writeValueAsString(admin.getOrderStatus());
+		
+		modelAndView.addObject("dataTop5", top5MapJson);
+		modelAndView.addObject("salesYear", salesJson);
+		modelAndView.addObject("orderStatus", orderStatus);
 		modelAndView.addObject("admin", admin);
 		
+		
+		
+		return modelAndView;
+	}
+	
+	//관리자 메인 회원리스트
+	@RequestMapping("/admin/adminMemberList")
+	public ModelAndView getMemberList(@RequestParam(value="page", defaultValue="1") int pageNumber)
+			throws Exception {
+
+		ModelAndView modelAndView = new ModelAndView();
+
+			modelAndView.setViewName("admin/include/adminMemberList");
+			
+			PageListView listView = service.getList(pageNumber, COUNT_PER_PAGE, "memberDao");
+
+
+			modelAndView.addObject("viewData", listView);
+
+		return modelAndView;
+	}
+	
+	//관리자 메인 주문리스트
+	@RequestMapping("/admin/adminOrderList")
+	public ModelAndView getDetailList(@RequestParam(value="page", defaultValue="1") int pageNumber)
+			throws Exception {
+
+		ModelAndView modelAndView = new ModelAndView();
+
+			modelAndView.setViewName("admin/include/adminOrderList");
+			
+			PageListView listView = service.getList(pageNumber, COUNT_PER_PAGE, "orderDetailDao");
+
+
+			modelAndView.addObject("viewData", listView);
+
 		return modelAndView;
 	}
 	

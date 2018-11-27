@@ -19,6 +19,8 @@ public interface MemberDao {
 	public int selectCount();
 	
 	public List<Object> selectList(int firstRow, int endRow);
+
+	public List<Object> selectTodayList(int firstRow, int endRow);
 	
 	public List<MemberInfo> find_id(String userName,String phone);
 	

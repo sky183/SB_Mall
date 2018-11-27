@@ -141,7 +141,40 @@ table .th-lg, table td {
 </head>
 <body>
 	<div id="adminWrapper">
-
+		
+<%-- 			<h5>지난달 매출 : <fmt:formatNumber value="${salAmount.get(1)}" pattern="#,###"/>원</h5>
+				<h5>총 방문자 : <fmt:formatNumber value="${admin.visitTotal}" pattern="#,###"/>명</h5>
+				<h5>오늘의 방문자 : <fmt:formatNumber value="${admin.visitToday}" pattern="#,###"/>명</h5>
+				<h5>어제의 방문자 : <fmt:formatNumber value="${admin.visitPreday}" pattern="#,###"/>명</h5>
+				<h5>오늘의 주문수 : <fmt:formatNumber value="${admin.orderToday}" pattern="#,###"/>건</h5>
+				<h5>어제의 주문수 : <fmt:formatNumber value="${admin.orderPreday}" pattern="#,###"/>건</h5>
+				<h5>오늘의 매출 : <fmt:formatNumber value="${admin.salesToday}" pattern="#,###"/>원</h5>
+				<h5>어제의 매출 : <fmt:formatNumber value="${admin.salesPreday}" pattern="#,###"/>원</h5>
+				<h5>${month0}월 매출 : <fmt:formatNumber value="${admin.salesThisMonth}" pattern="#,###"/>원</h5>
+				<h5>${month0}월 평균매출 : <fmt:formatNumber value="${admin.averageThisMonth}" pattern="#,###"/>원</h5>
+				<c:forEach items="${admin.orderStatus}" var="statusMap">
+					<h5>
+					<c:choose>
+						<c:when test="${statusMap.status == 0}">
+							결제전
+						</c:when>
+						<c:when test="${statusMap.status == 1}">
+							결제완료
+						</c:when>
+						<c:when test="${statusMap.status == 2}">
+							배송준비
+						</c:when>
+						<c:when test="${statusMap.status == 3}">
+							배송중
+						</c:when>
+						<c:when test="${statusMap.status == 4}">
+							배송완료				
+						</c:when>
+			     </c:choose>
+					 : <fmt:formatNumber value="${statusMap.count}" pattern="#,###"/>건</h5>
+				</c:forEach>
+				<h5>오늘의 가입자 : <fmt:formatNumber value="${admin.joinToday}" pattern="#,###"/>명</h5>
+				<h5>어제의 가입자 : <fmt:formatNumber value="${admin.joinPreDay}" pattern="#,###"/>명</h5> --%>
 		<div style="text-align: center;">
 		<h1 style="font-weight: bold; margin-bottom: 20px">매출 현황</h1>
 		<div style="border-radius: 10px; padding: 10px 15px; background-color: #787878; color: #ffc828; display: inline-block; font-size: 22px;">${year0}년</div>

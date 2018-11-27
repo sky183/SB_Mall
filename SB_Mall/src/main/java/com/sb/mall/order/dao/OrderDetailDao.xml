@@ -56,6 +56,11 @@
 		OrderDetail where status<![CDATA[<>]]>4 and orderDetailNum <![CDATA[<>]]>0 order by orderTime desc limit #{param1}, #{param2} 
 	</select>
 	
+	<select id="selectTodayList" resultType="com.sb.mall.order.model.OrderDetail">
+		select * from
+		OrderDetail where orderTime = curdate() and status<![CDATA[<>]]>4 and orderDetailNum <![CDATA[<>]]>0 order by orderTime desc limit #{param1}, #{param2} 
+	</select>
+	
 	<update id="updateStatus" parameterType="String">
 		UPDATE OrderDetail SET status = status +1
 		WHERE orderDetailNum = #{orderDetailNum}

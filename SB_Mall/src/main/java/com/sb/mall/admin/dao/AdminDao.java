@@ -22,6 +22,12 @@ public interface AdminDao {
 	public Long salesMonthPre(int interval);
 	public Long salesYear(Object obj);
 	public Long salesYearPre(int interval);
+	//특정년도 월별 매출
+	public List<Map<String, Object>> salesMonthYear(Object obj);
+	//이번년도 월별 매출
+	public List<Map<String, Object>> salesMonthYearPre(int interval);
+	//이번년도 월별 매출 및 월 평균
+	public List<Map<String, Object>> salesMonthThisYearAverage(int interval);
 	public Long averageMonth(Object obj);
 	public Long averageThisMonth();
 	public Long averageMonthPre(int interval);
@@ -30,5 +36,12 @@ public interface AdminDao {
 	//가입자
 	public Integer joinCount(Object obj);
 	public Integer joinCountPre(int interval);
+	//상품별 매출 Top 5
+	public List<Map<String, Object>> productTop5();
+	//이번년도 월평균 매출
+	public Long averageMonthYear();
+	//이번주 전주 평균 방문자수 비교
+	public List<Map<String, Object>> visitCountWeek();
+	
 	
 }

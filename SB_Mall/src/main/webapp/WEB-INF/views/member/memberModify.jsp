@@ -5,9 +5,7 @@
 			<tr>
 				<th>아이디</th><td><input type="text" readonly name="userId" value="${member.userId}"></td>
 			</tr>
-<%-- 			<tr>
-				<th>비밀번호</th><td><input type="text"  name="userPw" value="${member.userPw}"></td>
-			</tr> --%>
+			<input type="hidden"  name="userPw" value="${member.userPw}">
 			<tr>
 				<th>회원이름</th><td><input type="text"  name="userName" value="${member.userName}"></td>
 			</tr>

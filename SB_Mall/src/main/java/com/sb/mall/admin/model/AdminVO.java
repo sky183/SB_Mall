@@ -22,6 +22,14 @@ public class AdminVO {
 	//가입자
 	private int joinToday; //오늘의 가입자
 	private int joinPreDay; //어제의 가입자
+	//이번년도 월별 매출
+	private List<Map<String, Object>> salesMonthThisYearAverage;
+	//이번년도 월 평균 매출
+	private Long averageMontYear;
+	//상품별 매출
+	private List<Map<String, Object>> productTop5;
+	//전주 대비 일 평균 방문수
+	public List<Map<String, Object>> visitCountWeek;
 	
 	public int getVisitTotal() {
 		return visitTotal;
@@ -41,7 +49,12 @@ public class AdminVO {
 	public void setVisitPreday(int visitPreday) {
 		this.visitPreday = visitPreday;
 	}
-	
+	public int getOrderTotal() {
+		return orderTotal;
+	}
+	public void setOrderTotal(int orderTotal) {
+		this.orderTotal = orderTotal;
+	}
 	public int getOrderToday() {
 		return orderToday;
 	}
@@ -72,6 +85,12 @@ public class AdminVO {
 	public void setSalesThisMonth(Long salesThisMonth) {
 		this.salesThisMonth = salesThisMonth;
 	}
+	public Long getSalesPreMonth() {
+		return salesPreMonth;
+	}
+	public void setSalesPreMonth(Long salesPreMonth) {
+		this.salesPreMonth = salesPreMonth;
+	}
 	public Long getAverageThisMonth() {
 		return averageThisMonth;
 	}
@@ -96,18 +115,29 @@ public class AdminVO {
 	public void setJoinPreDay(int joinPreDay) {
 		this.joinPreDay = joinPreDay;
 	}
-	public int getOrderTotal() {
-		return orderTotal;
+	public List<Map<String, Object>> getSalesMonthThisYearAverage() {
+		return salesMonthThisYearAverage;
 	}
-	public void setOrderTotal(int orderTotal) {
-		this.orderTotal = orderTotal;
+	public void setSalesMonthThisYearAverage(List<Map<String, Object>> salesMonthThisYear) {
+		this.salesMonthThisYearAverage = salesMonthThisYear;
 	}
-
-	public Long getSalesPreMonth() {
-		return salesPreMonth;
+	public Long getAverageMontYear() {
+		return averageMontYear;
 	}
-	public void setSalesPreMonth(Long salesPreMonth) {
-		this.salesPreMonth = salesPreMonth;
+	public void setAverageMontYear(Long averageMontYear) {
+		this.averageMontYear = averageMontYear;
+	}
+	public List<Map<String, Object>> getProductTop5() {
+		return productTop5;
+	}
+	public void setProductTop5(List<Map<String, Object>> productTop5) {
+		this.productTop5 = productTop5;
+	}
+	public List<Map<String, Object>> getVisitCountWeek() {
+		return visitCountWeek;
+	}
+	public void setVisitCountWeek(List<Map<String, Object>> visitCountWeek) {
+		this.visitCountWeek = visitCountWeek;
 	}
 	@Override
 	public String toString() {
@@ -115,8 +145,12 @@ public class AdminVO {
 				+ ", orderTotal=" + orderTotal + ", orderToday=" + orderToday + ", orderPreday=" + orderPreday
 				+ ", salesToday=" + salesToday + ", salesPreday=" + salesPreday + ", salesThisMonth=" + salesThisMonth
 				+ ", salesPreMonth=" + salesPreMonth + ", averageThisMonth=" + averageThisMonth + ", orderStatus="
-				+ orderStatus + ", joinToday=" + joinToday + ", joinPreDay=" + joinPreDay + "]";
+				+ orderStatus + ", joinToday=" + joinToday + ", joinPreDay=" + joinPreDay + ", salesMonthThisYear="
+				+ salesMonthThisYearAverage + ", averageMontYear=" + averageMontYear + ", productTop5=" + productTop5
+				+ ", visitCountWeek=" + visitCountWeek + "]";
 	}
+	
+	
 	
 	
 	

@@ -1,0 +1,195 @@
+@charset "UTF-8";
+/* 좌측 */
+#left-content {
+	width: 200px;
+	height: 100%;
+	vertical-align: top;
+	background-color: #f0f0f0;
+}
+/* 좌측 메뉴 */
+#navigation {
+}
+#navigation div{
+	border-top: 1px solid #ffffff;
+}
+
+#navigation div:last-child{
+	border-bottom: 1px solid #ffffff;
+}
+#navigation a{
+	padding-top: 3px;
+	padding-bottom: 3px;
+	display: block;
+	color: black;
+}
+#navigation a:hover{
+	background-color: #505050;
+	color: #ffffff;
+}
+/* 좌측 리포트 */
+#report {
+	display: inline-block;
+/* 	height: 650px; */
+}
+.result-left {
+	width: 95px;
+	vertical-align: middle;
+}
+.today-visit, .today-join {
+	height: 25px;
+	border: 1px solid #ffffff;
+	
+}
+.visit-value, .join-value {
+	height: 50px;
+}
+.item{
+	margin-left: 3px;
+	width: 90px;
+}
+.value{
+	margin-right: 3px;
+	width: 50px;
+}
+/* 우측 */
+#content {
+	width: 1000px;
+	height: 100%;
+}
+/* 우측 상단 */
+#header-content {
+	text-align: center;
+	width: 100%;
+	height: 300px;
+}
+/* 우측 하단 */
+#main-content {
+	/* 내용물을 좌우로 정렬 */
+	justify-content:space-between;
+	/* 	감싸는 역할?? */
+	flex-wrap:wrap;
+	display:flex;
+	text-align: center;
+	width: 100%;
+}
+/* 하단 좌측 */
+#left-innercont {
+	display: inline-block;
+}
+/* 하단 우측 */
+#right-innercont {
+	display: inline-block;
+	vertical-align: top;
+}
+.orderBox{
+	margin-top: 10px;
+}
+.top-report{
+	text-align: center;
+		/* 내용물을 좌우로 정렬 */
+	justify-content:space-between;
+	/* 	감싸는 역할?? */
+	flex-wrap:wrap;
+	display:flex;
+}
+.report-box{
+	display: inline-block;
+	background-color: #a0a0a0;
+}
+.icon-box{
+	width: 70px;
+	display: inline-block;
+}
+.result-box{
+	vertical-align: middle;
+	display: inline-block;
+	width: 170px;
+}
+.this-result, .pre-result{
+	display: table;
+}
+
+.this-result *, .pre-result *{
+	vertical-align: middle;
+	display: table-cell;
+	white-space: pre;
+	height: 20px;
+	color: #505050;
+	font-weight: bold;
+	font-size: 14px;
+}
+.this-result *:first-child, .pre-result *:first-child{
+	text-align: left;
+	width: 70px;
+}
+.this-result *:last-child, .pre-result *:last-child{
+	text-align: right;
+	width: 90px;
+	color: #ffc828;
+	
+}
+
+
+.member_last_td {
+/* width : 105px !important;
+padding : 0 !important; 
+padding-top: 5px !important; */
+}
+
+.memberModify, .memberDelete, .status, .order{
+margin-top: 0 !important; 
+margin-bottom: 0 !important;
+} 
+#memberlist{
+	width: 490px;	
+}
+#orderlist {
+	width: 490px;
+}
+.none-data{
+	height: 167px;
+}
+/* .th-id{
+	width: 123px;
+	overflow: hidden;
+} */
+/* .mem-name{
+	width: 45px;
+	overflow: hidden;
+} */
+.th-managing{
+	width: 76px;
+}
+#popup input, #popup th, #popup td{
+	padding-top: 5px; 
+	padding-bottom: 5px;
+	vertical-align: middle;
+}
+#popup th:first-child{
+	width: 130px;
+}
+#popup input{
+	border: none;
+	width: 200px;
+}
+.bottom-report{
+}
+#top5, #this-year-average, #orderStatus{
+	display: inline-block;
+	height: 250px;
+	vertical-align: middle;
+}
+#top5{
+	width:230px;
+	text-align: center;
+}
+#this-year-average{
+	
+}
+#average-week{
+	
+}
+
+
+
+

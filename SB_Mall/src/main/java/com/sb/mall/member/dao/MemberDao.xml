@@ -48,6 +48,14 @@
 		#{param2}
 	</select>
 
+	<select id="selectTodayList"
+		resultType="com.sb.mall.member.model.MemberInfo">
+		select * from
+		MemberInfo where regDate = curDate() order by userSeq desc limit
+		#{param1},
+		#{param2}
+	</select>
+
 	<!--파라미터 타입은 입력값 ,리설트타입은 출력값 -->
 	<select id="find_id" parameterType="String" resultType="com.sb.mall.member.model.MemberInfo">
 

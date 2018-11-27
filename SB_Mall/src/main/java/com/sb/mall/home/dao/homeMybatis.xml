@@ -13,7 +13,7 @@
 	</select>
 
 	<insert id="visitToday">
-		insert into VisitGuest value (1, curdate())
+		insert into VisitGuest value (0, curdate())
 	</insert>
 	
 	<update id="visitCount">

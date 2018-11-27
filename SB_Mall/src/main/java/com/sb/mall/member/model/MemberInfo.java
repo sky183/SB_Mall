@@ -121,7 +121,7 @@ public class MemberInfo {
 		this.userAmount = userAmount;
 	}
 	public String getRegDate() {
-		return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(regDate);
+		return new SimpleDateFormat("yyyy/MM/dd").format(regDate);
 	}
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;

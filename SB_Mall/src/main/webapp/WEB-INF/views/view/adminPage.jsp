@@ -6,246 +6,202 @@
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.text.DecimalFormat"%>
-
-<%
-Calendar cal = Calendar.getInstance();
-SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMM");
-ArrayList<Object> monthArr = new ArrayList<Object>();
-
-	for(int i=0; i <= 11; i++) {
-		
-		if(i > 0){
-		cal.add(cal.MONTH, -1);
-		} else {
-			cal.add(cal.MONTH, 0);
-		}
-		String year = dateFormat.format(cal.getTime()).substring(0,4);
-		String month = dateFormat.format(cal.getTime()).substring(4,6);
-		
-		request.setAttribute("year"+ i, year);
-		request.setAttribute("month"+ i, month);
-		monthArr.add(month);
-}
-		request.setAttribute("monthArr", monthArr);
-		
-		//숫자를 소수점 버리고 포맷 변환하는 함수
-		double val = 1234525635.12;
-		DecimalFormat numFormat = new DecimalFormat(",###");
-		/* System.out.println(numFormat.format(val)); */
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin.css" >
-<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- 헤더 삽입 -->
+<%@ include file="/WEB-INF/views/admin/include/adminheader.jsp"%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminMain.css">
 <script type="text/javascript">
-	//자바스크립트로 소수점 버리고 포맷 변환하는 함수
+/* 	//자바스크립트로 소수점 버리고 포맷 변환하는 함수
 	function numFormat(x) {
 		var num = ${salAmount.get(x)};
 	    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
+	} */
 </script>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-<div id="adminWrapper">
 
-	<div id="left-content" class="inline-block fixed">
+<!-- 페이지 래퍼 -->
+<div id="adminWrapper">
+		<ul>
+					<li><a href="<%=request.getContextPath()%>/admin/staff">직원관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/admin/member">회원관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/admin/order">주문관리</a></li>
+		  			<li><a href="<%=request.getContextPath()%>/admin/visit">접속통계</a></li>
+					<li><a href="<%=request.getContextPath()%>/admin/sales">매출관리</a></li>
+		  <li ><a class="active" href="<%=request.getContextPath()%>/admin/adminPage">메인</a></li>
+		</ul>
 	
-		<div id="navigation" class="text-center">
-			<div class="background3"><a href="<%=request.getContextPath()%>/admin/adminPage" class="color-white">메인</a></div>
-			<div><a href="<%=request.getContextPath()%>/admin/visit">접속통계</a></div>
-			<div><a href="<%=request.getContextPath()%>/admin/order">주문관리</a></div>
-			<div><a href="<%=request.getContextPath()%>/admin/sales">매출관리</a></div>
-			<div><a href="<%=request.getContextPath()%>/admin/member">회원관리</a></div>
-			<div><a href="<%=request.getContextPath()%>/admin/staff">직원관리</a></div>
-		</div>
-		  
-		<div id="report" class="text-center">
-			<div class="text-center inline-block result-left background3">
-				<div class="today-visit display-table width100">
-					<h5 class="vertical-middle display-cell color-white">오늘 방문자</h5>
-				</div>
-				
-				<div class="visit-value display-table width100 border-white background7">
-					<h5 class="vertical-middle display-cell"><fmt:formatNumber value="${admin.visitToday}" pattern="#,###"/>명</h5>
-				</div>
-			
-			</div><div class="text-center inline-block result-left background4">
-				<div class="today-join display-table width100">
-					<h5 class="vertical-middle display-cell color-white">오늘 가입자</h5>
-				</div>
-				
-				<div class="join-value display-table width100 border-white background7">
-					<h5 class="vertical-middle display-cell"><fmt:formatNumber value="${admin.joinToday}" pattern="#,###"/>명</h5>
-				</div>
-			</div>
-			
-			<div class="salesBox">
-			
-				<div class="text-left inline-block item">
-					<h5 class="color1">총 주문수</h5>
-				</div>
-				<div class="text-left inline-block color1">
-					:
-				</div>
-				<div class="text-right inline-block value color1">
-					<h5><fmt:formatNumber value="${admin.orderTotal}" pattern="#,###"/>건</h5>
-				</div>
-				
-				<c:forEach items="${admin.orderStatus}" var="statusMap" end="4">
-					<div class="text-left inline-block item ">
-						<h5>
-							<c:choose>
-									<c:when test="${statusMap.status == 0}">
-										결제전
-									</c:when>
-									<c:when test="${statusMap.status == 1}">
-										결제완료
-									</c:when>
-									<c:when test="${statusMap.status == 2}">
-										배송준비
-									</c:when>
-									<c:when test="${statusMap.status == 3}">
-										배송중
-									</c:when>
-									<c:when test="${statusMap.status == 4}">
-										배송완료				
-									</c:when>
-						     </c:choose>
-					     </h5>
-					</div>
-					<div class="text-left inline-block ">
-						:
-					</div>
-					<div class="text-right inline-block value">
-						 <h5><fmt:formatNumber value="${statusMap.count}" pattern="#,###"/>건</h5>
-					</div>
-				</c:forEach>
-				
-			</div>
-		</div>
-		
-	<!-- left-content 의 끝 -->
-	</div>
-	
-	
-	
-	<div id="right-content" class="inline-block">
-	
+<!-- 우측 메뉴 -->
+	<div id="content" class="in-bl">
+		<!-- 헤더  -->
 		<div id="header-content">
-			
-			<div class="top-report">
-								
+			<!-- 상단 리포트 -->
+			<div class="top-report">	
+				<!-- 오늘의 방문자 -->
 				<div class="report-box">
-					<div class="icon-box">
-						아이콘
+					<div class="icon-box tab">
+						<i class="fa fa-shopping-cart fa-3x cel ver-mid" aria-hidden="true"></i>
 					</div>
 					
 					<div class="result-box">
 						<div class="this-result">
-							<h5>오늘의 주문수 : <fmt:formatNumber value="${admin.orderToday}" pattern="#,###"/>건</h5>
+							<h5>오늘 방문수</h5>
+							<h5><fmt:formatNumber value="${admin.visitToday}" pattern="#,###"/>명</h5>
 						</div>
 						
 						<div class="pre-result">
-							<h5>어제의 주문수 : <fmt:formatNumber value="${admin.orderPreday}" pattern="#,###"/>건</h5>
+							<h5>어제 방문수</h5>
+							<h5><fmt:formatNumber value="${admin.visitPreday}" pattern="#,###"/>명</h5>
 						</div>
 					</div>
 				</div>
-				
+			
+				<!-- 오늘의 주문 -->
 				<div class="report-box">
-					<div class="icon-box">
-						아이콘
+					<div class="icon-box tab">
+						<i class="fa fa-shopping-cart fa-3x cel ver-mid" aria-hidden="true"></i>
 					</div>
 					
 					<div class="result-box">
 						<div class="this-result">
-							<h5>오늘의 매출 : <fmt:formatNumber value="${admin.salesToday}" pattern="#,###"/>원</h5>
+							<h5>오늘의 주문</h5>
+							<h5><fmt:formatNumber value="${admin.orderToday}" pattern="#,###"/>건</h5>
+						</div>
+						
+						<div class="pre-result">
+							<h5>어제의 주문</h5>
+							<h5><fmt:formatNumber value="${admin.orderPreday}" pattern="#,###"/>건</h5>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 오늘의 매출 -->
+				<div class="report-box">
+					<div class="icon-box">
+						<i class="fa fa-krw fa-3x cel ver-mid" aria-hidden="true"></i>
+					</div>
+					
+					<div class="result-box">
+						<div class="this-result">
+							<h5>오늘의 매출</h5>
+							<h5><fmt:formatNumber value="${admin.salesToday}" pattern="#,###"/>원</h5>
 						</div>
 							
 						<div class="pre-result">
-							<h5>어제의 매출 : <fmt:formatNumber value="${admin.salesPreday}" pattern="#,###"/>원</h5>
+							<h5>어제의 매출</h5>
+							<h5><fmt:formatNumber value="${admin.salesPreday}" pattern="#,###"/>원</h5>
 						</div>
 					</div>
 				</div>
-				
+				<!-- 이번달 매출 -->
 				<div class="report-box">
 					<div class="icon-box">
-						아이콘
+						<i class="fa fa-line-chart fa-3x cel ver-mid" aria-hidden="true"></i>
 					</div>
-					
 					<div class="result-box">
 						<div class="this-result">
-							<h5>${month0}월 매출 : <fmt:formatNumber value="${admin.salesThisMonth}" pattern="#,###"/>원</h5>
+							<h5>${month0}월 매출</h5>
+							<h5><fmt:formatNumber value="${admin.salesThisMonth}" pattern="#,###"/>원</h5>
 						</div>
 						
 						<div class="pre-result">
-							<h5>${month1}월 매출 : <fmt:formatNumber value="${admin.salesPreMonth}" pattern="#,###"/>원</h5>
+							<h5>${month1}월 매출</h5>
+							<h5><fmt:formatNumber value="${admin.salesPreMonth}" pattern="#,###"/>원</h5>
 						</div>
 					</div>
 				</div>
 				
 			</div>
-			
+			<!-- 하단 리포트 - 차트 -->
 			<div class="bottom-report">
-			
+				<%@ include file="/WEB-INF/views/admin/include/adminChart.jsp"%>
 			</div>
 			
 		</div>
-		
+		<!-- 메인 -->
 		<div id="main-content">
-		
+			<!-- 회원목록 -->
 			<div id="left-innercont">
-									
 			</div>
 			
+			<!-- 주문목록 -->
 			<div id="right-innercont">
-				<h5>지난달 매출 : <fmt:formatNumber value="${salAmount.get(1)}" pattern="#,###"/>원</h5>
-				<h5>총 방문자 : <fmt:formatNumber value="${admin.visitTotal}" pattern="#,###"/>명</h5>
-				<h5>오늘의 방문자 : <fmt:formatNumber value="${admin.visitToday}" pattern="#,###"/>명</h5>
-				<h5>어제의 방문자 : <fmt:formatNumber value="${admin.visitPreday}" pattern="#,###"/>명</h5>
-				<h5>오늘의 주문수 : <fmt:formatNumber value="${admin.orderToday}" pattern="#,###"/>건</h5>
-				<h5>어제의 주문수 : <fmt:formatNumber value="${admin.orderPreday}" pattern="#,###"/>건</h5>
-				<h5>오늘의 매출 : <fmt:formatNumber value="${admin.salesToday}" pattern="#,###"/>원</h5>
-				<h5>어제의 매출 : <fmt:formatNumber value="${admin.salesPreday}" pattern="#,###"/>원</h5>
-				<h5>${month0}월 매출 : <fmt:formatNumber value="${admin.salesThisMonth}" pattern="#,###"/>원</h5>
-				<h5>${month0}월 평균매출 : <fmt:formatNumber value="${admin.averageThisMonth}" pattern="#,###"/>원</h5>
-				<c:forEach items="${admin.orderStatus}" var="statusMap">
-					<h5>
-					<c:choose>
-						<c:when test="${statusMap.status == 0}">
-							결제전
-						</c:when>
-						<c:when test="${statusMap.status == 1}">
-							결제완료
-						</c:when>
-						<c:when test="${statusMap.status == 2}">
-							배송준비
-						</c:when>
-						<c:when test="${statusMap.status == 3}">
-							배송중
-						</c:when>
-						<c:when test="${statusMap.status == 4}">
-							배송완료				
-						</c:when>
-			     </c:choose>
-					 : <fmt:formatNumber value="${statusMap.count}" pattern="#,###"/>건</h5>
-				</c:forEach>
-				<h5>오늘의 가입자 : <fmt:formatNumber value="${admin.joinToday}" pattern="#,###"/>명</h5>
-				<h5>어제의 가입자 : <fmt:formatNumber value="${admin.joinPreDay}" pattern="#,###"/>명</h5>
-			<!-- right-innercont의 끝 -->
 			</div>
 			
 		<!-- main-content 의 끝 -->
 		</div>
 		
-	<!-- right-content의 끝 -->
+	<!-- content의 끝 -->
 	</div>
 	
 <!-- adminWrapper의 끝 -->
 </div>
+
+<!-- Modal: 회원수정 -->
+<div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header" style="border: none">
+        <h4 class="modal-title" id="myModalLabel">회원 수정</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+	<form id="memberModify">
+    <div class="modal-body">
+            <table id="popup" class="table table-hover">
+            </table>
+       </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <input type="button" class="btn btn-outline-primary" data-dismiss="modal" value="닫기">
+        <input type="button" id="modifyButton" class="btn btn-primary" data-dismiss="modal" value="수정">
+      </div>
+	</form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: 주문상세 -->
+<div class="modal fade" id="modalOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"">
+      <!--Header-->
+      <div class="modal-header" style="border: none">
+        <h4 class="modal-title" id="myModalLabel">주문 내역</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+    <div class="modal-body">
+            <table id="popupOrder" class="table table-hover">
+            
+            </table>
+       </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <input type="button" class="btn btn-outline-primary" data-dismiss="modal" value="닫기">
+      </div>
+		
+    </div>
+  </div>
+</div>
+
 </body>
+<script type="text/javascript">
+$(document).ready(function() {
+	/* load 함수로 ajax 없이도 페이지에 불러온다. */
+	$('#left-innercont').load('<%=request.getContextPath()%>' + '/admin/adminMemberList');  
+	$('#right-innercont').load('<%=request.getContextPath()%>' + '/admin/adminOrderList');  
+});
+</script>
 </html>

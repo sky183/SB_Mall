@@ -28,6 +28,7 @@
 	<resources mapping="/js/**"
 		location="/WEB-INF/resources/js/**" />
 	<resources mapping="/chart/**" location="/chart/" />
+	<resources mapping="/jui/**" location="/jui/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->

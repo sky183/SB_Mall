@@ -20,6 +20,7 @@ public interface OrderDetailDao {
 	public String preMonthAverage(int interval);
 	public int selectCount();
 	public List<Object> selectList(int firstRow, int endRow);
+	public List<Object> selectTodayList(int firstRow, int endRow);
 	public int updateStatus(String orderDetailNum);
 	public List<OrderDetail> selectOrderDetail_userSqe(int userSeq);
 	public int selectOrderDetail_Cnt(int userSeq);

@@ -12,13 +12,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
-@RequestMapping("/chart")
 public class test {
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/chart", method = RequestMethod.GET)
 	public ModelAndView adminPage() throws JsonProcessingException {
 
-		ModelAndView modelAndView = new ModelAndView("/bar");
+		ModelAndView modelAndView = new ModelAndView("/admin/bar");
 
 		List<testObject> list = new ArrayList<testObject>();
 
@@ -31,6 +30,25 @@ public class test {
 		String jsonText = mapper.writeValueAsString( list );
 		modelAndView.addObject("ba", jsonText);
 
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/chart2", method = RequestMethod.GET)
+	public ModelAndView adminPage2() throws JsonProcessingException {
+		
+		ModelAndView modelAndView = new ModelAndView("/admin/bar2");
+		
+		List<testObject> list = new ArrayList<testObject>();
+		
+		list.add(new testObject("q1", 100, 150));
+		list.add(new testObject("q2", 250, 190));
+		list.add(new testObject("q3", 180, 200));
+		list.add(new testObject("q4", 310, 190));
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonText = mapper.writeValueAsString( list );
+		modelAndView.addObject("ba", jsonText);
+		
 		return modelAndView;
 	}
 

@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/* 초기화 */
+* {
+	padding : 0;
+	margin : 0;
+	 	box-sizing: border-box;
+/*  	border: 0.5px solid black;  */
+}
+ul {
+    list-style-type: none;
+    margin: 0 !important;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    margin-bottom: 1px !important;
+}
+
+li {
+    float: right;
+    border-right:1px solid #bbb;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+    color: white;
+}
+
+body{
+	padding:0px;
+	margin:0px;
+	line-height: inherit !important;
+}
+button{
+line-height: inherit !important;
+}
+h5 {font-size: 12px !important;}
+a {font-size: 15px; text-decoration: none !important; }
+table, th, td, tr {
+	border: 1px solid #787878 !important;
+	font-size : 11px !important;
+	text-align: center;
+	padding: 0 !important;
+}
+/* 공통 속성 */
+.t-left {text-align: left;}.t-right {text-align:right;}.t-center {text-align:center;}
+.none{display: none;}.bl{display: block;}.in-bl{display:inline-block;}
+.tab{display: table;}.cel{display: table-cell;}
+.fl-left{float: left;}.fl-right{float: right;}
+.absol{position: absolute;}.rela{position: relative;}.fix{position: fixed;}
+.ver-top{vertical-align: top;}.ver-mid{vertical-align: middle;}.ver-bot{vertical-align: bottom;}
+.ov-hid{overflow: hidden;}.ov-vis{overflow: visible;}
+.ov-scr{overflow: scroll;}.ov-aut{overflow: auto;}
+.back1{background-color: #ffc828;}.back2{background-color: #282828;}
+.back3{background-color: #505050;}.back4{background-color: #787878;}
+.back5{background-color: #a0a0a0;}.back6{background-color: #c8c8c8;}
+.back7{background-color: #dcdcdc;}.back8{background-color: #f0f0f0;}
+.fon10{font-size: 10px;}.fon12{font-size: 12px;}
+.fon15{font-size: 15px;}.fon18{font-size: 18px;}.fon20{font-size: 20px;}
+.fon22{font-size: 22px;}.fon24{font-size: 24px;}
+.ws-now{white-space: nowrap;}.ws-pre{white-space: pre;}
+.ws-pwrap{white-space: pre-wrap;}.ws-pline{white-space: pre-line}
+.col1{color: #ffc828;}.col2{color: #282828;}.col3{color: #505050;}.col4{color: #787878;}
+.col5{color: #a0a0a0;}.col6{color: #c8c8c8;}.col7{color: #dcdcdc;}.col8{color: #f0f0f0;}
+.col-white{color: #ffffff !important;}
+.wid100{width:100%;}.hei100{height:100%;}
+.bor-white{border: 1px solid #ffffff;}
+.bor8{border: 1px solid #f0f0f0;}
+
+/* 바디 내부 */
+#adminWrapper {
+	width : 1000px;
+	margin: 0px auto;
+	text-align: center;
+}
+.active {
+    background-color: #787878;
+}
+.active:hover {
+	color: white;
+}
