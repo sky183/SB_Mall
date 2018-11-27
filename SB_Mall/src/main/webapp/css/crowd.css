@@ -1,7 +1,10 @@
 @charset "UTF-8";
 
+*{
+	box-sizing: border-box;
+}
 .boardMidBox{
-	margin: 0 0 35px 0;
+	margin: 0 0 60px 0;
     /* padding: 10px 0; */
     display: inline-block;
 }
@@ -34,30 +37,70 @@
 .crBoardBigBox{
 	width: 1000px;
 	margin: 0 auto;
+	margin-bottom: 100px;
 }
 .crBoardList{
-	padding-top: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding-top: 25px;
+    border-top: 1px solid #c8c8c8;
 }
 .userOptBox{
-	padding-top:20px;
-	padding-bottom: 20px;
-	margin: 10px 0;
+	padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 30px 0 0 0;
+    width: 1000px;
 }
 .selectBox{
+	vertical-align: middle;
+}
+.searchBigBox{
 	display: inline-block;
+	float: right;
+}
+.searchText{
+	vertical-align: middle;
+	font-size: 12pt;
+	color:#707070;
+	
 }
 .searchBox{
-	display: inline-block;
-	float:right;
+    border: 1px solid #3c3c3c;
+    padding: 6px 6px;
+    vertical-align: middle;
+    width: 250px;
+    border-radius: 6px 0 0 6px;
 }
+.search{
+	font-size: 12pt;
+	border:none;
+	width: 100%;
+}
+.searchBtnBox{
+	height: 34px;
+    vertical-align: middle;
+    background-color: #3c3c3c;
+    width: 36px;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+}
+.searchBtn{
+    padding: 7px;
+    /* display: table-cell; */
+    /* border: none; */
+    width: 34px;
+}
+
 .boardTitleBox{
 	display: inline-block;
+	max-width: 230px;
+	
 }
 .boardTitle{
 	display: inline-block;
+	color:#282828;
+    font-size: 12pt;
 }
 .viewBox{
 	display: inline-block;
@@ -74,6 +117,7 @@
 	vertical-align: middle;
 	font-size: 10pt;
 	color:#dcdcdc;
+	font-weight: normal;
 }
 .titleBox{
 	margin-bottom: 5px;
@@ -82,12 +126,64 @@
 	
 }
 .targetBar{
-	height: 5px;
+	height: 3px;
 	background-color: #f0f0f0;
 	margin-bottom: 5px;
 }
 .achieveBar{
 	width: 10%;
-	height:5px;
+	height:3px;
 	background-color: #ffc828;
 }
+.priceBox{
+	margin-bottom: 5px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.price{
+	color:#a0a0a0;
+	font-weight: normal;
+	display: inline-block;
+}
+
+.targetPcBox{
+	display: inline-block;
+	margin-right: 5px;
+}
+.leftDayBox{
+	float: right;
+}
+.achHigh{
+	color:#ffc828;
+}
+.achMid{
+	color:#a0a0a0;
+	font-weight: normal;
+}
+.pagingBox{
+	text-align: center;
+}
+.pagingBtnBox{
+    text-align: center;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    color: #707070;
+    width: 40px;
+    height: 40px;
+}
+.nowPage{
+	text-align: center;
+    background-color: #ffc828;
+    border-radius: 5px;
+    color: white;
+    width: 40px;
+    height: 40px;
+}
+.pagingBtn{
+    padding-top: 10px;
+    font-size: 14pt;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+

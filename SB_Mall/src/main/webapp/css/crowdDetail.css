@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+*{
+	padding:0px;
+	magin:0px;
+	box-sizing: border-box;
+}
+#crowdWriteBigBanner{
+	width:100%;
+	background-color: #3c3c3c;
+}
+#crowdWriteMidBanner{
+	width:1000px;
+	margin: 0 auto;
+	text-align: center;
+}
+.rowdWriteBannerH3{
+	padding-bottom:30px;
+	padding-top:70px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	color:white;
+	font-size: 28pt;
+}
+.BDBigLayout{
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 50px;
+	
+}
+.BDtopLayout{
+	
+	
+}
+
+.BDImgBox{
+	display: inline-block;
+	width: 490px;
+}
+.thumBigImgBox{
+	width: 490px;
+	height: 490px;
+	border-radius: 20px;
+	border: 1px solid #f0f0f0;
+	overflow: hidden;
+}
+.thumBigImg{
+	width: 100%;
+}
+.thumBox{
+	width: 490px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.thumMiniBox{
+	width: 90px;
+	height: 90px;
+	border-radius: 10px;
+	border: 1px solid #f0f0f0;
+	overflow: hidden;
+}
+.thumImg{
+	width: 100%;
+}
+
+
+.BDInfoLayout{
+	float: right;
+	display: inline-block;
+	width: 490px;
+}
+.BDTitleBox{
+	border-bottom: 3px solid #282828;
+	padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.prNoBox{
+	margin-bottom: 5px;
+}
+.prNo{
+	color: #a0a0a0;
+    font-weight: lighter;
+    display: inline-block;
+    font-size: 10pt;
+}
+.ratingPart{
+	display: inline-block;
+}
+.ratingImg{
+    width: 20px;
+    vertical-align: middle;
+}
+.ratingH5{
+	display: inline-block;
+    vertical-align: middle;
+    font-size: 16pt;
+    color: #ffc828;
+    margin-left: 5px;
+    font-weight: bold;
+    margin-top: 3px;
+}
+.ratingH6{
+    display: inline-block;
+    vertical-align: sub;
+    font-size: 12pt;
+    color: #c8c8c8;
+    /* margin-left: 5px; */
+    font-weight: normal;
+    /* margin-top: 3px; */
+}
+.ratingPart{
+	
+}
+.viewSeqBox{
+    float: right;
+    display: inline-block;
+    margin-top: 3px;
+}
+.viewSeqImg{
+	width: 25px;
+    vertical-align: middle;
+    margin-right: 5px;	
+}
+.viewSeqH6{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 10pt;
+    color: #c8c8c8;
+    font-weight: normal;
+    margin-top: 3px;
+}
+.proDetailBox{
+	margin-top: 50px;
+}
+.detTitleBox{
+	padding-bottom: 5px;
+    border-bottom: 2px solid #282828;
+}
+
+.delivImg{
+	width: 1000px;
+}
+.detTitle{
+	color: #282828;
+    font-size: 20pt;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

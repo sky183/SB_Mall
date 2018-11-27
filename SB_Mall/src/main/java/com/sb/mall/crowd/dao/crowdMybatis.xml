@@ -52,6 +52,10 @@
 		insert into CrowdProductPhoto (productNo,crPhotoList) value(#{productNo},#{crPhotoList})
 	</insert>
 	
+	<insert id="insertCrProductPhotoNo" parameterType="com.sb.mall.crowd.model.CrowdProductPhoto">
+		insert into CrowdProductPhoto (productNo) value(#{productNo})
+	</insert>
+	
 	<select id="selectCrowdBoard" resultType="map">
 		select * from CrowdBoard b,CrowdProduct p where b.crowdBoardSeq = p.crowdBoardSeq order by writeDate desc limit #{param1},#{param2}
 	</select>
@@ -60,13 +64,28 @@
 		select count(*) from CrowdBoard
 	</select>
 	
-	<!-- <select id="selectOrder">
-		
-	</select> -->
+	<select id="getDetailBoard" resultType="map">
+		select * from CrowdBoard b,CrowdProduct p where b.crowdBoardSeq=#{crowdBoardSeq} and b.crowdBoardSeq = p.crowdBoardSeq
+	</select>
 	
+	<select id="getDetailGoods" resultType="map">
+		select * from CrowdGoods where crProductSeq = #{crProductSeq}
+	</select>
 	
+	<select id="getDetailPhoto" resultType="map">
+		select * from CrowdProductPhoto where productNo = #{productNo}
+	</select>
 	
+	<select id="getPhotoCount" resultType="int">
+		select count(*) from CrowdProductPhoto where productNo = #{productNo}
+	</select>
 	
+	<update id="setViewSeqUp">
+		update CrowdBoard set viewSeq=viewSeq+1 where crowdBoardSeq=#{crowdBoardSeq}
+	</update>
 	
+	<select id="getViewSeq" resultType="int">
+		select viewSeq from CrowdBoard where crowdBoardSeq = #{crowdBoardSeq}
+	</select>
 	
 </mapper>

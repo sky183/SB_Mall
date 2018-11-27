@@ -1,4 +1,4 @@
-package com.sb.mall.store.controller;
+package com.sb.mall.crowd.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,52 +8,43 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.store.model.Reply;
-import com.sb.mall.store.service.StoreReplyService;
+import com.sb.mall.crowd.service.CrowdReplyService;
 
 @Controller
-public class StoreReplyController {
+public class CrowdReplyController {
 	
 	@Autowired
-	private StoreReplyService replyService;
+	private CrowdReplyService RService;
 	
-	@RequestMapping("/reply")
-	public ModelAndView getReplycnt(HttpServletRequest request,
+	@RequestMapping("crowd/reply")
+	public ModelAndView getCrReplycnt(HttpServletRequest request,
 			@RequestParam(value="page", defaultValue="1")int nowPage) throws IOException{
-		
+		System.out.println("crowdReply입장");
 		ModelAndView modelAndView = new ModelAndView();
 		
 		String url= request.getHeader("referer");
 		String[] urlArr = url.split("/");
-		int salesSeq = Integer.parseInt(urlArr[urlArr.length-1]);
+		int ceBoardSeq = Integer.parseInt(urlArr[urlArr.length-1]);
 		
 		int pageCount;
-		System.out.println("session : "+request.getSession().getAttribute("memberInfo"));
-		
-		System.out.println("nowPage : "+nowPage);
-		
 		List<Map<String, Object>> replyList = new ArrayList<Map<String, Object>>();
 		
 		
-		replyList= replyService.getReplys(salesSeq,nowPage);
-		pageCount = replyService.getReplyCount(salesSeq);
+		replyList= RService.getReplys(ceBoardSeq,nowPage);
+		pageCount = RService.getReplyCount(ceBoardSeq);
 		
 		modelAndView.addObject("replyList", replyList);
 		modelAndView.addObject("userSession", request.getSession().getAttribute("memberInfo"));
 		modelAndView.addObject("pageCnt", pageCount);
 		modelAndView.addObject("nowPage", nowPage);
-		modelAndView.setViewName("store/store/replyReturn");
+		modelAndView.setViewName("store/crowdFunding/option/crowdReplyReturn");
 		
 		
 		return modelAndView;
 	}
-
-	
-
 }

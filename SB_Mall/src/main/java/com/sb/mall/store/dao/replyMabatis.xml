@@ -26,7 +26,7 @@
 	</update>
 	
 	<delete id="deleteReply" parameterType="java.lang.Integer">
-		delete from Reply where replySeq = #{userSeq}
+		delete from Reply where replySeq = #{replySeq}
 	</delete>
 
 </mapper>

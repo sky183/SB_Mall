@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <title>Insert title here</title>
 
@@ -14,30 +15,45 @@
 	
 	 $(document).ready(function(){
 		
-	<%-- 	function getCrowdBoar(crowdPageCount){
+	 	function getCrowdBoard(nowPage){
 			$.ajax({
-				url:'<%=request.getContextPath()%>/crowd/crowdBoard',
-				type: "post",
-				data: {crowdPageCount : crowdPageCount, pageShowCnt:pageShowCnt},
+				url:'<%=request.getContextPath()%>/crowd/crowdBoardList',
+				type: "get",
+				data: {nowPage : nowPage, pageShowCnt:pageShowCnt},
 				error:function(){
 					alert('오류입니다.');
 				},
 				success:function(data){
-					var crList = $(data).filter('.crBoardUnit').html();
-					
+					var crList = $(data).filter('.crBoardList').html();
+					var crPaging = $(data).filter('.pagingBox').html();
 				
+					$('.crBoardList').html(crList);
+					$('.pagingBox').html(crPaging);
 					
-						$('.crBoardList').html(crList[i]);
-					
-					
+					callBoard();
 				}
 				
 				
 				
 			})
 		}/* 게시물 불러오기 끝 */
-		getCrowdBoar(1);
-		 --%>
+		getCrowdBoard(1);
+		
+		/* 게시판 ajax호출 이벤트 연결*/
+		function callBoard(){
+			$('.pagingBtn').on('click',function(){
+				var nowPage = $(this).html();
+				getCrowdBoard(nowPage);
+			})
+		}
+		
+		$('.select').change(function(){
+			var Num = $(this).val();
+			var SubNum = Num.substr(0,2);
+			
+			pageShowCnt = SubNum;
+			getCrowdBoard(1);
+		})
 		
 		
 		
@@ -59,67 +75,29 @@
 <div class="crBoardBigBox">
 	
 	<!-- 검색조건, 검색 등 -->
-	<div class="userOptBox">
-		<div class="selectBox">
+	<div class="userOptBox ib">
+		<div class="selectBox ib">
 			<select class="select">
 				<option>16개</option>
 				<option>32개</option>
 				<option>48개</option>
 			</select>
 		</div>
-		<div class="searchBox">
-			<h6>검색</h6><input class="search" type="text">
+		<div class="searchBigBox">
+			<div class="searchBox ib">
+				<input class="search" type="text">
+			
+			</div><div class="searchBtnBox ib">
+				<img class="searchBtn" src="<%=request.getContextPath()%>/img/searchicon-01.png">
+			</div>
 		</div>
 	</div>
 	
 	<!-- 게시물 공간 -->
 	<div class="crBoardList">
+	</div>
 	
-		<c:forEach var="list" items="${boardList}" varStatus="countNum">
-			
-			<!-- 게시판 유닛 빅 박스 -->
-			<div class="boardMidBox">
-				<!-- 이미지 -->
-				<div class="boardPhotoBox">
-					<img src="${list.crPhoto}" class="boardPhoto">
-				</div>
-				
-				<!-- 제목 & 조회수 -->
-				<div class="titleBox">
-					<div class="boardTitleBox">
-						<h4 class="boardTitle"> ${list.title}</h4>
-					</div>
-					<div class="viewBox">
-						<img class="viewImg" src="<%=request.getContextPath()%>/img/viewSeq01.png"><h6 class="ib viewH6">&nbsp; ${list.viewSeq}</h6>
-					</div>
-				</div>
-				
-				<!-- 달성률 & 남은날짜 -->
-				<div class="targetBox">
-					<div class="targetBar">
-						<div class="achieveBar"></div>
-					</div>
-					<!-- 달성 퍼센트 -->
-					<div class="targetPcBox">
-						<h4>${list.totalOrderPrice/list.targetPrice}%</h4>
-						<h4>${list.totalOrderPrice}%</h4>
-						<h4>${list.targetPrice}%</h4>
-					</div>
-					<!-- 달성금액 -->
-					<div class="achievePriceBox">
-						<h5>${list.totalOrderPrice}</h5>
-					</div>
-					
-					<div class="leftDayBox"><h6>${list.writeDate}</h6></div>
-				</div>
-				
-			</div>
-			<c:if test="${countNum}/4=0">
-				<br>
-			</c:if>
-			
-		</c:forEach>
-		
+	<div class="pagingBox">
 	</div>
 	
 	

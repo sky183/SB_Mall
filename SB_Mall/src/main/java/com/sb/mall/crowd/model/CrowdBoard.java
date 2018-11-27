@@ -14,6 +14,8 @@ public class CrowdBoard {
 	private Date salesDay;
 	private int targetPrice;
 	private int totalOrderPrice;
+	private int leftDays;
+	private int achieve;
 	
 	public int getCrowdBoardSeq() {
 		return crowdBoardSeq;
@@ -73,13 +75,27 @@ public class CrowdBoard {
 	public void setTotalOrderPrice(int totalOrderPrice) {
 		this.totalOrderPrice = totalOrderPrice;
 	}
+	public int getLeftDays() {
+		return leftDays;
+	}
+	public void setLeftDays(int leftDays) {
+		this.leftDays = leftDays;
+	}
+	public int getAchieve() {
+		return achieve;
+	}
+	public void setAchieve(int achieve) {
+		this.achieve = achieve;
+	}
 	@Override
 	public String toString() {
-		return "crowdBoard [crowdBoardSeq=" + crowdBoardSeq + ", userSeq=" + userSeq + ", title=" + title + ", text="
+		return "CrowdBoard [crowdBoardSeq=" + crowdBoardSeq + ", userSeq=" + userSeq + ", title=" + title + ", text="
 				+ text + ", viewSeq=" + viewSeq + ", writeDate=" + writeDate + ", salesDay=" + salesDay
-				+ ", targetPrice=" + targetPrice + ", totalOrderPrice=" + totalOrderPrice + "]";
+				+ ", targetPrice=" + targetPrice + ", totalOrderPrice=" + totalOrderPrice + ", leftDays=" + leftDays
+				+ ", achieve=" + achieve + "]";
 	}
-	
+
+
 	
 	
 }

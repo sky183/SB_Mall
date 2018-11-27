@@ -7,29 +7,22 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.crowd.service.CrowdBoardService;
 
 @Controller
-@RequestMapping("crowd/crowdBoard")
-public class CrowdBoardController {
+public class CrowdBoardListController {
 	
 	@Autowired
 	private CrowdBoardService boardService;
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView crowdPage() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("view/store/crowdFunding/crowdBoard");
-		
-		return modelAndView;
-	}
-	
-	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView getCrowdBoard(@RequestParam(value="nowPage", defaultValue="1")int nowPage, 
+
+	@RequestMapping("crowd/crowdBoardList")
+	@ResponseBody
+	public ModelAndView getCrowdBoard(
+						@RequestParam(value="nowPage", defaultValue="1")int nowPage, 
 						@RequestParam(value="pageShowCnt", defaultValue="16")int pageShowCnt){
 		System.out.println("게시판 가져오는 컨트롤러 입장.");
 		ModelAndView modelAndView = new ModelAndView();

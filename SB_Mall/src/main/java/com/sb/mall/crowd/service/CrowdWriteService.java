@@ -60,9 +60,13 @@ public class CrowdWriteService {
 			//ProductPhoto 등록
 			int photoSC=0;
 			for(int i=0; i<command.getCrowdPhoto().size(); i++) {
-				
-				if(command.getCrowdPhoto().get(i).getProductNo()!=null) {
+					
+				if(!command.getCrowdPhoto().get(i).getCrPhotoList().equals("0")) {
+					System.out.println("뭔가 photoList가 있을 때");
+					System.out.println("photoList : "+command.getCrowdPhoto().get(i).getCrPhotoList());
 					photoSC = crowdDao.insertCrProductPhoto(command.getCrowdPhoto().get(i));
+				}else {
+					photoSC = crowdDao.insertCrProductPhotoNo(command.getCrowdPhoto().get(i));
 				}
 				if(photoSC>0) {
 					sussecc++;

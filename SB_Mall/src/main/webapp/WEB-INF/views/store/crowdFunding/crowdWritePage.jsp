@@ -509,7 +509,7 @@
 				'<div class="crInputMidBox prPhotoList'+productCount+'">'
 				+'	<div class="crInputMiniBox">'
 				+'		<input type="hidden" class="crowdPhotoNo'+productCount+'" name="crowdPhoto['+productCount+'].productNo" value="'+productNo+'">'
-				+'		<input type="hidden" class="crowdPhotoList'+productCount+'" name="crowdPhoto['+productCount+'].crPhotoList" value="">'
+				+'		<input type="hidden" class="crowdPhotoList'+productCount+'" name="crowdPhoto['+productCount+'].crPhotoList" value="0">'
 				+'		<input type="file" class="crowdInput" name="crowdPhotoFake" onchange="prPhotoUpload(this,\'crowdPhotoList'+productCount+'\')">'          
 				+'	</div>'
 				+'	<div class="crPhotoPlus">'
@@ -582,7 +582,7 @@
 				<div class="productPhoto">
 					<div class="crInputMiniBox">
 						<input type="hidden" id="crProduct_productNo" name="crowdProduct.crPhoto">
-						<input class="crowdInput" type="file" name = "productFake" onchange="productUpload(this,'crProduct_productNo','productPhoto')">
+						<input class="crowdInput" type="file" name = "productFake" onchange="productUpload(this,'crProduct_productNo','productPhoto')" required="required">
 					</div>
 					<div class="crPhotoPlus">
 						<h6 class="prPhotoDel prPh-oy" onclick="prPhotoPlus()" data-photoCnt="0">+</h6>
@@ -591,7 +591,7 @@
 					<div class="crInputHiddenBox prPhotoList0">
 						<div class="crInputMiniBox">
 							<input type="hidden" class="crowdPhotoNo0" name="crowdPhoto[0].productNo" value="">
-							<input type="hidden" class="crowdPhotoList0" name="crowdPhoto[0].crPhotoList" value="">
+							<input type="hidden" class="crowdPhotoList0" name="crowdPhoto[0].crPhotoList" value="0">
 							<!-- <input type="file" class="crowdInput" name="crowdPhotoFake" onchange="prPhotoUpload(this, 'crowdPhotoList0', 'productPhoto')"> -->
 						</div>
 						

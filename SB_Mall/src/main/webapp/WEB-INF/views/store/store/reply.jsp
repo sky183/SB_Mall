@@ -183,11 +183,7 @@
 		    					<textarea class="replyInputText"  id="replyText" name="reply"  style="resize: none;" placeholder="댓글을 작성해주세요."></textarea>
 		    			</div>
 		    			
-		    			<c:if test="${viewList!=null}">
-		    				<c:forEach var="board" items="${viewList}">
-		    						<input  type="hidden" id="replyText" value="${board.salesSeq}" name="salesSeq" >
-		    				</c:forEach>
-		    			</c:if>
+		    						<input  type="hidden" id="replyText" value="${salSeq}" name="salesSeq" >
 		    			
 		    		</form>
 		    	</div>
