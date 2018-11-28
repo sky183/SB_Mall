@@ -1,14 +1,20 @@
 package com.sb.mall.FreeBoard.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FreeBoard {
-	
+	//게시글번호 not null
 	int boardSeq;
+	//유저번호
 	int userSeq;
+	//제목 not null
 	String boardTitle;
+	//내용 not null
 	String boardContent;
+	//작성일 not null
 	Date boardWriteDate;
+	//작성자이름 not null
 	String writerName;
 	
 	public int getBoardSeq() {
@@ -35,11 +41,11 @@ public class FreeBoard {
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
 	}
-	public Date getBoardWriteDate() {
-		return boardWriteDate;
+	public String getBoardWriteDate() {
+		return new SimpleDateFormat("yyyy/MM/dd").format(boardWriteDate);
 	}
-	public void setBoardWriteDate(Date boardWriteDate) {
-		this.boardWriteDate = boardWriteDate;
+	public void setBoardWriteDate(Date timestamp) {
+		this.boardWriteDate = timestamp;
 	}
 	public String getWriterName() {
 		return writerName;

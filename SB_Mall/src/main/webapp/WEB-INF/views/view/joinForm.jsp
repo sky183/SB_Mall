@@ -71,7 +71,6 @@ body {
 		document.form.roadAddrPart1.value = roadAddrPart1;
 		document.form.addrDetail.value = addrDetail;
 		document.form.zipNo.value = zipNo;
-
 	}
 	
 </script>

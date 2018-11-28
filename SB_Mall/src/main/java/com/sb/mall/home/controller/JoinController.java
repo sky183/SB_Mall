@@ -91,7 +91,6 @@ public class JoinController {
 	@RequestMapping(method = RequestMethod.POST)  
 	public ModelAndView getResultForm(
 			MemberInfo memberInfo, 
-			@RequestParam("userPwChck") String userPwChck, //비밀번호 재 확인할 변수
 			HttpServletRequest request, 
 			HttpSession session
 			) {
