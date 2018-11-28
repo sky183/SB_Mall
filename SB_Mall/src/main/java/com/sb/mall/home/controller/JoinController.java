@@ -50,8 +50,9 @@ public class JoinController {
 	/*[1] Join 첫 화면 불러오는 Method*/
 	@RequestMapping(method = RequestMethod.GET) 
 	public String getJoinForm() {
-		System.out.println("<<**JoinController**>>");
-		System.out.println("/*[1] Join 첫 화면 불러오는 Method*/");
+		/*Check Message*/
+		//System.out.println("<<**JoinController**>>");
+		//System.out.println("/*[1] Join 첫 화면 불러오는 Method*/");
 		
 		return "view/joinForm";
 	}
@@ -59,8 +60,9 @@ public class JoinController {
 	/*[3]주소API POPUP화면 Method*/
 	@RequestMapping("/popup/jusoPopup")
 	public String addressAIP() {
-		System.out.println("<<**JoinController**>>");
-		System.out.println("/*[3]주소API POPUP화면 Method*/");
+		/*Check Message*/
+		//System.out.println("<<**JoinController**>>");
+		//System.out.println("/*[3]주소API POPUP화면 Method*/");
 		return "/popup/jusoPopup";
 	}
 
@@ -69,9 +71,10 @@ public class JoinController {
 	@RequestMapping("/id_DuplicateCheck")
 	@ResponseBody
 	public int idDuplicate(String userId, HttpServletRequest request) {
-		System.out.println("<<**JoinController**>>");
-		System.out.println("/*[4]아이디 중복검사 Method 2018.11.19*/");
-		System.out.println("중복검사 할 아이디 : ["+userId+"]");
+		/*Check Message*/
+		//System.out.println("<<**JoinController**>>");
+		//System.out.println("/*[4]아이디 중복검사 Method 2018.11.19*/");
+		//System.out.println("중복검사 할 아이디 : ["+userId+"]");
 		
 		int id_Check = 0;
 		try {
@@ -94,11 +97,11 @@ public class JoinController {
 			) {
 		
 		
-		
-		System.out.println("<<**JoinController**>>");
-		System.out.println("/*[2] 회원가입시 DB에 회원정보 저장하는 Method*/");
-		System.out.println("The Name is inputed this site : " + memberInfo.getUserName());
-		System.out.println(memberInfo.getGender());
+		/*Check Message*/
+		//System.out.println("<<**JoinController**>>");
+		//System.out.println("/*[2] 회원가입시 DB에 회원정보 저장하는 Method*/");
+		//System.out.println("The Name is inputed this site : " + memberInfo.getUserName());
+		//System.out.println(memberInfo.getGender());
 		
 		//모델 뷰 생성
 		ModelAndView modelAndView = new ModelAndView();
@@ -120,13 +123,15 @@ public class JoinController {
 		
 		/*2018.11.16 암호화 패치*/ 
 		try {
-			System.out.println("/*[5] AES256Util 2018.11.16 암호화 패치*/");
-			System.out.println("The Password you inputed :" + memberInfo.getUserPw());
+			
+			/*Check Message*/
+			//System.out.println("/*[5] AES256Util 2018.11.16 암호화 패치*/");
+			//System.out.println("The Password you inputed :" + memberInfo.getUserPw());
 			String encryptionPW = null;
 			encryptionPW = aES256Util.encrypt(memberInfo.getUserPw());
-			System.out.println("be encryption password :" + encryptionPW);
+			//System.out.println("be encryption password :" + encryptionPW);
 			memberInfo.setUserPw(encryptionPW);
-			System.out.println("암호화 처리 완료");
+			//System.out.println("암호화 처리 완료");
 			
 		} catch (NoSuchAlgorithmException e1) {
 			// TODO Auto-generated catch block
@@ -139,13 +144,13 @@ public class JoinController {
 			e1.printStackTrace();
 		}
 		
+		/*Check Message*/
+		//System.out.println("<회원정보>");
+		//System.out.println(memberInfo.toString());
 		
-		System.out.println("<회원정보>");
-		System.out.println(memberInfo.toString());
-		
-		System.out.println("Session time Setting");
+		//System.out.println("Session time Setting");
 		session.setMaxInactiveInterval(7200); 
-		System.out.println("Session time Setting End");
+		//System.out.println("Session time Setting End");
 		
 		
 		try {
@@ -157,23 +162,27 @@ public class JoinController {
 			//1. Session(memberInfo) is not null 일때 회원가입
 			if (memberInfo != null) {
 				
-				System.out.println("[2].1. Session is not null");
-				System.out.println("<Controller Message>");
-				System.out.println("가입한 회원 ID:" + memberInfo.getUserId());
+				/*Check Message*/
+				//System.out.println("[2].1. Session is not null");
+				//System.out.println("<Controller Message>");
+				//System.out.println("가입한 회원 ID:" + memberInfo.getUserId());
 				//1.1 회원가입 실패시 : resultCnt == 0 
 				if(resultCnt==0) {
-					System.out.println("[2].1.1 회원가입 실패");
+					
+					/*Check Message*/
+					//System.out.println("[2].1.1 회원가입 실패");
 					
 					modelAndView.setViewName("error/joinError");
 				
 				}else {
-					System.out.println("[2].1.2 회원가입 성공");
 					
-					System.out.println("[Start of send Email]");
+					/*Check Message*/
+					//System.out.println("[2].1.2 회원가입 성공");
+					//System.out.println("[Start of send Email]");
 					noti.sendMail(userId, userName, filePath ,session);
-					System.out.println("[End of send Email]");
+					//System.out.println("[End of send Email]");
 					
-					System.out.println("End of Method(회원가입 Method)");
+					//System.out.println("End of Method(회원가입 Method)");
 					
 					modelAndView.setViewName("view/home");
 				}

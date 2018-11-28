@@ -26,8 +26,9 @@ public class AES256Util {
 	/*public AES256Util(String key) throws UnsupportedEncodingException {*/
 	public AES256Util() throws UnsupportedEncodingException {
 		
-		System.out.println("<<==AES256Util==>>");
-		System.out.println("/*UnsupportedEncodingException Method*/");
+		/*Check Message*/
+		//System.out.println("<<==AES256Util==>>");
+		//System.out.println("/*UnsupportedEncodingException Method*/");
 		
 		/*this.iv = key.substring(0, 16);*/
 		byte[] keyBytes = new byte[16];
@@ -54,8 +55,9 @@ public class AES256Util {
 	public String encrypt(String str)
 			throws NoSuchAlgorithmException, GeneralSecurityException, UnsupportedEncodingException {
 		
-		System.out.println("<<==AES256Util==>>");
-		System.out.println("/*encrypt Method*/");
+		/*Check Message*/
+		//System.out.println("<<==AES256Util==>>");
+		//System.out.println("/*encrypt Method*/");
 		
 		Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 		c.init(Cipher.ENCRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes()));
@@ -75,8 +77,9 @@ public class AES256Util {
 	 */
 	public String decrypt(String str)
 			throws NoSuchAlgorithmException, GeneralSecurityException, UnsupportedEncodingException {
-		System.out.println("<<==AES256Util==>>");
-		System.out.println("/*decrypt Method*/");
+		/*Check Message*/
+		//System.out.println("<<==AES256Util==>>");
+		//System.out.println("/*decrypt Method*/");
 		
 		Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 		c.init(Cipher.DECRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes()));
