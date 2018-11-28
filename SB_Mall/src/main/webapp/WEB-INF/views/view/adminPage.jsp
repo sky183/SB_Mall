@@ -26,14 +26,7 @@
 
 <!-- 페이지 래퍼 -->
 <div id="adminWrapper">
-		<ul>
-					<li><a href="<%=request.getContextPath()%>/admin/staff">직원관리</a></li>
-					<li><a href="<%=request.getContextPath()%>/admin/member">회원관리</a></li>
-					<li><a href="<%=request.getContextPath()%>/admin/order">주문관리</a></li>
-		  			<li><a href="<%=request.getContextPath()%>/admin/visit">접속통계</a></li>
-					<li><a href="<%=request.getContextPath()%>/admin/sales">매출관리</a></li>
-		  <li ><a class="active" href="<%=request.getContextPath()%>/admin/adminPage">메인</a></li>
-		</ul>
+<%@ include file="/WEB-INF/views/admin/include/adminNavi.jsp"%>
 	
 <!-- 우측 메뉴 -->
 	<div id="content" class="in-bl">
@@ -118,7 +111,7 @@
 			</div>
 			<!-- 하단 리포트 - 차트 -->
 			<div class="bottom-report">
-				<%@ include file="/WEB-INF/views/admin/include/adminChart.jsp"%>
+				<%@ include file="/WEB-INF/views/admin/option/adminChart.jsp"%>
 			</div>
 			
 		</div>

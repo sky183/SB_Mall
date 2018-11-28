@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.admin.service.AdminVisitService;
+import com.sb.mall.admin.service.AdminSalesService;
 
 @Controller
-@RequestMapping("/admin/visit")
-public class AdminVisitController {
+@RequestMapping("/admin/calendar")
+public class AdminCalendarController {
 	
 	@Autowired
-	AdminVisitService visitService;
+	AdminSalesService visitService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView admin() {

@@ -18,17 +18,11 @@ import com.sb.mall.admin.model.AdminVO;
 import com.sb.mall.admin.service.AdminMainService;
 import com.sb.mall.admin.service.AdminPagingService;
 import com.sb.mall.home.model.PageListView;
-import com.sb.mall.order.service.OrderDetailAmountService;
-import com.sb.mall.order.service.OrderDetailAverageService;
 
 
 @Controller
 public class AdminPageController {
 	
-	@Autowired
-	private OrderDetailAmountService amountService;
-	@Autowired
-	private OrderDetailAverageService averageService;
 	@Autowired
 	private AdminMainService adminService;
 	@Autowired
@@ -69,6 +63,8 @@ public class AdminPageController {
 		modelAndView.addObject("salesYear", salesJson);
 		modelAndView.addObject("orderStatus", orderStatus);
 		modelAndView.addObject("admin", admin);
+		//해당 페이지 버튼 활성화
+		modelAndView.addObject("adminPage", "active");
 		
 		
 		
@@ -82,7 +78,7 @@ public class AdminPageController {
 
 		ModelAndView modelAndView = new ModelAndView();
 
-			modelAndView.setViewName("admin/include/adminMemberList");
+			modelAndView.setViewName("admin/option/adminMemberList");
 			
 			PageListView listView = service.getList(pageNumber, COUNT_PER_PAGE, "memberDao");
 
@@ -99,7 +95,7 @@ public class AdminPageController {
 
 		ModelAndView modelAndView = new ModelAndView();
 
-			modelAndView.setViewName("admin/include/adminOrderList");
+			modelAndView.setViewName("admin/option/adminOrderList");
 			
 			PageListView listView = service.getList(pageNumber, COUNT_PER_PAGE, "orderDetailDao");
 

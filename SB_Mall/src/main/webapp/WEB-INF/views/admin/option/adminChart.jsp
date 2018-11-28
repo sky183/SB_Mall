@@ -41,6 +41,7 @@ chart("#orderStatus", {
         type : "bar",
         target : "count",
         activeEvent : "mouseover",
+        active : 1,
          colors : [7]
     }],
     widget : [{

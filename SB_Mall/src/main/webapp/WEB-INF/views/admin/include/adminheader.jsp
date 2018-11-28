@@ -10,6 +10,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!--화면 높이를 가져오기 위해 필수로 추가-->
+ <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1,maximum-scale=1, user-scalable=no" />
 <!-- 캘린더 객체 생성 -->
 <%
 Calendar cal = Calendar.getInstance();
@@ -67,3 +69,19 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 	<script src="<%=request.getContextPath()%>/jui/jui-core/dist/core.min.js"></script>
 	<script src="<%=request.getContextPath()%>/jui/jui-chart/dist/chart.js"></script>
 </head>
+<script>
+function resize(){
+    var h = $(window).height();
+    $('#leftContent').css({'height':(h-58)+'px'});
+}
+window.onload = resize;
+window.onresize = resize;
+
+$('document').ready(function(){
+    //좌측 메뉴 클릭시 서브메뉴 토글
+    $('.leftMenu').on('click', function(){
+        $(this).next().slideToggle();
+    })
+/*document.ready의 끝*/  
+})
+</script>
