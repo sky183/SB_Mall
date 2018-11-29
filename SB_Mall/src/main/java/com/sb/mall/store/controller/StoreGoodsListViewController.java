@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sb.mall.store.model.Goods;
-import com.sb.mall.store.model.GoodsOption;
 import com.sb.mall.store.service.StoreGoodsListViewService;
 
 @Controller
@@ -30,7 +29,7 @@ public class StoreGoodsListViewController {
 		return list;
 	}
 	
-	@RequestMapping("store/getGoodsOptionList")
+	/*@RequestMapping("store/getGoodsOptionList")
 	@ResponseBody
 	public List<GoodsOption> getGoodsOption(String goodsNo){
 		List<GoodsOption> list = null;
@@ -40,6 +39,6 @@ public class StoreGoodsListViewController {
 			e.printStackTrace();
 		}
 		return list;
-	}
+	}*/
 
 }

@@ -30,12 +30,12 @@ public class OrderPageController {
 	public ModelAndView order(Order order) {
 		ModelAndView modelAndView = new ModelAndView();
 		Product product = null;
-		try {
+		/*try {
 			product = orderService.getProduct(order.getProductSeq());
 		} catch (SQLException e) {
 			System.out.println("구매물픔 등록에 실패하였습니다.");
 			e.printStackTrace();
-		}
+		}*/
 		modelAndView.addObject("order",order);
 		modelAndView.addObject("product", product);
 		modelAndView.setViewName("order/orderInsOrderPage");

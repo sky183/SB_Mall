@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.order.dao.OrderDao;
 import com.sb.mall.order.model.Order;
-import com.sb.mall.store.model.Product;
+import com.sb.mall.order.model.OrderOrderCommand;
 
 @Service
 public class OrderCartService {
@@ -23,17 +23,11 @@ public class OrderCartService {
 	private OrderDao orderDao;
 	
 	@Transactional
-	public void addCart(Order order) throws SQLException {
+	public void addCart(OrderOrderCommand orderCommand) throws SQLException {
 		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
-		List<Order> checklist=orderDao.checkDuplicateCart(order);
-		Product product = orderDao.selectProduct(order.getProductSeq());
-		order.setSalePrice(product.getPrice()*order.getQuantity()); //제품과 주문수량을 곱하여 주문가격 결정
-		if(checklist.isEmpty()) {
-			orderDao.insertCart(order);
-		}else {
-			orderDao.updateDuplicateCart(order);
-		}
-		
+		List<Order> orderList = orderCommand.getOrders();
+		System.out.println(orderList);
+		orderDao.insertCart(orderList);
 	}
 	
 	@Transactional

@@ -9,24 +9,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.store.dao.StoreDao;
-import com.sb.mall.store.model.Goods;
 import com.sb.mall.store.model.GoodsOption;
 
 @Service
-public class StoreGoodsListViewService {
+public class StoreGoodsOptionService {
 	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	StoreDao storeDao;
-	
-	@Transactional
-	public List<Goods> getGoodsList(int productSeq) throws SQLException{
-		storeDao = sqlSessionTemplate.getMapper(StoreDao.class);
-		List<Goods> list =  storeDao.selectGoodsList(productSeq);
-		return list;
-	}
-	
+
 	@Transactional
 	public List<GoodsOption> getGoodsOptionList(String goodsNo) throws SQLException{
 		storeDao = sqlSessionTemplate.getMapper(StoreDao.class);
@@ -34,10 +26,11 @@ public class StoreGoodsListViewService {
 		return list;
 	}
 	
-	/*public List<GoodsOption> get(int productSeq) throws SQLException{
+	@Transactional
+	public GoodsOption getGoodsOption(GoodsOption goodsOption) throws SQLException{
 		storeDao = sqlSessionTemplate.getMapper(StoreDao.class);
-		List<GoodsOption> list = storeDao.checkGoodsOptionIsNull(productSeq);
-		return list;
-	}*/
-
+		goodsOption = storeDao.selectGoodsOption(goodsOption);
+		return goodsOption;
+	}
+	
 }

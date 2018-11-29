@@ -16,7 +16,7 @@ import com.sb.mall.member.model.MemberInfo;
 import com.sb.mall.order.service.OrderCartService;
 
 @Controller
-@RequestMapping("order/cart")
+@RequestMapping("order/cartList")
 public class OrderCartListController {
 	
 	@Autowired

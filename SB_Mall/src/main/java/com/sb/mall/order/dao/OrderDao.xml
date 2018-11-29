@@ -3,23 +3,43 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sb.mall.order.dao.OrderDao">
-	<insert id="insertCart" parameterType="com.sb.mall.order.model.Order"
-		useGeneratedKeys="true" keyProperty="orderSeq">
-		insert into `Order`(orderDetailNum,userSeq,productSeq,quantity,`option`,`salePrice`)
-		value(0,#{userSeq},#{productSeq},#{quantity},#{option},#{salePrice})
+
+	<insert id="insertCart" useGeneratedKeys="true" keyProperty="orderSeq">
+		insert into `Order`(userSeq,goodsNo,quantity,salePrice,optionSeq) 
+		values
+		<foreach collection="list" item="orders" open="("  separator="," close=")">
+			#{orders.userSeq},#{orders.goodsNo},#{orders.quantity},#{orders.salePrice},
+			<choose>
+				<when test="orders.optionSeq==0">
+					null
+				</when>
+				<otherwise>
+					#{orders.optionSeq}
+				</otherwise>
+			</choose>
+		</foreach>
+		<!-- 컬럼 orderDetailNum,userSeq,goodsNo,optionSeq로 unique idx 생성되어있어야함 -->
+		on duplicate key update quantity=quantity+values(quantity);
 	</insert>
-	
+	<!-- insert into `Order`(userSeq,goodsNo,optionSeq,quantity,salePrice)
+        select #{userSeq},#{goodsNo},#{optionSeq},#{quantity},#{salePrice} from dual
+        where not exists 
+        (
+			select goodsNo,optionSeq
+            from `Order`
+            where orderDetailNum=0 and goodsNo=#{goodsNo} and optionSeq=#{optionSeq}
+		); --> 
 	<insert id="insertOrderDetail" parameterType="com.sb.mall.order.model.OrderDetail">
 		insert into `OrderDetail`(orderDetailNum,userSeq,payment,orderTime,status,totalAmount)
 		value(#{orderDetailNum},#{userSeq},#{payment},now(),#{status},#{totalAmount})
 	</insert>
 	
-	<insert id="insertOrder" parameterType="com.sb.mall.order.model.Order"
+	<!-- <insert id="insertOrder" parameterType="com.sb.mall.order.model.Order"
 		useGeneratedKeys="true" keyProperty="orderSeq">
 		insert into `Order`(orderDetailNum,userSeq,productSeq,quantity,`option`)
 		value(#{orderDetailNum},#{userSeq},#{productSeq},#{quantity},#{option})
-	</insert>
-
+	</insert> -->
+	
 	<update id="updateOrders">
 		update `Order` 
 		<set>

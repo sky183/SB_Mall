@@ -49,7 +49,7 @@ public class OrderService {
 	
 	@Transactional
 	public void insertOrderAndDetail(OrderOrderCommand command) throws SQLException {
-		String orderDetailNum = new SimpleDateFormat("yyyyMMddssSSS").format(new Date());
+		/*String orderDetailNum = new SimpleDateFormat("yyyyMMddssSSS").format(new Date());
 		Dao = sessionTemplate.getMapper(OrderDao.class);
 		OrderDetail orderDetail = command.getOrderDetail();
 		Order order = command.getOrder();
@@ -58,7 +58,7 @@ public class OrderService {
 		
 		Dao.updateUserPoint(orderDetail.getTotalAmount(), order.getUserSeq());
 		Dao.insertOrderDetail(orderDetail);
-		Dao.insertOrder(order);
+		Dao.insertOrder(order);*/
 	}
 	
 	@Transactional
