@@ -12,7 +12,7 @@
 		<ul id="headerNavi">
 					<li><a class="${adminCalendar}" href="<%=request.getContextPath()%>/admin/adminCalendar">일정관리</a></li>
 					<li><a class="${adminMember}" href="<%=request.getContextPath()%>/admin/adminMember">회원관리</a></li>
-					<li><a class="${adminOrder}" href="<%=request.getContextPath()%>/admin/adminOorder">주문관리</a></li>
-					<li><a class="${adminSales}" href="<%=request.getContextPath()%>/admin/adminSales">영업관리</a></li>
+					<li><a class="${adminOrder}" href="<%=request.getContextPath()%>/admin/adminOrder">주문관리</a></li>
+					<li><a class="${adminOperation}" href="<%=request.getContextPath()%>/admin/adminOperation">영업관리</a></li>
 		  <li ><a class="${adminPage}" href="<%=request.getContextPath()%>/admin/adminPage">Home</a></li>
 		</ul>

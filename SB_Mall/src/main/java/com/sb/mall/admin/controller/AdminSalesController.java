@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sb.mall.admin.service.AdminSalesService;
 
 @Controller
-@RequestMapping("/admin/adminSales")
+@RequestMapping("/admin/adminOperation")
 public class AdminSalesController {
 	
 	@Autowired
@@ -20,9 +20,9 @@ public class AdminSalesController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		modelAndView.setViewName("admin/adminSales");
+		modelAndView.setViewName("admin/adminOperation");
 		//해당 페이지 버튼 활성화
-		modelAndView.addObject("adminSales", "active");
+		modelAndView.addObject("adminOperation", "active");
 		
 		return modelAndView;
 	}

@@ -54,6 +54,7 @@ public class AdminPageController {
 		//월별 매출 및 평균 리스트 값 할당
 		salesMonthThisYearAverage=admin.getSalesMonthThisYearAverage();
 		
+		//JSON으로 변환하는 메서드 
 		ObjectMapper mapper = new ObjectMapper();
 		String top5MapJson = mapper.writeValueAsString( top5Map );
 		String salesJson = mapper.writeValueAsString(salesMonthThisYearAverage);
@@ -62,7 +63,10 @@ public class AdminPageController {
 		modelAndView.addObject("dataTop5", top5MapJson);
 		modelAndView.addObject("salesYear", salesJson);
 		modelAndView.addObject("orderStatus", orderStatus);
-		modelAndView.addObject("admin", admin);
+/*		modelAndView.addObject("dataTop5", top5MapJson);
+		modelAndView.addObject("salesYear", salesJson);
+		modelAndView.addObject("orderStatus", orderStatus);
+*/		modelAndView.addObject("admin", admin);
 		//해당 페이지 버튼 활성화
 		modelAndView.addObject("adminPage", "active");
 		
