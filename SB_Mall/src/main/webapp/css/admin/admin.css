@@ -33,7 +33,7 @@ table, th, td, tr {
         /* 공통 속성 */
 .t-left {text-align: left;}.t-right {text-align:right;}.t-center {text-align:center;}
 .none{display: none;}.bl{display: block;}.in-bl{display:inline-block;}
-.tab{display: table;}.cel{display: table-cell;}
+.tab{display: table !important;}.cel{display: table-cell !important;}
 .fl-left{float: left;}.fl-right{float: right;}
 .absol{position: absolute;}.rela{position: relative;}.fix{position: fixed;}
 .ver-top{vertical-align: top;}.ver-mid{vertical-align: middle;}.ver-bot{vertical-align: bottom;}

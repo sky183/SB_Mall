@@ -79,8 +79,8 @@ window.onresize = resize;
 
 $('document').ready(function(){
     //좌측 메뉴 클릭시 서브메뉴 토글
-    $('.leftMenu').on('click', function(){
-        $(this).next().slideToggle();
+    $('.leftMenu, .leftMenulast').on('click', function(){
+        $(this).next('.leftSubmenu').slideToggle();
     })
 /*document.ready의 끝*/  
 })
