@@ -9,7 +9,7 @@ import com.sb.mall.store.model.Product;
 
 public interface OrderDao {
 	
-	public int insertCart(Order order);
+	public int insertCart(List<Order> orders);
 	public int insertOrder(Order order);
 	public int insertOrderDetail(OrderDetail orderDetail);
 	public int update(Order order);

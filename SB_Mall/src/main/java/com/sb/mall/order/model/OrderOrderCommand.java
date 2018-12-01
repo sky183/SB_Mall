@@ -4,23 +4,12 @@ import java.util.List;
 
 public class OrderOrderCommand {
 	
-	private Order order;
 	private List<Order> orders;
 	private OrderDetail orderDetail;
-	private int listType;
 	
 	@Override
 	public String toString() {
-		return "OrderOrderCommand [order=" + order + ", orders=" + orders + ", orderDetail=" + orderDetail
-				+ ", listType=" + listType + "]";
-	}
-
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
+		return "OrderOrderCommand [orders=" + orders + ", orderDetail=" + orderDetail + "]";
 	}
 
 	public List<Order> getOrders() {
@@ -37,14 +26,6 @@ public class OrderOrderCommand {
 
 	public void setOrderDetail(OrderDetail orderDetail) {
 		this.orderDetail = orderDetail;
-	}
-
-	public int getListType() {
-		return listType;
-	}
-
-	public void setListType(int listType) {
-		this.listType = listType;
 	}
 	
 }

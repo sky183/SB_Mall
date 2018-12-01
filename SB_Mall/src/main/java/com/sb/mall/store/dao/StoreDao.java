@@ -23,6 +23,8 @@ public interface StoreDao {
 	public List<SalesBoard> selectSalBoardList();
 	public List<Goods> selectGoodsList(int productSeq);
 	public List<GoodsOption> selectGoodsOptionList(String goodsNo);
+	public GoodsOption selectGoodsOption(GoodsOption goodsOption);
+	public List<GoodsOption> checkGoodsOptionIsNull(int productSeq);
 	public SalesBoard selectSalBoard(int salSeq);
 	public void deleteSalesBoard(int salSeq);
 	public void updateSalesBoard(SalesBoard salesBoard);

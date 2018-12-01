@@ -57,6 +57,18 @@
  	<select id="selectGoodsOptionList" resultType="com.sb.mall.store.model.GoodsOption">
  		SELECT * FROM GoodsOption where goodsNo=#{param1} order by opt1Name
  	</select>
+ 	<select id="selectGoodsOption" resultType="com.sb.mall.store.model.GoodsOption">
+ 		SELECT * FROM GoodsOption 
+ 		<where>
+ 		goodsNo=#{goodsNo} and opt1Name=#{opt1Name} and opt2Name=ifnull(#{opt2Name},'')
+ 		</where>
+ 	</select>
+ 	<select id="checkGoodsOptionIsNull" resultType="com.sb.mall.store.model.GoodsOption">
+ 		SELECT o.goodsNo,opt1Name,o.opt2Name FROM SB_Master.Product p,Goods g,GoodsOption o 
+ 		<where>
+ 		 p.productSeq=#{param1} and p.productSeq=g.productSeq and g.goodsNo=o.goodsNo
+ 		</where>
+ 	</select>
  	<select id="countProAndSalList" resultType="int">
  		SELECT count(*) from SalesBoard s,Product p 
  		<where>

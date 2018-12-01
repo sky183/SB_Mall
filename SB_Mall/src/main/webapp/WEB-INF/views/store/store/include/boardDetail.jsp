@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script type="text/javascript">
 var insCnt=0;
+var insGoodsNames='';
 var goodsArr=[];
 var goods={
 		'gNo':'',
@@ -31,20 +32,39 @@ var setOpt2BackColor = function(e) {
 	$('#goodsOpt2List li').css('background-color','white');
 	e.style.backgroundColor='#f2f2f2';
 }
+//제품선택시
 var goodsRadioClick = function(e) {
 	var gno = e.dataset.gno;
+	//임시카트에 표기될 제품이름
+	insGoodsName=e.dataset.gname+'('+numberWithCommas(e.dataset.price)+'원)';
+	//선택제품 제품헤더버튼 2번째 span에 저장
+	$('#goodsSelectHeader').children('span:nth-child(2)').text(e.dataset.gname);
+	//옵션쪽 span은 초기화 
+	$('#goodsOpt1SelectHeader').children('span:nth-child(2)').text('');
 	//goodsNo에 맞는 옵션목록1  받아오기!
 	$.ajax({
-		url:'<%=request.getContextPath()%>/store/getGoodsOptionList?goodsNo='+ gno,
+		url:'<%=request.getContextPath()%>/store/goodsOption',
 		type:'GET',
+		data:{'goodsNo':gno},
 		success:function(data){
 			//옵션1 리스트 초기화
 			$('#goodsOpt1List').text('');
+			//opt1존재하지 않을시
+			if(data.length<1){
+				$('#goodsOpt1List').hide();
+				//선택된옵션들 제품목록에 추가
+				addGoodsList();
+				//클로즈버튼 강제클릭으로 셀렉창 닫기
+				$('#closeBoardSelector').trigger('click');
+				return false;
+			}
+			
 			var dupliCheck = "";
 			//옵션1 리스트 생성
 			for(var key in data){
-				
+				//옵션2다수존재에 의한 옵션1중복 체크
 				if(data[key].opt1Name!=dupliCheck){
+					
 					dupliCheck=data[key].opt1Name;
 					var opt1Id='opt1List'+key
 					$('<li/>').attr({
@@ -68,28 +88,49 @@ var goodsRadioClick = function(e) {
 					}).appendTo('#'+opt1Id);
 					$('<span/>').attr({
 					}).text(data[key].opt1Name+':(+'+numberWithCommas(data[key].opt1Price)+'원)').appendTo('#la'+opt1Id);
-				
+					
 				}
 			}
 		}
 	});
+	//opt2 선택버튼 숨기기
+	$('.goodsOptListSet2').hide();
+	//opt1 선택버튼 보여주기
+	$('.goodsOptListSet1').show();
 	//상품목록 닫기
-	$('#goodsSelectHeader').val(1);
 	$('#goodsList').hide();
 	//옵션목록1펼치기
-	$('#goodsOpt1SelectHeader').val(0);
 	$('#goodsOpt1List').show('fast');
 };
-
+//옵션1 선택시
 var opt1RadioClick = function(e) {
 	var gno = e.dataset.gno;
+	insGoodsName = $('input[name=goodsRadio]:checked').attr('data-gname')
+					+'('+numberWithCommas($('input[name=goodsRadio]:checked').attr('data-price'))+'원)'
+					+'/'+e.dataset.name+'(+'+numberWithCommas(e.dataset.price)+'원)';
+	//옵션1선택시 옵션버튼헤더 2번째 span에 선택옵션 표기
+	$('#goodsOpt1SelectHeader').children('span:nth-child(2)')
+	.text(e.dataset.name+'(+'+numberWithCommas(e.dataset.price)+'원)');
 	//goodsNo와 opt1Name에 맞는 옵션목록2  받아오기
 	$.ajax({
-		url:'<%=request.getContextPath()%>/store/getGoodsOptionList?goodsNo='+ gno,
+		url:'<%=request.getContextPath()%>/store/goodsOption',
 		type:'GET',
+		data:{"goodsNo":gno},
 		success:function(data){
 			//옵션2 리스트 초기화
 			$('#goodsOpt2List').text('');
+			//opt2존재하지 않을시
+			for(var key in data){
+				if(data[key].opt1Name==e.dataset.name && data[key].opt2Name.length<1){
+					$('#goodsOpt2List').hide();
+					//선택된옵션들 제품목록에 추가
+					addGoodsList();
+					//클로즈버튼 강제클릭으로 셀렉창 닫기
+					$('#closeBoardSelector').trigger('click');
+					return false;
+				}
+			}
+			
 			//옵션1이름과 같은 조건의 옵션2 리스트 생성
 			for(var key in data){
 				if(data[key].opt1Name==e.dataset.name){
@@ -103,7 +144,7 @@ var opt1RadioClick = function(e) {
 						name:'opt2Radio',
 						type:'radio',
 						hidden:'hidden',
-						onclick:'opt2RadioClick()',
+						onclick:'opt2RadioClick(this)',
 						'data-gno':gno,
 						'data-name':data[key].opt2Name,
 						'data-price':data[key].opt2Price
@@ -119,24 +160,26 @@ var opt1RadioClick = function(e) {
 			}
 		}
 	});
+	//opt2 선택창 보여주기
+	$('.goodsOptListSet2').show();
 	//옵션목록1 닫기
-	$('#goodsOpt1SelectHeader').val(1);
 	$('#goodsOpt1List').hide();
 	//옵션목록2펼치기
-	$('#goodsOpt2SelectHeader').val(0);
 	$('#goodsOpt2List').show('fast');
 	
 	
 }
 
-var opt2RadioClick = function () {
-	//옵션목록2펼치기
-	$('#goodsOpt2SelectHeader').val(1);
+//옵션2선택시
+var opt2RadioClick = function (e) {
+	insGoodsName += '/'+e.dataset.name+'(+'+numberWithCommas(e.dataset.price)+'원)';
+	//옵션목록2닫기
 	$('#goodsOpt2List').hide();
+	//선택된옵션들 제품목록에 추가
 	addGoodsList();
+	//클로즈버튼 강제클릭으로 셀렉창 닫기
 	$('#closeBoardSelector').trigger('click');
 }
-
 var addGoodsList= function() {
 	var goodsNo=$('input[name=goodsRadio]:checked').attr('data-gno');
 	var goodsName=$('input[name=goodsRadio]:checked').attr('data-gname');
@@ -146,6 +189,12 @@ var addGoodsList= function() {
 	var opt2Name=$('input[name=opt2Radio]:checked').attr('data-name');
 	var opt2Price=Number($('input[name=opt2Radio]:checked').attr('data-price'));
 	var duplInsCart = false;
+	var optionSeq ='';
+	
+	//선택된 제품 및 옵션 표기 초기화
+	$('#goodsSelectHeader').children('span:nth-child(2)').text('');
+	$('#goodsOpt1SelectHeader').children('span:nth-child(2)').text('');
+	
 	$('#insCartList>li').each(function(index, item){ 
 		if(item.dataset.goodsno==goodsNo && item.dataset.opt1name==opt1Name && item.dataset.opt2name==opt2Name){
 			duplInsCart = true;
@@ -162,11 +211,39 @@ var addGoodsList= function() {
 		'data-goodsno': goodsNo,
 		'data-goodsname': goodsName,
 		'data-goodsprice': goodsPrice,
+		'data-optionseq': '',
 		'data-opt1name':opt1Name,
 		'data-opt1price':opt1Price,
 		'data-opt2name':opt2Name,
 		'data-opt2price':opt2Price
 	}).appendTo('#insCartList');
+	
+	//선택된 정보로 GoodsOption정보 ajax요청
+	$.ajax({
+		url : '<%=request.getContextPath()%>/store/goodsOption/'+goodsNo,
+		type : 'GET',
+		data : {'opt1Name':opt1Name,'opt2Name':opt2Name},
+		error : function(error) {
+			alert("Error!");
+		},
+		success : function(data) {
+			if(data!=null){
+				//마지막으로생성된 li요소에 optionSeq값 넣기 (ajax 시간차 주의)
+				$('#insCartList>li').last().attr('data-optionseq',data.optionSeq)
+			}
+		}
+	});
+	
+	//각 옵션가격이 존재하지 않을때
+	if(isNaN(opt1Price)){
+		$('#insCartLi'+insCnt).removeAttr('data-opt1price');
+		opt1Price=0;
+	}
+	if(isNaN(opt2Price)){
+		$('#insCartLi'+insCnt).removeAttr('data-opt2price');
+		opt2Price=0;
+	}
+	
 	$('<div/>').attr({
 		id:'insCartBox'+insCnt,
 		style:'overflow:hidden'
@@ -174,8 +251,7 @@ var addGoodsList= function() {
 	$('<div/>').attr({
 		id:'insCartDetail'+insCnt,
 		'class':'insCartDetail'
-	}).html('<p>'+goodsName+'/'+opt1Name+'(+'+numberWithCommas(opt1Price)+')/'
-			+opt2Name+'(+'+numberWithCommas(opt2Price)+')'+'</p>')
+	}).html('<p>'+insGoodsName+'</p>')
 	.appendTo('#insCartBox'+insCnt);
 	$('<div/>').attr({
 		id:'insCartDeleteBox'+insCnt,
@@ -218,6 +294,7 @@ var addGoodsList= function() {
 		'data-price':goodsPrice+opt1Price+opt2Price,
 		'data-calprice':goodsPrice+opt1Price+opt2Price
 	}).text(numberWithCommas(goodsPrice+opt1Price+opt2Price)+'원').appendTo('#insCartBox'+insCnt);
+	
 	changeInsCartTotalPrice();
 	insCnt++;
 }
@@ -246,12 +323,15 @@ var removeGoodsList = function(e) {
 		
 		$('#boardSelectViewBTN').click(function () {
 			var seq = '${proAndSal.productSeq}';
+			$('.goodsOptListSet1').hide();
+			$('.goodsOptListSet2').hide();
 			$('#boardSelector').css('visibility','visible');
 			$.ajax({
 				url:'<%=request.getContextPath()%>/store/getGoodsList?productSeq='+seq,
 				type:'GET',
 				success: function(data) {
 					$('#goodsList').text('');
+					
 					for(var key in data){
 						var gid = 'GoodsList'+key;
 						$('<li/>').attr({
@@ -293,8 +373,6 @@ var removeGoodsList = function(e) {
 					}
 				}
 			});
-			
-			$('#goodsSelectHeader').val(0);
 			$('#goodsList').show('fast');
 		});
 		
@@ -305,43 +383,37 @@ var removeGoodsList = function(e) {
 		
 		
 		$('#goodsSelectHeader').click(function () {
-			if($(this).val()=="0"){
-				$(this).val(1);
+			//opt1헤더버튼 숨기기
+			$('#goodsOptListSet1').hide();
+			//opt2헤더버튼 숨기기
+			$('#goodsOptListSet2').hide();
+			if($('#goodsList').css('display')!='none'){
 				$('#goodsList').hide();
-			}else if($(this).val()=="1"){
-				$('#goodsOpt1SelectHeader').val(1);
+			}else{
 				$('#goodsOpt1List').hide();
-				$('#goodsOpt2SelectHeader').val(1);
 				$('#goodsOpt2List').hide();
-				$(this).val(0);
 				$('#goodsList').show('fast');
 			}
 		});
 		
 		$('#goodsOpt1SelectHeader').click(function () {
-			if($(this).val()=="0"){
-				$(this).val(1);
+			//opt2헤더버튼 숨기기
+			$('#goodsOptListSet2').hide();
+			if($('#goodsOpt1List').css('display')!='none'){
 				$('#goodsOpt1List').hide();
-			}else if($(this).val()=="1"){
-				$('#goodsSelectHeader').val(1);
+			}else{
 				$('#goodsList').hide();
-				$('#goodsOpt2SelectHeader').val(1);
 				$('#goodsOpt2List').hide();
-				$(this).val(0);
 				$('#goodsOpt1List').show('fast');
 			}
 		});
 		
 		$('#goodsOpt2SelectHeader').click(function () {
-			if($(this).val()=="0"){
-				$(this).val(1);
+			if($('#goodsOpt2List').css('display')!='none'){
 				$('#goodsOpt2List').hide();
-			}else if($(this).val()=="1"){
-				$('#goodsSelectHeader').val(1);
+			}else{
 				$('#goodsList').hide();
-				$('#goodsOpt1SelectHeader').val(1);
 				$('#goodsOpt1List').hide();
-				$(this).val(0);
 				$('#goodsOpt2List').show('fast');
 			}
 		});
@@ -352,14 +424,39 @@ var removeGoodsList = function(e) {
 		e.src='<%=request.getContextPath()%>/img/noImage.png'
 	}
 	function addCart() {
-		$('#quantity').val($('#selQuantity').val());
-		$('#option').val($('input[type=radio][name=color]:checked').val());
-		//$('#hForm').submit();
-        var queryString = $('#hForm').serialize();
+		$('#hForm').text('');
+		var cartCnt = $('#insCartList>li').length;
+		for(i=0;i<cartCnt;i++){
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].userSeq',
+				value:'${memberInfo.userSeq}'
+			}).appendTo('#hForm');
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].goodsNo',
+				value:$('#insCartList>li')[i].dataset.goodsno
+			}).appendTo('#hForm');
+			
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].quantity',
+				value:$('#insCartList>li').eq(i).find('input[type=number]')[0].value
+			}).appendTo('#hForm');
+			
+			if($('#insCartList>li')[i].dataset.optionseq!=null && $('#insCartList>li')[i].dataset.optionseq.length>0){
+				$('<input/>').attr({
+					type:'hidden',
+					name:'orders['+i+'].optionSeq',
+					value:$('#insCartList>li')[i].dataset.optionseq
+				}).appendTo('#hForm');
+			}
+		}
+		
         $.ajax({
-				    url : '<%=request.getContextPath()%>/order/addCart',
+				    url : '<%=request.getContextPath()%>/order/cart',
 				    type : 'POST',
-					data : queryString,
+					data : $('#hForm').serialize(),
 					error : function(error) {
 				        alert("Error!");
 				    },
@@ -374,7 +471,6 @@ var removeGoodsList = function(e) {
 		$("#hForm").attr("action", "<%=request.getContextPath()%>/order/insOrder");
 		$('#hForm').submit();
 	}
-	var aw;
 	function changeInsCartPrice(e) {
 		var insCnt = e.dataset.inscnt;
 		e.value = Math.abs(e.value); //number 인풋에 자연수만 들어가도록 변경
@@ -437,11 +533,9 @@ var removeGoodsList = function(e) {
 </head>
 <body>
 <div id=boardDetailContainer>
-<c:if test="${proAndSal!=null}">
 	<div id="boardProductContainer">
 		<div id="boardProductThumbBox"> 
-			<img src="${proAndSal.photo}" alt="이미지없음" id="boardProductThumb" 
-				onerror="imgError(this)">
+			<img src="${proAndSal.photo}" alt="이미지없음" id="boardProductThumb" onerror="imgError(this)">
 		</div>
 		<div id="boardProductOptionBox">
 			<ul>
@@ -469,29 +563,34 @@ var removeGoodsList = function(e) {
 								<span>X</span>
 							</button>
 						</div>
-						<div>
-							<button type="button" class="boardSelectorHeader" value="0" id="goodsSelectHeader">
+						<div class="goodsListSet">
+							<button type="button" class="boardSelectorHeader" id="goodsSelectHeader">
 								<span class="boardBtnTextLeft">제품</span>
+								<span class="boardBtnTextLeft"></span>
 								<span class="boardBtnTextRight">▼</span>
 							</button>
 						</div>
 						<ul id="goodsList">
 						</ul>
-						<div>
-							<button type="button" class="boardSelectorHeader" value="1" id="goodsOpt1SelectHeader">
+						<div class="goodsOptListSet1">
+							<button type="button" class="boardSelectorHeader goodsOptListSet1" 
+							 id="goodsOpt1SelectHeader">
 								<span class="boardBtnTextLeft">옵션1</span>
+								<span class="boardBtnTextLeft"></span>
 								<span class="boardBtnTextRight">▼</span>
 							</button>
 						</div>
-						<ul id="goodsOpt1List" class="goodsOptUl">
+						<ul id="goodsOpt1List" class="goodsOptUl goodsOptListSet1">
 						</ul>
-						<div>
-							<button type="button" class="boardSelectorHeader" value="1" id="goodsOpt2SelectHeader">
+						<div class="goodsOptListSet2">
+							<button type="button" class="boardSelectorHeader goodsOptListSet2" 
+							 id="goodsOpt2SelectHeader">
 								<span class="boardBtnTextLeft">옵션2</span>
+								<span class="boardBtnTextLeft"></span>
 								<span class="boardBtnTextRight">▼</span>
 							</button>
 						</div>
-						<ul id="goodsOpt2List" class="goodsOptUl">
+						<ul id="goodsOpt2List" class="goodsOptUl goodsOptListSet2">
 						</ul>
 					</div>
 					</div>
@@ -524,7 +623,6 @@ var removeGoodsList = function(e) {
 	<div id="boardTextContainer">
 		${proAndSal.text}
 	</div>
-</c:if>
 	<br>
 	<div id="boardReplyContainer">
 		<c:if test="${memberInfo.gradeNum>=3}">
@@ -540,5 +638,6 @@ var removeGoodsList = function(e) {
 		
 	</div>
 </div>
+	<form id="hForm" method="post"></form>
 </body>
 </html>
