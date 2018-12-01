@@ -70,14 +70,15 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 	<script src="<%=request.getContextPath()%>/jui/jui-chart/dist/chart.js"></script>
 </head>
 <script>
-function resize(){
+//화면 크기 줄일 경우 높이를 다시 맞춰주는 함수
+/* function resize(){
     var h = $(window).height();
     $('#leftContent').css({'height':(h-58)+'px'});
-}
-window.onload = resize;
-window.onresize = resize;
+} */
 
 $('document').ready(function(){
+/* 	resize();
+	window.onresize = resize; */
     //좌측 메뉴 클릭시 서브메뉴 토글
     $('.leftMenu, .leftMenulast').on('click', function(){
         $(this).next('.leftSubmenu').slideToggle();

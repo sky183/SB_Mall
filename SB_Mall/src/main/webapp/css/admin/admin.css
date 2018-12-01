@@ -14,7 +14,7 @@ body{
 button{
     line-height: inherit !important;
 }
-h5 {font-size: 12px !important;}
+h5 {font-size: 12px;}
 a {
     text-decoration: none !important; 
     cursor: pointer;
@@ -33,7 +33,7 @@ table, th, td, tr {
         /* 공통 속성 */
 .t-left {text-align: left;}.t-right {text-align:right;}.t-center {text-align:center;}
 .none{display: none;}.bl{display: block;}.in-bl{display:inline-block;}
-.tab{display: table !important;}.cel{display: table-cell !important;}
+.tab{display: table;}.cel{display: table-cell;}
 .fl-left{float: left;}.fl-right{float: right;}
 .absol{position: absolute;}.rela{position: relative;}.fix{position: fixed;}
 .ver-top{vertical-align: top;}.ver-mid{vertical-align: middle;}.ver-bot{vertical-align: bottom;}
@@ -59,58 +59,60 @@ table, th, td, tr {
 /* 바디 내부 */
 #adminWrapper {
 	width : 1000px;
-    
-	margin: 0px auto;
+	margin: 15px auto 0;
 	text-align: center;
 }
 .active {
-    background-color: #505050;
+    color : #ffc828 !important;
 }
-.active:hover {
-	color: white;
+.headerTop {
+	background-color: #282828;
+}
+.headerBottom {
+	background-color: #505050;
+}
+#adminInfo, #headerNavi{
+	width: 1000px;
+	margin: 0 auto;
 }
 #adminInfo{
 	text-align: right;
-	background-color: #787878;
 }
 #adminInfo *{
 	display: inline-block !important;
     color: #f0f0f0;
-    font-size: 10px;
+    font-size: 12px;
 	padding: 5px;
 }
 #headerNavi {
     list-style-type: none;
-    margin: 0 !important;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
-}
 
+}
 #headerNavi li {
     float: right;
-    border-left:1px solid #bbb;
+/*     border-left:1px solid #bbb; */
 }
-#headerNavi li:last-Child {
-    border-right:1px solid #bbb;
-    border-left:1px solid #bbb;
-}
+/* #headerNavi li:last-Child { */
+/*     border-right:1px solid #bbb; */
+/*     border-left:1px solid #bbb; */
+/* } */
 
-#headerNavi li:last-child {
-    border-right: none;
-}
+/* #headerNavi li:last-child { */
+/*     border-right: none; */
+/* } */
 
 #headerNavi li a {
     display: block;
-    font-size: 13px;
+    font-size: 15px;
     color: white;
     text-align: center;
-    padding: 10px 16px;
+    padding: 13px 19px;
     text-decoration: none;
 }
 
-#headerNavi li a:hover:not(.active) {
-    background-color: #111;
-    color: white;
+#headerNavi li a:hover {
+    background-color: #282828;
 }
 

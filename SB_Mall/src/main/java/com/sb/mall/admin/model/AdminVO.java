@@ -29,7 +29,9 @@ public class AdminVO {
 	//상품별 매출
 	private List<Map<String, Object>> productTop5;
 	//전주 대비 일 평균 방문수
-	public List<Map<String, Object>> visitCountWeek;
+	private List<Map<String, Object>> visitCountWeek;
+	//	버젯 대비 월 매출 달성율 
+	private Map<String, Object> budgetSales;
 	
 	public int getVisitTotal() {
 		return visitTotal;
@@ -139,16 +141,24 @@ public class AdminVO {
 	public void setVisitCountWeek(List<Map<String, Object>> visitCountWeek) {
 		this.visitCountWeek = visitCountWeek;
 	}
+	public Map<String, Object> getBudgetSales() {
+		return budgetSales;
+	}
+	public void setBudgetSales(Map<String, Object> budgetSales) {
+		this.budgetSales = budgetSales;
+	}
 	@Override
 	public String toString() {
 		return "AdminVO [visitTotal=" + visitTotal + ", visitToday=" + visitToday + ", visitPreday=" + visitPreday
 				+ ", orderTotal=" + orderTotal + ", orderToday=" + orderToday + ", orderPreday=" + orderPreday
 				+ ", salesToday=" + salesToday + ", salesPreday=" + salesPreday + ", salesThisMonth=" + salesThisMonth
 				+ ", salesPreMonth=" + salesPreMonth + ", averageThisMonth=" + averageThisMonth + ", orderStatus="
-				+ orderStatus + ", joinToday=" + joinToday + ", joinPreDay=" + joinPreDay + ", salesMonthThisYear="
-				+ salesMonthThisYearAverage + ", averageMontYear=" + averageMontYear + ", productTop5=" + productTop5
-				+ ", visitCountWeek=" + visitCountWeek + "]";
+				+ orderStatus + ", joinToday=" + joinToday + ", joinPreDay=" + joinPreDay
+				+ ", salesMonthThisYearAverage=" + salesMonthThisYearAverage + ", averageMontYear=" + averageMontYear
+				+ ", productTop5=" + productTop5 + ", visitCountWeek=" + visitCountWeek + ", budgetSales=" + budgetSales
+				+ "]";
 	}
+	
 	
 	
 	

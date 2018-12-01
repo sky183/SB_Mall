@@ -25,7 +25,7 @@ public class VisitCountInterceptor extends HandlerInterceptorAdapter {
 
 		
 		HttpSession session = request.getSession();
-		
+		//세션에 방문자수 카운트가 되어있으면 통과 없으면 카운트한다.
 		Boolean userCount = (Boolean)session.getAttribute("userCount");
 		
 		if (userCount != null) {

@@ -1,5 +1,7 @@
 package com.sb.mall.admin.service;
 
+import java.time.LocalDate;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,7 +19,13 @@ public class AdminMainService {
 	private AdminDao dao;
 	
 	@Transactional
-	public AdminVO getAdminReport(AdminVO admin) {
+	public AdminVO getAdminReport() {
+		
+		//날짜를 원하는 스트링 형태로 변환 
+		LocalDate myDate = LocalDate.now();
+		String monthName = (myDate.minusMonths(1).getMonth().name()).substring(0, 3);
+		
+		AdminVO admin = new AdminVO();
 		
 		dao = sqlSessionTemplate.getMapper(AdminDao.class);
 		
@@ -59,6 +67,9 @@ public class AdminMainService {
 		//전주 대비 일 평균 방문수
 		admin.setVisitCountWeek(dao.visitCountWeek());
 		
+		
+		//버젯 대비 월 매출 달성율 
+		admin.setBudgetSales(dao.budgetSales(monthName, 1));
 
 		return admin;
 

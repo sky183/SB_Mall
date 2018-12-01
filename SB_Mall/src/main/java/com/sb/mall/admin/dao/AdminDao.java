@@ -42,6 +42,8 @@ public interface AdminDao {
 	public Long averageMonthYear();
 	//이번주 전주 평균 방문자수 비교
 	public List<Map<String, Object>> visitCountWeek();
+	//버젯 대비 월 매출 달성율
+	public Map<String, Object> budgetSales(Object monthName, int interval);
 	
 	
 }

@@ -13,10 +13,10 @@
 	</select>
 
 	<insert id="visitToday">
-		insert into VisitGuest value (0, curdate())
+		insert into VisitGuest value (0, DATE_FORMAT(now(), '%Y-%m-%d %H:00:00'));
 	</insert>
 	
 	<update id="visitCount">
-		update VisitGuest set visitCount = visitCount + 1  where visitDate = curDate()
+		update VisitGuest set visitCount = visitCount + 1  where visitDate = DATE_FORMAT(now(), '%Y-%m-%d %H:00:00');
 	</update>
 </mapper>

@@ -45,7 +45,7 @@ public class AdminPageController {
 		List<Map<String, Object>> salesMonthThisYearAverage = new ArrayList<Map<String,Object>>();
 		
 		//모든 어드민 정보 가져오기
-		admin = adminService.getAdminReport(admin);
+		admin = adminService.getAdminReport();
 		
 		//리스트에서 상품 리스트 맵을 읽어서 그것을 각각 key 값만 맵에 저장(상품 이름, 상품 매출)
 		admin.getProductTop5().forEach((goodsItem) -> {
@@ -59,14 +59,13 @@ public class AdminPageController {
 		String top5MapJson = mapper.writeValueAsString( top5Map );
 		String salesJson = mapper.writeValueAsString(salesMonthThisYearAverage);
 		String orderStatus = mapper.writeValueAsString(admin.getOrderStatus());
+		String budgetSales = mapper.writeValueAsString(admin.getBudgetSales());
 		
 		modelAndView.addObject("dataTop5", top5MapJson);
 		modelAndView.addObject("salesYear", salesJson);
 		modelAndView.addObject("orderStatus", orderStatus);
-/*		modelAndView.addObject("dataTop5", top5MapJson);
-		modelAndView.addObject("salesYear", salesJson);
-		modelAndView.addObject("orderStatus", orderStatus);
-*/		modelAndView.addObject("admin", admin);
+		modelAndView.addObject("budgetSales", budgetSales);
+		modelAndView.addObject("admin", admin);
 		//해당 페이지 버튼 활성화
 		modelAndView.addObject("adminPage", "active");
 		

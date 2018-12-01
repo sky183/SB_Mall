@@ -23,10 +23,9 @@
 </script>
 </head>
 <body>
-
+<%@ include file="/WEB-INF/views/admin/include/adminNavi.jsp"%>
 <!-- 페이지 래퍼 -->
 <div id="adminWrapper">
-<%@ include file="/WEB-INF/views/admin/include/adminNavi.jsp"%>
 	
 <!-- 우측 메뉴 -->
 	<div id="content" class="in-bl">
@@ -36,9 +35,6 @@
 			<div class="top-report">	
 				<!-- 오늘의 방문자 -->
 				<div class="report-box">
-					<div class="icon-box tab">
-						<i class="fa fa-shopping-cart fa-3x cel ver-mid" aria-hidden="true"></i>
-					</div>
 					
 					<div class="result-box">
 						<div class="this-result">
@@ -55,9 +51,6 @@
 			
 				<!-- 오늘의 주문 -->
 				<div class="report-box">
-					<div class="icon-box tab">
-						<i class="fa fa-shopping-cart fa-3x cel ver-mid" aria-hidden="true"></i>
-					</div>
 					
 					<div class="result-box">
 						<div class="this-result">
@@ -74,9 +67,6 @@
 				
 				<!-- 오늘의 매출 -->
 				<div class="report-box">
-					<div class="icon-box">
-						<i class="fa fa-krw fa-3x cel ver-mid" aria-hidden="true"></i>
-					</div>
 					
 					<div class="result-box">
 						<div class="this-result">
@@ -92,9 +82,7 @@
 				</div>
 				<!-- 이번달 매출 -->
 				<div class="report-box">
-					<div class="icon-box">
-						<i class="fa fa-line-chart fa-3x cel ver-mid" aria-hidden="true"></i>
-					</div>
+
 					<div class="result-box">
 						<div class="this-result">
 							<h5>${month0}월 매출</h5>

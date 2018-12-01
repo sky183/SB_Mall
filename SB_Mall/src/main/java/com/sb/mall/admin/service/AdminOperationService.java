@@ -5,21 +5,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sb.mall.admin.dao.AdminSalesDao;
+import com.sb.mall.admin.dao.AdminOperationDao;
 import com.sb.mall.admin.model.AdminVO;
 
 @Repository
-public class AdminSalesService {
+public class AdminOperationService {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	private AdminSalesDao dao;
+	private AdminOperationDao dao;
 	
 	@Transactional
 	public AdminVO getAdminReport(AdminVO admin) {
 		
-		dao = sqlSessionTemplate.getMapper(AdminSalesDao.class);
+		dao = sqlSessionTemplate.getMapper(AdminOperationDao.class);
 		
 
 		return admin;

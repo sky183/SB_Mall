@@ -152,5 +152,17 @@
 		  FROM VisitGuest where visitDate between ADDDATE( CURDATE(), - WEEKDAY(CURDATE() + 1) -7 ) and ADDDATE( CURDATE(), - WEEKDAY(CURDATE() + 1) +6 )
 		 GROUP BY week order by week desc;
 	</select>
+<!-- 	버젯 대비 월 매출 달성율 -->
+	<select id="budgetSales" resultType="map">
+		SELECT 
+	"버젯 달성율" title,
+	bg.${param1} max,
+    SUM(totalAmount) value
+FROM
+    OrderDetail od, Budget bg
+WHERE date_format(od.orderTime, '%Y') = bg.year and
+    date_format(orderTime, '%Y-%m') = date_format(NOW() - INTERVAL #{param2} MONTH, '%Y-%m')
+        AND status > 0;
+	</select>
  
  </mapper>
