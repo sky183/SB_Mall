@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 <!-- 헤더 삽입 -->
 <%@ include file="/WEB-INF/views/admin/include/adminheader.jsp"%>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminMain.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminPage.css">
 <script type="text/javascript">
 /* 	//자바스크립트로 소수점 버리고 포맷 변환하는 함수
 	function numFormat(x) {
@@ -104,17 +104,17 @@
 			
 		</div>
 		<!-- 메인 -->
-		<div id="main-content">
+<!-- 		<div id="main-content"> -->
 			<!-- 회원목록 -->
-			<div id="left-innercont">
-			</div>
+<!-- 			<div id="left-innercont"> -->
+<!-- 			</div> -->
 			
 			<!-- 주문목록 -->
-			<div id="right-innercont">
-			</div>
+<!-- 			<div id="right-innercont"> -->
+<!-- 			</div> -->
 			
 		<!-- main-content 의 끝 -->
-		</div>
+<!-- 		</div> -->
 		
 	<!-- content의 끝 -->
 	</div>
@@ -181,8 +181,8 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	/* load 함수로 ajax 없이도 페이지에 불러온다. */
-	$('#left-innercont').load('<%=request.getContextPath()%>' + '/admin/adminMemberList');  
-	$('#right-innercont').load('<%=request.getContextPath()%>' + '/admin/adminOrderList');  
+<%-- 	$('#left-innercont').load('<%=request.getContextPath()%>' + '/admin/adminMemberList');   --%>
+<%-- 	$('#right-innercont').load('<%=request.getContextPath()%>' + '/admin/adminOrderList');   --%>
 });
 </script>
 </html>

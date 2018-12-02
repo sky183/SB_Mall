@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/admin/adminPage")
+@RequestMapping("/")
 public class 컨트롤러예시 {
 	
 	@Autowired

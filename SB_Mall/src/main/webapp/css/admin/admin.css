@@ -24,14 +24,11 @@ li {
     font-weight: normal;
     list-style: none;
 }
-table, th, td, tr {
-	border: 1px solid #787878 !important;
-	font-size : 11px !important;
-	text-align: center;
-	padding: 0 !important;
-}
+/* table, th, td, tr { */
+/* 	border: 1px solid #787878; */
+/* } */
         /* 공통 속성 */
-.t-left {text-align: left;}.t-right {text-align:right;}.t-center {text-align:center;}
+.t-left {text-align: left !important;}.t-right {text-align:right;}.t-center {text-align:center;}
 .none{display: none;}.bl{display: block;}.in-bl{display:inline-block;}
 .tab{display: table;}.cel{display: table-cell;}
 .fl-left{float: left;}.fl-right{float: right;}
@@ -43,9 +40,11 @@ table, th, td, tr {
 .back3{background-color: #505050;}.back4{background-color: #787878;}
 .back5{background-color: #a0a0a0;}.back6{background-color: #c8c8c8;}
 .back7{background-color: #dcdcdc;}.back8{background-color: #f0f0f0;}
-.fon10{font-size: 10px;}.fon12{font-size: 12px;}
-.fon15{font-size: 15px;}.fon18{font-size: 18px;}.fon20{font-size: 20px;}
-.fon22{font-size: 22px;}.fon24{font-size: 24px;}
+.fon10{font-size: 10px !important;}.fon12{font-size: 12px !important;}
+.fon13{font-size: 13px !important;}.fon14{font-size: 14px !important;}
+.fon15{font-size: 15px !important;}.fon16{font-size: 16px !important;}
+.fon18{font-size: 18px !important;}.fon20{font-size: 20px !important;}
+.fon22{font-size: 22px !important;}.fon24{font-size: 24px !important;}
 .fonb{font-weight:bold;}.fonn{font-weight: normal;}
 .ws-now{white-space: nowrap;}.ws-pre{white-space: pre;}
 .ws-pwrap{white-space: pre-wrap;}.ws-pline{white-space: pre-line}
@@ -54,6 +53,7 @@ table, th, td, tr {
 .col-white{color: #ffffff !important;}
 .wid100{width:100%;}.hei100{height:100%;}
 .bor-white{border: 1px solid #ffffff;}
+.bor-non{border: 0;}
 .bor8{border: 1px solid #f0f0f0;}
 
 /* 바디 내부 */
@@ -92,16 +92,7 @@ table, th, td, tr {
 }
 #headerNavi li {
     float: right;
-/*     border-left:1px solid #bbb; */
 }
-/* #headerNavi li:last-Child { */
-/*     border-right:1px solid #bbb; */
-/*     border-left:1px solid #bbb; */
-/* } */
-
-/* #headerNavi li:last-child { */
-/*     border-right: none; */
-/* } */
 
 #headerNavi li a {
     display: block;
@@ -111,7 +102,6 @@ table, th, td, tr {
     padding: 13px 19px;
     text-decoration: none;
 }
-
 #headerNavi li a:hover {
     background-color: #282828;
 }

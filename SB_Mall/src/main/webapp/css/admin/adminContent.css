@@ -1,65 +1,259 @@
 @charset "UTF-8";
-    #bottomContent{
-        text-align: left;
-        height: 100%;
-        margin-top: 20px;
-    }
-    #leftContent{
-        padding: 10px;
-        width: 150px;
-        display: inline-block;
-        text-align: center;
-        height: 100%;
-    }
-    #leftContent *{
-    	color: #282828;
-    	font-weight: bold;
-    }
-    #leftContent a, #leftContent li{
-        cursor: pointer;
-    }
-    .leftTitle{
-        margin-bottom: 25px;
-        font-size: 20px;
-    }
-    .leftActive{
-    	color: #ffc828 !important;
-    }
-    .leftMenu{
-        cursor: pointer;
-        text-align: left;
-        font-size: 13px;
-        padding-top : 17px;
-        padding-bottom : 5px;
-        border-bottom: 1px solid #dcdcdc;
-    }
-/*     .leftMenulast{ */
-/*         border-bottom: 1px solid #505050; */
-/*     } */
-    /*서브메뉴 */
-    .leftSubmenu{
-        display: none;
-    	margin-bottom: 0px;
-    	margin-top: 7px;
-    }   
-    .leftSubmenu *{
-        text-align: left;
-        padding-left: 20px;
-        color: #a0a0a0 !important ;
-        margin-top: 6px;
-    }
-    #rightContent{
-        width: 850px;
-        display: inline-block;
-        vertical-align: top;
-    }
-    #rightContent *{
-        font-size: 13px;
-    }
 
-    #menuTitle {
-        padding: 7px 10px;
-        background-color: #dcdcdc;
-        color: #505050;
-        border-bottom: 1px solid #c8c8c8;
-    }
+/* 공통사항,  adminOperation.jsp, */
+.resultTab{
+	width: 100%;
+}
+.resultTab *{
+	color: #505050;
+}
+.resultTab thead tr{
+	border-bottom: 2px solid #282828;
+}
+.resultTab tr{
+	border-bottom: 1px solid #a0a0a0;
+}
+.resultTab th{
+	padding-bottom: 10px;
+	font-weight: bold;
+	font-size: 18px;
+}
+.resultTab td{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+input[type="submit"], select{
+	cursor: pointer;
+}
+#bottomContent {
+	text-align: left;
+	height: 100%;
+	margin-top: 20px;
+}
+#leftContent {
+	padding: 10px;
+	width: 150px;
+	display: inline-block;
+	text-align: center;
+	height: 100%;
+}
+
+#leftContent * {
+	font-weight: bold;
+}
+
+#leftContent a, #leftContent li {
+	cursor: pointer;
+}
+
+.leftTitle {
+	margin-bottom: 25px;
+	font-size: 20px;
+	color: #282828;
+}
+
+.leftActive {
+	color: #ffc828 !important;
+}
+
+.leftMenu {
+	cursor: pointer;
+	text-align: left;
+	font-size: 13px;
+	padding-top: 17px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #dcdcdc;
+	color: #505050;
+}
+
+.leftSubmenu {
+	display: none;
+	margin-bottom: 0px;
+	margin-top: 7px;
+}
+
+.leftSubmenu * {
+	text-align: left;
+	padding-left: 20px;
+	color: #a0a0a0 !important;
+	margin-top: 6px;
+}
+
+#rightContent {
+	width: 820px;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 30px;
+}
+
+#rightContent * {
+	font-size: 13px;
+}
+
+#mainContent {
+	margin-top: 25px;
+}
+/*     #menuTitle { */
+/*         padding: 7px 10px; */
+/*         background-color: #dcdcdc; */
+/*         color: #505050; */
+/*         border-bottom: 1px solid #c8c8c8; */
+/*     } */
+
+
+
+/*   totalResult.jsp, dailySal.jsp 공통*/
+#mainHeader {
+	text-align: center;
+	position: relative;
+}
+
+#mainHeader .absol {
+	right: 0px;
+}
+
+#mainHeader select {
+	background-color: #505050;
+	color: #f0f0f0;
+	border: 0;
+	text-align-last: center;
+	vertical-align: middle;
+	padding: 2px 0;
+}
+
+#mainMid, #mainBottom {
+	margin-top: 30px;
+}
+
+.seldate {
+	border: 1px solid #505050;
+	border-radius: 4px;
+	padding: 1px 8px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#startDate, #endDate {
+	width: 70px;
+	text-align: center;
+}
+
+input.select {
+    background-color: #505050;
+   	color: #f0f0f0;    	
+   	border: 0;
+   	text-align-last:center;
+   	vertical-align: middle;
+   	padding: 3.7px 15px 3.2px;
+}
+
+.downButton {
+	padding: 5px 15px;
+	vertical-align: middle;
+	display: inline-block;
+	border: 1px solid #a0a0a0;
+	border-radius: 5px;
+	color: #505050;
+	font-weight: bold;
+	margin-left: 5px;
+}
+
+
+/* totalResult.jsp */
+#budgetReport {
+	border-radius: 10px;
+}
+
+#budgetReport .title, #budgetReport .footer {
+	color: #f0f0f0;
+	font-size: 20px;
+	display: inline-block;
+}
+
+#budgetReport .title {
+	width: 140px;
+}
+
+#budgetReport .result {
+	color: #ffc828;
+	font-size: 26px;
+	font-weight: bold;
+	width: 200px;
+	display: inline-block;
+	text-align: right;
+}
+
+#budgetReport .footer {
+	width: 20px;
+	text-align: right;
+}
+
+#yearBudgetReport, #monthBudgetReport, #leftSalesReport,
+	#rightSalesReport {
+	padding: 20px;
+	width: 410px;
+}
+
+#yearBudgetReport, #leftSalesReport {
+	border-right: 0.5px solid #c8c8c8;
+}
+
+#leftSalesReport div, #rightSalesReport div {
+	border-bottom: 0.5px solid #c8c8c8;
+	padding-bottom: 6px;
+	margin-bottom: 15px;
+}
+
+#salesReport .title, #salesReport .footer {
+	color: #282828;
+	font-size: 14px;
+	display: inline-block;
+	font-weight: 700;
+}
+
+#salesReport .title {
+	width: 100px;
+}
+
+#salesReport .result {
+	color: #ffc828;
+	font-size: 18px;
+	font-weight: bold;
+	width: 160px;
+	display: inline-block;
+	text-align: right;
+}
+
+#salesReport .footer {
+	width: 20px;
+	text-align: right;
+}
+
+#salesReport .sub {
+	border-bottom: 0;
+	margin-bottom: 5px;
+}
+
+.bottom5 {
+	margin-bottom: 5px !important;
+}
+
+.bottom15 {
+	margin-bottom: 15px !important;
+}
+
+#salesReport .sub .subTitle {
+	display: inline-block;
+	width: 100px;
+	padding-left: 20px;
+}
+
+/* dailySal.jsp */
+#dailySalTab{
+}
+#dailySalTab tr{
+	
+}
+.ds1{width: 150px;}.ds2{width: 100px;}
+.ds3{width: 100px;}
+/* .ds4{width: 30px;} */

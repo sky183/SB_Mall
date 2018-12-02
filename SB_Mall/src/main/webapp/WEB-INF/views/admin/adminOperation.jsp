@@ -10,11 +10,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>매출관리</title>
 <!-- 헤더 삽입 -->
 <%@ include file="/WEB-INF/views/admin/include/adminheader.jsp"%>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/admin/adminMain.css">
+	href="<%=request.getContextPath()%>/css/admin/adminPage.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/admin/adminContent.css">
 </head>
@@ -26,7 +26,7 @@
 			<!--좌측 메뉴-->
 			<div id="leftContent">
 				<div class="leftTitle">매출 관리</div>
-				<div class="leftMenu link leftActive" id="main">
+				<div class="leftMenu link leftActive" id="totalReport">
 					총 영업 현황
 				</div>
 				<div class="leftMenu">
@@ -53,7 +53,7 @@
 <script>
 $(document).ready(function(){
 //영업통계를 불러온다.
-$('#rightContent').load('<%=request.getContextPath()%>/admin/adminOperation/main');
+$('#rightContent').load('<%=request.getContextPath()%>/admin/adminOperation/totalReport');
 //메뉴 클릭시 우측 메뉴 출력
 
 $('.link').click(function(){
