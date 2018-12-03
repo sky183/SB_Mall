@@ -28,7 +28,7 @@ public class AdminOperationController {
 		return modelAndView;
 	}
 	
-	//영업관리 페이지 컨트롤러
+	//영업관리 페이지 컨트롤러 - totalReport salReport dailySal monthlySal weeklySal hourSal budget
 	@RequestMapping(value="/admin/adminOperation/{page}", method=RequestMethod.GET)
 	public ModelAndView operationPage(@PathVariable String page) {
 		

@@ -26,10 +26,10 @@
 			<!--좌측 메뉴-->
 			<div id="leftContent">
 				<div class="leftTitle">매출 관리</div>
-				<div class="leftMenu link leftActive" id="totalReport">
+				<div class="leftMenu link" id="totalReport">
 					총 영업 현황
 				</div>
-				<div class="leftMenu">
+				<div class="leftMenu" id="salReport">
 					매출 조회
 				</div>
 				<ul class="leftSubmenu">
@@ -38,7 +38,7 @@
 					<li class="link" id="weeklySal">-주간 매출</li>
 					<li class="link" id="hourSal">-시간대별 매출</li>
 				</ul>
-				<div class="leftMenu link id="budget">
+				<div class="leftMenu link" id="budget">
 					Budget 관리
 				</div>
 				<!--좌측메뉴의 끝, 우측메뉴 시작-->
@@ -51,11 +51,28 @@
 	</div>
 </body>
 <script>
+
+//왼쪽 메뉴 추가된 클래스 제거하고 새로운 메뉴에 스타일 적용하는 함수
+function removeActive(id, sub){
+	//클래스 제거
+	$('.leftMenu').removeClass('leftActive');
+	$('.leftSubmenu li').removeClass('leftSubActive');
+	
+	//현재 페이지 메뉴에 css를 먹인다.
+	$(id).addClass('leftActive');
+
+	//현재 서브메뉴에 css를 적용. sub가 0이면  적용하지 않는다.
+	if(sub != 0){
+	$(sub).addClass('leftSubActive');
+	}
+}
+
 $(document).ready(function(){
+
 //영업통계를 불러온다.
 $('#rightContent').load('<%=request.getContextPath()%>/admin/adminOperation/totalReport');
-//메뉴 클릭시 우측 메뉴 출력
 
+//메뉴 클릭시 우측 메뉴 출력
 $('.link').click(function(){
 	var page = $(this).attr('id');
 	var url = '<%=request.getContextPath()%>/admin/adminOperation/' + page;

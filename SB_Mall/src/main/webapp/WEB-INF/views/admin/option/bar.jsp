@@ -71,7 +71,8 @@ var weather = jui.include("chart.builder");
 var data = [{
     id: "서울",
     temperature: 25,
-    weather: "cloudy",
+    weather: "rain",
+    lat : 127,
     dx: 10
 }, {
     id: "인천",

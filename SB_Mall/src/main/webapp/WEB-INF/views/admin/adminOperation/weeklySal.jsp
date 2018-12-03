@@ -10,7 +10,7 @@
 		</span>
 		<span class="seldate">
 			<span>
-				<input type="text" id="startDate" class="bor-non" value="2018-11-01">
+				<input type="text" id="startDate" class="bor-non" value="2018-11">
 			</span>
 			<span>
 				ㅁ
@@ -18,7 +18,7 @@
 		</span>
 		<span class="fonb fon16">-</span><span class="seldate">
 			<span>
-				<input type="text" id="endDate" class="bor-non" value="2018-11-30">
+				<input type="text" id="endDate" class="bor-non" value="2018-12">
 			</span>
 			<span>
 				ㅁ
@@ -153,9 +153,9 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+
 //메뉴 및 서브메뉴에 css 적용
-removeActive('#salReport', '#dailySal');
+removeActive('#salReport', '#monthlySal');
 
 });
 </script>

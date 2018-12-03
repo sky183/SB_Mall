@@ -29,7 +29,7 @@ li {
 /* } */
         /* 공통 속성 */
 .t-left {text-align: left !important;}.t-right {text-align:right;}.t-center {text-align:center;}
-.none{display: none;}.bl{display: block;}.in-bl{display:inline-block;}
+.none{display: none !important;}.bl{display: block;}.in-bl{display:inline-block;}
 .tab{display: table;}.cel{display: table-cell;}
 .fl-left{float: left;}.fl-right{float: right;}
 .absol{position: absolute;}.rela{position: relative;}.fix{position: fixed;}
@@ -53,8 +53,20 @@ li {
 .col-white{color: #ffffff !important;}
 .wid100{width:100%;}.hei100{height:100%;}
 .bor-white{border: 1px solid #ffffff;}
-.bor-non{border: 0;}
+.bor-non{border: 0 !important;}
 .bor8{border: 1px solid #f0f0f0;}
+
+/* 내용물을 좌우로 균일하게 정렬 */
+.space{
+	justify-content:space-between;
+	flex-wrap:wrap;
+	display:flex;
+}
+/* 입력 활성화 */
+.inputActive{
+	border: 1px solid #a0a0a0 !important;
+}
+
 
 /* 바디 내부 */
 #adminWrapper {
