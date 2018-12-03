@@ -52,9 +52,10 @@
 
 					<div class="dropNaviBar">
 						<a class="naviDrop_Atag" href="<%=request.getContextPath()%>/qna">QnA</a>
-						<a class="naviDrop_Atag" href="<%=request.getContextPath()%>/freeBoard">자유게시판</a> <a
-							class="naviDrop_Atag" href="">crowdFunding</a> <a
-							class="naviDrop_Atag" href="<%=request.getContextPath()%>/subway">지하철</a>
+						<a class="naviDrop_Atag" href="<%=request.getContextPath()%>/freeBoard">자유게시판</a>
+						 <a class="naviDrop_Atag" href="">crowdFunding</a> 
+						 <a class="naviDrop_Atag" href="<%=request.getContextPath()%>/subway">지하철</a>
+						<a class="naviDrop_Atag" href="<%=request.getContextPath()%>/weather">날씨</a>
 					</div>
 				</div>
 

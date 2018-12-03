@@ -79,7 +79,8 @@ public class MemberFindController {
 		}
 		//userId로 데이터베이스를 조회해서 memberInfo 가져오기
 		memberInfo=memberInfoService.getMemberInfo(userId);
-		System.out.println("조회된유저정보"+memberInfo.toString());
+//		System.out.println("조회된유저정보"+memberInfo.toString());
+		//난수로 변경된 비밀번호를 암호화해서 저장
 		String encryptionPW = aes256.encrypt(pw);
 		
 		//난수로 변경된  비밀번호를 저장 

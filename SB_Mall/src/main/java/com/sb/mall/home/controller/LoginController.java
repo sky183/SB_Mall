@@ -68,12 +68,12 @@ public class LoginController {
 			System.out.println("userPw "+userPw);
 			
 			/*2018.11.16 암호화 패치*/
-			System.out.println("/*[5] 2018.11.16 암호화 패치*/");
-			System.out.println("The Password you inputed :" + userPw);
+//			System.out.println("/*[5] 2018.11.16 암호화 패치*/");
+//			System.out.println("The Password you inputed :" + userPw);
 			String encryptionPW = aes256.encrypt(userPw);
-			System.out.println("be encryption password :" + encryptionPW);
+//			System.out.println("be encryption password :" + encryptionPW);
 			userPw = (encryptionPW);
-			System.out.println("암호화 처리 완료");
+//			System.out.println("암호화 처리 완료");
 			
 			if (loginService.login(userId, userPw, session)) {
 				

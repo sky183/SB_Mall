@@ -36,8 +36,8 @@ public class MemberLoginMailService {
    public void sendMail(String memberemail,String resultpw) throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 
       // Context of mail(Mailaddress)
-      System.out.println("Sending Email...<sendMail>");
-      System.out.println("수신자 : "+memberemail);
+//      System.out.println("Sending Email...<sendMail>");
+//      System.out.println("수신자 : "+memberemail);
       
       SimpleMailMessage message = new SimpleMailMessage();
       
@@ -64,8 +64,8 @@ public class MemberLoginMailService {
    /*HTML형식 Mail 보내기*/
    public void mailSendHtml(String email,String pw) {
 
-      System.out.println("Sending Email...<mailSendHtml>");
-      System.out.println("수신자 : "+email);
+//      System.out.println("Sending Email...<mailSendHtml>");
+//      System.out.println("수신자 : "+email);
       MimeMessage message = mailSender.createMimeMessage();
 
       try {
