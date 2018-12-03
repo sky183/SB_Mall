@@ -1,6 +1,16 @@
 @charset "UTF-8";
 
 /* admin 공통사항 */
+.monthButton, .monthButton1, .monthButton2{
+	width: 17px;
+	padding-left: 1px;
+	padding-top: 2px;
+	vertical-align: top;
+	overflow: hidden;
+	border: 0;
+	cursor: pointer;
+	display: inline-block;
+}
 .dateInput{
 	padding : 0;
 	border: none;
@@ -99,6 +109,9 @@ input[type="submit"], select{
 }
 
 /*   adminOperation.jsp 내부 공통 - totalResult.jsp, dailySal.jsp, budget 공통*/
+#totalDatepicker, #budgetDatepicker{
+	width: 120px;
+}
 #mainHeader {
 	text-align: center;
 	position: relative;
@@ -124,7 +137,7 @@ input[type="submit"], select{
 .seldate {
 	border: 1px solid #505050;
 	border-radius: 4px;
-	padding: 1px 8px;
+	padding: 3px 8px;
 	margin-left: 5px;
 	margin-right: 5px;
 }
@@ -189,9 +202,6 @@ input.select {
 
 
 /* totalResult.jsp */
-#totalDatepicker{
-	width: 120px;
-}
 #budgetReport {
 	border-radius: 10px;
 }
@@ -297,9 +307,11 @@ input.select {
 }
 .monthLabel input{
 	font-size: 20px !important;
+	padding-left: 10px;
 	width : 160px;
 	height: 100%;
 	border: 1px solid #FFF;
+	border-radius: 5px;
 }
 .monthLabel input:disabled{
 	background-color: inherit;

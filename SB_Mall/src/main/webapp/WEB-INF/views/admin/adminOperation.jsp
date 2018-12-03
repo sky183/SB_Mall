@@ -69,45 +69,45 @@ function removeActive(id, sub){
 
 $(document).ready(function(){
 
-//영업통계를 불러온다.
-$('#rightContent').load('<%=request.getContextPath()%>/admin/adminOperation/totalReport');
-
-//메뉴 클릭시 우측 메뉴 출력
-$('.link').click(function(){
-	var page = $(this).attr('id');
-	var url = '<%=request.getContextPath()%>/admin/adminOperation/' + page;
-	$.ajax({
-		url : url,
-		error : function(error) {
-	        alert("Error!");
-	    },
-		success : function(data) {
-			$('#rightContent').html(data);
-			history.pushState(url, null, '<%=request.getContextPath()%>/admin/adminOperation');
-		}
-	});
-});
-
-$(window).bind("popstate", function(event) {
-	//히스토리에 저장된 데이터를 불러온다. 여기서는 url 
-	var data = event.originalEvent.state;
-	//저장된 url이 있으면 
-	if(data){
+	//영업통계를 불러온다.
+	$('#rightContent').load('<%=request.getContextPath()%>/admin/adminOperation/totalReport');
+	
+	//메뉴 클릭시 우측 메뉴 출력
+	$('.link').click(function(){
+		var page = $(this).attr('id');
+		var url = '<%=request.getContextPath()%>/admin/adminOperation/' + page;
 		$.ajax({
-				url : data,
-				error : function(error) {
-			        alert("Error!");
-			    },
-				success : function(data) {
-					$('#rightContent').html(data);
-				}
-			})
-		 } else {
-		    // 히스토리에 정보가 없을경우 메인화면으로 보내준다.
-		    var url = "<%=request.getContextPath()%>/admin/adminOperation";    
-		    $(location).attr('href',url);
-		    }
+			url : url,
+			error : function(error) {
+		        alert("Error!");
+		    },
+			success : function(data) {
+				$('#rightContent').html(data);
+				history.pushState(url, null, '<%=request.getContextPath()%>/admin/adminOperation');
+			}
 		});
+	});
+	
+	$(window).bind("popstate", function(event) {
+		//히스토리에 저장된 데이터를 불러온다. 여기서는 url 
+		var data = event.originalEvent.state;
+		//저장된 url이 있으면 
+		if(data){
+			$.ajax({
+					url : data,
+					error : function(error) {
+				        alert("Error!");
+				    },
+					success : function(data) {
+						$('#rightContent').html(data);
+					}
+				})
+			 } else {
+			    // 히스토리에 정보가 없을경우 메인화면으로 보내준다.
+			    var url = "<%=request.getContextPath()%>/admin/adminOperation";    
+			    $(location).attr('href',url);
+			    }
+	});
 
 });
 

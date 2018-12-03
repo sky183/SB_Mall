@@ -70,13 +70,22 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 	<script src="<%=request.getContextPath()%>/jui/jui-core/dist/core.min.js"></script>
 	<script src="<%=request.getContextPath()%>/jui/jui-chart/dist/chart.js"></script>
 	
-	
+<!-- datepicker -->
 <!-- 	// jQuery UI CSS파일  -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
 <!-- // jQuery 기본 js파일 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <!-- // jQuery UI 라이브러리 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+
+<!-- monthpicker -->
+<script src="<%=request.getContextPath()%>/monthpicker/js/jquery.mtz.monthpicker.js"></script>  
+<%-- <script src="<%=request.getContextPath()%>/monthpicker/js/jquery-1.11.1.min.js"></script>   --%>
+<%-- <script src="<%=request.getContextPath()%>/monthpicker/js/jquery-ui.min.js"></script>   --%>
+
+
+
+
 </head>
 <script>
 //화면 크기 줄일 경우 높이를 다시 맞춰주는 함수
@@ -84,6 +93,71 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
     var h = $(window).height();
     $('#leftContent').css({'height':(h-58)+'px'});
 } */
+
+//date포맷 함수
+Date.prototype.format = function(f) {
+    if (!this.valueOf()) return " ";
+ 
+    var weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+    var d = this;
+     
+    return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function($1) {
+        switch ($1) {
+            case "yyyy": return d.getFullYear();
+            case "yy": return (d.getFullYear() % 1000).zf(2);
+            case "MM": return (d.getMonth() + 1).zf(2);
+            case "dd": return d.getDate().zf(2);
+            case "E": return weekName[d.getDay()];
+            case "HH": return d.getHours().zf(2);
+            case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2);
+            case "mm": return d.getMinutes().zf(2);
+            case "ss": return d.getSeconds().zf(2);
+            case "a/p": return d.getHours() < 12 ? "오전" : "오후";
+            default: return $1;
+        }
+    });
+};
+ 
+String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
+String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+Number.prototype.zf = function(len){return this.toString().zf(len);};
+
+//오늘 구하기
+var now = new Date();
+//이번달 1일 말일 구하기
+var firstDate = new Date(now.getFullYear(), now.getMonth(), 1);
+var lastDate =  new Date(now.getFullYear(), now.getMonth()+1, 0);
+var firstDateThis;
+var lastDateThis;
+
+//특정달 1일 말일 구하기
+function getFistDate(date){
+	var dateSource = new Date(date);
+	return new Date(dateSource.getFullYear(), dateSource.getMonth(), 1);
+}
+function getLastDate(date){
+	var dateSource = new Date(date);
+	return new Date(dateSource.getFullYear(), dateSource.getMonth(), 1);
+}
+
+
+
+
+// //2011년 09월 11일 오후 03시 45분 42초
+// console.log(new Date('2018.01.01').format("yyyy년 MM월 dd일 a/p hh시 mm분 ss초"));
+ 
+// //2011-09-11
+// console.log(new Date().format("yyyy-MM-dd"));
+ 
+// //'11 09.11
+// console.log(now.format("yyyy.MM.dd"));
+ 
+// //2011-09-11 일요일
+// console.log(new Date().format("yyyy-MM-dd E"));
+ 
+// //현재년도 : 2011
+// console.log("현재년도 : " + new Date().format("yyyy"));
+
 
 $('document').ready(function(){
 /* 	resize();

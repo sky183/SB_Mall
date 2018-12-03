@@ -10,18 +10,14 @@
 		</span>
 		<span class="seldate">
 			<span>
-				<input type="text" id="startDate" class="bor-non" value="2018-11">
-			</span>
-			<span>
-				ㅁ
+				<input type="text" id="startDate" name="startDate" class="datepicker1 bor-non" value="2018.11">
+				<img class="monthButton1" alt="" src="../img/calendar.png">
 			</span>
 		</span>
 		<span class="fonb fon16">-</span><span class="seldate">
 			<span>
-				<input type="text" id="endDate" class="bor-non" value="2018-12">
-			</span>
-			<span>
-				ㅁ
+				<input type="text" id="endDate" name="endDate" class="datepicker2 bor-non" value="2018.11">
+				<img class="monthButton2" alt="" src="../img/calendar.png">
 			</span>
 		</span>
 		<span>
@@ -152,10 +148,26 @@
 <!-- mainContent의 끝 -->
 </div>
 <script type="text/javascript">
+
+//input 태그에 오늘 날짜 불러온다.
+$( "#startDate" ).val(now.format("yyyy.01"));
+$( "#endDate" ).val(now.format("yyyy.MM"));
+
 $(document).ready(function(){
 
-//메뉴 및 서브메뉴에 css 적용
-removeActive('#salReport', '#monthlySal');
+	//메뉴 및 서브메뉴에 css 적용
+	removeActive('#salReport', '#monthlySal');
+	
+	//month 피커
+    $(".datepicker1, .datepicker2").monthpicker({ 
+    	pattern : 'yyyy.mm',
+   	});
+    $('.monthButton1').bind('click', function(){
+    	$(".datepicker1").monthpicker('show');
+    });
+    $('.monthButton2').bind('click', function(){
+    	$(".datepicker2").monthpicker('show');
+    });
 
 });
 </script>
