@@ -7,7 +7,7 @@
 <title>Weather api</title>
 
 <link rel="stylesheet"href="<%=request.getContextPath()%>/css/weather.css">
-
+ 
 </head>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script type="text/javascript">
