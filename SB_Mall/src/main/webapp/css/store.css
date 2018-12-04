@@ -104,7 +104,7 @@ h1,h2,h3{
 }
 
 #cartListContainer{
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 }
 #cartListBox{
@@ -113,19 +113,31 @@ h1,h2,h3{
 }
 #cartHeaderBox{
 	width: 100%;
-	margin: 50px 0;
+	margin: 30px 0;
 }
 #cartHeaderBox h2{
-	margin: 30px 20px;
+	margin: 20px 20px;
 }
-.cartImg{
+#cartTable{
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+#cartTable>tbody>tr>td img{
 	height: 100px;
 	width: 100px;
 }
-#cartTable{
-	width: 1200px;
-	border-collapse: collapse;
-	margin: 0 auto;
+#cartTable>tbody>tr>td:last-child{
+	width: 120px;
+}
+#cartTable>tbody>tr>td:nth-child(4)>p:nth-child(n+2){
+	font-size:12px;
+	color: #787878;
+}
+#cartTable input[type=Number]{
+	font-size: 18px;
+	text-align: center;
+	width: 70px;
 }
 #cartTableHeader{
 	background-color: #F2F2F2;

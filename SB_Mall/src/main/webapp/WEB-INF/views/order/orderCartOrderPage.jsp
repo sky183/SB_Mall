@@ -11,6 +11,6 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 <jsp:include page="../store/store/include/headerBanner.jsp"/>
-<jsp:include page="include/cartOrderDetail.jsp"/>
+<jsp:include page="include/cartList.jsp"/>
 </body>
 </html>

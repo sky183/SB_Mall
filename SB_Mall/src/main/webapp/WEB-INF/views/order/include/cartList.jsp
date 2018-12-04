@@ -6,9 +6,64 @@
 <script>
 var aa;
 	$(document).ready(function() {
+		$.ajax({
+			url : '<%=request.getContextPath()%>/order/carts',
+			type : 'GET',
+			data : {'userSeq':'${memberInfo.userSeq}'},
+			error : function(error) {
+				alert("error!");
+			},
+			success : function(data) {
+				for(var key in data ){
+					$('<tr/>').appendTo('#cartTable');
+					$('<td/>').appendTo('#cartTable>tbody>tr:last-child');
+					$('<input/>').attr({
+						'name':'cartItem',
+						'type':'checkbox',
+						'data-goodsno':data[key].goodsNo,
+						'data-goodsprice':data[key].goodsPrice,
+						'data-quantity':data[key].quantity,
+						'data-optionseq':data[key].optionSeq,
+						'data-opt1price':data[key].opt1Price,
+						'data-opt2price':data[key].opt2Price,
+						'data-saleprice':data[key].salePrice,
+					}).appendTo('#cartTable>tbody>tr:last-child>td:last-child');
+					$('<td/>').appendTo('#cartTable>tbody>tr:last-child');
+					$('<a/>').attr({
+						'href':'<%=request.getContextPath()%>'+'/store/board/'+data[key].salesSeq
+					}).text(data[key].goodsNo).appendTo('#cartTable>tbody>tr:last-child>td:last-child');
+					$('<td/>').appendTo('#cartTable>tbody>tr:last-child');
+					$('<img/>').attr({
+						'src':data[key].goodsPhoto
+					}).appendTo('#cartTable>tbody>tr:last-child>td:last-child');
+					$('<td/>').html('<p>'+data[key].goodsName+'</p>').appendTo('#cartTable>tbody>tr:last-child');
+					
+					//옵션1,2 존재유무 판단하여 텍스트 추가
+					if(data[key].opt1Name.length>0){
+						$('<p/>').text(data[key].opt1Name+'(+'+numComma(data[key].opt1Price)+'원)')
+						.appendTo('#cartTable>tbody>tr:last-child>td:last-child');
+					}
+					if(data[key].opt2Name.length>0){
+						$('<p/>').text(data[key].opt2Name+'(+'+numComma(data[key].opt2Price)+'원)')
+						.appendTo('#cartTable>tbody>tr:last-child>td:last-child');
+					}
+					
+					$('<td/>').html('<p>'+numComma(data[key].goodsPrice)+'원</p>').appendTo('#cartTable>tbody>tr:last-child');
+					$('<td/>').appendTo('#cartTable>tbody>tr:last-child');
+					$('<input/>').attr({
+						'type':'Number',
+						'data-index':key,
+						'value':data[key].quantity,
+						'oninput':'changeInsCartPrice(this)'
+					}).appendTo('#cartTable>tbody>tr:last-child>td:last-child');
+					$('<td/>').html('<strong>'+numComma(data[key].salePrice)+'원</strong>')
+					.appendTo('#cartTable>tbody>tr:last-child');
+				}
+			}
+		});
 		
 		$('.cartOrderBtn').click(function() {
-			if($('input[name="selectItem"]:checked').length>0){ //최소 하나의 상품이 선택되었을때
+			if($('input[name=cartItem]:checked').length>0){ //최소 하나의 상품이 선택되었을때
 				$('#hCartForm').attr('action','<%=request.getContextPath()%>/order/cartOrder');
 				$('#hCartForm').submit();
 			}else{
@@ -18,10 +73,9 @@ var aa;
 		});
 		
 		$('.cartdeleteBtn').click(function() {
-			if($('input[name="selectItem"]:checked').length>0){ //최소 하나의 상품이 선택되었을때
+			if($('input[name=cartItem]:checked').length>0){ //최소 하나의 상품이 선택되었을때
 				if (confirm("정말 삭제하시겠습니까??") == true){
-					$('#hCartForm').attr('action','<%=request.getContextPath()%>/order/deleteCart');
-					$('#hCartForm').submit();
+					$('input[name=cartItem]:checked').parent().parent().remove();
 				}else{//취소
 				    return;
 				}
@@ -39,92 +93,61 @@ var aa;
 			}
 		});
 		
-		$('#checkAllItems').click(function () { //체크박스 전체
+		$('#checkAllItems').click(function () { //체크박스 전체체크
 			if($(this)[0].checked==true){
-				$("input[name=selectItem]").prop("checked",true);
-				$('.hInput').attr("disabled",false);	
+				$("input[name=cartItem]").prop("checked",true);
 			}else{
-				$("input[name=selectItem]").prop("checked",false);
-				$('.hInput').attr("disabled",true);
+				$("input[name=cartItem]").prop("checked",false);
 			}
 			
 		});
 		
 	});
+	function changeInsCartPrice(e) { //cart 수량 변경시마다
+		e.value = Math.abs(e.value); //number 인풋에 자연수만 들어가도록 변경
+		if(e.value>9999){
+			e.value=9999;
+		}
+		
+		var paSelector = $(e).parent().parent();
+		var calPrice = e.value*
+			(Number($(paSelector).find('td:first-child>input[type=checkbox]').attr('data-goodsprice'))+
+			Number($(paSelector).find('td:first-child>input[type=checkbox]').attr('data-opt1price'))+
+			Number($(paSelector).find('td:first-child>input[type=checkbox]').attr('data-opt2price')));
+		$(paSelector).find('td:first-child>input[type=checkbox]').attr('data-quantity',e.value);
+		$(paSelector).find('td:first-child>input[type=checkbox]').attr('data-salprice',calPrice);
+		$(paSelector).find('td:last-child>strong').text(numComma(calPrice)+'원');
+	}
+	function numComma(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
 </script>
 
 <div id="cartListContainer">
 	<div id="carListBox">
-	<div id="cartHeaderBox">
-		<h2>장바구니</h2>
-	<hr>
-	</div>
-	<table id="cartTable">
-		<c:choose>
-			<c:when test="${cart!=null}">
-				<tr id="cartTableHeader">
-					<td><input type="checkbox" name="checkAllItems" id="checkAllItems"></td>
-					<td>상품번호</td>
-					<td colspan="2">상품정보</td>
-					<td>상품가격</td>
-					<td>옵션</td>
-					<td>수량</td>
-					<td>주문금액</td>
-				</tr>
-				<c:forEach var="cartItem" items="${cart}" varStatus="i">
-				<tr>
-					<td><input type="checkbox" name="selectItem"  class="selectItem"
-					value='${cartItem.productSeq}${cartItem.option}'>
-					</td>
-					<td>${cartItem.productSeq}</td>
-					<td><img src="${cartItem.photo}" alt="이미지없음" class="cartImg"></td>
-					<td>
-						<ul>
-							<li>${cartItem.productName}</li>
-							<li>${cartItem.detail}</li>
-						</ul>
-					</td>
-					<td>
-					<fmt:formatNumber value="${cartItem.price}" pattern="###,###,###,###,###"/>
-					</td>
-					<td>${cartItem.option}</td>
-					<td>
-					<fmt:formatNumber value="${cartItem.quantity}" pattern="###,###,###,###,###"/>
-					</td>
-					<td>
-					<fmt:formatNumber value="${cartItem.price*cartItem.quantity}" 
-					pattern="###,###,###,###,###"/>
-					</td>
-				</tr>
-				</c:forEach>
-				
-			</c:when>
-			<c:otherwise>
-				장바구니에 담긴 상품이 없습니다.
-			</c:otherwise>
-		</c:choose>
-	</table>
+		<div id="cartHeaderBox">
+			<h2>장바구니</h2>
+			<hr>
+		</div>
+		<table id="cartTable">
+			<tr id="cartTableHeader">
+				<td><input type="checkbox" id="checkAllItems"></td>
+				<td>상품번호</td>
+				<td colspan="2">상품정보</td>
+				<td>상품가격</td>
+				<td>수량</td>
+				<td>주문금액</td>
+			</tr>
+		</table>
 	</div>
 	<div class="cartSubBtnBox">
-	<input type="button" class="cartdeleteBtn storeBtn" value="선택상품삭제"> 
+		<input type="button" class="cartdeleteBtn storeBtn" value="선택상품삭제">
 	</div>
 	<div class="cartOrderBtnBox">
-		<input type="button" class="cartOrderBtn storeBtn" value="주문하기"> 
+		<input type="button" class="cartOrderBtn storeBtn" value="주문하기">
 	</div>
 	<form method="post" id="hCartForm">
-		<c:if test="${cart!=null}">
-			<c:forEach var="cartItem" items="${cart}" varStatus="i">
-				<input type="hidden" name="orders[${i.index}].productSeq"
-					class="${cartItem.productSeq}${cartItem.option} hInput"
-					value="${cartItem.productSeq}" disabled> 
-				<input type="hidden" name="orders[${i.index}].option"
-					class="${cartItem.productSeq}${cartItem.option} hInput"
-					value="${cartItem.option}" disabled> 
-				<input type="hidden" name="orders[${i.index}].userSeq"
-					class="${cartItem.productSeq}${cartItem.option} hInput"
-					value="${cartItem.userSeq}" disabled>
-			</c:forEach>
-		</c:if>
 	</form>
 </div>
 <br>

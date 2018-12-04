@@ -10,16 +10,14 @@
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script type="text/javascript">
 var insCnt=0;
-var insGoodsNames='';
-var goodsArr=[];
-var goods={
+/* var goods={
 		'gNo':'',
 		'gPrice':'',
 		'gOpt1Name':'',
 		'gOpt1Price':'',
 		'gOpt2Name':'',
 		'gOpt2Price':''
-		};
+		}; */
 var setGoodsBackColor = function(e) {
 	$('#goodsList>li').css('background-color','white');
 	e.style.backgroundColor='#f2f2f2';
@@ -423,9 +421,36 @@ var removeGoodsList = function(e) {
 	function imgError(e) {
 		e.src='<%=request.getContextPath()%>/img/noImage.png'
 	}
+	
 	function addCart() {
 		$('#hForm').text('');
 		var cartCnt = $('#insCartList>li').length;
+		if(cartCnt==0){
+			alert('장바구니에 추가할 상품이 없습니다.');
+			return false;
+		}
+		makeHInput(cartCnt);
+        $.ajax({
+				    url : '<%=request.getContextPath()%>/order/carts',
+				    type : 'POST',
+					data : $('#hForm').serialize(),
+					error : function(error) {
+				        alert("Error!");
+				    },
+					success : function(data) {
+						alert(data);
+					}
+				});
+	}
+	
+	function buyProduct() {
+		$('#quantity').val($('#selQuantity').val());
+		$('#option').val($('input[type=radio][name=color]:checked').val());
+		$("#hForm").attr("action", "<%=request.getContextPath()%>/order/insOrder");
+		$('#hForm').submit();
+	}
+	
+	function makeHInput(cartCnt){
 		for(i=0;i<cartCnt;i++){
 			$('<input/>').attr({
 				type:'hidden',
@@ -452,25 +477,8 @@ var removeGoodsList = function(e) {
 				}).appendTo('#hForm');
 			}
 		}
-		
-        $.ajax({
-				    url : '<%=request.getContextPath()%>/order/cart',
-				    type : 'POST',
-					data : $('#hForm').serialize(),
-					error : function(error) {
-				        alert("Error!");
-				    },
-					success : function(data) {
-						alert(data);
-					}
-				});
 	}
-	function buyProduct() {
-		$('#quantity').val($('#selQuantity').val());
-		$('#option').val($('input[type=radio][name=color]:checked').val());
-		$("#hForm").attr("action", "<%=request.getContextPath()%>/order/insOrder");
-		$('#hForm').submit();
-	}
+	
 	function changeInsCartPrice(e) {
 		var insCnt = e.dataset.inscnt;
 		e.value = Math.abs(e.value); //number 인풋에 자연수만 들어가도록 변경
@@ -543,7 +551,7 @@ var removeGoodsList = function(e) {
 					<h2>${proAndSal.productName}</h2>
 				</li>
 				<li>
-					<p>가격: <fmt:formatNumber value="${proAndSal.price}" pattern="###,###,###,###,###"/></p>
+					<p>가격: <fmt:formatNumber value="${proAndSal.price}" pattern="#,###"/></p>
 				</li>
 				<li>
 					<p>등록일: <fmt:formatDate value="${proAndSal.writeDate}" pattern="yyyy-MM-dd HH:mm"/></p>

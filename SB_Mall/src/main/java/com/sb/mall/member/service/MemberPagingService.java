@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.home.model.PageListView;
 import com.sb.mall.member.dao.MemberDao;
-import com.sb.mall.order.dao.OrderDao;
 import com.sb.mall.order.dao.OrderDetailDao;
 import com.sb.mall.store.dao.StoreDao;
 import com.sb.mall.store.model.StoreListView;
@@ -25,8 +24,6 @@ public class MemberPagingService {
 	
 	// getList()의 매개변수 pageNumber는 표시할 페이지, countPerPage는 표시할 페이지 갯수, daoName은 적용할 Dao 변수이름을 적고 변수이름을 똑같이 생성해주면 된다 
 	private MemberDao memberDao;
-
-	private OrderDao orderDao;
 
 	private OrderDetailDao orderDetailDao;
 	
@@ -50,9 +47,6 @@ public class MemberPagingService {
 		if (daoName.equals("memberDao")) {
 			memberDao = sessionTemplate.getMapper(MemberDao.class);
 			objTotalCount = memberDao.selectCount();
-		} else if (daoName.equals("orderDao")) {
-			orderDao = sessionTemplate.getMapper(OrderDao.class);
-			objTotalCount = orderDao.selectCount();
 		} else if (daoName.equals("orderDetailDao")) {
 			orderDetailDao = sessionTemplate.getMapper(OrderDetailDao.class);
 			objTotalCount = orderDetailDao.selectCount();
@@ -66,8 +60,6 @@ public class MemberPagingService {
 			// 현재 페이지에 표시할 메세지를 가져온다.
 			if (daoName.equals("memberDao")) {
 				objList = memberDao.selectList(firstRow, endRow);
-			} else if (daoName.equals("orderDao")) {
-				objList = orderDao.selectList(firstRow, endRow);
 			} else if (daoName.equals("orderDetailDao")) {
 				objList = orderDetailDao.selectList(firstRow, endRow);
 			}

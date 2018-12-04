@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.order.dao.OrderDao;
 import com.sb.mall.order.model.Order;
-import com.sb.mall.order.model.OrderOrderCommand;
 
 @Service
 public class OrderCartService {
@@ -23,11 +22,9 @@ public class OrderCartService {
 	private OrderDao orderDao;
 	
 	@Transactional
-	public void addCart(OrderOrderCommand orderCommand) throws SQLException {
+	public void addCart(String orders) throws SQLException {
 		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
-		List<Order> orderList = orderCommand.getOrders();
-		System.out.println(orderList);
-		orderDao.insertCart(orderList);
+		orderDao.insertCart(orders);
 	}
 	
 	@Transactional
@@ -36,10 +33,10 @@ public class OrderCartService {
 		orderDao.deleteCart(orders);
 	}
 	
-	public List<Map<String,Object>> selectCart(int userSeq) throws SQLException{
+	public List<Map<String,Object>> selectCarts(int userSeq) throws SQLException{
 		List<Map<String,Object>> list = null;
 		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
-		list= orderDao.selectCart(userSeq);
+		list= orderDao.selectCarts(userSeq);
 		return list;
 	}
 	

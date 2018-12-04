@@ -4,31 +4,10 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sb.mall.order.dao.OrderDao">
 
-	<insert id="insertCart" useGeneratedKeys="true" keyProperty="orderSeq">
-		insert into `Order`(userSeq,goodsNo,quantity,salePrice,optionSeq) 
-		values
-		<foreach collection="list" item="orders" open="("  separator="," close=")">
-			#{orders.userSeq},#{orders.goodsNo},#{orders.quantity},#{orders.salePrice},
-			<choose>
-				<when test="orders.optionSeq==0">
-					null
-				</when>
-				<otherwise>
-					#{orders.optionSeq}
-				</otherwise>
-			</choose>
-		</foreach>
-		<!-- 컬럼 orderDetailNum,userSeq,goodsNo,optionSeq로 unique idx 생성되어있어야함 -->
-		on duplicate key update quantity=quantity+values(quantity);
+	<insert id="insertCarts" statementType="CALLABLE">
+		{ call insert_CartJson(#{orders}) }
 	</insert>
-	<!-- insert into `Order`(userSeq,goodsNo,optionSeq,quantity,salePrice)
-        select #{userSeq},#{goodsNo},#{optionSeq},#{quantity},#{salePrice} from dual
-        where not exists 
-        (
-			select goodsNo,optionSeq
-            from `Order`
-            where orderDetailNum=0 and goodsNo=#{goodsNo} and optionSeq=#{optionSeq}
-		); --> 
+
 	<insert id="insertOrderDetail" parameterType="com.sb.mall.order.model.OrderDetail">
 		insert into `OrderDetail`(orderDetailNum,userSeq,payment,orderTime,status,totalAmount)
 		value(#{orderDetailNum},#{userSeq},#{payment},now(),#{status},#{totalAmount})
@@ -61,11 +40,11 @@
 		</where>
 	</update>
 
-	<update id="updateDuplicateCart" parameterType="com.sb.mall.order.model.Order">
+	<!-- <update id="updateDuplicateCart" parameterType="com.sb.mall.order.model.Order">
 		update `Order`set quantity=quantity+#{quantity}, salePrice=salePrice+#{salePrice} 
 		where userSeq=#{userSeq} and productSeq=#{productSeq} and `option`=#{option}
 		and orderDetailNum=0
-	</update>
+	</update> -->
 
 	<update id="updateUserPoint">
 		update MemberInfo m,Grade g
@@ -80,13 +59,13 @@
 		</where>
 	</update>
 
-	<update id="update" parameterType="com.sb.mall.order.model.Order">
-	</update>
+<!-- 	<update id="update" parameterType="com.sb.mall.order.model.Order">
+	</update> -->
 
-	<update id="updateStatus" parameterType="Map">
-	</update>
+	<!-- <update id="updateStatus" parameterType="Map">
+	</update> -->
 	
-	<delete id="deleteCart" >
+	<delete id="deleteCarts" >
 		delete from `Order` 
 		<where>
 		<foreach collection="list" item="orders" open="" separator="" close="" index="index">
@@ -95,23 +74,23 @@
 			</if>
 		</foreach>
 		<foreach collection="list" item="orders" open="(" separator="or" close=")" index="index">
-			productSeq=#{orders.productSeq} and `option`=#{orders.option}
+			goodsNo=#{orders.goodsNo} and optionSeq=#{orders.optionSeq}
 		</foreach>
 		</where>
 	</delete>
-
-	<delete id="delete" parameterType="int">
-	</delete>
 	
-	<select id="checkDuplicateCart" 
+<!-- 	<select id="checkDuplicateCart" 
 	parameterType="com.sb.mall.order.model.Order" resultType="com.sb.mall.order.model.Order" >
 		SELECT * FROM `Order` where 
 		OrderDetailNum=0 and userSeq=#{userSeq} and productSeq=#{productSeq} and `option`=#{option}
-	</select>
+	</select> -->
 
-	<select id="selectCart" resultType="map">
-		SELECT * FROM `Order` o, Product p where userSeq=#{userSeq} 
-		and OrderDetailNum=0 and p.productSeq=o.productSeq
+	<select id="selectCarts" resultType="map">
+		SELECT * FROM `Order` o, Goods g, GoodsOption go, Product p
+		<where>
+		o.userSeq=#{param1} and o.orderDetailNum=0 
+		and o.goodsNo=g.goodsNo and g.productSeq=p.productSeq and o.optionSeq=go.optionSeq;
+		</where>
 	</select>
 	
 	<select id="selectCartForOrder" resultType="map">
@@ -129,32 +108,13 @@
 		and p.productSeq=o.productSeq
 	</select>
 	
-	
 	<select id="selectProduct" resultType="com.sb.mall.store.model.Product">
 		SELECT * FROM Product where productSeq=#{productSeq}
-	</select>
-
-	<select id="selectAll" resultType="com.sb.mall.order.model.Order">
-	</select>
-
-	<select id="selectColumn" resultType="com.sb.mall.order.model.Order"
-		parameterType="Map">
-	</select>
-
-	<select id="selectJoin" resultType="com.sb.mall.order.model.Order"
-		parameterType="Map">
-	</select>
-
-	<select id="selectMemberOrder"
-		resultType="com.sb.mall.order.model.Order">
 	</select>
 
 	<select id="select" resultType="com.sb.mall.order.model.Order"
 		parameterType="String">
 		select * from `Order` where orderDetailNum = #{orderDetailNum}
-	</select>
-
-	<select id="selectOrder" resultType="com.sb.mall.order.model.Order">
 	</select>
 
 </mapper>
