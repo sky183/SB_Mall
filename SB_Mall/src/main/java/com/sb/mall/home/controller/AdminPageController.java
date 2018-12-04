@@ -14,9 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sb.mall.admin.model.AdminVO;
-import com.sb.mall.admin.service.AdminMainService;
-import com.sb.mall.admin.service.AdminPagingService;
+import com.sb.mall.admin.adminMain.model.AdminMainVO;
+import com.sb.mall.admin.adminMain.service.AdminMainService;
+import com.sb.mall.admin.adminMain.service.AdminPagingService;
 import com.sb.mall.home.model.PageListView;
 
 
@@ -31,13 +31,13 @@ public class AdminPageController {
 	static final int COUNT_PER_PAGE = 10;
 	
 	//관리자페이지 메인
-	@RequestMapping(value="/admin/adminPage", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/adminMain", method=RequestMethod.GET)
 	public ModelAndView adminPage(@RequestParam(value="page", defaultValue="1") int membPageNum) throws JsonProcessingException {
 		
-		ModelAndView modelAndView = new ModelAndView("/view/adminPage");
+		ModelAndView modelAndView = new ModelAndView("/admin/adminMain");
 		
 		//메인 어드민 총 정보
-		AdminVO admin = new AdminVO();
+		AdminMainVO admin = new AdminMainVO();
 		
 		//상품 Top5 저장할 맵(상품 이름, 상품 매출)
 		Map<String, Object> top5Map = new HashMap<String, Object>();
@@ -67,7 +67,7 @@ public class AdminPageController {
 		modelAndView.addObject("budgetSales", budgetSales);
 		modelAndView.addObject("admin", admin);
 		//해당 페이지 버튼 활성화
-		modelAndView.addObject("adminPage", "active");
+		modelAndView.addObject("adminMain", "active");
 		
 		
 		

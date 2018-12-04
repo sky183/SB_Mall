@@ -1,10 +1,20 @@
 @charset "UTF-8";
 
 /* admin 공통사항 */
+.preDate, .nextDate{
+	cursor: pointer;
+	border: none;
+	background : none;
+	text-decoration: none; 
+}
+.preDate:focus, .nextDate:focus{
+	outline: none;
+}
+
 .monthButton, .monthButton1, .monthButton2{
 	width: 17px;
 	padding-left: 1px;
-	padding-top: 2px;
+	padding-top: 1px;
 	vertical-align: top;
 	overflow: hidden;
 	border: 0;

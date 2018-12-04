@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sb.mall.admin.dao.AdminDao;
-import com.sb.mall.admin.model.AdminVO;
+import com.sb.mall.admin.dao.AdminMainDao;
+import com.sb.mall.admin.model.AdminMainVO;
 
 @Repository
 public class 서비스예시 {
@@ -22,7 +22,7 @@ public class 서비스예시 {
 	@Transactional
 	public String getAdminReport() {
 		
-		dao = sqlSessionTemplate.getMapper(AdminDao.class);
+		dao = sqlSessionTemplate.getMapper(AdminMainDao.class);
 		
 		return "";
 

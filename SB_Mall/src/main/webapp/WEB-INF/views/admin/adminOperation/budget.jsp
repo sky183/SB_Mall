@@ -128,8 +128,9 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	//input 태그에 오늘 날짜 불러온다.
-	$( ".datepicker" ).val(new Date().format("yyyy"));
+	
+	//input 태그에 오늘 년도를 불러온다.
+	$( ".datepicker" ).val(nowYear);
 	
 	//메뉴 및 서브메뉴에 css 적용
 	removeActive('#budget', 0);

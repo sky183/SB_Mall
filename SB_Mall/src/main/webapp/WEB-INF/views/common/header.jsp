@@ -27,7 +27,7 @@
 				<c:choose>
 					<c:when test='${memberInfo.gradeNum >= 3}'>
 						<a class="headerNaviText naviBigMenu"
-							href="<%=request.getContextPath()%>/admin/adminPage">admin</a>
+							href="<%=request.getContextPath()%>/admin/adminMain">admin</a>
 					</c:when>
 				</c:choose>
 

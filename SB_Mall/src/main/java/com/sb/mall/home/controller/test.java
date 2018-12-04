@@ -17,7 +17,7 @@ public class test {
 	@RequestMapping(value="/chart", method = RequestMethod.GET)
 	public ModelAndView adminPage() throws JsonProcessingException {
 
-		ModelAndView modelAndView = new ModelAndView("/admin/option/bar");
+		ModelAndView modelAndView = new ModelAndView("/admin/etc/bar");
 
 		List<testObject> list = new ArrayList<testObject>();
 
@@ -36,7 +36,7 @@ public class test {
 	@RequestMapping(value="/chart2", method = RequestMethod.GET)
 	public ModelAndView adminPage2() throws JsonProcessingException {
 		
-		ModelAndView modelAndView = new ModelAndView("/admin/option/bar2");
+		ModelAndView modelAndView = new ModelAndView("/admin/etc/bar2");
 		
 		List<testObject> list = new ArrayList<testObject>();
 		

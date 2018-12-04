@@ -149,8 +149,8 @@
 $(document).ready(function(){
 	
 	//input 태그에 오늘 날짜 불러온다.
-	$( "#startDate" ).val(firstDate.format("yyyy.MM.dd"));
-	$( "#endDate" ).val(lastDate.format("yyyy.MM.dd"));
+	$( "#startDate" ).val(firstDate);
+	$( "#endDate" ).val(lastDate);
 	
 	//메뉴 및 서브메뉴에 css 적용
 	removeActive('#salReport', '#dailySal');

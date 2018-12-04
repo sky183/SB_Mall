@@ -122,24 +122,65 @@ String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s
 String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
 Number.prototype.zf = function(len){return this.toString().zf(len);};
 
-//오늘 구하기
+//오늘을 date 형식으로 구하기
 var now = new Date();
-//이번달 1일 말일 구하기
-var firstDate = new Date(now.getFullYear(), now.getMonth(), 1);
-var lastDate =  new Date(now.getFullYear(), now.getMonth()+1, 0);
-var firstDateThis;
-var lastDateThis;
-
-//특정달 1일 말일 구하기
-function getFistDate(date){
-	var dateSource = new Date(date);
-	return new Date(dateSource.getFullYear(), dateSource.getMonth(), 1);
+//특정일을 date 형식으로 구하기
+function getThisDate(object){
+	return new Date(object);
 }
-function getLastDate(date){
-	var dateSource = new Date(date);
-	return new Date(dateSource.getFullYear(), dateSource.getMonth(), 1);
-}
+//오늘 구하기
+var nowString =  now.format("yyyy.MM.dd");
+//특정일 구하기
+function getThisDate(object){return new Date(object).format("yyyy.MM.dd");}
+//이번달 구하기
+var nowMonth = now.format("yyyy.MM");
+//이번년도를 구하기
+var nowYear = now.format("yyyy");
+//이번달 1일 말일을 각각 구하기
+var firstDate = new Date(now.getFullYear(), now.getMonth(), 1).format("yyyy.MM.dd");
+var lastDate =  new Date(now.getFullYear(), now.getMonth()+1, 0).format("yyyy.MM.dd");
+//이번년도 1월 12월을 각각 구하기
+var firstMonth = now.format("yyyy.01");
+var lastMonth = now.format("yyyy.MM");
 
+//특정달 1일 구하기
+function getFistDate(object){
+	var dateSource = new Date(object);
+	return new Date(dateSource.getFullYear(), dateSource.getMonth(), 1).format("yyyy.MM.dd");
+}
+//특정달 말일 구하기
+function getLastDate(object){
+	var dateSource = new Date(object);
+	return new Date(dateSource.getFullYear(), dateSource.getMonth()+1, 0).format("yyyy.MM.dd");
+}
+//특정일 전날 구하기
+function getPreDate(object){
+	var dateSource = new Date(object);
+	return new Date(dateSource.getFullYear(), dateSource.getMonth(), dateSource.getDate()-1).format("yyyy.MM.dd");
+}
+//특정일 다음날 구하기
+function getNextDate(object){
+	var dateSource = new Date(object);
+	return new Date(dateSource.getFullYear(), dateSource.getMonth(), dateSource.getDate()+1).format("yyyy.MM.dd");
+}
+//특정달 전달 구하기
+function getPreMonth(object){
+	var dateSource = new Date(object);
+	return new Date(dateSource.getFullYear(), dateSource.getMonth()-1).format("yyyy.MM");
+}
+//특정달 다음달 구하기
+function getNextMonth(object){
+	var dateSource = new Date(object);
+	return new Date(dateSource.getFullYear(), dateSource.getMonth()+1).format("yyyy.MM");
+}
+//특정년 전년 구하기
+function getPreYear(object){
+	return new Date(object).format("yyyy")-1;
+}
+//특정년 전년 구하기
+function getNextYear(object){
+	return new Date(object).format("yyyy")+1;
+}
 
 
 
