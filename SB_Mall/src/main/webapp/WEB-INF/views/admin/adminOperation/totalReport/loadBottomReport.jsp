@@ -139,15 +139,9 @@
 					<span id="supplies" class="result">20,000,000</span>
 					<span class="footer">%</span>
 				</div>
-				<!-- TCI -->
-				<div>
-					<span class="title">TCI</span>
-					<span id=TCI class="result">20,000,000</span>
-					<span class="footer">%</span>
-				</div>
-				<!-- TNI -->
+				<!-- TNC -->
 				<div class="bottom5">
-					<span class="title">TNI</span>
+					<span class="title">TNC</span>
 					<span id="TNI" class="result">20,000,000</span>
 					<span class="footer">%</span>
 				</div>
@@ -156,6 +150,12 @@
 					<span class="subTitle">임대료</span>
 					<span id="rent" class="result">20,000,000</span>
 					<span class="footer">원</span>
+				</div>
+				<!-- TCI -->
+				<div>
+					<span class="title">TCI</span>
+					<span id=TCI class="result">20,000,000</span>
+					<span class="footer">%</span>
 				</div>
 				<!-- Operating Cashflow -->
 				<div>
@@ -172,3 +172,4 @@
 		
 	<!-- mainBottom의 끝 -->
 	</div>
+	

@@ -12,14 +12,14 @@
 <meta charset="UTF-8">
 <title>매출관리</title>
 <!-- 헤더 삽입 -->
-<%@ include file="/WEB-INF/views/admin/include/adminheader.jsp"%>
+<%@ include file="/WEB-INF/views/admin/common/adminheader.jsp"%>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/admin/adminPage.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/admin/adminContent.css">
 </head>
 <body>
-<%@ include file="/WEB-INF/views/admin/include/adminNavi.jsp"%>
+<%@ include file="/WEB-INF/views/admin/common/adminNavi.jsp"%>
 <div id="adminWrapper">
 		<div id="bottomContent">
 			<!--상단메뉴의 끝 하단메뉴의 시작-->

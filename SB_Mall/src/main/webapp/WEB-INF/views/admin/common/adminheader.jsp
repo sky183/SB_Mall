@@ -124,9 +124,11 @@ Number.prototype.zf = function(len){return this.toString().zf(len);};
 
 //오늘을 date 형식으로 구하기
 var now = new Date();
-//특정일을 date 형식으로 구하기
-function getThisDate(object){
-	return new Date(object);
+//특정일 Date 형식으로 담을 변수
+var thisDate;
+//특정달 및 년을 yyyy.MM.dd 형식으로 변환
+function getDate(object){
+	return new Date(object).format("yyyy.MM.dd");
 }
 //오늘 구하기
 var nowString =  now.format("yyyy.MM.dd");

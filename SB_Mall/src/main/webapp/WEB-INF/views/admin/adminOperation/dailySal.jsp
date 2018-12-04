@@ -152,7 +152,7 @@ $(document).ready(function(){
 	$( "#startDate" ).val(firstDate);
 	$( "#endDate" ).val(lastDate);
 	
-	//메뉴 및 서브메뉴에 css 적용
+	//메뉴 및 서브메뉴에 css 적용 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것
 	removeActive('#salReport', '#dailySal');
 	
 	

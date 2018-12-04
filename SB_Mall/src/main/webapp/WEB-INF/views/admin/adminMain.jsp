@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 헤더 삽입 -->
-<%@ include file="/WEB-INF/views/admin/include/adminheader.jsp"%>
+<%@ include file="/WEB-INF/views/admin/common/adminheader.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminPage.css">
 <script type="text/javascript">
 /* 	//자바스크립트로 소수점 버리고 포맷 변환하는 함수
@@ -23,7 +23,7 @@
 </script>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/admin/include/adminNavi.jsp"%>
+<%@ include file="/WEB-INF/views/admin/common/adminNavi.jsp"%>
 <!-- 페이지 래퍼 -->
 <div id="adminWrapper">
 	

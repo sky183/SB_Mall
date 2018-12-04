@@ -1,4 +1,4 @@
-package com.sb.mall.home.controller;
+package com.sb.mall.admin.adminMain.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ import com.sb.mall.home.model.PageListView;
 
 
 @Controller
-public class AdminPageController {
+public class AdminMainController {
 	
 	@Autowired
 	private AdminMainService adminService;

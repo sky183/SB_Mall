@@ -6,15 +6,16 @@
 	<!-- 날짜 선택 -->
 	<div id="mainHeader">
 		<span>
-			<button class="preDate fon22"> &lt; </button> 
+			<button class="preDate fon22" name="preDate"> &lt; </button> 
 			<input type="text" id="totalDatepicker" name="date" class="datepicker dateInput fon22 fonb" readOnly value="">
-			<button class="nextDate fon22"> &gt; </button> 
+			<button class="nextDate fon22" name="nextDate"> &gt; </button> 
 		</span>
 		<span class="absol">
 			<span class="fon12 downButton">다운로드</span>
 			<span class="fon12 downButton">프린트</span>
 		</span>
 	</div>
+	<div id="bottomReport"></div>
 	
 <!-- mainContent의 끝 -->
 </div>
@@ -26,8 +27,10 @@ $(document).ready(function(){
 	//input 태그에 오늘 날짜 불러온다.
 	$( ".datepicker" ).val(nowString);
 	
+	//오늘 날짜로 페이지 정보를 불러온다.
+	$('#bottomReport').load('<%=request.getContextPath()%>/admin/adminOperation/totalReport/loadBottomReport?nowDate=' + nowString);
 
-	//메뉴 및 서브메뉴에 css 적용
+	//메뉴 및 서브메뉴에 css 적용 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것
 	removeActive('#totalReport', 0);
 	
 	//데이트 피커
@@ -50,15 +53,48 @@ $(document).ready(function(){
 	    $('img.ui-datepicker-trigger').css('cursor', 'pointer');
 	});
 	
-	$('.preDate').on('click', function(){
+	//이전 날짜 선택시 날짜 바꿔서 ajax 처리
+	$('.preDate, .nextDate').on('click', function(){
 		var preDate = getPreDate($(".datepicker").val());
-		$( ".datepicker" ).val(preDate);
+		var nextDate = getNextDate($(".datepicker").val());
+		var nowDate;
+		if ($(this).attr('name') == preDate) {
+			$( ".datepicker" ).val(preDate);
+			nowDate = getDate(preDate);
+		} else {
+			$( ".datepicker" ).val(nextDate);
+			nowDate = getDate(nextDate);
+		}
+		
+		$.ajax({
+			url : '<%=request.getContextPath()%>/admin/adminOperation/totalReport/loadBottomReport?=' + nowDate,
+			error : function(error) {
+		        alert("Error!");
+		    },
+			success : function(data) {
+// 				console.log(nowDate);
+				$('#bottomReport').html(data);
+			}
+		});
 	});
 	
-	$('.nextDate').on('click', function(){
-		var nextDate = getNextDate($( ".datepicker" ).val());
-		$( ".datepicker" ).val(nextDate);
+	//날짜 변경시 ajax 처리
+	$('.datepicker').on('change', function(){
+		var nowDate = getDate($( ".datepicker" ).val());
+		
+		$.ajax({
+			url : '<%=request.getContextPath()%>/admin/adminOperation/totalReport/loadBottomReport?=' + nowDate,
+			error : function(error) {
+		        alert("Error!");
+		    },
+			success : function(data) {
+// 				console.log(nowDate);
+				$('#bottomReport').html(data);
+			}
+		});
+		
 	});
+	
 	
 
 });
