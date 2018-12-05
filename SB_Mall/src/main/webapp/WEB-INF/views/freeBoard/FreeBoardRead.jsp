@@ -32,31 +32,38 @@
 
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-<h1>자유게시판_글쓰기</h1>
+<h1>자유게시판_게시글읽기</h1>
 
 <form method="POST" action="insert">
 	<div class="freeboard_wrap">
 		<table border="1" style="padding: 5px 0 5px 0;">
 			<tr>
-				<th>제목</th><td><input type="text" name="boardTitle" placeholder="제목을 입력해 주세요" required></td>
+				<th>게시글번호</th><td>${freeBoard.boardSeq}</td>
+				<th>제목</th><td>${freeBoard.boardTitle}</td>
 			</tr>
 			<tr>
-				<th>작성자 이름</th><td><input type="text" name="writerName" readonly="readonly" value="${memberInfo.userName}"></td>
+				<th>유저번호</th><td>${freeBoard.userSeq}</td>
+				<th>작성자 이름</th><td>${freeBoard.writerName}</td>
 			</tr>
 			<tr>
 				<td colspan="4">
-					<textarea rows="" class="freeboard_textarea" name="boardContent" placeholder="내용을 입력해 주세요" required></textarea>
+					<textarea rows="" class="freeboard_textarea" name="boardContent"  readonly="readonly">${freeBoard.boardContent}</textarea>
 				</td>
 				
 			</tr>
 			<tr>
 				<td colspan="4">
 					<div class="freeboard_Button">
-						<input type="submit" 
+									
+						<a type="Button" 
 						class="btn my-4 btn-block"
 						style="background-color: #ffc828"
-						value="확인">
-									
+						href="<%=request.getContextPath()%>/freeBoard/update?boardSeq=${freeBoard.boardSeq}&&userSeq=${freeBoard.userSeq}">수정</a>
+						<a type="Button" 
+						class="btn my-4 btn-block"
+						style="background-color: #ffc828"
+						href="<%=request.getContextPath()%>/freeBoard/delete?boardSeq=${freeBoard.boardSeq}&&userSeq=${freeBoard.userSeq}">삭제</a>
+						
 						<a type="Button" 
 						class="btn my-4 btn-block"
 						style="background-color: #ffc828"

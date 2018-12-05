@@ -5,25 +5,33 @@
 
 <mapper namespace="com.sb.mall.FreeBoard.dao.FreeBoardDao">
  		
+ 	
+ 	<select id="selectAll_FreeBoard" resultType="com.sb.mall.FreeBoard.model.FreeBoard">
+ 		select * from FreeBoard order by boardSeq desc
+ 	</select>
+ 	
  	<!-- Create -->
     <insert id="insert_FreeBoard" parameterType="com.sb.mall.FreeBoard.model.FreeBoard"
     useGeneratedKeys="true" keyProperty="boardSeq">
- 		insert into FreeBoard (boardTitle,boardContent,writerName)
-		values(#{boardTitle},#{boardContent},#{writerName});
+    	
+    	insert into FreeBoard (userSeq,boardTitle,boardContent,writerName)
+		values (#{userSeq}, #{boardTitle}, #{boardContent}, #{writerName})
     </insert>
     
  	<!-- Read:게시글 번호로 해당 게시글 조회 select*from FreeBoard where boardSeq = 4; -->
- 	<select id="select_FreeBoard" parameterType="com.sb.mall.FreeBoard.model.FreeBoard">
+ 	<select id="select_FreeBoard" resultType="com.sb.mall.FreeBoard.model.FreeBoard">
  		select*from FreeBoard where boardSeq = #{boardSeq}
  	</select>
  	
  	<!-- Update -->
- 	<update id="update_FreeBoard">
- 		<!-- update QnABoard set qtitle=#{qtitle} , qtext = #{qtext} where qnaSeq = #{qnaSeq} -->
- 		
+ 	<update id="update_FreeBoard" parameterType="com.sb.mall.FreeBoard.model.FreeBoard">
+ 		<!-- update FreeBoard set boardTitle = 1234 , boardContent = 1234 where boardSeq = 22; -->
+ 		update FreeBoard set boardTitle=#{boardTitle} , boardContent = #{boardContent} where boardSeq = #{boardSeq}
  	</update>
  	<!-- Delete -->
-	
+	<delete id="delete_FreeBoard">
+        delete from FreeBoard where boardSeq = #{boardSeq}
+    </delete>
 	
 	
 </mapper>

@@ -9,7 +9,7 @@ import com.sb.mall.FreeBoard.dao.FreeBoardDao;
 import com.sb.mall.FreeBoard.model.FreeBoard;
 
 @Repository
-public class FreeBoardService {
+public class FreeBoardService_Select {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
@@ -17,17 +17,17 @@ public class FreeBoardService {
 	
 	/*Create*/
 	@Transactional
-	public int freeBoardService_Create(FreeBoard freeBoard) throws Exception {
-		System.out.println("[freeBoard_Create()]");
-		System.out.println("/*Writing..*/");
+	public FreeBoard freeBoardService_Select(int boardSeq) throws Exception {
+		System.out.println("[freeBoardService_Select()]");
+		System.out.println("/*Selecting..*/");
 		
 		freeBoardDao = sqlSessionTemplate.getMapper(FreeBoardDao.class);
 		
-		int resultCnt = 0;
-		resultCnt = freeBoardDao.insert_FreeBoard(freeBoard);
+		FreeBoard resultObject = null;
+		resultObject = freeBoardDao.select_FreeBoard(boardSeq);
 		
-		System.out.println("/*End of writing*/");
-		return resultCnt;
+		System.out.println("/*End of Selecting*/");
+		return resultObject;
 		
 	}
 

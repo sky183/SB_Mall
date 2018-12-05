@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-	
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+.freeboard_textarea {
+	width: 98%;
+	height: 90%;
+}
+</style>
 <title>Insert title here</title>
 
 <!-- Font Awesome -->
@@ -29,51 +32,44 @@
 
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-<h1>자유게시판</h1>
-	<form>
+<h1>자유게시판_수정</h1>
+
+<form method="post" action="<%=request.getContextPath()%>/freeBoard/update_over">
 	<div class="freeboard_wrap">
 		<table border="1" style="padding: 5px 0 5px 0;">
-
-			<thead>
-				<tr>
-					<th><input type="checkbox" /></th>
-					<th>게시글번호</th>
-					<th>게시글제목</th>
-					<th>작성자</th>
-					<th>작성날짜</th>
-				</tr>
-			</thead><!-- end of thead -->
-			<tbody>
-			<c:forEach items="${FreeBoardList}" var="freeBoard">
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>${freeBoard.boardSeq}</td>
-					<td><A href="<%=request.getContextPath()%>/freeBoard/select?boardSeq=${freeBoard.boardSeq}">${freeBoard.boardTitle}</A></td>
-					<td>${freeBoard.writerName}</td>
-					<td>${freeBoard.boardWriteDate}</td>
-				</tr>
-			</c:forEach>
-			</tbody><!-- end of tbody -->
+			<tr>
+				<th>게시글번호</th><td><input type="text" name="boardSeq" value="${freeBoard.boardSeq}" required></td>
+				<th>제목</th><td><input type="text" name="boardTitle" value="${freeBoard.boardTitle}" required></td>
+			</tr>
+			<tr>
+				<th>유저번호</th><td>${freeBoard.userSeq}</td>
+				<th>작성자 이름</th><td><input type="text" name="writerName" readonly="readonly" value="${freeBoard.writerName}" required="required"></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<textarea rows="" class="freeboard_textarea" name="boardContent" required>${freeBoard.boardContent}</textarea>
+				</td>
+				
+			</tr>
+			<tr>
+				<td colspan="4">
+					<div class="freeboard_Button">
+						<input type="submit" 
+						class="btn my-4 btn-block"
+						style="background-color: #ffc828"
+						value="확인">
+									
+						<a type="Button" 
+						class="btn my-4 btn-block"
+						style="background-color: #ffc828"
+						href="<%=request.getContextPath()%>/freeBoard">취소</a>
+					</div><!-- end of <div class="freeboard_Button"> -->
+				</td>
+			</tr>
+			
 		</table><!-- The end of Table -->
 	</div><!-- end of <div class="freeboard_wrap">-->
-	<div class="freeboard_Button">
-		<div class="write_button_right">
-			<a type="button" 
-			class="btn my-4 btn-block"
-			style="background-color: #ffc828"
-			href="<%=request.getContextPath()%>/freeBoard/writePage"
-			>글쓰기</a>
-				
-		</div>
-		<div class="write_button_left">
-			<a type="button" 
-			class="btn my-4 btn-block"
-			style="background-color: #ffc828"
-			href="<%=request.getContextPath()%>/freeBoard"
-			>전체글</a>
-		</div>
-	</div><!-- end of <div class="freeboard_Button"> -->
-	</form><!-- The end of Form -->
+</form><!-- The end of Form -->
 
 </body>
 </html>
