@@ -2,11 +2,115 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.sb.mall.admin.adminOperation.dao.AdminOperationDao">
- 	
- 	<select id="visitCountTotal" resultType="int">
-		select sum(visitCount) from VisitGuest
-	</select>	
- 
- </mapper> 
+<mapper
+	namespace="com.sb.mall.admin.adminOperation.dao.AdminOperationDao">
+	
+<!-- 	맵 객체를 생성해준다. column에서 반환된 값을 property에 지정한 key로 생성하여 javaType에 지정된 값으로 할당한다. -->
+	<resultMap id="intMap" type="java.util.Map">
+		<result column="dailySales" property="dailySales" javaType="java.lang.Integer"/>
+		<result column="orderCount" property="orderCount" javaType="java.lang.Integer"/>
+	</resultMap>
+
+	<!-- // 토탈연버젯, 이번달까지연버젯, 토탈월버젯, 오늘까지월버젯 -->
+	<select id="totalBudget" resultType="map">
+		select yearBudget
+		yearBudgetTotal, (case when month(#{nowDate}) = 1 then
+		Jan when
+		month(#{nowDate}) = 2 then Jan+Feb when month(#{nowDate})
+		= 3 then
+		Jan+Feb+Mar when month(#{nowDate}) = 4 then Jan+Feb+Mar+Apr
+		when
+		month(#{nowDate}) = 5 then Jan+Feb+Mar+Apr+May when
+		month(#{nowDate}) = 6 then Jan+Feb+Mar+Apr+May+Jun when
+		month(#{nowDate}) = 7 then Jan+Feb+Mar+Apr+May+Jun+Jul when
+		month(#{nowDate}) = 8 then Jan+Feb+Mar+Apr+May+Jun+Jul+Aug when
+		month(#{nowDate}) = 9 then Jan+Feb+Mar+Apr+May+Jun+Jul+Aug+Sep when
+		month(#{nowDate}) = 10 then Jan+Feb+Mar+Apr+May+Jun+Jul+Aug+Sep+Oct
+		when month(#{nowDate}) = 11 then
+		Jan+Feb+Mar+Apr+May+Jun+Jul+Aug+Sep+Oct+Nov when month(#{nowDate}) =
+		12 then Jan+Feb+Mar+Apr+May+Jun+Jul+Aug+Sep+Oct+Nov+`Dec` end)
+		yearBudget, (case when month(#{nowDate}) = 1 then Jan when
+		month(#{nowDate}) = 2 then Feb when month(#{nowDate}) = 3 then Mar
+		when month(#{nowDate}) = 4 then Apr when month(#{nowDate}) = 5
+		then May when month(#{nowDate}) = 6 then Jun when
+		month(#{nowDate}) = 7 then Jul when month(#{nowDate}) = 8 then Aug
+		when month(#{nowDate}) = 9 then Sep when month(#{nowDate}) = 10
+		then Oct when month(#{nowDate}) = 11 then Nov when
+		month(#{nowDate}) = 12 then `Dec` end) monthBudgetTotal, (case when
+		month(#{nowDate}) = 1 THEN ROUND(Jan / day(LAST_DAY(#{nowDate})) *
+		day(#{nowDate})) when month(#{nowDate}) = 2 THEN ROUND(Feb /
+		day(LAST_DAY(#{nowDate})) * day(#{nowDate})) when
+		month(#{nowDate}) = 3 THEN ROUND(Mar / day(LAST_DAY(#{nowDate})) *
+		day(#{nowDate})) when month(#{nowDate}) = 4 THEN ROUND(Apr /
+		day(LAST_DAY(#{nowDate})) * day(#{nowDate})) when
+		month(#{nowDate}) = 5 THEN ROUND(May / day(LAST_DAY(#{nowDate})) *
+		day(#{nowDate})) when month(#{nowDate}) = 6 THEN ROUND(Jun /
+		day(LAST_DAY(#{nowDate})) * day(#{nowDate})) when
+		month(#{nowDate}) = 7 THEN ROUND(Jul / day(LAST_DAY(#{nowDate})) *
+		day(#{nowDate})) when month(#{nowDate}) = 8 THEN ROUND(Aug /
+		day(LAST_DAY(#{nowDate})) * day(#{nowDate})) when
+		month(#{nowDate}) = 9 THEN ROUND(Sep / day(LAST_DAY(#{nowDate})) *
+		day(#{nowDate})) when month(#{nowDate}) = 10 THEN ROUND(Oct /
+		day(LAST_DAY(#{nowDate})) * day(#{nowDate})) when
+		month(#{nowDate}) = 11 THEN ROUND(Nov / day(LAST_DAY(#{nowDate})) *
+		day(#{nowDate})) when month(#{nowDate}) = 12 THEN ROUND(`Dec` /
+		day(LAST_DAY(#{nowDate})) * day(#{nowDate})) end) monthBudget from
+		Budget where year = year(#{nowDate});
+	</select>
+	<!-- // 이번달까지 연매출 -->
+	<select id="yearAmount" resultType="long">
+		SELECT sum(totalAmount)
+		yearAmount FROM OrderDetail where year(orderTime) = year(#{nowDate})
+		and month(orderTime) <![CDATA[<=]]> month(#{nowDate}) and status <![CDATA[>]]> 0;
+	</select>
+	<!-- // 일매출, 오늘의 주문수 -->
+	<select id="dailySalesOrerCount" resultMap="intMap">
+		SELECT
+		ifnull(sum(totalAmount), 0) dailySales, count(*) orderCount FROM
+		OrderDetail where date(orderTime) = date(#{nowDate}) and status <![CDATA[>]]> 0;
+	</select>
+	<!-- // 오늘의 방문수 -->
+	<select id="visitCount" resultType="int">
+		SELECT
+		ifnull(sum(visitcount),0) visitCount FROM VisitGuest WHERE
+		date(visitDate) = date(#{nowDate});
+	</select>
+	<!-- // 오늘의 신규회원 -->
+	<select id="newMember" resultType="int">
+		SELECT count(*) FROM MemberInfo where date(regDate) = date(#{nowDate});
+	</select>
+	<!-- // 이번달 오늘까지 cost, 이번달 오늘까지매출, cost% 이번달 일평균 -->
+	<select id="totalCostSales" resultType="map">
+		SELECT
+		ifnull(sum((o.quantity * gs.cost)), 0) monthCost,
+		ifnull(sum(od.totalAmount), 0) monthAmount,
+		ifnull((sum((o.quantity * gs.cost)) / sum(od.totalAmount)*100), 0) monthCostRate,
+		ifnull(SUM(od.totalAmount) / day(#{nowDate}), 0) monthAvg
+		FROM `Order` o, Goods gs, OrderDetail od
+		WHERE o.goodsNo = gs.goodsNo
+		AND o.orderDetailNum = od.orderDetailNum
+		and od.orderTime <![CDATA[>]]> LAST_DAY(#{nowDate} - interval 1 month)
+		and od.orderTime <![CDATA[<]]> date(#{nowDate}) + interval 1 day
+		AND od.status <![CDATA[>]]> 0;
+	</select>
+	<!-- // 이번달 오늘까지 인건비 -->
+	<select id="laborCost" resultType="int">
+		SELECT sum(laborCost) / day(last_day(#{nowDate})) * day(#{nowDate})
+		laborAmount FROM SB_Master.MemberInfo where gradeNum >= 3;
+	</select>
+	<!-- // 이번달 오늘까지 유틸리티, 소모품 -->
+	<select id="utilSupllie" resultType="map">
+		select ifnull(sum(electric + water), 0) utility, ifnull(sum(supplie), 0)
+		supplie from TCE
+		where operationDate <![CDATA[>]]> LAST_DAY(#{nowDate} - interval 1 month)
+		and operationDate <![CDATA[<]]> date(#{nowDate}) + interval 1 day;
+	</select>
+	<!-- // 이번달 오늘까지 임대료 -->
+	<select id="rent" resultType="int">
+		SELECT rent / day(LAST_DAY(#{nowDate})) * day(#{nowDate}) FROM
+		SB_Master.TNC;
+	</select>
+
+
+</mapper> 
  
