@@ -5,14 +5,33 @@
 <mapper
 	namespace="com.sb.mall.admin.adminOperation.dao.AdminOperationDao">
 	
+<!-- 	loadBottomReport.jsp 에서 사용할 쿼리 -->
 <!-- 	맵 객체를 생성해준다. column에서 반환된 값을 property에 지정한 key로 생성하여 javaType에 지정된 값으로 할당한다. -->
-	<resultMap id="intMap" type="java.util.Map">
+	<resultMap id="totalBudget" type="java.util.Map">
+		<result column="yearBudgetTotal" property="yearBudgetTotal" javaType="java.lang.Long"/>
+		<result column="yearBudget" property="yearBudget" javaType="java.lang.Long"/>
+		<result column="monthBudgetTotal" property="monthBudgetTotal" javaType="java.lang.Long"/>
+		<result column="monthBudget" property="monthBudget" javaType="java.lang.Long"/>
+	</resultMap>
+	
+	<resultMap id="dailySalesOrerCount" type="java.util.Map">
 		<result column="dailySales" property="dailySales" javaType="java.lang.Integer"/>
 		<result column="orderCount" property="orderCount" javaType="java.lang.Integer"/>
 	</resultMap>
+	
+	<resultMap id="totalCostSales" type="java.util.Map">
+		<result column="monthCost" property="monthCost" javaType="java.lang.Integer"/>
+		<result column="monthAmount" property="monthAmount" javaType="java.lang.Long"/>
+		<result column="monthCostRate" property="monthCostRate" javaType="java.lang.Integer"/>
+		<result column="monthAvg" property="monthAvg" javaType="java.lang.Integer"/>
+	</resultMap>
+	<resultMap id="utilSupllie" type="java.util.Map">
+		<result column="utility" property="utility" javaType="java.lang.Integer"/>
+		<result column="supplie" property="supplie" javaType="java.lang.Integer"/>
+	</resultMap>
 
 	<!-- // 토탈연버젯, 이번달까지연버젯, 토탈월버젯, 오늘까지월버젯 -->
-	<select id="totalBudget" resultType="map">
+	<select id="totalBudget" resultMap="totalBudget">
 		select yearBudget
 		yearBudgetTotal, (case when month(#{nowDate}) = 1 then
 		Jan when
@@ -64,7 +83,7 @@
 		and month(orderTime) <![CDATA[<=]]> month(#{nowDate}) and status <![CDATA[>]]> 0;
 	</select>
 	<!-- // 일매출, 오늘의 주문수 -->
-	<select id="dailySalesOrerCount" resultMap="intMap">
+	<select id="dailySalesOrerCount" resultMap="dailySalesOrerCount">
 		SELECT
 		ifnull(sum(totalAmount), 0) dailySales, count(*) orderCount FROM
 		OrderDetail where date(orderTime) = date(#{nowDate}) and status <![CDATA[>]]> 0;
@@ -80,7 +99,7 @@
 		SELECT count(*) FROM MemberInfo where date(regDate) = date(#{nowDate});
 	</select>
 	<!-- // 이번달 오늘까지 cost, 이번달 오늘까지매출, cost% 이번달 일평균 -->
-	<select id="totalCostSales" resultType="map">
+	<select id="totalCostSales" resultMap="totalCostSales">
 		SELECT
 		ifnull(sum((o.quantity * gs.cost)), 0) monthCost,
 		ifnull(sum(od.totalAmount), 0) monthAmount,
@@ -99,7 +118,7 @@
 		laborAmount FROM SB_Master.MemberInfo where gradeNum >= 3;
 	</select>
 	<!-- // 이번달 오늘까지 유틸리티, 소모품 -->
-	<select id="utilSupllie" resultType="map">
+	<select id="utilSupllie" resultMap="utilSupllie">
 		select ifnull(sum(electric + water), 0) utility, ifnull(sum(supplie), 0)
 		supplie from TCE
 		where operationDate <![CDATA[>]]> LAST_DAY(#{nowDate} - interval 1 month)
@@ -110,6 +129,33 @@
 		SELECT rent / day(LAST_DAY(#{nowDate})) * day(#{nowDate}) FROM
 		SB_Master.TNC;
 	</select>
+	
+<!-- 		loadBudgetReport.jsp 에서 사용할 쿼리문 -->
+	
+<!-- 	버젯 전체 -->
+	<select id="selectBudget" resultType="com.sb.mall.admin.adminOperation.model.BudgetVO">
+		SELECT * FROM Budget where `year` = #{nowYear};
+	</select>
+<!-- 	버젯 수정 -->
+	<update id="updateBudget" parameterType="com.sb.mall.admin.adminOperation.model.BudgetVO">
+		SET
+		   Jan = #{Jan}
+		  ,Feb = #{Feb}
+		  ,Mar = #{Mar}
+		  ,Apr = #{Apr}
+		  ,May = #{May}
+		  ,Jun = #{Jun}
+		  ,Jul = #{Jul}
+		  ,Aug = #{Aug}
+		  ,Sep = #{Sep}
+		  ,Oct = #{Oct}
+		  ,Nov = #{Nov}
+		  ,`Dec` = #{Dec} 
+		WHERE `year` = #{nowYear}
+	</update>
+	
+	
+	
 
 
 </mapper> 

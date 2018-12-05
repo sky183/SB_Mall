@@ -1,13 +1,12 @@
 package com.sb.mall.admin.adminOperation.service;
 
-import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.admin.adminOperation.dao.AdminOperationDao;
+import com.sb.mall.admin.adminOperation.model.BudgetVO;
 import com.sb.mall.admin.adminOperation.model.TotalReportVO;
 
 @Repository
@@ -19,7 +18,7 @@ public class AdminOperationService {
 	private AdminOperationDao dao;
 	
 	
-	//totalReport.jsp에서 사용할 데이터 수집
+	//loadBottomReport.jsp에서 사용할 데이터 수집
 	@Transactional
 	public TotalReportVO getTotalReportVO(Object nowDate) {
 		
@@ -29,10 +28,7 @@ public class AdminOperationService {
 		
 		//dao의 메서드 실행하여 totalReportVO에 값 할당
 		totalReportVO.setTotalBudget(dao.totalBudget(nowDate));
-		totalReportVO.setYearAmount(dao.yearAmount(nowDate));
-		
-		Map<String, Integer> rs = dao.dailySalesOrerCount(nowDate);
-		
+		totalReportVO.setYearAmount(dao.yearAmount(nowDate));		
 		totalReportVO.setDailySalesOrerCount(dao.dailySalesOrerCount(nowDate));
 		totalReportVO.setVisitCount(dao.visitCount(nowDate));
 		totalReportVO.setNewMember(dao.newMember(nowDate));
@@ -43,10 +39,35 @@ public class AdminOperationService {
 		
 		//totalReportVO의 변수값을 언바인딩 및 계산하여 변수 값 할당 완료
 		totalReportVO.setTotalResultBinding();
-		
 
 		return totalReportVO;
-
 	}
+	
+	//loadBudgetReport.jsp에서 사용할 데이터 수집
+	@Transactional
+	public BudgetVO getBudgetVO(Object nowDate) {
+		
+		dao = sqlSessionTemplate.getMapper(AdminOperationDao.class);
+		
+		BudgetVO budgetVO = new BudgetVO();
+		
+		//dao의 메서드 실행하여 budgetVO에 값 할당
+		budgetVO = dao.selectBudget(nowDate);
+		
+		return budgetVO;
+	}
+	
+	//loadBudgetReport.jsp에서 값을 받아와서 수정
+	@Transactional
+	public void updateBudget(BudgetVO budgetVO) {
+		
+		dao = sqlSessionTemplate.getMapper(AdminOperationDao.class);
+		
+		//dao의 메서드 실행하여 budgetVO에 값 할당
+		dao.updateBudget(budgetVO);
+		
+	}
+	
+	
 
 }

@@ -11,16 +11,16 @@
 				<div>
 					<span class="title">Year Budget</span>
 					<span id="yearBudget" class="result">
-						<fmt:formatNumber value="${totalReportVo.yearBudget}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.yearBudget}" pattern="#,###"/>
 					</span>
 					<span class="footer">원</span>
-				</div>
+				</div>	
 				<br>
 				<!-- 연 버젯 % -->
 				<div>
 					<span class="title">Year Rate</span>
 					<span id="yearBudgetPer" class="result">
-						<fmt:formatNumber value="${totalReportVo.yearBudgetRate}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.yearBudgetRate}" pattern="#,###"/>
 					</span>
 					<span class="footer">%</span>
 				</div>
@@ -33,7 +33,7 @@
 				<div>
 					<span class="title">Month Budget</span>
 					<span id="monthBudget" class="result">
-						<fmt:formatNumber value="${totalReportVo.monthBudget}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.monthBudget}" pattern="#,###"/>
 					</span>
 					<span class="footer">원</span>
 				</div>
@@ -42,7 +42,7 @@
 				<div>
 					<span class="title">Month Rate</span>
 					<span id="monthBudgetPer" class="result">
-						<fmt:formatNumber value="${totalReportVo.monthBudgetRate}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.monthBudgetRate}" pattern="#,###"/>
 					</span>
 					<span class="footer">%</span>
 				</div>
@@ -66,7 +66,7 @@
 				<div>
 					<span class="title">연매출</span>
 					<span id="yearAmount" class="result">
-						<fmt:formatNumber value="${totalReportVo.yearAmount}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.yearAmount}" pattern="#,###"/>
 					</span>
 					<span class="footer">원</span>
 				</div>
@@ -74,7 +74,7 @@
 				<div>
 					<span class="title">월매출</span>
 					<span id="monthAmount" class="result">
-						<fmt:formatNumber value="${totalReportVo.monthAmount}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.monthAmount}" pattern="#,###"/>
 					</span>
 					<span class="footer">원</span>
 				</div>
@@ -82,7 +82,7 @@
 				<div>
 					<span class="title">일매출</span>
 					<span id="dailySales" class="result">
-						<fmt:formatNumber value="${totalReportVo.dailySales}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.dailySales}" pattern="#,###"/>
 					</span>
 					<span class="footer">원</span>
 				</div>
@@ -90,7 +90,7 @@
 				<div>
 					<span class="title">월평균</span>
 					<span id="monthAvg" class="result">
-						<fmt:formatNumber value="${totalReportVo.monthAvg}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.monthAvg}" pattern="#,###"/>
 					</span>
 					<span class="footer">원</span>
 				</div>
@@ -98,7 +98,7 @@
 				<div>
 					<span class="title">PPA</span>
 					<span id="ppa" class="result">
-						<fmt:formatNumber value="${totalReportVo.ppa}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.ppa}" pattern="#,###"/>
 					</span>
 					<span class="footer">원</span>
 				</div>
@@ -106,7 +106,7 @@
 				<div>
 					<span class="title">방문수</span>
 					<span id="visitCount" class="result">
-						<fmt:formatNumber value="${totalReportVo.visitCount}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.visitCount}" pattern="#,###"/>
 					</span>
 					<span class="footer">건</span>
 				</div>
@@ -114,7 +114,7 @@
 				<div>
 					<span class="title">신규 가입자</span>
 					<span id="newMember" class="result">
-						<fmt:formatNumber value="${totalReportVo.newMember}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.newMember}" pattern="#,###"/>
 					</span>
 					<span class="footer">명</span>
 				</div>
@@ -128,7 +128,7 @@
 				<div class="bottom5">
 					<span class="title">TCE</span>
 					<span id="tce" class="result">
-						<fmt:formatNumber value="${totalReportVo.tce}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.tce}" pattern="#,###"/>
 					</span>
 					<span class="footer">원</span>
 				</div>
@@ -136,7 +136,7 @@
 				<div class="sub">
 					<span class="subTitle">cost</span>
 					<span id="monthCostRate" class="result">
-						<fmt:formatNumber value="${totalReportVo.monthCostRate}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.monthCostRate}" pattern="#,###"/>
 					</span>
 					<span class="footer">%</span>
 				</div>
@@ -144,7 +144,7 @@
 				<div class="sub">
 					<span class="subTitle">인건비</span>
 					<span id=laborCostRate class="result">
-						<fmt:formatNumber value="${totalReportVo.laborCostRate}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.laborCostRate}" pattern="#,###"/>
 					</span>
 					<span class="footer">%</span>
 				</div>
@@ -152,7 +152,7 @@
 				<div class="sub">
 					<span class="subTitle">유틸리티</span>
 					<span id="utilityRate" class="result">
-						<fmt:formatNumber value="${totalReportVo.utilityRate}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.utilityRate}" pattern="#,###"/>
 					</span>
 					<span class="footer">%</span>
 				</div>
@@ -160,7 +160,7 @@
 				<div class="sub bottom15">
 					<span class="subTitle">소모품비</span>
 					<span id="supplieRate" class="result">
-						<fmt:formatNumber value="${totalReportVo.supplieRate}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.supplieRate}" pattern="#,###"/>
 					</span>
 					<span class="footer">%</span>
 				</div>
@@ -168,7 +168,7 @@
 				<div class="bottom5">
 					<span class="title">TNC</span>
 					<span id="tnc" class="result">
-						<fmt:formatNumber value="${totalReportVo.tnc}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.tnc}" pattern="#,###"/>
 					</span>
 					<span class="footer">%</span>
 				</div>
@@ -176,7 +176,7 @@
 				<div class="sub bottom15">
 					<span class="subTitle">임대료</span>
 					<span id="rent" class="result">
-						<fmt:formatNumber value="${totalReportVo.rent}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.rent}" pattern="#,###"/>
 					</span>
 					<span class="footer">원</span>
 				</div>
@@ -184,7 +184,7 @@
 				<div>
 					<span class="title">TCI</span>
 					<span id=tci class="result">
-						<fmt:formatNumber value="${totalReportVo.tci}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.tci}" pattern="#,###"/>
 					</span>
 					<span class="footer">%</span>
 				</div>
@@ -192,9 +192,9 @@
 				<div>
 					<span class="title">Operating Cashflow</span>
 					<span id="operatingCashflow" class="result">
-						<fmt:formatNumber value="${totalReportVo.operatingCashflow}" pattern="#,###"/>
+						<fmt:formatNumber value="${totalReportVO.operatingCashflow}" pattern="#,###"/>
 					</span>
-					<span class="footer">%</span>
+					<span class="footer">원</span>
 				</div>
 
 			<!-- rightSalesReport의 끝 -->

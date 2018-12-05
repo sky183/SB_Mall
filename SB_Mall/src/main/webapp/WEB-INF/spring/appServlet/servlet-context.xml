@@ -145,7 +145,7 @@
 		<interceptor>
 			<mapping path="/store/**" />
 			<mapping path="/order/**" />
-			<mapping path="/admin/**" />
+<!-- 			<mapping path="/admin/**" /> -->
 			<mapping path="/member/**" />
 			<mapping path="/reply**" />
 			<mapping path="/qna/**" />

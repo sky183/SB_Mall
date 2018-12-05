@@ -57,22 +57,23 @@ $(document).ready(function(){
 	$('.preDate, .nextDate').on('click', function(){
 		var preDate = getPreDate($(".datepicker").val());
 		var nextDate = getNextDate($(".datepicker").val());
-		var nowDate;
-		if ($(this).attr('name') == preDate) {
+		var newDate;
+		if ($(this).attr('name') == 'preDate') {
 			$( ".datepicker" ).val(preDate);
-			nowDate = getDate(preDate);
+			newDate = preDate;
 		} else {
 			$( ".datepicker" ).val(nextDate);
-			nowDate = getDate(nextDate);
+			newDate = nextDate;
 		}
 		
+		
 		$.ajax({
-			url : '<%=request.getContextPath()%>/admin/adminOperation/totalReport/loadBottomReport?=' + nowDate,
+			url : '<%=request.getContextPath()%>/admin/adminOperation/totalReport/loadBottomReport?nowDate=' + newDate,
 			error : function(error) {
 		        alert("Error!");
 		    },
 			success : function(data) {
-// 				console.log(nowDate);
+				console.log(data);
 				$('#bottomReport').html(data);
 			}
 		});
@@ -83,7 +84,7 @@ $(document).ready(function(){
 		var nowDate = getDate($( ".datepicker" ).val());
 		
 		$.ajax({
-			url : '<%=request.getContextPath()%>/admin/adminOperation/totalReport/loadBottomReport?=' + nowDate,
+			url : '<%=request.getContextPath()%>/admin/adminOperation/totalReport/loadBottomReport?nowDate=' + nowDate,
 			error : function(error) {
 		        alert("Error!");
 		    },

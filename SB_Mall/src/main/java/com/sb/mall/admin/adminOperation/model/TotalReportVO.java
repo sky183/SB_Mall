@@ -1,6 +1,5 @@
 package com.sb.mall.admin.adminOperation.model;
 
-import java.math.BigDecimal;
 import java.util.Map;
 
 public class TotalReportVO {
@@ -9,7 +8,7 @@ public class TotalReportVO {
 	// 이번달까지 연매출
 	private long yearAmount;
 	// 일매출, 오늘의 주
-	private Map<String, Integer> dailySalesOrerCount;
+	private Map<String, Object> dailySalesOrerCount;
 	// 오늘의 방문수
 	private int visitCount;
 	// 오늘의 신규회원
@@ -45,16 +44,16 @@ public class TotalReportVO {
 	private int supplie; // 이번달 오늘까지 소모품 금액
 
 	// 언바인딩 후 값 계산
-	private int yearBudgetRate; // 연버젯 % 이번달까지 매출 / 연버젯 * 100
-	private int monthBudgetRate; // 월버젯 % 이번달 오늘까지 매출 / 월버젯 * 100
-	private int ppa; // 오늘의 매출 / 주문수
-	private int tce; // 이번달 오늘까지 cost금액, 인건비, 유틸리티, 소모품비 합산금액
-	private int tci; // tce / 월매출 * 100
-	private int tnc; // 임대료 / 월매출 *100
-	private int operatingCashflow; // (매출 - (rent + TCE)) / 월매출 * 100
-	private int laborCostRate; // 이번달 오늘까지 인건비% - 인건비 / 이번달 오늘까지 매출 * 100
-	private int utilityRate; // 이번달 오늘까지 유틸리티 금액% - 유틸리티 / 이번달 오늘까지 매출 * 100
-	private int supplieRate; // 이번달 오늘까지 소모품 금액% - 소모품 / 이번달 오늘까지 매출 * 100
+	private int yearBudgetRate = 0; // 연버젯 % 이번달까지 매출 / 연버젯 * 100
+	private int monthBudgetRate = 0; // 월버젯 % 이번달 오늘까지 매출 / 월버젯 * 100
+	private int ppa = 0; // 오늘의 매출 / 주문수
+	private int tce = 0; // 이번달 오늘까지 cost금액, 인건비, 유틸리티, 소모품비 합산금액
+	private int tci = 0; // tce / 월매출 * 100
+	private int tnc = 0; // 임대료 / 월매출 *100
+	private int operatingCashflow = 0; // (매출 - (rent + TCE)) / 월매출 * 100
+	private int laborCostRate = 100; // 이번달 오늘까지 인건비% - 인건비 / 이번달 오늘까지 매출 * 100
+	private int utilityRate = 100; // 이번달 오늘까지 유틸리티 금액% - 유틸리티 / 이번달 오늘까지 매출 * 100
+	private int supplieRate = 0; // 이번달 오늘까지 소모품 금액% - 소모품 / 이번달 오늘까지 매출 * 100
 
 	
 	
@@ -65,7 +64,7 @@ public class TotalReportVO {
 		this.yearBudgetTotal = (long) this.totalBudget.get("yearBudgetTotal");
 		this.yearBudget = (long) this.totalBudget.get("yearBudget");
 		this.monthBudgetTotal = (long) this.totalBudget.get("monthBudgetTotal");
-		this.monthBudget = ((BigDecimal)this.totalBudget.get("monthBudget")).longValue();
+		this.monthBudget = (long)this.totalBudget.get("monthBudget");
 
 		// dailySalesOrerCount 에서 언바인딩한다.
 		this.dailySales = (int) this.dailySalesOrerCount.get("dailySales");
@@ -76,18 +75,27 @@ public class TotalReportVO {
 		this.monthAmount = (long) this.totalCostSales.get("monthAmount");
 		this.monthCostRate = (int) this.totalCostSales.get("monthCostRate");
 		this.monthAvg = (int) this.totalCostSales.get("monthAvg");
+		
+		// utilSupllie에서 언바인딩한다.
+		this.utility = (int) this.utilSupllie.get("utility");
+		this.supplie = (int) this.utilSupllie.get("supplie");
+
 
 		// 언바인딩 후 값 계산
-		this.yearBudgetRate = (int) (this.yearAmount / this.yearBudget * 100);
-		this.monthBudgetRate = (int) (this.monthAmount / this.monthBudget * 100);
-		this.ppa = (int) (dailySales / orderCount);
+		if (this.yearBudget > 0) this.yearBudgetRate = (int) ((float)this.yearAmount / this.yearBudget * 100);
+		if (this.monthBudget > 0) this.monthBudgetRate = (int) ((float)this.monthAmount / this.monthBudget * 100);
+		if (this.orderCount > 0) this.ppa = (int) ((float)this.dailySales / this.orderCount);
 		this.tce = this.monthCost + this.laborCost + this.supplie;
-		this.tci = (int) (this.tce / this.monthAmount * 100);
-		this.tnc = (int) (this.rent / this.monthAmount * 100);
 		this.operatingCashflow = (int) (this.monthAmount - (this.rent + this.tce));
-		this.laborCostRate = (int) (this.laborCost / this.monthAmount * 100);
-		this.utilityRate = (int) (this.utility / this.monthAmount * 100);
-		this.supplieRate = (int) (this.supplie / this.monthAmount * 100);
+		if (this.monthAmount > 0) {
+			this.tci = (int) (this.tce / this.monthAmount * 100);
+			this.tnc = (int) (this.rent / this.monthAmount * 100);
+			this.laborCostRate = (int) ((float)this.laborCost / this.monthAmount * 100);
+			this.utilityRate = (int) ((float)this.utility / this.monthAmount * 100);
+			this.supplieRate = (int) ((float)this.supplie / this.monthAmount * 100);
+		}
+		
+		
 	}
 
 	// 기본 변수들 게터 세터
@@ -107,11 +115,11 @@ public class TotalReportVO {
 		this.yearAmount = yearAmount;
 	}
 
-	public Map<String, Integer> getDailySalesOrerCount() {
+	public Map<String, Object> getDailySalesOrerCount() {
 		return dailySalesOrerCount;
 	}
 
-	public void setDailySalesOrerCount(Map<String, Integer> dailySalesOrerCount) {
+	public void setDailySalesOrerCount(Map<String, Object> dailySalesOrerCount) {
 		this.dailySalesOrerCount = dailySalesOrerCount;
 	}
 
@@ -178,4 +186,181 @@ public class TotalReportVO {
 				+ "]";
 	}
 
+	public long getYearBudgetTotal() {
+		return yearBudgetTotal;
+	}
+
+	public void setYearBudgetTotal(long yearBudgetTotal) {
+		this.yearBudgetTotal = yearBudgetTotal;
+	}
+
+	public long getYearBudget() {
+		return yearBudget;
+	}
+
+	public void setYearBudget(long yearBudget) {
+		this.yearBudget = yearBudget;
+	}
+
+	public long getMonthBudgetTotal() {
+		return monthBudgetTotal;
+	}
+
+	public void setMonthBudgetTotal(long monthBudgetTotal) {
+		this.monthBudgetTotal = monthBudgetTotal;
+	}
+
+	public long getMonthBudget() {
+		return monthBudget;
+	}
+
+	public void setMonthBudget(long monthBudget) {
+		this.monthBudget = monthBudget;
+	}
+
+	public int getDailySales() {
+		return dailySales;
+	}
+
+	public void setDailySales(int dailySales) {
+		this.dailySales = dailySales;
+	}
+
+	public int getOrderCount() {
+		return orderCount;
+	}
+
+	public void setOrderCount(int orderCount) {
+		this.orderCount = orderCount;
+	}
+
+	public int getMonthCost() {
+		return monthCost;
+	}
+
+	public void setMonthCost(int monthCost) {
+		this.monthCost = monthCost;
+	}
+
+	public long getMonthAmount() {
+		return monthAmount;
+	}
+
+	public void setMonthAmount(long monthAmount) {
+		this.monthAmount = monthAmount;
+	}
+
+	public int getMonthCostRate() {
+		return monthCostRate;
+	}
+
+	public void setMonthCostRate(int monthCostRate) {
+		this.monthCostRate = monthCostRate;
+	}
+
+	public int getMonthAvg() {
+		return monthAvg;
+	}
+
+	public void setMonthAvg(int monthAvg) {
+		this.monthAvg = monthAvg;
+	}
+
+	public int getUtility() {
+		return utility;
+	}
+
+	public void setUtility(int utility) {
+		this.utility = utility;
+	}
+
+	public int getSupplie() {
+		return supplie;
+	}
+
+	public void setSupplie(int supplie) {
+		this.supplie = supplie;
+	}
+
+	public int getYearBudgetRate() {
+		return yearBudgetRate;
+	}
+
+	public void setYearBudgetRate(int yearBudgetRate) {
+		this.yearBudgetRate = yearBudgetRate;
+	}
+
+	public int getMonthBudgetRate() {
+		return monthBudgetRate;
+	}
+
+	public void setMonthBudgetRate(int monthBudgetRate) {
+		this.monthBudgetRate = monthBudgetRate;
+	}
+
+	public int getPpa() {
+		return ppa;
+	}
+
+	public void setPpa(int ppa) {
+		this.ppa = ppa;
+	}
+
+	public int getTce() {
+		return tce;
+	}
+
+	public void setTce(int tce) {
+		this.tce = tce;
+	}
+
+	public int getTci() {
+		return tci;
+	}
+
+	public void setTci(int tci) {
+		this.tci = tci;
+	}
+
+	public int getTnc() {
+		return tnc;
+	}
+
+	public void setTnc(int tnc) {
+		this.tnc = tnc;
+	}
+
+	public int getOperatingCashflow() {
+		return operatingCashflow;
+	}
+
+	public void setOperatingCashflow(int operatingCashflow) {
+		this.operatingCashflow = operatingCashflow;
+	}
+
+	public int getLaborCostRate() {
+		return laborCostRate;
+	}
+
+	public void setLaborCostRate(int laborCostRate) {
+		this.laborCostRate = laborCostRate;
+	}
+
+	public int getUtilityRate() {
+		return utilityRate;
+	}
+
+	public void setUtilityRate(int utilityRate) {
+		this.utilityRate = utilityRate;
+	}
+
+	public int getSupplieRate() {
+		return supplieRate;
+	}
+
+	public void setSupplieRate(int supplieRate) {
+		this.supplieRate = supplieRate;
+	}
+	
+	
 }

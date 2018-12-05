@@ -6,9 +6,9 @@
 	<!-- 날짜 선택 -->
 	<div id="mainHeader">
 		<span>
-			<b class="preDate fon22"> &lt; </b> 
+			<button class="preDate fon22" name="preDate"> &lt; </button> 
 			<input type="text" id="budgetDatepicker" name="year" class="datepicker dateInput fon22 fonb" readOnly value="2018">
-			<b class="nextDate fon22"> &gt; </b> 
+			<button class="nextDate fon22" name="nextDate"> &gt; </button> 
 		</span>
 		<span class="absol">
 			<span class="fon12 downButton">다운로드</span>
@@ -24,100 +24,9 @@
 	
 	<!-- 하단 -->
 	<div id="mainBottom">
-		<form action="" method="post">
-			<div class="space">
-				<!-- 1월 -->
-				<div class="monthLabel">
-					<div>Jan</div>
-					<hr>
-					<div><input type="text" name="Jan" value="2,000,000,000" disabled></div>
-				</div>
-				<!-- 2월 -->
-				<div class="monthLabel">
-					<div>Feb</div>
-					<hr>
-					<div><input type="text" name="Feb" value="2,000,000,000" disabled></div>
-				</div>
-				<!-- 3월 -->
-				<div class="monthLabel">
-					<div>Mar</div>
-					<hr>
-					<div><input type="text" name="Mar" value="2,000,000,000" disabled></div>
-				</div>
-				<!-- 4월 -->
-				<div class="monthLabel">
-					<div>Apr</div>
-					<hr>
-					<div><input type="text" name="Apr" value="2,000,000,000" disabled></div>
-				</div>
-			</div>
-			
-			<div class="space">
-				<!-- 5월 -->
-				<div class="monthLabel">
-					<div>May</div>
-					<hr>
-					<div><input type="text" name="May" value="2,000,000,000" disabled></div>
-				</div>
-				<!-- 6월 -->
-				<div class="monthLabel">
-					<div>Jun</div>
-					<hr>
-					<div><input type="text" name="Jun" value="2,000,000,000" disabled></div>
-				</div>
-				<!-- 7월 -->
-				<div class="monthLabel">
-					<div>Jul</div>
-					<hr>
-					<div><input type="text" name="Jul" value="2,000,000,000" disabled></div>
-				</div>
-				<!-- 8월 -->
-				<div class="monthLabel">
-					<div>Aug</div>
-					<hr>
-					<div><input type="text" name="Aug" value="2,000,000,000" disabled></div>
-				</div>
-			</div>
-			
-			<div class="space">
-				<!-- 9월 -->
-				<div class="monthLabel">
-					<div>Sep</div>
-					<hr>
-					<div><input type="text" name="Sep" value="2,000,000,000" disabled></div>
-				</div>
-				<!-- 10월 -->
-				<div class="monthLabel">
-					<div>Oct</div>
-					<hr>
-					<div><input type="text" name="Oct" value="2,000,000,000" disabled></div>
-				</div>
-				<!-- 11월 -->
-				<div class="monthLabel">
-					<div>Nov</div>
-					<hr>
-					<div><input type="text" name="Nov" value="2,000,000,000" disabled></div>
-				</div>
-				<!-- 12월 -->
-				<div class="monthLabel">
-					<div>Dec</div>
-					<hr>
-					<div><input type="text" name="Dec" value="2,000,000,000" disabled></div>
-				</div>
-			</div>
-			<div class="budgetResult">
-				<span id="budgetSubmit" class="toInput fl-right none">
-					입력완료
-				</span>
-				<span id="budgetInput" class="toInput fl-right">
-					수정하기
-				</span>
-				<span class="fl-right">
-					<span class="toResult">
-						<span>총 매출</span>
-						<span>200,000,000,000</span>
-					</span>
-				</span>
+		<form action="" id="budgetModify" method="post">
+			<div id="loadBudgetReport">
+<!-- 				loadBudgetReport.jsp를 불러온다. -->
 			</div>
 		</form>
 		
@@ -128,6 +37,7 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
+	$('#loadBudgetReport').load('<%=request.getContextPath()%>/admin/adminOperation/budget/loadBudgetReport?nowYear=' + nowYear);
 	
 	//input 태그에 오늘 년도를 불러온다.
 	$( ".datepicker" ).val(nowYear);
@@ -155,22 +65,45 @@ $(document).ready(function(){
 	    $('img.ui-datepicker-trigger').css('cursor', 'pointer');
 	});
 	
-	//버젯 입력 input disabled 해제
-	$('#budgetInput').click(function(){
-		$('.monthLabel input').attr( 'disabled', false );
-		$('.monthLabel input').addClass('inputActive');
-		$(this).addClass('none');
-		$('#budgetSubmit').removeClass('none');
+	//이전 날짜 선택시 날짜 바꿔서 ajax 처리
+	$('.preDate, .nextDate').on('click', function(){
+		var preYear = Number($(".datepicker").val()) - 1;
+		var nextYear = Number($(".datepicker").val()) + 1;
+		var nowYearDate;
+		if ($(this).attr('name') == 'preDate' ) {
+			$( ".datepicker" ).val(preYear);
+			nowYearDate = preYear;
+		} else {
+			$( ".datepicker" ).val(nextYear);
+			nowYearDate = nextYear;
+		}
+		
+		$.ajax({
+			url : '<%=request.getContextPath()%>/admin/adminOperation/budget/loadBudgetReport?nowYear=' + nowYearDate,
+			error : function(error) {
+		        alert("Error!");
+		    },
+			success : function(data) {
+				console.log(data);
+				$('#loadBudgetReport').html(data);
+			}
+		});
 	});
 	
-	//버젯 입력 Submit 하고 input disabled 적용
-	$('#budgetSubmit').click(function(){
-		$('.monthLabel input').attr( 'disabled', true );
-		$('.monthLabel input').removeClass('inputActive');
-		$(this).addClass('none');
-		$('#budgetInput').removeClass('none');
-// 		$ajax(){
-// 		}
+	//날짜 변경시 ajax 처리
+	$('.datepicker').on('change', function(){
+		var nowYearDate = $(".datepicker").val();
+		
+		$.ajax({
+			url : '<%=request.getContextPath()%>/admin/adminOperation/budget/loadBudgetReport?nowYear=' + nowYearDate,
+			error : function(error) {
+		        alert("Error!");
+		    },
+			success : function(data) {
+				$('#loadBudgetReport').html(data);
+			}
+		});
+		
 	});
 
 });

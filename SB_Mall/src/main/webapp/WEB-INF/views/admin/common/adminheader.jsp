@@ -94,6 +94,11 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
     $('#leftContent').css({'height':(h-58)+'px'});
 } */
 
+//3자리수마다 콤마 찍어주는 함수
+function comma(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 //date포맷 함수
 Date.prototype.format = function(f) {
     if (!this.valueOf()) return " ";
@@ -200,6 +205,8 @@ function getNextYear(object){
  
 // //현재년도 : 2011
 // console.log("현재년도 : " + new Date().format("yyyy"));
+
+
 
 
 $('document').ready(function(){
