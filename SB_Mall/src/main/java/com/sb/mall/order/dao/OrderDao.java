@@ -10,7 +10,7 @@ import com.sb.mall.store.model.Product;
 public interface OrderDao {
 	
 	//사용중
-	public int insertCart(String orders);
+	public int upsertCart(String orders);
 	public int deleteCart(List<Order> orders);
 	
 	public int insertOrder(Order order);

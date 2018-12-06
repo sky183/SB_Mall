@@ -5,7 +5,10 @@
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script>
 var aa;
+
 	$(document).ready(function() {
+		
+		//페이지로딩 후 카트정보 불러옴
 		$.ajax({
 			url : '<%=request.getContextPath()%>/order/carts',
 			type : 'GET',
@@ -20,6 +23,7 @@ var aa;
 					$('<input/>').attr({
 						'name':'cartItem',
 						'type':'checkbox',
+						'onchange':'calTotalPrice()',
 						'data-goodsno':data[key].goodsNo,
 						'data-goodsprice':data[key].goodsPrice,
 						'data-quantity':data[key].quantity,
@@ -28,6 +32,7 @@ var aa;
 						'data-opt2price':data[key].opt2Price,
 						'data-saleprice':data[key].salePrice,
 					}).appendTo('#cartTable>tbody>tr:last-child>td:last-child');
+					
 					$('<td/>').appendTo('#cartTable>tbody>tr:last-child');
 					$('<a/>').attr({
 						'href':'<%=request.getContextPath()%>'+'/store/board/'+data[key].salesSeq
@@ -60,11 +65,16 @@ var aa;
 					.appendTo('#cartTable>tbody>tr:last-child');
 				}
 			}
-		});
+		});//end ajax
 		
+		//구매버튼
 		$('.cartOrderBtn').click(function() {
 			if($('input[name=cartItem]:checked').length>0){ //최소 하나의 상품이 선택되었을때
-				$('#hCartForm').attr('action','<%=request.getContextPath()%>/order/cartOrder');
+				makeInputList();
+				$('#hCartForm').attr({
+					action:'<%=request.getContextPath()%>/order/order',
+					method:'POST'	
+				});
 				$('#hCartForm').submit();
 			}else{
 				alert('구입하실 물품을 선택해 주세요.');
@@ -72,10 +82,26 @@ var aa;
 			
 		});
 		
+		//삭제버튼
 		$('.cartdeleteBtn').click(function() {
 			if($('input[name=cartItem]:checked').length>0){ //최소 하나의 상품이 선택되었을때
 				if (confirm("정말 삭제하시겠습니까??") == true){
-					$('input[name=cartItem]:checked').parent().parent().remove();
+					
+					makeInputList();
+					
+					$.ajax({
+						url : '<%=request.getContextPath()%>/order/carts/delete',
+						type : 'POST',
+						data : $('#hCartForm').serialize(),
+						error : function(error) {
+							alert("error!");
+						},
+						success : function(data) {
+							$('input[name=cartItem]:checked').parent().parent().remove();
+							calTotalPrice();
+						}
+					});
+					$('#hCartForm').text('');
 				}else{//취소
 				    return;
 				}
@@ -84,30 +110,62 @@ var aa;
 			}
 		});
 		
-		$('.selectItem').click(function () { //체크박스 히든인풋을 활성,비활성하여 상품값을 선택적으로 전송
-			var selector = "."+$(this)[0].value;
-			if($(this)[0].checked==true){
-				$(selector).attr("disabled",false);	
-			}else{
-				$(selector).attr("disabled",true);
-			}
-		});
-		
+		$('.cartItem').click();
 		$('#checkAllItems').click(function () { //체크박스 전체체크
 			if($(this)[0].checked==true){
-				$("input[name=cartItem]").prop("checked",true);
+				$('input[name=cartItem]').prop('checked',true);
 			}else{
-				$("input[name=cartItem]").prop("checked",false);
+				$('input[name=cartItem]').prop('checked',false);
 			}
-			
+			calTotalPrice();
 		});
 		
 	});
-	function changeInsCartPrice(e) { //cart 수량 변경시마다
-		e.value = Math.abs(e.value); //number 인풋에 자연수만 들어가도록 변경
-		if(e.value>9999){
-			e.value=9999;
+	
+	//히든인풋생성
+	function makeInputList() {
+		$('#hCartForm').text('');
+		for(i=0;i<$('input[name=cartItem]:checked').length;i++){
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].userSeq',
+				value:'${memberInfo.userSeq}',
+			}).appendTo('#hCartForm');
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].goodsNo',
+				value:$('input[name=cartItem]:checked').eq(i).attr('data-goodsNo'),
+			}).appendTo('#hCartForm');
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].optionSeq',
+				value:$('input[name=cartItem]:checked').eq(i).attr('data-optionSeq'),
+			}).appendTo('#hCartForm');
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].quantity',
+				value:$('input[name=cartItem]:checked').eq(i).attr('data-quantity'),
+			}).appendTo('#hCartForm');
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].salePrice',
+				value:$('input[name=cartItem]:checked').eq(i).attr('data-salePrice'),
+			}).appendTo('#hCartForm');
 		}
+	}
+	
+	function changeInsCartPrice(e) { //cart 수량 변경시마다
+		
+		//숫자만 입력가능 정규식
+		var num = e.value.replace(/[^0-9]/g,"");
+		if(num>999){
+			num=999;
+		}
+		if(num<1){
+			num=1;
+		}
+		//정규화된 자연수 밸류값에 적용
+		e.value=num;
 		
 		var paSelector = $(e).parent().parent();
 		var calPrice = e.value*
@@ -115,12 +173,26 @@ var aa;
 			Number($(paSelector).find('td:first-child>input[type=checkbox]').attr('data-opt1price'))+
 			Number($(paSelector).find('td:first-child>input[type=checkbox]').attr('data-opt2price')));
 		$(paSelector).find('td:first-child>input[type=checkbox]').attr('data-quantity',e.value);
-		$(paSelector).find('td:first-child>input[type=checkbox]').attr('data-salprice',calPrice);
+		$(paSelector).find('td:first-child>input[type=checkbox]').attr('data-saleprice',calPrice);
 		$(paSelector).find('td:last-child>strong').text(numComma(calPrice)+'원');
+		
+		calTotalPrice();
 	}
+	
+	function calTotalPrice() {
+		var calPrice = 0;
+		for(i=0;i<$('input[name=cartItem]:checked').length;i++){
+			calPrice += Number($('input[name=cartItem]:checked').eq(i).attr('data-saleprice'));
+		}
+		$('#cartTotalPrice').text(numComma(calPrice));
+	}
+	
+	//3자리마다 콤마
 	function numComma(x) {
 	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
+	
+	
 	
 </script>
 
@@ -143,11 +215,15 @@ var aa;
 	</div>
 	<div class="cartSubBtnBox">
 		<input type="button" class="cartdeleteBtn storeBtn" value="선택상품삭제">
+		<span id="cartTotalPriceBox">
+			<span>결제예정금액 : </span>
+			<span id="cartTotalPrice">0</span>
+			<span>원</span>
+		</span>
 	</div>
 	<div class="cartOrderBtnBox">
 		<input type="button" class="cartOrderBtn storeBtn" value="주문하기">
 	</div>
-	<form method="post" id="hCartForm">
-	</form>
+	<form id="hCartForm"></form>
 </div>
 <br>

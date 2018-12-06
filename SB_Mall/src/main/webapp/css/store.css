@@ -137,7 +137,7 @@ h1,h2,h3{
 #cartTable input[type=Number]{
 	font-size: 18px;
 	text-align: center;
-	width: 70px;
+	width: 50px;
 }
 #cartTableHeader{
 	background-color: #F2F2F2;
@@ -152,6 +152,7 @@ h1,h2,h3{
 	margin: 10px auto;
 	padding-bottom: 15px;
 	border-bottom: 1px solid #a9a9a9;
+	vertical-align: middle;
 }
 .cartOrderBtnBox{
 	float: right;
@@ -161,6 +162,20 @@ h1,h2,h3{
 	padding: 5px;
 	background-color: #F2F2F2;
 	border: 1px solid #a9a9a9;
+}
+#cartTotalPriceBox{
+	float:right;
+	vertical-align: middle;
+	font-weight: bold;
+	margin: 0 20px;
+}
+#cartTotalPriceBox>span{
+	line-height:30px;
+	vertical-align: middle;
+}
+#cartTotalPrice{
+	font-size: 25px;
+	margin-right: 5px;
 }
 .orderPayBox{
 	width:100%;
@@ -500,7 +515,7 @@ h1,h2,h3{
 	background-color: white;
 }
 .storeHeaderBanner{
-	height:400px;
+	height:100px;
 	width:100%;
 }
 .storeListFooter{

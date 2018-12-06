@@ -25,8 +25,20 @@ public class OrderCartController {
 
 	@Autowired
 	OrderCartService orderCartService;
+	
+	@RequestMapping(value = "order/carts", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Map<String,Object>> viewCartList(int userSeq) {
+		List<Map<String,Object>> list = new ArrayList<>();
+		try {
+			list=orderCartService.selectCarts(userSeq);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
-	@RequestMapping(value = "order/carts", method = RequestMethod.POST)
+	@RequestMapping(value = "order/carts/insert", method = RequestMethod.POST)
 	@ResponseBody
 	public String addCart(OrderOrderCommand orderCommand) {
 		ObjectMapper jackson = new ObjectMapper();
@@ -46,39 +58,30 @@ public class OrderCartController {
 		return "상품이 장바구니에 추가되었습니다.";
 	}
 
-	@RequestMapping(value = "order/carts", method = RequestMethod.GET)
+	@RequestMapping(value = "order/carts/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Map<String,Object>> viewCartList(int userSeq) {
-		List<Map<String,Object>> list = new ArrayList<>();
+	public String deleteCart(OrderOrderCommand orderCommand) {
+		List<Order> list = orderCommand.getOrders();
+		System.out.println("DLETE:"+list);
 		try {
-			list=orderCartService.selectCarts(userSeq);
+			orderCartService.deleteCart(list);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return "장바구니 삭제에 실패하였습니다";
 		}
-		return list;
+		return "장바구니 삭제에 성공하였습니다";
 	}
+
+	
+	
+	
 	
 	@RequestMapping(value = "order/carts/{userSeq}", method = RequestMethod.GET)
 	public ModelAndView viewCart(@PathVariable("userSeq") int userSeq) {
 		ModelAndView modelAndView = new ModelAndView();
 		return modelAndView;
 	}
-
-	@RequestMapping(value = "order/carts", method = RequestMethod.DELETE)
-	public String deleteCart(OrderOrderCommand orderCommand) {
-
-		List<Order> list = new ArrayList<Order>();
-		System.out.println(list);
-		try {
-			orderCartService.deleteCart(list);
-		} catch (SQLException e) {
-			System.out.println("장바구니 삭제에 실패하였습니다.");
-			e.printStackTrace();
-			return "redirect:cart";
-		}
-		return "redirect:cart";
-	}
-
+	
 	@RequestMapping(value = "order/carts", method = RequestMethod.PUT)
 	@ResponseBody
 	public String modifyCartStock() {

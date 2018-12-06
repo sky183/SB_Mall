@@ -24,7 +24,7 @@ public class OrderCartService {
 	@Transactional
 	public void addCart(String orders) throws SQLException {
 		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
-		orderDao.insertCart(orders);
+		orderDao.upsertCart(orders);
 	}
 	
 	@Transactional

@@ -272,7 +272,7 @@ var addGoodsList= function() {
 		oninput:'changeInsCartPrice(this)',
 		value:1,
 		min:0,
-		max:9999
+		max:999
 	}).appendTo('#insCartNumberBox'+insCnt);
 	$('<button/>').attr({
 		'class':'insCartNumBtn',
@@ -431,7 +431,7 @@ var removeGoodsList = function(e) {
 		}
 		makeHInput(cartCnt);
         $.ajax({
-				    url : '<%=request.getContextPath()%>/order/carts',
+				    url : '<%=request.getContextPath()%>/order/carts/insert',
 				    type : 'POST',
 					data : $('#hForm').serialize(),
 					error : function(error) {
