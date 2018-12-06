@@ -18,7 +18,7 @@ public class BudgetController {
 	@Autowired
 	AdminOperationService operationService;
 
-	// 영업 현황 loadBudgetReport ajax
+	// 버젯 조회 loadBudgetReport ajax
 	@RequestMapping(value = "/admin/adminOperation/budget/loadBudgetReport", method = RequestMethod.GET)
 	public ModelAndView loadBottomReport(@RequestParam(value="nowYear", required=false) String nowYear) {
 
@@ -36,11 +36,12 @@ public class BudgetController {
 		return modelAndView;
 	}
 	
-	// 영업 현황 loadBudgetReport ajax
-	
+	//버젯 입력 loadBudgetReport ajax
 	@ResponseBody
 	@RequestMapping(value = "/admin/adminOperation/budget/loadBudgetReport/updateBudget", method = RequestMethod.POST)
 	public String updateBudget(BudgetVO budgetVO) {
+		
+		System.out.println(budgetVO);
 		
 		operationService.updateBudget(budgetVO);
 		

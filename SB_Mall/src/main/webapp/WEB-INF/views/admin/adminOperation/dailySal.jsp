@@ -10,17 +10,16 @@
 		</span>
 		<span class="seldate">
 			<span>
-				<input type="text" id="startDate" name="startDate" class="datepicker bor-non" value="2018.11.01">
+				<input type="text" id="startDate" name="startDate" class="datepicker bor-non" value="">
 			</span>
 		</span>
 		<span class="fonb fon16">-</span><span class="seldate">
 			<span>
-				<input type="text" id="endDate" name="endDate" class="datepicker bor-non" value="2018.11.30">
+				<input type="text" id="endDate" name="endDate" class="datepicker bor-non" value="">
 			</span>
 		</span>
 		<span>
 			<select>
-				<option>전체</option>
 				<option>일반주문</option>
 				<option>크라우드펀딩</option>
 			</select>
@@ -151,6 +150,9 @@ $(document).ready(function(){
 	//input 태그에 오늘 날짜 불러온다.
 	$( "#startDate" ).val(firstDate);
 	$( "#endDate" ).val(lastDate);
+	
+	//input 태그를 클릭하면 텍스트 상자 전체선택된다.
+	datepickerSel();
 	
 	//메뉴 및 서브메뉴에 css 적용 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것
 	removeActive('#salReport', '#dailySal');

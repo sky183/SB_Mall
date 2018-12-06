@@ -29,6 +29,12 @@
 		<result column="utility" property="utility" javaType="java.lang.Integer"/>
 		<result column="supplie" property="supplie" javaType="java.lang.Integer"/>
 	</resultMap>
+	<resultMap id="selectDailySales" type="java.util.Map">
+		<result column="orderTime" property="orderTime" javaType="java.lang.Integer"/>
+		<result column="orderCount" property="orderCount" javaType="java.lang.Integer"/>
+		<result column="visitCount" property="visitCount" javaType="java.lang.Integer"/>
+		<result column="dailyAmount" property="dailyAmount" javaType="java.lang.Integer"/>
+	</resultMap>
 
 	<!-- // 토탈연버젯, 이번달까지연버젯, 토탈월버젯, 오늘까지월버젯 -->
 	<select id="totalBudget" resultMap="totalBudget">
@@ -78,7 +84,7 @@
 	</select>
 	<!-- // 이번달까지 연매출 -->
 	<select id="yearAmount" resultType="long">
-		SELECT sum(totalAmount)
+		SELECT ifnull(sum(totalAmount), 0)
 		yearAmount FROM OrderDetail where year(orderTime) = year(#{nowDate})
 		and month(orderTime) <![CDATA[<=]]> month(#{nowDate}) and status <![CDATA[>]]> 0;
 	</select>
@@ -102,9 +108,9 @@
 	<select id="totalCostSales" resultMap="totalCostSales">
 		SELECT
 		ifnull(sum((o.quantity * gs.cost)), 0) monthCost,
-		ifnull(sum(od.totalAmount), 0) monthAmount,
-		ifnull((sum((o.quantity * gs.cost)) / sum(od.totalAmount)*100), 0) monthCostRate,
-		ifnull(SUM(od.totalAmount) / day(#{nowDate}), 0) monthAvg
+		ifnull(sum(o.salePrice), 0) monthAmount,
+		ifnull((sum((o.quantity * gs.cost)) / sum(o.salePrice)*100), 0) monthCostRate,
+		ifnull(SUM(o.salePrice) / day(#{nowDate}), 0) monthAvg
 		FROM `Order` o, Goods gs, OrderDetail od
 		WHERE o.goodsNo = gs.goodsNo
 		AND o.orderDetailNum = od.orderDetailNum
@@ -138,8 +144,8 @@
 	</select>
 <!-- 	버젯 수정 -->
 	<update id="updateBudget" parameterType="com.sb.mall.admin.adminOperation.model.BudgetVO">
-		SET
-		   Jan = #{Jan}
+		update Budget
+		SET Jan = #{Jan}
 		  ,Feb = #{Feb}
 		  ,Mar = #{Mar}
 		  ,Apr = #{Apr}
@@ -152,7 +158,30 @@
 		  ,Nov = #{Nov}
 		  ,`Dec` = #{Dec} 
 		WHERE `year` = #{nowYear}
+		
 	</update>
+	
+<!-- 	일별 주문 조회 -->
+	<select id="selectDailySales" resultMap="selectDailySales">
+		SELECT
+		DATE(od.orderTime) orderTime,
+		COUNT(*) orderCount,
+		IFNULL(SUM(vg.visitCount), 0) visitCount,
+		SUM(od.totalAmount) dailyAmount
+		FROM
+		#{param3} od
+		LEFT JOIN
+		(SELECT
+		SUM(visitCount) visitCount, visitDate
+		FROM
+		VisitGuest
+		GROUP BY DATE(visitDate)) vg ON DATE(od.orderTime) = DATE(vg.visitDate)
+		WHERE
+		DATE(od.orderTime) > DATE(#{param1} - INTERVAL 1 DAY)
+		AND DATE(od.orderTime) < DATE(#{param2} + INTERVAL 1 DAY)
+		AND od.status > 0
+		GROUP BY od.orderTime;
+	</select>
 	
 	
 	

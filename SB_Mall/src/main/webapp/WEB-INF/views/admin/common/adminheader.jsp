@@ -94,11 +94,23 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
     $('#leftContent').css({'height':(h-58)+'px'});
 } */
 
+//input 태그를 클릭하면 텍스트 상자 전체선택된다.
+function datepickerSel(){
+$(".datepicker").on("click", function(){
+	    $(this).select();
+	  });
+}
+
 //3자리수마다 콤마 찍어주는 함수
 function comma(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+//콤마풀고 Number로 변환
+function uncomma(str) {
+    str = String(str);
+    return Number(str.replace(/[^\d]+/g, ''));
+}
 //date포맷 함수
 Date.prototype.format = function(f) {
     if (!this.valueOf()) return " ";

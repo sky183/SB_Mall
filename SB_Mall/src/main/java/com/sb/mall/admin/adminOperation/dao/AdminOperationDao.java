@@ -27,7 +27,10 @@ public interface AdminOperationDao {
 	public BudgetVO selectBudget(Object nowYear);
 	//	버젯 수정
 	public void updateBudget(BudgetVO budgetVO);
-
+	// 일별 날짜, 주문수, 방문수, 매출 조회
+	public Map<String, Object> selectDailySales(String startDate, String endDate, String tableName);
+	
+	
 
 
 }

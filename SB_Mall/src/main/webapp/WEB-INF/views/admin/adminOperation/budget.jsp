@@ -24,7 +24,7 @@
 	
 	<!-- 하단 -->
 	<div id="mainBottom">
-		<form action="" id="budgetModify" method="post">
+		<form id="budgetModify">
 			<div id="loadBudgetReport">
 <!-- 				loadBudgetReport.jsp를 불러온다. -->
 			</div>
@@ -84,7 +84,6 @@ $(document).ready(function(){
 		        alert("Error!");
 		    },
 			success : function(data) {
-				console.log(data);
 				$('#loadBudgetReport').html(data);
 			}
 		});

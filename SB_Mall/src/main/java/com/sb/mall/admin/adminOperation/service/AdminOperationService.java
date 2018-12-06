@@ -53,6 +53,7 @@ public class AdminOperationService {
 		
 		//dao의 메서드 실행하여 budgetVO에 값 할당
 		budgetVO = dao.selectBudget(nowDate);
+		budgetVO.setNowYear((String)nowDate);
 		
 		return budgetVO;
 	}

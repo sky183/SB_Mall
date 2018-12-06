@@ -322,10 +322,12 @@ input.select {
 	height: 100%;
 	border: 1px solid #FFF;
 	border-radius: 5px;
+	cursor: default;
 }
-.monthLabel input:disabled{
-	background-color: inherit;
+.monthLabel input:focus{
+	cursor: text;
 }
+
 .monthLabel hr{
 	border-top: 2px solid; 
 	margin: 5px 0;

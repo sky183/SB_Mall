@@ -73,7 +73,6 @@ $(document).ready(function(){
 		        alert("Error!");
 		    },
 			success : function(data) {
-				console.log(data);
 				$('#bottomReport').html(data);
 			}
 		});
@@ -89,7 +88,6 @@ $(document).ready(function(){
 		        alert("Error!");
 		    },
 			success : function(data) {
-// 				console.log(nowDate);
 				$('#bottomReport').html(data);
 			}
 		});

@@ -22,7 +22,6 @@
 		</span>
 		<span>
 			<select>
-				<option>전체</option>
 				<option>일반주문</option>
 				<option>크라우드펀딩</option>
 			</select>
@@ -154,6 +153,9 @@ $( "#startDate" ).val(now.format("yyyy.01"));
 $( "#endDate" ).val(now.format("yyyy.MM"));
 
 $(document).ready(function(){
+	
+// 	//datepicker 선택시 글자 전체선택한다.
+	datepickerSel();
 
 	//메뉴 및 서브메뉴에 css 적용 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것
 	removeActive('#salReport', '#monthlySal');
