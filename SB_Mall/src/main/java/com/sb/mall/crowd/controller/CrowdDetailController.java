@@ -1,5 +1,6 @@
 package com.sb.mall.crowd.controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class CrowdDetailController {
 	private CrowdDetailService dtService;
 	
 	@RequestMapping(value = "crowd/crowdDetail/{crBoardSeq}", method = RequestMethod.GET)
-	public ModelAndView getDetailBoard(@PathVariable("crBoardSeq")int crBoardSeq) {
+	public ModelAndView getDetailBoard(@PathVariable("crBoardSeq")int crBoardSeq) throws ParseException {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("store/crowdFunding/crowdError");
 		
@@ -32,15 +33,12 @@ public class CrowdDetailController {
 		
 		System.out.println("detail controller 입장");
 		
-		
 		//조회수 올리기~
 		dtService.setViewSeqUps(crBoardSeq);
 		
 		//board & product
 		boardPro = dtService.getCrBoard(crBoardSeq);
 		int boardSeq = (int) boardPro.get(0).get("crowdBoardSeq");
-		
-		
 		
 		//crPhoto
 		//productNo 추출
@@ -60,6 +58,10 @@ public class CrowdDetailController {
 		//조회수 조회
 		int viewSeq = dtService.getViewCount(crBoardSeq);
 		
+		//끝나는 날짜.
+		String date = dtService.getDelivery(crBoardSeq);
+		System.out.println("끝나는 날짜 : "+date);
+		
 		//board & product & goods의 값이 있다면 성공
 		if(boardPro!=null && goods!=null) {
 			modelAndView.addObject("photoCnt", photoCnt);
@@ -69,10 +71,22 @@ public class CrowdDetailController {
 			modelAndView.addObject("goods", goods);
 			modelAndView.addObject("Rating", Rating);
 			modelAndView.addObject("viewSeq", viewSeq);
+			modelAndView.addObject("data", date);
 			
 			modelAndView.setViewName("store/crowdFunding/crowdDetailPage");
 		}
 		
 		return modelAndView;
 	}
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
 }

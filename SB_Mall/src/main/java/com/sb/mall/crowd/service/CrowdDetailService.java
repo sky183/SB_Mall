@@ -1,5 +1,9 @@
 package com.sb.mall.crowd.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -87,6 +91,54 @@ public class CrowdDetailService {
 		crowdDao = sqlSessionTemplate.getMapper(CrowdDao.class);
 		
 		return crowdDao.getViewSeq(crowdBoardSeq);
+	}
+	
+	public String getDelivery(int crowdBoardSeq) throws ParseException {
+		crowdDao = sqlSessionTemplate.getMapper(CrowdDao.class);
+		String delDate = crowdDao.getDelivery(crowdBoardSeq);
+		String year = delDate.substring(0, 4);
+		String month = delDate.substring(5, 7);
+		String day = delDate.substring(8, 10);
+		String dates = year+month+day;
+		
+		String days = "" ;
+	     
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd") ;
+	    Date nDate = dateFormat.parse(dates) ;
+	    
+	    Calendar cal = Calendar.getInstance() ;
+	    cal.setTime(nDate);
+	     
+	    int dayNum = cal.get(Calendar.DAY_OF_WEEK) ;
+	     
+	    switch(dayNum){
+	        case 1:
+	            days = "일";
+	            break ;
+	        case 2:
+	            days = "월";
+	            break ;
+	        case 3:
+	            days = "화";
+	            break ;
+	        case 4:
+	            days = "수";
+	            break ;
+	        case 5:
+	            days = "목";
+	            break ;
+	        case 6:
+	            days = "금";
+	            break ;
+	        case 7:
+	            days = "토";
+	            break ;
+	    }
+	    
+	    String result = year+"/"+month+"/"+day+"("+days+")";
+	    System.out.println("result : "+result);
+	    
+		return result;
 	}
 	
 	

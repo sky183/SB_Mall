@@ -164,7 +164,9 @@
 			   $('#replyModifyBigBox').css('display','none');
 		   })
 		   
-		  $('.rating').on('click',function(){
+		   
+		   //평점
+		  $('.rating').on('mouseover',function(){
 			var rating = 0;
 			var index = $(this).attr('alt');
 			var ratingImg = $('.rating');

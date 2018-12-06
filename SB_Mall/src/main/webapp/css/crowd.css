@@ -9,9 +9,9 @@
     display: inline-block;
 }
 .boardPhotoBox{
-	width: 230px;
+	width: 310px;
     border-radius: 10px;
-    height: 230px;
+    height: 310px;
     overflow: hidden;
     margin-bottom: 10px;
 }
@@ -98,9 +98,9 @@
 	
 }
 .boardTitle{
-	display: inline-block;
-	color:#282828;
-    font-size: 12pt;
+    display: inline-block;
+    color: #282828;
+    font-size: 14pt;
 }
 .viewBox{
 	display: inline-block;
@@ -141,9 +141,10 @@
 	overflow: hidden;
 }
 .price{
-	color:#a0a0a0;
-	font-weight: normal;
-	display: inline-block;
+    color: #a0a0a0;
+    font-weight: normal;
+    display: inline-block;
+    font-size: 11pt;
 }
 
 .targetPcBox{
@@ -154,7 +155,8 @@
 	float: right;
 }
 .achHigh{
-	color:#ffc828;
+    color: #ffc828;
+    font-size: 14pt;
 }
 .achMid{
 	color:#a0a0a0;
@@ -163,21 +165,29 @@
 .pagingBox{
 	text-align: center;
 }
+.pagingBtnBox:hover{
+	background-color: #787878 !important;
+	color:white;
+}
 .pagingBtnBox{
     text-align: center;
-    background-color: #f0f0f0;
+    border: 1px solid #787878;
     border-radius: 5px;
-    color: #707070;
+    color: #787878;
     width: 40px;
     height: 40px;
+    vertical-align: middle;
 }
 .nowPage{
 	text-align: center;
-    background-color: #ffc828;
+    background-color: #787878 !important;
+    border: 1px solid #787878;
     border-radius: 5px;
     color: white;
     width: 40px;
     height: 40px;
+    vertical-align: middle;
+    
 }
 .pagingBtn{
     padding-top: 10px;

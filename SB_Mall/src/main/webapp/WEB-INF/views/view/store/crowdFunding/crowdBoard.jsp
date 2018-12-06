@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 
 <script>
-	var pageShowCnt = 16;
+	var pageShowCnt = 15;
 	
 	 $(document).ready(function(){
 		
@@ -78,9 +78,9 @@
 	<div class="userOptBox ib">
 		<div class="selectBox ib">
 			<select class="select">
-				<option>16개</option>
-				<option>32개</option>
-				<option>48개</option>
+				<option>15개</option>
+				<option>30개</option>
+				<option>45개</option>
 			</select>
 		</div>
 		<div class="searchBigBox">

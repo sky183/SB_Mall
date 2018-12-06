@@ -26,4 +26,8 @@ public interface CrowdDao {
 	public int getPhotoCount(String productNo); // 사진 갯수 파악
 	public void setViewSeqUp(int crowdBoardSeq);// 조회수 증가
 	public int getViewSeq(int crowdBoardSeq);//조회수 조회
+	public String getDelivery(int crowdBoardSeq); //salesDay 구하기
+	public List<Map<String, Object>> getOpt1(String goodsNo);// opt1 구하기
+	public List<Map<String, Object>> getOpt2(String goodsNo, String opt1Name); //opt2 구하기
+	public String getUserName(int userSeq); // 유저 네임 구하기
 }

@@ -23,7 +23,7 @@ public class CrowdBoardListController {
 	@ResponseBody
 	public ModelAndView getCrowdBoard(
 						@RequestParam(value="nowPage", defaultValue="1")int nowPage, 
-						@RequestParam(value="pageShowCnt", defaultValue="16")int pageShowCnt){
+						@RequestParam(value="pageShowCnt", defaultValue="15")int pageShowCnt){
 		System.out.println("게시판 가져오는 컨트롤러 입장.");
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -33,8 +33,8 @@ public class CrowdBoardListController {
 		System.out.println("List.Length : "+list.size());
 		
 		int paging = boardService.getBoardPageCnt(pageShowCnt);
-		int doAdd = list.size()%4;
-		
+		int doAdd = list.size()%3;
+		System.out.println("doAdd : "+doAdd);
 		modelAndView.addObject("boardList", list);
 		modelAndView.addObject("paging", paging);
 		modelAndView.addObject("nowPage", nowPage);
