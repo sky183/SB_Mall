@@ -23,9 +23,6 @@ public class UploadService {
 		File f = new File(filepath);
 		
 		try {
-			if (!f.exists()) {
-				f.mkdirs();
-			}
 			file.transferTo(f);
 		} catch (IllegalStateException e) {
 			f.delete();
