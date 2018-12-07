@@ -2,7 +2,6 @@ package com.sb.mall.admin.adminOperation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,8 +25,13 @@ public class BudgetController {
 		
 		//loadBudgetReport에 넣을 객체를 받아온다. 
 		BudgetVO budgetVO = new BudgetVO();
+		try {
+			budgetVO = operationService.getBudgetVO(nowYear);
+		} catch (Exception e) {
+			operationService.insertBudget(nowYear);
+			budgetVO = operationService.getBudgetVO(nowYear);
+		}
 		
-		budgetVO = operationService.getBudgetVO(nowYear);
 		
 		modelAndView.addObject("budgetVO", budgetVO);
 		
@@ -41,13 +45,10 @@ public class BudgetController {
 	@RequestMapping(value = "/admin/adminOperation/budget/loadBudgetReport/updateBudget", method = RequestMethod.POST)
 	public String updateBudget(BudgetVO budgetVO) {
 		
-		System.out.println(budgetVO);
-		
 		operationService.updateBudget(budgetVO);
 		
 		return "수정 완료!";
 	}
-	
 	
 
 }

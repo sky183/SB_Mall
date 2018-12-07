@@ -40,13 +40,16 @@
 	border-bottom: 1px solid #a0a0a0;
 }
 .resultTab th{
+	padding-top: 10px;
 	padding-bottom: 10px;
+	padding-left: 20px;
 	font-weight: bold;
 	font-size: 18px;
 }
 .resultTab td{
 	padding-top: 10px;
 	padding-bottom: 10px;
+	padding-left : 20px;
 }
 input[type="submit"], select{
 	cursor: pointer;
@@ -89,6 +92,9 @@ input[type="submit"], select{
 	border-bottom: 1px solid #dcdcdc;
 	color: #505050;
 }
+.leftMenu:hover{
+	color: #ffc828 !important;
+}
 .leftSubmenu {
 	display: none;
 	margin-bottom: 0px;
@@ -99,6 +105,9 @@ input[type="submit"], select{
 	padding-left: 20px;
 	color: #a0a0a0 !important;
 	margin-top: 6px;
+}
+.leftSubmenu li:hover{
+	color: #282828 !important;
 }
 .leftSubActive {
 	color: #282828 !important;
@@ -119,8 +128,15 @@ input[type="submit"], select{
 }
 
 /*   adminOperation.jsp 내부 공통 - totalResult.jsp, dailySal.jsp, budget 공통*/
-#totalDatepicker, #budgetDatepicker{
+.datepicker:focus{
+	outline: none;
+}
+#totalDatepicker{
 	width: 120px;
+}
+#budgetDatepicker{
+	width: 52px;
+    margin-left: 10px;
 }
 #mainHeader {
 	text-align: center;
@@ -175,6 +191,12 @@ input.select {
 	color: #505050;
 	font-weight: bold;
 	margin-left: 5px;
+}
+.downButton:hover{
+	cursor: pointer;
+	background-color: #505050;
+	border-color: #505050;
+	color: #f0f0f0;	
 }
 .toInput{
 	padding: 7px 20px;
@@ -299,8 +321,17 @@ input.select {
 }
 
 /* dailySal.jsp */
-.ds1{width: 150px;}.ds2{width: 150px;}
-.ds3{width: 150px;}
+.ds1{width: 120px;}.ds2{width: 120px;}
+.ds3{width: 120px;}.ds4{width: 200px;}
+td.ds1, td.ds2, td.ds3, td.ds4{
+	text-align: right; 
+	padding-right : 20px;
+}
+th.ds1, th.ds2, th.ds3, th.ds4{
+	padding-left : 0;
+	text-align: center; 
+}
+
 
 /* budget.jsp */
 .monthLabel {
@@ -326,6 +357,7 @@ input.select {
 }
 .monthLabel input:focus{
 	cursor: text;
+	outline: none;
 }
 
 .monthLabel hr{

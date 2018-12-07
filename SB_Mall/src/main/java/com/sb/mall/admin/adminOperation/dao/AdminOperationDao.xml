@@ -29,12 +29,6 @@
 		<result column="utility" property="utility" javaType="java.lang.Integer"/>
 		<result column="supplie" property="supplie" javaType="java.lang.Integer"/>
 	</resultMap>
-	<resultMap id="selectDailySales" type="java.util.Map">
-		<result column="orderTime" property="orderTime" javaType="java.lang.Integer"/>
-		<result column="orderCount" property="orderCount" javaType="java.lang.Integer"/>
-		<result column="visitCount" property="visitCount" javaType="java.lang.Integer"/>
-		<result column="dailyAmount" property="dailyAmount" javaType="java.lang.Integer"/>
-	</resultMap>
 
 	<!-- // 토탈연버젯, 이번달까지연버젯, 토탈월버젯, 오늘까지월버젯 -->
 	<select id="totalBudget" resultMap="totalBudget">
@@ -145,7 +139,8 @@
 <!-- 	버젯 수정 -->
 	<update id="updateBudget" parameterType="com.sb.mall.admin.adminOperation.model.BudgetVO">
 		update Budget
-		SET Jan = #{Jan}
+		SET yearBudget = #{yearBudget}
+		  ,Jan = #{Jan}
 		  ,Feb = #{Feb}
 		  ,Mar = #{Mar}
 		  ,Apr = #{Apr}
@@ -160,16 +155,34 @@
 		WHERE `year` = #{nowYear}
 		
 	</update>
+<!-- 	// 버젯 추가 -->
+	<insert id="insertBudget">
+		INSERT INTO `Budget` (year) VALUES (#{nowYear});
+	</insert>
 	
-<!-- 	일별 주문 조회 -->
-	<select id="selectDailySales" resultMap="selectDailySales">
+<!-- 	//일반 주문 및 크라우드펀딩 주문 갯수 -->
+	<select id="selectOrderDetailCount" resultType="int">
+		select count(*) from 
+			(SELECT 
+			    date(orderTime) orderTime
+			FROM
+			    ${param3}
+			WHERE
+			    DATE(orderTime) <![CDATA[>]]> DATE(#{param1} - INTERVAL 1 DAY)
+			        AND DATE(orderTime) <![CDATA[<]]> DATE(#{param2} + INTERVAL 1 DAY)
+			        AND status <![CDATA[>]]> 0
+			GROUP BY DATE(orderTime)) orderCount;
+	</select>
+	
+<!-- 	//일별 날짜, 주문수, 방문수, 매출 조회 - 일반주문 및 크라우드펀딩  -->
+	<select id="selectDailySalVOList" resultType="com.sb.mall.admin.adminOperation.model.DailySalVO">
 		SELECT
 		DATE(od.orderTime) orderTime,
 		COUNT(*) orderCount,
 		IFNULL(SUM(vg.visitCount), 0) visitCount,
 		SUM(od.totalAmount) dailyAmount
 		FROM
-		#{param3} od
+		${param3} od
 		LEFT JOIN
 		(SELECT
 		SUM(visitCount) visitCount, visitDate
@@ -177,11 +190,17 @@
 		VisitGuest
 		GROUP BY DATE(visitDate)) vg ON DATE(od.orderTime) = DATE(vg.visitDate)
 		WHERE
-		DATE(od.orderTime) > DATE(#{param1} - INTERVAL 1 DAY)
-		AND DATE(od.orderTime) < DATE(#{param2} + INTERVAL 1 DAY)
-		AND od.status > 0
-		GROUP BY od.orderTime;
+		DATE(od.orderTime) <![CDATA[>]]> DATE(#{param1} - INTERVAL 1 DAY)
+		AND DATE(od.orderTime) <![CDATA[<]]> DATE(#{param2} + INTERVAL 1 DAY)
+		AND od.status <![CDATA[>]]> 0
+		GROUP BY date(od.orderTime) 
+		 order by orderTime desc
+		limit
+		#{param4},
+		#{param5} ;
 	</select>
+	
+	
 	
 	
 	

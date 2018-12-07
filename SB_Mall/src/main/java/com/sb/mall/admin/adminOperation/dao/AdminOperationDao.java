@@ -1,8 +1,10 @@
 package com.sb.mall.admin.adminOperation.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.sb.mall.admin.adminOperation.model.BudgetVO;
+import com.sb.mall.admin.adminOperation.model.DailySalVO;
 
 public interface AdminOperationDao {
 	//	토탈연버젯, 이번달까지연버젯, 토탈월버젯, 오늘까지월버젯
@@ -27,8 +29,12 @@ public interface AdminOperationDao {
 	public BudgetVO selectBudget(Object nowYear);
 	//	버젯 수정
 	public void updateBudget(BudgetVO budgetVO);
-	// 일별 날짜, 주문수, 방문수, 매출 조회
-	public Map<String, Object> selectDailySales(String startDate, String endDate, String tableName);
+	// 버젯 추가
+	public void insertBudget(Object nowYear);
+	//일반 주문 및 크라우드펀딩 주문 갯수
+	public int selectOrderDetailCount(String startDate,String endDate, String tableName);
+	//일별 날짜, 주문수, 방문수, 매출 조회 - 일반주문 및 크라우드펀딩 
+	public List<Object> selectDailySalVOList(String startDate, String endDate, String tableName, int firstRow, int endRow);
 	
 	
 

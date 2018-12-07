@@ -10,13 +10,13 @@
 		</span>
 		<span class="seldate">
 			<span>
-				<input type="text" id="startDate" name="startDate" class="datepicker1 bor-non" value="2018.11">
+				<input type="text" id="startDate" name="startDate" class="datepicker1 inputSel bor-non" value="2018.11">
 				<img class="monthButton1" alt="" src="../img/calendar.png">
 			</span>
 		</span>
 		<span class="fonb fon16">-</span><span class="seldate">
 			<span>
-				<input type="text" id="endDate" name="endDate" class="datepicker2 bor-non" value="2018.11">
+				<input type="text" id="endDate" name="endDate" class="datepicker2 inputSel bor-non" value="2018.11">
 				<img class="monthButton2" alt="" src="../img/calendar.png">
 			</span>
 		</span>
@@ -43,7 +43,7 @@
 	
 	<!-- 하단 -->
 	<div id="mainBottom">
-		<table id="dailySalTab" class="resultTab">
+		<table id="dailySalTab" class="tablesorter resultTab">
 			<thead>
 				<tr>
 					<th class="ds1">날짜</th>
@@ -55,7 +55,19 @@
 			<tbody>
 				<tr>
 					<td class="ds1">2018.11.01</td>
-					<td class="ds2">20000</td>
+					<td class="ds2">2000</td>
+					<td class="ds3">20000</td>
+					<td class="ds4">20,000,000,000</td>
+				</tr>
+				<tr>
+					<td class="ds1">2018.11.01</td>
+					<td class="ds2">200001</td>
+					<td class="ds3">20000</td>
+					<td class="ds4">20,000,000,000</td>
+				</tr>
+				<tr>
+					<td class="ds1">2018.11.01</td>
+					<td class="ds2">20200</td>
 					<td class="ds3">20000</td>
 					<td class="ds4">20,000,000,000</td>
 				</tr>
@@ -118,29 +130,16 @@
 					<td class="ds2">20000</td>
 					<td class="ds3">20000</td>
 					<td class="ds4">20,000,000,000</td>
-				</tr>
-				<tr>
-					<td class="ds1">2018.11.01</td>
-					<td class="ds2">20000</td>
-					<td class="ds3">20000</td>
-					<td class="ds4">20,000,000,000</td>
-				</tr>
-				<tr>
-					<td class="ds1">2018.11.01</td>
-					<td class="ds2">20000</td>
-					<td class="ds3">20000</td>
-					<td class="ds4">20,000,000,000</td>
-				</tr>
-				<tr class="bor-non">
-					<td colspan="4" class="t-right">
-						<span class="toResult">
-							<span>총 매출</span>
-							<span>200,000,000,000</span>
-						</span>
-					</td>
 				</tr>
 			</tbody>
 		</table>
+		<br>
+		<div class="t-right">
+			<span class="toResult">
+				<span>총 매출</span>
+				<span>200,000,000,000</span>
+			</span>
+		</div>		
 	<!-- mainBottom의 끝 -->
 	</div>
 	
@@ -154,15 +153,13 @@ $( "#endDate" ).val(now.format("yyyy.MM"));
 
 $(document).ready(function(){
 	
-// 	//datepicker 선택시 글자 전체선택한다.
-	datepickerSel();
-
 	//메뉴 및 서브메뉴에 css 적용 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것
 	removeActive('#salReport', '#monthlySal');
 	
 	//month 피커
     $(".datepicker1, .datepicker2").monthpicker({ 
     	pattern : 'yyyy.mm',
+		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
    	});
     $('.monthButton1').bind('click', function(){
     	$(".datepicker1").monthpicker('show');
@@ -173,3 +170,4 @@ $(document).ready(function(){
 
 });
 </script>
+<%@ include file="/WEB-INF/views/admin/common/adminBottom.jsp"%>

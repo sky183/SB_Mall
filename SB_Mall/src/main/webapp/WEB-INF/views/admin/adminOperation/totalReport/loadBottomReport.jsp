@@ -205,4 +205,4 @@
 		
 	<!-- mainBottom의 끝 -->
 	</div>
-	
+<%@ include file="/WEB-INF/views/admin/common/adminBottom.jsp"%>	

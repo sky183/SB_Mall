@@ -7,7 +7,7 @@
 	<div id="mainHeader">
 		<span>
 			<button class="preDate fon22" name="preDate"> &lt; </button> 
-			<input type="text" id="budgetDatepicker" name="year" class="datepicker dateInput fon22 fonb" readOnly value="2018">
+			<input type="text" id="budgetDatepicker" name="year" class="datepicker dateInput fon22 fonb" readOnly value="">
 			<button class="nextDate fon22" name="nextDate"> &gt; </button> 
 		</span>
 		<span class="absol">
@@ -35,8 +35,23 @@
 	
 <!-- mainContent의 끝 -->
 </div>
+
 <script type="text/javascript">
+
+function loadBudgetReport(newYear){
+	$.ajax({
+		url : '<%=request.getContextPath()%>/admin/adminOperation/budget/loadBudgetReport?nowYear=' + newYear,
+		error : function(error) {
+			alert(error);
+	    },
+		success : function(data) {
+			$('#loadBudgetReport').html(data);
+		}
+	});
+}
+
 $(document).ready(function(){
+	
 	$('#loadBudgetReport').load('<%=request.getContextPath()%>/admin/adminOperation/budget/loadBudgetReport?nowYear=' + nowYear);
 	
 	//input 태그에 오늘 년도를 불러온다.
@@ -69,41 +84,30 @@ $(document).ready(function(){
 	$('.preDate, .nextDate').on('click', function(){
 		var preYear = Number($(".datepicker").val()) - 1;
 		var nextYear = Number($(".datepicker").val()) + 1;
-		var nowYearDate;
+		var newYear;
 		if ($(this).attr('name') == 'preDate' ) {
 			$( ".datepicker" ).val(preYear);
-			nowYearDate = preYear;
+			newYear = preYear;
 		} else {
 			$( ".datepicker" ).val(nextYear);
-			nowYearDate = nextYear;
+			newYear = nextYear;
 		}
 		
-		$.ajax({
-			url : '<%=request.getContextPath()%>/admin/adminOperation/budget/loadBudgetReport?nowYear=' + nowYearDate,
-			error : function(error) {
-		        alert("Error!");
-		    },
-			success : function(data) {
-				$('#loadBudgetReport').html(data);
-			}
-		});
+		loadBudgetReport(newYear);
 	});
 	
 	//날짜 변경시 ajax 처리
 	$('.datepicker').on('change', function(){
-		var nowYearDate = $(".datepicker").val();
+		var newYear = $(".datepicker").val();
 		
-		$.ajax({
-			url : '<%=request.getContextPath()%>/admin/adminOperation/budget/loadBudgetReport?nowYear=' + nowYearDate,
-			error : function(error) {
-		        alert("Error!");
-		    },
-			success : function(data) {
-				$('#loadBudgetReport').html(data);
-			}
-		});
+		loadBudgetReport(newYear);
 		
 	});
+	
+
+	
+
 
 });
 </script>
+<%@ include file="/WEB-INF/views/admin/common/adminBottom.jsp"%>

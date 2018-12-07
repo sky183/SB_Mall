@@ -32,7 +32,7 @@ public class AdminMainController {
 	
 	//관리자페이지 메인
 	@RequestMapping(value="/admin/adminMain", method=RequestMethod.GET)
-	public ModelAndView adminPage(@RequestParam(value="page", defaultValue="1") int membPageNum) throws JsonProcessingException {
+	public ModelAndView adminMain(@RequestParam(value="page", defaultValue="1") int membPageNum) throws JsonProcessingException {
 		
 		ModelAndView modelAndView = new ModelAndView("/admin/adminMain");
 		

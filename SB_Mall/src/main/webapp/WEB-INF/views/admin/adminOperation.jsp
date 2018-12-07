@@ -14,7 +14,7 @@
 <!-- 헤더 삽입 -->
 <%@ include file="/WEB-INF/views/admin/common/adminheader.jsp"%>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/admin/adminPage.css">
+	href="<%=request.getContextPath()%>/css/admin/adminMain.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/admin/adminContent.css">
 </head>
@@ -68,11 +68,17 @@ function removeActive(id, sub){
 }
 
 $(document).ready(function(){
+	
+	$('.leftSubmenu').hover(function(){
+		$(this).prev('.leftMenu').css('color', '#ffc828');
+	}, function(){
+		$(this).prev('.leftMenu').css('color', '#505050');
+	});
 
-	//영업통계를 불러온다.
+	//기본 화면으로 불러온다. 여기서는 영업통계
 	$('#rightContent').load('<%=request.getContextPath()%>/admin/adminOperation/totalReport');
 	
-	//메뉴 클릭시 우측 메뉴 출력
+	//메뉴 클릭시 우측 메뉴 출력 - 없으면 기본 화면으로 출력 여기서는 영업통계
 	$('.link').click(function(){
 		var page = $(this).attr('id');
 		var url = '<%=request.getContextPath()%>/admin/adminOperation/' + page;
@@ -88,6 +94,7 @@ $(document).ready(function(){
 		});
 	});
 	
+	//ajax로 뒤로가기 구현
 	$(window).bind("popstate", function(event) {
 		//히스토리에 저장된 데이터를 불러온다. 여기서는 url 
 		var data = event.originalEvent.state;

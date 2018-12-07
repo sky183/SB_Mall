@@ -93,9 +93,14 @@ for(var i of Object.keys(dataTop5)){
 jui.ready([ "chart.builder" ], function(chart) {
 	
     var c = chart("#top5", {
-        padding: 10,
-        width: 180,
-        height : 250,
+        padding: {
+        	top : 40,
+        	left : 80,
+        	right : 80,
+        	bottom: 50
+        },
+        width: 330,
+        height : 258,
         theme : "gradient",
         axis : {
             data : [dataTop5]

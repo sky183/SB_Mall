@@ -7,7 +7,7 @@
 	<div id="mainHeader">
 		<span>
 			<button class="preDate fon22" name="preDate"> &lt; </button> 
-			<input type="text" id="totalDatepicker" name="date" class="datepicker dateInput fon22 fonb" readOnly value="">
+			<input type="text" id="totalDatepicker" name="date" class="datepicker dateInput inputSel fon22 fonb" value="">
 			<button class="nextDate fon22" name="nextDate"> &gt; </button> 
 		</span>
 		<span class="absol">
@@ -66,7 +66,18 @@ $(document).ready(function(){
 			newDate = nextDate;
 		}
 		
+		loadBottomReport(newDate);
+	});
+	
+	//날짜 변경시 ajax 처리
+	$('.datepicker').on('change', function(){
+		var newDate = getDate($( ".datepicker" ).val());
 		
+		loadBottomReport(newDate);
+		
+	});
+	
+	function loadBottomReport(newDate){
 		$.ajax({
 			url : '<%=request.getContextPath()%>/admin/adminOperation/totalReport/loadBottomReport?nowDate=' + newDate,
 			error : function(error) {
@@ -76,23 +87,7 @@ $(document).ready(function(){
 				$('#bottomReport').html(data);
 			}
 		});
-	});
-	
-	//날짜 변경시 ajax 처리
-	$('.datepicker').on('change', function(){
-		var nowDate = getDate($( ".datepicker" ).val());
-		
-		$.ajax({
-			url : '<%=request.getContextPath()%>/admin/adminOperation/totalReport/loadBottomReport?nowDate=' + nowDate,
-			error : function(error) {
-		        alert("Error!");
-		    },
-			success : function(data) {
-				$('#bottomReport').html(data);
-			}
-		});
-		
-	});
+	}
 	
 	
 

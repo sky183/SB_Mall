@@ -23,7 +23,8 @@ public class AdminMainService {
 		
 		//날짜를 원하는 스트링 형태로 변환 
 		LocalDate myDate = LocalDate.now();
-		String monthName = (myDate.minusMonths(1).getMonth().name()).substring(0, 3);
+		//월의 이름을 가져온다.
+		String monthName = (myDate.minusMonths(0).getMonth().name()).substring(0, 3);
 		
 		AdminMainVO admin = new AdminMainVO();
 		
@@ -69,7 +70,7 @@ public class AdminMainService {
 		
 		
 		//버젯 대비 월 매출 달성율 
-		admin.setBudgetSales(dao.budgetSales(monthName, 1));
+		admin.setBudgetSales(dao.budgetSales(monthName, 0));
 
 		return admin;
 

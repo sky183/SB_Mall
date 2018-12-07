@@ -16,7 +16,7 @@
 <c:choose>
 	<c:when test="${viewData.isEmpty()}">
             등록된 주문이 없습니다.
-        </c:when>
+    </c:when>
 	<c:otherwise>
 		<div class="px-4" style="text-align: center;"> 
 

@@ -15,6 +15,12 @@ public class BudgetVO {
 	long Sep;
 	long Oct;
 	long Nov;
+	long Dec;
+	
+	//월 버젯 합산
+	public void sumYearBudget(){
+		this.yearBudget = this.Jan + this.Feb + this.Mar + this.Apr + this.May + this.Jun + this.Jul + this.Aug + this.Sep + this.Oct + this.Nov + this.Dec;
+	}
 	
 	@Override
 	public String toString() {
@@ -112,5 +118,5 @@ public class BudgetVO {
 	public void setDec(long dec) {
 		Dec = dec;
 	}
-	long Dec;
+
 }

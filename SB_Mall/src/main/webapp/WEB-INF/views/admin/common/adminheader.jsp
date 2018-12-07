@@ -12,33 +12,6 @@
 <meta charset="UTF-8">
 <!--화면 높이를 가져오기 위해 필수로 추가-->
  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1,maximum-scale=1, user-scalable=no" />
-<!-- 캘린더 객체 생성 -->
-<%
-Calendar cal = Calendar.getInstance();
-SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMM");
-ArrayList<Object> monthArr = new ArrayList<Object>();
-
-	for(int i=0; i <= 11; i++) {
-		
-		if(i > 0){
-		cal.add(cal.MONTH, -1);
-		} else {
-			cal.add(cal.MONTH, 0);
-		}
-		String year = dateFormat.format(cal.getTime()).substring(0,4);
-		String month = dateFormat.format(cal.getTime()).substring(4,6);
-		
-		request.setAttribute("year"+ i, year);
-		request.setAttribute("month"+ i, month);
-		monthArr.add(month);
-}
-		request.setAttribute("monthArr", monthArr);
-		
-		//숫자를 소수점 버리고 포맷 변환하는 함수
-		double val = 1234525635.12;
-		DecimalFormat numFormat = new DecimalFormat(",###");
-		/* System.out.println(numFormat.format(val)); */
-%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/admin.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -49,26 +22,26 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 
-	   	<!-- Basic style components -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/jui/jui/dist/ui.min.css" />
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/jui/jui/dist/ui-jennifer.min.css" />
-	
-	<!-- Grid style components -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/jui/jui-grid/dist/grid.min.css" />
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/jui/jui-grid/dist/grid-jennifer.min.css" />
-	
-	<!-- Required script files -->
-	<script src="<%=request.getContextPath()%>/jui/jui/lib/jquery-1.8.0.min.js"></script>
-	<script src="<%=request.getContextPath()%>/jui/jui-core/dist/core.min.js"></script>
-	
-	<!-- Basic script components -->
-	<script src="<%=request.getContextPath()%>/jui/jui/dist/ui.min.js"></script>
-	
-	<!-- Grid script components -->
-	<script src="<%=request.getContextPath()%>/jui/jui-grid/dist/grid.min.js"></script>
-	
-	<script src="<%=request.getContextPath()%>/jui/jui-core/dist/core.min.js"></script>
-	<script src="<%=request.getContextPath()%>/jui/jui-chart/dist/chart.js"></script>
+   	<!-- Basic style components -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/jui/jui/dist/ui.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/jui/jui/dist/ui-jennifer.min.css" />
+
+<!-- Grid style components -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/jui/jui-grid/dist/grid.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/jui/jui-grid/dist/grid-jennifer.min.css" />
+
+<!-- Required script files -->
+<script src="<%=request.getContextPath()%>/jui/jui/lib/jquery-1.8.0.min.js"></script>
+<script src="<%=request.getContextPath()%>/jui/jui-core/dist/core.min.js"></script>
+
+<!-- Basic script components -->
+<script src="<%=request.getContextPath()%>/jui/jui/dist/ui.min.js"></script>
+
+<!-- Grid script components -->
+<script src="<%=request.getContextPath()%>/jui/jui-grid/dist/grid.min.js"></script>
+
+<script src="<%=request.getContextPath()%>/jui/jui-core/dist/core.min.js"></script>
+<script src="<%=request.getContextPath()%>/jui/jui-chart/dist/chart.js"></script>
 	
 <!-- datepicker -->
 <!-- 	// jQuery UI CSS파일  -->
@@ -83,9 +56,9 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 <%-- <script src="<%=request.getContextPath()%>/monthpicker/js/jquery-1.11.1.min.js"></script>   --%>
 <%-- <script src="<%=request.getContextPath()%>/monthpicker/js/jquery-ui.min.js"></script>   --%>
 
-
-
-
+<!-- 테이블 정렬 -->
+<script src="<%=request.getContextPath()%>/resources/js/jquery.tablesorter.min.js"></script> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/tablesorter.css" type="text/css">
 </head>
 <script>
 //화면 크기 줄일 경우 높이를 다시 맞춰주는 함수
@@ -94,12 +67,45 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
     $('#leftContent').css({'height':(h-58)+'px'});
 } */
 
+//테이블 정렬
+$(".tablesorter").tablesorter();
+
 //input 태그를 클릭하면 텍스트 상자 전체선택된다.
-function datepickerSel(){
-$(".datepicker").on("click", function(){
+function inputSel(){
+$('.inputSel').on("focus", function(){
 	    $(this).select();
 	  });
 }
+inputSel();
+
+//text타입의 input에서 엔터 누르면 포커스 아웃
+function enterText(){
+	$('input[type="text"]').keydown(function(key) {
+		if (key.keyCode == 13) {
+			$(this).blur();
+		}
+	});
+}
+enterText();
+
+//text타입의 input에서 엔터 누르면 다음 input으로 포커스
+function nextFocus(){
+	$('input[type="text"]').keydown(function(key) {
+		if (key.keyCode == 13) {
+			$(this).next().find('input[type="text"]').focus();
+		}
+	});
+}
+
+//특정 클래스 타입의 input에서 엔터 누르면 다음 input으로 포커스
+function nextFocusName(name){
+	$('name').keydown(function(key) {
+		if (key.keyCode == 13) {
+			$(this).next().find(name).focus();
+		}
+	});
+}
+
 
 //3자리수마다 콤마 찍어주는 함수
 function comma(x) {
@@ -228,8 +234,38 @@ $('document').ready(function(){
     $('.leftMenu, .leftMenulast').on('click', function(){
         $(this).next('.leftSubmenu').slideToggle();
     })
+    //	//inputSel 클래스 선택시 글자 전체선택한다.
+    inputSel();
+    
 /*document.ready의 끝*/  
 })
 </script>
 
 
+<!-- 캘린더 객체 생성 -->
+<%
+	Calendar cal = Calendar.getInstance();
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMM");
+	ArrayList<Object> monthArr = new ArrayList<Object>();
+
+		for(int i=0; i <= 11; i++) {
+			
+			if(i > 0){
+			cal.add(cal.MONTH, -1);
+			} else {
+				cal.add(cal.MONTH, 0);
+			}
+			String year = dateFormat.format(cal.getTime()).substring(0,4);
+			String month = dateFormat.format(cal.getTime()).substring(4,6);
+			
+			request.setAttribute("year"+ i, year);
+			request.setAttribute("month"+ i, month);
+			monthArr.add(month);
+		}
+	request.setAttribute("monthArr", monthArr);
+		
+	//숫자를 소수점 버리고 포맷 변환하는 함수
+	double val = 1234525635.12;
+	DecimalFormat numFormat = new DecimalFormat(",###");
+	/* System.out.println(numFormat.format(val)); */
+%>
