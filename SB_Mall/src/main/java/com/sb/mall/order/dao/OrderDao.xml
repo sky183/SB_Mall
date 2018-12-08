@@ -8,11 +8,6 @@
 		{ call insert_CartJson(#{orders}) }
 	</insert>
 
-	<insert id="insertOrderDetail" parameterType="com.sb.mall.order.model.OrderDetail">
-		insert into `OrderDetail`(orderDetailNum,userSeq,payment,orderTime,status,totalAmount)
-		value(#{orderDetailNum},#{userSeq},#{payment},now(),#{status},#{totalAmount})
-	</insert>
-	
 	<delete id="deleteCart" parameterType="list">
 		delete from `Order`
 		<where>
@@ -23,13 +18,25 @@
 		</where>
 	</delete>
 	
+	<select id="selectCarts" resultType="map">
+		SELECT * FROM `Order` o, Goods g, GoodsOption go, Product p
+		<where>
+		o.userSeq=#{param1} and o.orderDetailNum=0 
+		and o.goodsNo=g.goodsNo and g.productSeq=p.productSeq and o.optionSeq=go.optionSeq;
+		</where>
+	</select>
+	
+<!-- 	<insert id="insertOrderDetail" parameterType="com.sb.mall.order.model.OrderDetail">
+		insert into `OrderDetail`(orderDetailNum,userSeq,payment,orderTime,status,totalAmount)
+		value(#{orderDetailNum},#{userSeq},#{payment},now(),#{status},#{totalAmount})
+	</insert> -->
 	<!-- <insert id="insertOrder" parameterType="com.sb.mall.order.model.Order"
 		useGeneratedKeys="true" keyProperty="orderSeq">
 		insert into `Order`(orderDetailNum,userSeq,productSeq,quantity,`option`)
 		value(#{orderDetailNum},#{userSeq},#{productSeq},#{quantity},#{option})
 	</insert> -->
 	
-	<update id="updateOrders">
+<!-- 	<update id="updateOrders">
 		update `Order` 
 		<set>
 		<foreach collection="list" item="orders" open="" separator="" close="" index="index">
@@ -49,7 +56,7 @@
 		</foreach>
 		</where>
 	</update>
-
+ -->
 	<!-- <update id="updateDuplicateCart" parameterType="com.sb.mall.order.model.Order">
 		update `Order`set quantity=quantity+#{quantity}, salePrice=salePrice+#{salePrice} 
 		where userSeq=#{userSeq} and productSeq=#{productSeq} and `option`=#{option}
@@ -75,7 +82,7 @@
 	<!-- <update id="updateStatus" parameterType="Map">
 	</update> -->
 	
-	<delete id="deleteCarts" >
+<!-- 	<delete id="deleteCarts" >
 		delete from `Order` 
 		<where>
 		<foreach collection="list" item="orders" open="" separator="" close="" index="index">
@@ -87,7 +94,7 @@
 			goodsNo=#{orders.goodsNo} and optionSeq=#{orders.optionSeq}
 		</foreach>
 		</where>
-	</delete>
+	</delete> -->
 	
 <!-- 	<select id="checkDuplicateCart" 
 	parameterType="com.sb.mall.order.model.Order" resultType="com.sb.mall.order.model.Order" >
@@ -95,14 +102,6 @@
 		OrderDetailNum=0 and userSeq=#{userSeq} and productSeq=#{productSeq} and `option`=#{option}
 	</select> -->
 
-	<select id="selectCarts" resultType="map">
-		SELECT * FROM `Order` o, Goods g, GoodsOption go, Product p
-		<where>
-		o.userSeq=#{param1} and o.orderDetailNum=0 
-		and o.goodsNo=g.goodsNo and g.productSeq=p.productSeq and o.optionSeq=go.optionSeq;
-		</where>
-	</select>
-	
 	<select id="selectCartForOrder" resultType="map">
 		SELECT * FROM `Order` o, Product p where
 		<foreach collection="list" item="orders" open="(" separator="or" close=")">

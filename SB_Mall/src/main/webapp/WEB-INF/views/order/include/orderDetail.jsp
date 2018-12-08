@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script>
+
 	$(document).ready(function(){
 		
 		$('.ODDelivery').keyup(function(){
@@ -43,6 +44,15 @@
 			
 		});
 		
+		for(i=0;i<$('.totalPriceF').length;i++){
+			console.log(i+'='+$('.finalPriceF').eq(0).attr('data-totalPrice'))
+			var finalPrice = Number($('.finalPriceF').eq(0).attr('data-totalPrice'))
+							+Number($('.totalPriceF').eq(i).attr('data-salePrice'));
+			console.log(finalPrice+'원');
+			$('.finalPriceF').eq(0).attr({
+				'data-totalPrice': finalPrice
+			}).text(numComma(finalPrice));
+		}
 	});/* ready end */
 	
 	
@@ -55,6 +65,11 @@
 	function guid() {
 		timestamp = new Date().getTime();
 		return timestamp;
+	}
+	
+	//3자리마다 콤마
+	function numComma(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 
 </script>
@@ -100,13 +115,21 @@
 	
 		<div class="orderUnitBox orderBag">
 			<div class="orderImgbox ib">
-				<img class="orderImg" src="">
+				<img class="orderImg" src="${order.goodsPhoto}">
 			</div>
 			
 			<div class="orderTitlebox ib">
-				<h1 class="orderTitle ib">goodsName</h1><br>
-				<h3 class="orderSubLine ib">${order.opt1Name}</h3>
-				<h3 class="orderSubLine ib">${order.opt2Name}</h3>
+				<h1 class="orderTitle ib">${order.goodsName}</h1><br>
+				<c:if test="${order.opt1Name!=null}">
+					<h3 class="orderSubLine ib">
+						${order.opt1Name}(+<fmt:formatNumber value="${order.opt1Price}" pattern="#,###"/>원)
+					</h3>
+				</c:if>
+				<c:if test="${order.opt2Name!=null}">
+					<h3 class="orderSubLine ib">
+						${order.opt2Name}(+<fmt:formatNumber value="${order.opt2Price}" pattern="#,###"/>원)
+					</h3>
+				</c:if>
 			</div>
 			
 			<div class="quantityBox ib">
@@ -114,19 +137,26 @@
 			</div>
 			
 			<div class="salesBox ib">
-				<h2 class="salesPriceF ib">00 원</h2>
+				<h2 class="salesPriceF ib">
+				<fmt:formatNumber value="${order.goodsPrice}" pattern="#,###"/>원
+				</h2>
 			</div>
 			
 			<div class="totalBox ib">
 				<div class="totalPriceBox ib">
-					<h2 class="totalPriceF ib"><fmt:formatNumber value="${order.salePrice}" pattern="#,###"/>원</h2><br>
+					<h2 class="totalPriceF ib" data-saleprice="${order.salePrice}">
+						<fmt:formatNumber value="${order.salePrice}" pattern="#,###"/>원
+					</h2>
+					<br>
 				</div>
-				<h4 class="totalPriceD ib">(${order.quantity}x<fmt:formatNumber value="${order.salePrice}" pattern="#,###"/>원)</h4>
+				<h4 class="totalPriceD ib">
+					(${order.quantity}x<fmt:formatNumber value="${order.salePrice}" pattern="#,###"/>원)
+				</h4>
 			</div>
 			
 			<div class="salerBox ib">
 				<h4 class="delivery ib">무료</h4><br>
-				<h4 class="saler ib">김씨</h4>
+				<h4 class="saler ib">SB_company</h4>
 			</div>
 			
 		</div>
@@ -135,7 +165,7 @@
 		<!-- 최종 결제금액 -->
 		<div class="finalPriceBox ib">
 			<h3 class="finalPriceTitle ib">최종결제금액</h3>	
-			<h1 class="finalPriceF ib">999</h1>
+			<h1 class="finalPriceF ib" data-totalPrice="0">totalprice</h1>
 			<h3 class="finalPriceWon ib">원</h3>
 		</div>
 		

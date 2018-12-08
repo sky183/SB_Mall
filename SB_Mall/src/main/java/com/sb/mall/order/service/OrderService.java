@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sb.mall.order.dao.OrderDao;
 import com.sb.mall.order.model.Order;
 import com.sb.mall.order.model.OrderDetail;
+import com.sb.mall.order.model.OrderItem;
 import com.sb.mall.order.model.OrderOrderCommand;
 import com.sb.mall.store.model.Product;
 
@@ -40,11 +41,11 @@ public class OrderService {
 	}
 	
 	@Transactional
-	public List<Map<String,Object>> getOrderAndProduct(int productSeq) throws SQLException{
+	public List<Map<String,Object>> getGoodsForOrder(List<OrderItem> orderItems) throws SQLException{
 		Dao = sessionTemplate.getMapper(OrderDao.class);
-		List<Map<String,Object>> list = null;
-		list = Dao.selectOrderAndProduct(productSeq);
-		return list;
+		List<Map<String,Object>> orders = Dao.selectGoodsForOrder(orderItems);
+		System.out.println(orders);
+		return orders;
 	}
 	
 	@Transactional

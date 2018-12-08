@@ -10,14 +10,7 @@
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script type="text/javascript">
 var insCnt=0;
-/* var goods={
-		'gNo':'',
-		'gPrice':'',
-		'gOpt1Name':'',
-		'gOpt1Price':'',
-		'gOpt2Name':'',
-		'gOpt2Price':''
-		}; */
+
 var setGoodsBackColor = function(e) {
 	$('#goodsList>li').css('background-color','white');
 	e.style.backgroundColor='#f2f2f2';
@@ -181,6 +174,7 @@ var opt2RadioClick = function (e) {
 var addGoodsList= function() {
 	var goodsNo=$('input[name=goodsRadio]:checked').attr('data-gno');
 	var goodsName=$('input[name=goodsRadio]:checked').attr('data-gname');
+	var goodsPhoto=$('input[name=goodsRadio]:checked').attr('data-goodsPhoto');
 	var goodsPrice=Number($('input[name=goodsRadio]:checked').attr('data-price'));
 	var opt1Name=$('input[name=opt1Radio]:checked').attr('data-name');
 	var opt1Price=Number($('input[name=opt1Radio]:checked').attr('data-price'));
@@ -209,13 +203,13 @@ var addGoodsList= function() {
 		'data-goodsno': goodsNo,
 		'data-goodsname': goodsName,
 		'data-goodsprice': goodsPrice,
+		'data-goodsphoto': goodsPhoto,
 		'data-optionseq': '',
 		'data-opt1name':opt1Name,
 		'data-opt1price':opt1Price,
 		'data-opt2name':opt2Name,
 		'data-opt2price':opt2Price
 	}).appendTo('#insCartList');
-	
 	//선택된 정보로 GoodsOption정보 ajax요청
 	$.ajax({
 		url : '<%=request.getContextPath()%>/store/goodsOption/'+goodsNo,
@@ -346,7 +340,8 @@ var removeGoodsList = function(e) {
 							hidden:'hidden',
 							'data-gno':data[key].goodsNo,
 							'data-gname':data[key].goodsName,
-							'data-price':data[key].goodsPrice
+							'data-price':data[key].goodsPrice,
+							'data-goodsPhoto':data[key].goodsPhoto
 						}).appendTo('#'+gid);
 						$('<label/>').attr({
 							id:'la'+gid,
@@ -444,13 +439,20 @@ var removeGoodsList = function(e) {
 	}
 	
 	function buyProduct() {
-		$('#quantity').val($('#selQuantity').val());
-		$('#option').val($('input[type=radio][name=color]:checked').val());
-		$("#hForm").attr("action", "<%=request.getContextPath()%>/order/insOrder");
-		$('#hForm').submit();
+		//카트에 담긴 상품 수
+		var cartCnt = $('#insCartList>li').length;
+		if(cartCnt==0){
+			alert('주문할 상품이 없습니다.');
+			return false;
+		}
+			makeHInput(cartCnt);
+			$("#hForm").attr("action", "<%=request.getContextPath()%>/order/order");
+			$('#hForm').submit();
 	}
 	
-	function makeHInput(cartCnt){
+	function makeHInput(cartCnt) {
+		$('#hForm').text('');
+		
 		for(i=0;i<cartCnt;i++){
 			$('<input/>').attr({
 				type:'hidden',
@@ -469,14 +471,64 @@ var removeGoodsList = function(e) {
 				value:$('#insCartList>li').eq(i).find('input[type=number]')[0].value
 			}).appendTo('#hForm');
 			
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].goodsName',
+				value:$('#insCartList>li')[i].dataset.goodsname
+			}).appendTo('#hForm');
+			
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].goodsPhoto',
+				value:$('#insCartList>li')[i].dataset.goodsphoto
+			}).appendTo('#hForm');
+			
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].goodsPrice',
+				value:$('#insCartList>li')[i].dataset.goodsprice
+			}).appendTo('#hForm');
+			
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].salePrice',
+				value:$('#insCartList>li .insCartPrice')[i].dataset.calprice
+			}).appendTo('#hForm');
+			
 			if($('#insCartList>li')[i].dataset.optionseq!=null && $('#insCartList>li')[i].dataset.optionseq.length>0){
 				$('<input/>').attr({
 					type:'hidden',
 					name:'orders['+i+'].optionSeq',
 					value:$('#insCartList>li')[i].dataset.optionseq
 				}).appendTo('#hForm');
-			}
-		}
+				
+				if($('#insCartList>li')[i].dataset.opt1name!=null){
+					$('<input/>').attr({
+						type:'hidden',
+						name:'orders['+i+'].opt1Name',
+						value:$('#insCartList>li')[i].dataset.opt1name
+					}).appendTo('#hForm');
+					$('<input/>').attr({
+						type:'hidden',
+						name:'orders['+i+'].opt1Price',
+						value:$('#insCartList>li')[i].dataset.opt1price
+					}).appendTo('#hForm');
+				}
+				
+				if($('#insCartList>li')[i].dataset.opt2name!=null){
+					$('<input/>').attr({
+						type:'hidden',
+						name:'orders['+i+'].opt2Name',
+						value:$('#insCartList>li')[i].dataset.opt2name
+					}).appendTo('#hForm');
+					$('<input/>').attr({
+						type:'hidden',
+						name:'orders['+i+'].opt2Price',
+						value:$('#insCartList>li')[i].dataset.opt2price
+					}).appendTo('#hForm');
+				}
+			}//end optionif
+		}//end for
 	}
 	
 	function changeInsCartPrice(e) {

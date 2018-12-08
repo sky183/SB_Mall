@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.sb.mall.order.model.Order;
 import com.sb.mall.order.model.OrderDetail;
+import com.sb.mall.order.model.OrderItem;
 import com.sb.mall.store.model.Product;
 
 public interface OrderDao {
@@ -14,6 +15,8 @@ public interface OrderDao {
 	public int deleteCart(List<Order> orders);
 	
 	public int insertOrder(Order order);
+	public List<Map<String,Object>> selectGoodsForOrder(List<OrderItem> orderItems); 
+	
 	public int insertOrderDetail(OrderDetail orderDetail);
 	public int updateOrders(List<Order> orders);
 	public List<Map<String,Object>> selectCarts(int userSeq);

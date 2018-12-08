@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sb.mall.order.model.Order;
-import com.sb.mall.order.model.OrderOrderCommand;
+import com.sb.mall.order.model.OrderItemList;
 import com.sb.mall.order.service.OrderCartService;
 import com.sb.mall.order.service.OrderService;
 import com.sb.mall.store.model.Product;
@@ -23,10 +23,9 @@ public class OrderPageController {
 	OrderCartService orderCartService;
 	
 	@RequestMapping(value="order/order", method=RequestMethod.POST)
-	public ModelAndView orderCartList(OrderOrderCommand orderCommand) {
+	public ModelAndView orderCartList(OrderItemList orderItemList) {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Order> list = orderCommand.getOrders();
-		modelAndView.addObject("orders",list);
+		modelAndView.addObject("orders", orderItemList.getOrders());
 		modelAndView.setViewName("order/orderInsOrderPage");
 		return modelAndView;
 	}

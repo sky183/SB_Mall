@@ -26,9 +26,13 @@ var aa;
 						'onchange':'calTotalPrice()',
 						'data-goodsno':data[key].goodsNo,
 						'data-goodsprice':data[key].goodsPrice,
+						'data-goodsphoto':data[key].goodsPhoto,
+						'data-goodsname':data[key].goodsName,
 						'data-quantity':data[key].quantity,
 						'data-optionseq':data[key].optionSeq,
+						'data-opt1name':data[key].opt1Name,
 						'data-opt1price':data[key].opt1Price,
+						'data-opt2name':data[key].opt2Name,
 						'data-opt2price':data[key].opt2Price,
 						'data-saleprice':data[key].salePrice,
 					}).appendTo('#cartTable>tbody>tr:last-child>td:last-child');
@@ -138,9 +142,53 @@ var aa;
 			}).appendTo('#hCartForm');
 			$('<input/>').attr({
 				type:'hidden',
+				name:'orders['+i+'].goodsName',
+				value:$('input[name=cartItem]:checked').eq(i).attr('data-goodsname'),
+			}).appendTo('#hCartForm');
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].goodsPrice',
+				value:$('input[name=cartItem]:checked').eq(i).attr('data-goodsprice'),
+			}).appendTo('#hCartForm');
+			$('<input/>').attr({
+				type:'hidden',
+				name:'orders['+i+'].goodsPhoto',
+				value:$('input[name=cartItem]:checked').eq(i).attr('data-goodsphoto'),
+			}).appendTo('#hCartForm');
+			$('<input/>').attr({
+				type:'hidden',
 				name:'orders['+i+'].optionSeq',
 				value:$('input[name=cartItem]:checked').eq(i).attr('data-optionSeq'),
 			}).appendTo('#hCartForm');
+			
+			//opt1존재시
+			if($('input[name=cartItem]:checked').eq(i).attr('data-opt1Name')!=null){
+				$('<input/>').attr({
+					type:'hidden',
+					name:'orders['+i+'].opt1Name',
+					value:$('input[name=cartItem]:checked').eq(i).attr('data-opt1Name'),
+				}).appendTo('#hCartForm');
+				$('<input/>').attr({
+					type:'hidden',
+					name:'orders['+i+'].opt1Price',
+					value:$('input[name=cartItem]:checked').eq(i).attr('data-opt1Price'),
+				}).appendTo('#hCartForm');
+			}
+			
+			//opt2존재시
+			if($('input[name=cartItem]:checked').eq(i).attr('data-opt2Name')!=null){
+				$('<input/>').attr({
+					type:'hidden',
+					name:'orders['+i+'].opt2Name',
+					value:$('input[name=cartItem]:checked').eq(i).attr('data-opt2Name'),
+				}).appendTo('#hCartForm');
+				$('<input/>').attr({
+					type:'hidden',
+					name:'orders['+i+'].opt2Price',
+					value:$('input[name=cartItem]:checked').eq(i).attr('data-opt2Price'),
+				}).appendTo('#hCartForm');
+			}
+			
 			$('<input/>').attr({
 				type:'hidden',
 				name:'orders['+i+'].quantity',

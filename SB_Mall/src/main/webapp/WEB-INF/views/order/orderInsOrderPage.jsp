@@ -11,8 +11,6 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<%-- <jsp:include page="../common/header.jsp"/>
-<jsp:include page="../store/store/include/headerBanner.jsp"/> --%>
 <jsp:include page="include/orderDetail.jsp"/>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
