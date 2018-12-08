@@ -57,7 +57,7 @@ public class OrderService {
 		orderDetail.setOrderDetailNum(orderDetailNum);
 		order.setOrderDetailNum(orderDetailNum);
 		
-		Dao.updateUserPoint(orderDetail.getTotalAmount(), order.getUserSeq());
+		//Dao.updateUserPoint(orderDetail.getTotalAmount(), order.getUserSeq());
 		Dao.insertOrderDetail(orderDetail);
 		Dao.insertOrder(order);*/
 	}
