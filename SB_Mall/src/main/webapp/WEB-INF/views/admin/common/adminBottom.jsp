@@ -8,4 +8,8 @@
 	enterText();
 	//테이블 정렬
 	$(".tablesorter").tablesorter();
+	//프린트 버튼을 누르면 인쇄창이 뜬다.
+	$('#print').on('click', function(){
+		window.print();
+	});
 </script>

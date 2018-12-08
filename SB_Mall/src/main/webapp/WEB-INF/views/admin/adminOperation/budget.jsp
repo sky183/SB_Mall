@@ -10,10 +10,6 @@
 			<input type="text" id="budgetDatepicker" name="year" class="datepicker dateInput fon22 fonb" readOnly value="">
 			<button class="nextDate fon22" name="nextDate"> &gt; </button> 
 		</span>
-		<span class="absol">
-			<span class="fon12 downButton">다운로드</span>
-			<span class="fon12 downButton">프린트</span>
-		</span>
 	</div>
 	
 	<!-- 중단 -->

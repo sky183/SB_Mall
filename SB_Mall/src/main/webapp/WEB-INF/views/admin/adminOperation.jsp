@@ -47,8 +47,8 @@
 
 			<!--하단 메뉴의 끝-->
 		</div>
-		<!--adminWrapper의 끝-->
-	</div>
+<!--adminWrapper의 끝-->
+</div>
 </body>
 <script>
 

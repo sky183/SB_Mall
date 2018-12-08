@@ -21,7 +21,7 @@ public class DailySalController {
 
 	// 일별 주문현황 loadDailySalReport ajax
 	@RequestMapping(value = "/admin/adminOperation/dailySal/loadDailySalReport", method = RequestMethod.GET)
-	public ModelAndView loadBottomReport(@RequestParam(value = "startDate", required = true) String startDate,
+	public ModelAndView loadDailySalReport(@RequestParam(value = "startDate", required = true) String startDate,
 			@RequestParam(value = "endDate", required = true) String endDate,
 			@RequestParam(value = "tableName", required = true) String tableName,
 			@RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber) {
@@ -29,7 +29,7 @@ public class DailySalController {
 		ModelAndView modelAndView = new ModelAndView();
 
 		// dailySal.jsp 에 넣을 객체를 받아온다.
-		PageListView viewData = operationService.getSailySalVOList(startDate, endDate, tableName, pageNumber,
+		PageListView viewData = operationService.getDailySalVOList(startDate, endDate, tableName, pageNumber,
 				COUNT_PER_PAGE);
 
 		modelAndView.addObject("viewData", viewData);
@@ -38,5 +38,27 @@ public class DailySalController {
 
 		return modelAndView;
 	}
+	
+	// 엑셀 저장 
+		@RequestMapping(value = "/admin/adminOperation/dailySal/excelDailySalReport", method = RequestMethod.GET)
+		public ModelAndView excelDailySalReport(@RequestParam(value = "startDate", required = true) String startDate,
+				@RequestParam(value = "endDate", required = true) String endDate,
+				@RequestParam(value = "tableName", required = true) String tableName,
+				@RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
+				@RequestParam(value = "totalAmount", required = false) long totalAmount) {
+
+			ModelAndView modelAndView = new ModelAndView();
+
+			// excelDailySalReport.jsp 에 넣을 객체를 받아온다.
+			PageListView viewData = operationService.getDailySalVOList(startDate, endDate, tableName, pageNumber,
+					COUNT_PER_PAGE);
+
+			modelAndView.addObject("viewData", viewData);
+			modelAndView.addObject("totalAmount", totalAmount);
+			modelAndView.setViewName("admin/adminOperation/dailySal/excelDailySalReport");
+
+			return modelAndView;
+		}
+	
 
 }

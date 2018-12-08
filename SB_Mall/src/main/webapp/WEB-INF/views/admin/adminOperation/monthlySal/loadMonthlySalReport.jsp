@@ -7,7 +7,7 @@
 </script>
 <c:set var="viewData" value="${viewData}"/>
 
-	<table id="dailySalTab" class="tablesorter resultTab">
+	<table id="monthlySalTab" class="tablesorter resultTab">
 		<thead>
 			<tr>
 				<th class="ds1">날짜</th>
@@ -25,16 +25,16 @@
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach var="dailySalVO" items="${viewData.objList}">
+					<c:forEach var="monthlySalVO" items="${viewData.objList}">
 						<script type="text/javascript">
-							totalAmount += Number(${dailySalVO.dailyAmount});
+							totalAmount += Number(${monthlySalVO.amount});
 						</script>
 						<tr>
-							<td class="ds1">${dailySalVO.orderTime}</td>
-							<td class="ds2">${dailySalVO.orderCount} 건</td>
-							<td class="ds3">${dailySalVO.visitCount} 명</td>
+							<td class="ds1">${monthlySalVO.orderTime}</td>
+							<td class="ds2">${monthlySalVO.orderCount} 건</td>
+							<td class="ds3">${monthlySalVO.visitCount} 명</td>
 							<td class="ds4">
-								<fmt:formatNumber value="${dailySalVO.dailyAmount}" pattern="#,###"/>
+								<fmt:formatNumber value="${monthlySalVO.amount}" pattern="#,###"/>
 								원
 							</td>
 							<td></td>
@@ -189,7 +189,7 @@
 				<tr>
 					<td class="t0"></td>
 					<td class="title" colspan="4">
-						Daily Sales Report
+						monthly Sales Report
 					</td>
 				</tr>
 				<tr>
@@ -208,24 +208,24 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="dailySalVO" items="${viewData.objList}" varStatus="i">
+						<c:forEach var="monthlySalVO" items="${viewData.objList}" varStatus="i">
 							<c:choose>
 								<c:when test="${i.index % 2 == 0}">
 									<tr>
 										<td class="t0"></td>
-										<td class="t1" style="background-color: #C6D9E8;">${dailySalVO.orderTime}</td>
-										<td class="t2" style="background-color: #C6D9E8;">${dailySalVO.orderCount}</td>
-										<td class="t3" style="background-color: #C6D9E8;">${dailySalVO.visitCount}</td>
-										<td class="t4" style="background-color: #C6D9E8;">${dailySalVO.dailyAmount}</td>
+										<td class="t1" style="background-color: #C6D9E8;">${monthlySalVO.orderTime}</td>
+										<td class="t2" style="background-color: #C6D9E8;">${monthlySalVO.orderCount}</td>
+										<td class="t3" style="background-color: #C6D9E8;">${monthlySalVO.visitCount}</td>
+										<td class="t4" style="background-color: #C6D9E8;">${monthlySalVO.amount}</td>
 									</tr>
 								</c:when>
 								<c:otherwise>
 									<tr>
 										<td class="t0"></td>
-										<td class="t1">${dailySalVO.orderTime}</td>
-										<td class="t2">${dailySalVO.orderCount}</td>
-										<td class="t3">${dailySalVO.visitCount}</td>
-										<td class="t4">${dailySalVO.dailyAmount}</td>
+										<td class="t1">${monthlySalVO.orderTime}</td>
+										<td class="t2">${monthlySalVO.orderCount}</td>
+										<td class="t3">${monthlySalVO.visitCount}</td>
+										<td class="t4">${monthlySalVO.amount}</td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
@@ -243,22 +243,22 @@
 </div>
 <script type="text/javascript">
 
-	//loadDailySalReport.jsp를 불러오는 함수
-	function loadDailySalReport(pageNumber){
+	//loadMonthlySalReport.jsp를 불러오는 함수
+	function loadMonthlySalReport(pageNumber){
 		
-	 	var startDate = $( "#startDate" ).val();
-	 	var endDate = $( "#endDate" ).val();
+		var startDate = getFistDate($( "#startDate" ).val());
+		var endDate = getLastDate($( "#endDate" ).val());
 		var tableName = $('#tableName').val();
 		
 		$.ajax({
-			url : '<%=request.getContextPath()%>/admin/adminOperation/dailySal/loadDailySalReport?startDate=' + startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber,
+			url : '<%=request.getContextPath()%>/admin/adminOperation/monthlySal/loadMonthlySalReport?startDate=' + startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber,
 			type : 'GET',
 			error : function(error) {
 		        alert("Error!");
 		    },
 			success : function(data) {
-				$('#loadDailySalReport').empty();
-				$('#loadDailySalReport').append(data);
+				$('#loadMonthlySalReport').empty();
+				$('#loadMonthlySalReport').append(data);
 			}
 		});
 	}
@@ -270,30 +270,26 @@
 		$('#totalAmount').text(comma(totalAmount));
 		$('#total').text(comma(totalAmount));
 		
-		//일반 주문과 크라우드 펀딩 셀렉트가 변경되면 다시 불러온다.
-// 		$('#tableName').on('change', function(){
-// 			 loadDailySalReport(1);
-// 		 });
-	
 		//페이지 번호를 클릭하면 다시 불러온다.
 		$('.page').click(function() {
 			var pageNumber = $(this).attr('name');
-			loadDailySalReport(pageNumber);
+			loadMonthlySalReport(pageNumber);
 		});
 		
 		//조회 버튼을 클릭하면 다시 불러온다.
 		$('#select').click(function() {
-			loadDailySalReport(1);
+			loadMonthlySalReport(1);
 		});
 		
 		//다운로드 버튼을 누르면 엑셀로 다운받는다.
 		$('#excel').on('click', function(){
-		 	var startDate = $( "#startDate" ).val();
-		 	var endDate = $( "#endDate" ).val();
+			
+			var startDate = getFistDate($( "#startDate" ).val());
+			var endDate = getLastDate($( "#endDate" ).val());
 			var tableName = $('#tableName').val();
 			var pageNumber = $('#currentPage').attr('name');
 			
-			location.href = '<%=request.getContextPath()%>/admin/adminOperation/dailySal/excelDailySalReport?startDate=' + startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber + '&totalAmount=' + totalAmount;
+			location.href = '<%=request.getContextPath()%>/admin/adminOperation/monthlySal/excelMonthlySalReport?startDate=' + startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber + '&totalAmount=' + totalAmount;
 		});
 
 		

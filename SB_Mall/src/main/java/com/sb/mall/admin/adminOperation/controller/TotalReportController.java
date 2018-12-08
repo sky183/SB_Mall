@@ -33,5 +33,23 @@ public class TotalReportController {
 
 		return modelAndView;
 	}
+	
+	// excelBottomReport 엑셀로 다운.
+	@RequestMapping(value = "/admin/adminOperation/totalReport/excelBottomReport", method = RequestMethod.GET)
+	public ModelAndView excelBottomReport(@RequestParam(value="nowDate", required=false) String nowDate) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		//excelBottomReport에 넣을 객체를 받아온다. 
+		TotalReportVO totalReportVO = new TotalReportVO();
+		
+		totalReportVO = operationService.getTotalReportVO(nowDate);
+		
+		modelAndView.addObject("totalReportVO", totalReportVO);
+		
+		modelAndView.setViewName("admin/adminOperation/totalReport/excelBottomReport");
+		
+		return modelAndView;
+	}
 
 }

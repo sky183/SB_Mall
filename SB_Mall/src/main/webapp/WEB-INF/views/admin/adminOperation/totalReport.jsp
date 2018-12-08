@@ -11,8 +11,8 @@
 			<button class="nextDate fon22" name="nextDate"> &gt; </button> 
 		</span>
 		<span class="absol">
-			<span class="fon12 downButton">다운로드</span>
-			<span class="fon12 downButton">프린트</span>
+			<span id="excel" class="fon12 downButton">다운로드</span>
+			<span id="print" class="fon12 downButton">프린트</span>
 		</span>
 	</div>
 	<div id="bottomReport"></div>
@@ -76,6 +76,17 @@ $(document).ready(function(){
 		loadBottomReport(newDate);
 		
 	});
+	
+	//다운로드 버튼을 누르면 엑셀로 다운받는다.
+	$('#excel').on('click', function(){
+		
+		var newDate = $( ".datepicker" ).val();
+		
+		location.href = '<%=request.getContextPath()%>/admin/adminOperation/totalReport/excelBottomReport?nowDate=' + newDate
+				
+	});
+	
+	
 	
 	function loadBottomReport(newDate){
 		$.ajax({
