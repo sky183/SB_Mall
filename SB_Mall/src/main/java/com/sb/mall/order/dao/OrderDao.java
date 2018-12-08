@@ -25,6 +25,8 @@ public interface OrderDao {
 	public Product selectProduct(int productSeq);
 	public void updateUserPoint(int totalAmount,int userSeq);
 	
+	public List<Order> selectOrdersAll(int userSeq);
+	
 	//성범형
 	public List<Order> select(String orderDetailNum);
 	

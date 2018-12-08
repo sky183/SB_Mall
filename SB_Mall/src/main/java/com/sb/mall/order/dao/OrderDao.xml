@@ -26,17 +26,21 @@
 		</where>
 	</select>
 	
-<!-- 	<insert id="insertOrderDetail" parameterType="com.sb.mall.order.model.OrderDetail">
-		insert into `OrderDetail`(orderDetailNum,userSeq,payment,orderTime,status,totalAmount)
-		value(#{orderDetailNum},#{userSeq},#{payment},now(),#{status},#{totalAmount})
-	</insert> -->
-	<!-- <insert id="insertOrder" parameterType="com.sb.mall.order.model.Order"
-		useGeneratedKeys="true" keyProperty="orderSeq">
-		insert into `Order`(orderDetailNum,userSeq,productSeq,quantity,`option`)
-		value(#{orderDetailNum},#{userSeq},#{productSeq},#{quantity},#{option})
-	</insert> -->
 	
-<!-- 	<update id="updateOrders">
+	
+	<select id="selectOrdersAll" resultType="com.sb.mall.order.model.Order">
+		SELECT * FROM `Order`
+		<where>
+		orderDetailNum=0 and userSeq=#{userSeq}
+		</where>
+	</select>
+	
+	<insert id="insertOrderDetail" parameterType="com.sb.mall.order.model.OrderDetail">
+		insert into `OrderDetail`(orderDetailNum,userSeq,orderTime,totalAmount)
+		value(#{orderDetailNum},#{userSeq},now(),#{totalAmount})
+	</insert>
+	
+	<update id="updateOrders">
 		update `Order` 
 		<set>
 		<foreach collection="list" item="orders" open="" separator="" close="" index="index">
@@ -52,11 +56,18 @@
 			</if>
 		</foreach>
 		<foreach collection="list" item="orders" open="(" separator="or" close=")" index="index">
-			productSeq=#{orders.productSeq} and `option`=#{orders.option}
+			goodsNo=#{orders.goodsNo} and `optionSeq`=#{orders.optionSeq}
 		</foreach>
 		</where>
 	</update>
- -->
+	<!-- <insert id="insertOrder" parameterType="com.sb.mall.order.model.Order"
+		useGeneratedKeys="true" keyProperty="orderSeq">
+		insert into `Order`(orderDetailNum,userSeq,productSeq,quantity,`option`)
+		value(#{orderDetailNum},#{userSeq},#{productSeq},#{quantity},#{option})
+	</insert> -->
+	
+	
+ 
 	<!-- <update id="updateDuplicateCart" parameterType="com.sb.mall.order.model.Order">
 		update `Order`set quantity=quantity+#{quantity}, salePrice=salePrice+#{salePrice} 
 		where userSeq=#{userSeq} and productSeq=#{productSeq} and `option`=#{option}

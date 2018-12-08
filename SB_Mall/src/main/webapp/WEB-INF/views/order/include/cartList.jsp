@@ -86,6 +86,14 @@ var aa;
 			
 		});
 		
+		$('.cartOrderBtn2').click(function() {
+			$('#hCartForm2').attr({
+				action:'<%=request.getContextPath()%>/order/testOrder',
+				method:'POST'	
+			});
+				$('#hCartForm2').submit();
+		});
+		
 		//삭제버튼
 		$('.cartdeleteBtn').click(function() {
 			if($('input[name=cartItem]:checked').length>0){ //최소 하나의 상품이 선택되었을때
@@ -271,7 +279,9 @@ var aa;
 	</div>
 	<div class="cartOrderBtnBox">
 		<input type="button" class="cartOrderBtn storeBtn" value="주문하기">
+		<input type="button" class="cartOrderBtn2 storeBtn" value="테스트주문">
 	</div>
 	<form id="hCartForm"></form>
+	<form id="hCartForm2"></form>
 </div>
 <br>

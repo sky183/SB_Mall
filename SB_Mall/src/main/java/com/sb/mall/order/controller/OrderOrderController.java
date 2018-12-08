@@ -51,7 +51,7 @@ public class OrderOrderController {
 			return modelAndView;
 		}
 		try {
-			orderService.insertOrdersAndDetail(command);
+			orderService.insertOrdersAndDetail(5);
 		} catch (SQLException e) {
 			modelAndView.addObject("message","주문에 실패하였습니다.");
 			System.out.println("주문에 실패하였습니다.");
@@ -70,6 +70,17 @@ public class OrderOrderController {
 	@RequestMapping(value="order/cartOrder/complete",method=RequestMethod.GET)
 	public String cartOrder() {
 		return "redirect:/order/cart"; 
+	}
+	
+	@RequestMapping(value="order/testOrder",method=RequestMethod.POST)
+	public String testOrder(HttpSession session) {
+		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
+		try {
+			orderService.insertOrdersAndDetail(memberInfo.getUserSeq());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/store"; 
 	}
 		
 	

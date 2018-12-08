@@ -71,19 +71,23 @@ public class OrderService {
 	}
 	
 	@Transactional
-	public void insertOrdersAndDetail(OrderOrderCommand command) throws SQLException {
+	public void insertOrdersAndDetail(int userSeq) throws SQLException {
 		String orderDetailNum = new SimpleDateFormat("yyyyMMddssSSS").format(new Date());
 		Dao = sessionTemplate.getMapper(OrderDao.class);
-		OrderDetail orderDetail = command.getOrderDetail();
-		List<Order> orderList = command.getOrders();
-		int userSeq = 0;
+		OrderDetail orderDetail = new OrderDetail();
+		orderDetail.setTotalAmount(0);
+		System.out.println(userSeq);
+		List<Order> orderList = Dao.selectOrdersAll(userSeq);
 		for(Order order : orderList) {
 			order.setOrderDetailNum(orderDetailNum);
-			userSeq=order.getUserSeq();
+			//userSeq=order.getUserSeq();
+			orderDetail.setTotalAmount(orderDetail.getTotalAmount()+order.getSalePrice());
 		}
 		orderDetail.setOrderDetailNum(orderDetailNum);
+		orderDetail.setUserSeq(userSeq);
 		
-		Dao.updateUserPoint(orderDetail.getTotalAmount(), userSeq);
+		
+		//Dao.updateUserPoint(orderDetail.getTotalAmount(), userSeq);
 		Dao.insertOrderDetail(orderDetail);
 		Dao.updateOrders(orderList);
 	}
