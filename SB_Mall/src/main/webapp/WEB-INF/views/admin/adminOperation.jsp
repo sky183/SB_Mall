@@ -14,8 +14,6 @@
 <!-- 헤더 삽입 -->
 <%@ include file="/WEB-INF/views/admin/common/adminheader.jsp"%>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/admin/adminMain.css">
-<link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/admin/adminContent.css">
 </head>
 <body>
@@ -63,7 +61,7 @@ function removeActive(id, sub){
 
 	//현재 서브메뉴에 css를 적용. sub가 0이면  적용하지 않는다.
 	if(sub != 0){
-	$(sub).addClass('leftSubActive');
+		$(sub).addClass('leftSubActive');
 	}
 }
 

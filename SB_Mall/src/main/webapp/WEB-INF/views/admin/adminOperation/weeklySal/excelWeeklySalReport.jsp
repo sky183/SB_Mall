@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
-String fileName = "monthly sales report";
+String fileName = "weekly sales report";
 response.setHeader("Content-Disposition","attachment; filename="+new String((fileName).getBytes("KSC5601"),"8859_1")+".xls");
 response.setHeader("Content-Description", "JSP Generated Data");
 %>
@@ -33,7 +33,7 @@ thead tr td {
     text-align : center;
     background-color: #6298C0;
 }
-<%-- 숫자 3자리수마자 콤마 --%>
+<%-- 숫자 3자리수마다 콤마 --%>
 .t2, .t3, .t4, .total {
 	mso-number-format:\#\,\#\#0\;
 }
@@ -47,7 +47,7 @@ thead tr td {
 }
 <%--  --%>
 .t1 {
-	width: 200px;
+	width: 260px;
 	text-align : center !important;
 }
 .t2 {
@@ -86,7 +86,7 @@ thead tr td {
 			<tr>
 				<td class="t0"></td>
 				<td class="title" colspan="4">
-					Monthly Sales Report
+					Daily Sales Report
 				</td>
 			</tr>
 			<tr>

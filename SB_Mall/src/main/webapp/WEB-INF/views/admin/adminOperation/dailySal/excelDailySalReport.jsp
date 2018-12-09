@@ -105,24 +105,24 @@ thead tr td {
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach var="dailySalVO" items="${viewData.objList}" varStatus="i">
+					<c:forEach var="SalVO" items="${viewData.objList}" varStatus="i">
 						<c:choose>
 							<c:when test="${i.index % 2 == 0}">
 								<tr>
 									<td class="t0"></td>
-									<td class="t1" style="background-color: #C6D9E8;">${dailySalVO.orderTime}</td>
-									<td class="t2" style="background-color: #C6D9E8;">${dailySalVO.orderCount}</td>
-									<td class="t3" style="background-color: #C6D9E8;">${dailySalVO.visitCount}</td>
-									<td class="t4" style="background-color: #C6D9E8;">${dailySalVO.dailyAmount}</td>
+									<td class="t1" style="background-color: #C6D9E8;">${SalVO.orderTime}</td>
+									<td class="t2" style="background-color: #C6D9E8;">${SalVO.orderCount}</td>
+									<td class="t3" style="background-color: #C6D9E8;">${SalVO.visitCount}</td>
+									<td class="t4" style="background-color: #C6D9E8;">${SalVO.amount}</td>
 								</tr>
 							</c:when>
 							<c:otherwise>
 								<tr>
 									<td class="t0"></td>
-									<td class="t1">${dailySalVO.orderTime}</td>
-									<td class="t2">${dailySalVO.orderCount}</td>
-									<td class="t3">${dailySalVO.visitCount}</td>
-									<td class="t4">${dailySalVO.dailyAmount}</td>
+									<td class="t1">${SalVO.orderTime}</td>
+									<td class="t2">${SalVO.orderCount}</td>
+									<td class="t3">${SalVO.visitCount}</td>
+									<td class="t4">${SalVO.amount}</td>
 								</tr>
 							</c:otherwise>
 						</c:choose>

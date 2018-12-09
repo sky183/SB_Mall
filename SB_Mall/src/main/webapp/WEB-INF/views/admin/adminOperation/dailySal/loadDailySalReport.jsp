@@ -25,16 +25,16 @@
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach var="dailySalVO" items="${viewData.objList}">
+					<c:forEach var="SalVO" items="${viewData.objList}">
 						<script type="text/javascript">
-							totalAmount += Number(${dailySalVO.dailyAmount});
+							totalAmount += Number(${SalVO.amount});
 						</script>
 						<tr>
-							<td class="ds1">${dailySalVO.orderTime}</td>
-							<td class="ds2">${dailySalVO.orderCount} 건</td>
-							<td class="ds3">${dailySalVO.visitCount} 명</td>
+							<td class="ds1">${SalVO.orderTime}</td>
+							<td class="ds2">${SalVO.orderCount} 건</td>
+							<td class="ds3">${SalVO.visitCount} 명</td>
 							<td class="ds4">
-								<fmt:formatNumber value="${dailySalVO.dailyAmount}" pattern="#,###"/>
+								<fmt:formatNumber value="${SalVO.amount}" pattern="#,###"/>
 								원
 							</td>
 							<td></td>
@@ -208,24 +208,24 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="dailySalVO" items="${viewData.objList}" varStatus="i">
+						<c:forEach var="SalVO" items="${viewData.objList}" varStatus="i">
 							<c:choose>
 								<c:when test="${i.index % 2 == 0}">
 									<tr>
 										<td class="t0"></td>
-										<td class="t1" style="background-color: #C6D9E8;">${dailySalVO.orderTime}</td>
-										<td class="t2" style="background-color: #C6D9E8;">${dailySalVO.orderCount}</td>
-										<td class="t3" style="background-color: #C6D9E8;">${dailySalVO.visitCount}</td>
-										<td class="t4" style="background-color: #C6D9E8;">${dailySalVO.dailyAmount}</td>
+										<td class="t1" style="background-color: #C6D9E8;">${SalVO.orderTime}</td>
+										<td class="t2" style="background-color: #C6D9E8;">${SalVO.orderCount}</td>
+										<td class="t3" style="background-color: #C6D9E8;">${SalVO.visitCount}</td>
+										<td class="t4" style="background-color: #C6D9E8;">${SalVO.amount}</td>
 									</tr>
 								</c:when>
 								<c:otherwise>
 									<tr>
 										<td class="t0"></td>
-										<td class="t1">${dailySalVO.orderTime}</td>
-										<td class="t2">${dailySalVO.orderCount}</td>
-										<td class="t3">${dailySalVO.visitCount}</td>
-										<td class="t4">${dailySalVO.dailyAmount}</td>
+										<td class="t1">${SalVO.orderTime}</td>
+										<td class="t2">${SalVO.orderCount}</td>
+										<td class="t3">${SalVO.visitCount}</td>
+										<td class="t4">${SalVO.amount}</td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
@@ -243,25 +243,7 @@
 </div>
 <script type="text/javascript">
 
-	//loadDailySalReport.jsp를 불러오는 함수
-	function loadDailySalReport(pageNumber){
-		
-	 	var startDate = $( "#startDate" ).val();
-	 	var endDate = $( "#endDate" ).val();
-		var tableName = $('#tableName').val();
-		
-		$.ajax({
-			url : '<%=request.getContextPath()%>/admin/adminOperation/dailySal/loadDailySalReport?startDate=' + startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber,
-			type : 'GET',
-			error : function(error) {
-		        alert("Error!");
-		    },
-			success : function(data) {
-				$('#loadDailySalReport').empty();
-				$('#loadDailySalReport').append(data);
-			}
-		});
-	}
+
 
 	
 	$(document).ready(function(){
@@ -270,11 +252,26 @@
 		$('#totalAmount').text(comma(totalAmount));
 		$('#total').text(comma(totalAmount));
 		
-		//일반 주문과 크라우드 펀딩 셀렉트가 변경되면 다시 불러온다.
-// 		$('#tableName').on('change', function(){
-// 			 loadDailySalReport(1);
-// 		 });
-	
+		//loadDailySalReport.jsp를 불러오는 함수
+		function loadDailySalReport(pageNumber){
+			
+		 	var startDate = $( "#startDate" ).val();
+		 	var endDate = $( "#endDate" ).val();
+			var tableName = $('#tableName').val();
+			
+			$.ajax({
+				url : '<%=request.getContextPath()%>/admin/adminOperation/dailySal/loadDailySalReport?startDate=' + startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber,
+				type : 'GET',
+				error : function(error) {
+			        alert("Error!");
+			    },
+				success : function(data) {
+					$('#loadDailySalReport').empty();
+					$('#loadDailySalReport').append(data);
+				}
+			});
+		}
+		
 		//페이지 번호를 클릭하면 다시 불러온다.
 		$('.page').click(function() {
 			var pageNumber = $(this).attr('name');
@@ -285,7 +282,7 @@
 		$('#select').click(function() {
 			loadDailySalReport(1);
 		});
-		
+				
 		//다운로드 버튼을 누르면 엑셀로 다운받는다.
 		$('#excel').on('click', function(){
 		 	var startDate = $( "#startDate" ).val();
@@ -295,6 +292,7 @@
 			
 			location.href = '<%=request.getContextPath()%>/admin/adminOperation/dailySal/excelDailySalReport?startDate=' + startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber + '&totalAmount=' + totalAmount;
 		});
+	
 
 		
 	//$(document).ready의 끝

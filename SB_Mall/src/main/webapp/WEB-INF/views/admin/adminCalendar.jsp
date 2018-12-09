@@ -24,7 +24,7 @@
 <script src='<%=request.getContextPath()%>/resources/fullcalendar/fullcalendar.min.js'></script>
 <script src='<%=request.getContextPath()%>/resources/fullcalendar/gcal.min.js'></script>
 <script>
-
+//브라우저 사이즈
 popupX = (window.screen.width / 2) - (700 / 2)
 popupY= (window.screen.height /2) - (600 / 2)
 
@@ -117,8 +117,10 @@ popupY= (window.screen.height /2) - (600 / 2)
 				</div>			
 				<!--좌측메뉴의 끝, 우측메뉴 시작-->
 			</div><div id="rightContent">
-				 <div id='loading'>loading...</div>
-  				 <div id='calendar'></div>
+				<div id="mainContent	">
+					 <div id='loading'>loading...</div>
+	  				 <div id='calendar'></div>
+  				 </div>
 			</div>
 
 			<!--하단 메뉴의 끝-->

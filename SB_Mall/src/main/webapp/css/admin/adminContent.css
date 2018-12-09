@@ -1,7 +1,28 @@
 @charset "UTF-8";
 
-/* admin 공통사항 */
+/* adminContent 공통사항 */
+.form-group {
+	
+}
+.input-group{
+	display: inline-block;
+	width: inherit;
+	vertical-align: top;
+	padding: 0;
+}
+.input-group-addon{
+	width : inherit;
+	display: inline-block;
+	padding: 0;
+	border: none;
+	background-color: #ffffff;
+}
+.calbutton, .calbutton2{
+	cursor : pointer; 
+	background-repeat :no-repeat;
+}
 .preDate, .nextDate{
+	padding : 0 4px;
 	cursor: pointer;
 	border: none;
 	background : none;
@@ -9,6 +30,10 @@
 }
 .preDate:focus, .nextDate:focus{
 	outline: none;
+}
+.preDate:hover, .nextDate:hover{
+	font-weight : bold;
+	color : #ffc828;
 }
 
 .monthButton, .monthButton1, .monthButton2{
@@ -136,7 +161,7 @@ input[type="submit"], select{
 }
 #budgetDatepicker{
 	width: 52px;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 #mainHeader {
 	text-align: center;
@@ -166,11 +191,13 @@ input[type="submit"], select{
 	padding: 3px 8px;
 	margin-left: 5px;
 	margin-right: 5px;
+	padding-top: 4px;
 }
 
 #startDate, #endDate {
 	width: 70px;
 	text-align: center;
+	vertical-align: middle;
 }
 
 input.select {

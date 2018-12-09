@@ -236,13 +236,13 @@
 
 	<!-- //일별 날짜, 주문수, 방문수, 매출 조회 - 일반주문 및 크라우드펀딩 -->
 	<select id="selectDailySalVOList"
-		resultType="com.sb.mall.admin.adminOperation.model.DailySalVO">
+		resultType="com.sb.mall.admin.adminOperation.model.SalVO">
 		SELECT
 		DATE(od.orderTime) orderTime,
 		COUNT(*) orderCount,
 		IFNULL(SUM(vg.visitCount), 0) visitCount,
 		SUM(od.totalAmount)
-		dailyAmount
+		amount
 		FROM
 		${param3} od
 		LEFT JOIN
@@ -252,7 +252,8 @@
 		FROM
 		VisitGuest
 		GROUP BY DATE(visitDate)) vg ON
-		DATE(od.orderTime) = DATE(vg.visitDate)
+		DATE(od.orderTime) =
+		DATE(vg.visitDate)
 		WHERE
 		DATE(od.orderTime) <![CDATA[>]]>
 		DATE(#{param1} - INTERVAL 1 DAY)
@@ -286,7 +287,7 @@
 
 	<!-- //월별 날짜, 주문수, 방문수, 매출 조회 - 일반주문 및 크라우드펀딩 -->
 	<select id="selectMonthlySalVOList"
-		resultType="com.sb.mall.admin.adminOperation.model.MonthlySalVO">
+		resultType="com.sb.mall.admin.adminOperation.model.SalVO">
 		SELECT
 		date_format(od.orderTime, '%Y-%m') orderTime,
 		COUNT(*)
@@ -318,6 +319,71 @@
 
 
 	</select>
+
+	<!-- //주별 일반 주문 및 크라우드펀딩 주문 갯수 -->
+	<select id="selectWeeklyOrderDetailCount" resultType="int" parameterType="String">
+		select count(*) from 
+		(SELECT 
+			DATE_FORMAT(DATE_SUB(orderTime, INTERVAL (DAYOFWEEK(orderTime)-1) DAY), '%Y.%m.%d') as start,
+			DATE_FORMAT(DATE_SUB(orderTime, INTERVAL (DAYOFWEEK(orderTime)-7) DAY), '%Y.%m.%d') as end
+		FROM
+		    ${param3}
+		WHERE
+			DATE(orderTime) <![CDATA[>]]> DATE(#{param1} - INTERVAL 1 DAY)
+				AND DATE(orderTime) <![CDATA[<]]> DATE(#{param2} + INTERVAL 1 DAY)
+				AND status <![CDATA[>]]> 0
+		GROUP BY start) orderCount;
+	</select>
+
+	<!-- //월별 날짜, 주문수, 방문수, 매출 조회 - 일반주문 및 크라우드펀딩 -->
+	<select id="selectWeeklySalVOList"
+		resultType="com.sb.mall.admin.adminOperation.model.SalVO">
+		SELECT
+		DATE_FORMAT(DATE_SUB(od.orderTime, INTERVAL
+		(DAYOFWEEK(od.orderTime)-1) DAY), '%Y.%m.%d') as start,
+		DATE_FORMAT(DATE_SUB(od.orderTime, INTERVAL
+		(DAYOFWEEK(od.orderTime)-7) DAY), '%Y.%m.%d') as end,
+		concat(DATE_FORMAT(DATE_SUB(od.orderTime, INTERVAL
+		(DAYOFWEEK(od.orderTime)-1) DAY), '%Y.%m.%d'), ' - ',
+		DATE_FORMAT(DATE_SUB(od.orderTime, INTERVAL
+		(DAYOFWEEK(od.orderTime)-7) DAY), '%Y.%m.%d')) orderTime,
+		COUNT(*)
+		orderCount,
+		IFNULL(vg.visitCount, 0) visitCount,
+		SUM(od.totalAmount)
+		amount
+		FROM
+		${param3} od
+		LEFT JOIN
+		(SELECT
+		DATE_FORMAT(DATE_SUB(visitDate,
+		INTERVAL (DAYOFWEEK(visitDate)-1)
+		DAY), '%Y.%m.%d') as start,
+		DATE_FORMAT(DATE_SUB(visitDate, INTERVAL
+		(DAYOFWEEK(visitDate)-7)
+		DAY),
+		'%Y.%m.%d') as end,
+		SUM(visitCount)
+		visitCount
+		FROM
+		VisitGuest
+		GROUP BY
+		start) vg ON DATE(od.orderTime) <![CDATA[>=]]>
+		vg.start and DATE(od.orderTime)
+		<![CDATA[<=]]>
+		vg.end
+		WHERE
+		DATE(od.orderTime) <![CDATA[>]]>
+		DATE(#{param1} - INTERVAL 1 DAY)
+		AND DATE(od.orderTime) <![CDATA[<]]>
+		DATE(#{param2} + INTERVAL 1 DAY)
+		AND od.status <![CDATA[>]]>
+		0
+		GROUP BY DATE_FORMAT(DATE_SUB(od.orderTime, INTERVAL (DAYOFWEEK(od.orderTime)-1) DAY), '%Y.%m.%d')
+		order
+		by start desc limit #{param4}, #{param5};
+	</select>
+
 
 
 

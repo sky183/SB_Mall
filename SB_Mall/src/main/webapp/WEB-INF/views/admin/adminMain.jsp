@@ -13,14 +13,8 @@
 <title>Insert title here</title>
 <!-- 헤더 삽입 -->
 <%@ include file="/WEB-INF/views/admin/common/adminheader.jsp"%>
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminMain.css">
-<script type="text/javascript">
-/* 	//자바스크립트로 소수점 버리고 포맷 변환하는 함수
-	function numFormat(x) {
-		var num = ${salAmount.get(x)};
-	    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	} */
-</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/admin/common/adminNavi.jsp"%>

@@ -1,11 +1,11 @@
 package com.sb.mall.admin.adminOperation.model;
 
-public class DailySalVO {
+public class SalVO {
 	
 	private String orderTime;
 	private int orderCount;
 	private int visitCount;
-	private int dailyAmount;
+	private long amount;
 	
 	public String getOrderTime() {
 		return orderTime;
@@ -25,16 +25,16 @@ public class DailySalVO {
 	public void setVisitCount(int visitCount) {
 		this.visitCount = visitCount;
 	}
-	public int getDailyAmount() {
-		return dailyAmount;
+	public long getAmount() {
+		return amount;
 	}
-	public void setDailyAmount(int dailyAmount) {
-		this.dailyAmount = dailyAmount;
+	public void setAmount(long amount) {
+		this.amount = amount;
 	}
 	@Override
 	public String toString() {
-		return "DailySalVO [orderTime=" + orderTime + ", orderCount=" + orderCount + ", visitCount=" + visitCount
-				+ ", dailyAmount=" + dailyAmount + "]";
+		return "SalVO [orderTime=" + orderTime + ", orderCount=" + orderCount + ", visitCount=" + visitCount
+				+ ", amount=" + amount + "]";
 	}
 	
 	

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.admin.adminOperation.dao.AdminOperationDao;
 import com.sb.mall.admin.adminOperation.model.BudgetVO;
-import com.sb.mall.admin.adminOperation.model.DailySalVO;
+import com.sb.mall.admin.adminOperation.model.SalVO;
 import com.sb.mall.admin.adminOperation.model.TotalReportVO;
 import com.sb.mall.home.model.PageListView;
 
@@ -150,6 +150,42 @@ public class AdminOperationService {
 			endRow = countPerPage;
 			// 현재 페이지에 표시할 메세지를 가져온다.
 			objList = dao.selectMonthlySalVOList(startDate, endDate, tableName, firstRow, endRow);
+		} else {
+			currentPageNumber = 0;
+			objList = Collections.emptyList();
+		}
+		
+		return new PageListView(objList, objTotalCount, currentPageNumber, countPerPage, firstRow, endRow);
+	}
+	
+	
+	//monthlySal.jsp에 값 전달
+	@Transactional
+	public PageListView getWeeklySalVOList(String startDate, String endDate, String tableName, int pageNumber, int countPerPage) {
+		
+		// 전체 메시지 구하기
+		// 메세지 갯수
+		int objTotalCount = 0;
+		
+		// 표시할 페이지
+		int currentPageNumber = pageNumber;
+		
+		// 메세지가 담길 리스트
+		List<Object> objList = null;
+		int firstRow = 0;
+		int endRow = 0;
+		
+		dao = sqlSessionTemplate.getMapper(AdminOperationDao.class);
+		
+		objTotalCount = dao.selectWeeklyOrderDetailCount(startDate, endDate, tableName);
+		
+		// 메세지 갯수가 0보다 크면 첫 행에는 표시할 페이지 -1 * 10을 한다 - 이것은 표시할 행의 시작 인덱스다.
+		// 마지막 행에는 표시할 페이지 갯수를 적는다.
+		if (objTotalCount > 0) {
+			firstRow = (pageNumber - 1) * countPerPage;
+			endRow = countPerPage;
+			// 현재 페이지에 표시할 메세지를 가져온다.
+			objList = dao.selectWeeklySalVOList(startDate, endDate, tableName, firstRow, endRow);
 		} else {
 			currentPageNumber = 0;
 			objList = Collections.emptyList();

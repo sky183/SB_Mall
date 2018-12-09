@@ -5,9 +5,15 @@
 <script type="text/javascript">
 	var totalAmount= 0;
 </script>
+<style>
+.ds1{width: 195px !important;}
+.bootstrap-datetimepicker-widget tr:hover {
+    background-color: #c8c8c8;
+}
+</style>
 <c:set var="viewData" value="${viewData}"/>
 
-	<table id="monthlySalTab" class="tablesorter resultTab">
+	<table id="weeklySalTab" class="tablesorter resultTab">
 		<thead>
 			<tr>
 				<th class="ds1">날짜</th>
@@ -189,7 +195,7 @@
 				<tr>
 					<td class="t0"></td>
 					<td class="title" colspan="4">
-						monthly Sales Report
+						Daily Sales Report
 					</td>
 				</tr>
 				<tr>
@@ -242,7 +248,6 @@
 	</div>
 </div>
 <script type="text/javascript">
-
 	
 	$(document).ready(function(){
 		
@@ -250,20 +255,49 @@
 		$('#totalAmount').text(comma(totalAmount));
 		$('#total').text(comma(totalAmount));
 		
+// 		loadWeeklySalReport.jsp를 불러오는 함수
+		function loadWeeklySalReport(pageNumber){
+			
+		 	var startDate = $("#startDate").val().split(' - ')[0];
+		 	var endDate = $( "#endDate" ).val().split(' - ')[1];
+			var tableName = $('#tableName').val();
+			
+			$.ajax({
+				url : '<%=request.getContextPath()%>/admin/adminOperation/weeklySal/loadWeeklySalReport?startDate=' + startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber,
+				type : 'GET',
+				error : function(error) {
+			        alert("Error!");
+			    },
+				success : function(data) {
+					$('#loadWeeklySalReport').empty();
+					$('#loadWeeklySalReport').append(data);
+				}
+			});
+		}
+				
+		//다운로드 버튼을 누르면 엑셀로 다운받는다.
+		$('#excel').on('click', function(){
+		 	var startDate = $( "#startDate" ).val();
+		 	var endDate = $( "#endDate" ).val();
+			var tableName = $('#tableName').val();
+			var pageNumber = $('#currentPage').attr('name');
+			
+			location.href = '<%=request.getContextPath()%>/admin/adminOperation/weeklySal/excelWeeklySalReport?startDate=' + startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber + '&totalAmount=' + totalAmount;
+		});
+		
 		//페이지 번호를 클릭하면 다시 불러온다.
 		$('.page').click(function() {
 			var pageNumber = $(this).attr('name');
-			loadMonthlySalReport(pageNumber);
+			loadWeeklySalReport(pageNumber);
 		});
 		
 		//조회 버튼을 클릭하면 다시 불러온다.
 		$('#select').click(function() {
-			loadMonthlySalReport(1);
+			loadWeeklySalReport(1);
 		});
-
 		
 	//$(document).ready의 끝
 	});
-	
 </script>
+
 <%@ include file="/WEB-INF/views/admin/common/adminBottom.jsp"%>	

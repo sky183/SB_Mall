@@ -6,10 +6,6 @@
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.text.DecimalFormat"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <!--화면 높이를 가져오기 위해 필수로 추가-->
  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1,maximum-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/admin.css">
@@ -45,21 +41,29 @@
 	
 <!-- datepicker -->
 <!-- 	// jQuery UI CSS파일  -->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<!-- // jQuery 기본 js파일 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-<!-- // jQuery UI 라이브러리 js파일 -->
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />   -->
+<!-- <!-- // jQuery 기본 js파일 --> -->
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>   -->
+<!-- <!-- // jQuery UI 라이브러리 js파일 --> -->
+<!-- <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>   -->
 
 <!-- monthpicker -->
-<script src="<%=request.getContextPath()%>/monthpicker/js/jquery.mtz.monthpicker.js"></script>  
+<%-- <script src="<%=request.getContextPath()%>/monthpicker/js/jquery.mtz.monthpicker.js"></script>   --%>
 <%-- <script src="<%=request.getContextPath()%>/monthpicker/js/jquery-1.11.1.min.js"></script>   --%>
 <%-- <script src="<%=request.getContextPath()%>/monthpicker/js/jquery-ui.min.js"></script>   --%>
+
+<!-- datetimepicker -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"  type="text/css" /> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css"   type="text/css" /> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.10.6/moment.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/bootstrap.datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js" ></script>
 
 <!-- 테이블 정렬 -->
 <script src="<%=request.getContextPath()%>/resources/js/jquery.tablesorter.min.js"></script> 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/tablesorter.css" type="text/css">
-</head>
+
 <script>
 //화면 크기 줄일 경우 높이를 다시 맞춰주는 함수
 /* function resize(){
@@ -80,9 +84,9 @@ inputSel();
 
 //text타입의 input에서 엔터 누르면 포커스 아웃
 function enterText(){
-	$('input[type="text"]').keydown(function(key) {
+	$('input').keydown(function(key) {
 		if (key.keyCode == 13) {
-			$(this).blur();
+			$('input').blur();
 		}
 	});
 }
@@ -90,12 +94,13 @@ enterText();
 
 //text타입의 input에서 엔터 누르면 다음 input으로 포커스
 function nextFocus(){
-	$('input[type="text"]').keydown(function(key) {
+	$('input').keydown(function(key) {
 		if (key.keyCode == 13) {
-			$(this).next().find('input[type="text"]').focus();
+			$(this).next().find('input').focus();
 		}
 	});
 }
+nextFocus();
 
 //특정 클래스 타입의 input에서 엔터 누르면 다음 input으로 포커스
 function nextFocusName(name){
@@ -239,33 +244,93 @@ $('document').ready(function(){
     
 /*document.ready의 끝*/  
 })
+
+	//데이트 피커 - totalReport
+// 	$(function() {
+// 	    $( ".datepicker" ).datepicker({
+// 	    	dateFormat:'yy.mm.dd' // 만약 2011년 4월 29일 선택하면  inputbox 에 '2011/04/29' 로표시
+// 	            , showOn: 'both' // 우측에 달력 icon 을 보인다.
+<%-- 	            , buttonImage: '<%=request.getContextPath()%>/img/calendar.png'  // 우측 달력 icon 의 이미지 패스  --%>
+// 	            , buttonImageOnly: true //  inputbox 뒤에 달력icon만 표시한다. ('...' 표시생략)
+// 	            , changeMonth: true // 월선택 select box 표시 (기본은 false)
+// 	            ,changeYear: true  // 년선택 selectbox 표시 (기본은 false)
+// 	            ,showButtonPanel: true // 하단 today, done  버튼기능 추가 표시 (기본은 false)
+// 	            ,closeText : "닫기"
+// 	            ,currentText : "오늘"
+// 	    });
+// 	    $('img.ui-datepicker-trigger').css('width', '22px');
+// 	    $('img.ui-datepicker-trigger').css('padding-left', '6px');
+// 	    $('img.ui-datepicker-trigger').css('padding-top', '2px');
+// 	    $('img.ui-datepicker-trigger').css('vertical-align', 'top');
+// 	    $('img.ui-datepicker-trigger').css('cursor', 'pointer');
+// 	});
+
+// 	//데이트 피커 - dailySal
+// 	$(function() {
+// 	    $( ".datepicker" ).datepicker({
+// 	    		dateFormat:'yy.mm.dd' // 만약 2011년 4월 29일 선택하면  inputbox 에 '2011/04/29' 로표시
+// 	            , showOn: 'both' // 우측에 달력 icon 을 보인다.
+<%-- 	            , buttonImage: '<%=request.getContextPath()%>/img/calendar.png'  // 우측 달력 icon 의 이미지 패스  --%>
+// 	            , buttonImageOnly: true //  inputbox 뒤에 달력icon만 표시한다. ('...' 표시생략)
+// 	            , changeMonth: true // 월선택 select box 표시 (기본은 false)
+// 	            ,changeYear: true  // 년선택 selectbox 표시 (기본은 false)
+// 	            ,showButtonPanel: true // 하단 today, done  버튼기능 추가 표시 (기본은 false)
+// 	            ,closeText : "닫기"
+// 	            ,currentText : "오늘"
+// 	    });
+// 	    $('img.ui-datepicker-trigger').css('width', '22px');
+// 	    $('img.ui-datepicker-trigger').css('padding-left', '6px');
+// 	    $('img.ui-datepicker-trigger').css('padding-top', '1px');
+// 	    $('img.ui-datepicker-trigger').css('vertical-align', 'top');
+// 	    $('img.ui-datepicker-trigger').css('cursor', 'pointer');
+// 	});
+
+// 	//month 피커
+//     $(".datepicker1, .datepicker2").monthpicker({ 
+//     	pattern : 'yyyy.mm',
+// 		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+//    	});
+//     $('.monthButton1').bind('click', function(){
+//     	$(".datepicker1").monthpicker('show');
+//     });
+//     $('.monthButton2').bind('click', function(){
+//     	$(".datepicker2").monthpicker('show');
+//     });
+
+// 	//날짜 변경시 ajax 처리
+// 	$('.datepicker').on('change', function(){
+// 		var newDate = getDate($( ".datepicker" ).val());
+		
+// 		loadBottomReport(newDate);
+// 	});
 </script>
 
 
 <!-- 캘린더 객체 생성 -->
 <%
-	Calendar cal = Calendar.getInstance();
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMM");
-	ArrayList<Object> monthArr = new ArrayList<Object>();
+// 	Calendar cal = Calendar.getInstance();
+// 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMM");
+// 	ArrayList<Object> monthArr = new ArrayList<Object>();
 
-		for(int i=0; i <= 11; i++) {
+// 		for(int i=0; i <= 11; i++) {
 			
-			if(i > 0){
-			cal.add(cal.MONTH, -1);
-			} else {
-				cal.add(cal.MONTH, 0);
-			}
-			String year = dateFormat.format(cal.getTime()).substring(0,4);
-			String month = dateFormat.format(cal.getTime()).substring(4,6);
+// 			if(i > 0){
+// 			cal.add(cal.MONTH, -1);
+// 			} else {
+// 				cal.add(cal.MONTH, 0);
+// 			}
+// 			String year = dateFormat.format(cal.getTime()).substring(0,4);
+// 			String month = dateFormat.format(cal.getTime()).substring(4,6);
 			
-			request.setAttribute("year"+ i, year);
-			request.setAttribute("month"+ i, month);
-			monthArr.add(month);
-		}
-	request.setAttribute("monthArr", monthArr);
+// 			request.setAttribute("year"+ i, year);
+// 			request.setAttribute("month"+ i, month);
+// 			monthArr.add(month);
+// 		}
+// 	request.setAttribute("monthArr", monthArr);
 		
-	//숫자를 소수점 버리고 포맷 변환하는 함수
-	double val = 1234525635.12;
-	DecimalFormat numFormat = new DecimalFormat(",###");
+// 	//숫자를 소수점 버리고 포맷 변환하는 함수
+// 	double val = 1234525635.12;
+// 	DecimalFormat numFormat = new DecimalFormat(",###");
 	/* System.out.println(numFormat.format(val)); */
 %>
+
