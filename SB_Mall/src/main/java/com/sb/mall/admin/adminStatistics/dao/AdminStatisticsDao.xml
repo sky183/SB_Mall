@@ -3,7 +3,7 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
-	namespace="com.sb.mall.admin.adminOperation.dao.AdminOperationDao">
+	namespace="com.sb.mall.admin.adminStatistics.dao.AdminStatisticsDao">
 
 	<!-- loadBottomReport.jsp 에서 사용할 쿼리 -->
 	<!-- 맵 객체를 생성해준다. column에서 반환된 값을 property에 지정한 key로 생성하여 javaType에 지정된 

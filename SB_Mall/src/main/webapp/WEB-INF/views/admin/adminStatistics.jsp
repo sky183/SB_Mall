@@ -24,20 +24,11 @@
 			<!--좌측 메뉴-->
 			<div id="leftContent">
 				<div class="leftTitle">매출 관리</div>
-				<div class="leftMenu link" id="totalReport">
-					총 영업 현황
+				<div class="leftMenu link" id="visitStat">
+					방문 통계
 				</div>
-				<div class="leftMenu" id="salReport">
-					매출 조회
-				</div>
-				<ul class="leftSubmenu">
-					<li class="link" id="dailySal">-일별 매출</li>
-					<li class="link" id="monthlySal">-월별 매출</li>
-					<li class="link" id="weeklySal">-주간 매출</li>
-					<li class="link" id="hourlySal">-시간대별 매출</li>
-				</ul>
-				<div class="leftMenu link" id="budget">
-					Budget 관리
+				<div class="leftMenu link" id="memberStat">
+					회원 통계
 				</div>
 				<!--좌측메뉴의 끝, 우측메뉴 시작-->
 			</div><div id="rightContent">
@@ -74,12 +65,12 @@ $(document).ready(function(){
 	});
 
 	//기본 화면으로 불러온다. 여기서는 영업통계
-	$('#rightContent').load('<%=request.getContextPath()%>/admin/adminOperation/totalReport');
+	$('#rightContent').load('<%=request.getContextPath()%>/admin/adminStatistics/visitStat');
 	
 	//메뉴 클릭시 우측 메뉴 출력 - 없으면 기본 화면으로 출력 여기서는 영업통계
 	$('.link').click(function(){
 		var page = $(this).attr('id');
-		var url = '<%=request.getContextPath()%>/admin/adminOperation/' + page;
+		var url = '<%=request.getContextPath()%>/admin/adminStatistics/' + page;
 		$.ajax({
 			url : url,
 			error : function(error) {
@@ -87,7 +78,7 @@ $(document).ready(function(){
 		    },
 			success : function(data) {
 				$('#rightContent').html(data);
-				history.pushState(url, null, '<%=request.getContextPath()%>/admin/adminOperation');
+				history.pushState(url, null, '<%=request.getContextPath()%>/admin/adminStatistics');
 			}
 		});
 	});
@@ -109,7 +100,7 @@ $(document).ready(function(){
 				})
 			 } else {
 			    // 히스토리에 정보가 없을경우 메인화면으로 보내준다.
-			    var url = "<%=request.getContextPath()%>/admin/adminOperation";    
+			    var url = "<%=request.getContextPath()%>/admin/adminStatistics";    
 			    $(location).attr('href',url);
 			    }
 	});

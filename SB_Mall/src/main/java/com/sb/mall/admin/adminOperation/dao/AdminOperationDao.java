@@ -43,6 +43,10 @@ public interface AdminOperationDao {
 	public int selectWeeklyOrderDetailCount(String startDate,String endDate, String tableName);
 	//주별 날짜, 주문수, 방문수, 매출 조회 - 일반주문 및 크라우드펀딩 
 	public List<Object> selectWeeklySalVOList(String startDate, String endDate, String tableName, int firstRow, int endRow);
+	//시간대별 일반 주문 및 크라우드펀딩 주문 갯수
+	public int selectHourlyOrderDetailCount(String startDate,String endDate, String tableName);
+	//시간대별 날짜, 주문수, 방문수, 매출 조회 - 일반주문 및 크라우드펀딩 
+	public List<Object> selectHourlySalVOList(String startDate, String endDate, String tableName, int firstRow, int endRow);
 	
 	
 

@@ -44,7 +44,7 @@ popupY= (window.screen.height /2) - (600 / 2)
         	
         	thisDate =  event._d.format('yyyy/MM/dd');
         	var url = 'https://calendar.google.com/calendar/r/day/'+ thisDate +'?sf=true'
-            window.open(url, 'gcalevent', 'width=700,height=600,left='+ popupX + ',top=' + popupY);
+            window.open(url, 'gcalevent', 'width=700,height=600,left='+ popupX + ',top=' + (popupY - 150));
             return false;
         },
         displayEventTime: true, // don't show the time column in list view
@@ -66,7 +66,7 @@ popupY= (window.screen.height /2) - (600 / 2)
         editable: true,
         eventClick: function(event) {
           // opens events in a popup window
-          window.open(event.url, 'gcalevent', 'width=700,height=600');
+          window.open(event.url, 'gcalevent', 'width=700,height=600, left='+ popupX + ',top=' + (popupY - 150));
           return false;
         },
 
@@ -117,7 +117,7 @@ popupY= (window.screen.height /2) - (600 / 2)
 				</div>			
 				<!--좌측메뉴의 끝, 우측메뉴 시작-->
 			</div><div id="rightContent">
-				<div id="mainContent	">
+				<div id="mainContent">
 					 <div id='loading'>loading...</div>
 	  				 <div id='calendar'></div>
   				 </div>
