@@ -94,7 +94,9 @@ public class FreeBoardController {
 	
 	//Read
 	@Autowired
-	FreeBoardService_Select freeBoardServiceSelect;
+	FreeBoardService_Select freeBoardService_Select;
+	@Autowired
+	FreeBoardService_Update freeBoardService_Update;
 	
 	@RequestMapping("/select") 
 	public ModelAndView freeBoardSelect(FreeBoard freeBoard, HttpSession session) {
@@ -103,9 +105,17 @@ public class FreeBoardController {
 		/*게시글 클릭시 해당 게시판번호 출력확인*/
 		int boardSeq = freeBoard.getBoardSeq();
 		System.out.println(boardSeq);
+		//클릭하면 해당 게시물 조회수 1 증가
+		try {
+			freeBoardService_Update.freeBoardService_viewCount();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		
 		try {
-			freeBoard = freeBoardServiceSelect.freeBoardService_Select(boardSeq);
+			freeBoard = freeBoardService_Select.freeBoardService_Select(boardSeq);
 			modelAndView.addObject("freeBoard",freeBoard);
 			/*조회된 객채 확인*/
 			System.out.println(freeBoard.toString());
@@ -140,7 +150,7 @@ public class FreeBoardController {
 		
 		
 		try {
-			freeBoard = freeBoardServiceSelect.freeBoardService_Select(boardSeq);
+			freeBoard = freeBoardService_Select.freeBoardService_Select(boardSeq);
 			modelAndView.addObject("freeBoard",freeBoard);
 			/*조회된 객채 확인*/
 			System.out.println(freeBoard.toString());
@@ -154,8 +164,7 @@ public class FreeBoardController {
 	}
 	
 	//2. 수정된 게시글 업데이트
-	@Autowired
-	FreeBoardService_Update freeBoardService_Update;
+	
 	@RequestMapping( method=RequestMethod.POST,value="/update_over") 
 	public ModelAndView freeBoardUpdate_End(FreeBoard freeBoard) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/freeBoard");

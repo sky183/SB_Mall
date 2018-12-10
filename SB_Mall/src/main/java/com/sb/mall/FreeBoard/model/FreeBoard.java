@@ -16,7 +16,17 @@ public class FreeBoard {
 	Date boardWriteDate;
 	//작성자이름 not null
 	String writerName;
+	//조회수
+	int viewSeq;
 	
+	
+	
+	public int getViewSeq() {
+		return viewSeq;
+	}
+	public void setViewSeq(int viewSeq) {
+		this.viewSeq = viewSeq;
+	}
 	public int getBoardSeq() {
 		return boardSeq;
 	}
@@ -42,7 +52,7 @@ public class FreeBoard {
 		this.boardContent = boardContent;
 	}
 	public String getBoardWriteDate() {
-		return new SimpleDateFormat("yyyy/MM/dd").format(boardWriteDate);
+		return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(boardWriteDate);
 	}
 	public void setBoardWriteDate(Date timestamp) {
 		this.boardWriteDate = timestamp;
@@ -56,9 +66,9 @@ public class FreeBoard {
 	
 	@Override
 	public String toString() {
-		return "<자유게시판> [boardSeq=" + boardSeq + ", userSeq=" + userSeq + ", boardTitle=" + boardTitle
+		return "<<자유게시판>> [boardSeq=" + boardSeq + ", userSeq=" + userSeq + ", boardTitle=" + boardTitle
 				+ ", boardContent=" + boardContent + ", boardWriteDate=" + boardWriteDate + ", writerName=" + writerName
-				+ "]";
+				+ ", viewSeq=" + viewSeq + "]";
 	}
 	
 }

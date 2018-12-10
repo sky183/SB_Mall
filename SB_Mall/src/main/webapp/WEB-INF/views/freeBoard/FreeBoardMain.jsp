@@ -8,37 +8,92 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css" rel="stylesheet">
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
-
+<link rel="stylesheet"	href="<%=request.getContextPath()%>/css/crowd.css">
+<link rel="stylesheet"	href="<%=request.getContextPath()%>/css/freeBoard.css">
 </head>
+
 <body>
 
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 <h1>자유게시판</h1>
-	<form>
-	<div class="freeboard_wrap">
-		<table border="1" style="padding: 5px 0 5px 0;">
+<div class="midBannerBox">
+	<h3 class="rowdWriteBannerH3">얼리버드</h3>
+</div>
+
+	<div id="freeboard_wrap_1">
+		<div id="freeboard_wrap_2">
+		
+		
+			<!-- Start of Header -->
+			<div id="freeboard_Header">
+				<button class="fb_Button">최신순</button>
+				<button class="fb_Button">조회순</button>
+				<span id="icon_search_span">
+					<input type="text" id="icon_search_input"><img alt="" id="icon_search" src="<%=request.getContextPath()%>/img/icon_search.png">
+				</span>
+			</div><!-- End of div freeboard_header-->
+			
+			
+			<!-- Start of Content -->
+			<div id="freeboard_Content">
+				
+				<c:forEach items="${FreeBoardList}" var="freeBoard">
+				<div id="contentBox">
+					<!--상단 :게시글 번호, 날짜-->
+					<div id="content_up">
+						<div id="boardSeqBox">1</div>
+						<div id="boardWriteDateBox">2</div>
+						1
+					</div><!-- End of div up -->
+					
+					<!--하단 : 게시글 제목, 조회수, 아이디  -->
+					<div id="content_down">
+						<div id="boardTitleBox">3</div>
+						<div id="writerNameBox">5</div> 
+						<div id="viewSeqBox">4</div>
+						2
+					</div><!-- End of div down -->
+				</div>
+				</c:forEach>
+				
+			</div><!-- End of div freeboard_Content-->
+			
+			<!-- Start of footer -->
+			<div id="freeboard_Footer">
+				<a type="button" 
+				id="button_write"
+				class="fb_Button"
+				href="<%=request.getContextPath()%>/freeBoard/writePage"
+				>글쓰기</a>
+			
+			</div><!-- End of div freeboard_footer-->
+	
+		</div><!-- end of <div class="freeboard_wrap_2">-->
+	</div><!-- end of <div class="freeboard_wrap_1">-->
+	
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	
+	
+	
+	<!-- /*참고용 */ -->
+	<table border="1" style="padding: 5px 0 5px 0;">
 
 			<thead>
 				<tr>
 					<th><input type="checkbox" /></th>
 					<th>게시글번호</th>
 					<th>게시글제목</th>
+					<th>조회수</th>
 					<th>작성자</th>
 					<th>작성날짜</th>
 				</tr>
@@ -49,13 +104,15 @@
 					<td><input type="checkbox" /></td>
 					<td>${freeBoard.boardSeq}</td>
 					<td><A href="<%=request.getContextPath()%>/freeBoard/select?boardSeq=${freeBoard.boardSeq}">${freeBoard.boardTitle}</A></td>
+					<td>${freeBoard.viewSeq}</td>
 					<td>${freeBoard.writerName}</td>
 					<td>${freeBoard.boardWriteDate}</td>
 				</tr>
 			</c:forEach>
 			</tbody><!-- end of tbody -->
 		</table><!-- The end of Table -->
-	</div><!-- end of <div class="freeboard_wrap">-->
+		
+		
 	<div class="freeboard_Button">
 		<div class="write_button_right">
 			<a type="button" 
@@ -73,7 +130,7 @@
 			>전체글</a>
 		</div>
 	</div><!-- end of <div class="freeboard_Button"> -->
-	</form><!-- The end of Form -->
+	
 
 </body>
 </html>

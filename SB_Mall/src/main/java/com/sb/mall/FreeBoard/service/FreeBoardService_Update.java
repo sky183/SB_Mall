@@ -31,5 +31,28 @@ public class FreeBoardService_Update {
 		return resultCnt;
 		
 	}
+	
+	//조회수
+	@Transactional
+	public int freeBoardService_viewCount() throws Exception {
+		System.out.println("[freeBoardService_viewCount()]");
+		System.out.println("/*Updating..*/");
+		
+		int resultCnt = 0;
+		
+		freeBoardDao = sqlSessionTemplate.getMapper(FreeBoardDao.class);
+		
+		resultCnt = freeBoardDao.update_viewCount();
+		System.out.println("resultCnt :"+ resultCnt);
+		if (resultCnt == 0) {
+			System.out.println("did not to updating");
+		}else {
+			System.out.println("did to updating");
+		}
+		System.out.println("/*End of Updating*/");
+		return resultCnt;
+		
+	}
+	
 
 }

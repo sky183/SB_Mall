@@ -17,5 +17,8 @@ public interface FreeBoardDao {
 	//Dalete
 	public int delete_FreeBoard(int boardSeq) throws Exception;
 	
+	//조회수 증가 2018.12.06
+	public int update_viewCount() throws Exception;
+	
 
 }
