@@ -9,6 +9,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
+	
 <style>
 * {
 	padding: 0;
@@ -28,6 +44,7 @@ body {
 	height: 100%;
 	color: #000;
 	background-color: #fff;
+	font-family: 'Youth', sans-serif;
 }
 
 #cardbox {
@@ -211,6 +228,14 @@ body {
 	background-color: #787878;
 	padding: 15px;
 }
+
+@font-face {
+	font-family: 'Youth';
+	font-style: normal;
+	font-weight: 400;
+	src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kywa/Youth/Youth.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kywa/Youth/Youth.woff') format('woff');
+}
+
 </style>
 </head>
 <body>
@@ -276,9 +301,7 @@ body {
 				       	연결 및 로그인 후 메시지를 보내세요.
 				    </div> -->
 				    <button type="button" class="close" id="closeButton" onclick="closeChat()" aria-label="Close">
-						<span aria-hidden="true"><img
-			src="<%=request.getContextPath()%>/img/closeButton.png"
-			style="width: 20px; height: 20px;"></span>
+						<span aria-hidden="true"><img src="<%=request.getContextPath()%>/img/closeButton.png" style="width: 20px; height: 20px;"></span>
 					</button>
 				</div>
 			 </div>
