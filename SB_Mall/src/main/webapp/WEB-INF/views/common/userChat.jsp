@@ -9,21 +9,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css"
-	rel="stylesheet">
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 	
 <style>
 * {
@@ -44,7 +29,6 @@ body {
 	height: 100%;
 	color: #000;
 	background-color: #fff;
-	font-family: 'Youth', sans-serif;
 }
 
 #cardbox {
@@ -142,6 +126,7 @@ body {
 	padding: 10px;
 	border-radius: 2px 0px 0px 0px;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	font-family: 'Youth', sans-serif;
 }
 .messages p {
 	font-size: 0.8em;
@@ -173,11 +158,12 @@ body {
 #dataInput {
 	float:left;
 	width: 328px;
-	height: 
+	height: ;
 	margin: 0px;
 	padding: 5px;
 	border: none;
 	font-size: 22px;
+	font-family: 'Youth', sans-serif;
 }
 #sendButton {
 	float:left;
@@ -207,16 +193,16 @@ body {
 	width: 40px;
 	height: 40px;
 	position: fixed;
-	right: 10px;
+	right: 10px; 
 	bottom: 10px;
 	cursor: pointer;
 }
 #closeButton {
 	position: relative;
-	float: right;
 	cursor: pointer;
 	margin-top: 8px;
 	margin-bottom: 10px;
+	margin-right: 5px;
 }
 .chatting {
 	right: 30px;
@@ -291,11 +277,11 @@ body {
 	<div id="chatBox" class="chatting wow zoomIn" style="display: none">
 		
 		<div id="cardbox" class="ui fluid card">
-			 <div class="content">
+			 <div class="content" style="display: inline; width: 360px;">
 			 	<!-- <div class="left floated author">
 			 		<img id="iconImage" class="ui avatar image" src="./images/author.png">
 				</div> -->
-				<div>
+				<div style="display: inline;">
 					<div id="titleText" class="header"><span>채팅 창</span></div>
    					<!-- <div id="contentsText" class="description">
 				       	연결 및 로그인 후 메시지를 보내세요.
@@ -376,7 +362,7 @@ body {
 			    
 			    <div class="description">
 			    	<div class="ui input">
-			    		<input type="text" id="dataInput" value="안녕!"/> 
+			    		<input type="text" id="dataInput" value="안녕!" style="font-family: 'Youth', sans-serif;"/> 
 			    		<input class="ui primary button" type="image" id="sendButton" src="<%=request.getContextPath()%>/img/sendbutton.png">
 			    	</div>
 			    </div>
@@ -724,7 +710,7 @@ body {
 				backcolor = "style='background-color: #ffffff;'";
 			}
 			
-			var contents = "<li class='" + senders + "'style='background-color: #9bbbd4;''>"
+			var contents = "<li class='" + senders + "'style='background-color: '>"
 						 + "  <div class='avatar'>"
 						 + "    <img src='" + img + "' />"
 		      			 + "  </div>"
@@ -744,11 +730,11 @@ body {
 		
 	</script>
 	
-	
+	<!-- 
 	<script type="text/javascript">
 		// 버튼 눌렀을때 애니메이션 효과 적용
 		new WOW().init();
 	</script>
-	
+	 -->
 </body>
 </html>
