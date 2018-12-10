@@ -11,7 +11,6 @@
 }
 </style>
 <title>Insert title here</title>
-
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
@@ -19,8 +18,10 @@
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.js"></script>
-
-
+<!-- midBannerBox -->
+<link rel="stylesheet"	href="<%=request.getContextPath()%>/css/crowd.css">
+<!-- 자유게시판 CSS -->
+<link rel="stylesheet"	href="<%=request.getContextPath()%>/css/freeBoardWrite.css">
 </head>
 <script type="text/javascript">
 $(document).ready(function() { 
@@ -40,18 +41,16 @@ $(document).ready(function() {
 	});
 	
 });
-
 function sendCode() {
     $('#freeBoard_text').val($('#summernote').summernote('code'));
     $('#freeBoard_form_id').submit();
 }
-
 </script>
 <body>
-
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-
-<h1>자유게시판_수정</h1>
+<div class="midBannerBox">
+	<h3 class="rowdWriteBannerH3">수정</h3>
+</div>
 
 <%-- <form method="post" action="<%=request.getContextPath()%>/freeBoard/update_over"> --%>
 <form method="POST" action="update_over" id="freeBoard_form_id">

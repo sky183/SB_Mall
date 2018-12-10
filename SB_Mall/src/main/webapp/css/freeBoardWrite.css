@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+/* *{
+	Test용
+	border: 1px solid black;
+}  */
+
+.all_Button{
+		vertical-align: middle;
+		margin: 15px 5px;
+	}
+
+
+
+#freeboard_wrap_1 {
+	width: 800px;
+	margin: 0 auto;
+	height: 800px;
+}
+
+#freeboard_wrap_2 {
+	width: 800px;
+	margin: 15px auto;
+	height: auto;
+}
+
+
+
+
+#freeboard_Header {
+	margin: 15px 10px;
+	height: 30px;
+}
+/*<<Start of #freeboard_Header>>*/
+#header_Input{
+	margin: 5px 0px;
+	width: 790;
+	border: 0px solid;
+}
+#header_hr{
+	margin:3px;
+	color: #ffc828;
+	border: 1px solid;
+}
+/*<<End of #freeboard_Header>>*/
+
+
+
+#freeboard_Content {
+	height: 350px;
+	margin: 5px 0px;
+	overflow: hidden;
+}
+/*<<Start of freeboard_Content>>*/
+
+/*<<End of freeboard_Content>>*/
+
+
+
+#freeboard_Footer {
+	height: 50px;
+	margin: 0px 0px;
+}
+/*<<Start of freeboard_Content>>*/
+#footer_button_Cancel{
+	float: right;
+	vertical-align: top;
+	margin: 15px 5px;
+}
+#footer_button_Write{
+	float: right;
+	vertical-align: top;
+}
+/*<<End of freeboard_Content>>*/
+
+
+
+
+
