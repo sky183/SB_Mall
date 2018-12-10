@@ -34,7 +34,7 @@ public class UploadService {
 			throw e;
 		}
 		//웹경로 리턴
-		String sqlpath = "http://52.79.226.226/file/" + folderName + "/" + filename;
+		String sqlpath = ("http://52.79.226.226/file/" + folderName + "/" + filename).trim();
 		return sqlpath;
 	};
 
