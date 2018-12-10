@@ -24,7 +24,6 @@
 <jsp:include page="/WEB-INF/views/home/include/homeYoutube.jsp"/>
 <jsp:include page="/WEB-INF/views/home/include/homeNewProduct.jsp"/>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-<jsp:include page="/WEB-INF/views/common/chat.jsp"/>
 
 
 <%@ include file="/WEB-INF/views/common/header.jsp"%>

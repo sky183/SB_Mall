@@ -86,5 +86,5 @@
 		</div>
 	</div>
 
-
+<%@include file="/WEB-INF/views/common/userChat.jsp" %>
 </body>
