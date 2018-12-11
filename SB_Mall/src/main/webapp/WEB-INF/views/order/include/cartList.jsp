@@ -121,7 +121,7 @@
 		});
 		
 		$('.cartItem').click();
-		$('#checkAllItems').click(function () { //체크박스 전체체크
+		$('#checkAllItems').click(function () { //체크박스 전체체크.
 			if($(this)[0].checked==true){
 				$('input[name=cartItem]').prop('checked',true);
 			}else{
