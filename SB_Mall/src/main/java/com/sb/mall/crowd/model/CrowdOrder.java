@@ -2,7 +2,7 @@ package com.sb.mall.crowd.model;
 
 public class CrowdOrder {
 	private int crOrderSeq;
-	private String crOrderDetailNo;
+	private String orderDetailNum;
 	private int userSeq;
 	private int crowdBoardSeq;
 	private String crGoodsNo;
@@ -10,7 +10,7 @@ public class CrowdOrder {
 	private int quantity;
 	private int salePrice;
 	private int totalPrice;
-	private int crOrderSatus;
+	private int refund;
 	
 	private String crGoodsName;
 	private String crOpt1Name;
@@ -18,19 +18,17 @@ public class CrowdOrder {
 	
 	private String crGoodsImg;
 	private String userName;
-	
-	
 	public int getCrOrderSeq() {
 		return crOrderSeq;
 	}
 	public void setCrOrderSeq(int crOrderSeq) {
 		this.crOrderSeq = crOrderSeq;
 	}
-	public String getCrOrderDetailNo() {
-		return crOrderDetailNo;
+	public String getOrderDetailNum() {
+		return orderDetailNum;
 	}
-	public void setCrOrderDetailNo(String crOrderDetailNo) {
-		this.crOrderDetailNo = crOrderDetailNo;
+	public void setOrderDetailNum(String orderDetailNum) {
+		this.orderDetailNum = orderDetailNum;
 	}
 	public int getUserSeq() {
 		return userSeq;
@@ -74,17 +72,11 @@ public class CrowdOrder {
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	public int getCrOrderSatus() {
-		return crOrderSatus;
+	public int getRefund() {
+		return refund;
 	}
-	public void setCrOrderSatus(int crOrderSatus) {
-		this.crOrderSatus = crOrderSatus;
-	}
-	public String getCrGoodsImg() {
-		return crGoodsImg;
-	}
-	public void setCrGoodsImg(String crGoodsImg) {
-		this.crGoodsImg = crGoodsImg;
+	public void setRefund(int refund) {
+		this.refund = refund;
 	}
 	public String getCrGoodsName() {
 		return crGoodsName;
@@ -104,6 +96,12 @@ public class CrowdOrder {
 	public void setCrOpt2Name(String crOpt2Name) {
 		this.crOpt2Name = crOpt2Name;
 	}
+	public String getCrGoodsImg() {
+		return crGoodsImg;
+	}
+	public void setCrGoodsImg(String crGoodsImg) {
+		this.crGoodsImg = crGoodsImg;
+	}
 	public String getUserName() {
 		return userName;
 	}
@@ -112,12 +110,15 @@ public class CrowdOrder {
 	}
 	@Override
 	public String toString() {
-		return "CrowdOrder [crOrderSeq=" + crOrderSeq + ", crOrderDetailNo=" + crOrderDetailNo + ", userSeq=" + userSeq
+		return "CrowdOrder [crOrderSeq=" + crOrderSeq + ", orderDetailNum=" + orderDetailNum + ", userSeq=" + userSeq
 				+ ", crowdBoardSeq=" + crowdBoardSeq + ", crGoodsNo=" + crGoodsNo + ", crOptionSeq=" + crOptionSeq
-				+ ", quantity=" + quantity + ", salePrice=" + salePrice + ", totalPrice=" + totalPrice
-				+ ", crOrderSatus=" + crOrderSatus + ", crGoodsName=" + crGoodsName + ", crOpt1Name=" + crOpt1Name
-				+ ", crOpt2Name=" + crOpt2Name + ", crGoodsImg=" + crGoodsImg + ", userName=" + userName + "]";
+				+ ", quantity=" + quantity + ", salePrice=" + salePrice + ", totalPrice=" + totalPrice + ", refund="
+				+ refund + ", crGoodsName=" + crGoodsName + ", crOpt1Name=" + crOpt1Name + ", crOpt2Name=" + crOpt2Name
+				+ ", crGoodsImg=" + crGoodsImg + ", userName=" + userName + "]";
 	}
+	
+	
+
 	
 	
 }

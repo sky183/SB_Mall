@@ -10,6 +10,8 @@
 <meta charset="UTF-8">
 
 <script>
+	var crOrderDetailNo;
+	
 	$(document).ready(function(){
 		
 		$('.ODDelivery').keyup(function(){
@@ -41,11 +43,98 @@
 			var agree = $('.checked').length;/* 3이여야 함 */
 			
 			if(agree==3){
-			}	
+				
+				/* orderDetail 추가 */
+				orderDetailNum = guid()+"OD";
+				var userSeq = $('.userSeq').html();
+				var totalAmount = $('.totalAmount').html();
+				var cardNo = $('.cardNo1').val()+$('.cardNo2').val()+$('.cardNo3').val()+$('.cardNo4').val();
+				var yearDay = $('.yearDay').val();
+				var cardPassword = $('.cardPassword').val();
+				var birthNo = $('.birthNo').val();
+				var zipCode = $('.zipCode').val();
+				var orderAddress = $('.address1').val()+$('.address2').val();
+				var orderPhone = $('.orderPhone').val();
+				var orderRequest = $('.orderRequest').val();
+				var orderName = $('.orderName').val();
+				
+				var detailForm = 
+					'<input type="hidden" name="orderDetail.orderDetailNum" value="'+orderDetailNum+'">'
+					+'<input type="hidden" name="orderDetail.userSeq" value="'+userSeq+'">'
+					+'<input type="hidden" name="orderDetail.totalAmount" value="'+totalAmount+'">'
+					+'<input type="hidden" name="orderDetail.cardNo" value="'+cardNo+'">'
+					+'<input type="hidden" name="orderDetail.yearDay" value="'+yearDay+'">'
+					+'<input type="hidden" name="orderDetail.cardPassword" value="'+cardPassword+'">'
+					+'<input type="hidden" name="orderDetail.birthNo" value="'+birthNo+'">'
+					+'<input type="hidden" name="orderDetail.zipCode" value="'+zipCode+'">'
+					+'<input type="hidden" name="orderDetail.orderAddress" value="'+orderAddress+'">'
+					+'<input type="hidden" name="orderDetail.orderPhone" value="'+orderPhone+'">'
+					+'<input type="hidden" name="orderDetail.orderRequest" value="'+orderRequest+'">'
+					+'<input type="hidden" name="orderDetail.orderName" value="'+orderName+'">';
+					
+				$('#orderDetailForm').append(detailForm);
+				
+				/* order 추가 */
+				var bagCnt=0;
+				$('.orderBag').each(function(index){
+					var crOrderDetailNoFK = orderDetailNum;
+					var salerSeq = $(this).find('.userSeq').html();
+					var crowdBoardSeq = $(this).find('.crowdBoardSeq').html();
+					var crGoodsNo = $(this).find('.crGoodsNo').html();
+					var crOptionSeq = $(this).find('.crOptionSeq').html();
+					var quantity = $(this).find('.quantity').html();
+					var salePrice = $(this).find('.salePrice').html();
+					var totalPrice = $(this).find('.totalPrice').html();
+					
+					var orderAppend = 
+						'<input type="hidden" name="orderList['+bagCnt+'].orderDetailNum" value="'+crOrderDetailNoFK+'">'
+						+'<input type="hidden" name="orderList['+bagCnt+'].userSeq" value="'+salerSeq+'">'
+						+'<input type="hidden" name="orderList['+bagCnt+'].crowdBoardSeq" value="'+crowdBoardSeq+'">'
+						+'<input type="hidden" name="orderList['+bagCnt+'].crGoodsNo" value="'+crGoodsNo+'">'
+						+'<input type="hidden" name="orderList['+bagCnt+'].crOptionSeq" value="'+crOptionSeq+'">'
+						+'<input type="hidden" name="orderList['+bagCnt+'].quantity" value="'+quantity+'">'
+						+'<input type="hidden" name="orderList['+bagCnt+'].salePrice" value="'+salePrice+'">'
+						+'<input type="hidden" name="orderList['+bagCnt+'].totalPrice" value="'+totalPrice+'">';
+						
+					$('#orderDetailForm').append(orderAppend);
+					bagCnt++;
+						
+				})
+				
+				$('#orderDetailForm').submit();
+				
+				
+				
+				
+			}else{
+				alert("결제 내용에 동의후 진행 가능합니다.");
+			}
 			
-		});
+			
+			
+			
+			
+			
+			
+			
+		})
 		
-	});/* ready end */
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	})/* ready end */
 	
 	
 	/* price 숫자면 받기 */
@@ -55,9 +144,14 @@
 	
 	/* 코드생성 */
 	function guid() {
-		timestamp = new Date().getTime();
-		return timestamp;
-	}
+		  
+	      timestamp = new Date().getTime();
+	      return timestamp;
+	   }
+	
+	
+	
+
 
 </script>
 
@@ -98,37 +192,45 @@
 				<h3 class="chartTitle ib">배송비/판매자</h3>
 			</div>
 		</div>
-	<c:forEach var="order" items="${orders}">
+	<c:forEach var="orderList" items="${orderList.orders}">
 	
 		<div class="orderUnitBox orderBag">
+			<h3 class="hidden crowdBoardSeq">${orderList.crowdBoardSeq}</h3>
+			<h3 class="hidden userSeq">${orderList.userSeq}</h3>
+			<h3 class="hidden crGoodsNo">${orderList.crGoodsNo}</h3>
+			<h3 class="hidden crOptionSeq">${orderList.crOptionSeq}</h3>
+			
 			<div class="orderImgbox ib">
-				<img class="orderImg" src="${order.goodsImg}">
+				<img class="orderImg" src="${orderList.crGoodsImg}">
 			</div>
 			
 			<div class="orderTitlebox ib">
-				<h1 class="orderTitle ib">${order.goodsName}</h1><br>
-				<h3 class="orderSubLine ib">${order.opt1Name}</h3>
-				<h3 class="orderSubLine ib">${order.opt2Name}</h3>
+				<h1 class="orderTitle ib">${orderList.crGoodsName}</h1><br>
+				<h3 class="orderSubLine ib">${orderList.crOpt1Name}</h3>
+				<h3 class="orderSubLine ib">${orderList.crOpt2Name}</h3>
 			</div>
 			
 			<div class="quantityBox ib">
-				<h3 class="quantityF ib">${order.quantity}개</h3>
+				<h3 class="hidden quantity">${orderList.quantity}</h3>
+				<h3 class="quantityF ib">${orderList.quantity}개</h3>
 			</div>
 			
 			<div class="salesBox ib">
-				<h2 class="salesPriceF ib">00 원</h2>
+				<h2 class="hidden salePrice">${orderList.salePrice}</h2>
+				<h2 class="salesPriceF ib"><fmt:formatNumber value="${orderList.salePrice}" pattern="#,###"/>원</h2>
 			</div>
 			
 			<div class="totalBox ib">
 				<div class="totalPriceBox ib">
-					<h2 class="totalPriceF ib"><fmt:formatNumber value="${order.salePrice}" pattern="#,###"/>원</h2><br>
+					<h2 class="hidden totalPrice">${orderList.totalPrice}</h2>
+					<h2 class="totalPriceF ib"><fmt:formatNumber value="${orderList.totalPrice}" pattern="#,###"/>원</h2><br>
 				</div>
-				<h4 class="totalPriceD ib">(${order.quantity}x<fmt:formatNumber value="${order.salePrice}" pattern="#,###"/>원)</h4>
+				<h4 class="totalPriceD ib">(${orderList.quantity}x<fmt:formatNumber value="${orderList.salePrice}" pattern="#,###"/>원)</h4>
 			</div>
 			
 			<div class="salerBox ib">
 				<h4 class="delivery ib">무료</h4><br>
-				<h4 class="saler ib">김씨</h4>
+				<h4 class="saler ib">${orderList.userName}</h4>
 			</div>
 			
 		</div>
@@ -137,8 +239,10 @@
 		<!-- 최종 결제금액 -->
 		<div class="finalPriceBox ib">
 			<h3 class="finalPriceTitle ib">최종결제금액</h3>	
-			<h1 class="finalPriceF ib">999</h1>
+			<h1 class="finalPriceF ib"><fmt:formatNumber value="${totalAmount}" pattern="#,###"/></h1>
 			<h3 class="finalPriceWon ib">원</h3>
+			
+			<h3 class="hidden totalAmount">${totalAmount}</h3>
 		</div>
 		
 	</div><!-- 주문정보 끝 -->

@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 class="errorH1">주문도중 에러가 발생했습니다.</h1>
-<h1 class="errorH1">잠시 후 다시 시도해주세요.</h1>
+<h1 class="errorH1">주문이 완료되었습니다.</h1>
+
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 </body>
 </html>

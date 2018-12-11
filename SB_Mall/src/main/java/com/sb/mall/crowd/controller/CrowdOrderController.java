@@ -23,19 +23,19 @@ public class CrowdOrderController {
 	public ModelAndView orderForm(CrowdOrderList orderList, HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		int finalPrice = 0;
+		int totalAmount = 0;
 		
 		for (int i=0; i<orderList.getOrders().size(); i++) {
 			String userName = orderService.getUserName(orderList.getOrders().get(i).getUserSeq());
 			orderList.getOrders().get(i).setUserName(userName);
 			
-			finalPrice += orderList.getOrders().get(i).getTotalPrice();
+			totalAmount += orderList.getOrders().get(i).getTotalPrice();
 		}
 		
 		MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
 		System.out.println(memberInfo);
 		modelAndView.addObject("orderList", orderList);
-		modelAndView.addObject("finalPrice", finalPrice);
+		modelAndView.addObject("totalAmount", totalAmount);
 		modelAndView.addObject("memberInfo", memberInfo);
 		modelAndView.setViewName("store/crowdFunding/crowdOrder");
 		

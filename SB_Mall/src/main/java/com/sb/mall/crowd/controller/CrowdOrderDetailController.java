@@ -1,5 +1,8 @@
 package com.sb.mall.crowd.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sb.mall.crowd.model.CrowdOrder;
 import com.sb.mall.crowd.model.CrowdOrderCommand;
 import com.sb.mall.crowd.service.CrowdOrderService;
+import com.sb.mall.member.service.AES256Util;
 
 @Controller
 public class CrowdOrderDetailController {
@@ -22,25 +26,17 @@ public class CrowdOrderDetailController {
 	@Autowired
 	private CrowdOrderService orderService;
 	
+	
+	
 	@RequestMapping(value="/crowd/crowdOrderDetail", method=RequestMethod.POST)
-	public ModelAndView orderDetail(CrowdOrderCommand orderCommand) {
-		ModelAndView modelAndView = new ModelAndView();
-		ObjectMapper jackson = new ObjectMapper();
+	public ModelAndView orderDetail(CrowdOrderCommand orderCommand) throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
+		ModelAndView modelAndView = new ModelAndView("store/crowdFunding/crowdError");
 		
-		try {
-			Map<String, List<CrowdOrder>> map = new HashMap<>();
-			map.put("orderList", orderCommand.getOrderList());
-			
-			String orders = jackson.writeValueAsString(map);
-			System.out.println("orders : "+orders);
-			
-			
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		int check = orderService.insertOrder(orderCommand.getOrderList(), orderCommand.getOrderDetail());
+		
+		if(check==1) {
+			modelAndView.setViewName("store/crowdFunding/crowdSuccess");
 		}
-		
-		modelAndView.setViewName("redirect:/");
 		
 		return modelAndView;
 	}

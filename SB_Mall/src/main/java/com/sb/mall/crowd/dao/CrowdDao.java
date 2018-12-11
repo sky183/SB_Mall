@@ -3,12 +3,17 @@ package com.sb.mall.crowd.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.sb.mall.crowd.model.CrowdBoard;
 import com.sb.mall.crowd.model.CrowdGoods;
 import com.sb.mall.crowd.model.CrowdOption;
+import com.sb.mall.crowd.model.CrowdOrder;
+import com.sb.mall.crowd.model.CrowdOrderDetail;
 import com.sb.mall.crowd.model.CrowdProduct;
 import com.sb.mall.crowd.model.CrowdProductPhoto;
 
+@Mapper
 public interface CrowdDao {
 	
 	public int insertCrowdBoard(CrowdBoard crowdBoard); // board 추가
@@ -30,4 +35,10 @@ public interface CrowdDao {
 	public List<Map<String, Object>> getOpt1(String goodsNo);// opt1 구하기
 	public List<Map<String, Object>> getOpt2(String goodsNo, String opt1Name); //opt2 구하기
 	public String getUserName(int userSeq); // 유저 네임 구하기
+	public void insertOrderDetail2(String orders);//order프로시저
+	public int insertOrderList(CrowdOrder crowdOrder);//order추가
+	public int getOrderPrice(String crGoodsNo, int crOptionSeq); //주문한 금액의 값 확인을 위해 goods+option의 가격 조회
+	public int insertOrderDetail(CrowdOrderDetail crowdOrderDetail);//orderDetail추가
+	public void updateOrderedPriceByOrder(int totalAmount, int crowdBoardSeq); // order 후 board update
+	public void updateOrderedOptionByOrder(int quantity, int crOptionSeq); // order 후 option update
 }

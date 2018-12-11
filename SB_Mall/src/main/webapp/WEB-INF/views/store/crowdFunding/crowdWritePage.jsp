@@ -15,6 +15,7 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 <title>Insert title here</title>
+
 <script>
 	var productCount=1; // 대표상품 이미지 추가 카운트
 	var productNo;		//대표상품 코드
@@ -24,6 +25,7 @@
 	var title2;
 	
 	$(document).ready(function() {
+		
 	    $('#summernote').summernote({
 	            height: 300,              	 // set editor height
 	            minHeight: 300,             // set minimum height of editor
@@ -414,9 +416,7 @@
 	      	});
 	    }
 	
-	
-	
-	
+
 	
 	//goodsPhoto이미지 저장
 	function prPhotoUpload(file, photoId) {
@@ -426,6 +426,7 @@
 	      var form_data = new FormData();
 	      	form_data.append('file', file.files[0]);
 	      	form_data.append('filename', filename);
+	      	
 	      	$.ajax({
 	        	data: form_data,
 	        	type: "POST",
@@ -473,7 +474,7 @@
 		  
 	      timestamp = new Date().getTime();
 	      return timestamp;
-	   }
+	}
 	
 	/* ProductNo */
 	function getProductNo() {

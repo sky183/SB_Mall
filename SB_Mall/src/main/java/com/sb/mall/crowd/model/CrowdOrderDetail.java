@@ -4,16 +4,17 @@ import java.util.Date;
 
 public class CrowdOrderDetail {
 	private int crDetailSeq;
-	private String crOrderDetailNo;
+	private String orderDetailNum;
 	private int userSeq;
 	private int payment;
 	private Date orderTime;
 	private int status;
-	private int finalPrice;
+	private int totalAmount;
 	private String cardNo;
-	private int yearDay;
 	private String cardPassword;
+	private int yearDay;
 	private int birthNo;
+	private int zipCode;
 	private String orderAddress;
 	private int orderPhone;
 	private String orderRequest;
@@ -24,11 +25,11 @@ public class CrowdOrderDetail {
 	public void setCrDetailSeq(int crDetailSeq) {
 		this.crDetailSeq = crDetailSeq;
 	}
-	public String getCrOrderDetailNo() {
-		return crOrderDetailNo;
+	public String getOrderDetailNum() {
+		return orderDetailNum;
 	}
-	public void setCrOrderDetailNo(String crOrderDetailNo) {
-		this.crOrderDetailNo = crOrderDetailNo;
+	public void setOrderDetailNum(String orderDetailNum) {
+		this.orderDetailNum = orderDetailNum;
 	}
 	public int getUserSeq() {
 		return userSeq;
@@ -54,11 +55,11 @@ public class CrowdOrderDetail {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public int getFinalPrice() {
-		return finalPrice;
+	public int getTotalAmount() {
+		return totalAmount;
 	}
-	public void setFinalPrice(int finalPrice) {
-		this.finalPrice = finalPrice;
+	public void setTotalAmount(int totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 	public String getCardNo() {
 		return cardNo;
@@ -66,23 +67,29 @@ public class CrowdOrderDetail {
 	public void setCardNo(String cardNo) {
 		this.cardNo = cardNo;
 	}
-	public int getYearDay() {
-		return yearDay;
-	}
-	public void setYearDay(int yearDay) {
-		this.yearDay = yearDay;
-	}
 	public String getCardPassword() {
 		return cardPassword;
 	}
 	public void setCardPassword(String cardPassword) {
 		this.cardPassword = cardPassword;
 	}
+	public int getYearDay() {
+		return yearDay;
+	}
+	public void setYearDay(int yearDay) {
+		this.yearDay = yearDay;
+	}
 	public int getBirthNo() {
 		return birthNo;
 	}
 	public void setBirthNo(int birthNo) {
 		this.birthNo = birthNo;
+	}
+	public int getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(int zipCode) {
+		this.zipCode = zipCode;
 	}
 	public String getOrderAddress() {
 		return orderAddress;
@@ -110,13 +117,13 @@ public class CrowdOrderDetail {
 	}
 	@Override
 	public String toString() {
-		return "CrowdOrderDetail [crDetailSeq=" + crDetailSeq + ", crOrderDetailNo=" + crOrderDetailNo + ", userSeq="
-				+ userSeq + ", payment=" + payment + ", orderTime=" + orderTime + ", status=" + status + ", finalPrice="
-				+ finalPrice + ", cardNo=" + cardNo + ", yearDay=" + yearDay + ", cardPassword=" + cardPassword
-				+ ", birthNo=" + birthNo + ", orderAddress=" + orderAddress + ", orderPhone=" + orderPhone
-				+ ", orderRequest=" + orderRequest + ", orderName=" + orderName + "]";
+		return "CrowdOrderDetail [crDetailSeq=" + crDetailSeq + ", orderDetailNum=" + orderDetailNum + ", userSeq="
+				+ userSeq + ", payment=" + payment + ", orderTime=" + orderTime + ", status=" + status
+				+ ", totalAmount=" + totalAmount + ", cardNo=" + cardNo + ", cardPassword=" + cardPassword
+				+ ", yearDay=" + yearDay + ", birthNo=" + birthNo + ", zipCode=" + zipCode + ", orderAddress="
+				+ orderAddress + ", orderPhone=" + orderPhone + ", orderRequest=" + orderRequest + ", orderName="
+				+ orderName + "]";
 	}
-	
 	
 
 }

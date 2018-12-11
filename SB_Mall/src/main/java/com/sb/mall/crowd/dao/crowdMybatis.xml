@@ -104,4 +104,28 @@
 		select userName from MemberInfo where userSeq = #{userSeq}
 	</select>
 	
+	<insert id="insertOrderDetail2" statementType="CALLABLE">
+		{ call insert_CartJson(#{orders}) }
+	</insert>
+	
+	<insert id="insertOrderList" parameterType="com.sb.mall.crowd.model.CrowdOrder">
+		insert into CrowdOrder (orderDetailNum, userSeq, crowdBoardSeq, crGoodsNo, crOptionSeq, quantity, salePrice, totalPrice)
+		value(#{orderDetailNum},#{userSeq},#{crowdBoardSeq},#{crGoodsNo},#{crOptionSeq},#{quantity},#{salePrice},#{totalPrice})
+	</insert>
+	
+	<select id="getOrderPrice" resultType="int">
+		select (crGoodsPrice+ crOpt1Price+ crOpt2Price) as price from CrowdGoods g, CrowdGoodsOption o where g.crGoodsNo = #{param1} and g.crGoodsNo=o.crGoodsNo and crOptionSeq=#{param2};
+	</select>
+	
+	<insert id="insertOrderDetail" parameterType="com.sb.mall.crowd.model.CrowdOrderDetail">
+		insert into CrowdOrderDetail (orderDetailNum, userSeq, orderTime, totalAmount, cardNo, yearDay, cardPassword, birthNo, zipCode, orderAddress, orderPhone, orderRequest, orderName)
+		values(#{orderDetailNum},#{userSeq},now(),#{totalAmount},#{cardNo},#{yearDay},#{cardPassword},#{birthNo},#{zipCode},#{orderAddress},#{orderPhone},#{orderRequest},#{orderName})
+	</insert>
+	
+	<update id="updateOrderedPriceByOrder">
+		update CrowdBoard set totalOrderPrice=totalOrderPrice+#{param1} where crowdBoardSeq=#{param2}
+	</update>
+	<update id="updateOrderedOptionByOrder">
+		update CrowdGoodsOption set crOptAmount=crOptAmount-#{param1} where crOptionSeq=#{param2}
+	</update>
 </mapper>
