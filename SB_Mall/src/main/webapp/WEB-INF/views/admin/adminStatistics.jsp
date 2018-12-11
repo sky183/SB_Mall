@@ -23,7 +23,7 @@
 			<!--상단메뉴의 끝 하단메뉴의 시작-->
 			<!--좌측 메뉴-->
 			<div id="leftContent">
-				<div class="leftTitle">매출 관리</div>
+				<div class="leftTitle">통</div>
 				<div class="leftMenu link" id="visitStat">
 					방문 통계
 				</div>
@@ -33,7 +33,7 @@
 				<!--좌측메뉴의 끝, 우측메뉴 시작-->
 			</div><div id="rightContent">
 			</div>
-
+ 
 			<!--하단 메뉴의 끝-->
 		</div>
 <!--adminWrapper의 끝-->
