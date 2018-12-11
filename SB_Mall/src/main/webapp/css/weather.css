@@ -1,9 +1,86 @@
-#main-block{
+*{
+	padding:0px;
+	margin:0px;
+	box-sizing: border-box;
+    
+/*     임시 css */
+    border : 1px solid black;	
 }
-.icon{
-	display: inline-block;
+#container-all{
+	width: 1000px;
+    margin: 0 auto;
+/*     flex-wrap: wrap; */
+/*     display: flex; */
+/*     justify-content: space-between; */
+    
+/*     임시 */
+	height: 900px;
+}
+#container-top{
+	margin-top : 50px;
+	margin-bottom : 50px;
 	
 }
-span{
-	border:1px solid;
+#container-bottom{
+	/*     임시 */
+	height: 900px;
+}
+.leftBox{
+	vertical-align:top;
+	display:inline-block;
+	width:300px;
+	height:250px;
+}
+.rightBox{
+	vertical-align:top;
+	height:250px;
+	width:687px;
+	display:inline-block;
+}
+.rightBoxT{
+	height:124px;
+}
+.rightBoxB{
+	height:124px;
+}
+.xbox{
+	display:inline-block;
+}
+.xbox2{
+	display:inline-block;
+	width:570px;
+}
+#main-block{
+	padding: 50px 0;
+	marigin-right:20px;
+	display:inline-block;	
+	width:300px;
+    color: white;
+    vertical-align: middle;
+}
+div{
+	
+	font-weight: bold; 
+    font-size: x-large;
+}
+
+.topWeather{
+    border-radius: 10px 10px 0 0;
+    padding: 0 15px;
+    height: 100px;
+}
+.bottomWeather{
+    padding: 20px 15px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffc828;
+    border-radius: 0 0 10px 10px;
+}
+.ib{
+	display: inline-block;
+}
+.weathericon{
+	width:100px;
+	height:100px;
 }
