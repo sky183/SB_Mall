@@ -1,9 +1,7 @@
 package com.sb.mall.order.service;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.order.dao.OrderDao;
 import com.sb.mall.order.model.Order;
-import com.sb.mall.order.model.OrderDetail;
 import com.sb.mall.order.model.OrderItem;
 import com.sb.mall.order.model.OrderOrderCommand;
 
@@ -43,7 +40,6 @@ public class OrderService {
 	public void insertOrders(String orders) {
 		Dao = sessionTemplate.getMapper(OrderDao.class);
 		Dao.insertOrderSP(orders);
-		System.out.println("or : "+orders);
 	}
 	
 	@Transactional
@@ -69,14 +65,6 @@ public class OrderService {
 	}
 	
 	/*@Transactional
-	public Product getProduct(int productSeq) throws SQLException {
-		Dao = sessionTemplate.getMapper(OrderDao.class);
-		Product product = null;
-		product = Dao.selectProduct(productSeq);
-		return product;
-	}*/
-	
-	@Transactional
 	public void insertOrdersAndDetail(int userSeq) throws SQLException {
 		String orderDetailNum = new SimpleDateFormat("yyyyMMddssSSS").format(new Date());
 		Dao = sessionTemplate.getMapper(OrderDao.class);
@@ -92,5 +80,5 @@ public class OrderService {
 		
 		Dao.insertOrderDetail(orderDetail);
 		Dao.updateOrders(orderList);
-	}
+	}*/
 }

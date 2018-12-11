@@ -10,35 +10,12 @@
      var tmp2;
      var tmp3;
 	    $(document).ready(function(){
-	    	
-	    	//페이지 선택 시 function
-	    	<%-- $.fn.pageSelectOnClickEvt = function(){
-		    	$(this).on("click", function(){
-		    		/* alert($(this).html()); */
-		    		$.ajax({
-		    			url:'<%=request.getContextPath()%>/reply',
-		    			data: {page : $(this).html()},
-			    		error: function(){
-			    			alert("error");	
-			    		},
-			    		success:function(data){
-			    			var reply = $(data).filter('#replyPaged').html();
-		    				var page = $(data).filter('#paging').html();
-		    				$('#replyGetBox').html(reply);
-		    				$('#replyPageBox').html(page);
-		    				$(".pageSelect").pageSelectOnClickEvt();
-			    		}
-		    		})
-		    	})	
-		    } --%>
 		    
 		    $('input[type="text"]').keydown(function() {
 		        if (event.keyCode === 13) {
 		            event.preventDefault();
 		        }
 		    });
-		    
-		  
 	    	
 		   function replyCall(page) {
 		    		$.ajax({
@@ -128,9 +105,6 @@
 			   })
 		   })
 		   
-		   
-		   
-		   
 		   //댓글삭제.
 		   function replyDelete(replySeq){
 			   $.ajax({
@@ -150,41 +124,22 @@
 			   $('#replyModifyBigBox').css('display','none');
 		   })
 		   
-		  
-		   
-		   
-		   
-
-	    	
-	    	
-	    	
 	    });
 	    
     </script>
- 
-    
-    
-    
-    
-    
     <div class="replylayout">
     	<h1 class="reply_h1" >상품 후기</h1>
-    	
-    	
-    	
     	<c:choose>
 		    <c:when test="${memberInfo!=null}">
 		    	<div class="replyInputBox">
 		    		<h3 class="reply_h3">후기 쓰기</h3>
 		    		<form id="replyFormBox">
-		    			<input class="replyTextClass replyInputBtn" type="button" id="replyWrite" value="등록">
-		    			
 		    			<div class="replyTextClass replyTextAreaBox" style="border-radius:10px 0px 0px 10px;">
-		    					<textarea class="replyInputText"  id="replyText" name="reply"  style="resize: none;" placeholder="댓글을 작성해주세요."></textarea>
+		    				<textarea class="replyInputText" id="replyText" name="reply" 
+		    				style="resize: none;" placeholder="댓글을 작성해주세요."></textarea>
 		    			</div>
-		    			
-		    						<input  type="hidden" id="replyText" value="${salSeq}" name="salesSeq" >
-		    			
+		    			<input class="replyTextClass replyInputBtn" type="button" id="replyWrite" value="등록">
+		    			<input  type="hidden" id="replyText" value="${salSeq}" name="salesSeq" >
 		    		</form>
 		    	</div>
 		    </c:when>

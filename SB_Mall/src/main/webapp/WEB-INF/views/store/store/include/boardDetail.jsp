@@ -664,10 +664,10 @@ var removeGoodsList = function(e) {
 				</li>
 				<li>
 					<p>
-						<button class="boardBtn" onclick="addCart()">
+						<button class="boardBtn baordOrderBtn" onclick="addCart()">
 							<p class="boardBtnMsg">장바구니추가</p>
 						</button>
-						<button class="boardBtn" onclick="buyProduct()">
+						<button class="boardBtn baordOrderBtn" onclick="buyProduct()">
 							<p class="boardBtnMsg">주문하기</p>
 						</button>
 					</p>

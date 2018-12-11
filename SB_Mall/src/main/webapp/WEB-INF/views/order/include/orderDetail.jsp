@@ -69,15 +69,16 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 				alert("error!");
 			},
 			success : function(data) {
-				alert(1);
+				alert(data);
+				location.href="<%=request.getContextPath()%>/store";
 			}
 		});
 	}
 	
 	function makeOrdersJson() {
-		var orders = ${json};
+		var orders = ${ordersJson};
 		var orderDetail = {
-				'orderDetailNum':new Date().simpleDateForm('yyMMddhhmmssms'),
+				'orderDetailNum':new Date().simpleDateForm('yyMMddHHmmssms'),
 				'userSeq':'${memberInfo.userSeq}',
 				'payment':'1',
 				'orderTime':'',
@@ -475,7 +476,7 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 		</div>
 		
 		<div class="doFundingBox">
-			<button type="button" id="orderBtn" class="doFunding">결제 예약하기</button>
+			<button type="button" id="orderBtn" class="doFunding">결제하기</button>
 		</div>
 		
 		<form method="post" id="orderForm"></form>

@@ -11,7 +11,7 @@ public class OrderDetail {
 	private int status;
 	private int totalAmount;
 	private int zipCode;
-	private int orderPhone;
+	private String orderPhone;
 	private String orderAddress1;
 	private String orderAddress2;
 	private String orderRequest;
@@ -80,11 +80,11 @@ public class OrderDetail {
 		this.zipCode = zipCode;
 	}
 
-	public int getOrderPhone() {
+	public String getOrderPhone() {
 		return orderPhone;
 	}
 
-	public void setOrderPhone(int orderPhone) {
+	public void setOrderPhone(String orderPhone) {
 		this.orderPhone = orderPhone;
 	}
 

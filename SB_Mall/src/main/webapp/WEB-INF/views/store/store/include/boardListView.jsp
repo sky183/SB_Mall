@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+	});
+	function numComma(x) {
+    	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+</script>
 </head>
 <body>
 	<c:if test="${!viewList.isEmpty()}">
@@ -15,13 +24,17 @@
 			<span class="productListBox"> 
 				<img src="${productList.photo}" alt="사진없음" class="productListThumb"
 					onerror="imgError(this)">
-					<br>
-					${productList.title} 
-					<br> <br> 
-					${productList.detail}
-					<br>
-					조회수:${productList.viewSeq}
-					<br>
+					<span class="BoardListTitle">${productList.title}</span> 
+					<span class="BoardListDetail">${productList.detail}</span>
+					<span class="BoardListB2">
+						<span class="BoardListPrice">
+							<fmt:formatNumber value="${productList.price}" pattern="#,###"/>원~
+						</span>
+						<span class="BoardListViewCnt">
+							<img src="<%=request.getContextPath()%>/img/viewSeq01.png"/>
+							${productList.viewSeq}
+						</span>
+					</span>
 			</span>
 			</a>
 		</c:forEach>

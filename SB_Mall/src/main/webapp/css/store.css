@@ -189,10 +189,9 @@ h1,h2,h3{
 }
 #boardSelectContainer{
 	position: relative;
-	z-index: 9999;
 }
 #boardSelectBox{
-	width:500px;
+	width:100%;
 	height: 40px;
 	border: 1px solid #c8c8c8;
 }
@@ -424,6 +423,10 @@ h1,h2,h3{
 .boardBtn:active{
 	box-shadow:0 0 1pt 1pt #5882FA;
 }
+.baordOrderBtn{
+	border-radius: 7px;
+	width:49.5%;
+}
 .boardBtnMsg{
 	color:white;
 	font-size: 20px;
@@ -433,7 +436,7 @@ h1,h2,h3{
 	font-size: 20px;
 }
 #storeListContainer{
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	background-color: white;
 }
@@ -449,18 +452,18 @@ h1,h2,h3{
 }
 
 .productListThumb{
-	width: 289px;
-	height: 308px;
+	width: 310px;
+	height: 310px;
 	margin-bottom:3px;;
-	border:1px solid #a9a9a9;
+	border:1px solid #a0a0a0;
 	border-radius: 10px;
 }
 .productListBox{
 	display:inline-block;
-	width:  295.6px;
-	height: 400px;
+	width:  310px;
 	overflow: hidden;
-	text-align: center;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
 }
 .productListBox:hover{
 	background-color:#F2F2F2;
@@ -478,13 +481,13 @@ h1,h2,h3{
 	height: 40px;
 	margin: 100px 0 20px 0;
 	word-wrap:break-word;
-	border-bottom: 1px solid #a9a9a9;
+	border-bottom: 1px solid #a0a0a0;
 }
 .searchFormContainer{
 	width: 250px;
-	height: 30px;
+	height: 32px;
 	float: right;
-	border: 1px solid #a9a9a9;
+	border: 1px solid #a0a0a0;
     border-radius: 5px;
     vertical-align: middle;
     margin-right: 20px; 
@@ -541,10 +544,39 @@ h1,h2,h3{
 	float:right;
 	margin: 0px 20px 20px 0; 
 }
+.BoardListTitle{
+	color: #282828;
+	font-size: 18px;
+	font-weight: bold;
+	margin-left: 3px;
+}
+.BoardListDetail{
+	display: block;
+	padding: 5px;
+	color:#a0a0a0;
+	border-bottom: 1px solid #a0a0a0;
+	margin-bottom: 5px;
+}
+.BoardListB2{
+}
+.BoardListViewCnt{
+	float:right;
+	margin-right:3px;
+	color:#a0a0a0;
+}
+.BoardListPrice{
+	color:#787878;
+	font-weight: bold;
+}
+.BoardListViewCnt>img{
+	margin:0 5px;
+	width: 20px;
+	height: 15px;
+}
 .boardListSelect{
 	width: 80px;
 	height: 32px;
-	border: 1px solid #a2a2a2;
+	border: 1px solid #a0a0a0;
 	border-radius: 5px;
 	cursor: pointer;
 }
@@ -556,7 +588,7 @@ h1,h2,h3{
 	cursor: default;
 }
 #summernoteBox{
-	width: 1100px;
+	width: 1000px;
 	margin: 100px auto;
 }
 #summerTitle{

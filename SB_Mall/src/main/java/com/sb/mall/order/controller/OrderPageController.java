@@ -32,8 +32,8 @@ public class OrderPageController {
 		}
 		modelAndView.addObject("orders", orderItemList.getOrders());
 		modelAndView.addObject("orderType", orderItemList.getOrderType());
-		modelAndView.addObject("json",json);
-		modelAndView.setViewName("order/orderInsOrderPage");
+		modelAndView.addObject("ordersJson",json);
+		modelAndView.setViewName("order/orderDetailPage");
 		return modelAndView;
 	}
 	
@@ -41,33 +41,5 @@ public class OrderPageController {
 	public String order() {
 		return "redirect:/store";
 	}
-	
-	/*@RequestMapping(value="order/insOrder", method=RequestMethod.POST)
-	public ModelAndView order(Order order) {
-		ModelAndView modelAndView = new ModelAndView();
-		Product product = null;
-		modelAndView.addObject("order",order);
-		modelAndView.addObject("product", product);
-		modelAndView.setViewName("order/orderInsOrderPage");
-		return modelAndView;
-	}
-	
-	@RequestMapping(value="order/insOrder" ,method=RequestMethod.GET)
-	public String order() {
-		return "redirect:/store";
-	}
-	
-	@RequestMapping(value="order/cartOrder" ,method=RequestMethod.POST)
-	public ModelAndView cartOrder(List<Order> list) {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("order/orderCartOrderPage");
-		modelAndView.addObject("orders", list);
-		return modelAndView;
-	}
-	
-	@RequestMapping(value="order/cartOrder" ,method=RequestMethod.GET)
-	public String cartOrder() {
-		return "redirect:/order/cart";
-	}*/
 	
 }

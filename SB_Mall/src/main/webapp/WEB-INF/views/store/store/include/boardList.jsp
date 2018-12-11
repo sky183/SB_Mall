@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,8 +68,8 @@
 						<input type="button" value="" class="searchButton">
 				</div>
 				<select class="boardListSelect" id="countView">
-					<option value="8">8개보기</option>
-					<option value="16">16개보기</option>
+					<option value="9">9개보기</option>
+					<option value="18">18개보기</option>
 					<option value="24">24개보기</option>
 				</select>
 				<select class="boardListSelect" id="sortType">

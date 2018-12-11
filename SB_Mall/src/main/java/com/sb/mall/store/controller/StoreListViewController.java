@@ -28,7 +28,7 @@ public class StoreListViewController {
 	public ModelAndView getListView(String tag,
 		@RequestParam(value="sortType",defaultValue="s.viewSeq desc") String sortType,
 		@RequestParam(value="pageNumber",defaultValue="1") int pageNumber,
-		@RequestParam(value="countPerPage",defaultValue="8") int countPerPage){
+		@RequestParam(value="countPerPage",defaultValue="9") int countPerPage){
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 			StoreListView list = 
