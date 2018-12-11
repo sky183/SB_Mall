@@ -31,7 +31,7 @@
 					회원 통계
 				</div>
 				<!--좌측메뉴의 끝, 우측메뉴 시작-->
-			</div><div id="rightContent">
+			</div><div id="rightContentSe">
 			</div>
  
 			<!--하단 메뉴의 끝-->
@@ -65,7 +65,7 @@ $(document).ready(function(){
 	});
 
 	//기본 화면으로 불러온다. 여기서는 영업통계
-	$('#rightContent').load('<%=request.getContextPath()%>/admin/adminStatistics/visitStat');
+	$('#rightContentSe').load('<%=request.getContextPath()%>/admin/adminStatistics/visitStat');
 	
 	//메뉴 클릭시 우측 메뉴 출력 - 없으면 기본 화면으로 출력 여기서는 영업통계
 	$('.link').click(function(){
@@ -77,7 +77,7 @@ $(document).ready(function(){
 		        alert("Error!");
 		    },
 			success : function(data) {
-				$('#rightContent').html(data);
+				$('#rightContentSe').html(data);
 				history.pushState(url, null, '<%=request.getContextPath()%>/admin/adminStatistics');
 			}
 		});
@@ -95,7 +95,7 @@ $(document).ready(function(){
 				        alert("Error!");
 				    },
 					success : function(data) {
-						$('#rightContent').html(data);
+						$('#rightContentSe').html(data);
 					}
 				})
 			 } else {

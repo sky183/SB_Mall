@@ -88,7 +88,7 @@ input[type="submit"], select{
 	padding: 10px;
 	width: 150px;
 	display: inline-block;
-	text-align: center;
+	text-align: left;
 	height: 100%;
 }
 
@@ -101,9 +101,10 @@ input[type="submit"], select{
 }
 
 .leftTitle {
-	margin-bottom: 25px;
-	font-size: 20px;
-	color: #282828;
+    margin-bottom: 2px;
+    margin-top: 26px;
+    font-size: 20px;
+    color: #282828;
 }
 .leftActive {
 	color: #ffc828 !important;
@@ -138,6 +139,12 @@ input[type="submit"], select{
 	color: #282828 !important;
 }
 #rightContent {
+	width: 820px;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 30px;
+}
+#rightContentSe {
 	width: 820px;
 	display: inline-block;
 	vertical-align: top;
@@ -393,4 +400,74 @@ th.ds1, th.ds2, th.ds3, th.ds4{
 }
 .budgetResult .toInput{
 	margin-left: 20px;
+}
+
+/* visitStat.jsp */
+#dashbord{
+    border: 1px solid #d2d2d2;
+    height: 100px;
+    width: 100%;
+}
+.statTopReport:first-child *{
+	color: #ffc828;
+}
+.statTopReport{
+    width: 33.33333%;
+    height: 100px;
+    float: left;
+    display: inline-block;
+    padding-left: 39px;
+}
+.uitem{
+	border-left: 1px solid #ddd;
+}
+.utitle{
+    margin-top: 16px;
+    margin-bottom: 4px;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+    font-size: 13px;
+}
+.uresult{
+	display: block;
+    font-size: 38px;
+    line-height: 45px;
+    color: #333;
+}
+#component{
+	border-bottom: 1px solid #bbb;
+	height: 33px;
+	margin-bottom: 20px;
+}
+.umenu{
+	float: left;
+    display: inline-block;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    width: 154px;
+    text-align: center;
+    border-top: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    border-bottom: 1px solid #bbb;
+    border-left: 1px solid #dedede;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    height: 33px;
+    line-height: 33px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.uactive{
+	background-color: #fff;
+    border-top: 1px solid #bbb;
+    border-left: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    border-bottom: 1px solid #fff;
+    font-weight: bold;
+}
+.chartwrap{
+	height: 300px;
+	
+	/* 	임시 */
+	border: 1px solid black;
 }

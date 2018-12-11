@@ -2,40 +2,34 @@ package com.sb.mall.admin.adminStatistics.model;
 
 public class VisitStatVO {
 	
-	private String orderTime;
-	private int orderCount;
-	private int visitCount;
-	private long amount;
+	private int dayCount;
+	private int monthCount;
+	private int yearCount;
 	
-	public String getOrderTime() {
-		return orderTime;
+	public int getDayCount() {
+		return dayCount;
 	}
-	public void setOrderTime(String orderTime) {
-		this.orderTime = orderTime;
+	public void setDayCount(int dayCount) {
+		this.dayCount = dayCount;
 	}
-	public int getOrderCount() {
-		return orderCount;
+	public int getMonthCount() {
+		return monthCount;
 	}
-	public void setOrderCount(int orderCount) {
-		this.orderCount = orderCount;
+	public void setMonthCount(int monthCount) {
+		this.monthCount = monthCount;
 	}
-	public int getVisitCount() {
-		return visitCount;
+	public int getYearCount() {
+		return yearCount;
 	}
-	public void setVisitCount(int visitCount) {
-		this.visitCount = visitCount;
-	}
-	public long getAmount() {
-		return amount;
-	}
-	public void setAmount(long amount) {
-		this.amount = amount;
+	public void setYearCount(int yearCount) {
+		this.yearCount = yearCount;
 	}
 	@Override
 	public String toString() {
-		return "SalVO [orderTime=" + orderTime + ", orderCount=" + orderCount + ", visitCount=" + visitCount
-				+ ", amount=" + amount + "]";
+		return "VisitStatVO [dayCount=" + dayCount + ", monthCount=" + monthCount + ", yearCount=" + yearCount + "]";
 	}
+	
+	
 	
 	
 	
