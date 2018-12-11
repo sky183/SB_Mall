@@ -23,7 +23,7 @@
 $(document).ready(function() { 
 	$('#summernote').summernote({
 		  height: 350,                 // set editor height
-		  witdth: 800,
+		  witdth: 1000,
 		  minHeight: 300,             // set minimum height of editor
 		  maxHeight: 800,             // set maximum height of editor
 		  focus: true,                  // set focus to editable area after initializing summernote
@@ -45,7 +45,7 @@ function sendCode() {
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <div class="midBannerBox">
-	<h3 class="rowdWriteBannerH3">얼리버드</h3>
+	<h3 class="rowdWriteBannerH3">글쓰기</h3>
 </div>
 <form method="POST" action="insert" id="freeBoard_form_id">
 <div id="freeboard_wrap_1">
@@ -68,18 +68,11 @@ function sendCode() {
 		
 					
 							
-		<button 
-		class="all_Button"
-		id="footer_button_Write"
-		onclick="sendCode();">
-		글쓰기
+		<button class="all_Button" id="footer_button_Write"	onclick="sendCode();">
+			쓰기
 		</button>
-		<a 
-		type="button" 
-		class="all_Button"
-		id="footer_button_Cancel"
-		href="<%=request.getContextPath()%>/freeBoard">
-		취소
+		<a id="footer_button_Cancel" href="<%=request.getContextPath()%>/freeBoard">
+			<div class="all_Button">취소</div>
 		</a>
 		
 		
@@ -89,44 +82,6 @@ function sendCode() {
 </div><!-- End of freeboard_wrap_2-->
 </form>
 
-<!-- <h1>자유게시판_글쓰기</h1> -->
-
-<!-- <form method="POST" action="insert" id="freeBoard_form_id"> -->
-<!-- 	<table border="1" style="padding: 5px 0 5px 0;"> -->
-<!-- 		<tr> -->
-<!-- 			<th>제목</th><td><input type="text" name="boardTitle" placeholder="제목을 입력해 주세요" required></td> -->
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<%-- 			<th>작성자 이름</th><td><input type="text" name="writerName" readonly="readonly" value="${memberInfo.userName}"></td> --%>
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<!-- 			<td colspan="4"> -->
-<%-- 			<%-- <textarea rows="" class="freeboard_textarea" name="boardContent"  readonly="readonly">${freeBoard.boardContent}</textarea> --%>	 --%>
-<!-- 				<input type="hidden" id="freeBoard_text" name="boardContent"> -->
-<!-- 				<div id="summernote"></div>		 -->
-<!-- 			</td> -->
-				
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<!-- 			<td colspan="4"> -->
-<!-- 				<div class="freeboard_Button"> -->
-<!-- 					<input type="submit" 
-<!-- 					class="btn my-4 btn-block" -->
-<!-- 					style="background-color: #ffc828" -->
-<!-- 					value="확인"> --> -->
-<!-- 				<button type="button" class="storeBtn storeWriteBtn" onclick="sendCode();">글쓰기</button> -->
-							
-<!-- 				<a type="Button"  -->
-<!-- 				class="btn my-4 btn-block" -->
-<!-- 				style="background-color: #ffc828" -->
-<%-- 				href="<%=request.getContextPath()%>/freeBoard">취소</a> --%>
-<!-- 				</div>end of <div class="freeboard_Button"> -->
-<!-- 			</td> -->
-<!-- 		</tr> -->
-			
-<!-- 		</table>The end of Table -->
-<!-- 	</div>end of <div class="freeboard_wrap"> -->
-<!-- </form>The end of Form -->
 
 </body>
 </html>

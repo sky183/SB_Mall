@@ -4,11 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-.freeboard_textarea {
-	width: 98%;
-	height: 90%;
-}
 </style>
 <title>Insert title here</title>
 <!-- include libraries(jQuery, bootstrap) -->
@@ -28,7 +23,7 @@
 $(document).ready(function() { 
 	$('#summernote').summernote({
 		  height: 350,                 // set editor height
-		  witdth: 500,
+		  witdth: 1000,
 		  minHeight: 300,             // set minimum height of editor
 		  maxHeight: 800,             // set maximum height of editor
 		  focus: true,                  // set focus to editable area after initializing summernote
@@ -52,7 +47,7 @@ function sendCode() {
 
 <body>
 <div class="midBannerBox">
-	<h3 class="rowdWriteBannerH3">얼리버드</h3>
+	<h3 class="rowdWriteBannerH3">자유게시판</h3>
 </div>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
@@ -87,67 +82,27 @@ function sendCode() {
 	<!-- Start of Footer -->
 	<div id="freeboard_Footer">
 		
-		<a type="Button" 
+		<a 
 		id="footer_button_Delete"
-		href="<%=request.getContextPath()%>/freeBoard/delete?boardSeq=${freeBoard.boardSeq}&&userSeq=${freeBoard.userSeq}">삭제</a>
-		<a type="Button" 
+		href="<%=request.getContextPath()%>/freeBoard/delete?boardSeq=${freeBoard.boardSeq}&&userSeq=${freeBoard.userSeq}">
+		<button type="button"  class="all_Button">삭제</button>
+		</a>
+		<a 
 		id="footer_button_Modify"
-		href="<%=request.getContextPath()%>/freeBoard/update?boardSeq=${freeBoard.boardSeq}&&userSeq=${freeBoard.userSeq}">수정</a>
-		<a type="Button" 
+		href="<%=request.getContextPath()%>/freeBoard/update?boardSeq=${freeBoard.boardSeq}&&userSeq=${freeBoard.userSeq}">
+		<button type="button"  class="all_Button">수정</button>
+		</a>
+		<a 
 		id="footer_button_List"
-		href="<%=request.getContextPath()%>/freeBoard">목록</a>
+		href="<%=request.getContextPath()%>/freeBoard">
+		<button type="button"  class="all_Button">목록</button>
+		</a>
 		
 	</div><!-- End of div Footer-->
 	
 </div><!-- End of freeboard_wrap_1-->
 </div><!-- End of freeboard_wrap_2-->
 </form>
-
-
-<!-- <h1>자유게시판_게시글읽기</h1> -->
-
-<!-- <form method="POST" action="insert"> -->
-<!-- 	<div class="freeboard_wrap"> -->
-<!-- 		<table border="1" style="padding: 5px 0 5px 0;"> -->
-<!-- 			<tr> -->
-<%-- 				<th>게시글번호</th><td>${freeBoard.boardSeq}</td> --%>
-<%-- 				<th>제목</th><td>${freeBoard.boardTitle}</td> --%>
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<%-- 				<th>유저번호</th><td>${freeBoard.userSeq}</td> --%>
-<%-- 				<th>작성자 이름</th><td>${freeBoard.writerName}</td> --%>
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<td colspan="4"> -->
-<%-- 					<div class="freeboard_textarea" >${freeBoard.boardContent}</div> --%>
-<%-- 					<div id="summernote">${freeBoard.boardContent}</div> --%>
-<!-- 				</td> -->
-				
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<td colspan="4"> -->
-<!-- 					<div class="freeboard_Button"> -->
-									
-<!-- 					</div>end of <div class="freeboard_Button"> -->
-<!-- 				</td> -->
-<!-- 			</tr> -->
-			
-<!-- 		</table>The end of Table -->
-<!-- 						<a type="Button"  -->
-<!-- 						class="btn my-4 btn-block" -->
-<!-- 						style="background-color: #ffc828" -->
-<%-- 						href="<%=request.getContextPath()%>/freeBoard/update?boardSeq=${freeBoard.boardSeq}&&userSeq=${freeBoard.userSeq}">수정</a> --%>
-<!-- 						<a type="Button"  -->
-<!-- 						class="btn my-4 btn-block" -->
-<!-- 						style="background-color: #ffc828" -->
-<%-- 						href="<%=request.getContextPath()%>/freeBoard/delete?boardSeq=${freeBoard.boardSeq}&&userSeq=${freeBoard.userSeq}">삭제</a> --%>
-						
-<!-- 						<a type="Button"  -->
-<!-- 						class="btn my-4 btn-block" -->
-<!-- 						style="background-color: #ffc828" -->
-<%-- 						href="<%=request.getContextPath()%>/freeBoard">목록</a> --%>
-<!-- 	</div>end of <div class="freeboard_wrap"> -->
-<!-- </form>The end of Form -->
 
 </body>
 </html>

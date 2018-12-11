@@ -16,7 +16,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <h1>자유게시판</h1>
 <div class="midBannerBox">
-	<h3 class="rowdWriteBannerH3">얼리버드</h3>
+	<h3 class="rowdWriteBannerH3">자유게시판</h3>
 </div>
 
 	<div id="freeboard_wrap_1">
@@ -27,7 +27,7 @@
 			<div id="freeboard_Header">
 				<button class="all_Button">최신순</button>
 				<button class="all_Button">조회순</button>
-				<span id=" ">
+				<span id="icon_Search_span">
 					<input type="text" id="icon_Search_input"><img alt="" id="icon_search_img" src="<%=request.getContextPath()%>/img/icon_search.png">
 				</span>
 			</div><!-- End of div freeboard_header-->
@@ -41,13 +41,13 @@
 				<div id="contentBox">
 					<!--상단 :게시글 번호, 날짜-->
 					<div id="content_up">
-						<div id="boardSeqBox">${freeBoard.boardSeq}</div>
+						<div id="boardSeqBox">#${freeBoard.boardSeq}</div>
 						<div id="boardWriteDateBox">${freeBoard.boardWriteDate}</div>
 					</div><!-- End of div up -->
 					<br>
 					<!--하단 : 게시글 제목, 조회수, 아이디  -->
 					<div id="content_down">
-						<div id="boardTitleBox"><A href="<%=request.getContextPath()%>/freeBoard/select?boardSeq=${freeBoard.boardSeq}">${freeBoard.boardTitle}</A></div>
+						<div id="boardTitleBox"><A id="boardTitleFont" href="<%=request.getContextPath()%>/freeBoard/select?boardSeq=${freeBoard.boardSeq}">${freeBoard.boardTitle}</A></div>
 						<div id="writerNameBox">${freeBoard.writerName}</div> 
 						<div id="viewSeqBox">${freeBoard.viewSeq}</div>
 					</div><!-- End of div down -->
@@ -59,10 +59,9 @@
 			<!-- Start of footer -->
 			<div id="freeboard_Footer">
 				<a type="button" 
-				id="button_write"
-				class="all_Button"
+				
 				href="<%=request.getContextPath()%>/freeBoard/writePage"
-				>글쓰기</a>
+				><button id="button_write" class="all_Button">글쓰기</button></a>
 			
 			</div><!-- End of div freeboard_footer-->
 	

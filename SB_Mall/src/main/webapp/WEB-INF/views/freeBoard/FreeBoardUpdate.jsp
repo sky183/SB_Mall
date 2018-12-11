@@ -4,12 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-.freeboard_textarea {
-	width: 98%;
-	height: 90%;
-}
-</style>
 <title>Insert title here</title>
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -21,13 +15,13 @@
 <!-- midBannerBox -->
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/css/crowd.css">
 <!-- 자유게시판 CSS -->
-<link rel="stylesheet"	href="<%=request.getContextPath()%>/css/freeBoardWrite.css">
+<link rel="stylesheet"	href="<%=request.getContextPath()%>/css/freeBoardUpdate.css">
 </head>
 <script type="text/javascript">
 $(document).ready(function() { 
 	$('#summernote').summernote({
 		  height: 350,                 // set editor height
-		  witdth: 500,
+		  witdth: 1000,
 		  minHeight: 300,             // set minimum height of editor
 		  maxHeight: 800,             // set maximum height of editor
 		  focus: true,                  // set focus to editable area after initializing summernote
@@ -41,57 +35,61 @@ $(document).ready(function() {
 	});
 	
 });
-function sendCode() {
-    $('#freeBoard_text').val($('#summernote').summernote('code'));
-    $('#freeBoard_form_id').submit();
-}
+
+
+
 </script>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <div class="midBannerBox">
 	<h3 class="rowdWriteBannerH3">수정</h3>
 </div>
-
-<%-- <form method="post" action="<%=request.getContextPath()%>/freeBoard/update_over"> --%>
 <form method="POST" action="update_over" id="freeBoard_form_id">
-	<div class="freeboard_wrap">
-		<table border="1" style="padding: 5px 0 5px 0;">
-			<tr>
-				<th>게시글번호</th><td><input type="text" name="boardSeq" value="${freeBoard.boardSeq}" required></td>
-				<th>제목</th><td><input type="text" name="boardTitle" value="${freeBoard.boardTitle}" required></td>
-			</tr>
-			<tr>
-				<th>유저번호</th><td>${freeBoard.userSeq}</td>
-				<th>작성자 이름</th><td><input type="text" name="writerName" readonly="readonly" value="${freeBoard.writerName}" required="required"></td>
-			</tr>
-			<tr>
-				<td colspan="4">
-<%-- 				<textarea rows="" class="freeboard_textarea" name="boardContent" required>${freeBoard.boardContent}</textarea> --%>
-					<input type="hidden" id="freeBoard_text" name="boardContent">
-					<div id="summernote">${freeBoard.boardContent}</div>	
-				</td>
-				
-			</tr>
-			<tr>
-				<td colspan="4">
-					<div class="freeboard_Button">
-						<button type="button" class="storeBtn storeWriteBtn" onclick="sendCode();">글쓰기</button>
-						<!-- <input type="submit" 
-						class="btn my-4 btn-block"
-						style="background-color: #ffc828"
-						value="확인"> -->
-									
-						<a type="Button" 
-						class="btn my-4 btn-block"
-						style="background-color: #ffc828"
-						href="<%=request.getContextPath()%>/freeBoard">취소</a>
-					</div><!-- end of <div class="freeboard_Button"> -->
-				</td>
-			</tr>
-			
-		</table><!-- The end of Table -->
-	</div><!-- end of <div class="freeboard_wrap">-->
+<div id="freeboard_wrap_1">
+<div id="freeboard_wrap_2">
+	
+	<!--type Hidden :게시글 번호, 유저번호-->
+	<input type="hidden" value="${freeBoard.boardSeq}" name="boardSeq"></input>
+	<input type="hidden" value="${freeBoard.userSeq}" name="userSeq"></input>
+	<input type="hidden" value="${freeBoard.writerName}" name="writerName"></input>
+	
+	<!-- Start of Header -->
+	<div id="freeboard_Header" >
+		<input id="header_Input" type="text" name="boardTitle" value="${freeBoard.boardTitle}" required>
+	</div><!-- End of div Header-->
+	<hr id="header_hr">
+	
+	<!-- Start of Content -->
+	<div id="freeboard_Content">
+		<input type="hidden" id="freeBoard_text" name="boardContent">
+		<div id="summernote">${freeBoard.boardContent}</div>
+	</div><!-- End of div Content-->
+	
+	<!-- Start of Footer -->
+	<div id="freeboard_Footer">
+		
+		<a id="footer_button_Cancel" href="<%=request.getContextPath()%>/freeBoard">
+			<button type="button" class="all_Button">취소</button>
+		</a>
+		<input type="submit" class="all_Button"	id="footer_button_Write" value="확인"> 
+		
+	</div><!-- End of div Footer-->
+	
+</div><!-- End of freeboard_wrap_1-->
+</div><!-- End of freeboard_wrap_2-->
 </form><!-- The end of Form -->
+<script type="text/javascript">
+
+function sendCode() {
+    $('#freeBoard_text').val($('#summernote').summernote('code'));
+    $('#freeBoard_form_id').submit();
+}
+$("#footer_button_Write").on("click",function(){
+	sendCode();
+})
+</script>
+
+ 	
 
 </body>
 </html>
