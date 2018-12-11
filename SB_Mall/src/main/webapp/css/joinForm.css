@@ -16,4 +16,23 @@ body {
 	width: 247px !important;
 }
 
+/*출력테그 폰트*/
+#email_Output_ID{
+	color: #a0a0a0;
+}
+#password_Output_ID{
+	color: #a0a0a0;
+}
+#nameAndBirthDay_Output_ID{
+	color: #a0a0a0;
+}
+#phoneNumber_Output_ID{
+	color: #a0a0a0;
+}
+#addressAPI_Output_ID{
+	color: #a0a0a0;
+}
+
+
+
 

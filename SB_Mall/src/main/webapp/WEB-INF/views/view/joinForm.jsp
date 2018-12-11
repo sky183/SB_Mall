@@ -78,7 +78,7 @@
 				<small class="form-text mb-4">필수 입력사항 (*)</small>
 				<!-- Email 입력 테그 -->
 				<input type="email" id="email_ID"
-					class="form-control" placeholder="(*) E-mail (Id)" name="userId"
+					class="form-control"  placeholder="(*) E-mail (Id)" name="userId"
 					required onkeyup="emailDuplicateCheck_Function()"
 					auth="false"
 					>
@@ -119,8 +119,7 @@
 				</div>
 				
 				<!-- 비밀번호 유효성 Message 출력 -->
-				<small id="password_Output_ID"
-					class="form-text  mb-4">비밀번호를 정확히 입력해 주세요.</small>
+				<small id="password_Output_ID" class="form-text  mb-4">비밀번호를 정확히 입력해 주세요.</small>
 
 				<div class="form-row mb-4">
 						<!-- 이름 입력 테그 -->
@@ -170,10 +169,11 @@
 				<small id="phoneNumber_Output_ID"
 					class="form-text  mb-4"> - 를 빼고 입력하세요 </small>
 
-				<!-- 주소API -->
+				<!-- 주소검색버튼 -->
 				<input type="button" onClick="goPopup();" value="주소검색"
 					class="btn my-4 btn-block"
-					style="background-color: #ffc828; font-size: 10px;" height="25px" />
+					style="background-color: #ffc828; 
+					font-size: 10px;" height="25px" />
 
 				<div class="form-row mb-4" id="callBackDiv">
 
@@ -414,12 +414,12 @@
 	    //1.입력된 생년월일이 8자 이하일때 : 정상으로 간주  > 로직 수행
 		if (dateStr.length <=8) {
 			
-	    if (year < 1900 || year > yearNow){
+	    if ((yearNow<year)||(year<1900)){
 	    	
 	    	$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">년도를 확인하세요</h6>'); 
 	    	$('#userBirthday_ID').attr('auth', 'false');
 	    	
-	    }else if (month < 1 || month > 12) {
+	    }else if ((month<1)||(12<month)) {
 	    		
 	    	$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;"> 달은 1월부터 12월까지 입력 가능합니다.</h6>'); 
 	    	$('#userBirthday_ID').attr('auth', 'false');

@@ -66,12 +66,12 @@ function sendCode() {
 	<!-- Start of Footer -->
 	<div id="freeboard_Footer">
 		
-		<button class="all_Button" id="footer_button_Write"	onclick="sendCode();">
-			쓰기
-		</button>
 		<a id="footer_button_Cancel" href="<%=request.getContextPath()%>/freeBoard">
 			<div class="all_Button">취소</div>
 		</a>
+		<button class="all_Button" id="footer_button_Write"	onclick="sendCode();">
+			쓰기
+		</button>
 		
 	</div><!-- End of div Footer-->
 	

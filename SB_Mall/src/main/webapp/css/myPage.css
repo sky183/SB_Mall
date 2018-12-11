@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+/* *{
+	border: 1px solid #a0a0a0;
+}   */
+
+.form-control {
+		text-align: center;
+	}
+	
+	#wrapper {
+	width : 1200px;
+	margin: 100px auto 50px auto;
+	
+}
+
+/*<<Start of #freeboard_Header>>*/
+#freeboard_Header{
+	margin: 50px 0;
+}
+#fb_Header_UserID{
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 25pt;
+	font-weight: bold;
+	color: #282828;
+}
+/*<<End of #freeboard_Header>>*/
+
+
+/*<<Start of freeboard_Content>>*/
+#freeboard_Content{
+	width: 500px;
+	margin: 0px auto;
+}
+.fbContent{
+	margin: 30px 0;
+}
+.content_Font1{
+	width: 150px;
+	color: #787878;
+	font-size: 15pt;
+	font-weight: bold;
+	display: inline-block;
+}
+.content_Font2{
+	color: #282828;
+	font-size: 15pt;
+	font-weight: bold;
+	display: inline-block;
+}
+/*<<End of freeboard_Content>>*/
+
+/*<<Start of freeboard_Content>>*/
+/*<<End of freeboard_Content>>*/
