@@ -17,6 +17,7 @@
 .all_Button:hover{
 	background-color: #a0a0a0;
 	color: #f0f0f0;
+	cursor: pointer;
 }
 
 
@@ -36,8 +37,9 @@
 
 
 #freeboard_Header {
-	margin: 15px 0px;
-	height: 30px;
+	padding: 15px 0px;
+	border-bottom: 2px solid #505050;
+	
 }
 /*<<Start of #freeboard_Header>>*/
 #icon_search_img {
@@ -45,18 +47,19 @@
 	height: 25px;
 	width: 25px;
 	vertical-align: top;
-    border: 2px solid #c8c8c8;
 	border-radius: 0 5px 5px 0;
+	padding: 4px;
 }
 #icon_Search_span {
 	float: right;
 }
 #icon_Search_input {
 	height: 25px;
-    width: 150px;
+    width: 200px;
     vertical-align: top;
     border-radius: 3px;
     border: 2px solid #c8c8c8;
+    border-right : none;
     border-radius: 5px 0 0 5px;
 }
 /*<<End of #freeboard_Header>>*/
@@ -64,102 +67,98 @@
 
 
 #freeboard_Content {
-	height: 600px;
-	margin: 5px 0px;
-	overflow: hidden;
+    margin-bottom: 20px;
 }
 /*<<Start of freeboard_Content>>*/
-#contentBox {
-	margin: 15px 5px;
-	height: 60px;
+.contentBox {
+	border-bottom: 1px solid #c8c8c8;
+	padding-bottom: 10px;
 }
 
 /*==Start of contentBox==*/
 
 /*상단 :게시글 번호, 날짜*/
-#content_up {
-	margin: 5px 5px;
-	margin-top: 0px;
+.content_up {
 	/*상단 폰트설정*/
-	font-size: small;
+	font-size: 15px;
     font-weight: bold;
-    color: #c8c8c8;
+    color: #a0a0a0;
+    margin-top: 5px;
 }
 
 /*상단 : 게시글 번호*/
-#boardSeqBox {
+.boardSeqBox {
 	float: left;
-	height: 20px;
-	width: 50px;
+    width: 161px;
 }
 
 /*상단 : 날짜*/
-#boardWriteDateBox {
-	float: left;
-	height: 20px;
-	width: 250px;
-	
+.boardWriteDateBox {
 }
 
 /*하단 : 게시글 제목, 조회수, 아이디*/
-#content_down {
-	margin: 5px 5px;
-	margin-bottom: 0px;
-	
+.content_down {
 }
 
 /*하단 -제목*/
-#boardTitleBox {
-	height: 20px;
-    width: 500px;
-    float: left;
+.boardTitleBox {
+    width: 776px !important;
+    display: inline-block;
+    max-width: inherit;
+    color: #282828;
     }
-#boardTitleFont {
+.boardTitleFont:link,
+.boardTitleFont:visited,
+.boardTitleFont:active{
+	color: #282828;
+}   
+.boardTitleFont {
 	font-weight: bold;
-    font-size: larger;
+    font-size: 18px;
     color: 282828;
 }
 
 /*하단 -조회수*/
-#viewSeqBox {
-	height: 20px;
-	width: 50px;
-	float: right;
-	/*폰트 추가*/
-	font-size: medium;
+.viewSeqBox {
+	display: inline-block;
+    width: 77px;
+    font-size: medium;
     font-weight: bold;
-    color: #c8c8c8;
+    color: #a0a0a0;
 }
 
 /*하단 -아이디*/
-#writerNameBox {
-	height: 20px;
-	width: 50px;
-	float: right;
-	/*폰트 추가*/
-	font-size: medium;
+.writerNameBox {
+    display: inline-block;
+    max-width: inherit;
+    font-size: medium;
     font-weight: bold;
+    color: #a0a0a0;
+}
+
+.content_hr{
+	border: 1px solid;
     color: #c8c8c8;
 }
+
 /*==End of contentBox==*/
 /*<<End of freeboard_Content>>*/
 
 
 
 #freeboard_Footer {
-	height: 100px;
-	margin: 0px 0px;
+	text-align: right;
 }
 /*<<Start of freeboard_Content>>*/
 #button_write {
-	float: right;
 	width: 80px;
 	height: 30px;
 	background-color: #ffc828;
 	color: #f0f0f0;
+	border: none;
 }
-.#button_write:hover{
-	background-color: #a0a0a0;
+#button_write:hover{
+	background-color: #a0a0a0 !important;
 	color: #f0f0f0;
 }
 /*<<End of freeboard_Content>>*/

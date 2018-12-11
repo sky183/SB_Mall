@@ -67,8 +67,11 @@ function sendCode() {
 		<!-- header_down : 제목, 조회수, 아이디 -->
 		<div id="header_down">
 			<div id="header_down_boardTitle">${freeBoard.boardTitle}</div>
-			<div id="header_down_writerName">${freeBoard.writerName}</div>
-			<div id="header_down_viewSeq">${freeBoard.viewSeq}</div>
+			<div id="header_down_div">
+				<img class="header_down_img" src="<%=request.getContextPath()%>/img/viewSeq01.png"> 
+				<div id="header_down_viewSeq">${freeBoard.viewSeq}</div>
+				<div id="header_down_writerName">${freeBoard.writerName}</div>
+			</div>
 		</div><!-- end of header_down -->
 		
 	</div><!-- End of div Header-->

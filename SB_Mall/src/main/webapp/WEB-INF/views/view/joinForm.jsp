@@ -30,23 +30,8 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 
-<style>
-body {
-	background-color: #f5f5f5;
-}
-
-.form_name {
-	width: 122px !important;
-}
-.form_gender {
-	width: 122px !important;
-	margin-left: 5px;
-	margin-right: 5px;
-}
-.form_birth {
-	width: 247px !important;
-}
-</style>
+<!-- joinForm.css -->
+<link rel="stylesheet"	href="<%=request.getContextPath()%>/css/joinForm.css">
 
 <!-- 주소 API -->
 <script>
@@ -90,7 +75,7 @@ body {
 				<p class="h4 mb-4">
 					<b>회원가입</b>
 				</p>
-				<small class="form-text text-muted mb-4">필수 입력사항 (*)</small>
+				<small class="form-text mb-4">필수 입력사항 (*)</small>
 				<!-- Email 입력 테그 -->
 				<input type="email" id="email_ID"
 					class="form-control" placeholder="(*) E-mail (Id)" name="userId"
@@ -102,7 +87,7 @@ body {
 				<!-- Email 유효성 Message 출력 -->
 				<small 
 				id="email_Output_ID" 
-				class="form-text text-muted mb-4">메일주소를 정확히 입력해주세요.</small>
+				class="form-text  mb-4">메일주소를 정확히 입력해주세요.</small>
 
 				<div class="form-row mb-4">
 					<div class="col">
@@ -135,15 +120,7 @@ body {
 				
 				<!-- 비밀번호 유효성 Message 출력 -->
 				<small id="password_Output_ID"
-					class="form-text text-muted mb-4">비밀번호를 정확히 입력해 주세요.</small>
-				<small id="password_Output_ID1"
-					class="form-text text-muted mb-4"></small>
-				<small id="password_Output_ID2"
-					class="form-text text-muted mb-4"></small>
-				<small id="password_Output_ID3"
-					class="form-text text-muted mb-4"></small>
-				<small id="password_Output_ID4"
-					class="form-text text-muted mb-4"></small>
+					class="form-text  mb-4">비밀번호를 정확히 입력해 주세요.</small>
 
 				<div class="form-row mb-4">
 						<!-- 이름 입력 테그 -->
@@ -176,9 +153,9 @@ body {
 
 				<!-- 이름 유효성 Message,생년월일 유효성 Message 출력 -->
 				<small id="nameAndBirthDay_Output_ID"
-					class="form-text text-muted mb-4">성명과 생명월일을 정확히 입력해 주세요</small>
+					class="form-text  mb-4">성명과 생명월일을 정확히 입력해 주세요</small>
 
-				<small class="form-text text-muted mb-4"></small> 
+				<small class="form-text  mb-4"></small> 
 				
 				<!-- 폰번호 입력 테그 -->
 				<input type="text"
@@ -191,7 +168,7 @@ body {
 					> 
 				<!-- 폰번호 유효성 출력 테그 -->
 				<small id="phoneNumber_Output_ID"
-					class="form-text text-muted mb-4"> - 를 빼고 입력하세요 </small>
+					class="form-text  mb-4"> - 를 빼고 입력하세요 </small>
 
 				<!-- 주소API -->
 				<input type="button" onClick="goPopup();" value="주소검색"
@@ -226,7 +203,7 @@ body {
 				<!-- 주소API 끝-->
 
 				<small id="addressAPI_Output_ID"
-					class="form-text text-muted mb-4"> 주소를 정확히 입력하세요. 상품 주문시
+					class="form-text  mb-4"> 주소를 정확히 입력하세요. 상품 주문시
 					사용됩니다. </small>
 
 
@@ -287,7 +264,7 @@ body {
 		if (!( mailJ.test($('#email_ID').val()) )) {
 			$('#email_ID').attr('auth', 'false')
 			//출력될 Label
-			$('#email_Output_ID').text("Email형식에 맞지 않습니다.");
+			$('#email_Output_ID').css('color','red').text("Email형식에 맞지 않습니다.");
 
 		} else {
 		//2).정규식에 맞을때
@@ -301,15 +278,15 @@ body {
 					//Console 창으로 data확인
 
 					if (data == 0) {
-						$('#email_Output_ID').html('<h6 style="color: green;">사용할 수 있는 아이디 입니다.</h6>');
+						$('#email_Output_ID').css('color','green').html('사용할 수 있는 아이디 입니다.');
 						$('#email_ID').attr('auth', 'true')
 						console.log('email_ID auth : true');
 							
 					} else {
 
-						$('#email_Output_ID').html('<h6 style="color: red;">중복된 아이디 입니다.</h6>');
+						$('#email_Output_ID').css('color','red').html('중복된 아이디 입니다.');
 						$('#email_ID').attr('auth', 'false')
-						console.log('email_ID auth : false');
+// 						console.log('email_ID auth : false');
 					}//end of if (data == 0)
 				
 				}//end of success : function(data)
@@ -322,7 +299,8 @@ body {
 	
 
 	// 비밀번호 정규식
-	var newPassword_RE = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+// 	var newPassword_RE = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+	var newPassword_RE = /^[A-Za-z0-9]{6,12}$/;
 	
 	/*[2]. 비밀번호 정규식 (원본)*/
 	function passwordCheck_Function() {
@@ -335,19 +313,13 @@ body {
                 
    			if (pw1 != pw2) {
    				//1.1 비밀번호가 서로 일치하지 않을때 auth : false
-    			$('#password_Output_ID').html('입력한 비밀번호(테스트 종료 후 삭제) <br>[password1 :'+pw1 + '] <br>[password2 :'+pw2+']');  
-    			$('#password_Output_ID1').html('<h6 style="color: red;">비밀번호가 서로 일치하지 않습니다.</h6>');
-    			$('#password_Output_ID2').html('<h6 style="color: green;">8자 이상</h6>');                
-    			$('#password_Output_ID3').html('<h6 style="color: green;">숫자,대문자,특수문자 포함</h6>');                
+    			$('#password_Output_ID').css('color','red').html('비밀번호가 서로 일치하지 않습니다.');
     			 
     			$('#password_ID').attr('auth', 'false');
     		} else {
    				//1.2 비밀번호가 서로 일치하면 auth : true >가입 가능
    				
-   				$('#password_Output_ID').html('입력한 비밀번호(테스트 종료 후 삭제) <br>[password1 :'+pw1 + '] <br>[password2 :'+pw2+']');  
-    			$('#password_Output_ID1').html('<h6 style="color: green;">비밀번호가 서로 일치합니다.</h6>');
-    			$('#password_Output_ID2').html('<h6 style="color: green;"></h6>');                
-    			$('#password_Output_ID3').html('<h6 style="color: green;"></h6>');  
+    			$('#password_Output_ID').css('color','green').html('비밀번호가 서로 일치합니다.');
    				
     			$('#password_ID').attr('auth', 'true');
 
@@ -356,20 +328,14 @@ body {
 		} else {
             //2.정규식에 부합하지않을때
             
-            if(pw1.length>=8){
+            if(pw1.length>=6 && pw1.length<=12){
             	
-   				$('#password_Output_ID').html('입력한 비밀번호(테스트 종료 후 삭제) <br>[password1 :'+pw1 + '] <br>[password2 :'+pw2+']');  
-    			$('#password_Output_ID1').html('<h6 style="color: red;">비밀번호가 서로 일치하지 않습니다.</h6>');
-    			$('#password_Output_ID2').html('<h6 style="color: red;">8자 이상</h6>');                
-    			$('#password_Output_ID3').html('<h6 style="color: red;">숫자,대문자,특수문자 포함</h6>'); 
+    			$('#password_Output_ID').css('color','red').html('숫자,영문 포함'); 
             	
 	    		$('#password_ID').attr('auth', 'false')
             	
             }else{
-   				$('#password_Output_ID').html('입력한 비밀번호(테스트 종료 후 삭제) <br>[password1 :'+pw1 + '] <br>[password2 :'+pw2+']');  
-    			$('#password_Output_ID1').html('<h6 style="color: red;">비밀번호가 서로 일치하지 않습니다.</h6>');
-    			$('#password_Output_ID2').html('<h6 style="color: red;">8자 이상</h6>');                
-    			$('#password_Output_ID3').html('<h6 style="color: red;">숫자,대문자,특수문자 포함</h6>'); 
+    			$('#password_Output_ID').css('color','red').html('6자 이상 12자 이하');                
             	
 	    		$('#password_ID').attr('auth', 'false')
             	
