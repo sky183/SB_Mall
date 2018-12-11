@@ -8,7 +8,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sb.mall.crowd.model.CrowdReply;
 import com.sb.mall.store.dao.ReplyDao;
 import com.sb.mall.store.model.Reply;
 
