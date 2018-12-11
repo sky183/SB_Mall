@@ -62,7 +62,7 @@
 	display:inline-block;
 }
 .rightBoxT{
-	border-bottom: 2px solid #787878;
+	border-bottom: 3px solid #787878;
     height: 93px; 
     padding-bottom: 10px
 }
@@ -107,18 +107,84 @@
     justify-content: space-between;
 }
 .weahtherBox{
-	width: 300px;
-    height: 100px;
+	border: 1px solid #dcdcdc;
+    border-radius: 10px 10px 10px 10px;
+    width: 300px;
+    height: 150px;
     display: inline-block;
+    padding: 10px 0;
 }
-/* #main-block{
-	padding: 50px 0;
-	marigin-right:20px;
-	display:inline-block;	
-	width:300px;
-    color: white;
-    vertical-align: middle;
+.sBoxT{
+	display: inline-block;
 }
+.sBoxB{
+	text-align: center;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    padding-top: 20px;	
+}
+.leftsBox{
+	padding-top: 24px;
+    vertical-align: top;
+    text-align: center;
+    display: inline-block;
+    height: 70px;
+    width: 120px;
+	
+}
+#sicon{
+	font-size:50px;
+}
+.rightsBox{
+	display: inline-block;
+    height: 70px;
+    width: 170px;
+}
+.cityname{
+	padding-top: 5px;
+    color: #787878;
+    font-size: 9pt;
+}
+.weather{
+	padding-top: 1px;
+    color: #505050;
+    font-size: 20pt;
+    font-weight: bold;
+	
+}
+.temperature{
+	color: #787878;
+    font-size: 12pt;
+
+	
+}
+.cityname,.weather,.temperature{
+	
+	
+}
+
+.knot,.humidity,.clouds{
+	display: inline-block;
+    width: 90px;
+}
+.knot span,.humidity span,.clouds span{
+	color: #a0a0a0;
+    font-weight: 500;
+    font-size: 15pt;
+    vertical-align: middle
+	
+}
+.wi{
+	vertical-align: middle;
+	display: inline-block;
+    font-family: weathericons;
+    font-style: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+/*
 .topWeather{
     border-radius: 10px 10px 0 0;
     padding: 0 15px;
@@ -131,8 +197,5 @@
     justify-content: space-between;
     background-color: #ffc828;
     border-radius: 0 0 10px 10px;
-}
-.ib{
-	display: inline-block;
 }
  */

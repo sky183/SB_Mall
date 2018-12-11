@@ -4,22 +4,21 @@
 	Test용
 	border: 1px solid black;
 } */
+.all_Button {
+	color: #787878;
+	font-weight: bold;
+	padding: 0 16px;
+	margin-left: 3px;
+	padding-bottom: 3px;
+	background: none;
+	border: 1px solid #c8c8c8;
+	border-radius: 4px;
+}
 
-.all_Button{
-    color: #787878;
-    font-weight: bold;
-    padding: 0 16px;
-    margin-left: 3px;
-    padding-bottom: 3px;
-    background: none;
-    border: 1px solid #c8c8c8;
-    border-radius: 4px;
-	}
-.all_Button:hover{
+.all_Button:hover {
 	background-color: #a0a0a0;
 	color: #f0f0f0;
 }
-
 
 #freeboard_wrap_1 {
 	width: 1000px;
@@ -30,108 +29,92 @@
 	margin: 15px auto;
 }
 
-
-
-
 #freeboard_Header {
-	margin: 5px 10px;
-	height: 40px;
+	margin: 70px 0 25px 0;
 }
 /*<<Start of #freeboard_Header>>*/
 /*header_up : 게시글 번호, 날짜*/
-#header_up_boardSeq{
-	height: 20px;
+#header_up_boardSeq {
 	width: 50px;
-	padding: 2px 5px;
 	float: left;
-	
-	font-size: small;
-    font-weight: bold;
-    color: #c8c8c8;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #c8c8c8;
 }
-#header_up_boardWriteDate{
-	height: 20px;
+
+#header_up_boardWriteDate {
 	width: 250px;
-	padding: 2px 5px;
 	left: 50px;
-	
-	font-size: small;
-    font-weight: bold;
-    color: #c8c8c8;
-	
+	font-size: 10pt;
+	font-weight: bold;
+	color: #c8c8c8;
 }
 /*header_down : 제목, 조회수, 아이디*/
-#header_down_boardTitle{
-	height: 20px;
-	width: 450px;
-	padding: 2px 5px;
-	float: left;
-	
+#header_down_boardTitle {
+	width: 700px;
+    font-weight: 900;
+    display: inline-block;
+    padding-top: 10px;
+    font-size: 14pt;
+}
+
+#header_down_div {
+	float: right;
+	padding-top: 15px;
+}
+.header_down_img{
+	width:20px;
+	vertical-align: middle;
+}
+#header_down_viewSeq {
 	font-weight: bold;
-    font-size: larger;
-    color: 282828;
-	
+    color: #c8c8c8;
+    font-size: 10pt;
+    display: inline-block;
+    vertical-align: middle;
 }
-#header_down_viewSeq{
-	height: 20px;
-	width: 50px;
-	padding: 2px 5px;
-	float: right;
-	
-	font-size: medium;
+
+#header_down_writerName { 
+	font-size: 10pt;
     font-weight: bold;
     color: #c8c8c8;
-}
-#header_down_writerName{
-	height: 20px;
-	width: 80px;
-	padding: 2px 5px;
-	float: right;
-	
-	font-size: medium;
-    font-weight: bold;
-    color: #c8c8c8;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 50px;
 }
 /*<<End of #freeboard_Header>>*/
-
-
-
-#header_hr{
-	margin:3px;
+#header_hr {
+	margin: 3px;
 	color: #ffc828;
-	border: 1px solid;
+	border: 2px solid;
 }
-
-
 
 #freeboard_Content {
-	height: 350px;
-	margin: 5px 0px;
+	padding: 30px 0;
+ 	min-height: 350px;
+	margin-bottom:15px;
 	overflow: hidden;
+	border-bottom: 1px solid #dcdcdc;
+	font-size: 10pt;
 }
+
 /*<<Start of freeboard_Content>>*/
 
 /*<<End of freeboard_Content>>*/
-
-
-
 #freeboard_Footer {
+	
 }
 /*<<Start of freeboard_Content>>*/
-#footer_button_Delete{
-	float: right;
-}
-#footer_button_Modify{
-	float: right;
-}
-#footer_button_List{
+#footer_button_Delete {
 	float: right;
 }
 
+#footer_button_Modify {
+	float: right;
+}
+
+#footer_button_List {
+	float: right;
+}
 
 /*<<End of freeboard_Content>>*/
-
-
-
-
-

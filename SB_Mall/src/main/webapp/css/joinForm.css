@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f5f5f5;
+}
+
+.form_name {
+	width: 122px !important;
+}
+.form_gender {
+	width: 122px !important;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.form_birth {
+	width: 247px !important;
+}
+
+
