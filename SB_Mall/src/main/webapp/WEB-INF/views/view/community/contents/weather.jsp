@@ -42,7 +42,7 @@
 			</div>
 			<div class="rightBox">
 				<div class="rightBoxT">
-				<p id="city">asd</p>
+				<p id="city"></p>
 				<p id="weather"></p>
 				<!-- rightBoxT의 끝 --> 			
 				</div>
@@ -68,18 +68,53 @@
 		
 		<div id="container-bottom">
 			<div id="container-bottomB">
-		 	    <div class ="weahtherBox">
+		 	   <div class ="weahtherBox">
+					<div class="sBoxT">
+						<div class="leftsBox">
+						<i id="sicon" class="wi wi-night-sleet" style= "color : #ffc828"></i>
+						</div>					
+						<div class="rightsBox">
+							<div class="cityname">대한민국 서울시 마포구
+							
+							</div>
+							<div class="weather">흐린뒤 맑음
+							
+							</div>
+							<div class="temperature">24.4 c
+							
+							</div>
+						</div>					
+					</div>
+					<div class="sBoxB">
+						<div class="knot">
+							<span>
+							<i class="wi wi-strong-wind" style= "color : #ffc828"></i>
+							</span>
+							<span>
+							aa
+							</span>
+						</div>
+						<div class="humidity">
+							<span>
+							<i class="wi wi-raindrop" style= "color : #ffc828"></i>
+							</span>
+							<span>
+							aa
+							</span>
+						</div>
+						<div class="clouds">
+							<span>
+							<i class="wi wi-rain" style= "color : #ffc828"></i>
+							</span>
+							<span>
+							aa
+							</span>	
+						
+						</div>					
+					</div>
+					
+				</div>
 			
-			
-				</div>
-				<div class ="weahtherBox">
-				
-				
-				</div>
-				<div class ="weahtherBox">
-				
-				
-				</div>
 			</div>
 			<!-- container-bottomB의 끝 -->
 		</div>
@@ -204,12 +239,70 @@
 // 							weatherArray[index].temperature =(data.main.temp - 273.15).toFixed(1);
 // 							weatherArray[index].humidity  = data.main.humidity;
 // 							weatherArray[index].clouds = data.clouds.all;
-							$('#city'+ i).find('.cityname').html(weatherArray[index].city);
-							$('#city'+ i).find('.weather').html(data.weather[0].description);
-							$('#city'+ i).find('.knots').html((data.wind.speed * 1.9438445).toFixed(1));
-							$('#city'+ i).find('.temperature').html((data.main.temp - 273.15).toFixed(1));
-							$('#city'+ i).find('.humidity').html(data.main.humidity);
-							$('#city'+ i).find('.clouds').html(data.clouds.all);
+							/* $('<div/>').attr({
+								id:'weahtherBox'+i,
+								'class':'weahtherBox'
+							}).appendTo('#container-bottomB');
+							
+							$('<div/>').attr({
+								id:'city'+i
+							}).appendTo('#weahtherBox'+i);
+							
+							$('<div/>').attr({
+								'class':'sBoxT'
+							}).appendTo('#city'+i);
+							
+							$('<div/>').attr({
+								'class':'leftsBox'
+							}).appendTo('#city'+i+'>.sBoxT');
+							
+							$('<i/>').attr({
+								'class':'wi'
+							}).appendTo('#city'+i+'>.sBoxT>.leftsBox');
+							switch (data.weather[0].main) {
+								case 'Clouds': $('#city'+i+'>.sBoxT>.leftsBox i').attr('class','wi wi-cloud'); break;
+								case 'Rain': $('#city'+i+'>.sBoxT>.leftsBox i').attr('class','wi wi-rain'); break;
+							}
+							
+							$('<div/>').attr({
+								'class':'rightsBox'
+							}).appendTo('#city'+i+'>.sBoxT');
+							
+							$('<div/>').attr({
+								'class':'sBoxB'
+							}).appendTo('#city'+i);
+							
+							$('<div/>').attr({
+								'class':'cityname'
+							}).html(weatherArray[index].city).appendTo('#city'+i+'>.sBoxT>.rightsBox');
+							
+							$('<div/>').attr({
+								'class':'weather'
+							}).html(data.weather[0].main).appendTo('#city'+i+'>.sBoxT>.rightsBox');
+							
+							$('<div/>').attr({
+								'class':'knots'
+							}).html((data.wind.speed * 1.9438445).toFixed(1)).appendTo('#city'+i+'>.sBoxB');
+							
+							$('<div/>').attr({
+								'class':'temperature'
+							}).html((data.main.temp - 273.15).toFixed(1)).appendTo('#city'+i+'>.sBoxT>.rightsBox');
+							
+							$('<div/>').attr({
+								'class':'clouds'
+							}).html(data.clouds.all).appendTo('#city'+i+'>.sBoxB'); */
+							/* switch (data.weather[0].description) {
+							  case 'light snow'  : document.write('A 라는 문자입니다.<br />'); break;
+							  case 'light rain' : document.write('똠 이라는 문자입니다.<br />'); break;
+							  case '7'  : document.write('7 이라는 문자입니다.<br />'); break;
+							  default   : document.write('해당되는 문자가 없습니다.<br />'); break;
+							} */
+							//$('#city'+ i).find('.cityname').html(weatherArray[index].city);
+							//$('#city'+ i).find('.weather').html(data.weather[0].description);
+							//$('#city'+ i).find('.knots').html((data.wind.speed * 1.9438445).toFixed(1));
+							//$('#city'+ i).find('.temperature').html((data.main.temp - 273.15).toFixed(1));
+							//$('#city'+ i).find('.humidity').html(data.main.humidity);
+							//$('#city'+ i).find('.clouds').html(data.clouds.all);
 							
 						}
 					}
@@ -257,20 +350,22 @@
 	
 	
 	//weatherArray의 위도와 경도를 getweater 함수에 넣어서 날씨 정보를 받은후 해당하는 div id를 찾아서 입력한다.(미완성)
-	for (var i = 0; i < weatherArray.length; i++) {
-		var thisname = weatherArray[i].city;
-		var thislon = weatherArray[i].lon;
-		var thislat = weatherArray[i].lat;
-		getWeather(thislat, thislon, i);
+	function kk() {
+		for (var i = 0; i < weatherArray.length; i++) {
+			var thisname = weatherArray[i].city;
+			var thislon = weatherArray[i].lon;
+			var thislat = weatherArray[i].lat;
+			getWeather(thislat, thislon, i);
+		}	
 	}
 	
 
 	$(document).ready(function(){
-		console.log(weatherArray)
+		kk();
+		
+		//console.log(weatherArray)
 	})
 
-
-	//});
 </script>
 
 </html>
