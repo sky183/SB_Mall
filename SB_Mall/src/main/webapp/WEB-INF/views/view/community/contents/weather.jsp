@@ -29,12 +29,21 @@
 		<div id="container-top">
 		
 			 <div class="leftBox">
-						왼쪽박스
+				<div class= "leftBoxT">
+					<i id="icon" class="wi wi-night-sleet" style= "color : #ffc828"></i> 
+				</div>
+				<div class="leftBoxB">
+					<span>
+						<span id="temperature"></span>
+						<span class="c">C&deg</span>
+					</span>
+				</div>											
             <!-- leftBox의 끝 -->
 			</div>
 			<div class="rightBox">
 				<div class="rightBoxT">
-				
+				<p id="city">asd</p>
+				<p id="weather"></p>
 				<!-- rightBoxT의 끝 --> 			
 				</div>
 				<div class="rightBoxB">
@@ -44,9 +53,9 @@
 						<p>강수확률</p>					
 					</div>
 					<div class="xbox2">
-					<p>1.7</p>
-					<p>1.8</p>
-					<p>1.9</p>
+						<p id="knots"></p>
+						<p id="humidity"></p>
+						<p id="clouds"></p>
 					</div>
 				<!-- rightBoxB의 끝 --> 			
 				</div>
@@ -58,12 +67,24 @@
 		
 		
 		<div id="container-bottom">
+			<div id="container-bottomB">
+		 	    <div class ="weahtherBox">
 			
-		<!-- container-bottom의 끝 -->
+			
+				</div>
+				<div class ="weahtherBox">
+				
+				
+				</div>
+				<div class ="weahtherBox">
+				
+				
+				</div>
+			</div>
+			<!-- container-bottomB의 끝 -->
 		</div>
-		
-		
-<!-- container-all의 끝 -->
+		<!-- container-bottom의 끝 -->
+	<!-- container-all의 끝 -->
 	</div>
 </body>
 <script>
@@ -229,8 +250,8 @@
 		$('#weather').html(weather);
 		$('#knots').html(knots);
 		$('#temperature').html(temperature);
-		$('#humidity').html(humidity);
-		$('#clouds').html(clouds);
+		$('#humidity').html(humidity+"%");
+		$('#clouds').html(clouds+"%");
 		
 	}
 	
@@ -249,18 +270,7 @@
 	})
 
 
-
-	
-
 	//});
 </script>
 
-
-
 </html>
-
-
-
-
-<!-- 		<i class="wi wi-night-sleet" style= "color : #ffc828"></i> -->
-<!-- 		<div class ="ib" ></div><div class="ib">C&deg</div> -->

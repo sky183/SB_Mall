@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 		@RequestMapping("weather")
 		public String weatherPage() {
-			System.out.println("날씨");
+//			System.out.println("날씨");
 			return "view/community/contents/weather";
 		}
 
