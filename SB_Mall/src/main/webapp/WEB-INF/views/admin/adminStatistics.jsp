@@ -23,7 +23,7 @@
 			<!--상단메뉴의 끝 하단메뉴의 시작-->
 			<!--좌측 메뉴-->
 			<div id="leftContent">
-				<div class="leftTitle">통</div>
+				<div class="leftTitle">통계</div>
 				<div class="leftMenu link" id="visitStat">
 					방문 통계
 				</div>
