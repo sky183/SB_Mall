@@ -123,6 +123,10 @@ function uncomma(str) {
     return Number(str.replace(/[^\d]+/g, ''));
 }
 //date포맷 함수
+String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
+String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+Number.prototype.zf = function(len){return this.toString().zf(len);};
+
 Date.prototype.format = function(f) {
     if (!this.valueOf()) return " ";
  
@@ -146,9 +150,7 @@ Date.prototype.format = function(f) {
     });
 };
  
-String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
-String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
-Number.prototype.zf = function(len){return this.toString().zf(len);};
+
 
 //오늘을 date 형식으로 구하기
 var now = new Date();
@@ -308,25 +310,25 @@ $('document').ready(function(){
 
 <!-- 캘린더 객체 생성 -->
 <%
-// 	Calendar cal = Calendar.getInstance();
-// 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMM");
-// 	ArrayList<Object> monthArr = new ArrayList<Object>();
+	Calendar cal = Calendar.getInstance();
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMM");
+	ArrayList<Object> monthArr = new ArrayList<Object>();
 
-// 		for(int i=0; i <= 11; i++) {
+		for(int i=0; i <= 11; i++) {
 			
-// 			if(i > 0){
-// 			cal.add(cal.MONTH, -1);
-// 			} else {
-// 				cal.add(cal.MONTH, 0);
-// 			}
-// 			String year = dateFormat.format(cal.getTime()).substring(0,4);
-// 			String month = dateFormat.format(cal.getTime()).substring(4,6);
+			if(i > 0){
+			cal.add(cal.MONTH, -1);
+			} else {
+				cal.add(cal.MONTH, 0);
+			}
+			String year = dateFormat.format(cal.getTime()).substring(0,4);
+			String month = dateFormat.format(cal.getTime()).substring(4,6);
 			
-// 			request.setAttribute("year"+ i, year);
-// 			request.setAttribute("month"+ i, month);
-// 			monthArr.add(month);
-// 		}
-// 	request.setAttribute("monthArr", monthArr);
+			request.setAttribute("year"+ i, year);
+			request.setAttribute("month"+ i, month);
+			monthArr.add(month);
+		}
+	request.setAttribute("monthArr", monthArr);
 		
 // 	//숫자를 소수점 버리고 포맷 변환하는 함수
 // 	double val = 1234525635.12;
