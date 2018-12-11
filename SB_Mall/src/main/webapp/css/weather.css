@@ -12,7 +12,7 @@
 /*     flex-wrap: wrap; */
 /*     display: flex; */
 /*     justify-content: space-between; */
-    
+
 /*     임시 */
 	height: 900px;
 }
@@ -23,25 +23,64 @@
 }
 #container-bottom{
 	/*     임시 */
-	height: 900px;
+/* 	height: 900px; */
 }
 .leftBox{
 	vertical-align:top;
 	display:inline-block;
 	width:300px;
-	height:250px;
+/* 	height:250px; */
+}
+.leftBoxT{
+	height: 93px;
+	text-align:right;
+	padding-right:70px;
+}
+#icon{
+	font-size:80px;
+}
+.leftBoxB{
+
+	height: 112px; 
+	text-align:right;
+	padding-right:40px;
+}
+.leftBoxB *{
+	color:#282828;
+}
+#temperature{
+	font-size:65px;
+	font-weight: bold;
+}
+.c{
+	font-size:30px;
 }
 .rightBox{
 	vertical-align:top;
-	height:250px;
+/* 	height:250px; */
 	width:687px;
 	display:inline-block;
 }
 .rightBoxT{
-	height:124px;
+	border-bottom: 2px solid #787878;
+    height: 93px; 
+    padding-bottom: 10px
+}
+#city{
+	color:#787878;
+	font-size:27px;
+}
+#weather{
+	font-size:33px;
+	font-weight: bold;
 }
 .rightBoxB{
-	height:124px;
+	padding-top: 10px;
+	height:112px;
+}
+.rightBoxB *{
+	color:#787878;
+	font-weight: bold;	
 }
 .xbox{
 	display:inline-block;
@@ -50,7 +89,29 @@
 	display:inline-block;
 	width:570px;
 }
-#main-block{
+#knots,#humidity,#clouds{
+	font-size:20px;
+	font-weight:bold;
+	padding-bottom:5px;
+	padding-left:21px;
+	
+}
+.xbox p{
+	font-size:20px;
+	font-weight:bold;
+	padding-bottom:5px;
+}
+#container-bottomB{
+	flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+}
+.weahtherBox{
+	width: 300px;
+    height: 100px;
+    display: inline-block;
+}
+/* #main-block{
 	padding: 50px 0;
 	marigin-right:20px;
 	display:inline-block;	
@@ -58,12 +119,6 @@
     color: white;
     vertical-align: middle;
 }
-div{
-	
-	font-weight: bold; 
-    font-size: x-large;
-}
-
 .topWeather{
     border-radius: 10px 10px 0 0;
     padding: 0 15px;
@@ -80,7 +135,4 @@ div{
 .ib{
 	display: inline-block;
 }
-.weathericon{
-	width:100px;
-	height:100px;
-}
+ */
