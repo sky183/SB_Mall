@@ -152,8 +152,7 @@
         	enctype: 'multipart/form-data',
         	processData: false,
         	success: function(img_name) {
-          		$(el).summernote('editor.insertImage', 
-          						img_name);
+          		$(el).summernote('editor.insertImage',img_name.trim());
         	}
       	});
     }
@@ -174,8 +173,8 @@
 	        enctype: 'multipart/form-data',
 	        error: $('#productUploadImg').attr('src',"<%=request.getContextPath()%>/img/noImage.png"),
 	        success: function(img_name) {
-	        	$("#filename").val(img_name);
-	        	$('#productUploadImg').attr('src',img_name);
+	        	$("#filename").val(img_name.trim());
+	        	$('#productUploadImg').attr('src',img_name.trim());
 	        }
 	      });
 	}
@@ -196,8 +195,8 @@
 	        enctype: 'multipart/form-data',
 	        error: $('#goodsImg'+gi).attr('src',"<%=request.getContextPath()%>/img/noImage.png"),
 	        success: function(img_name) {
-	        	$('#goodsImg'+gi).attr('src',img_name);
-	        	goodsArr[gi].goodsPhoto = img_name;
+	        	$('#goodsImg'+gi).attr('src',img_name.trim());
+	        	goodsArr[gi].goodsPhoto = img_name.trim();
 	        }
 	      });
 	}

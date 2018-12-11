@@ -5,7 +5,7 @@
 <mapper namespace="com.sb.mall.order.dao.OrderDao">
 
 	<insert id="upsertCart" statementType="CALLABLE">
-		{ call insert_CartJson(#{orders}) }
+		{ call insert_cartJson(#{orders}) }
 	</insert>
 
 	<delete id="deleteCart" parameterType="list">
@@ -26,6 +26,9 @@
 		</where>
 	</select>
 	
+	<insert id="insertOrderSP" statementType="CALLABLE">
+		{ call insert_order(#{orders}) }
+	</insert>
 	
 	
 	<select id="selectOrdersAll" resultType="com.sb.mall.order.model.Order">
@@ -40,21 +43,13 @@
 		value(#{orderDetailNum},#{userSeq},now(),#{totalAmount})
 	</insert>
 	
-	<update id="updateOrders">
+	<update id="updateOrders" parameterType="list">
 		update `Order` 
 		<set>
-		<foreach collection="list" item="orders" open="" separator="" close="" index="index">
-			<if test="index==0">
-				orderDetailNum=#{orders.orderDetailNum} 
-			</if>
-		</foreach>
+			orderDetailNum=#{list[0].orderDetailNum} 
 		</set>
 		<where>
-		<foreach collection="list" item="orders" open="" separator="" close="" index="index">
-			<if test="index==0">
-				and userSeq=#{orders.userSeq} and orderDetailNum=0 and
-			</if>
-		</foreach>
+			and userSeq=#{list[0].userSeq} and orderDetailNum=0 and
 		<foreach collection="list" item="orders" open="(" separator="or" close=")" index="index">
 			goodsNo=#{orders.goodsNo} and `optionSeq`=#{orders.optionSeq}
 		</foreach>

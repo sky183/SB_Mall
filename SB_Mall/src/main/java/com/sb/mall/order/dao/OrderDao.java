@@ -13,8 +13,10 @@ public interface OrderDao {
 	//사용중
 	public int upsertCart(String orders);
 	public int deleteCart(List<Order> orders);
+	public void insertOrderSP(String orders);
 	
 	public int insertOrder(Order order);
+	
 	public List<Map<String,Object>> selectGoodsForOrder(List<OrderItem> orderItems); 
 	
 	public int insertOrderDetail(OrderDetail orderDetail);

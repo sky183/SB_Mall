@@ -1,18 +1,16 @@
 package com.sb.mall.order.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.order.model.Order;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sb.mall.order.model.OrderItemList;
 import com.sb.mall.order.service.OrderCartService;
 import com.sb.mall.order.service.OrderService;
-import com.sb.mall.store.model.Product;
 
 @Controller
 public class OrderPageController {
@@ -25,12 +23,26 @@ public class OrderPageController {
 	@RequestMapping(value="order/order", method=RequestMethod.POST)
 	public ModelAndView orderCartList(OrderItemList orderItemList) {
 		ModelAndView modelAndView = new ModelAndView();
+		ObjectMapper jackson = new ObjectMapper();
+		String json = "";
+		try {
+			json =jackson.writeValueAsString(orderItemList.getOrders());
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		modelAndView.addObject("orders", orderItemList.getOrders());
+		modelAndView.addObject("orderType", orderItemList.getOrderType());
+		modelAndView.addObject("json",json);
 		modelAndView.setViewName("order/orderInsOrderPage");
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="order/insOrder", method=RequestMethod.POST)
+	@RequestMapping(value="order/order" ,method=RequestMethod.GET)
+	public String order() {
+		return "redirect:/store";
+	}
+	
+	/*@RequestMapping(value="order/insOrder", method=RequestMethod.POST)
 	public ModelAndView order(Order order) {
 		ModelAndView modelAndView = new ModelAndView();
 		Product product = null;
@@ -56,6 +68,6 @@ public class OrderPageController {
 	@RequestMapping(value="order/cartOrder" ,method=RequestMethod.GET)
 	public String cartOrder() {
 		return "redirect:/order/cart";
-	}
+	}*/
 	
 }

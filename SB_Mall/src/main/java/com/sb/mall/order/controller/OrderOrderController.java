@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sb.mall.member.model.MemberInfo;
-import com.sb.mall.order.model.OrderOrderCommand;
 import com.sb.mall.order.service.OrderService;
 
 @Controller
@@ -19,8 +18,17 @@ public class OrderOrderController {
 	
 	@Autowired
 	OrderService orderService;
+	
+	@RequestMapping(value="order/orders/insert",method=RequestMethod.POST)
+	@ResponseBody
+	public String order(String orders) {
+		String msg = "성공"; 
+		orderService.insertOrders(orders);
+		System.out.println(orders);
+		return msg; 
+	}
 
-	@RequestMapping(value="order/insOrder/complete",method=RequestMethod.POST)
+	/*@RequestMapping(value="order/insOrder/complete",method=RequestMethod.POST)
 	public ModelAndView insOrder(OrderOrderCommand command,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("order/orderCompletePage");
@@ -70,7 +78,7 @@ public class OrderOrderController {
 	@RequestMapping(value="order/cartOrder/complete",method=RequestMethod.GET)
 	public String cartOrder() {
 		return "redirect:/order/cart"; 
-	}
+	}*/
 	
 	@RequestMapping(value="order/testOrder",method=RequestMethod.POST)
 	public String testOrder(HttpSession session) {

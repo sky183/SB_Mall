@@ -6,9 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 
+var IMP = window.IMP; // 생략가능
+IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	$(document).ready(function(){
 		
 		$('.ODDelivery').keyup(function(){
@@ -45,16 +47,82 @@
 		});
 		
 		for(i=0;i<$('.totalPriceF').length;i++){
-			console.log(i+'='+$('.finalPriceF').eq(0).attr('data-totalPrice'))
 			var finalPrice = Number($('.finalPriceF').eq(0).attr('data-totalPrice'))
 							+Number($('.totalPriceF').eq(i).attr('data-salePrice'));
-			console.log(finalPrice+'원');
 			$('.finalPriceF').eq(0).attr({
 				'data-totalPrice': finalPrice
 			}).text(numComma(finalPrice));
 		}
+		
+		$('#orderBtn').on('click',function(){
+			orderDo();
+		});
+			
 	});/* ready end */
 	
+	function orderDo() {
+		$.ajax({
+			url : '<%=request.getContextPath()%>/order/orders/insert',
+			type : 'POST',
+			data : {'orders':makeOrdersJson()+''},
+			error : function(error) {
+				alert("error!");
+			},
+			success : function(data) {
+				alert(1);
+			}
+		});
+	}
+	
+	function makeOrdersJson() {
+		var orders = ${json};
+		var orderDetail = {
+				'orderDetailNum':new Date().simpleDateForm('yyMMddhhmmssms'),
+				'userSeq':'${memberInfo.userSeq}',
+				'payment':'1',
+				'orderTime':'',
+				'status':'0',
+				'totalAmount':'0',
+				'orderType': '${orderType}',
+				'zipCode':$('.zipCode')[0].value,
+				'orderPhone':$('.orderPhone')[0].value,
+				'orderAddress1':$('.address1')[0].value,
+				'orderAddress2':$('.address2')[0].value,
+				'orderRequest':$('.orderRequest')[0].value
+		};
+		var orderArr={
+			'orders':orders,
+			'orderDetail':orderDetail
+		}
+		return JSON.stringify(orderArr);
+	}
+	
+	//simpleDateFormat 생성로직
+	String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
+	String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+	Number.prototype.zf = function(len){return this.toString().zf(len);};
+
+	Date.prototype.simpleDateForm = function(f) {
+	    if (!this.valueOf()) return " ";
+	    var d = this;
+	     
+	    return f.replace(/(yyyy|yy|MM|dd|hh|mm|ss|ms|a\/p)/gi, function($1) {
+	        switch ($1) {
+	            case "yyyy": return d.getFullYear();
+	            case "yy": return (d.getFullYear() % 1000).zf(2);
+	            case "MM": return (d.getMonth() + 1).zf(2);
+	            case "dd": return d.getDate().zf(2);
+	            case "HH": return d.getHours().zf(2);
+	            case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2);
+	            case "mm": return d.getMinutes().zf(2);
+	            case "ss": return d.getSeconds().zf(2);
+	            case "ms": return (d.getMilliseconds()>=100)?d.getMilliseconds():"0"+d.getMilliseconds();
+	            case "a/p": return d.getHours() < 12 ? "오전" : "오후";
+	            default: return $1;
+	        }
+	    });
+	};
+	//simpleDateForm end
 	
 	/* price 숫자면 받기 */
 	function mathABS(e) {
@@ -112,7 +180,6 @@
 			</div>
 		</div>
 	<c:forEach var="order" items="${orders}">
-	
 		<div class="orderUnitBox orderBag">
 			<div class="orderImgbox ib">
 				<img class="orderImg" src="${order.goodsPhoto}">
@@ -249,12 +316,12 @@
 			
 			<div class="basicUnit ib">
 				<div class="ODtitleBox ib">
-					<h3 class="ODtitle ib">SNS수신 동의</h3>
+					<h3 class="ODtitle ib">SMS수신 동의</h3>
 				</div>
 				<div  class="ODbasicInfo ib">
 					<input class="basicRadio ib" type="radio" name="agree"><h3 class="agree ib">예</h3>
 					<input class="basicRadio ib" type="radio" name="agree"><h3 class="disagree ib">아니오</h3>
-					<h3 class="basicAgree ib">(${memberInfo.phone}/${memberInfo.userId})</h3>
+					<h3 class="basicAgree ib">(${memberInfo.phone})</h3>
 					<h5 class="subText ib">모바일 거래정보 알리미가 설정되어 있을 경우 SMS는 발송되지 않으며 알리미만 발송됩니다.</h5>
 				</div>
 			</div>
@@ -406,13 +473,12 @@
 			</div>
 		
 		</div>
+		
 		<div class="doFundingBox">
-			<a class="doFunding">결제 예약하기</a>
+			<button type="button" id="orderBtn" class="doFunding">결제 예약하기</button>
 		</div>
 		
-		<form action="<%=request.getContextPath()%>/crowd/crowdOrderDetail" method="post" id="orderDetailForm" >
-			
-		</form>
+		<form method="post" id="orderForm"></form>
 	
 	</div>
 </div>

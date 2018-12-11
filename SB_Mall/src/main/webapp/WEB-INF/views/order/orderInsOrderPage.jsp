@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
 <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/store.css"> --%>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/crowdOrder.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>

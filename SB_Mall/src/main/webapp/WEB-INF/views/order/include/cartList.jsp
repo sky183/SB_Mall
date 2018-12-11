@@ -2,10 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
-<script>
-var aa;
 
+<script>
 	$(document).ready(function() {
 		
 		//페이지로딩 후 카트정보 불러옴
@@ -170,7 +168,7 @@ var aa;
 			}).appendTo('#hCartForm');
 			
 			//opt1존재시
-			if($('input[name=cartItem]:checked').eq(i).attr('data-opt1Name')!=null){
+			if($('input[name=cartItem]:checked').eq(i).attr('data-opt1Name')!=(null||"")){
 				$('<input/>').attr({
 					type:'hidden',
 					name:'orders['+i+'].opt1Name',
@@ -184,7 +182,7 @@ var aa;
 			}
 			
 			//opt2존재시
-			if($('input[name=cartItem]:checked').eq(i).attr('data-opt2Name')!=null){
+			if($('input[name=cartItem]:checked').eq(i).attr('data-opt2Name')!=(null||"")){
 				$('<input/>').attr({
 					type:'hidden',
 					name:'orders['+i+'].opt2Name',
@@ -207,7 +205,13 @@ var aa;
 				name:'orders['+i+'].salePrice',
 				value:$('input[name=cartItem]:checked').eq(i).attr('data-salePrice'),
 			}).appendTo('#hCartForm');
-		}
+		} //end for
+		
+		$('<input/>').attr({
+			type:'hidden',
+			name:'orderType',
+			value:1,
+		}).appendTo('#hCartForm');
 	}
 	
 	function changeInsCartPrice(e) { //cart 수량 변경시마다

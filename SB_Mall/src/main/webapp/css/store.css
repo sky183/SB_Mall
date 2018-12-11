@@ -5,11 +5,6 @@ ul{
 a{
 	text-decoration: none;
 }
-a:visited{
-	color: black;
-}
-a:focus{
-}
 p{
 	margin: 0px;
 }
@@ -20,7 +15,6 @@ h1,h2,h3{
 	padding: 10px 15px;
 	background-color: #F2F2F2;
 	border: 1px solid #a9a9a9;
-	
 }
 .storeBtn:hover{
 	cursor: pointer;
@@ -308,11 +302,11 @@ h1,h2,h3{
 	background-color: rgba( 255, 255, 255, 0 );
 	text-align: center;
 }
-.insCartNumber::-webkit-outer-spin-button,
+/* .insCartNumber::-webkit-outer-spin-button,
 .insCartNumber::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
+} */
 .insCartPrice{
 	float: right;
 	margin: 15px;

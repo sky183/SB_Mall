@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/store.css">
+<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 </head>
 <body>
 <jsp:include page="../../../common/header.jsp"/>

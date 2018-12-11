@@ -17,7 +17,6 @@ import com.sb.mall.order.model.Order;
 import com.sb.mall.order.model.OrderDetail;
 import com.sb.mall.order.model.OrderItem;
 import com.sb.mall.order.model.OrderOrderCommand;
-import com.sb.mall.store.model.Product;
 
 @Repository
 public class OrderService {
@@ -38,6 +37,13 @@ public class OrderService {
 		orders = Dao.select(orderDetailNum);
 		
 		return orders;
+	}
+	
+	@Transactional
+	public void insertOrders(String orders) {
+		Dao = sessionTemplate.getMapper(OrderDao.class);
+		Dao.insertOrderSP(orders);
+		System.out.println("or : "+orders);
 	}
 	
 	@Transactional
@@ -62,13 +68,13 @@ public class OrderService {
 		Dao.insertOrder(order);*/
 	}
 	
-	@Transactional
+	/*@Transactional
 	public Product getProduct(int productSeq) throws SQLException {
 		Dao = sessionTemplate.getMapper(OrderDao.class);
 		Product product = null;
 		product = Dao.selectProduct(productSeq);
 		return product;
-	}
+	}*/
 	
 	@Transactional
 	public void insertOrdersAndDetail(int userSeq) throws SQLException {
@@ -76,18 +82,14 @@ public class OrderService {
 		Dao = sessionTemplate.getMapper(OrderDao.class);
 		OrderDetail orderDetail = new OrderDetail();
 		orderDetail.setTotalAmount(0);
-		System.out.println(userSeq);
 		List<Order> orderList = Dao.selectOrdersAll(userSeq);
 		for(Order order : orderList) {
 			order.setOrderDetailNum(orderDetailNum);
-			//userSeq=order.getUserSeq();
 			orderDetail.setTotalAmount(orderDetail.getTotalAmount()+order.getSalePrice());
 		}
 		orderDetail.setOrderDetailNum(orderDetailNum);
 		orderDetail.setUserSeq(userSeq);
 		
-		
-		//Dao.updateUserPoint(orderDetail.getTotalAmount(), userSeq);
 		Dao.insertOrderDetail(orderDetail);
 		Dao.updateOrders(orderList);
 	}

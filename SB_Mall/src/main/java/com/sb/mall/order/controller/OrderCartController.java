@@ -72,20 +72,10 @@ public class OrderCartController {
 		return "장바구니 삭제에 성공하였습니다";
 	}
 
-	
-	
-	
-	
-	@RequestMapping(value = "order/carts/{userSeq}", method = RequestMethod.GET)
-	public ModelAndView viewCart(@PathVariable("userSeq") int userSeq) {
+	@RequestMapping(value = "order/cart/{userSeq}/update", method = RequestMethod.POST)
+	public ModelAndView viewCart(@PathVariable("userSeq") int userSeq,Order order) {
 		ModelAndView modelAndView = new ModelAndView();
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "order/carts", method = RequestMethod.PUT)
-	@ResponseBody
-	public String modifyCartStock() {
-		return "";
-	}
-
 }

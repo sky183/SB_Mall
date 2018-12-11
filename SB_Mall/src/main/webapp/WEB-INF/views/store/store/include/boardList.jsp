@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Store</title>
-
-<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script type="text/javascript">
 	$('document').ready(function() {
 		$('.storeListView').load('<%=request.getContextPath()%>/store/boardListView');

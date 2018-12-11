@@ -10,7 +10,20 @@ public class OrderDetail {
 	private Date orderTime;
 	private int status;
 	private int totalAmount;
+	private int zipCode;
+	private int orderPhone;
+	private String orderAddress1;
+	private String orderAddress2;
+	private String orderRequest;
 	
+	@Override
+	public String toString() {
+		return "OrderDetail [orderDetailNum=" + orderDetailNum + ", userSeq=" + userSeq + ", payment=" + payment
+				+ ", orderTime=" + orderTime + ", status=" + status + ", totalAmount=" + totalAmount + ", zipCode="
+				+ zipCode + ", orderPhone=" + orderPhone + ", orderAddress1=" + orderAddress1 + ", orderAddress2="
+				+ orderAddress2 + ", orderRequest=" + orderRequest + "]";
+	}
+
 	public String getOrderDetailNum() {
 		return orderDetailNum;
 	}
@@ -59,12 +72,44 @@ public class OrderDetail {
 		this.totalAmount = totalAmount;
 	}
 
-	@Override
-	public String toString() {
-		return "OrderDetail [orderDetailNum=" + orderDetailNum + ", userSeq=" + userSeq + ", payment=" + payment
-				+ ", orderTime=" + orderTime + ", status=" + status + ", totalAmount=" + totalAmount + "]";
+	public int getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(int zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public int getOrderPhone() {
+		return orderPhone;
+	}
+
+	public void setOrderPhone(int orderPhone) {
+		this.orderPhone = orderPhone;
+	}
+
+	public String getOrderAddress1() {
+		return orderAddress1;
+	}
+
+	public void setOrderAddress1(String orderAddress1) {
+		this.orderAddress1 = orderAddress1;
+	}
+
+	public String getOrderAddress2() {
+		return orderAddress2;
+	}
+
+	public void setOrderAddress2(String orderAddress2) {
+		this.orderAddress2 = orderAddress2;
+	}
+
+	public String getOrderRequest() {
+		return orderRequest;
+	}
+
+	public void setOrderRequest(String orderRequest) {
+		this.orderRequest = orderRequest;
 	}
 	
-	
-
 }
