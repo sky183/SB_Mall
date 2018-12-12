@@ -589,7 +589,10 @@
 				<!-- 가격 및 배송정보 -->
 				<div class="basicInfoBox">
 					<div class="priceInfoBox">
-						<h4 class="price">${boardPro[0].crPrice}</h4><h6 class="won">원</h6>
+						<h4 class="hidden price">${boardPro[0].crPrice}</h4>
+						<h4 class="priceF">
+						<fmt:formatNumber value="${boardPro[0].crPrice}" pattern="#,###"/></h4>
+						<h6 class="won">원</h6>
 					</div>
 					<div class="deliInfoBox">
 						<h4 class="deli">본 상품은</h4>

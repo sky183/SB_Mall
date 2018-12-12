@@ -140,6 +140,7 @@
 .proDetailBox{
 	margin-top: 50px;
 	clear: both;
+	text-align: center;
 }
 .detTitleBox{
 	padding-bottom: 5px;
@@ -154,10 +155,9 @@
     border-radius: 10px;
     margin-bottom: 20px;
 }
-.price{
+.priceF{
 	display: inline-block;
     font-size: 18pt;
-    margin-right: 4px;
 }
 .won{
 	display: inline-block;

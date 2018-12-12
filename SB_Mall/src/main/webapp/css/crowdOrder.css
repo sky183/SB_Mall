@@ -532,6 +532,7 @@
     font-size: 14pt;
     font-weight: 500;
     border-radius: 5px;
+    cursor: pointer;
 }
 .checked{
 	width: 100%;

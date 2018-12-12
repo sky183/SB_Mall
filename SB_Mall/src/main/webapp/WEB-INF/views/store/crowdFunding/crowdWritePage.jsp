@@ -530,10 +530,8 @@
 </script>
 </head>
 <body>
-<div id="crowdWriteBigBanner">
-	<div id="crowdWriteMidBanner">
-		<h3 class = rowdWriteBannerH3>CrowdWrite</h3>
-	</div>
+<div class="commonBannerBox">
+	<h3 class="rowdCommonBannerH3">얼리버드 상품등록</h3>
 </div>
 
 
@@ -543,7 +541,7 @@
 	<form method="post" enctype="multipart/form-data" id="crowdWriteForm">
 	
 		<div class="referenceView">
-			<h4>과연...</h4>
+			<h4></h4>
 		</div>
 		
 		<div id="BoardBigBox">
@@ -619,7 +617,7 @@
 				
 				<div class="goodsCommandBox">
 					<div class="referenceView2">
-						<h1>과연 2</h1>
+						<h1></h1>
 					</div>
 					<div class="goodsMidBox goodsList0">	<!-- goods Div -->
 						<div class="goodsListTitleBox1">

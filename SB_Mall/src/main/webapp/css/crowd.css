@@ -94,7 +94,7 @@
 
 .boardTitleBox{
 	display: inline-block;
-	max-width: 230px;
+    max-width: 310px;
 	
 }
 .boardTitle{
@@ -121,6 +121,7 @@
 }
 .titleBox{
 	margin-bottom: 5px;
+    height: 45px;
 }
 .targetBox{
 	

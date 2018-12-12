@@ -81,17 +81,20 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .referenceView{
-	float: right;
-    height: 310px;
+    float: right;
+    height: 305px;
     width: 430px;
     background-color: #f0f0f0;
+    margin-top: 5px;
+    border-radius: 10px;
 }
 .referenceView2{
     float: right;
     height: 150px;
     width: 430px;
     background-color: #f0f0f0;
-    margin-top: 40px;
+    margin-top: 43px;
+    border-radius: 10px;
 }
 .goodsCommandBox{
 	border-top: 2px solid #ffc828;
