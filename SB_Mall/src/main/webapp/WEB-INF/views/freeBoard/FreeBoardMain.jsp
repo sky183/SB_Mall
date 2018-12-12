@@ -14,16 +14,12 @@
 
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<<<<<<< HEAD
-	<div class="commonBannerBox">
-		<h3 class = rowdCommonBannerH3>자유게시판</h3>
-	</div>
-=======
+
 <!-- <h1>자유게시판</h1> -->
 <div class="commonBannerBox">
 	<h3 class="rowdCommonBannerH3">자유게시판</h3>
 </div>
->>>>>>> branch 'master' of https://github.com/sky183/SB_Mall.git
+
 
 	<div id="freeboard_wrap_1">
 		<div id="freeboard_wrap_2">
