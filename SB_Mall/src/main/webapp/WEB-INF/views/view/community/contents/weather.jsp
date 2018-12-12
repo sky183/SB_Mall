@@ -19,8 +19,8 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<div class="midBannerBox">
-		<h3 class="rowdWriteBannerH3">날씨정보</h3>
+	<div class="commonBannerBox">
+		<h3 class="rowdCommonBannerH3">날씨정보</h3>
 	</div>
 	
 <!-- 	전체를 감싸는 컨테이너	 -->
