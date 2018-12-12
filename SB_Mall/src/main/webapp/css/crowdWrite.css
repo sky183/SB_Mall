@@ -60,6 +60,7 @@ h1,h2,h3,h4,h5,h6{
 	vertical-align: middle;
 }
 
+
 .goodsListTitle{
 	display: inline-block;
 	margin-top: 0px;
@@ -124,12 +125,18 @@ h1,h2,h3,h4,h5,h6{
     text-align: center;
     cursor: pointer;
 }
+.addGoodsBtnBox:hover{
+	background-color: #ffc828;
+}
+.addGoodsBtnBox:hover .plusProBtnText{
+	color:white !important;
+}
 .plusProBtnText{
-    background-color: #f0f0f0;
     color: #505050;
     font-size: 16pt;
     border-radius: 5px;
-    line-height: 32px;
+    line-height: 36px;
+    font-weight: bold;
     display: inline-block;
     margin: 0px;
     padding: 0px;
@@ -144,6 +151,12 @@ h1,h2,h3,h4,h5,h6{
     text-align: center;
     cursor: pointer;
 	
+}
+.addBtnBox:hover{
+	background-color: #ffc828;
+}
+.addBtnBox:hover .plusBtnText{
+	color:white;
 }
 .optionMiniBox{
 	display: inline-block;
@@ -166,14 +179,14 @@ input{
 	-webkit-box-sizing: border-box;
 }
 .plusBtnText{
-    background-color: #f0f0f0;
     color: #505050;
     font-size: 16pt;
     border-radius: 5px;
     display: inline-block;
     margin: 0px;
     padding: 0px;
-    line-height: 20px;
+    line-height: 26px;
+    font-weight: bold;
 }
 .crTextBox{
 	display: inline-block !important;
@@ -199,7 +212,7 @@ input{
 }
 
 .prPhotoDel,.plusProBtnText,.plusBtnText,.optMinusCss{
-	color:#707070 !important;
+	/* color:#707070 !important; */
 }
 
 input::placeholder {
@@ -255,7 +268,6 @@ input::placeholder {
 }
 .optMinusCss{
 	padding-top: 7px;
-    background-color: #f0f0f0;
     font-size: 18pt;
     border-radius: 5px;
     margin-bottom: 0px;
@@ -272,15 +284,23 @@ input::placeholder {
     margin-left: 3px;
     cursor: pointer;
 }
+.crPhotoPlus:hover{
+	color:white !important;
+	background-color: #ffc828;
+}
+.crPhotoPlus:hover .prPhotoDel{
+	color:white !important;
+}
 .prPhotoDel{
 	text-decoration: none !important;
     /* padding: 9px; */
-    line-height: 40px;
+    line-height: 45px;
     font-size: 16pt;
     color: #505050;
     border-radius: 5px;
     margin-bottom: 0px;
     margin-top: 0px;
+    font-weight: bold;
     
 }
 .goodsTitleBox{
@@ -304,6 +324,12 @@ input::placeholder {
     margin-left: 98px;
     cursor: pointer;
 }  
+.optDelBtn2:hover{
+	background-color: #ffc828;
+}
+.optDelBtn2:hover .optMinusCss{
+	color:white !important;
+}
 .AddedGoodsDel{
 	display: inline-block;
     background-color: #f0f0f0;
