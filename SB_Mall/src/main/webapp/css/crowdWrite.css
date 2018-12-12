@@ -122,16 +122,17 @@ h1,h2,h3,h4,h5,h6{
     height: 36px;
     border-radius: 5px;
     text-align: center;
+    cursor: pointer;
 }
 .plusProBtnText{
-	background-color: #f0f0f0;
+    background-color: #f0f0f0;
     color: #505050;
     font-size: 16pt;
     border-radius: 5px;
+    line-height: 32px;
     display: inline-block;
     margin: 0px;
     padding: 0px;
-    padding-top: 4px;
 }
 .addBtnBox{
 	display: inline-block;
@@ -141,6 +142,7 @@ h1,h2,h3,h4,h5,h6{
     height: 26px;
     border-radius: 5px;
     text-align: center;
+    cursor: pointer;
 	
 }
 .optionMiniBox{
@@ -171,6 +173,7 @@ input{
     display: inline-block;
     margin: 0px;
     padding: 0px;
+    line-height: 20px;
 }
 .crTextBox{
 	display: inline-block !important;
@@ -267,10 +270,12 @@ input::placeholder {
     vertical-align: middle;
     border-radius: 5px;
     margin-left: 3px;
+    cursor: pointer;
 }
 .prPhotoDel{
 	text-decoration: none !important;
-    padding: 9px;
+    /* padding: 9px; */
+    line-height: 40px;
     font-size: 16pt;
     color: #505050;
     border-radius: 5px;
@@ -297,6 +302,7 @@ input::placeholder {
     margin-top: 3px;
     border-radius: 5px;
     margin-left: 98px;
+    cursor: pointer;
 }  
 .AddedGoodsDel{
 	display: inline-block;
