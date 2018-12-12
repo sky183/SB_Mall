@@ -289,8 +289,6 @@
 							+'		<input class="optionInput" type="number" name="optionList['+optionCount+'].crOptAmount" placeholder="옵션1 재고량" oninput="mathABS(this)">'
 							+'		</div>'
 							
-							+'		<br>'
-							
 							+'		<!-- option02 -->'
 							+'		<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션2 내용</h4></div>'
 							+'		<div class="crInputOptionBox">'
@@ -679,8 +677,6 @@
 									<div class="crInputOptionBox2">
 										<input class="optionInput" type="number" name="optionList[0].crOptAmount" placeholder="옵션1 재고량" oninput="mathABS(this)">
 									</div>
-								
-								<br>
 								
 								<!-- option02 -->
 								<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션2 내용</h4></div>
