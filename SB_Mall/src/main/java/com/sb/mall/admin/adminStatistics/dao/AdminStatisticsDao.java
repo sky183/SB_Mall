@@ -12,6 +12,12 @@ public interface AdminStatisticsDao {
 	
 	// 최근 15일 통계를 불러온다.
 	public List<Map<String, Object>> getFifthChart(Object nowDate);
+	
+	// 시간대별 통게를 불러온다..
+	public List<Map<String, Object>> getHourlyChart(Object nowDate);
+	
+	// 월별 통계를 불러온다.
+	public List<Map<String, Object>> getMonthlyChart(Object nowDate);
 
 
 }

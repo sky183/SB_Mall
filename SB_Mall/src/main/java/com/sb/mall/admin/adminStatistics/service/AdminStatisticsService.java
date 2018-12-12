@@ -49,6 +49,32 @@ public class AdminStatisticsService {
 		return fifthChart;
 	}
 	
+	//시간대별 조회
+	@Transactional
+	public List<Map<String, Object>> hourlyChart(Object nowDate) {
+		
+		dao = sqlSessionTemplate.getMapper(AdminStatisticsDao.class);
+		
+		List<Map<String, Object>> hourlyChart = new ArrayList<Map<String,Object>>();
+		
+		hourlyChart = dao.getHourlyChart(nowDate);
+		
+		return hourlyChart;
+	}
+	
+	//월별 조회
+	@Transactional
+	public List<Map<String, Object>> monthlyChart(Object nowDate) {
+		
+		dao = sqlSessionTemplate.getMapper(AdminStatisticsDao.class);
+		
+		List<Map<String, Object>> monthlyChart = new ArrayList<Map<String,Object>>();
+		
+		monthlyChart = dao.getMonthlyChart(nowDate);
+		
+		return monthlyChart;
+	}
+	
 	
 }
 	

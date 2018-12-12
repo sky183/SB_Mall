@@ -85,5 +85,37 @@ public class VisitStatController {
 		
 		return fifthVisit;
 	}
+	
+	// 최근 15일 방문 통계 차트
+	@RequestMapping(value = "/admin/adminStatistics/visitStat/loadVisitStatReport/hourlyVisit", method = RequestMethod.GET)
+	@ResponseBody
+	public String hourlyChart(@RequestParam String nowDate) throws JsonProcessingException {
+		
+		List<Map<String, Object>> hourlyChart = new ArrayList<Map<String,Object>>();
+		
+		hourlyChart = service.hourlyChart(nowDate);
+		
+		//JSON으로 변환하는 메서드 
+		ObjectMapper mapper = new ObjectMapper();
+		String hourlyVisit = mapper.writeValueAsString(hourlyChart);
+		
+		return hourlyVisit;
+	}
+	
+	// 최근 15일 방문 통계 차트
+	@RequestMapping(value = "/admin/adminStatistics/visitStat/loadVisitStatReport/monthlyVisit", method = RequestMethod.GET)
+	@ResponseBody
+	public String monthlyChart(@RequestParam String nowDate) throws JsonProcessingException {
+		
+		List<Map<String, Object>> monthlyChart = new ArrayList<Map<String,Object>>();
+		
+		monthlyChart = service.monthlyChart(nowDate);
+		
+		//JSON으로 변환하는 메서드 
+		ObjectMapper mapper = new ObjectMapper();
+		String monthlyVisit = mapper.writeValueAsString(monthlyChart);
+		
+		return monthlyVisit;
+	}
 
 }

@@ -777,10 +777,22 @@
 	function getLocation() {
 		if ("geolocation" in navigator) {
 			navigator.geolocation.getCurrentPosition(function(position) {
-				getWeather(position.coords.latitude, position.coords.longitude)
-						.done(dataHandler);
-			})
-		} else {
+				getWeather(position.coords.latitude, position.coords.longitude).done(dataHandler);
+			},
+			 function(failure) {
+		        $.getJSON('https://ipinfo.io/geo', function(response) { 
+		            var loc = response.loc.split(',');
+		            var coords = {
+		                latitude: loc[0],
+		                longitude: loc[1]};
+		            
+		            getWeather(coords.latitude, coords.longitude).done(dataHandler);
+		            
+		            });  
+		        }
+			
+			
+		)} else {
 			alert("geolocation not available");
 		}
 	}
