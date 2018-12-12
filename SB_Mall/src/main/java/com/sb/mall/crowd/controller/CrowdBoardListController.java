@@ -33,7 +33,11 @@ public class CrowdBoardListController {
 		System.out.println("List.Length : "+list.size());
 		
 		int paging = boardService.getBoardPageCnt(pageShowCnt);
-		int doAdd = list.size()%3;
+		int doAdd = 0;
+		if(list.size()%3!=0) {
+			doAdd = 3-list.size()%3;
+		}
+		
 		System.out.println("doAdd : "+doAdd);
 		modelAndView.addObject("boardList", list);
 		modelAndView.addObject("paging", paging);

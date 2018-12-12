@@ -157,10 +157,8 @@
 
 </head>
 <body>
-	<div id="crowdOrderBigBanner">
-		<div id="crowdOrderMidBanner">
-			<h3 class = rowdOrderBannerH3>CrowdOrder</h3>
-		</div>
+	<div class="commonBannerBox">
+		<h3 class = rowdCommonBannerH3>CrowdOrder</h3>
 	</div>
 <div class="orderSuperBox">
 	

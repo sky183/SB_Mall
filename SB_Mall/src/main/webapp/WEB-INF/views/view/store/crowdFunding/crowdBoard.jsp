@@ -12,7 +12,7 @@
 
 <script>
 	var pageShowCnt = 15;
-	
+	var viewCnt=0;
 	 $(document).ready(function(){
 		
 	 	function getCrowdBoard(nowPage){
@@ -55,6 +55,27 @@
 			getCrowdBoard(1);
 		})
 		
+		$('.chooseViewCntBox').on('click',function(){
+			if(viewCnt==0){
+				$('.selectViewCntBox').show();
+				viewCnt++;
+			}else{
+				$('.selectViewCntBox').hide();
+				viewCnt--;
+			}
+		})
+		
+		$('.selectViewCnt').on('click',function(){
+			$('.selectViewCntBox').hide();
+			viewCnt--;
+			
+			var Num = $(this).data('viewcnt');
+			$('.chooseViewCnt').html(Num+'개');
+			pageShowCnt = Num;
+			getCrowdBoard(1);
+			
+			
+		})
 		
 		
 		
@@ -67,8 +88,8 @@
 </script>
 </head>
 <body>
-<div class="midBannerBox">
-<h3 class="rowdWriteBannerH3">얼리버드</h3>
+<div class="commonBannerBox">
+<h3 class="rowdCommonBannerH3">얼리버드</h3>
 </div>
 
 <!-- 총 게시판 공간 -->
@@ -77,12 +98,26 @@
 	<!-- 검색조건, 검색 등 -->
 	<div class="userOptBox ib">
 		<div class="selectBox ib">
-			<select class="select">
-				<option>15개</option>
-				<option>30개</option>
-				<option>45개</option>
-			</select>
+			<div class="chooseViewCntBox">
+				<h3 class="chooseViewCnt">15개</h3>
+				<img class="optBtnViewCnt" src="<%=request.getContextPath()%>/img/optBtn2.png">
+			</div>
+			
+			<div class="selectViewCntBox">
+				<div class="selectViewCnt" data-viewcnt="15"><h3 class="viewCnt">15개</h3></div>
+				<div class="selectViewCnt" data-viewcnt="30"><h3 class="viewCnt">30개</h3></div>
+				<div class="selectViewCnt" data-viewcnt="45"><h3 class="viewCnt">45개</h3></div>
+			</div>
+		
 		</div>
+		
+		<c:if test="${memberInfo.gradeNum==4}">
+			<div class="addFundingBox ib">
+			<a class="addFundingProduct"
+					href="<%=request.getContextPath()%>/crowd/crowdWritePage">상품등록</a>
+			</div>
+		</c:if>
+		
 		<div class="searchBigBox">
 			<div class="searchBox ib">
 				<input class="search" type="text">

@@ -416,7 +416,6 @@
         
         $('.fundingBtn').on('click',function(){
         	var bagLength = $('.bag').size();
-        	alert("bagLength : "+bagLength);
     		var inputCnt=0;
         	
         	if(bagLength>0){
@@ -495,10 +494,8 @@
 
 </head>
 <body>
-	<div id="crowdWriteBigBanner">
-		<div id="crowdWriteMidBanner">
-			<h3 class = rowdWriteBannerH3>CrowdDetail</h3>
-		</div>
+	<div class="commonBannerBox">
+		<h3 class = rowdCommonBannerH3>CrowdDetail</h3>
 	</div>
 	<!-- 게시판 레이아웃 -->
 	<div class="BDBigLayout">
