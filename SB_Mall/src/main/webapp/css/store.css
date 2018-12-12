@@ -540,7 +540,7 @@ h1,h2,h3{
 	color: white;
 }
 .storeWriteBtn{
-	float:right;
+	display:inline-block;
 	margin-right: 30px;
 	color:black;
 }
@@ -716,6 +716,22 @@ h1,h2,h3{
 .goodsListItem:hover{
 	background-color: #f0f0f0 !important;
 }
+/* .goodsListItem button{
+	background-color: white;
+	border: 1px solid #c8c8c8;
+	padding: 5px;
+	margin-right: 10px;
+} */
+.boardEditorBtn{
+	color: white;
+	background-color: #505050;
+	border: none;
+	border-radius: 5px;
+	padding: 7px 10px;
+}
+#optionFormBox{
+	margin-bottom: 20px;
+}
 .goodsImgBox{
 	text-align: center;
 	width:150px;
@@ -726,6 +742,9 @@ h1,h2,h3{
 }
 .goodsNameBox{
 	width: 500px;
+}
+.goodsNameBox>select{
+	margin: 0 10px;
 }
 .goodsPriceBox{
 	width: 200px;

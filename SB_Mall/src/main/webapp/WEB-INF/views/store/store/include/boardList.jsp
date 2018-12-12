@@ -77,14 +77,15 @@
 					<option value="s.viewSeq desc">조회수</option>
 					<option value="s.writeDate desc">최신순</option>
 				</select>
+				<c:if test="${memberInfo.gradeNum>=3}">
+					<a class="storeBtn storeWriteBtn boardEditorBtn" 
+						href="<%=request.getContextPath()%>/store/write">상픔등록</a>
+				</c:if>
 		</div>
 		<div class="storeListView">
 			
 		</div>
-		<c:if test="${memberInfo.gradeNum>=3}">
-				<a class="storeBtn storeWriteBtn" 
-				href="<%=request.getContextPath()%>/store/write">글쓰기</a>
-			</c:if>
+		
 		<div class="storeListFooter">
 			
 		</div>

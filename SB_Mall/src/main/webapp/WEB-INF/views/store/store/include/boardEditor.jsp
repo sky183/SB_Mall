@@ -377,7 +377,7 @@
 					<span>제품사진</span>
 					<input type="file" id="goodsPhoto">
 				</form>
-				<button type="button" type="button" onclick="addGoods()">상품추가</button>
+				<button type="button" class="boardEditorBtn" type="button" onclick="addGoods()">상품추가</button>
 			</div>
 			<div id="goodsListBox">
 				
@@ -393,7 +393,8 @@
 					<input type="text" id="option2Name">
 					<span>옵션2추가금</span>
 					<input type="number" id="option2Price" value="0" min="0" oninput="mathABS(this)">
-					<button type="button" onclick="addOption()">옵션추가</button>
+					<br/>
+					<button type="button" class="boardEditorBtn" onclick="addOption()">옵션추가</button>
 				</form>
 			</div>
 		</div>

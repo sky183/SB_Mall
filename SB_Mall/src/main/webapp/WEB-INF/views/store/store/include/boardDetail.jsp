@@ -691,11 +691,11 @@ var removeGoodsList = function(e) {
 		<c:if test="${memberInfo.gradeNum>=3}">
 			<form method="get" action="<%=request.getContextPath()%>/store/ModifyBoard" id="storeModifyForm">
 				<input type="hidden" value="${salSeq}" name="salSeq">
-				<input type="button" class="storeBtn storeAdminBtn storeModifyBtn" value="글수정">
+				<input type="button" class="storeBtn storeAdminBtn storeModifyBtn boardEditorBtn" value="글수정">
 			</form>
 			<form method="post" action="<%=request.getContextPath()%>/store/deleteBoard" id="storeDeleteForm">
 				<input type="hidden" value="${salSeq}" name="salSeq">
-				<input type="button" class="storeBtn storeAdminBtn storeDeleteBtn" value="글삭제">
+				<input type="button" class="storeBtn storeAdminBtn storeDeleteBtn boardEditorBtn" value="글삭제">
 			</form>
 		</c:if>
 		

@@ -155,11 +155,16 @@
     <div id="replyModifyBigBox">
 	    <div id="replyModifyForm">
 	    	<form id="replyModifyFormBox">
-	    		<h4 id="replyModifyUserId"></h4><h6 id="replyTime"></h6>
+	    		<div id="replyModifyInfoBox">
+	    			<h4 id="replyModifyUserId"></h4><h6 id="replyTime"></h6>
+	    			<br/>
+	    			<a id="replyModifyCancel" class="replyModifyBtn">취소</a>
+	    			<a id="replyModifyConfirm" class="replyModifyBtn">수정</a>
+	    		</div>
+	    		
 	    		<input type="hidden" name="replySeq" id="replyModifyReplySeq">
 	    		<textarea class="replyModifyText"  id="replyModify" name="reply"  style="resize: none;" placeholder="댓글을 작성해주세요."></textarea>
-	    		<a id="replyModifyCancel">취소</a>
-	    		<a id="replyModifyConfirm">수정</a>
+	    		
 	    	</form>
 	    </div>
     </div>
