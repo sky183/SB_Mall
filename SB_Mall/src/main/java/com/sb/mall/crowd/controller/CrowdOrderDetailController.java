@@ -35,7 +35,7 @@ public class CrowdOrderDetailController {
 		int check = orderService.insertOrder(orderCommand.getOrderList(), orderCommand.getOrderDetail());
 		
 		if(check==1) {
-			modelAndView.setViewName("store/crowdFunding/crowdSuccess");
+			modelAndView.setViewName("view/store/crowdFunding/crowdBoard");
 		}
 		
 		return modelAndView;

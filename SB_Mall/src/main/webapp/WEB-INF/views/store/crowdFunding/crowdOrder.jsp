@@ -100,7 +100,7 @@
 					bagCnt++;
 						
 				})
-				
+				alert("결제 예약이 완료되었습니다.");
 				$('#orderDetailForm').submit();
 				
 				

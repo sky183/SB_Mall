@@ -14,10 +14,9 @@
 
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<h1>자유게시판</h1>
-<div class="midBannerBox">
-	<h3 class="rowdWriteBannerH3">자유게시판</h3>
-</div>
+	<div class="commonBannerBox">
+		<h3 class = rowdCommonBannerH3>자유게시판</h3>
+	</div>
 
 	<div id="freeboard_wrap_1">
 		<div id="freeboard_wrap_2">
@@ -32,8 +31,6 @@
 				</span>
 			</div><!-- End of div freeboard_header-->
 			
-				<hr>
-			  
 			<!-- Start of Content -->
 			<div id="freeboard_Content">
 				 
@@ -47,8 +44,12 @@
 					<!--하단 : 게시글 제목, 조회수, 아이디  -->
 					<div class="content_down">
 						<div class="boardTitleBox"><A class="boardTitleFont" href="<%=request.getContextPath()%>/freeBoard/select?boardSeq=${freeBoard.boardSeq}">${freeBoard.boardTitle}</A></div>
-						<div class="viewSeqBox">${freeBoard.viewSeq}</div>
-						<div class="writerNameBox">${freeBoard.writerName}</div> 
+						
+						<div class="content_down_rightBox">
+							<img class="viewSeqImg" src="<%=request.getContextPath()%>/img/viewSeq01.png">
+							<div class="viewSeqBox">${freeBoard.viewSeq}</div>
+							<div class="writerNameBox">${freeBoard.writerName}</div> 
+						</div>
 					</div><!-- End of div down -->
 				</div>
 <!-- 				<hr class="content_hr"> -->
