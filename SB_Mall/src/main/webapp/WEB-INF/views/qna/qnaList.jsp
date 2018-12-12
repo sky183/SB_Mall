@@ -36,21 +36,48 @@
 </script>
 <style>
 #wrapper {
-	width : 1200px;
+	width : 1000px;
 	margin: 30px auto 50px auto;
 }
 
 table .th-lg, table td {
-    min-width: 5rem;
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
+   
+}
+.view{
+	background-color: #ffc828 !important;
+}
+.th-lg{
+	font-weight: bold;
+	color:#282828;
+}
+.th-lg,table td{
+	padding: 16px 16px 16px 0px !important;
+    min-width: 50px !important;
+}
+.qnaAnsBox{
+	text-align: center;
+}
+.lastTh{
+	text-align: center;
+}
+.titleTh{
+	min-width: 450px !important;	
+}
+
+.topTableBox{
+	border-bottom:3px solid #ffc828;
+	z-index:9999;
+
 }
 </style>
 
 </head>
 <body>
-	<div id="wrapper"">
-	<div class="view view-cascade gradient-card-header special-color narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center" style="margin: auto 0 auto 0 !important;">
+<div class="commonBannerBox">
+	<h3 class="rowdCommonBannerH3">질문게시판</h3>
+</div>
+	<div id="wrapper">
+	<%-- <div class="view view-cascade gradient-card-header special-color narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center" style="margin: auto 0 auto 0 !important;">
 
         <div>
         </div>
@@ -59,25 +86,25 @@ table .th-lg, table td {
 
         <div>
         <a href="" data-toggle="modal" data-target="#modalContactForm"> <!-- <%=request.getContextPath()%>/qna/qnaWrite -->
-            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+            <!-- <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                 <i class="fa fa-columns mt-0">문의하기</i>
-            </button>
+            </button> -->
             </a>
         </div>
 
-    </div>
+    </div> --%>
 			<div class="table-wrapper">
 		
 	<table class="table table-hover mb-0">
 
-			<thead>
-			<tr>
+			<thead class="topTableBox">
+			<tr class="topTableBox">
 			    <th class="th-lg">답변 상태</th>
 			    <th class="th-lg">글 번호</th>
-			    <th class="th-lg">제목</th>
+			    <th class="th-lg titleTh">제목</th>
 			    <th class="th-lg">작성자</th>
 			    <th class="th-lg">날짜</th>
-			    <th class="th-lg">답글달기</th>
+			    <th class="th-lg lastTh">답글달기</th>
 			</tr>
 			</thead>
 		
@@ -99,7 +126,7 @@ table .th-lg, table td {
 					<td>${ qnaBoard.userSeq }</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 							value="${ qnaBoard.qwriteDate }" /></td>
-					<td><a href="" class="qnaAns" name="${ qnaBoard.qnaSeq}" data-toggle="modal" data-target="#modalAnsForm">답글쓰기</a></td>
+					<td class="qnaAnsBox"><a href="" class="qnaAns" name="${ qnaBoard.qnaSeq}" data-toggle="modal" data-target="#modalAnsForm">답글쓰기</a></td>
 				</tr>
 				<tr>
 					<td colspan="6" style="text-align: center;" class="openText" name="${ qnaBoard.qnaSeq}">${ qnaBoard.qtext }</td>

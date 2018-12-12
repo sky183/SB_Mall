@@ -58,7 +58,7 @@
 					<a class="headerNaviUnit"
 						href="<%=request.getContextPath()%>/store">스토어</a>
 					<a class="headerNaviUnit"
-						href="<%=request.getContextPath()%>/crowd/crowdBoard">크라우드펀딩</a>
+						href="<%=request.getContextPath()%>/crowd/crowdBoard">얼리버드</a>
 					<%-- <a class="headerNaviUnit"
 						href="<%=request.getContextPath()%>/crowd/crowdWritePage">crowdWritePage</a> --%>
 						
@@ -67,7 +67,7 @@
 						<a class="headerDrop">커뮤니티</a>
 						
 						<div class="headerSubDrop">
-							<a class="subDropUnit" href="<%=request.getContextPath()%>/qna">QnA</a><br>
+							<a class="subDropUnit" href="<%=request.getContextPath()%>/qna">질문게시판</a><br>
 							<a class="subDropUnit" href="<%=request.getContextPath()%>/freeBoard">자유게시판</a>
 						</div>
 						

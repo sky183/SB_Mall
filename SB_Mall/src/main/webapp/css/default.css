@@ -29,6 +29,7 @@ a {
     margin-bottom: 0px;
     color: white;
     font-size: 28pt;
+    font-weight: bold;
 }
 #headerBanner{
 	background-image: url(../img/headerBanner45.png);

@@ -27,10 +27,10 @@
 </head>
 <body>
 
-<div class="midBannerBox">
-	<h3 class="rowdWriteBannerH3">마이페이지</h3>
+<div class="commonBannerBox">
+	<h3 class="rowdCommonBannerH3">마이페이지</h3>
 </div>
-
+<%-- 
 <div id="freeboard_wrap_1">
 <div id="freeboard_wrap_2">
 
@@ -99,7 +99,7 @@
 	<br>
 	<br>
 	<br>
-	<br>
+	<br> --%>
 	
 <div id="wrapper">
 	<div style="margin: 30px auto 20px auto; width: 600px; margin-bottom: 60px;">

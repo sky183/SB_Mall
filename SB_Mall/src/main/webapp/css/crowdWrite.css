@@ -145,7 +145,10 @@ h1,h2,h3,h4,h5,h6{
 }
 .optionMiniBox{
 	display: inline-block;
-	vertical-align: top;
+    vertical-align: top;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .optionTotalBox{
 	display: inline-block;
@@ -224,12 +227,12 @@ input::placeholder {
 }
 .crInputOptionBox2{
 	display: inline-block;
-	border: 2px solid #f0f0f0;
-	padding: 10px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	width: 180px;
-	border-radius: 5px;
+    border: 2px solid #f0f0f0;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 150px;
+    border-radius: 5px;
 }
 .plusBtn{
 	line-height: inherit !important;
@@ -286,13 +289,14 @@ input::placeholder {
 .optDelBtn2{
 	display: inline-block;
     float: right;
-    width: 180px;
+    width: 150px;
     height: 43px;
     background-color: #f0f0f0;
     text-align: center;
-    margin-right: 3px;
+    margin-right: 4px;
     margin-top: 3px;
     border-radius: 5px;
+    margin-left: 100px;
 }  
 .AddedGoodsDel{
 	display: inline-block;
