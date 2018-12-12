@@ -4,13 +4,25 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.sb.mall.admin.adminStatistics.dao.AdminStatisticsDao">
-	
-	
+
+
 	<!-- loadVisitStatReport.jsp 에서 사용할 쿼리 -->
 	<!-- 맵 객체를 생성해준다. column에서 반환된 값을 property에 지정한 key로 생성하여 javaType에 지정된 
-	값으로 할당한다. -->
+		값으로 할당한다. -->
 	<resultMap id="getFifthChart" type="java.util.Map">
 		<result column="visitDate" property="visitDate"
+			javaType="java.lang.String" />
+		<result column="visitCount" property="visitCount"
+			javaType="java.lang.Integer" />
+	</resultMap>
+	<resultMap id="getHourlyChart" type="java.util.Map">
+		<result column="visitTime" property="visitTime"
+			javaType="java.lang.String" />
+		<result column="visitCount" property="visitCount"
+			javaType="java.lang.Integer" />
+	</resultMap>
+	<resultMap id="getMonthlyChart" type="java.util.Map">
+		<result column="visitMonth" property="visitMonth"
 			javaType="java.lang.String" />
 		<result column="visitCount" property="visitCount"
 			javaType="java.lang.Integer" />
@@ -54,15 +66,43 @@
 		where year(visitDate) = year(#{param1})) R;
 	</select>
 
-<!-- // 최근 15일 통계를 불러온다. -->
+	<!-- // 최근 15일 통계를 불러온다. -->
 	<select id="getFifthChart" resultMap="getFifthChart">
 		select
 		date(visitDate) visitDate,
 		sum(visitCount) visitCount
-		from VisitGuest
-		where date(visitDate) <![CDATA[<=]]> date(#{param1})
-		and visitDate <![CDATA[>=]]> date(#{param1} - interval 15 day)
+		from
+		VisitGuest
+		where date(visitDate) <![CDATA[<=]]>
+		date(#{param1})
+		and visitDate <![CDATA[>=]]>
+		date(#{param1} - interval 15 day)
 		group by date(visitDate);
+	</select>
+
+	<!-- // 시간대별 통계를 불러온다. -->
+	<select id="getHourlyChart" resultMap="getHourlyChart">
+		select
+		time_format(visitDate, '%H시') visitTime,
+		sum(visitCount) visitCount
+		from VisitGuest
+		where date(visitDate) = date(#{param1})
+		group by hour(visitDate);
+
+	</select>
+
+	<!-- // 이번년도 통계를 불러온다. -->
+	<select id="getMonthlyChart" resultMap="getMonthlyChart">
+	SELECT
+	a.`monthName` visitMonth,
+	ifnull(SUM(visitCount), 0) visitCount
+	FROM Calendar a
+	LEFT JOIN
+	VisitGuest b ON a.`month` = MONTH(b.visitDate)
+	and
+	YEAR(visitDate) = YEAR(#{param1})
+	GROUP BY a.`month`
+	;
 	</select>
 
 

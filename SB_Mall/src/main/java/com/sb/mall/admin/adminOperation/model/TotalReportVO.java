@@ -88,8 +88,8 @@ public class TotalReportVO {
 		this.tce = this.monthCost + this.laborCost + this.supplie;
 		this.operatingCashflow = (int) (this.monthAmount - (this.rent + this.tce));
 		if (this.monthAmount > 0) {
-			this.tci = (int) (this.tce / this.monthAmount * 100);
-			this.tnc = (int) (this.rent / this.monthAmount * 100);
+			this.tci = (int) ((float)this.tce / this.monthAmount * 100);
+			this.tnc = (int) ((float)this.rent / this.monthAmount * 100);
 			this.laborCostRate = (int) ((float)this.laborCost / this.monthAmount * 100);
 			this.utilityRate = (int) ((float)this.utility / this.monthAmount * 100);
 			this.supplieRate = (int) ((float)this.supplie / this.monthAmount * 100);

@@ -86,8 +86,8 @@ public class VisitStatController {
 		return fifthVisit;
 	}
 	
-	// 최근 15일 방문 통계 차트
-	@RequestMapping(value = "/admin/adminStatistics/visitStat/loadVisitStatReport/hourlyVisit", method = RequestMethod.GET)
+	// 시간대별 방문 통계 차트
+	@RequestMapping(value = "/admin/adminStatistics/visitStat/loadVisitStatReport/hourlyChart", method = RequestMethod.GET)
 	@ResponseBody
 	public String hourlyChart(@RequestParam String nowDate) throws JsonProcessingException {
 		
@@ -102,8 +102,8 @@ public class VisitStatController {
 		return hourlyVisit;
 	}
 	
-	// 최근 15일 방문 통계 차트
-	@RequestMapping(value = "/admin/adminStatistics/visitStat/loadVisitStatReport/monthlyVisit", method = RequestMethod.GET)
+	// 시간대별 방문 통계 차트
+	@RequestMapping(value = "/admin/adminStatistics/visitStat/loadVisitStatReport/monthlyChart", method = RequestMethod.GET)
 	@ResponseBody
 	public String monthlyChart(@RequestParam String nowDate) throws JsonProcessingException {
 		

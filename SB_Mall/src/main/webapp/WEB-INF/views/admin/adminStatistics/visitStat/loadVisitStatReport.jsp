@@ -58,12 +58,13 @@
 </div>
 
 <script type="text/javascript">
+
 //component에 선택된 아이템을 색깔 변경해주는 것
 function removeUactive(id){
 	//클래스 제거
 	$('.umenu').removeClass('uactive');
 	//현재 페이지 메뉴에 css를 먹인다.
-	$(id).addClass('uactive');
+	$('#' + id).addClass('uactive');
 }
 
 function fifthChart(){
@@ -126,19 +127,134 @@ function fifthChart(){
 }
 
 function hourlyChart(){
+	//페이지의 날짜
+	var newDate = $( ".datepicker" ).val();
 	
+	//차트에 들어갈 데이터 - 컨트롤러에서 JSON 문자열로 받아서 파싱해서 자바스크립트 객체로 변환
+	var hourlyVisit;
+	
+	//ajax로 차트에 사용할 데이터를 가져온다.
+	$.ajax({
+		url : '<%=request.getContextPath()%>/admin/adminStatistics/visitStat/loadVisitStatReport/hourlyChart?nowDate=' + newDate,
+		error : function(error) {
+	        alert("Error!");
+	    },
+		success : function(data) {
+			hourlyVisit = JSON.parse(data);
+			
+			//차트를 그린다.
+			var chart = jui.include("chart.builder");
+			
+			chart("#chartwrap", {
+			    axis : {
+			        x : {
+			            type : "fullblock",
+			            domain : "visitTime",
+			            line : true,
+			            textRotate : -30
+			        },
+			        y : {
+			            type : "range",
+			            domain : "visitCount",
+			            step : 10
+			        },
+			        data : hourlyVisit
+			    },
+			    brush : [{
+			        type : "line",
+			        animate : true
+			    }, {
+			        type : "scatter",
+			        hide : true
+			    }],
+			    widget : [
+			    	{ type : "title", text : "시간대별 접속 통계" },
+// 			    	{ type : "legend" },
+			        { type : "tooltip", brush : 1 }
+			    ]
+			});
+		}
+	});
 }
 function monthlyChart(){
+	//페이지의 날짜
+	var newDate = $( ".datepicker" ).val();
 	
+	//차트에 들어갈 데이터 - 컨트롤러에서 JSON 문자열로 받아서 파싱해서 자바스크립트 객체로 변환
+	var mohthlyVisit;
+	
+	//ajax로 차트에 사용할 데이터를 가져온다.
+	$.ajax({
+		url : '<%=request.getContextPath()%>/admin/adminStatistics/visitStat/loadVisitStatReport/monthlyChart?nowDate=' + newDate,
+		error : function(error) {
+	        alert("Error!");
+	    },
+		success : function(data) {
+			mohthlyVisit = JSON.parse(data);
+			
+			//차트를 그린다.
+			var chart = jui.include("chart.builder");
+			
+			chart("#chartwrap", {
+			    axis : {
+			        x : {
+			            type : "fullblock",
+			            domain : "visitMonth",
+			            line : true,
+			            textRotate : -30
+			        },
+			        y : {
+			            type : "range",
+			            domain : "visitCount",
+			            step : 10
+			        },
+			        data : mohthlyVisit
+			    },
+			    brush : [{
+			        type : "line",
+			        animate : true
+			    }, {
+			        type : "scatter",
+			        hide : true
+			    }],
+			    widget : [
+			    	{ type : "title", text : "월별 접속 통계" },
+// 			    	{ type : "legend" },
+			        { type : "tooltip", brush : 1 }
+			    ]
+			});
+		}
+	});
 }
 
 $(document).ready(function(){
+	// 	chartSelect가 false면 기본 차트를 불러온다
+	if(!chartSelect){
+		chartSelect = true;
+		fifthChart();
+	} else {
+		removeUactive(thisId);
+		$('#chartwrap').html('');
+		switch(thisId){
+		case 'fifthVisit' : fifthChart();
+			break;
+		case 'hourlyVisit' : hourlyChart();
+			break;	
+		case 'monthlyVisit' : monthlyChart();
+			break;
+		}
+	}
 	
-// 	차트를 불러온다
-	fifthChart();
 	
 	$('#fifthVisit, #hourlyVisit, #monthlyVisit').on('click', function () {
-		switch($(this).attr('id')){
+		
+		thisId = $(this).attr('id');
+		
+		removeUactive(thisId);
+		
+		$('#chartwrap').html('');
+		
+		switch(thisId){
 		case 'fifthVisit' : fifthChart()
 			break;
 		case 'hourlyVisit' : hourlyChart()
@@ -148,6 +264,6 @@ $(document).ready(function(){
 		}
 	});
 	
-})
+});
 </script>
 <%@ include file="/WEB-INF/views/admin/common/adminBottom.jsp"%>

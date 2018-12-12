@@ -7,7 +7,7 @@
 	width: 20px;
 	height: 21px;
 	background-size : 19px;
-	background-image: url("/mall/img/calendar.png");
+	background-image: url("<%=request.getContextPath()%>/img/calendar.png");
 }
 
 </style>
@@ -36,6 +36,10 @@
 <!-- mainContent의 끝 -->
 </div>
 <script type="text/javascript">
+
+// 	현재 선택되어있는 차트 종류가 있는지 확인하는 변수(없으면 fifthChart로 불러온다.)
+	var chartSelect = false;
+	var thisId = 'fifthVisit';
 
 	$(document).ready(function(){
 		
