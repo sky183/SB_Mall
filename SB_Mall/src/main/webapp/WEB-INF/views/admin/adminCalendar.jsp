@@ -53,13 +53,13 @@ popupY= (window.screen.height /2) - (600 / 2)
   	    	{
   	              googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com"
   	            , className : "koHolidays"
-  	            , color : "#FF0000"
-  	            , textColor : "#FFFFFF"
+  	            , color : "#E67860"
+  	            , textColor : "#ffffff"
   	        },{
                  		 googleCalendarId : "cyworld183@gmail.com"
                       , className : "myCalendar"
-                      , color : "#0000FF"
-                      , textColor : "#FFFF00"
+                      , color : "#787878"
+                      , textColor : "#ffffff"
   	        }
 
         ],
@@ -99,6 +99,12 @@ popupY= (window.screen.height /2) - (600 / 2)
   #calendar {
     max-width: 900px;
     margin: 0 auto;
+  }
+  #calendar table td{
+  	border : 1px solid #c8c8c8;
+  }
+  #calendar table .fc-content{
+  	text-align: center;
   }
 
 </style>

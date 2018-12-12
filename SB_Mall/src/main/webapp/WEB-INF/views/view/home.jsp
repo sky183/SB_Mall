@@ -27,6 +27,6 @@
 
 
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-
+<%@include file="/WEB-INF/views/common/userChat.jsp" %>
 </body>
 </html>

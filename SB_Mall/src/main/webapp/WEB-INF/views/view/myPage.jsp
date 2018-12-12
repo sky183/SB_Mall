@@ -21,29 +21,96 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
-<style>
-	.form-control {
-		text-align: center;
-	}
-	
-	#wrapper {
-	width : 1200px;
-	margin: 100px auto 50px auto;
-	
-}
-</style>
+<!-- joinForm.css -->
+<link rel="stylesheet"	href="<%=request.getContextPath()%>/css/myPage.css">
+<link rel="stylesheet"	href="<%=request.getContextPath()%>/css/crowd.css">
 </head>
 <body>
+
+<div class="midBannerBox">
+	<h3 class="rowdWriteBannerH3">마이페이지</h3>
+</div>
+
+<div id="freeboard_wrap_1">
+<div id="freeboard_wrap_2">
+
+
+	<!-- Start of Header : memberInfo.userId-->
+	<div id="freeboard_Header">
+		<div id="fb_Header_UserID">${memberInfo.userId}</div>
+	</div><!-- End of div freeboard_header-->
+	
+	
+	<!-- Start of Content : ${memberInfo.userName},${memberInfo.gradeNum == 0} ,${memberInfo.point},${memberInfo.userAmount}-->
+	<div id="freeboard_Content">
+			<div id="fb_Content_Name" class="fbContent">
+				<div class="content_Font1">회원이름</div>
+				<div class="content_Font2">${memberInfo.userName}</div>
+			</div>
+			
+			<div id="fb_Content_Grade" class="fbContent">
+				<div class="content_Font1">회원등급</div>
+				<div class="content_Font2">
+				<c:choose>
+				    <c:when test="${memberInfo.gradeNum == 0}">
+				         <input type="text" value="불가촉천민" readonly>
+				    </c:when>
+				    <c:when test="${memberInfo.gradeNum == 1}">
+				        평민
+				    </c:when>
+				    <c:when test="${memberInfo.gradeNum == 2}">
+				   		귀족
+				    </c:when>
+				    <c:when test="${memberInfo.gradeNum == 3}">
+				   		 다이아
+				    </c:when>
+				    <c:when test="${memberInfo.gradeNum == 4}">
+				   		그랜드마스터
+				    </c:when>    
+				</c:choose>
+				</div>
+			</div>
+			
+			<div id="fb_Content_Point" class="fbContent">
+				<div class="content_Font1">마일리지</div>
+				<div class="content_Font2">${memberInfo.point} 원</div>
+			</div>
+			
+			<div id="fb_Content_Amount" class="fbContent">
+				<div class="content_Font1">총 구매금액</div>
+				<div class="content_Font2">${memberInfo.userAmount} 원</div>
+			</div>
+	</div><!-- End of div freeboard_Content-->
+	
+	
+	<!-- Start of footer -->
+	<div id="freeboard_Footer">
+	</div><!-- End of div freeboard_footer-->
+</div>
+</div>
+
+
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
 <div id="wrapper">
 	<div style="margin: 30px auto 20px auto; width: 600px; margin-bottom: 60px;">
 	
-    <p class="h4 mb-4" style="text-align: center;">MyPage</p>
+	<!-- MyPage ID 출력 -->
+    <p class="h4 mb-4" style="text-align: center;">${memberInfo.userId}</p>
 
-    <small class="form-text text-muted mb-1">
+   <%--  <small class="form-text text-muted mb-1">
      	  회원 아이디
     </small>
-    <input type="email" id="defaultRegisterFormEmail" class="form-control mb-2" value="${memberInfo.userId}" readonly>
-
+    <input type="email" id="defaultRegisterFormEmail" class="form-control mb-2" value="${memberInfo.userId}" readonly> --%>
     <small class="form-text text-muted mb-1">
      	  회원이름
     </small>

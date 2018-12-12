@@ -20,14 +20,20 @@
 	margin: 0 auto;
 	text-align: center;
 }
-.rowdOrderBannerH3{
-	padding-bottom:30px;
-	padding-top:70px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	color:white;
-	font-size: 28pt;
+/* 
+.commonBannerBox{
+	text-align: center;
+	    width: 100%;
+    background-color: #3c3c3c;
 }
+.rowdCommonBannerH3{
+    padding-bottom: 30px;
+    padding-top: 100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: white;
+    font-size: 28pt;
+} */
 
 .ib{
 	display: inline-block;

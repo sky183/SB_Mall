@@ -1,5 +1,8 @@
 package com.sb.mall.admin.adminStatistics.service;
 
+import java.util.Map;
+
+import org.apache.commons.collections4.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,7 +21,7 @@ public class AdminStatisticsService {
 	private AdminStatisticsDao dao;
 	
 	
-	//loadBottomReport.jsp에서 사용할 데이터 수집
+	//loadVisitStatReport.jsp에서 사용할 데이터 수집
 	@Transactional
 	public VisitStatVO getVisitStatVO(Object nowDate) {
 		
@@ -29,9 +32,20 @@ public class AdminStatisticsService {
 		//dao의 메서드 실행하여
 		visitStatVO = dao.getVisitStatVO(nowDate);
 
-
-
 		return visitStatVO;
+	}
+	
+	//최근 15일 방문수 조회
+	@Transactional
+	public Map<String, Long> fifthChart(Object nowDate) {
+		
+		dao = sqlSessionTemplate.getMapper(AdminStatisticsDao.class);
+		
+		Map<String, Long> fifthChart = new HashedMap<>();
+		
+		fifthChart = dao.getFifthChart(nowDate);
+		
+		return fifthChart;
 	}
 	
 	

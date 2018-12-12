@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminStatisticsController {
 	
-	//총 영업 현황 불러오기
+	//통계 페이지 불러오기
 	@RequestMapping(value="/admin/adminStatistics", method=RequestMethod.GET)
 	public ModelAndView main() {
 		
@@ -22,7 +22,7 @@ public class AdminStatisticsController {
 		return modelAndView;
 	}
 	
-	//영업관리 페이지 컨트롤러 - totalReport salReport dailySal monthlySal weeklySal hourSal budget
+	//통계 각 페이지 컨트롤러
 	@RequestMapping(value="/admin/adminStatistics/{page}", method=RequestMethod.GET)
 	public ModelAndView operationPage(@PathVariable String page) {
 		

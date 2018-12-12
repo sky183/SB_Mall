@@ -17,7 +17,19 @@ button{
 a {
 	text-decoration: none !important;
 }
-
+.commonBannerBox{
+	text-align: center;
+	width: 100%;
+    background-color: #3c3c3c;
+}
+.rowdCommonBannerH3{
+    padding-bottom: 30px;
+    padding-top: 100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: white;
+    font-size: 28pt;
+}
 #headerBanner{
 	background-image: url(../img/headerBanner45.png);
 	width:100%;
@@ -31,10 +43,10 @@ a {
 /* header */
 #headerFullWidth{
 	width:100%;
-	background-color:rgba(0,0,0,0.4);
+	background-color:rgba(0,0,0,0.7);
 	top:0px;
 	position: fixed;
-	index:9999;
+	z-index:9999;
 }
 
 #headerLayout{
@@ -45,8 +57,9 @@ a {
 
 
 #headerLogo{
-	width:35px;
-	padding:4px 0;
+	width: 35px;
+    position: fixed;
+    top: 15px;
 }
 .fontOpenSans{
 	font-family: 'Open Sans', sans-serif;
@@ -107,8 +120,102 @@ a {
 .naviDrop_Atag:hover{
 	color:#ffc828 !important;
 }
-
-
+#headerNavi{
+	height: 45px;
+}
+.memberNabiBox{
+	
+}
+.memberNaviLayout{
+    width: 1000px;
+    height: 25px;
+    margin: 0 auto;
+}
+.memberNavi{
+    float: right;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+.memberNaviText{
+    display: inline-block;
+    color: #a0a0a0;
+    font-weight: 400;
+    font-size: 10pt !important;
+    font-family: sans-serif !important;
+    margin-left: 30px;
+}
+.memberNaviText:hover{
+	color:#ffc828;
+}
+.memberInfoDrop{
+  	display: inline-block;
+    color: #a0a0a0 !important;
+    font-weight: 400;
+    font-size: 10pt !important;
+    font-family: sans-serif !important;
+    margin-left: 30px;
+}
+.memberInfoSubBox{
+    position: absolute;
+    z-index: 99;
+}
+.headerNaviUnit{
+    display: inline-block;
+    color: white;
+    vertical-align: middle;
+    line-height: 45px;
+    font-family: sans-serif !important;
+    font-size: 12pt !important;
+}
+.headerNaviUnit:hover{
+	color:#ffc828;
+}
+.headerDropBox{
+	display: inline-block;
+    vertical-align: middle;
+}
+.headerDrop{
+    height: 45px;
+    background: inherit;
+    border: none;
+    cursor: pointer;
+    color: white !important;
+    line-height: 45px;
+    font-size: 12pt;
+    font-family: sans-serif !important;
+}
+.headerDropBox:hover .headerDrop{
+	color:#ffc828 !important;
+}
+.headerDropBox:hover .headerSubDrop{
+	display: block;
+}
+.subDropUnit:hover{
+	color:#ffc828;
+}
+.headerSubDrop{
+	display: none;
+    z-index: 9999;
+    position: absolute;
+    padding: 10px 20px;
+    width: 150px;
+    background-color: white;
+    box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.1);
+}
+.subDropUnit{
+	color: #505050;
+    /* margin: 20px; */
+    line-height: 35px;
+}
+.headerRightMenuBox{
+    float: right;
+    width: 450px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+}
 
 
 

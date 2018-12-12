@@ -160,6 +160,8 @@ var thisDate;
 function getDate(object){
 	return new Date(object).format("yyyy.MM.dd");
 }
+// 현재 시간 구하기
+var nowTime = new Date().format('hh:mm');
 //오늘 구하기
 var nowString =  now.format("yyyy.MM.dd");
 //특정일 구하기
