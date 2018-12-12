@@ -92,11 +92,11 @@
 						});
 							loginBtn.click(function() {
 								Kakao.Auth.login({
-									persistAccessToken : true,
-									persistRefreshToken : true,
+								persistAccessToken : true,
+								persistRefreshToken : true,
 									success : function(authObj) {
-										getKakaotalkUserProfile();
-										createKakaotalkLogout();
+									getKakaotalkUserProfile();
+									createKakaotalkLogout();
 									},
 									fail : function(err) {
 										console.log(err);
@@ -133,64 +133,58 @@
 </script>
 
 <body class="text-center">
-
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
-
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<form method="post" id="loginForm" class="form-signin">
+
 		<div>
 			<img class="mb-4"
 				src="<%=request.getContextPath()%>/img/SBCompanyLogo.png" alt=""
 				width="72" height="72"> <br>
 			<h1 class="loginMainFont"
-				style="color: #282828; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: bolder; display: inline-block;">SB
-				Company</h1>
+				style="color: #282828; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: bolder; display: inline-block;">
+				SBCompany
+			</h1>
 		</div>
-		<br>
 
-		<!-- <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> -->
-		<label for="login_id" class="sr-only">ID</label> <input type="text"
-			name="userId" id="login_id" class="form-control" placeholder="아이디"
-			required auotofocus> <br> <label for="inputPassword"
-			class="sr-only">Password</label> <input type="password" name="userPw"
-			id="userPw" class="form-control" placeholder="비밀번호" required>
+		<label for="login_id" class="sr-only">ID</label> 
+		<input type="text" name="userId" id="login_id" class="form-control" placeholder="아이디"required auotofocus> 
+	   
+	    <label for="inputPassword" class="sr-only">Password</label>
+	    <input type="password" name="userPw" id="userPw" class="form-control" placeholder="비밀번호" required>
 
 		${error}
-
-		<!--아이디 저장기능  -->
-		<div class="checkbox mb-3">
-			<input type="checkbox" name="rememberId" id="rememberId"> <label
-				for="rememberId" id="rememberIdLabel">아이디 저장 </label>
-
-
-		</div>
 
 		<!--로그인 버튼  -->
 		<button class="btn btn-lg btn-primary btn-block" type="button"
 			id=login_button>로그인</button>
-		<br>
+		
+	<div class="bottomBar">	
+		<!--아이디 저장기능  -->
+		<div class="checkbox mb-3">
+			<input type="checkbox" name="rememberId" id="rememberId"> <label
+				for="rememberId" id="rememberIdLabel">아이디 저장 </label>
+		</div>
+		<div class="kakaologin">
+			<!--카카오관련  -->
+			<div id="kakao-logged-group"></div>
+			<div id="kakao-profile"></div>
+		</div>
+	</div>	
+	<div class="bottomBar2">
+		<div>
 		<!--아이디찾기  -->
 		<a href="<%=request.getContextPath()%>/member/find/find_id">아이디찾기
 		</a>
-		 <br>
 		<!--비밀번호 찾기  -->
 		 <a href="<%=request.getContextPath()%>/member/find/find_pw">비밀번호찾기
 		</a>
-		 <br>
-		<!--카카오관련  -->
-		<div id="kakao-logged-group"></div>
-
-		<div id="kakao-profile"></div>
-		<br>
-
-		<p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
-
-
+		 <!-- 회원가입 -->
+		 <a href="<%=request.getContextPath()%>/member/join">회원가입
+		 </a>
+  		 </div>
+	</div>
 	</form>
-
-
 </body>
-
 </html>
 
 
