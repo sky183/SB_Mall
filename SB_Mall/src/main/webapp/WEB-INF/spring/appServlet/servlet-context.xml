@@ -150,6 +150,7 @@
 			<mapping path="/reply**" />
 			<mapping path="/qna/**" />
 			<mapping path="/crowd/**" />
+			<mapping path="/weather/**" />
 			<exclude-mapping path="/member/login" />
 			<exclude-mapping path="/member/join/**" />
 			<exclude-mapping path="/member/find/**" />

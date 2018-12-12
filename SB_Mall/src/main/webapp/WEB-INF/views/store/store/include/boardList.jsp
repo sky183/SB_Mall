@@ -8,6 +8,7 @@
 <title>Store</title>
 <script type="text/javascript">
 	$('document').ready(function() {
+		$('.rowdCommonBannerH3').text('Store');
 		$('.storeListView').load('<%=request.getContextPath()%>/store/boardListView');
 		
 		$('input[type="text"]').keydown(function() {

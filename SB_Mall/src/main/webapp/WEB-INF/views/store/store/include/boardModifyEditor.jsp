@@ -16,6 +16,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() { 
+		$('.rowdCommonBannerH3').text('Modify');
 		$('#summernote').summernote({
 			  height: 750,                 // set editor height
 			  minHeight: 500,             // set minimum height of editor
@@ -64,21 +65,6 @@
       	});
     }
 </script>
-<style type="text/css">
-#summernoteBox{
-	width: 1200px;
-	margin: 100px auto;
-}
-#summerTitle{
-	width: 100%;
-    border: 1px solid #a9a9a9;
-    border-radius: 5px;
-    margin: 10px 0;
-}
-#summernoteBox input{
-	margin: 5px 10px;
-}
-</style>
 </head>
 <body>
 	<c:if test="${userGrade<3}">
@@ -89,7 +75,7 @@
 	</c:if>
 	<div id="summernoteBox">
 		<form method="post" enctype="multipart/form-data" id="sform">
-			글제목 <input type="text" name="title" required="required" id="title"><br>
+			<input type="text" class="modifyTitle" name="title" required="required" id="title"><br>
 			<hr>
 			<input type="hidden" name="text" id="text">
 			<input type="hidden" name="salesSeq" value="${param.salSeq}">

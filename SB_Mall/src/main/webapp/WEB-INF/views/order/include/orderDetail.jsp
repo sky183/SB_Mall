@@ -18,6 +18,9 @@
 .paymentInfoBox{
 	padding-left: 20px; 
 }
+.orderAccountText{
+	margin-left: 30px;
+}
 </style>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
@@ -25,7 +28,7 @@
 var IMP = window.IMP; // 생략가능
 IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	$(document).ready(function(){
-		
+		$('.rowdCommonBannerH3').text('Order');
 		$('.ODDelivery').keyup(function(){
 			var length = $(this).val();
 			
@@ -81,9 +84,16 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 			}
 			
 		});
-			
+		
+		$('.selectPayment').on('change',function(){
+			if($(this).val()=="0"){
+				$('.orderAccountText').text('농협 : 4310-01-59773105');
+			}else if($(this).val()=="1"){
+				$('.orderAccountText').text('');
+			}
+		});
+		
 	});/* ready end */
-	
 	function orderDo() {
 		switch ($('.selectPayment').val()) {
 		case "1":
@@ -217,11 +227,6 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 
 </head>
 <body>
-	<div id="crowdOrderBigBanner">
-		<div id="crowdOrderMidBanner">
-			<h3 class = rowdOrderBannerH3>Order</h3>
-		</div>
-	</div>
 <div class="orderSuperBox">
 	
 	<div class="orderHeadBox">
@@ -402,15 +407,32 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 	
 		<div class="OStep1Box">
 			<h3 class="OstepNo">3</h3>
-			<h3 class="OStep1">결제 정보 입력</h3>
+			<h3 class="OStep1">결제 정보</h3>
 		</div>
 		
 		<div class="noticeBox ib">
-			<h3 class="notice1 ib notiPoint">SB리워드 펀딩</h3><h3 class="notice1 ib">은 결제예약 시스템을 이용합니다.</h3><br>
-			<h5 class="notice2 ib">쇼핑하기처럼 바로 결제되지 않습니다. 프로젝트의 성공여부에 따라 결제가 실행됩니다.</h5><br>
-			<h5 class="notice2 ib">결제정보 입력 후 결제예약을 완료하시면, 결제대기중으로 예약상태로 등록됩니다.</h5><br>
-			<h5 class="notice2 ib">프로젝트 종료일(2018.12.06) 의 다음 영업일에 펀딩 성공여부에 따라 결제실행/결제취소가 진행됩니다.</h5><br>
-			<h5 class="notice2 ib">포인트를 사용하여 총 결제금액이 0원인 경우에는 결제정보를 입력할 필요 없이 결제완료로 처리됩니다.</h5><br>
+			<h3 class="notice1 ib notiPoint">카드 / 무통장</h3><h3 class="notice1 ib">&nbsp;결제 가능합니다.</h3><br>
+			<h5 class="notice2 ib">구입 금액에 따라 포인트가 적립됩니다.</h5><br>
+			<h5 class="notice2 ib">불가축천민 1% 평민 2% 귀족 3% 다이아 5% 그랜드마스터 10%</h5><br>
+			<h5 class="notice2 ib">회원님의 등급은 </h5>
+			<h3 class="notice1 ib notiPoint">
+			<c:if test="${memberInfo.gradeNum==0}">
+			불가축천민
+			</c:if>
+			<c:if test="${memberInfo.gradeNum==1}">
+			평민
+			</c:if>
+			<c:if test="${memberInfo.gradeNum==2}">
+			귀족
+			</c:if>
+			<c:if test="${memberInfo.gradeNum==3}">
+			다이아
+			</c:if>
+			<c:if test="${memberInfo.gradeNum==4}">
+			그랜드마스터
+			</c:if>
+			</h3>
+			<h5 class="notice2 ib">입니다.</h5><br>
 		</div>
 		
 		<div class="paySuperBox">
@@ -422,6 +444,7 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 								<option value="0">무통장결제</option>
 								<option value="1">카드결제</option>
 							</select>
+					<h3 class="notice1 ib orderAccountText">농협 : 4310-01-59773105</h3><br>
 				</div><br>
 			</div>
 		</div>

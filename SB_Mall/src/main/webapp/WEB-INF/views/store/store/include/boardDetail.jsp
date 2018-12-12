@@ -297,6 +297,9 @@ var removeGoodsList = function(e) {
 }
 
 	$(document).ready(function () {
+		
+		$('.rowdCommonBannerH3').text('Store');
+		
 		$('.storeDeleteBtn').click(function () {
 			if (confirm("정말 삭제하시겠습니까??") == true){
 				$('#storeDeleteForm').submit();

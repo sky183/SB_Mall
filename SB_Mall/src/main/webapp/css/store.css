@@ -14,7 +14,7 @@ h1,h2,h3{
 .storeBtn{
 	padding: 10px 15px;
 	background-color: #F2F2F2;
-	border: 1px solid #a9a9a9;
+	border: 1px solid #787878;
 }
 .storeBtn:hover{
 	cursor: pointer;
@@ -455,7 +455,7 @@ h1,h2,h3{
 	width: 310px;
 	height: 310px;
 	margin-bottom:3px;;
-	border:1px solid #a0a0a0;
+	/* border:1px solid #a0a0a0; */
 	border-radius: 10px;
 }
 .productListBox{
@@ -481,16 +481,16 @@ h1,h2,h3{
 	height: 40px;
 	margin: 100px 0 20px 0;
 	word-wrap:break-word;
+	padding-bottom: 15px;
 	border-bottom: 1px solid #a0a0a0;
 }
 .searchFormContainer{
 	width: 250px;
 	height: 32px;
 	float: right;
-	border: 1px solid #a0a0a0;
+	border: 1px solid #3c3c3c;
     border-radius: 5px;
     vertical-align: middle;
-    margin-right: 20px; 
 }
 .searchText{
 	width: 200px;
@@ -512,7 +512,6 @@ h1,h2,h3{
 	background-color: white;
 }
 .storeHeaderBanner{
-	height:100px;
 	width:100%;
 }
 .storeListFooter{
@@ -531,9 +530,14 @@ h1,h2,h3{
 .storePagingBtn{
 	background-color: white;
 	border-radius: 5px;
+	color: #787878;
+	outline: none;
+	font-size:14px;
+	font-weight: bold;
 }
 .storePagingBtn:hover{
-	background-color: #f2f2f2;
+	background-color: #787878;
+	color: white;
 }
 .storeWriteBtn{
 	float:right;
@@ -576,12 +580,13 @@ h1,h2,h3{
 .boardListSelect{
 	width: 80px;
 	height: 32px;
-	border: 1px solid #a0a0a0;
+	border: 1px solid #3c3c3c;
 	border-radius: 5px;
 	cursor: pointer;
 }
 .selectedPagingBtn{
-	background-color: #f2f2f2;
+	background-color: #787878;
+	color: white;
 	cursor: none;
 }
 .selectedPagingBtn:hover{
@@ -591,13 +596,27 @@ h1,h2,h3{
 	width: 1000px;
 	margin: 100px auto;
 }
+#summernoteBox input{
+	height: 32px;
+	padding:2px 5px;
+	color: #707070;
+	border: 2px solid #f0f0f0;
+	border-radius: 3px;
+}
 #summerTitle{
 	width: 100%;
     border: 1px solid #a9a9a9;
     border-radius: 5px;
     margin: 10px 0;
 }
-
+.modifyTitle{
+	width: 100%;
+	padding:10px 20px;
+	margin-top: 10px;
+	border: 2px solid #f0f0f0;
+	border-radius: 3px;
+	font-size:16px;
+}
 #productUpload{
 	width: auto;
 	margin: 0 auto;
@@ -606,23 +625,33 @@ h1,h2,h3{
 	flex-flow:wrap row;
 	align-items: stretch;
 	align-content: space-between;
-	border-bottom: 1px solid #a9a9a9;
-	padding-bottom:10px;
+	border-bottom: 2px solid #f0f0f0;
+	padding-bottom:20px;
 	margin-bottom:10px;
 }
 #productFormBox{
 	width: 60%;
 	display: inline-block;
 }
+
 #productFormBox input,textarea{
-	width: 100%;
-	height: 25px;
-	border: 1px solid #a9a9a9;
+	float: right;
+	width: 75%;
+	height: 32px;
+	vertical-align:middle;
+	border: 2px solid #f0f0f0;
 	border-radius: 5px;
+	margin:  10px 5px;
+	color: #707070;
+	padding:2px 5px;
 }
-#productFormBox p{
-	font-size:15px;
-	margin: 5px 0;
+#sform>span{
+	display:inline-block;
+	vertical-align:middle;
+	height: 32px;
+	font-size:18px;
+	margin:  10px 5px;
+	color: #707070;
 }
 #productFormBox textarea{
 	width: 100%;
@@ -637,17 +666,33 @@ h1,h2,h3{
 	width: 300px;
 }
 
-#goodsUpload p{
-	font-size:15px;
-	margin: 5px 0;
+#goodsForm>span{
+	display:inline-block;
+	vertical-align:middle;
+	height: 32px;
+	font-size:18px;
+	margin:  10px 5px;
+	color: #707070;
+}
+#optionForm>span{
+	display:inline-block;
+	vertical-align:middle;
+	height: 32px;
+	font-size:18px;
+	margin:  10px 5px;
+	color: #707070;
+}
+#goodsUpload input{
+	display:inline-block;
 }
 
 #goodsListBox{
 	width: 100%;
 	height: 300px;
-	border: 1px solid #a9a9a9;
+	border: 2px solid #f0f0f0;
 	overflow-y: scroll;
 	padding: 10px 0;
+	margin:10px 0;
 }
 #goodsListBox label{
 	width: 100%;
