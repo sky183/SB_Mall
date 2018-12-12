@@ -5,7 +5,7 @@
 
 <script>
 	$(document).ready(function() {
-		
+		$('.rowdCommonBannerH3').text('Cart');
 		//페이지로딩 후 카트정보 불러옴
 		$.ajax({
 			url : '<%=request.getContextPath()%>/order/carts',
@@ -245,9 +245,6 @@
 	}
 	
 </script>
-<div class="commonBannerBox">
-	<h3 class = rowdCommonBannerH3>Cart</h3>
-</div>
 <div id="cartListContainer">
 	<div id="carListBox">
 		<div id="cartHeaderBox">

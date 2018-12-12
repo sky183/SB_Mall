@@ -28,6 +28,7 @@
         }
 	};
 	$(document).ready(function() { 
+		$('.rowdCommonBannerH3').text('Write');
 		$('#summernote').summernote({
 			  height: 750,                 // set editor height
 			  minHeight: 500,             // set minimum height of editor
@@ -271,7 +272,7 @@
 			id:'goodsRadio'+gi,
 			name:'goodsItem',
 			onclick:'radioClick(this)',
-			hidden:'hidden'
+			style:'display:none'
 			}).appendTo('#goodsListBox');
 		$('<label/>').attr({
 			'for':'goodsRadio'+gi,
@@ -346,17 +347,17 @@
 		<div id="productUpload">
 			<div id="productFormBox">
 			<form method="post" enctype="multipart/form-data" id="sform">
-				<p>글제목</p> 
+				<span>글제목</span> 
 				<input type="text" name="salesBoard.title" id="productTitle"><br>
-				<p>대표사진</p>
+				<span>대표사진</span>
 				<input type="file" name="uploadfile" onchange="fileUpload(this)"><br>
 				<!--  추가된 코드-->
 				<input type="hidden" id="filename" name="product.photo">
-				<p>대표제품이름</p>
+				<span>대표제품이름</span>
 				<input type="text" name="product.productName" id="productName"><br>
-				<p>최소가격</p>
+				<span>최소가격</span>
 				<input type="number" name="product.price" value="0" min="0" oninput="mathABS(this)"><br>
-				<p>대표제품설명</p>
+				<span>대표제품설명</span>
 				<textarea rows="3" cols="22" name="product.detail" id="productDetail"></textarea><br>
 				<input type="hidden" name="salesBoard.text" id="text">
 			</form>
@@ -368,11 +369,12 @@
 		<div id="goodsUpload">
 			<div id="goodsFormBox">
 				<form id="goodsForm">
-					<p>제품이름</p>
+					<span>제품이름</span>
 					<input type="text" id="goodsName">
-					<p>제품가격</p>
+					<span>제품가격</span>
 					<input type="number" id="goodsPrice" value="0" min="0" oninput="mathABS(this)">
-					<p>제품사진</p>
+					<br/>
+					<span>제품사진</span>
 					<input type="file" id="goodsPhoto">
 				</form>
 				<button type="button" type="button" onclick="addGoods()">상품추가</button>
@@ -382,13 +384,14 @@
 			</div>
 			<div id="optionFormBox">
 				<form id="optionForm">
-					<p>옵션1이름</p>
+					<span>옵션1이름</span>
 					<input type="text" id="option1Name">
-					<p>옵션1추가금</p>
+					<span>옵션1추가금</span>
 					<input type="number" id="option1Price" value="0" min="0" oninput="mathABS(this)">
-					<p>옵션2이름</p>
+					<br/>
+					<span>옵션2이름</span>
 					<input type="text" id="option2Name">
-					<p>옵션2추가금</p>
+					<span>옵션2추가금</span>
 					<input type="number" id="option2Price" value="0" min="0" oninput="mathABS(this)">
 					<button type="button" onclick="addOption()">옵션추가</button>
 				</form>

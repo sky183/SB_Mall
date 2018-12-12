@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/store.css">
 </head>
 <body>
+<jsp:include page="../../common/header.jsp"/>
 <jsp:include page="include/headerBanner.jsp"/>
 <jsp:include page="include/boardModifyEditor.jsp"/>
 <jsp:include page="../../common/header.jsp"/>

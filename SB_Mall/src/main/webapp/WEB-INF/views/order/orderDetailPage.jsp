@@ -11,7 +11,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
+<jsp:include page="../common/header.jsp"/>
+<jsp:include page="../store/store/include/headerBanner.jsp"/>
 <jsp:include page="include/orderDetail.jsp"/>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
