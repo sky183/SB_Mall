@@ -1,5 +1,7 @@
 package com.sb.mall.admin.adminStatistics.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections4.map.HashedMap;
@@ -8,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sb.mall.admin.adminOperation.dao.AdminOperationDao;
 import com.sb.mall.admin.adminStatistics.dao.AdminStatisticsDao;
 import com.sb.mall.admin.adminStatistics.model.VisitStatVO;
 
@@ -37,11 +38,11 @@ public class AdminStatisticsService {
 	
 	//최근 15일 방문수 조회
 	@Transactional
-	public Map<String, Long> fifthChart(Object nowDate) {
+	public List<Map<String, Object>> fifthChart(Object nowDate) {
 		
 		dao = sqlSessionTemplate.getMapper(AdminStatisticsDao.class);
 		
-		Map<String, Long> fifthChart = new HashedMap<>();
+		List<Map<String, Object>> fifthChart = new ArrayList<Map<String,Object>>();
 		
 		fifthChart = dao.getFifthChart(nowDate);
 		

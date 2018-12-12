@@ -4,13 +4,25 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.sb.mall.admin.adminStatistics.dao.AdminStatisticsDao">
-
+	
+	
 	<!-- loadVisitStatReport.jsp 에서 사용할 쿼리 -->
-<!-- 	오늘의 방문, 월 방문, 연간 방문 -->
-	<select id="getVisitStatVO" resultType="com.sb.mall.admin.adminStatistics.model.VisitStatVO">
+	<!-- 맵 객체를 생성해준다. column에서 반환된 값을 property에 지정한 key로 생성하여 javaType에 지정된 
+	값으로 할당한다. -->
+	<resultMap id="getFifthChart" type="java.util.Map">
+		<result column="visitDate" property="visitDate"
+			javaType="java.lang.String" />
+		<result column="visitCount" property="visitCount"
+			javaType="java.lang.Integer" />
+	</resultMap>
+
+	<!-- 오늘의 방문, 월 방문, 연간 방문 -->
+	<select id="getVisitStatVO"
+		resultType="com.sb.mall.admin.adminStatistics.model.VisitStatVO">
 		select
 		max(dayCount) as dayCount,
-		max(monthCount) as monthCount,
+		max(monthCount) as
+		monthCount,
 		max(yearCount) as yearCount
 		from
 		(SELECT
@@ -19,23 +31,38 @@
 		0 as yearCount
 		FROM
 		SB_Master.VisitGuest
-		where date(visitDate) = date('2018.12.12')
-		union all
+		where date(visitDate) = date(#{param1})
+		union
+		all
 		SELECT
 		0 as dayCount,
 		ifnull(sum(visitCount), 0) as monthCount,
-		0 as yearCount
+		0 as
+		yearCount
 		FROM
 		SB_Master.VisitGuest
-		where date_format(visitDate, '%Y.%m') = date_format('2018.12.12', '%Y.%m')
+		where date_format(visitDate, '%Y.%m')
+		= date_format(#{param1}, '%Y.%m')
 		union all
 		SELECT
 		0 as dayCount,
-		0 as monthCount,
+		0 as
+		monthCount,
 		ifnull(sum(visitCount), 0) as yearCount
 		FROM
 		SB_Master.VisitGuest
-		where year(visitDate) = year('2018.12.12')) R;
+		where year(visitDate) = year(#{param1})) R;
+	</select>
+
+<!-- // 최근 15일 통계를 불러온다. -->
+	<select id="getFifthChart" resultMap="getFifthChart">
+		select
+		date(visitDate) visitDate,
+		sum(visitCount) visitCount
+		from VisitGuest
+		where date(visitDate) <![CDATA[<=]]> date(#{param1})
+		and visitDate <![CDATA[>=]]> date(#{param1} - interval 15 day)
+		group by date(visitDate);
 	</select>
 
 

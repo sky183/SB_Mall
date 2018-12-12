@@ -465,9 +465,7 @@ th.ds1, th.ds2, th.ds3, th.ds4{
     border-bottom: 1px solid #fff;
     font-weight: bold;
 }
-.chartwrap{
-	height: 300px;
-	
-	/* 	임시 */
-	border: 1px solid black;
+#chartwrap{
+	height: 400px;
+	border: 1px solid #ddd;
 }

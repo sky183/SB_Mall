@@ -2,6 +2,8 @@ package com.sb.mall.admin.adminStatistics.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections4.map.HashedMap;
@@ -59,7 +61,7 @@ public class VisitStatController {
 
 		modelAndView.addObject("today", today);
 		
-		modelAndView.addObject("nowTime", nowTime);
+		modelAndView.addObject("nowTimeSec", nowTimeSec);
 		
 		modelAndView.addObject("newDate", nowDate);
 
@@ -73,15 +75,15 @@ public class VisitStatController {
 	@ResponseBody
 	public String fifthChart(@RequestParam String nowDate) throws JsonProcessingException {
 		
-		Map<String, Long> fifthChart = new HashedMap<>();
+		List<Map<String, Object>> fifthChart = new ArrayList<Map<String,Object>>();
 		
 		fifthChart = service.fifthChart(nowDate);
 		
 		//JSON으로 변환하는 메서드 
 		ObjectMapper mapper = new ObjectMapper();
-		String fifthChartJSON = mapper.writeValueAsString(fifthChart);
+		String fifthVisit = mapper.writeValueAsString(fifthChart);
 		
-		return fifthChartJSON;
+		return fifthVisit;
 	}
 
 }

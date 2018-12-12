@@ -10,7 +10,7 @@
 				<div class="utitle fon13">오늘 방문수</div> <strong class="uresult">${visitStatVO.dayCount}</strong>
 				<c:choose>
 					<c:when test="${today}">
-						<span class="fon12">${newDate}&nbsp&nbsp&nbsp${nowTime} 기준</span>
+						<span class="fon12">${newDate}&nbsp&nbsp&nbsp${nowTimeSec} 기준</span>
 					</c:when>
 					<c:otherwise>
 					</c:otherwise>
@@ -20,7 +20,7 @@
 				<div class="utitle">월간 방문수</div> <strong class="uresult">${visitStatVO.monthCount}</strong>
 				<c:choose>
 					<c:when test="${today}">
-						<span class="fon12">${newDate}&nbsp&nbsp&nbsp${nowTime} 기준</span>
+						<span class="fon12">${newDate}&nbsp&nbsp&nbsp${nowTimeSec} 기준</span>
 					</c:when>
 					<c:otherwise>
 					</c:otherwise>
@@ -30,7 +30,7 @@
 				<div class="utitle">연간 방문수</div> <strong class="uresult">${visitStatVO.yearCount}</strong>
 				<c:choose>
 					<c:when test="${today}">
-						<span class="fon12">${newDate}&nbsp&nbsp&nbsp${nowTime} 기준</span>
+						<span class="fon12">${newDate}&nbsp&nbsp&nbsp${nowTimeSec} 기준</span>
 					</c:when>
 					<c:otherwise>
 					</c:otherwise>
@@ -52,7 +52,7 @@
 		</ul>
 	</div>
 
-	<div class="chartwrap"></div>
+	<div id="chartwrap"></div>
 
 	<!-- salesReport의 끝 -->
 </div>
@@ -68,9 +68,75 @@ function removeUactive(id){
 
 function fifthChart(){
 	
+	//페이지의 날짜
+	var newDate = $( ".datepicker" ).val();
+	
+	//차트에 들어갈 데이터 - 컨트롤러에서 JSON 문자열로 받아서 파싱해서 자바스크립트 객체로 변환
+	var fifthVisit;
+	
+	//ajax로 차트에 사용할 데이터를 가져온다.
+	$.ajax({
+		url : '<%=request.getContextPath()%>/admin/adminStatistics/visitStat/loadVisitStatReport/fifthChart?nowDate=' + newDate,
+		error : function(error) {
+	        alert("Error!");
+	    },
+		success : function(data) {
+			console.log(newDate);
+			console.log(fifthVisit);
+			fifthVisit = JSON.parse(data);
+			console.log('파싱후');
+			console.log(fifthVisit);
+			
+			//차트를 그린다.
+			var chart = jui.include("chart.builder");
+			
+			console.log(chart);
+			
+			chart("#chartwrap", {
+			    axis : {
+			        x : {
+			            type : "fullblock",
+			            domain : "visitDate",
+			            line : true,
+			            textRotate : -30
+			        },
+			        y : {
+			            type : "range",
+			            domain : "visitCount",
+			            step : 10
+			        },
+			        data : fifthVisit
+			    },
+			    brush : [{
+			        type : "line",
+			        animate : true
+			    }, {
+			        type : "scatter",
+			        hide : true
+			    }],
+			    widget : [
+			    	{ type : "title", text : "최근 15일간 접속 통계" },
+// 			    	{ type : "legend" },
+			        { type : "tooltip", brush : 1 }
+			    ]
+			});
+		}
+	});
+	
+}
+
+function hourlyChart(){
+	
+}
+function monthlyChart(){
+	
 }
 
 $(document).ready(function(){
+	
+// 	차트를 불러온다
+	fifthChart();
+	
 	$('#fifthVisit, #hourlyVisit, #monthlyVisit').on('click', function () {
 		switch($(this).attr('id')){
 		case 'fifthVisit' : fifthChart()
@@ -80,7 +146,6 @@ $(document).ready(function(){
 		case 'monthlyVisit' : monthlyChart()
 			break;
 		}
-		
 	});
 	
 })

@@ -143,6 +143,7 @@ jui.ready([ "chart.builder" ], function(chart) {
 <!-- 이번년도 월별 매출 평균매출 그래프-->
 <script type="text/javascript">
 var salesYear = JSON.parse ('${salesYear}');
+console.log(salesYear);
 var chart = jui.include("chart.builder");
 var data = salesYear;
 var month = new Date().getMonth();
