@@ -169,6 +169,9 @@
 .detTitle{
 	color: #282828;
     font-size: 20pt;
+    text-align: left;
+}
+}
 }
 .deli,.deliDate{
 	display: inline-block;
