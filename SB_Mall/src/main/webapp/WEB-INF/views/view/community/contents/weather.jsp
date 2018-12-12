@@ -812,6 +812,8 @@
 								  case 'Snow'  : $('#city'+ i).find('.weathericon').addClass('wi-snow'); break;
 								  case 'Clear'  : $('#city'+ i).find('.weathericon').addClass('wi-day-sunny'); break;
 								  case 'Clouds'  : $('#city'+ i).find('.weathericon').addClass('wi-cloudy'); break;
+								  case 'Mist'  : $('#city'+ i).find('.weathericon').addClass('wi-fog'); break;
+								  case 'Haze'  : $('#city'+ i).find('.weathericon').addClass('wi-day-haze'); break;
 							}
 							
 						}
@@ -862,7 +864,8 @@
 		  case 'Snow'  : $('#icon').addClass('wi-snow'); break;
 		  case 'Clear'  : $('#icon').addClass('wi-day-sunny'); break;
 		  case 'Clouds'  : $('#icon').addClass('wi-cloudy'); break;
-		  
+		  case 'Mist'  : $('#icon').addClass('wi-fog'); break;
+		  case 'Haze'  : $('#icon').addClass('wi-day-haze'); break;
 	}
 		
 	}

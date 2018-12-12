@@ -12,24 +12,15 @@
 /*     flex-wrap: wrap; */
 /*     display: flex; */
 /*     justify-content: space-between; */
-
-/*     임시 */
-	height: 900px;
 }
 #container-top{
 	margin-top : 50px;
 	margin-bottom : 50px;
-	
-}
-#container-bottom{
-	/*     임시 */
-/* 	height: 900px; */
 }
 .leftBox{
 	vertical-align:top;
 	display:inline-block;
 	width:300px;
-/* 	height:250px; */
 }
 .leftBoxT{
 	height: 93px;
@@ -92,7 +83,6 @@
 	font-weight:bold;
 	padding-bottom:5px;
 	padding-left:21px;
-	
 }
 .xbox p{
 	font-size:20px;
@@ -131,7 +121,6 @@
     display: inline-block;
     height: 70px;
     width: 120px;
-	
 }
 .icon{
 	font-size:50px;
@@ -151,13 +140,10 @@
     color: #505050;
     font-size: 20pt;
     font-weight: bold;
-	
 }
 .temperature{
 	color: #787878;
     font-size: 12pt;
-
-	
 }
 
 .knotwrap,.humiditywrap,.cloudswrap{
@@ -185,18 +171,3 @@
 .weathericon{
 	font-size:50px;
 }
-/*
-.topWeather{
-    border-radius: 10px 10px 0 0;
-    padding: 0 15px;
-    height: 100px;
-}
-.bottomWeather{
-    padding: 20px 15px;
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: space-between;
-    background-color: #ffc828;
-    border-radius: 0 0 10px 10px;
-}
- */

@@ -14,9 +14,9 @@
 
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<h1>자유게시판</h1>
-<div class="midBannerBox">
-	<h3 class="rowdWriteBannerH3">자유게시판</h3>
+<!-- <h1>자유게시판</h1> -->
+<div class="commonBannerBox">
+	<h3 class="rowdCommonBannerH3">자유게시판</h3>
 </div>
 
 	<div id="freeboard_wrap_1">
