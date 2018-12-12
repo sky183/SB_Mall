@@ -553,6 +553,10 @@
 									<img class="ratingImg" src="<%=request.getContextPath()%>/img/star${Rating.mid}.png">
 								</c:if>
 								
+								<c:if test="${Rating.mid==0}">
+									<img class="ratingImg" src="<%=request.getContextPath()%>/img/star_em.png">
+								</c:if>
+								
 								<c:forEach begin="1" end="${Rating.bottom}">
 									<img class="ratingImg" alt="${Rating.bottom}" src="<%=request.getContextPath()%>/img/star_em.png">
 								</c:forEach>

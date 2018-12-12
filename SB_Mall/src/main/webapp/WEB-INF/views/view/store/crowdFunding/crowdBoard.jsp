@@ -111,7 +111,7 @@
 		
 		</div>
 		
-		<c:if test="${memberInfo.gradeNum==4}">
+		<c:if test="${memberInfo.gradeNum>2}">
 			<div class="addFundingBox ib">
 			<a class="addFundingProduct"
 					href="<%=request.getContextPath()%>/crowd/crowdWritePage">상품등록</a>
