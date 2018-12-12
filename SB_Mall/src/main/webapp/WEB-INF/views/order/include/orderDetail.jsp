@@ -6,6 +6,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+.selectPayment{
+	padding: 7px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+}
+.paySuperBox{
+	background-color: #f5f5f5;
+}
+.paymentInfoBox{
+	padding-left: 20px; 
+}
+</style>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 
@@ -31,9 +44,11 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 			if(check.length==0){
 				$(this).append(append);
 				$(this).css('border','none');
+				$(this).attr('data-cnt',1);
 			}else{
 				$(this).find('.checked').remove();
 				$(this).css('border','1px solid #a0a0a0');
+				$(this).attr('data-cnt',0);
 			}
 			
 		})
@@ -55,24 +70,81 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 		}
 		
 		$('#orderBtn').on('click',function(){
-			orderDo();
+			var checkCnt=0;
+			for(i=0;i<$('.rowAgree').length;i++){
+				checkCnt+=Number($('.rowAgree').eq(i).attr('data-cnt'));
+			}
+			if(checkCnt==3){
+				orderDo();	
+			}else{
+				alert('모든 약관에 동의하셔야 합니다.');
+			}
+			
 		});
 			
 	});/* ready end */
 	
 	function orderDo() {
-		$.ajax({
-			url : '<%=request.getContextPath()%>/order/orders/insert',
-			type : 'POST',
-			data : {'orders':makeOrdersJson()+''},
-			error : function(error) {
-				alert("error!");
-			},
-			success : function(data) {
-				alert(data);
-				location.href="<%=request.getContextPath()%>/store";
-			}
-		});
+		switch ($('.selectPayment').val()) {
+		case "1":
+			IMP.request_pay({
+			    pg : 'inicis', // version 1.1.0부터 지원.
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : '주문명:결제테스트',
+			    amount : $('.finalPriceF').eq(0).attr('data-totalPrice'),
+			    buyer_name : '${memberInfo.userName}',
+			    buyer_tel : $('.orderPhone')[0].value,
+			    buyer_addr : $('.address1')[0].value+' '+$('.address2')[0].value,
+			    buyer_postcode : $('.zipCode')[0].value,
+			    m_redirect_url : 'http://localhost/mall/order/cart'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			    	
+			        var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + rsp.paid_amount;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			        
+			        $.ajax({
+						url : '<%=request.getContextPath()%>/order/orders/insert',
+						type : 'POST',
+						data : {'orders':makeOrdersJson()+''},
+						error : function(error) {
+							alert("error!");
+						},
+						success : function(data) {
+							location.href="<%=request.getContextPath()%>/store";
+						}
+					});
+			        
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			    }
+			    alert(msg);
+			});
+				
+			break;
+
+		default:
+			alert('무통결제');
+			$.ajax({
+				url : '<%=request.getContextPath()%>/order/orders/insert',
+				type : 'POST',
+				data : {'orders':makeOrdersJson()+''},
+				error : function(error) {
+					alert("error!");
+				},
+				success : function(data) {
+					alert(data);
+					location.href="<%=request.getContextPath()%>/store";
+				}
+			});
+			break;
+		}
+		
 	}
 	
 	function makeOrdersJson() {
@@ -80,9 +152,9 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 		var orderDetail = {
 				'orderDetailNum':new Date().simpleDateForm('yyMMddHHmmssms'),
 				'userSeq':'${memberInfo.userSeq}',
-				'payment':'1',
+				'payment':$('.selectPayment').val(),
 				'orderTime':'',
-				'status':'0',
+				'status':$('.selectPayment').val(),
 				'totalAmount':'0',
 				'orderType': '${orderType}',
 				'zipCode':$('.zipCode')[0].value,
@@ -341,64 +413,17 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 			<h5 class="notice2 ib">포인트를 사용하여 총 결제금액이 0원인 경우에는 결제정보를 입력할 필요 없이 결제완료로 처리됩니다.</h5><br>
 		</div>
 		
-		<!-- 펀딩 결제 정보 -->
 		<div class="paySuperBox">
 			<div class="paymentInfoBox ib">
-				<!-- 카드번호 -->
+				<!-- 결제방식 -->
 				<div class="payUnit ib">
-					<h3 class="payTitle ib">신용(체크)카드번호</h3><br>
-					<div class="between">
-						<div class="payInput ib">
-							<input class="cardNoInput cardNo1" type="number" oninput="mathABS(this)">
-						</div>
-						<div class="payInput ib">
-							<input class="cardNoInput cardNo2" type="password" oninput="mathABS(this)">
-						</div>
-						<div class="payInput ib">
-							<input class="cardNoInput cardNo3" type="password" oninput="mathABS(this)">
-						</div>
-						<div class="payInput ib">
-							<input class="cardNoInput cardNo4" type="number" oninput="mathABS(this)">
-						</div>
-					</div>
-				</div><br>
-				
-				<!-- 유효기간 -->
-				<div class="payUnit ib between">
-					<div class="cardPiece ib">
-						<h3 class="payTitle ib">유효기간</h3><br>
-						<div class="payInput ib">
-							<input class="dateInput yearDay" type="number" oninput="mathABS(this)">
-						</div>
-					</div>
-					<div class="cardPiece ib">
-						<h3 class="payTitle ib">카드 비밀번호</h3><br>
-						<div class="payInput ib">
-							<input class="passwordInput cardPassword" type="password" oninput="mathABS(this)">
-						</div>
-					</div>
-				</div>
-				
-				<!--  생년월일 -->
-				<div class="payUnit ib">
-					<div class="birthPiece ib">
-						<h3 class="payTitle2 ib">생년월일 (주민번호 앞 6자리)</h3><br>
-						<h4 class="paySubTitle ib">무기명 법인카드는 사업자등록번호 10자리를 입력하세요.</h4>
-					</div><br>
-					<div class="payInput ib">
-						<input class="birthInput birthNo" type="number" oninput="mathABS(this)">
-					</div>
+					<h3 class="payTitle ib">결제 방식</h3><br>
+							<select class="selectPayment">
+								<option value="0">무통장결제</option>
+								<option value="1">카드결제</option>
+							</select>
 				</div><br>
 			</div>
-			
-			<div class="attentionBox ib">
-				<h3 class="attention1 ib">결제 예약시 유의사항</h3><br>
-				<h5 class="attention2 ib">결제실행일에 결제자 귀책사유(카드재발급, 한도초과, 이용정지 등)로 인하여 결제가 실패할 수 있으니, 결제수단이 유효한지 다시 한번 확인하세요.</h5><br>
-				<h5 class="attention2 ib">1차 결제 실패 시 실패일로부터 3 영업일 동안 재 결제를 실행합니다. 결제 실패 알림을 받으면, 카드사와 카드결제 불가 사유(한도초과 또는 카드재발급 등)를 확인해 주세요.</h5><br>
-				<h5 class="attention2 ib">결제 예약 이후, 결제할 카드를 변경하려면 마이페이지 > 나의 리워드의 결제정보에서 카드정보를 변경해주세요.</h5><br>
-				<h5 class="attention2 ib">1차 결제 실패 이후 3 영업일 동안 재 결제를 시도합니다. 결제가 정상적으로 실행되지 않으면, 펀딩 참여가 취소됩니다.</h5>
-			</div>
-		
 		</div>
 		
 		<!-- 유의사항 동의 -->
@@ -438,7 +463,7 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					
 				</div>
 				<div class="rowAgreeBox ib">
-					<div class="rowAgree ib"></div>
+					<div class="rowAgree ib" data-cnt="0"></div>
 					<h3 class="rowAgreeH3">본인은 위 리워드 서비스 결제 및 취소와 환불규정 등의 주의사항을 모두 읽어보았으며 이에 동의합니다.</h3>
 				</div>
 			</div>
@@ -453,7 +478,7 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					아래 내용에 대하여 동의를 거부하실 수 있으며, 거부 시 서비스 이용이 제한됩니다. </h4>
 				</div>
 				<div class="rowAgreeBox ib">
-					<div class="rowAgree ib"></div>
+					<div class="rowAgree ib" data-cnt="0"></div>
 					<h3 class="rowAgreeH3">본인은 제3자에 대한 개인정보제공에 동의합니다.</h3>
 				</div>
 			</div>
@@ -468,7 +493,7 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					하지만, 와디즈는 프로젝트 진행자와 후원자간의 원활한 의사소통을 위해 최선의 노력을 다하고 있습니다.</h4>
 				</div>
 				<div class="rowAgreeBox ib">
-					<div class="rowAgree ib"></div>
+					<div class="rowAgree ib" data-cnt="0"></div>
 					<h3 class="rowAgreeH3">본인은 위 내용을 확인하였으며 이에 동의합니다.</h3>
 				</div>
 			</div>
