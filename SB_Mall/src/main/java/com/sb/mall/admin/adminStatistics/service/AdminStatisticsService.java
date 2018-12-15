@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.admin.adminStatistics.dao.AdminStatisticsDao;
+import com.sb.mall.admin.adminStatistics.model.MemberStatVO;
+import com.sb.mall.admin.adminStatistics.model.MemberTotalVO;
 import com.sb.mall.admin.adminStatistics.model.VisitStatVO;
 
 @Repository
@@ -48,7 +50,7 @@ public class AdminStatisticsService {
 		return fifthChart;
 	}
 	
-	//시간대별 조회
+	//시간대별 방문수 조회
 	@Transactional
 	public List<Map<String, Object>> hourlyChart(Object nowDate) {
 		
@@ -61,7 +63,7 @@ public class AdminStatisticsService {
 		return hourlyChart;
 	}
 	
-	//월별 조회
+	//월별 방문수 조회
 	@Transactional
 	public List<Map<String, Object>> monthlyChart(Object nowDate) {
 		
@@ -74,6 +76,65 @@ public class AdminStatisticsService {
 		return monthlyChart;
 	}
 	
+	//loadMemberStatReport.jsp에서 사용할 데이터 수집
+	@Transactional
+	public MemberStatVO memberStatVO(Object nowDate) {
+		
+		dao = sqlSessionTemplate.getMapper(AdminStatisticsDao.class);
+		
+		MemberStatVO memberStatVO = new MemberStatVO();
+		
+		//dao의 메서드 실행하여
+		memberStatVO = dao.memberStatVO(nowDate);
+
+		return memberStatVO;
+	}
+	
+	
+	//총 가입자 현황
+	@Transactional
+	public MemberTotalVO memberTotal(Object nowDate) {
+		
+		dao = sqlSessionTemplate.getMapper(AdminStatisticsDao.class);
+		
+		//total 회원 통게를 불러온다.
+		MemberTotalVO memberTotalVo = new MemberTotalVO();
+		
+		//연령별 통계
+		memberTotalVo.setAgeTotal(dao.ageTotal(nowDate));
+		//성별 통계
+		memberTotalVo.setGenderTotal(dao.genderTotal(nowDate));
+		//지역별 통계
+		memberTotalVo.setCountryTotal(dao.countryTotal(nowDate));
+		
+		return memberTotalVo;
+	}
+	
+	//최근 15일 가입자 조회
+	@Transactional
+	public List<Map<String, Object>> fifthJoin(Object nowDate) {
+		
+		dao = sqlSessionTemplate.getMapper(AdminStatisticsDao.class);
+		
+		List<Map<String, Object>> fifthJoin = new ArrayList<Map<String,Object>>();
+		
+		fifthJoin = dao.fifthJoin(nowDate);
+		
+		return fifthJoin;
+	}
+	
+	//월별 가입자 조회
+	@Transactional
+	public List<Map<String, Object>> monthlyJoin(Object nowDate) {
+		
+		dao = sqlSessionTemplate.getMapper(AdminStatisticsDao.class);
+		
+		List<Map<String, Object>> monthlyJoin = new ArrayList<Map<String,Object>>();
+		
+		monthlyJoin = dao.monthlyJoin(nowDate);
+		
+		return monthlyJoin;
+	}
 	
 }
 	

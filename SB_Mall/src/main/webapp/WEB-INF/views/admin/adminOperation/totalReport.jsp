@@ -4,6 +4,7 @@
 .calbutton{
 	width: 20px;
 	height: 21px;
+	top : 0;
 	background-size : 19px;
 	background-image: url("<%=request.getContextPath()%>/img/calendar.png");
 }

@@ -1,27 +1,33 @@
 package com.sb.mall.admin.adminOrder.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sb.mall.admin.adminOperation.service.AdminOperationService;
-
 @Controller
-@RequestMapping("/admin/adminOrder")
 public class AdminOrderController {
 	
-	@Autowired
-	AdminOperationService visitService;
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView admin() {
+	//주문 페이지 불러오기
+	@RequestMapping(value="/admin/adminOrder", method=RequestMethod.GET)
+	public ModelAndView main() {
 		
 		ModelAndView modelAndView = new ModelAndView();
+			modelAndView.setViewName("admin/adminOrder");
+			
+		//상단 메뉴 버튼 활성화
+		modelAndView.addObject("adminOrder", "active");
 		
-		modelAndView.setViewName("");
-		modelAndView.addObject("", "");
+		return modelAndView;
+	}
+	
+	//주문 각 페이지 컨트롤러
+	@RequestMapping(value="/admin/adminOrder/{page}", method=RequestMethod.GET)
+	public ModelAndView adminOrderPage(@PathVariable String page) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+			modelAndView.setViewName("admin/adminOrder/" + page);
 		
 		return modelAndView;
 	}

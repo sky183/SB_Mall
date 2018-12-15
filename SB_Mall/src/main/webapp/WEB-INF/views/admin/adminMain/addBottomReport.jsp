@@ -70,7 +70,6 @@ chart("#orderStatus", {
 
 <!-- 인기상품 Top5 차트-->
 <script type="text/javascript">
-console.log('${dataTop5}');
 var dataTop5 = JSON.parse ('${dataTop5}');
 var chart = jui.include("chart.builder");
 //최고 인기상품을 조각에서 빼준다.
@@ -78,12 +77,13 @@ var max = 0;
 var secon = 0;
 var maxName = '';
 var seconName = '';
+//맵 객체의 모든 키와 값 쌍을 읽어서 키 이름과 값을 저장하여 최대치를 구한다.
 for(var i of Object.keys(dataTop5)){
  if(dataTop5[i] > max){
      seconName = maxName;
 	 maxName = i;
 	 secon = max;
-	 max = dataTop5[i];
+	 max = dataTop5[i]; //최대치에 해당하는 키 이름을 저장
   }
 };
 // console.log(maxName + ':' +max);
@@ -127,7 +127,7 @@ jui.ready([ "chart.builder" ], function(chart) {
                 //값 표시 방법
                 return ((v/max)*100).toFixed(0) + "%";
             },
-            active : [ maxName, seconName],
+            active : [ maxName, seconName], //최대치와 두번째 최대치의 키 이름
             activeEvent : "click",
             //브러시에 사용할 컬러 목록
             colors : [ 7,1,6,8,9 ]
@@ -143,7 +143,6 @@ jui.ready([ "chart.builder" ], function(chart) {
 <!-- 이번년도 월별 매출 평균매출 그래프-->
 <script type="text/javascript">
 var salesYear = JSON.parse ('${salesYear}');
-console.log(salesYear);
 var chart = jui.include("chart.builder");
 var data = salesYear;
 var month = new Date().getMonth();

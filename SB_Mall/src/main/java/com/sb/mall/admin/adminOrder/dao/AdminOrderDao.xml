@@ -2,11 +2,121 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.sb.mall.admin.adminOrder.dao.AdminOrderDao">
- 	
- 	<select id="visitCountTotal" resultType="int">
-		select sum(visitCount) from VisitGuest
-	</select>	
- 
- </mapper> 
+<mapper
+	namespace="com.sb.mall.admin.adminOrder.dao.AdminOrderDao">
+
+	<!-- // 일반 주문 및 크라우드펀딩 주문 갯수 -->
+	<select id="selectOrderVOCount" resultType="int">
+		select count(*) from
+		(select
+		od.orderDetailNum
+		from ${param3} od,
+		MemberInfo mi, `Order` o,
+		Goods g
+		where od.userSeq = mi.userSeq and
+		od.orderDetailNum =
+		o.orderDetailNum
+		and o.goodsNo = g.goodsNo
+		<if test="search != -1">
+			and
+			(
+			od.orderDetailNum like
+			'%#{search}%' ||
+			od.userSeq like '%#{search}%' ||
+			od.orderPhone like
+			'%#{search}%' ||
+			od.orderDetailNum like '%#{search}%'
+			||
+			od.orderAddress1 like '%#{search}%' ||
+			od.orderAddress2 like
+			'%#{search}%' ||
+			mi.userName like '%#{search}%' ||
+			mi.userId like
+			'%#{search}%' ||
+			g.goodsName like '%#{search}%'
+			)
+		</if>
+		and DATE(od.orderTime) <![CDATA[>]]>
+		DATE(#{param1} - INTERVAL 1 DAY)
+		AND DATE(od.orderTime) <![CDATA[<]]>
+		DATE(#{param2} + INTERVAL 1 DAY)
+
+		<if test="status > -1">
+			AND od.status = #{status}
+		</if>
+		<if test="payment > -1">
+			and od.payment = #{payment}
+		</if>
+
+		and od.orderDetailNum <![CDATA[<>]]>
+		0
+		group by od.orderDetailNum) R;
+	</select>
+
+	<!-- // 일반 주문 및 크라우드펀딩 주문 조회 -->
+	<select id="selectOrderVOList"
+		resultType="com.sb.mall.admin.adminOrder.model.OrderVO">
+		select
+		date_format(od.orderTime, '%Y-%m-%d') orderTime,
+		od.orderDetailNum,
+		od.userSeq,
+		mi.userName,
+		concat(od.orderAddress1, od.orderAddress2) orderAddress,
+		(case
+		when
+		count(g.goodsName) <![CDATA[>]]>
+		1
+		then concat(g.goodsName, ' 외 ',
+		count(g.goodsName) -1)
+		else g.goodsName
+		end) goodsName,
+		od.payment,
+		od.status,
+		od.totalAmount
+		from ${param3} od,
+		MemberInfo mi, `Order` o,
+		Goods g
+		where od.userSeq = mi.userSeq and
+		od.orderDetailNum =
+		o.orderDetailNum
+		and o.goodsNo = g.goodsNo
+		<if test="search != -1">
+			and
+			(
+			od.orderDetailNum like
+			'%#{search}%' ||
+			od.userSeq like '%#{search}%' ||
+			od.orderPhone like
+			'%#{search}%' ||
+			od.orderDetailNum like '%#{search}%'
+			||
+			od.orderAddress1 like '%#{search}%' ||
+			od.orderAddress2 like
+			'%#{search}%' ||
+			mi.userName like '%#{search}%' ||
+			mi.userId like
+			'%#{search}%' ||
+			g.goodsName like '%#{search}%'
+			)
+		</if>
+		and DATE(od.orderTime) <![CDATA[>]]>
+		DATE(#{param1} - INTERVAL 1 DAY)
+		AND DATE(od.orderTime) <![CDATA[<]]>
+		DATE(#{param2} + INTERVAL 1 DAY)
+
+		<if test="status > -1">
+			AND od.status = #{status}
+		</if>
+		<if test="payment > -1">
+			and od.payment = #{payment}
+		</if>
+
+		and od.orderDetailNum <![CDATA[<>]]>
+		0
+		group by od.orderDetailNum order by
+		od.orderTime desc limit #{param4},
+		#{param5};
+	</select>
+
+</mapper> 
  

@@ -30,17 +30,17 @@
 	</div>
 	
 	<!-- 하단 -->
-	<div id="loadVisitStatReport">
-	<!-- loadVisitStatReport의 끝 -->
+	<div id="loadMemberStatReport">
+	<!-- loadMemberStatReport의 끝 -->
 	</div>
 	
 <!-- mainContent의 끝 -->
 </div>
 <script type="text/javascript">
 
-// 	현재 선택되어있는 차트 종류가 있는지 확인하는 변수(없으면 fifthChart로 불러온다.)
+// 	현재 선택되어있는 차트 종류가 있는지 확인하는 변수(없으면 memberStat으로 불러온다.)
 	var chartSelect = false;
-	var thisId = 'fifthVisit';
+	var thisId = 'memberTotal';
 
 	$(document).ready(function(){
 		
@@ -59,20 +59,19 @@
 			   
 			   if (thisDate != newDay) {
 				   thisDate = newDay;
-				   loadVisitStatReport(newDay); //새로운 날짜로 새로 불러온다.
+				   loadMemberStatReport(newDay); //새로운 날짜로 새로 불러온다.
 				}
 			   
 			   $(".datepicker").val(newDay); 
-			// $(".datepicker").val(firstDate + " - " + lastDate);  //주날짜 뿌려주고싶을때 참고
 		});
 		
 		//input 태그에 오늘 날짜 불러온다.
 		$( ".datepicker" ).val(nowString);
 		
-		$('#loadVisitStatReport').load('<%=request.getContextPath()%>/admin/adminStatistics/visitStat/loadVisitStatReport?nowDate=' + nowString);
+		$('#loadMemberStatReport').load('<%=request.getContextPath()%>/admin/adminStatistics/memberStat/loadMemberStatReport?nowDate=' + nowString);
 		
 		//메뉴 및 서브메뉴에 css 적용 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것
-		removeActive('#visitStat', 0);
+		removeActive('#memberStat', 0);
 		
 		//이전 날짜 선택시 날짜 바꿔서 ajax 처리
 		$('.preDate, .nextDate').on('click', function(){
@@ -87,18 +86,18 @@
 				newDate = nextDate;
 			}
 			
-			loadVisitStatReport(newDate);
+			loadMemberStatReport(newDate);
 		});
 		
 		//영업 현황 불러온다.
-		function loadVisitStatReport(newDate){
+		function loadMemberStatReport(newDate){
 			$.ajax({
-				url : '<%=request.getContextPath()%>/admin/adminStatistics/visitStat/loadVisitStatReport?nowDate=' + newDate,
+				url : '<%=request.getContextPath()%>/admin/adminStatistics/memberStat/loadMemberStatReport?nowDate=' + newDate,
 				error : function(error) {
 			        alert("Error!");
 			    },
 				success : function(data) {
-					$('#loadVisitStatReport').html(data);
+					$('#loadMemberStatReport').html(data);
 				}
 			});
 		}

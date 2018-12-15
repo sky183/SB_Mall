@@ -1,8 +1,11 @@
 @charset "UTF-8";
 
 /* adminContent 공통사항 */
-.form-group {
-	
+.all-check, .check{
+	cursor: pointer;
+}
+nav{
+	text-align: center;
 }
 .input-group{
 	display: inline-block;
@@ -54,9 +57,12 @@
 }
 .resultTab{
 	width: 100%;
+	table-layout:fixed;
 }
 .resultTab *{
 	color: #505050;
+	overflow : hidden;
+	white-space: nowrap;
 }
 .resultTab thead tr{
 	border-bottom: 2px solid #282828;
@@ -163,6 +169,9 @@ input[type="submit"], select{
 .datepicker:focus{
 	outline: none;
 }
+.glyphicon{
+	top: -1px;
+}
 #totalDatepicker{
 	width: 120px;
 }
@@ -178,14 +187,30 @@ input[type="submit"], select{
 #mainHeader .absol {
 	right: 0px;
 }
+#mainHeader .fonb:first-child {
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 3px;
+}
+#search{
+	border: none;
+    height: 16px;
+}
+#mainHeader .search {
+    height: 24px;
+    border: thin solid #787878;
+    padding: 3px 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
 
 #mainHeader select {
-	background-color: #505050;
-	color: #f0f0f0;
-	border: 0;
-	text-align-last: center;
-	vertical-align: middle;
-	padding: 2px 0;
+    border: thin solid #787878;
+    height: 24px;
+    font-weight: 530;
+    text-align-last: center;
+    vertical-align: middle;
+    padding: 1px 0px 2px 1px;
 }
 
 #mainMid, #mainBottom {
@@ -193,31 +218,36 @@ input[type="submit"], select{
 }
 
 .seldate {
-	border: 1px solid #505050;
-	border-radius: 4px;
-	padding: 3px 8px;
-	margin-left: 5px;
-	margin-right: 5px;
-	padding-top: 4px;
+	border: thin solid #282828;
+    display: inline-block;
+    vertical-align: middle;
+    height: 24px;
+    padding: 0px 8px;
+    margin-left: 5px;
+    margin-right: 1px;
+    padding-top: 3.8px;
 }
-
+.seldate .input-group-addon{
+	height: 16px;
+}
 #startDate, #endDate {
 	width: 70px;
 	text-align: center;
-	vertical-align: middle;
 }
+
 
 input.select {
     background-color: #505050;
-   	color: #f0f0f0;    	
-   	border: 0;
-   	text-align-last:center;
-   	vertical-align: middle;
-   	padding: 3.7px 15px 3.2px;
+    color: #f0f0f0;
+    border: 0;
+    height: 24px;
+    text-align-last: center;
+    vertical-align: middle;
+    padding: 3.7px 15px 3.2px;
 }
 
 .downButton {
-	padding: 5px 15px;
+	padding: 4px 15px;
 	vertical-align: middle;
 	display: inline-block;
 	border: 1px solid #a0a0a0;
@@ -355,7 +385,7 @@ input.select {
 }
 
 /* dailySal.jsp */
-.ds1{width: 120px;}.ds2{width: 120px;}
+.ds0{width: 60px;}.ds1{width: 120px;}.ds2{width: 120px;}
 .ds3{width: 120px;}.ds4{width: 200px;}
 td.ds1, td.ds2, td.ds3, td.ds4{
 	text-align: right; 
@@ -468,4 +498,67 @@ th.ds1, th.ds2, th.ds3, th.ds4{
 #chartwrap{
 	height: 400px;
 	border: 1px solid #ddd;
+}
+#chartwrap2 path{
+	cursor: pointer;
+/* 	border: 1px solid #ddd; */
+}
+#chartwrap2 div{
+	border: 1px solid #ddd;
+	text-align: center;
+}
+.leftchart{
+	display: inline-block;
+	border : none !important;
+}
+#ageTotal{
+	width : 400px;
+	padding: 10px 0;
+	height: 382px;
+}
+#genderTotal{
+	width : 400px;
+	margin-top: 10px;
+	padding: 10px 0;
+	height: 372px;
+	
+}
+#countryTotal{
+	margin-left : 5px;
+	vertical-align : top;
+	display: inline-block;
+	padding: 10px 0;
+	width : 409px;
+	height: 764px;
+}
+#countryTotal circle{
+	max-height : 100px;
+	max-width : 100px;
+	cursor: pointer;
+}
+/* orderManager.jsp  */
+.om0{
+	width: 30px;
+	text-align: center;
+	padding: 0 !important;
+}
+.om1{width: 78px;}.om2{width: 119px;}
+.om3{width: 25px;padding: 0 !important;}.om4{width: 51px;}
+.om5{width: 200px;}.om6{width: 109px;}
+.om7{width: 51px;}.om8{width: 52px ;padding-left: 0 !important;}
+.om9{width: 102px;}
+td.om1, td.om2, td.om3, td.om4,
+td.om5, td.om6, td.om7, td.om8, td.om9{
+	text-align: center; 
+	padding-right : 5px;
+	padding-left: 5px;
+}
+td.om9{
+	text-align: right;
+}
+th.om1, th.om2, th.om3, th.om4,
+th.om5, th.om6, th.om7, th.om8, th.om9 {
+	padding-left : 0;
+	padding-right : 5px;
+	text-align: center; 
 }

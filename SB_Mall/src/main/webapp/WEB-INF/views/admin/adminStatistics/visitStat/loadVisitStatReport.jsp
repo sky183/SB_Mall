@@ -46,7 +46,7 @@
 
 	<div id="component">
 		<ul>
-			<li id="fifthVisit" class="umenu uactive">최근 15일간</li>
+			<li id="fifthVisit" class="umenu uactive">최근</li>
 			<li id="hourlyVisit" class="umenu">시간대별</li>
 			<li id="monthlyVisit" class="umenu">월별</li>
 		</ul>
@@ -82,16 +82,10 @@ function fifthChart(){
 	        alert("Error!");
 	    },
 		success : function(data) {
-			console.log(newDate);
-			console.log(fifthVisit);
 			fifthVisit = JSON.parse(data);
-			console.log('파싱후');
-			console.log(fifthVisit);
 			
 			//차트를 그린다.
 			var chart = jui.include("chart.builder");
-			
-			console.log(chart);
 			
 			chart("#chartwrap", {
 			    axis : {
