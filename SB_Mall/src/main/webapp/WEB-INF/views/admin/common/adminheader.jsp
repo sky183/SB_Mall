@@ -72,26 +72,29 @@
 } */
 
 //테이블 정렬
-$.tablesorter.addParser({
-  id: 'NumberSort',
-  is:function(s){return false;},
-  format: function(s) {return s.replace(/,/g,'');},
-  type: 'numeric'
-});
+function addParser(){
+	$.tablesorter.addParser({
+	  id: 'NumberSort',
+	  is:function(s){return false;},
+	  format: function(s) {
+		  return s.replace(/,/gi,'')
+		  .replace(/원/,'');},
+	  type: 'numeric'
+	});
+}
 
-$(".tablesorter").tablesorter(
-	{
-	    headers : {
+// $(".tablesorter").tablesorter(
+// 		{
+// 	    headers : {
 // 	      0 : {sorter : false},
-// 	      3 : {sorter : false},
-	      9 : {sorter : 'NumberSort'},
-	      10 : {sorter : 'NumberSort'},
-	      11 : {sorter : 'NumberSort'},
-	      12 : {sorter : 'NumberSort'}
-	 	}
-	}
-
-);
+// 	      0 : {sorter : false},
+// 	      9 : {sorter : 'NumberSort'},
+// 	      10 : {sorter : 'NumberSort'},
+// 	      11 : {sorter : 'NumberSort'},
+// 	      12 : {sorter : 'NumberSort'}
+// 	 	}
+// 	}
+// );
 
 //input 태그를 클릭하면 텍스트 상자 전체선택된다.
 function inputSel(){

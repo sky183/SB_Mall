@@ -10,7 +10,7 @@ nav{
 .input-group{
 	display: inline-block;
 	width: inherit;
-	vertical-align: top;
+	vertical-align: bottom;
 	padding: 0;
 }
 .input-group-addon{
@@ -162,7 +162,7 @@ input[type="submit"], select{
 }
 
 #mainContent {
-	margin-top: 25px;
+	margin-top: 35px;
 }
 
 /*   adminOperation.jsp 내부 공통 - totalResult.jsp, dailySal.jsp, budget 공통*/
@@ -237,6 +237,7 @@ input[type="submit"], select{
 
 
 input.select {
+	outline : none;
     background-color: #505050;
     color: #f0f0f0;
     border: 0;
@@ -245,6 +246,31 @@ input.select {
     vertical-align: middle;
     padding: 3.7px 15px 3.2px;
 }
+input.update, input.back{
+	outline : none;
+    background-color: #ffffff;
+    color: #282828;
+    border: thin solid #a0a0a0;
+    height: 22px;
+    vertical-align: top;
+    text-align-last: center;
+    padding: 0px 9px;
+}
+input.back{
+	
+}
+input.update:hover,
+input.select:hover {
+    background-color: #505050;
+    color: #f0f0f0;
+}
+input.update:active,
+input.select:active {
+    background-color: #c8c8c8;
+    border: none;
+    color: #505050;
+}
+
 
 .downButton {
 	padding: 4px 15px;
@@ -416,7 +442,6 @@ th.ds1, th.ds2, th.ds3, th.ds4{
 	width : 160px;
 	height: 100%;
 	border: 1px solid #FFF;
-	border-radius: 5px;
 	cursor: default;
 }
 .monthLabel input:focus{
@@ -501,7 +526,6 @@ th.ds1, th.ds2, th.ds3, th.ds4{
 }
 #chartwrap2 path{
 	cursor: pointer;
-/* 	border: 1px solid #ddd; */
 }
 #chartwrap2 div{
 	border: 1px solid #ddd;
@@ -537,28 +561,71 @@ th.ds1, th.ds2, th.ds3, th.ds4{
 	cursor: pointer;
 }
 /* orderManager.jsp  */
+#listTab tbody tr:hover{
+	background-color: #f0f0f0;
+}
 .om0{
 	width: 30px;
 	text-align: center;
 	padding: 0 !important;
 }
 .om1{width: 78px;}.om2{width: 119px;}
-.om3{width: 25px;padding: 0 !important;}.om4{width: 51px;}
-.om5{width: 200px;}.om6{width: 109px;}
+.om3{width: 39px;padding: 0 !important;}.om4{width: 51px;}
+.om5{width: 200px;}.om6{width: 118px;}
 .om7{width: 51px;}.om8{width: 52px ;padding-left: 0 !important;}
-.om9{width: 102px;}
+.om9{width: 97px;}
+
+.or0{width: 89px;}.or1{width: 140px;}.or1 img{width: 100px; height: 100px;}
+.or2{width: 96px;}.or3{width: 144px;}.or4{width: 49px;}
+.or5{width: 80px;}.or6{width: 80px;}
+.or7{width: 145px; text-align: right !important; padding-right: 25px !important;}
+#resultTable th, #resultTable td{
+	padding-left: 0;
+	text-align: center;
+}
 td.om1, td.om2, td.om3, td.om4,
 td.om5, td.om6, td.om7, td.om8, td.om9{
 	text-align: center; 
 	padding-right : 5px;
 	padding-left: 5px;
-}
-td.om9{
-	text-align: right;
+	cursor: pointer;
 }
 th.om1, th.om2, th.om3, th.om4,
 th.om5, th.om6, th.om7, th.om8, th.om9 {
 	padding-left : 0;
 	padding-right : 5px;
 	text-align: center; 
+}
+th.om3, th.om4, th.om7, th.om8{
+	text-align: left !important;
+}
+th.om4, th.om7, th.om8{
+	padding-left : 8px !important;
+}
+td.om9{
+	text-align: right;
+}
+#changestatus{
+	height: 22px;
+}
+.resultTitle{
+    line-height: 22px;
+    text-align: center;
+    border-top: 1px solid #787878;
+    border-bottom: 1px solid #787878;
+    background-color: #f0f0f0;
+    padding: 10px 0;
+}
+.resultTitle span{
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 16px !important;
+    font-weight: 550;
+    color: #787878;
+	
+}
+.emptyResult{
+	text-align: center; 
+	padding: 120px 0;
+	border: 1px solid #505050;
 }

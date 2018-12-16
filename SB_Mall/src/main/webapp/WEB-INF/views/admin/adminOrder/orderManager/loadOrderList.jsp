@@ -5,18 +5,18 @@
 
 <c:set var="viewData" value="${viewData}"/>
 
-	<table id="orderListTab" class="tablesorter resultTab">
+	<table id="listTab" class="tablesorter resultTab">
 		<thead>
 			<tr>
 				<th class="om0 sorter-false"><input type="checkbox" class="all-check"></th>
 				<th class="om1">주문일</th>
 				<th class="om2">주문번호</th>
-				<th class="om3 sorter-false">회원</th>
+				<th class="om3">회원</th>
 				<th class="om4">이름</th>
 				<th class="om5">배송지</th>
 				<th class="om6">품목</th>
 				<th class="om7">결제</th>
-				<th class="om8">주문</th>
+				<th class="om8">상태</th>
 				<th class="om9">주문금액</th>
 				<th class="notsorter"></th>
 			</tr>
@@ -25,25 +25,25 @@
 			<c:choose>
 				<c:when test="${viewData.isEmpty()}">
 					<tr>
-						<td colspan="5" style="text-align: center; padding: 120px 0;">등록된 주문이 없습니다.</td>
+						<td colspan="10" style="text-align: center; padding: 120px 0;">등록된 주문이 없습니다.</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach var="OrderVO" items="${viewData.objList}">
+					<c:forEach var="OrderDetailVO" items="${viewData.objList}">
 						<tr>
-							<td class="om0"><input type="checkbox" class="check"></td>
-							<td class="om1">${OrderVO.orderTime}</td>
-							<td class="om2 orderDetailNum" name="${OrderVO.orderDetailNum}">${OrderVO.orderDetailNum}</td>
-							<td class="om3">${OrderVO.userSeq}</td>
-							<td class="om4">${OrderVO.userName}</td>
-							<td class="om5">${OrderVO.orderAddress}</td>
-							<td class="om6">${OrderVO.goodsName}</td>
+							<td class="om0"><input type="checkbox" class="check" name="orderDetailNum" value="${OrderDetailVO.orderDetailNum}"></td>
+							<td class="om1 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.orderTime}</td>
+							<td class="om2 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.orderDetailNum}</td>
+							<td class="om3 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.userSeq}</td>
+							<td class="om4 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.userName}</td>
+							<td class="om5 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.orderAddress}</td>
+							<td class="om6 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.goodsName}</td>
 							<td class="om7">
 								<c:choose>
-									<c:when test="${OrderVO.payment == 0}">
+									<c:when test="${OrderDetailVO.payment == 0}">
 										현금
 									</c:when>
-									<c:when test="${OrderVO.payment == 1}">
+									<c:when test="${OrderDetailVO.payment == 1}">
 										카드
 									</c:when>
 								</c:choose>
@@ -51,26 +51,26 @@
 							
 							<td class="om8">
 								<c:choose>
-									<c:when test="${OrderVO.status == 0}">
+									<c:when test="${OrderDetailVO.status == 0}">
 										입금전
 									</c:when>
-									<c:when test="${OrderVO.status == 1}">
+									<c:when test="${OrderDetailVO.status == 1}">
 										결제완료
 									</c:when>
-									<c:when test="${OrderVO.status == 2}">
+									<c:when test="${OrderDetailVO.status == 2}">
 										배송준비
 									</c:when>
-									<c:when test="${OrderVO.status == 3}">
+									<c:when test="${OrderDetailVO.status == 3}">
 										배송중
 									</c:when>
-									<c:when test="${OrderVO.status == 4}">
+									<c:when test="${OrderDetailVO.status == 4}">
 										배송완료
 									</c:when>
 								</c:choose>
 							</td>
 							
 							<td class="om9">
-								<fmt:formatNumber value="${OrderVO.totalAmount}" pattern="#,###"/>
+								<fmt:formatNumber value="${OrderDetailVO.totalAmount}" pattern="#,###"/>
 								원
 							</td>
 							<td></td>
@@ -82,11 +82,14 @@
 	</table>
 	<br>
 	<div class="t-left">
-		<span class="fon16 fonb">
+		<span>
+			<input type="checkbox" class="all-check" style="margin-top: 6px; vertical-align: top; margin-left: 9px;">
+		</span>
+		<span class="fon12">
 			선택한 주문을
 		</span>
 		<span>
-			<select id="changestatus">
+			<select id="changeStatus">
 				<option value="1" selected="selected">결제완료</option>
 				<option value="2">배송준비</option>
 				<option value="3">배송중</option>
@@ -94,11 +97,11 @@
 				<option value="0">입금전</option>
 			</select>
 		</span>
-		<span class="fon16 fonb">
+		<span class="fon12">
 			(으)로
 		</span>
 		<span>
-			<input type="submit" id="update" class="select" value="변경">
+			<input type="submit" id="update" class="update" value="변경">
 		</span>
 	</div>
 <!-- 	페이징 처리 -->
@@ -160,16 +163,17 @@
 	
 	$(document).ready(function(){
 		
+		//테이블 정렬
+		addParser();
 		//테이블 일부 정렬 비활성
 		$(".tablesorter").tablesorter(
-				{
-				    headers : {
+			{  headers : {
 		 		      0 : {sorter : false},
-		 		      3 : {sorter : false}
-			
+// 		 		      3 : {sorter : false},
+		 		      9 : {sorter : 'NumberSort'}
 				 	}
-				}
-			);
+			}
+		);
 		
 		//loadOrderList.jsp를 불러오는 함수
 		function loadOrderList(pageNumber){
@@ -190,8 +194,7 @@
 			        alert("Error!");
 			    },
 				success : function(data) {
-					$('#loadOrderList').empty();
-					$('#loadOrderList').append(data);
+					$('#loadOrderList').html(data);
 				}
 			});
 		}
@@ -207,12 +210,88 @@
 			loadOrderList(1);
 		});
 		
+		//검색창에서 엔터를 누르면 다시 불러온다.
+		$('#search').keydown(function(key) {
+			if (key.keyCode == 13) {
+				loadOrderList(1);
+			}
+		});
+		
 		//all-check를 클릭하면 모든 check가 클릭된다.
 		$(".all-check").change(function () {
 		    $(".check").prop('checked', $(this).prop("checked"));
 		});
-				
-	
+		
+		//orderResult.jsp를 불러오는 함수
+		function orderResult(orderBackVO){
+						
+			$.ajax({
+				url : '<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList/orderResult',
+				method : 'POST',
+				type: "json",
+				data : JSON.stringify(orderBackVO),
+				contentType: "application/json",
+				error : function(error) {
+			        alert("Error!");
+			    },
+				success : function(data) {
+					$('#rightContent').html(data);
+				}
+			});
+		}
+		
+		//테이블 td 클릭시 해당 주문 조회
+		$('.orderResult').on('click', function(){
+			
+			//POST로 보낼 객체를 생성 후  키 값을 할당한다.
+			var orderBackVO = {};
+			orderBackVO.orderDetailNum = $(this).attr('name');
+			orderBackVO.pageNumber = ${viewData.currentPageNumber};
+			orderBackVO.startDate = $( "#startDate" ).val();
+			orderBackVO.endDate = $( "#endDate" ).val();
+			orderBackVO.tableName = $('#tableName').val();
+			orderBackVO.status = $('#status').val();
+			orderBackVO.payment = $('#payment').val();
+			orderBackVO.search = $('#search').val();
+			
+			//주문 상세를 불러온다.
+			orderResult(orderBackVO);
+			
+			
+		})
+		
+		//선택한 항목을 업데이트
+		$('#update').on('click', function(){
+			//선택한 항목을 배열로 만들어준다.
+			
+		    var orderlength = $("input[name='orderDetailNum']:checked").length;
+		    var orderDetailArray = new Array(orderlength);
+		    for(var i=0; i<orderlength; i++){                          
+		    	orderDetailArray[i] = $("input[name='orderDetailNum']:checked")[i].value;
+		    }
+			
+		    var status = $('#changeStatus').val();
+		    var tableName = $('#tableName').val();
+		    
+			$.ajax({
+				url : '<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList/changeStatus/' + status + '/' + tableName,
+				method : 'POST',
+				type: "json",
+				data : JSON.stringify(orderDetailArray),
+				contentType: "application/json",
+				error : function(error) {
+			        alert("Error!");
+			    },
+				success : function(data) {
+					alert(data);
+					//기본 화면으로 불러온다. 여기서는 주문 관리
+					$('#rightContent').load('<%=request.getContextPath()%>/admin/adminOrder/orderManager');
+				}
+			});
+		});
+		
+		
+		
 
 		
 	//$(document).ready의 끝

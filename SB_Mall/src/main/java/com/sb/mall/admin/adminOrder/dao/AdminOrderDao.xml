@@ -6,34 +6,42 @@
 	namespace="com.sb.mall.admin.adminOrder.dao.AdminOrderDao">
 
 	<!-- // 일반 주문 및 크라우드펀딩 주문 갯수 -->
-	<select id="selectOrderVOCount" resultType="int">
+	<select id="selectOrderDetailVOCount" resultType="int">
 		select count(*) from
 		(select
 		od.orderDetailNum
-		from ${param3} od,
-		MemberInfo mi, `Order` o,
-		Goods g
+		from ${tableName} od,
+		MemberInfo mi,
+		<if test="tableName == 'OrderDetail'">
+			`Order` o, Goods g
+		</if>
+		<if test="tableName == 'CrowdOrderDetail'">
+			CrowdOrder o, CrowdGoods g
+		</if>
 		where od.userSeq = mi.userSeq and
 		od.orderDetailNum =
 		o.orderDetailNum
 		and o.goodsNo = g.goodsNo
-		<if test="search != -1">
+		<if test="search != '-1'">
 			and
 			(
 			od.orderDetailNum like
-			'%#{search}%' ||
-			od.userSeq like '%#{search}%' ||
+			'%${search}%' ||
+			od.userSeq like
+			'%${search}%' ||
 			od.orderPhone like
-			'%#{search}%' ||
-			od.orderDetailNum like '%#{search}%'
+			'%${search}%' ||
+			od.orderDetailNum
+			like '%${search}%'
 			||
-			od.orderAddress1 like '%#{search}%' ||
+			od.orderAddress1 like '%${search}%' ||
 			od.orderAddress2 like
-			'%#{search}%' ||
-			mi.userName like '%#{search}%' ||
+			'%${search}%' ||
+			mi.userName like '%${search}%'
+			||
 			mi.userId like
-			'%#{search}%' ||
-			g.goodsName like '%#{search}%'
+			'%${search}%' ||
+			g.goodsName like '%${search}%'
 			)
 		</if>
 		and DATE(od.orderTime) <![CDATA[>]]>
@@ -54,14 +62,15 @@
 	</select>
 
 	<!-- // 일반 주문 및 크라우드펀딩 주문 조회 -->
-	<select id="selectOrderVOList"
-		resultType="com.sb.mall.admin.adminOrder.model.OrderVO">
+	<select id="selectOrderDetailVOList"
+		resultType="com.sb.mall.admin.adminOrder.model.OrderDetailVO">
 		select
 		date_format(od.orderTime, '%Y-%m-%d') orderTime,
 		od.orderDetailNum,
 		od.userSeq,
 		mi.userName,
-		concat(od.orderAddress1, od.orderAddress2) orderAddress,
+		concat(od.orderAddress1,
+		od.orderAddress2) orderAddress,
 		(case
 		when
 		count(g.goodsName) <![CDATA[>]]>
@@ -73,30 +82,39 @@
 		od.payment,
 		od.status,
 		od.totalAmount
-		from ${param3} od,
-		MemberInfo mi, `Order` o,
-		Goods g
+		from ${tableName}
+		od,
+		MemberInfo mi,
+		<if test="tableName == 'OrderDetail'">
+			`Order` o, Goods g
+		</if>
+		<if test="tableName == 'CrowdOrderDetail'">
+			CrowdOrder o, CrowdGoods g
+		</if>
 		where od.userSeq = mi.userSeq and
 		od.orderDetailNum =
 		o.orderDetailNum
 		and o.goodsNo = g.goodsNo
-		<if test="search != -1">
+		<if test="search != '-1'">
 			and
 			(
 			od.orderDetailNum like
-			'%#{search}%' ||
-			od.userSeq like '%#{search}%' ||
+			'%${search}%' ||
+			od.userSeq like
+			'%${search}%' ||
 			od.orderPhone like
-			'%#{search}%' ||
-			od.orderDetailNum like '%#{search}%'
+			'%${search}%' ||
+			od.orderDetailNum
+			like '%${search}%'
 			||
-			od.orderAddress1 like '%#{search}%' ||
+			od.orderAddress1 like '%${search}%' ||
 			od.orderAddress2 like
-			'%#{search}%' ||
-			mi.userName like '%#{search}%' ||
+			'%${search}%' ||
+			mi.userName like '%${search}%'
+			||
 			mi.userId like
-			'%#{search}%' ||
-			g.goodsName like '%#{search}%'
+			'%${search}%' ||
+			g.goodsName like '%${search}%'
 			)
 		</if>
 		and DATE(od.orderTime) <![CDATA[>]]>
@@ -110,13 +128,58 @@
 		<if test="payment > -1">
 			and od.payment = #{payment}
 		</if>
-
+		and o.refund = 0
 		and od.orderDetailNum <![CDATA[<>]]>
 		0
 		group by od.orderDetailNum order by
 		od.orderTime desc limit #{param4},
 		#{param5};
 	</select>
+
+	<!-- 상세 상품 조회 -->
+	<select id="selectOrderVOList"
+		resultType="com.sb.mall.admin.adminOrder.model.OrderVO">
+		SELECT
+		o.orderDetailNum,
+		o.userSeq,
+		m.userName,
+		o.orderSeq,
+		g.goodsPhoto,
+		g.goodsNo,
+		g.goodsName,
+		o.quantity,
+		ifnull(go.opt1Name, '') opt1Name,
+		ifnull(go.opt2Name, '') opt2Name,
+		o.salePrice
+		FROM
+		<if test="tableName == 'OrderDetail'">
+			`Order` o,
+		</if>
+		<if test="tableName == 'CrowdOrderDetail'">
+			CrowdOrder o,
+		</if>
+		${param2} g, MemberInfo
+		m,
+		${param3} go
+		where o.goodsNo = g.goodsNo
+		and
+		o.userSeq = m.userSeq
+		and
+		o.optionSeq = go.optionSeq
+		and o.refund = 0
+		and orderDetailNum =
+		#{param4};
+	</select>
+
+	<update id="changeStatus">
+			UPDATE `${param3}` SET
+			`status` = '${param2}'
+			WHERE
+		<foreach collection="orderDetailArray" item="orderDetailNum"  open="(" close=")" separator=" OR ">
+			`orderDetailNum` ='${orderDetailNum}'
+		</foreach>
+		
+	</update>
 
 </mapper> 
  

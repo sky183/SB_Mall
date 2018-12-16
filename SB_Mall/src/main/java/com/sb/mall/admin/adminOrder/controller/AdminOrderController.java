@@ -2,9 +2,13 @@ package com.sb.mall.admin.adminOrder.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.sb.mall.admin.adminOrder.model.OrderBackVO;
 
 @Controller
 public class AdminOrderController {
@@ -28,6 +32,20 @@ public class AdminOrderController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 			modelAndView.setViewName("admin/adminOrder/" + page);
+		
+		return modelAndView;
+	}
+	
+	//주문매니저 컨트롤러에 파라미터
+	@RequestMapping(value="/admin/adminOrder/orderManager", method=RequestMethod.POST)
+	public ModelAndView adminOrderPageParam(@RequestBody OrderBackVO orderBackVO) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		//파라미터 전송
+		modelAndView.addObject("OrderBackVO", orderBackVO);
+		
+		modelAndView.setViewName("admin/adminOrder/orderManager");
 		
 		return modelAndView;
 	}

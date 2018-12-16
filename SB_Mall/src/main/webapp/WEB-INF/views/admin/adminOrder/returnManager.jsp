@@ -10,43 +10,58 @@
 	background-image: url("<%=request.getContextPath()%>/img/calendar.png");
 }
 </style>
-<!-- adminOperation.jsp 에서 불러온다. -->
+<!-- adminOrder.jsp 에서 불러온다. -->
 <div id="mainContent">
 	
 	<!-- 날짜 선택 -->
 	<div id="mainHeader" class="t-left">
-		<span class="fon16 fonb">
-		기간 조회
-		</span>
-		<span class="seldate">
-				<span class="input-group input-group1">
-					<input type="text" id="startDate" name="startDate" class="datepicker inputSel bor-non" value="">
+		<div>
+			<span class="fon16 fonb">
+				검색 조건
+			</span>
+			<span class="seldate">
+					<span class="input-group input-group1">
+						<input type="text" id="startDate" name="startDate" class="datepicker inputSel bor-non" value="">
+						<span class="input-group-addon">
+		                	<span class="glyphicon calbutton"></span>
+		                </span>
+					</span>
+			</span>
+			<span class="fonb fon16">-</span><span class="seldate">
+				<span class="input-group input-group2">
+					<input type="text" id="endDate" name="endDate" class="datepicker inputSel bor-non" value="">
 					<span class="input-group-addon">
 	                	<span class="glyphicon calbutton"></span>
 	                </span>
 				</span>
-		</span>
-		<span class="fonb fon16">-</span><span class="seldate">
-			<span class="input-group input-group2">
-				<input type="text" id="endDate" name="endDate" class="datepicker inputSel bor-non" value="">
-				<span class="input-group-addon">
-                	<span class="glyphicon calbutton"></span>
-                </span>
 			</span>
-		</span>
-		<span>
-			<select id="tableName">
-				<option value="OrderDetail" selected="selected">일반주문</option>
-				<option value="CrowdOrderDetail">크라우드펀딩</option>
-			</select>
-		</span>
-		<span>
-			<input type="submit" id="select" class="select" value="조회">
-		</span>
-		<span class="absol">
-			<span id="excel" class="fon12 downButton">다운로드</span>
-			<span id="print" class="fon12 downButton">프린트</span>
-		</span>
+			<span>
+				<select id="tableName">
+					<option value="OrderDetail" selected="selected">일반주문</option>
+					<option value="CrowdOrderDetail">크라우드펀딩</option>
+				</select>
+			</span>
+			<span>
+				<select id="payment">
+					<option value="-1" selected="selected">결제수단</option>
+					<option value="1">카드</option>
+					<option value="0">현금</option>
+				</select>
+			</span>
+			<span>
+				<select id="status">
+					<option value="-1" selected="selected">주문상태</option>
+					<option value="0">입금전</option>
+					<option value="1">결제완료</option>
+					<option value="2">배송준비</option>
+					<option value="3">배송중</option>
+					<option value="4">배송완료</option>
+				</select>
+			</span>
+			<span>
+				<input type="submit" id="select" class="select" value="조회">
+			</span>
+		</div>
 	</div>
 	
 	<!-- 중단 -->
@@ -56,8 +71,8 @@
 	</div>
 	
 	<!-- 하단 -->
-	<div id="loadDailySalReport">
-	<!-- loadDailySalReport의 끝 -->
+	<div id="loadReturlList">
+	<!-- loadReturlList의 끝 -->
 	</div>
 	
 <!-- mainContent의 끝 -->
@@ -82,23 +97,25 @@
 			} else {
 				$("#endDate").val(newDay); 
 			}
-			   
-			// $("#endDate").val(firstDate + " - " + lastDate);  //주날짜 뿌려주고싶을때 참고
 		});
 		
 		var tableName = $('#tableName').val();
 		
-		$('#loadDailySalReport').load(
-			'<%=request.getContextPath()%>/admin/adminOperation/dailySal/loadDailySalReport?startDate=' + firstDate + '&endDate=' + nowString + '&tableName=' + tableName + '&pageNumber=1'
+		$('#loadReturlList').load(
+				'<%=request.getContextPath()%>/admin/adminOrder/returnManager/loadReturnList?startDate='
+						+ firstDate + '&endDate=' + nowString + '&tableName=' + tableName + '&pageNumber=1'
 		);
+
 		
 		//input 태그에 오늘 날짜 불러온다.
 		$( "#startDate" ).val(firstDate);
 		$( "#endDate" ).val(nowString);
 		
 		//메뉴 및 서브메뉴에 css 적용 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것
-		removeActive('#salReport', '#dailySal');
-				
+		removeActive('#returnManager', 0);
+		
+		
+
 		
 	});
 </script>

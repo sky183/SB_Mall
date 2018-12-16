@@ -10,7 +10,7 @@
 	background-image: url("<%=request.getContextPath()%>/img/calendar.png");
 }
 </style>
-<!-- adminOperation.jsp 에서 불러온다. -->
+<!-- adminOrder.jsp 에서 불러온다. -->
 <div id="mainContent">
 	
 	<!-- 날짜 선택 -->
@@ -100,8 +100,6 @@
 			} else {
 				$("#endDate").val(newDay); 
 			}
-			   
-			// $("#endDate").val(firstDate + " - " + lastDate);  //주날짜 뿌려주고싶을때 참고
 		});
 		
 		var tableName = $('#tableName').val();
@@ -109,11 +107,33 @@
 		var payment = $('#payment').val();
 		var search = $('#search').val();
 		
-		$('#loadOrderList').load(
-			'<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList?startDate='
-					+ firstDate + '&endDate=' + nowString + '&tableName=' + tableName + '&pageNumber=1'
+		//주문상세보기에서 뒤로 왔을경우
+		var orderBackVO = '${OrderBackVO}';
+		if (orderBackVO != null && orderBackVO != '') {
+			
+			var startDate = '${OrderBackVO.startDate}';
+		 	var endDate = '${OrderBackVO.endDate}';
+			var tableName = '${OrderBackVO.tableName}';
+			var status = '${OrderBackVO.status}';
+			var payment = '${OrderBackVO.payment}';
+			var search = '${OrderBackVO.search}';
+			var pageNumber = '${OrderBackVO.pageNumber}';
+			
+			$('#loadOrderList').load(
+					'<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList?startDate=' 
+					+ startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber
 					+ '&status=' + status + '&payment=' + payment + '&search=' + search
-		);
+				);
+			
+		//주문관리 메인에서 바로 왔을 경우
+		} else {
+			$('#loadOrderList').load(
+					'<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList?startDate='
+							+ firstDate + '&endDate=' + nowString + '&tableName=' + tableName + '&pageNumber=1'
+							+ '&status=' + status + '&payment=' + payment + '&search=' + search
+				);
+		}
+
 		
 		//input 태그에 오늘 날짜 불러온다.
 		$( "#startDate" ).val(firstDate);
@@ -121,7 +141,9 @@
 		
 		//메뉴 및 서브메뉴에 css 적용 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것
 		removeActive('#orderManager', 0);
-				
+		
+		
+
 		
 	});
 </script>

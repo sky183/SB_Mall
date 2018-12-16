@@ -64,7 +64,8 @@ li {
 }
 /* 입력 활성화 */
 .inputActive{
-	border: 1px solid #a0a0a0 !important;
+	border: thin solid #a0a0a0 !important;
+    height: 24.75px !important;
 }
 
 

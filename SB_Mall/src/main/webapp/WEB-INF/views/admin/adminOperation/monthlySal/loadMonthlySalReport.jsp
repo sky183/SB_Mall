@@ -246,6 +246,16 @@
 	
 	$(document).ready(function(){
 		
+		//테이블 정렬
+		addParser();
+		$(".tablesorter").tablesorter(
+			{
+			    headers : {
+				  3 : {sorter : 'NumberSort'}
+			 	}
+			}
+		);
+		
 		//총합을 출력한다.
 		$('#totalAmount').text(comma(totalAmount));
 		$('#total').text(comma(totalAmount));

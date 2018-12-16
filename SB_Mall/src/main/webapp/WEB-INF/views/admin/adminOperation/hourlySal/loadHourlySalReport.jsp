@@ -10,7 +10,7 @@
 	<table id="hourlySalTab" class="tablesorter resultTab">
 		<thead>
 			<tr>
-				<th class="ds1">날짜</th>
+				<th class="ds1">시간대</th>
 				<th class="ds2">주문수</th>
 				<th class="ds3">방문자</th>
 				<th class="ds4">매출</th>
@@ -247,6 +247,16 @@
 
 	
 	$(document).ready(function(){
+		
+		//테이블 정렬
+		addParser();
+		$(".tablesorter").tablesorter(
+			{
+			    headers : {
+				  3 : {sorter : 'NumberSort'}
+			 	}
+			}
+		);
 		
 		//총합을 출력한다.
 		$('#totalAmount').text(comma(totalAmount));

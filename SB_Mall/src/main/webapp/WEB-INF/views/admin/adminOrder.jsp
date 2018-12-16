@@ -70,7 +70,7 @@ $(document).ready(function(){
 	//메뉴 클릭시 우측 메뉴 출력 - 없으면 기본 화면으로 출력 여기서는 영업통계
 	$('.link').click(function(){
 		var page = $(this).attr('id');
-		var url = '<%=request.getContextPath()%>/admin/adminStatistics/' + page;
+		var url = '<%=request.getContextPath()%>/admin/adminOrder/' + page;
 		$.ajax({
 			url : url,
 			error : function(error) {

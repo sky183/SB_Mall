@@ -7,8 +7,6 @@
 	//text타입의 input에서 엔터 누르면 포커스 아웃
 	enterText();
 	nextFocus();
-	//테이블 정렬
-	$(".tablesorter").tablesorter();
 	//프린트 버튼을 누르면 인쇄창이 뜬다.
 	$('#print').off('click').on('click', function(){
 		window.print();
