@@ -19,7 +19,7 @@ public class ReturnManagerController {
 	AdminOperationService operationService;
 
 	// 일별 주문현황 loadDailySalReport ajax
-	@RequestMapping(value = "/admin/adminOrder/orderManager/loadOrderList", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/adminOrder/returnManager/loadReturnList", method = RequestMethod.GET)
 	public ModelAndView loadDailySalReport(@RequestParam(value = "startDate", required = true) String startDate,
 			@RequestParam(value = "endDate", required = true) String endDate,
 			@RequestParam(value = "tableName", required = true) String tableName,
@@ -33,7 +33,7 @@ public class ReturnManagerController {
 
 		modelAndView.addObject("viewData", viewData);
 
-		modelAndView.setViewName("admin/adminOrder/orderManager/loadOrderList");
+		modelAndView.setViewName("admin/adminOrder/returnManager/loadReturnList");
 
 		return modelAndView;
 	}
