@@ -28,7 +28,7 @@
         }
 	};
 	$(document).ready(function() { 
-		$('.rowdCommonBannerH3').text('Write');
+		$('.rowdCommonBannerH3').text('상품등록');
 		$('#summernote').summernote({
 			  height: 750,                 // set editor height
 			  minHeight: 500,             // set minimum height of editor

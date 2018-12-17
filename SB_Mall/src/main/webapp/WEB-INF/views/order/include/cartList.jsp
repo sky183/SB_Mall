@@ -5,7 +5,7 @@
 
 <script>
 	$(document).ready(function() {
-		$('.rowdCommonBannerH3').text('Cart');
+		$('.rowdCommonBannerH3').text('장바구니');
 		//페이지로딩 후 카트정보 불러옴
 		$.ajax({
 			url : '<%=request.getContextPath()%>/order/carts',

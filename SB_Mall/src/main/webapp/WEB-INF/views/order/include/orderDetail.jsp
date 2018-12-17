@@ -28,7 +28,7 @@
 var IMP = window.IMP; // 생략가능
 IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	$(document).ready(function(){
-		$('.rowdCommonBannerH3').text('Order');
+		$('.rowdCommonBannerH3').text('결제');
 		$('.ODDelivery').keyup(function(){
 			var length = $(this).val();
 			

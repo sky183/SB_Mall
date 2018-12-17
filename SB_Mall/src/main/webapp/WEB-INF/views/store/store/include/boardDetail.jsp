@@ -298,7 +298,7 @@ var removeGoodsList = function(e) {
 
 	$(document).ready(function () {
 		
-		$('.rowdCommonBannerH3').text('Store');
+		$('.rowdCommonBannerH3').text('스토어');
 		
 		$('.storeDeleteBtn').click(function () {
 			if (confirm("정말 삭제하시겠습니까??") == true){
