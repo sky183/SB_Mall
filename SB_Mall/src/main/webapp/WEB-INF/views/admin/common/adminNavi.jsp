@@ -17,7 +17,7 @@
 										관리자님 환영합니다.
 									</span>
 									<span>
-										<a class="memberNaviText"
+										<a id="memberNaviText"
 										href="<%=request.getContextPath()%>/admin/logout">로그아웃</a>
 									</span>
 							</c:otherwise>
