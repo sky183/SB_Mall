@@ -10,25 +10,24 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Font Awesome -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Bootstrap core CSS -->
-<link
+<!-- <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
-	rel="stylesheet">
+	rel="stylesheet"> -->
 <!-- Material Design Bootstrap -->
-<link
+<!-- <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css"
-	rel="stylesheet">
+	rel="stylesheet"> -->
 <!-- Bootstrap tooltips -->
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- <script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script> -->
 <!-- Bootstrap core JavaScript -->
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 <!-- MDB core JavaScript -->
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
+<!-- <script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script> -->
 
 <!-- joinForm.css -->
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/css/joinForm.css">
@@ -62,15 +61,204 @@
 
 </head>
 <body>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
+<div class="commonBannerBox">
+	<h3 class="rowdCommonBannerH3">회원가입</h3>
+</div>
 
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+<form class="text-center  p-5" method="post" name="form" id="form">
+<div id="freeboard_wrap_1">
+<div id="freeboard_wrap_2">
+	
+	<!-- Start of Content -->
+	<div id="freeboard_Content">
+	
+	<div id="email_ID_wrap">
+	<!-- Email 입력 테그 -->
+	<div>
+		<input type="email" id="email_ID"
+		class="all_Input"  placeholder="(*) E-mail (Id)" name="userId"
+		required onkeyup="emailDuplicateCheck_Function()" auth="false">
+	</div>
+	<!-- Email 유효성 Message 출력 -->
+	<div>
+		<small id="email_Output_ID" class="form-text  mb-4">메일주소를 정확히 입력해주세요.</small>
+	</div>
+	</div><!-- End of email_ID_wrap -->
+	
+	<div id="password_ID_wrap">
+	<div>
+	<!-- Password 입력 테그 -->
+	<input 
+		id="password_ID"
+		type="password" 
+		class="all_Input" 
+		name="userPw"
+		onkeyup="passwordCheck_Function()" 
+		required placeholder="(*) 비밀번호"
+		auth="false">
 
+	<!-- Password 재확인 입력 테그 -->
+	<input 
+		id="reconfirmPassword_ID"
+		type="password" 
+		class="all_Input" 
+		name="userPwChck"
+		onkeyup="passwordCheck_Function()" 
+		required placeholder="(*) 비밀번호 확인">
+				
+	</div>
+	<div>
+		<!-- 비밀번호 유효성 Message 출력 -->
+		<small id="password_Output_ID" class="form-text  mb-4">비밀번호를 정확히 입력해 주세요.</small>
+	</div>
+	</div><!-- End of password_ID_wrap -->
+	
+	<div id="userName_IDuserBirthday_ID_wrap">
+	<div>
+	<!-- 이름 입력 테그 -->
+	<input type="text" id="userName_ID" class="all_Input"
+			name="userName" required placeholder="(*) 성명"
+			onkeyup="nameCheck_Function()"
+			auth="false">
+						
+	<!-- 생년월일 입력 테그 -->
+	<input type="text" id="userBirthday_ID" class="all_Input"
+		name="regID" required placeholder="(*) ex) 19001010" auth="false">
+	</div>
+	
+	<div>
+		<!-- 이름 유효성 Message,생년월일 유효성 Message 출력 -->
+		<small id="nameAndBirthDay_Output_ID" class="form-text  mb-4">성명과 생명월일을 정확히 입력해 주세요</small>
+	</div>
+	</div><!-- userName_ID&userBirthday_ID_wrap -->
+	
+	<div id="phoneNumber_IDuserGender_ID_wrap">
+	<div>
+		<!-- 폰번호 입력 테그 -->
+		<input type="text"
+			id="phoneNumber_ID" class="all_Input"
+			placeholder="(*) 휴대폰 번호"
+			name="phone"
+			required
+			onkeyup="phoneNumber_CheckFunction()"
+			auth="false"> 
+		<!-- 성별 입력 테그 -->
+		<select id="userGender_ID" form="form" class="form-control form_gender"	name="gender"> 
+  			<option value="남성">남성</option>
+  			<option value="여성">여성</option>
+		</select>
+	</div>
+	<div>
+		<!-- 폰번호 유효성 출력 테그 -->
+		<small id="phoneNumber_Output_ID" class="form-text  mb-4"> - 를 빼고 입력하세요 </small>
+	</div>
+	</div><!-- End of phoneNumber_IDuserGender_ID_wrap -->
+	
+	<div id="content_addressAPI_wrap">
+	<div>
+		<!-- 우편번호 -->
+		<input type="text" id="zipNo" class="all_Input"
+			placeholder="(*) 우편번호" name="zipCode" required
+			readonly="readonly"
+			onkeyup="addressAPI()">
+		<!-- 주소검색버튼 -->
+		<input type="button" onClick="goPopup();" value="주소검색"
+			class="all_Button"
+			height="25px" />
+	</div>
+	<div>
+		<!-- 주소 -->
+		<input type="text" id="roadAddrPart1" class="all_Input"
+			placeholder="(*) 주소"
+			name="address1" readonly="readonly">
+	</div>
+	<div>
+		<!-- 상세주소 -->
+		<input type="text" id="addrDetail" class="all_Input"
+			placeholder="(*) 상세주소"
+			name="address2"
+			auth="false"
+			>
+	</div>
+	<!-- 주소API 끝-->
+	<div>
+	<small id="addressAPI_Output_ID"
+		class="form-text  mb-4"> 주소를 정확히 입력하세요. 상품 주문시
+		사용됩니다. </small>
+	</div>
+	</div><!-- End of "content_addressAPI_wrap" -->
+
+	
+	
+
+	</div><!-- End of div freeboard_Content-->
+	
+	<!-- Start of footer -->
+	
+	
+	<div id="freeboard_Footer">
+	<!-- Sign up button -->
+	<div>
+    <input id="footer_button_Send" class="all_Button" type="button" onclick="checkFunction()" value="회원 가입"></input>
+	<a href="<%=request.getContextPath()%>/freeBoard">
+		<button id="footer_button_Cancel" type="button" class="all_Button">취소</button>
+	</a>
+	</div>
+	<!-- Social register -->
+				<p>or sign up with:</p>
+
+				<a type="button" class="socialRegister_Icon"> <i
+					class="fa fa-facebook"></i>
+				</a> <a type="button" class="socialRegister_Icon"> <i
+					class="fa fa-twitter"></i>
+				</a> <a type="button" class="socialRegister_Icon"> <i
+					class="fa fa-linkedin"></i>
+				</a> <a type="button" class="socialRegister_Icon"> <i
+					class="fa fa-github"></i>
+				</a>
+
+				<hr>
+		<p>
+			By clicking <em>Sign up</em> you agree to our <a href=""
+				target="_blank">terms of service</a> and <a href=""
+				target="_blank">terms of service</a>.
+		</p>
+	
+	</div><!-- End of div freeboard_footer-->
+</div>
+</div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<br>
 	<br>
 	<div id="contents">
 		<div style="margin: 30px auto 20px auto; width: 600px;">
 			<!-- Default form register -->
-			<form class="text-center  p-5" method="post" name="form" id="form">
 
 				<p class="h4 mb-4">
 					<b>회원가입</b>
@@ -240,7 +428,6 @@
 						target="_blank">terms of service</a> and <a href=""
 						target="_blank">terms of service</a>.
 				</p>
-			</form>
 		</div>
 	</div>
 
@@ -357,25 +544,25 @@
 		if (nameCheck1.test(name)) {
 			console.log('한글 이름');
 			if (koreaName.test(name)) {
-				$('#nameAndBirthDay_Output_ID').html('<h6 style="color: green;"> 적합</h6>');                
+				$('#nameAndBirthDay_Output_ID').css('color','green').html('적합');                
 	    		$('#userName_ID').attr('auth', 'true')
 			}else{
-				$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">정확한 한글 이름을 입력 해 주세요</h6>');                
+				$('#nameAndBirthDay_Output_ID').css('color','red').html('정확한 한글 이름을 입력 해 주세요');                
 	    		$('#userName_ID').attr('auth', 'false')
 					
 			}
 		}else if(nameCheck2.test(name)){
 				console.log('영문 이름');
 			if (englishName.test(name)) {
-				$('#nameAndBirthDay_Output_ID').html('<h6 style="color: green;"> correct</h6>');                
+				$('#nameAndBirthDay_Output_ID').css('color','green').html('correct');                
 	    		$('#userName_ID').attr('auth', 'true')
 			}else{
-				$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">Please enter the correct name</h6>');                
+				$('#nameAndBirthDay_Output_ID').css('color','red').html('Please enter the correct name');                
 	    		$('#userName_ID').attr('auth', 'false')
 					
 			}
 		}else{
-				$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">한글, 영어 외 사용불가</h6>');                
+				$('#nameAndBirthDay_Output_ID').css('color','red').html('한글, 영어 외 사용불가');                
 	    		$('#userName_ID').attr('auth', 'false')
 			
 		}
@@ -416,22 +603,22 @@
 			
 	    if ((yearNow<year)||(year<1900)){
 	    	
-	    	$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">년도를 확인하세요</h6>'); 
+	    	$('#nameAndBirthDay_Output_ID').css('color','red').html('년도를 확인하세요'); 
 	    	$('#userBirthday_ID').attr('auth', 'false');
 	    	
 	    }else if ((month<1)||(12<month)) {
 	    		
-	    	$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;"> 달은 1월부터 12월까지 입력 가능합니다.</h6>'); 
+	    	$('#nameAndBirthDay_Output_ID').css('color','red').html('달은 1월부터 12월까지 입력 가능합니다.'); 
 	    	$('#userBirthday_ID').attr('auth', 'false');
 	    
 	    }else if (day < 1 || day > 31) {
 	    	
-	    	$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;"> 일은 1일부터 31일까지 입력가능합니다.</h6>'); 
+	    	$('#nameAndBirthDay_Output_ID').css('color','red').html('일은 1일부터 31일까지 입력가능합니다.'); 
 	    	$('#userBirthday_ID').attr('auth', 'false');
 	    	
 	    }else if ((month==4 || month==6 || month==9 || month==11) && day==31) {
 	    	 
-	    	$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;"> <'+month+'>월은 31일이 존재하지 않습니다.</h6>'); 
+	    	$('#nameAndBirthDay_Output_ID').css('color','red').html(' <'+month+'>월은 31일이 존재하지 않습니다.'); 
 	    	$('#userBirthday_ID').attr('auth', 'false');
 	    	 
 	    }else if (month == 2) {
@@ -440,25 +627,25 @@
 	       	
 	     	if (day>29 || (day==29 && !isleap)) {
 	     		
-	     		$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">'+ year + " 년 2월은  " + day + ' 일이 없습니다.</h6>'); 
+	     		$('#nameAndBirthDay_Output_ID').css('color','red').html(''+ year + " 년 2월은  " + day + ' 일이 없습니다.'); 
 	    		$('#userBirthday_ID').attr('auth', 'false');
 	    	
 			}else{
 				
-				$('#nameAndBirthDay_Output_ID').html('<h6 style="color: green;">적합</h6>'); 
+				$('#nameAndBirthDay_Output_ID').css('color','green').html('적합'); 
 			    $('#userBirthday_ID').attr('auth', 'true');
 			}//end of if (day>29 || (day==29 && !isleap))
 	     	
 	    }else{
 	    	
-			$('#nameAndBirthDay_Output_ID').html('<h6 style="color: green;">적합</h6>'); 
+			$('#nameAndBirthDay_Output_ID').css('color','green').html('적합'); 
 			$('#userBirthday_ID').attr('auth', 'true');
 			
 		}//end of if
 		
 		}else{
 			//1.입력된 생년월일이 8자 초과할때 :  auth:false
-	     	$('#nameAndBirthDay_Output_ID').html('<h6 style="color: red;">8자리 이상 벗어날 수 없습니다.</h6>'); 
+	     	$('#nameAndBirthDay_Output_ID').css('color','red').html('8자리 이상 벗어날 수 없습니다.'); 
 	    	$('#userBirthday_ID').attr('auth', 'false');
 		}
 	})//End of method /*[4]. 생년월일 유효성 체크*/
@@ -479,27 +666,25 @@
 					
 				//2018.11.23 입력된 폰번호 10자 이상 입력시 유효성 로직 수행
 				if (phoneNumber.length >= 10) {
-					$('#phoneNumber_Output_ID').html('<h6 style="color: green;"> 적합</h6>');                
+					$('#phoneNumber_Output_ID').css('color','green').html('적합');                
 			    	$('#phoneNumber_ID').attr('auth', 'true')
 		    		console.log('phoneNumber_ID auth : true');
 				
 				
 				}else{
 				//2018.11.23 입력된 폰번호 10자 미만 입력시 아래 문장 출력
-					$('#phoneNumber_Output_ID').html('<h6 style="color: red;">핸드폰 번호 뒷자리를 정확히 입력 해 주세요</h6>');                
+					$('#phoneNumber_Output_ID').css('color','red').html('핸드폰 번호 뒷자리를 정확히 입력 해 주세요');                
 			    	$('#phoneNumber_ID').attr('auth', 'false')
 			    	console.log('phoneNumber_ID : false');
 				}//End of if (phoneNumber.length >= 10)
 		    	
 			}else{
 					
-				$('#phoneNumber_Output_ID').html('<h6 style="color: red;">번호를 정확히 입력 해 주세요</h6>');                
+				$('#phoneNumber_Output_ID').css('color','red').html('번호를 정확히 입력 해 주세요');                
 		    	$('#phoneNumber_ID').attr('auth', 'false')
 		    	console.log('phoneNumber_ID : false');
 					
 			}//End of if (phoneJ.test(phoneNumber))
-		
-		
 	}//End of method /*[5].휴대폰번호 정규식*/
 	
 	/*[6].상세주소 입력 확인*/
@@ -508,11 +693,11 @@
 			function addressAPI() {
 				var check = $(this).val();
 				if (check < 1) {
-					$('#addressAPI_Output_ID').html('<h6 style="color: red;">부적합</h6>');                
+					$('#addressAPI_Output_ID').css('color','red').html('부적합');                
 				    $('#addrDetail').attr('auth', 'false');
     				console.log('addrDetail Auth : false');
 				}else{
-					$('#addressAPI_Output_ID').html('<h6 style="color: green;">적합</h6>');                
+					$('#addressAPI_Output_ID').css('color','green').html('적합');                
 				    $('#addrDetail').attr('auth', 'true');
     				console.log('addrDetail Auth : true');
 		
@@ -537,10 +722,10 @@
 	        		
 	        	//1.1 모든 auth 설정이 true일때
 	        	if (auth_group.length = 5) {
-					$('#addressAPI_Output_ID').html('<h6 style="color: green;">회원가입 가능</h6>');                
+					$('#addressAPI_Output_ID').css('color','green').html('회원가입 가능');                
 				}else{
 	        	//1.2 auth 설정이 false일때
-					$('#addressAPI_Output_ID').html('<h6 style="color: red;">회원가입 불가</h6>');                
+					$('#addressAPI_Output_ID').css('color','red').html('회원가입 불가');                
 				}
 	  		}else{
 	        //2. auth_group 속성이 false일때 아래 문장 출력

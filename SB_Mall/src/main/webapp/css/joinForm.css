@@ -1,37 +1,113 @@
 @charset "UTF-8";
 
-body {
-	background-color: #f5f5f5;
+/* *{ */
+/* 	border: 1px solid #a0a0a0; */
+/* }  */
+
+.all_Input{
+	margin: 10px 0;
+	font-size:15pt;
+	border: 0px solid #dcdcdc;
+    padding: 4px 5px;
+	border-bottom: 2px solid #dcdcdc;
+}
+.all_input::placeholder {
+	font-weight: bold;
+    color: #c8c8c8;
+}
+.all_input:focus {
+    outline: 0.5px solid #dcdcdc;
+    border-radius: 6px !important;
 }
 
-.form_name {
-	width: 122px !important;
+.all_Button{
+    color: #3c3c3c;
+    font-weight: bold;
+    padding: 5px 20px;
+    /* margin-left: 3px; */
+    /* padding-bottom: 3px; */
+    background: none;
+    border: 1px solid #3c3c3c;
+    border-radius: 4px;
+    text-align: center;
 }
-.form_gender {
-	width: 122px !important;
-	margin-left: 5px;
-	margin-right: 5px;
-}
-.form_birth {
-	width: 247px !important;
+.all_Button:hover{
+	background-color: #a0a0a0;
+	color: #f0f0f0;
+	cursor: pointer;
 }
 
-/*출력테그 폰트*/
-#email_Output_ID{
-	color: #a0a0a0;
+
+#freeboard_wrap_1 {
+	width: 600px;
+	margin: 0 auto;
+	height: 800px;
 }
-#password_Output_ID{
-	color: #a0a0a0;
+
+#freeboard_wrap_2 {
+	width: 600;
+    margin: 70px auto;
 }
-#nameAndBirthDay_Output_ID{
-	color: #a0a0a0;
+
+
+
+
+#freeboard_Header {
+	
 }
-#phoneNumber_Output_ID{
-	color: #a0a0a0;
+/*<<Start of #freeboard_Header>>*/
+
+/*<<End of #freeboard_Header>>*/
+
+
+
+#freeboard_Content {
+	text-align: center;
+	
 }
-#addressAPI_Output_ID{
-	color: #a0a0a0;
+/*<<Start of freeboard_Content>>*/
+#email_ID_wrap,
+#password_ID_wrap,
+#userName_IDuserBirthday_ID_wrap,
+#phoneNumber_IDuserGender_ID_wrap,
+#content_addressAPI_wrap{
+	margin: 20px;
 }
+
+#email_ID{
+	width: 400px;
+	
+}
+
+#zipNo{
+	width: 345px;
+}
+#roadAddrPart1,
+#addrDetail{
+	width: 450px;
+}
+
+
+#footer_button_Send{
+	width: 110px;
+}
+#footer_button_Cancel{
+	width: 110px;
+}
+/*<<End of freeboard_Content>>*/
+
+
+
+#freeboard_Footer {
+	text-align: center;
+}
+/*<<Start of freeboard_Footer>>*/
+
+.socialRegister_Icon{
+	color: #00aaff;
+}
+/*<<End of freeboard_Footer>>*/
+
 
 
 
