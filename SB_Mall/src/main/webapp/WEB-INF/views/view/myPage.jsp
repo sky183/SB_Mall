@@ -30,7 +30,7 @@
 <div class="commonBannerBox">
 	<h3 class="rowdCommonBannerH3">마이페이지</h3>
 </div>
-<%-- 
+
 <div id="freeboard_wrap_1">
 <div id="freeboard_wrap_2">
 
@@ -80,11 +80,96 @@
 				<div class="content_Font1">총 구매금액</div>
 				<div class="content_Font2">${memberInfo.userAmount} 원</div>
 			</div>
+			
+			<div id="content_button_wrap">
+				<!-- Sign up button -->
+  				<button class="memberModify all_Button" name="${member.userId}" grade="${member.gradeNum}"
+    			data-toggle="modal" data-target="#modalCart">수정하기</button>
+   				<button class="memberDelete all_Button" name="${member.userId}" grade="${member.gradeNum}">탈퇴하기</button>
+			</div>
 	</div><!-- End of div freeboard_Content-->
 	
 	
 	<!-- Start of footer -->
 	<div id="freeboard_Footer">
+	
+	<c:choose>
+	<c:when test="${empty orderDetail}">
+    </c:when>
+	<c:otherwise>
+		<p class="content_Font1" style="text-align: center;">내 주문내역</p>
+		<div class="px-1">
+
+			<div class="table-wrapper" style="width: 700px; text-align: center; margin: 0 auto;">
+				<!--Table-->
+				<table class="memList table table-hover mb-0" style="margin-left: auto;">
+
+					<!--Table head-->
+					<thead>
+						<tr>
+
+							<th class="th-lg">주문상세번호</th>
+							<th class="th-lg">결제수단</th>
+							<th class="th-lg">주문시간</th>
+							<th class="th-lg">결제금액</th>
+							<th class="th-lg">주문상태</th>
+						</tr>
+					</thead>
+					<!--Table head-->
+
+					<!--Table body-->
+					<tbody>
+						<c:forEach var="order" items="${orderDetail}">
+							<tr>
+								<td>${order.orderDetailNum}</td>
+								<td><c:choose>
+										<c:when test="${order.payment == 0}">
+                                     	           무통장
+                                            </c:when>
+										<c:otherwise>
+                                         	       카드
+                                            </c:otherwise>
+									</c:choose></td>
+
+								<td>${order.orderTime}</td>
+								<td>${order.totalAmount}</td>
+								<td style="padding-top: 5px; padding-bottom: 5px; !important">
+								<button class="status btn btn-blue-grey"
+										name="${order.orderDetailNum}" style="padding: 2px 5px; width: 80px;" disabled>
+											<c:choose>
+												<c:when test="${order.status == 0}">
+                                                     	  입금미확인
+                                                    </c:when>
+												<c:when test="${order.status == 1}">
+                                                   	  결제완료
+                                                    </c:when>
+												<c:when test="${order.status == 2}">
+                         	                 	              배송전
+                                                    </c:when>
+												<c:when test="${order.status == 3}">
+                                                	        배송중
+                                                    </c:when>
+												<c:otherwise>
+													배송완료
+												</c:otherwise>
+											</c:choose>
+										</button>
+							<button class="order btn btn-blue-grey"
+										name="${order.orderDetailNum}" data-toggle="modal" data-target="#modalOrder" style="padding: 2px 5px; width: 80px">
+										주문상세</button>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+					<!--Table body-->
+				</table>
+				
+			</div>
+		</div>
+
+	</c:otherwise>
+	</c:choose>
+	
 	</div><!-- End of div freeboard_footer-->
 </div>
 </div>
@@ -99,7 +184,7 @@
 	<br>
 	<br>
 	<br>
-	<br> --%>
+	<br> 
 	
 <div id="wrapper">
 	<div style="margin: 30px auto 20px auto; width: 600px; margin-bottom: 60px;">
