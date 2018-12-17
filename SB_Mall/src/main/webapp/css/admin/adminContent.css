@@ -564,7 +564,7 @@ th.ds1, th.ds2, th.ds3, th.ds4{
 #listTab tbody tr:hover{
 	background-color: #f0f0f0;
 }
-.om0{
+.om0, .rm0{
 	width: 30px;
 	text-align: center;
 	padding: 0 !important;
@@ -579,6 +579,13 @@ th.ds1, th.ds2, th.ds3, th.ds4{
 .or2{width: 96px;}.or3{width: 144px;}.or4{width: 49px;}
 .or5{width: 80px;}.or6{width: 80px;}
 .or7{width: 145px; text-align: right !important; padding-right: 25px !important;}
+
+.rm1{width: 79px;}.rm2{width: 51px;}
+.rm3{width: 67px;}.rm4{width: 110px;}
+.rm5{width: 131px;}.rm6{width: 54px;}
+.rm7{width: 56px;}.rm8{width: 56px;}
+.rm9{width: 70px;}.rm10{width: 122px;}
+
 #resultTable th, #resultTable td{
 	padding-left: 0;
 	text-align: center;
@@ -596,6 +603,18 @@ th.om5, th.om6, th.om7, th.om8, th.om9 {
 	padding-right : 5px;
 	text-align: center; 
 }
+td.rm1, td.rm2, td.rm3, td.rm4,
+td.rm5, td.rm6, td.rm7, td.rm8, td.rm9, td.rm10{
+	padding-right : 5px;
+	padding-left: 5px !important;
+}
+th.rm1, th.rm2, th.rm3, th.rm4,
+th.rm5, th.rm6, th.rm7, th.rm8, th.rm9, th.rm10 {
+	padding-right : 5px;
+}
+td.rm10{
+	text-align: right !important;
+}
 th.om3, th.om4, th.om7, th.om8{
 	text-align: left !important;
 }
@@ -605,7 +624,7 @@ th.om4, th.om7, th.om8{
 td.om9{
 	text-align: right;
 }
-#changestatus{
+#changeStatus, #changeRefund{
 	height: 22px;
 }
 .resultTitle{

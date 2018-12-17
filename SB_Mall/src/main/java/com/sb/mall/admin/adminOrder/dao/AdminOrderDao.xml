@@ -167,19 +167,128 @@
 		and
 		o.optionSeq = go.optionSeq
 		and o.refund = 0
-		and orderDetailNum =
+		and
+		orderDetailNum =
 		#{param4};
 	</select>
 
+	<!-- // 주문상태 업데이트 -->
 	<update id="changeStatus">
-			UPDATE `${param3}` SET
-			`status` = '${param2}'
-			WHERE
-		<foreach collection="orderDetailArray" item="orderDetailNum"  open="(" close=")" separator=" OR ">
+		UPDATE `${param3}` SET
+		`status` = '${param2}'
+		WHERE
+		<foreach collection="orderDetailArray" item="orderDetailNum"
+			open="(" close=")" separator=" OR ">
 			`orderDetailNum` ='${orderDetailNum}'
 		</foreach>
-		
+
 	</update>
+
+	<!-- 반품 상품 갯수 -->
+	<select id="selectReturnVOCount" resultType="int">
+		select count(*) from
+		(SELECT
+		o.orderSeq
+		FROM
+		<if test="tableName == 'Order'">
+			OrderDetail od,
+			`Order` o,
+			Goods g,
+			GoodsOption go,
+
+		</if>
+		<if test="tableName == 'CrowdOrder'">
+			CrowdOrderDetail od,
+			CrowdOrder o,
+			CrowdGoods g,
+			CrowdGoodsOption go,
+		</if>
+		MemberInfo m
+		where o.goodsNo =
+		g.goodsNo
+		and o.orderDetailNum =
+		od.orderDetailNum
+		and o.userSeq =
+		m.userSeq
+		and o.optionSeq =
+		go.optionSeq
+		and od.status<![CDATA[>]]>0
+		and o.refund = #{param4}
+		and
+		DATE(od.orderTime)<![CDATA[>]]>
+		DATE(#{param1} - INTERVAL 1 DAY)
+		AND
+		DATE(od.orderTime)<![CDATA[<]]>
+		DATE(#{param2}
+		+ INTERVAL 1 DAY)) R;
+	</select>
+
+	<!-- 반품 상품 조회 -->
+	<select id="selectReturnVOList"
+		resultType="com.sb.mall.admin.adminOrder.model.ReturnVO">
+		SELECT
+		o.orderSeq,
+		o.userSeq,
+		m.userName,
+		g.goodsNo,
+		g.goodsName,
+		o.quantity,
+		ifnull(go.opt1Name, '') opt1Name,
+		ifnull(go.opt2Name, '')
+		opt2Name,
+		o.refund,
+		o.salePrice
+		FROM
+		<if test="tableName == 'Order'">
+			OrderDetail od,
+			`Order` o,
+			Goods g,
+			GoodsOption go,
+
+		</if>
+		<if test="tableName == 'CrowdOrder'">
+			CrowdOrderDetail od,
+			CrowdOrder o,
+			CrowdGoods g,
+			CrowdGoodsOption go,
+		</if>
+		MemberInfo m
+		where o.goodsNo =
+		g.goodsNo
+		and o.orderDetailNum =
+		od.orderDetailNum
+		and
+		o.userSeq = m.userSeq
+		and
+		o.optionSeq = go.optionSeq
+		and od.status<![CDATA[>]]>0
+		and
+		o.refund = #{param6}
+		and
+		DATE(od.orderTime)<![CDATA[>]]>
+		DATE(#{param1} - INTERVAL 1 DAY)
+		AND
+		DATE(od.orderTime)<![CDATA[<]]>
+		DATE(#{param2}
+		+ INTERVAL 1 DAY)
+		order by
+		od.orderTime desc limit
+		#{param4},
+		#{param5};
+	</select>
+
+	<!-- 반품상태 업데이트 -->
+	<update id="changeRefund">
+		UPDATE `${param3}` SET
+		`refund` = '${param2}'
+		WHERE
+		<foreach collection="orderArray" item="orderSeq" open="("
+			close=")" separator=" OR ">
+			`orderSeq` ='${orderSeq}'
+		</foreach>
+	</update>
+
+
 
 </mapper> 
  

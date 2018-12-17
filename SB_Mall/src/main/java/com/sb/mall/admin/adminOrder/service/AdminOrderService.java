@@ -95,7 +95,7 @@ public class AdminOrderService {
 		//loadReturnList.jsp에 값 전달
 		@Transactional
 		public PageListView getReturnVOList(String startDate, String endDate, 
-				String tableName, int pageNumber, int countPerPage) {
+				String tableName, int pageNumber, int countPerPage, int refund) {
 			
 			// 전체 메시지 구하기
 			// 메세지 갯수
@@ -111,7 +111,7 @@ public class AdminOrderService {
 
 			dao = sqlSessionTemplate.getMapper(AdminOrderDao.class);
 			
-			objTotalCount = dao.selectReturnVOCount(startDate, endDate, tableName);
+			objTotalCount = dao.selectReturnVOCount(startDate, endDate, tableName, refund);
 
 			// 메세지 갯수가 0보다 크면 첫 행에는 표시할 페이지 -1 * 10을 한다 - 이것은 표시할 행의 시작 인덱스다.
 			// 마지막 행에는 표시할 페이지 갯수를 적는다.
@@ -119,13 +119,21 @@ public class AdminOrderService {
 				firstRow = (pageNumber - 1) * countPerPage;
 				endRow = countPerPage;
 				// 현재 페이지에 표시할 메세지를 가져온다.
-					objList = dao.selectReturnVOList(startDate, endDate, tableName, firstRow, endRow, );
+					objList = dao.selectReturnVOList(startDate, endDate, tableName, firstRow, endRow, refund);
 			} else {
 				currentPageNumber = 0;
 				objList = Collections.emptyList();
 			}
 
 			return new PageListView(objList, objTotalCount, currentPageNumber, countPerPage, firstRow, endRow);
+		}
+		
+		//반품 상태 업데이트
+		@Transactional
+		public void changeRefund(List<Object> orderArray, String refund, String tableName) {
+			
+			dao.changeRefund(orderArray, refund, tableName);
+			
 		}
 
 

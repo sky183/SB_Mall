@@ -24,9 +24,12 @@ public interface AdminOrderDao {
 	public void changeStatus(@Param("orderDetailArray") List<Object> orderDetailArray, String status, String tableName);
 
 	// 반품 상품 갯수
-	public int selectReturnVOCount(String startDate, String endDate, @Param("tableName") String tableName);
-	
+	public int selectReturnVOCount(String startDate, String endDate, @Param("tableName") String tableName, int refund);
+
 	// 반품 상품 조회
 	public List<Object> selectReturnVOList(String startDate, String endDate, @Param("tableName") String tableName,
-			int firstRow, int endRow);
+			int firstRow, int endRow, int refund);
+
+	// 반품상태 업데이트
+	public void changeRefund(@Param("orderArray") List<Object> orderArray, String status, String tableName);
 }

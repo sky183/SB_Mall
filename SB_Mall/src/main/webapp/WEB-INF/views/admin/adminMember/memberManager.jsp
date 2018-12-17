@@ -37,15 +37,22 @@
 			</span>
 			<span>
 				<select id="tableName">
-					<option value="Order" selected="selected">일반주문</option>
-					<option value="CrowdOrder">크라우드펀딩</option>
+					<option value="OrderDetail" selected="selected">일반주문</option>
+					<option value="CrowdOrderDetail">크라우드펀딩</option>
 				</select>
 			</span>
 			<span>
-				<select id="refund">
-					<option value="1" selected="selected">반품대기</option>
-					<option value="2">반품완료</option>
+				<select id="status">
+					<option value="-1" selected="selected">주문상태</option>
+					<option value="0">입금전</option>
+					<option value="1">결제완료</option>
+					<option value="2">배송준비</option>
+					<option value="3">배송중</option>
+					<option value="4">배송완료</option>
 				</select>
+			</span>
+			<span class="search">
+				<input type="text" id="search" placeholder="검색어 입력" value="">
 			</span>
 			<span>
 				<input type="submit" id="select" class="select" value="조회">
@@ -60,8 +67,8 @@
 	</div>
 	
 	<!-- 하단 -->
-	<div id="loadReturnList">
-	<!-- loadReturnList의 끝 -->
+	<div id="loadOrderList">
+	<!-- loadDailySalReport의 끝 -->
 	</div>
 	
 <!-- mainContent의 끝 -->
@@ -88,14 +95,37 @@
 			}
 		});
 		
-		//loadReturnList.jsp를 불러온다.
 		var tableName = $('#tableName').val();
-		var refund = $('#refund').val();
+		var status = $('#status').val();
+		var payment = $('#payment').val();
+		var search = $('#search').val();
 		
-		$('#loadReturnList').load(
-				'<%=request.getContextPath()%>/admin/adminOrder/returnManager/loadReturnList?startDate='
-						+ firstDate + '&endDate=' + nowString + '&tableName=' + tableName + '&pageNumber=1&refund=' + refund
-		);
+		//주문상세보기에서 뒤로 왔을경우
+		var orderBackVO = '${OrderBackVO}';
+		if (orderBackVO != null && orderBackVO != '') {
+			
+			var startDate = '${OrderBackVO.startDate}';
+		 	var endDate = '${OrderBackVO.endDate}';
+			var tableName = '${OrderBackVO.tableName}';
+			var status = '${OrderBackVO.status}';
+			var payment = '${OrderBackVO.payment}';
+			var search = '${OrderBackVO.search}';
+			var pageNumber = '${OrderBackVO.pageNumber}';
+			
+			$('#loadOrderList').load(
+					'<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList?startDate=' 
+					+ startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber
+					+ '&status=' + status + '&payment=' + payment + '&search=' + search
+				);
+			
+		//주문관리 메인에서 바로 왔을 경우
+		} else {
+			$('#loadOrderList').load(
+					'<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList?startDate='
+							+ firstDate + '&endDate=' + nowString + '&tableName=' + tableName + '&pageNumber=1'
+							+ '&status=' + status + '&payment=' + payment + '&search=' + search
+				);
+		}
 
 		
 		//input 태그에 오늘 날짜 불러온다.
@@ -103,7 +133,7 @@
 		$( "#endDate" ).val(nowString);
 		
 		//메뉴 및 서브메뉴에 css 적용 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것
-		removeActive('#returnManager', 0);
+		removeActive('#orderManager', 0);
 		
 		
 
