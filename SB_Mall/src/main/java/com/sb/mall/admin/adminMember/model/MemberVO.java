@@ -6,8 +6,8 @@ public class MemberVO {
 	private String userPw;
 	private String userName;
 	private String address;
-	private int zipCode;
-	private int phone;
+	private String zipCode;
+	private String phone;
 	private String regDate;
 	private int gradeNum;
 	private int point;
@@ -45,16 +45,16 @@ public class MemberVO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
-	public void setZipCode(int zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getRegDate() {

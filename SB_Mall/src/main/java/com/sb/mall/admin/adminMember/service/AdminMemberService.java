@@ -66,5 +66,13 @@ public class AdminMemberService {
 		dao.changeGradeNum(memberArray, gradeNum);
 
 	}
+	
+	// 회원 삭제
+	@Transactional
+	public void memberDelete(List<Object> memberArray) {
+		
+		dao.memberDelete(memberArray);
+		
+	}
 
 }

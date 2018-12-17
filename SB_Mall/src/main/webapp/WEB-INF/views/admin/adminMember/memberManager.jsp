@@ -10,7 +10,7 @@
 	background-image: url("<%=request.getContextPath()%>/img/calendar.png");
 }
 </style>
-<!-- adminOrder.jsp 에서 불러온다. -->
+<!-- adminMember.jsp 에서 불러온다. -->
 <div id="mainContent">
 	
 	<!-- 날짜 선택 -->
@@ -36,19 +36,13 @@
 				</span>
 			</span>
 			<span>
-				<select id="tableName">
-					<option value="OrderDetail" selected="selected">일반주문</option>
-					<option value="CrowdOrderDetail">크라우드펀딩</option>
-				</select>
-			</span>
-			<span>
-				<select id="status">
-					<option value="-1" selected="selected">주문상태</option>
-					<option value="0">입금전</option>
-					<option value="1">결제완료</option>
-					<option value="2">배송준비</option>
-					<option value="3">배송중</option>
-					<option value="4">배송완료</option>
+				<select id="gradeNum">
+					<option value="-1" selected="selected">회원등급</option>
+					<option value="0">정회원</option>
+					<option value="1">우수회원</option>
+					<option value="2">VIP</option>
+					<option value="3">관리자</option>
+					<option value="4">대표</option>
 				</select>
 			</span>
 			<span class="search">
@@ -67,7 +61,7 @@
 	</div>
 	
 	<!-- 하단 -->
-	<div id="loadOrderList">
+	<div id="loadMemberList">
 	<!-- loadDailySalReport의 끝 -->
 	</div>
 	
@@ -95,45 +89,22 @@
 			}
 		});
 		
-		var tableName = $('#tableName').val();
-		var status = $('#status').val();
-		var payment = $('#payment').val();
+		var gradeNum = $('#gradeNum').val();
 		var search = $('#search').val();
 		
-		//주문상세보기에서 뒤로 왔을경우
-		var orderBackVO = '${OrderBackVO}';
-		if (orderBackVO != null && orderBackVO != '') {
-			
-			var startDate = '${OrderBackVO.startDate}';
-		 	var endDate = '${OrderBackVO.endDate}';
-			var tableName = '${OrderBackVO.tableName}';
-			var status = '${OrderBackVO.status}';
-			var payment = '${OrderBackVO.payment}';
-			var search = '${OrderBackVO.search}';
-			var pageNumber = '${OrderBackVO.pageNumber}';
-			
-			$('#loadOrderList').load(
-					'<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList?startDate=' 
-					+ startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber
-					+ '&status=' + status + '&payment=' + payment + '&search=' + search
-				);
-			
-		//주문관리 메인에서 바로 왔을 경우
-		} else {
-			$('#loadOrderList').load(
-					'<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList?startDate='
-							+ firstDate + '&endDate=' + nowString + '&tableName=' + tableName + '&pageNumber=1'
-							+ '&status=' + status + '&payment=' + payment + '&search=' + search
-				);
-		}
-
+		//loadmemberList.jsp를 불러온다.
+		$('#loadMemberList').load(
+				'<%=request.getContextPath()%>/admin/adminMember/memberManager/loadMemberList?startDate='
+						+ firstMonthDate + '&endDate=' + nowString + '&pageNumber=1'
+						+ '&gradeNum=' + gradeNum + '&search=' + search
+			);
 		
 		//input 태그에 오늘 날짜 불러온다.
-		$( "#startDate" ).val(firstDate);
+		$( "#startDate" ).val(firstMonthDate);
 		$( "#endDate" ).val(nowString);
 		
 		//메뉴 및 서브메뉴에 css 적용 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것
-		removeActive('#orderManager', 0);
+		removeActive('#memberManager', 0);
 		
 		
 

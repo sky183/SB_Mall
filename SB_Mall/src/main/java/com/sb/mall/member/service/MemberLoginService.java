@@ -31,7 +31,6 @@ public class MemberLoginService {
 		if (memberInfo == null || !memberInfo.getUserPw().equals(pw)) {
 				
 		} else {
-			System.out.println("로그인처리");
 
 			// 로그인 처리 : 세션에 사용자 데이터 저장
 			memberInfo.setUserPw("");		//db에서 받아온 패스워드를 세션에는 제외하고 저장

@@ -15,4 +15,7 @@ public interface AdminMemberDao {
 
 	// 회원등급 업데이트
 	public void changeGradeNum(@Param("memberArray") List<Object> memberArray, int gradeNum);
+	
+	// 회원 삭제
+	public void memberDelete(@Param("memberArray") List<Object> memberArray);
 }

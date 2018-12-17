@@ -65,10 +65,12 @@
 	<br>
 	<div class="t-left">
 		<span>
-			<input type="checkbox" class="all-check" style="margin-top: 6px; vertical-align: top; margin-left: 9px;">
+			<input type="checkbox" id="all-check" class="all-check" style="margin-top: 6px; vertical-align: top; margin-left: 9px;">
 		</span>
 		<span class="fon12">
-			선택한 주문을
+			<label for="all-check" class="all-label">
+				선택한 주문을
+			</label>
 		</span>
 		<span>
 			<select id=changeRefund>

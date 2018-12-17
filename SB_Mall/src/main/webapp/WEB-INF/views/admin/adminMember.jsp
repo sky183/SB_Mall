@@ -23,12 +23,9 @@
 			<!--상단메뉴의 끝 하단메뉴의 시작-->
 			<!--좌측 메뉴-->
 			<div id="leftContent">
-				<div class="leftTitle">주문 관리</div>
-				<div class="leftMenu link" id="orderManager">
-					주문 관리
-				</div>
-				<div class="leftMenu link" id="returnManager">
-					반품 관리
+				<div class="leftTitle">회원 관리</div>
+				<div class="leftMenu link" id="memberManager">
+					회원 관리
 				</div>
 				<!--좌측메뉴의 끝, 우측메뉴 시작-->
 			</div><div id="rightContent">
@@ -65,12 +62,12 @@ $(document).ready(function(){
 	});
 
 	//기본 화면으로 불러온다. 여기서는 주문 관리
-	$('#rightContent').load('<%=request.getContextPath()%>/admin/adminOrder/orderManager');
+	$('#rightContent').load('<%=request.getContextPath()%>/admin/adminMember/memberManager');
 	
 	//메뉴 클릭시 우측 메뉴 출력 - 없으면 기본 화면으로 출력 여기서는 영업통계
 	$('.link').click(function(){
 		var page = $(this).attr('id');
-		var url = '<%=request.getContextPath()%>/admin/adminOrder/' + page;
+		var url = '<%=request.getContextPath()%>/admin/adminMember/' + page;
 		$.ajax({
 			url : url,
 			error : function(error) {
@@ -78,7 +75,7 @@ $(document).ready(function(){
 		    },
 			success : function(data) {
 				$('#rightContent').html(data);
-				history.pushState(url, null, '<%=request.getContextPath()%>/admin/adminOrder');
+				history.pushState(url, null, '<%=request.getContextPath()%>/admin/adminMember');
 			}
 		});
 	});
@@ -100,7 +97,7 @@ $(document).ready(function(){
 				})
 			 } else {
 			    // 히스토리에 정보가 없을경우 메인화면으로 보내준다.
-			    var url = "<%=request.getContextPath()%>/admin/adminOrder";    
+			    var url = "<%=request.getContextPath()%>/admin/adminMember";    
 			    $(location).attr('href',url);
 			    }
 	});

@@ -44,7 +44,7 @@ public class MemberManagerController {
 		}
 		
 		//회원등급 업데이트 loadMemberList ajax
-		@RequestMapping(value = "/admin/adminMember/memberManager/loadMemberList/{gradeNum}", method = RequestMethod.POST)
+		@RequestMapping(value = "/admin/adminMember/memberManager/loadMemberList/changeGradeNum/{gradeNum}", method = RequestMethod.POST)
 		@ResponseBody
 		public String changeRefund(@RequestBody List<Object> memberArray, 
 				@PathVariable int gradeNum) {
@@ -53,6 +53,17 @@ public class MemberManagerController {
 			service.changeGradeNum(memberArray, gradeNum);
 			
 			return "변경 완료!";
+		}
+		
+		//회원 삭제 loadMemberList ajax
+		@RequestMapping(value = "/admin/adminMember/memberManager/loadMemberList/memberDelete", method = RequestMethod.POST)
+		@ResponseBody
+		public String memberDelete(@RequestBody List<Object> memberArray) {
+			
+			//주문 상태 업데이트
+			service.memberDelete(memberArray);
+			
+			return "탈퇴 완료!";
 		}
 		
 

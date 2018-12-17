@@ -1,6 +1,15 @@
 @charset "UTF-8";
 
 /* adminContent 공통사항 */
+.all-label{
+    display: inline-block;
+    max-width: inherit;
+    margin-bottom: inherit;
+    font-weight: normal;
+    line-height: 9px;
+    font-size: 12px !important;
+    cursor: pointer;
+}
 .all-check, .check{
 	cursor: pointer;
 }
@@ -246,7 +255,9 @@ input.select {
     vertical-align: middle;
     padding: 3.7px 15px 3.2px;
 }
-input.update, input.back{
+input.update, 
+input.back, 
+input.delete{
 	outline : none;
     background-color: #ffffff;
     color: #282828;
@@ -256,19 +267,18 @@ input.update, input.back{
     text-align-last: center;
     padding: 0px 9px;
 }
-input.back{
-	
-}
 input.update:hover,
-input.select:hover {
+input.select:hover, 
+input.delete:hover{
     background-color: #505050;
     color: #f0f0f0;
 }
 input.update:active,
-input.select:active {
+input.select:active,
+input.delete:active {
     background-color: #c8c8c8;
     border: none;
-    color: #505050;
+/*     color: #505050; */
 }
 
 
@@ -564,7 +574,7 @@ th.ds1, th.ds2, th.ds3, th.ds4{
 #listTab tbody tr:hover{
 	background-color: #f0f0f0;
 }
-.om0, .rm0{
+.om0, .rm0, .mm0{
 	width: 30px;
 	text-align: center;
 	padding: 0 !important;
@@ -585,6 +595,13 @@ th.ds1, th.ds2, th.ds3, th.ds4{
 .rm5{width: 131px;}.rm6{width: 54px;}
 .rm7{width: 56px;}.rm8{width: 56px;}
 .rm9{width: 70px;}.rm10{width: 122px;}
+
+th.mm9{text-align: center !important;}
+.mm1{width: 78px;}.mm2{width: 48px;}
+.mm3{width: 166px; padding: 0 !important;}.mm4{width: 51px;}
+.mm5{width: 99px;}.mm6{width: 218px;}
+.mm7{width: 59px;}.mm8{width: 59px ;}
+.mm9{width: 77px; text-align: right !important; padding-right: 10px !important;}
 
 #resultTable th, #resultTable td{
 	padding-left: 0;
@@ -612,6 +629,18 @@ th.rm1, th.rm2, th.rm3, th.rm4,
 th.rm5, th.rm6, th.rm7, th.rm8, th.rm9, th.rm10 {
 	padding-right : 5px;
 }
+td.mm1, td.mm2, td.mm3, td.mm4,
+td.mm5, td.mm6, td.mm7, td.mm8, td.mm9{
+	text-align: center; 
+	padding-right : 5px;
+	padding-left: 5px;
+}
+th.mm1, th.mm2, th.mm3, th.mm4,
+th.mm5, th.mm6, th.mm7, th.mm8, th.mm9 {
+	padding-left : 0;
+	padding-right : 5px;
+	text-align: center; 
+}
 td.rm10{
 	text-align: right !important;
 }
@@ -624,7 +653,7 @@ th.om4, th.om7, th.om8{
 td.om9{
 	text-align: right;
 }
-#changeStatus, #changeRefund{
+#changeStatus, #changeRefund, #changeGradeNum{
 	height: 22px;
 }
 .resultTitle{

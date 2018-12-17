@@ -5,19 +5,18 @@
 
 <c:set var="viewData" value="${viewData}"/>
 
-	<table id="listTab" class="tablesorter resultTab">
+	<table id="memberTab" class="tablesorter resultTab">
 		<thead>
 			<tr>
-				<th class="om0 sorter-false"><input type="checkbox" class="all-check"></th>
-				<th class="om1">주문일</th>
-				<th class="om2">주문번호</th>
-				<th class="om3">회원</th>
-				<th class="om4">이름</th>
-				<th class="om5">배송지</th>
-				<th class="om6">품목</th>
-				<th class="om7">결제</th>
-				<th class="om8">상태</th>
-				<th class="om9">주문금액</th>
+				<th class="mm0 sorter-false"><input type="checkbox" class="all-check"></th>
+				<th class="mm1">가입일</th>
+				<th class="mm2">번호</th>
+				<th class="mm3">아이디</th>
+				<th class="mm4">이름</th>
+				<th class="mm5">전화</th>
+				<th class="mm6">주소</th>
+				<th class="mm7">등급</th>
+				<th class="mm9">구매액</th>
 				<th class="notsorter"></th>
 			</tr>
 		</thead>
@@ -25,52 +24,40 @@
 			<c:choose>
 				<c:when test="${viewData.isEmpty()}">
 					<tr>
-						<td colspan="10" style="text-align: center; padding: 120px 0;">등록된 주문이 없습니다.</td>
+						<td colspan="10" style="text-align: center; padding: 120px 0;">조회된 회원이 없습니다.</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach var="OrderDetailVO" items="${viewData.objList}">
+					<c:forEach var="MemberVO" items="${viewData.objList}">
 						<tr>
-							<td class="om0"><input type="checkbox" class="check" name="orderDetailNum" value="${OrderDetailVO.orderDetailNum}"></td>
-							<td class="om1 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.orderTime}</td>
-							<td class="om2 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.orderDetailNum}</td>
-							<td class="om3 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.userSeq}</td>
-							<td class="om4 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.userName}</td>
-							<td class="om5 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.orderAddress}</td>
-							<td class="om6 orderResult" name="${OrderDetailVO.orderDetailNum}">${OrderDetailVO.goodsName}</td>
-							<td class="om7">
+							<td class="mm0"><input type="checkbox" class="check" name="userSeq" value="${MemberVO.userSeq}" gradeNum="${MemberVO.gradeNum}"></td>
+							<td class="mm1">${MemberVO.regDate}</td>
+							<td class="mm2">${MemberVO.userSeq}</td>
+							<td class="mm3">${MemberVO.userId}</td>
+							<td class="mm4">${MemberVO.userName}</td>
+							<td class="mm5">${MemberVO.phone}</td>
+							<td class="mm6">${MemberVO.address}</td>
+							<td class="mm7">
 								<c:choose>
-									<c:when test="${OrderDetailVO.payment == 0}">
-										현금
+									<c:when test="${MemberVO.gradeNum == 0}">
+										정회원
 									</c:when>
-									<c:when test="${OrderDetailVO.payment == 1}">
-										카드
+									<c:when test="${MemberVO.gradeNum == 1}">
+										우수회원
+									</c:when>
+									<c:when test="${MemberVO.gradeNum == 2}">
+										VIP
+									</c:when>
+									<c:when test="${MemberVO.gradeNum == 3}">
+										관리자
+									</c:when>
+									<c:when test="${MemberVO.gradeNum == 4}">
+										대표
 									</c:when>
 								</c:choose>
 							</td>
-							
-							<td class="om8">
-								<c:choose>
-									<c:when test="${OrderDetailVO.status == 0}">
-										입금전
-									</c:when>
-									<c:when test="${OrderDetailVO.status == 1}">
-										결제완료
-									</c:when>
-									<c:when test="${OrderDetailVO.status == 2}">
-										배송준비
-									</c:when>
-									<c:when test="${OrderDetailVO.status == 3}">
-										배송중
-									</c:when>
-									<c:when test="${OrderDetailVO.status == 4}">
-										배송완료
-									</c:when>
-								</c:choose>
-							</td>
-							
-							<td class="om9">
-								<fmt:formatNumber value="${OrderDetailVO.totalAmount}" pattern="#,###"/>
+							<td class="mm9">
+								<fmt:formatNumber value="${MemberVO.userAmount}" pattern="#,###"/>
 								원
 							</td>
 							<td></td>
@@ -83,25 +70,30 @@
 	<br>
 	<div class="t-left">
 		<span>
-			<input type="checkbox" class="all-check" style="margin-top: 6px; vertical-align: top; margin-left: 9px;">
+			<input type="checkbox" id="all-check" class="all-check" style="margin-top: 6px; vertical-align: top; margin-left: 9px;">
 		</span>
 		<span class="fon12">
-			선택한 주문을
+			<label for="all-check" class="all-label">
+				선택한 회원을
+			</label>
 		</span>
 		<span>
-			<select id="changeStatus">
-				<option value="1" selected="selected">결제완료</option>
-				<option value="2">배송준비</option>
-				<option value="3">배송중</option>
-				<option value="4">배송완료</option>
-				<option value="0">입금전</option>
+			<select id="changeGradeNum">
+				<option value="0" selected="selected">정회원</option>
+				<option value="1">우수회원</option>
+				<option value="2">VIP</option>
+				<option value="3">관리자</option>
+				<option value="4">대표</option>
 			</select>
 		</span>
 		<span class="fon12">
 			(으)로
 		</span>
 		<span>
-			<input type="submit" id="update" class="update" value="변경">
+			<input type="button" id="update" class="update" value="변경">
+		</span>
+		<span>
+			<input type="button" id="delete" class="delete" value="탈퇴">
 		</span>
 	</div>
 <!-- 	페이징 처리 -->
@@ -170,31 +162,29 @@
 			{  headers : {
 		 		      0 : {sorter : false},
 // 		 		      3 : {sorter : false},
-		 		      9 : {sorter : 'NumberSort'}
+		 		      8 : {sorter : 'NumberSort'}
 				 	}
 			}
 		);
 		
-		//loadOrderList.jsp를 불러오는 함수
-		function loadOrderList(pageNumber){
+		//loadMemberList.jsp를 불러오는 함수
+		function loadMemberList(pageNumber){
 			
 		 	var startDate = $( "#startDate" ).val();
 		 	var endDate = $( "#endDate" ).val();
-			var tableName = $('#tableName').val();
-			var status = $('#status').val();
-			var payment = $('#payment').val();
+			var gradeNum = $('#gradeNum').val();
 			var search = $('#search').val();
 			
 			$.ajax({
-				url : '<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList?startDate=' 
-						+ startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber
-						+ '&status=' + status + '&payment=' + payment + '&search=' + search,
+				url : '<%=request.getContextPath()%>/admin/adminMember/memberManager/loadMemberList?startDate=' 
+						+ startDate + '&endDate=' + endDate + '&pageNumber='+ pageNumber
+						 + '&gradeNum=' + gradeNum + '&search=' + search,
 				type : 'GET',
 				error : function(error) {
 			        alert("Error!");
 			    },
 				success : function(data) {
-					$('#loadOrderList').html(data);
+					$('#loadMemberList').html(data);
 				}
 			});
 		}
@@ -202,18 +192,18 @@
 		//페이지 번호를 클릭하면 다시 불러온다.
 		$('.page').click(function() {
 			var pageNumber = $(this).attr('name');
-			loadOrderList(pageNumber);
+			loadMemberList(pageNumber);
 		});
 		
 		//조회 버튼을 클릭하면 다시 불러온다.
 		$('#select').click(function() {
-			loadOrderList(1);
+			loadMemberList(1);
 		});
 		
 		//검색창에서 엔터를 누르면 다시 불러온다.
 		$('#search').keydown(function(key) {
 			if (key.keyCode == 13) {
-				loadOrderList(1);
+				loadMemberList(1);
 			}
 		});
 		
@@ -222,76 +212,119 @@
 		    $(".check").prop('checked', $(this).prop("checked"));
 		});
 		
-		//orderResult.jsp를 불러오는 함수
-		function orderResult(orderBackVO){
-						
-			$.ajax({
-				url : '<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList/orderResult',
-				method : 'POST',
-				type: "json",
-				data : JSON.stringify(orderBackVO),
-				contentType: "application/json",
-				error : function(error) {
-			        alert("Error!");
-			    },
-				success : function(data) {
-					$('#rightContent').html(data);
-				}
-			});
-		}
-		
-		//테이블 td 클릭시 해당 주문 조회
-		$('.orderResult').on('click', function(){
-			
-			//POST로 보낼 객체를 생성 후  키 값을 할당한다.
-			var orderBackVO = {};
-			orderBackVO.orderDetailNum = $(this).attr('name');
-			orderBackVO.pageNumber = ${viewData.currentPageNumber};
-			orderBackVO.startDate = $( "#startDate" ).val();
-			orderBackVO.endDate = $( "#endDate" ).val();
-			orderBackVO.tableName = $('#tableName').val();
-			orderBackVO.status = $('#status').val();
-			orderBackVO.payment = $('#payment').val();
-			orderBackVO.search = $('#search').val();
-			
-			//주문 상세를 불러온다.
-			orderResult(orderBackVO);
-			
-			
-		})
-		
 		//선택한 항목을 업데이트
 		$('#update').on('click', function(){
-			//선택한 항목을 배열로 만들어준다.
 			
-		    var orderlength = $("input[name='orderDetailNum']:checked").length;
-			if (orderlength > 0) {
-			    var orderDetailArray = new Array(orderlength);
-			    for(var i=0; i<orderlength; i++){                          
-			    	orderDetailArray[i] = $("input[name='orderDetailNum']:checked")[i].value;
+		    //로그인된 관리자의 등급
+		    var adminGradeNum = Number(${memberInfo.gradeNum});
+		    console.log(adminGradeNum);
+		    
+		    //올릴 등급
+		    var gradeNum = $('#changeGradeNum').val();
+		    
+			//선택한 항목을 배열로 만들어준다.
+		    var memberlength = $("input[name='userSeq']:checked").length;
+			
+			var warning = true;
+			
+			if (memberlength > 0) {
+			    var memberArray = new Array(memberlength);
+			    for(var i=0; i<memberlength; i++){                          
+			    	
+			    	memberArray[i] = $("input[name='userSeq']:checked")[i].value;
+			    	
+			    	//등급을 체크한다.
+			    	var thisGrade = Number($("input[name='userSeq']:checked")[i].gradeNum);
+			    	
+			    	//다른 관리자일 경우 수정 불가 - 선택한 회원 중에 나와 같거나 높은 등급이 있거나, 올릴 등급이 3등급 이상이고 내 등급은 4등급 미만이거나, 선택한 회원이 4등급일때
+			    	if ( thisGrade >= adminGradeNum || (gradeNum >= 3 && adminGradeNum < 4) || thisGrade == 4) {
+						alert('다른 관리자를 수정 또는 탈퇴할 수 없습니다.');
+						warning = false;
+					}
+			    	
 			    }
 				
-			    var status = $('#changeStatus').val();
-			    var tableName = $('#tableName').val();
-			    
-				$.ajax({
-					url : '<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList/changeStatus/' + status + '/' + tableName,
-					method : 'POST',
-					type: "json",
-					data : JSON.stringify(orderDetailArray),
-					contentType: "application/json",
-					error : function(error) {
-				        alert("Error!");
-				    },
-					success : function(data) {
-						alert(data);
-						//기본 화면으로 불러온다. 여기서는 주문 관리
-						$('#rightContent').load('<%=request.getContextPath()%>/admin/adminOrder/orderManager');
-					}
-				});
+			    //다른 관리자가 아닐 경우 수정한다.
+			    if (warning) {
+				    
+					$.ajax({
+						url : '<%=request.getContextPath()%>/admin/adminMember/memberManager/loadMemberList/changeGradeNum/' + gradeNum,
+						method : 'POST',
+						type: "json",
+						data : JSON.stringify(memberArray),
+						contentType: "application/json",
+						error : function(error) {
+					        alert("Error!");
+					    },
+						success : function(data) {
+							alert(data);
+							//기본 화면으로 불러온다. 여기서는 주문 관리
+							$('#rightContent').load('<%=request.getContextPath()%>/admin/adminMember/memberManager');
+						}
+					});
+				};
+
 			} else {
-				alert("선택된 주문이 없습니다.");
+				alert("선택된 회원이 없습니다.");
 			}
+		});
+		
+		//선택한 회원을 탈퇴처리
+		$('#delete').on('click', function(){
+			
+			    //로그인된 관리자의 등급
+			    var adminGradeNum = Number(${memberInfo.gradeNum});
+			    
+				//선택한 항목을 배열로 만들어준다.
+			    var memberlength = $("input[name='userSeq']:checked").length;
+				
+				var warning = true;
+			
+				//선택한 항목을 배열로 만들어준다.
+			    var memberlength = $("input[name='userSeq']:checked").length;
+				if (memberlength > 0) {
+					var delOK;
+					delOK =	confirm('정말 회원을 탈퇴하시겠습니까?');
+					if (delOK) {
+					    var memberArray = new Array(memberlength);
+					    for(var i=0; i<memberlength; i++){                          
+					    	memberArray[i] = $("input[name='userSeq']:checked")[i].value;
+					    	
+					    	//등급을 체크한다.
+					    	var thisGrade = Number($("input[name='userSeq']:checked")[i].gradeNum);
+					    	
+					    	//다른 관리자일 경우 수정 불가 - 선택한 회원 중에 나와 같거나 높은 등급이 있거나, 올릴 등급이 3등급 이상이고 내 등급은 4등급 미만이거나, 선택한 회원이 4등급일때
+					    	if ( thisGrade >= adminGradeNum || thisGrade == 4) {
+								alert('다른 관리자를 수정 또는 탈퇴할 수 없습니다.');
+								warning = false;
+							}
+					    }
+						
+					  //다른 관리자가 아닐 경우 탈퇴한다.
+					    if (warning) {
+							$.ajax({
+								url : '<%=request.getContextPath()%>/admin/adminMember/memberManager/loadMemberList/memberDelete',
+								method : 'POST',
+								type: "json",
+								data : JSON.stringify(memberArray),
+								contentType: "application/json",
+								error : function(error) {
+							        alert("Error!");
+							    },
+								success : function(data) {
+									alert(data);
+									//기본 화면으로 불러온다. 여기서는 주문 관리
+									$('#rightContent').load('<%=request.getContextPath()%>/admin/adminMember/memberManager');
+								}
+							});
+					    };
+						
+					};
+				} else {
+					alert("선택된 회원이 없습니다.");
+				}
+			
+				
 		});
 		
 		

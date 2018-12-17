@@ -16,12 +16,14 @@
 		<if test="search != '-1'">
 			(
 			userId like '%${search}%' ||
-			userName like ${search} ||
+			userName like '%${search}%'
+			||
 			address1 like
-			${search} ||
-			address2 like ${search} ||
-			phone like
-			${search}
+			'%${search}%' ||
+			address2 like '%${search}%' ||
+			phone
+			like
+			'%${search}%'
 			) and
 		</if>
 		<if test="gradeNum > -1">
@@ -39,14 +41,14 @@
 	<select id="selectMemberVOList"
 		resultType="com.sb.mall.admin.adminMember.model.MemberVO">
 		select
+		date_format(regDate,
+		'%Y-%m-%d') regDate,
 		userSeq,
 		userId,
 		userName,
 		phone,
 		ifnull(concat(address1, address2),
 		'') address,
-		date_format(regDate,
-		'%Y-%m-%d') regDate,
 		gradeNum,
 		gender,
 		userAmount
@@ -56,12 +58,14 @@
 		<if test="search != '-1'">
 			(
 			userId like '%${search}%' ||
-			userName like ${search} ||
+			userName like '%${search}%'
+			||
 			address1 like
-			${search} ||
-			address2 like ${search} ||
-			phone like
-			${search}
+			'%${search}%' ||
+			address2 like '%${search}%' ||
+			phone
+			like
+			'%${search}%'
 			) and
 		</if>
 		<if test="gradeNum > -1">
@@ -84,8 +88,17 @@
 			close=")" separator=" OR ">
 			`userSeq` ='${userSeq}'
 		</foreach>
-
 	</update>
+
+	<!-- 회원 삭제 -->
+	<delete id="memberDelete">
+		DELETE FROM `MemberInfo`
+		WHERE
+		<foreach collection="memberArray" item="userSeq" open="("
+			close=")" separator=" OR ">
+			`userSeq` ='${userSeq}'
+		</foreach>
+	</delete>
 
 </mapper> 
  

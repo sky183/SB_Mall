@@ -198,6 +198,8 @@ var lastDate =  new Date(now.getFullYear(), now.getMonth()+1, 0).format("yyyy.MM
 //이번년도 1월 12월을 각각 구하기
 var firstMonth = now.format("yyyy.01");
 var lastMonth = now.format("yyyy.MM");
+//이번년도 1월 1일을 구하기
+var firstMonthDate = now.format("yyyy.01.01");
 
 //특정달 1일 구하기
 function getFistDate(object){

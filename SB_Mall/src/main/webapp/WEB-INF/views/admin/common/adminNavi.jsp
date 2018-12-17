@@ -1,14 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	 <div class="headerTop">
 		<div id="adminInfo">
-				<span>
-					${memberInfo.userName}
-				</span>
-				<span>
-					관리자님 환영합니다.
-				</span>
-				<span>로그아웃</span>
+					<c:choose>
+							<c:when test='${memberInfo eq null}'>
+									<span>
+									
+									</span>
+							</c:when>
+							<c:otherwise>
+									<span>
+										${memberInfo.userName}
+									</span>
+									<span>
+										관리자님 환영합니다.
+									</span>
+									<span>
+										<a class="memberNaviText"
+										href="<%=request.getContextPath()%>/admin/logout">로그아웃</a>
+									</span>
+							</c:otherwise>
+					</c:choose>
+
 		</div>
 	 </div>
 	 <div class="headerBottom">

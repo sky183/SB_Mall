@@ -20,10 +20,10 @@ public class AdminMemberController {
 		public ModelAndView main() {
 			
 			ModelAndView modelAndView = new ModelAndView();
-				modelAndView.setViewName("admin/adminOrder");
+				modelAndView.setViewName("admin/adminMember");
 				
 			//상단 메뉴 버튼 활성화
-			modelAndView.addObject("adminOrder", "active");
+			modelAndView.addObject("adminMember", "active");
 			
 			return modelAndView;
 		}
@@ -33,7 +33,7 @@ public class AdminMemberController {
 		public ModelAndView adminOrderPage(@PathVariable String page) {
 			
 			ModelAndView modelAndView = new ModelAndView();
-				modelAndView.setViewName("admin/adminOrder/" + page);
+				modelAndView.setViewName("admin/adminMember/" + page);
 			
 			return modelAndView;
 		}

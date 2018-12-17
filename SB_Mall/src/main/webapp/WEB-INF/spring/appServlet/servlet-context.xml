@@ -140,8 +140,9 @@
 		/> <websocket:handshake-interceptors> <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" 
 		/> </websocket:handshake-interceptors> </websocket:handlers> -->
 
-	<!-- loginInterceptor 관련 -->
+	
 	<interceptors>
+		<!-- loginInterceptor 관련 -->
 		<interceptor>
 			<mapping path="/store/**" />
 			<mapping path="/order/**" />
@@ -157,11 +158,19 @@
 
 			<beans:bean
 				class="com.sb.mall.home.interceptor.AuthCheckInterceptor" />
-				
-		<!-- 방문자수 조회 인터셉터 -->
 		</interceptor>
+		
+		<!-- AdminLoginInterceptor 인터셉터 -->
+		<interceptor>
+			<mapping path="/admin/**" />
+			<exclude-mapping path="/admin/adminLogin" />
+			<beans:bean
+				class="com.sb.mall.home.interceptor.AdminLoginInterceptor" />
+		</interceptor>
+		<!-- 방문자수 조회 인터셉터 -->
 		<interceptor>
 			<mapping path="/**" />
+			<exclude-mapping path="/admin/**" />
 			<beans:bean
 				class="com.sb.mall.home.interceptor.VisitCountInterceptor" />
 		</interceptor>

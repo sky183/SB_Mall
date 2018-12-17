@@ -195,6 +195,63 @@ margin-bottom: 0 !important;
 	margin-bottom: 30px;
 }
 
-
-
-
+/* 로그인 페이지 관련 css */
+#adminLoginBody{
+	background-color: #505050 !important;
+}
+#adminLoginWrapper{
+	margin-top : 200px;
+}
+#adminLoginWrapper input[type="text"],
+#adminLoginWrapper input[type="password"],
+#adminLoginWrapper button{
+	width : 380px;
+	margin: 20px auto;
+	border-radius: 0;
+	border: none;
+	height: 41px;
+}
+#adminLoginWrapper button{
+	background-color: #ffc828 !important;
+    color: #282828!important;
+    font-size: 15px;	
+    font-weight: bold;
+}
+.loginMainFont{
+	color: #ffffff; 
+	font-family: 'Open Sans', sans-serif; 
+	font-size: 30px; 
+	font-weight: bold; 
+	display: inline-block;
+	margin-bottom: 50px;
+}
+#rememberId{
+	text-align: left;
+    margin-left: 2px;
+}
+#rememberIdLabel{
+    vertical-align: top;
+    color: #f0f0f0;
+    line-height: 23px;
+}
+.bottomBar{
+    width: 380px;
+    margin: -3px auto;
+    text-align: left;
+}
+.bottomBar .checkbox{
+	display: inline-block;
+}
+.bottomBar2{
+    display: inline-block;
+    height: 23px;
+    padding-top: 12.5px;
+    vertical-align: top;
+    float: right;
+}
+.bottomBar2 a{
+	color: #a0a0a0;
+}
+.memberNaviText:hover{
+	color: #ffc828 !important;
+}

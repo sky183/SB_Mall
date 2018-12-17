@@ -91,6 +91,7 @@ li {
 }
 #adminInfo{
 	text-align: right;
+	height: 32px;
 }
 #adminInfo *{
 	display: inline-block !important;
