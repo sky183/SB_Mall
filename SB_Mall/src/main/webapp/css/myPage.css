@@ -14,6 +14,23 @@
 	
 }
 
+.all_Button{
+    color: #3c3c3c;
+    font-weight: bold;
+    padding: 5px 20px;
+    /* margin-left: 3px; */
+    /* padding-bottom: 3px; */
+    background: none;
+    border: 1px solid #3c3c3c;
+    border-radius: 4px;
+    text-align: center;
+}
+.all_Button:hover{
+	background-color: #a0a0a0;
+	color: #f0f0f0;
+	cursor: pointer;
+}
+
 /*<<Start of #freeboard_Header>>*/
 #freeboard_Header{
 	margin: 50px 0;
@@ -50,7 +67,20 @@
 	font-weight: bold;
 	display: inline-block;
 }
+
+#content_button_wrap{
+	text-align: center;
+	margin-bottom: 30px;
+}
 /*<<End of freeboard_Content>>*/
 
-/*<<Start of freeboard_Content>>*/
-/*<<End of freeboard_Content>>*/
+#freeboard_Footer{
+	text-align: center;
+}
+/*<<Start of freeboard_Footer>>*/
+
+/*<<End of freeboard_Footer>>*/
+
+
+
+

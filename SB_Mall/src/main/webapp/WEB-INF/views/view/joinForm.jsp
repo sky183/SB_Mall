@@ -11,24 +11,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Bootstrap core CSS -->
-<!-- <link
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
-	rel="stylesheet"> -->
-<!-- Material Design Bootstrap -->
-<!-- <link
-	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css"
-	rel="stylesheet"> -->
-<!-- Bootstrap tooltips -->
-<!-- <script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script> -->
-<!-- Bootstrap core JavaScript -->
-<!-- <script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
-<!-- MDB core JavaScript -->
-<!-- <script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script> -->
-
 <!-- joinForm.css -->
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/css/joinForm.css">
 
@@ -77,7 +59,7 @@
 	<!-- Email 입력 테그 -->
 	<div>
 		<input type="email" id="email_ID"
-		class="all_Input"  placeholder="(*) E-mail (Id)" name="userId"
+		class="all_Input"  placeholder="E-mail (Id)" name="userId"
 		required onkeyup="emailDuplicateCheck_Function()" auth="false">
 	</div>
 	<!-- Email 유효성 Message 출력 -->
@@ -95,7 +77,7 @@
 		class="all_Input" 
 		name="userPw"
 		onkeyup="passwordCheck_Function()" 
-		required placeholder="(*) 비밀번호"
+		required placeholder="비밀번호"
 		auth="false">
 
 	<!-- Password 재확인 입력 테그 -->
@@ -105,7 +87,7 @@
 		class="all_Input" 
 		name="userPwChck"
 		onkeyup="passwordCheck_Function()" 
-		required placeholder="(*) 비밀번호 확인">
+		required placeholder="비밀번호 확인">
 				
 	</div>
 	<div>
@@ -118,7 +100,7 @@
 	<div>
 	<!-- 이름 입력 테그 -->
 	<input type="text" id="userName_ID" class="all_Input"
-			name="userName" required placeholder="(*) 성명"
+			name="userName" required placeholder="성명"
 			onkeyup="nameCheck_Function()"
 			auth="false">
 						
@@ -138,7 +120,7 @@
 		<!-- 폰번호 입력 테그 -->
 		<input type="text"
 			id="phoneNumber_ID" class="all_Input"
-			placeholder="(*) 휴대폰 번호"
+			placeholder="휴대폰 번호"
 			name="phone"
 			required
 			onkeyup="phoneNumber_CheckFunction()"
@@ -159,7 +141,7 @@
 	<div>
 		<!-- 우편번호 -->
 		<input type="text" id="zipNo" class="all_Input"
-			placeholder="(*) 우편번호" name="zipCode" required
+			placeholder="    우편번호" name="zipCode" required
 			readonly="readonly"
 			onkeyup="addressAPI()">
 		<!-- 주소검색버튼 -->
@@ -170,13 +152,13 @@
 	<div>
 		<!-- 주소 -->
 		<input type="text" id="roadAddrPart1" class="all_Input"
-			placeholder="(*) 주소"
+			placeholder="    주소"
 			name="address1" readonly="readonly">
 	</div>
 	<div>
 		<!-- 상세주소 -->
 		<input type="text" id="addrDetail" class="all_Input"
-			placeholder="(*) 상세주소"
+			placeholder="    상세주소"
 			name="address2"
 			auth="false"
 			>
@@ -229,207 +211,6 @@
 </div>
 </div>
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div id="contents">
-		<div style="margin: 30px auto 20px auto; width: 600px;">
-			<!-- Default form register -->
-
-				<p class="h4 mb-4">
-					<b>회원가입</b>
-				</p>
-				<small class="form-text mb-4">필수 입력사항 (*)</small>
-				<!-- Email 입력 테그 -->
-				<input type="email" id="email_ID"
-					class="form-control"  placeholder="(*) E-mail (Id)" name="userId"
-					required onkeyup="emailDuplicateCheck_Function()"
-					auth="false"
-					>
-
-
-				<!-- Email 유효성 Message 출력 -->
-				<small 
-				id="email_Output_ID" 
-				class="form-text  mb-4">메일주소를 정확히 입력해주세요.</small>
-
-				<div class="form-row mb-4">
-					<div class="col">
-
-						<!-- Password 입력 테그 -->
-						<input 
-							id="password_ID"
-							type="password" 
-							class="form-control" 
-							name="userPw"
-							aria-describedby="defaultRegisterFormPasswordHelpBlock"
-							onkeyup="passwordCheck_Function()" 
-							required placeholder="(*) 비밀번호"
-							auth="false"
-							>
-					</div>
-					<div class="col">
-
-						<!-- Password 재확인 입력 테그 -->
-						<input 
-							id="reconfirmPassword_ID"
-							type="password" 
-							class="form-control" 
-							name="userPwChck"
-							aria-describedby="defaultRegisterFormPasswordHelpBlock"
-							onkeyup="passwordCheck_Function()" 
-							required placeholder="(*) 비밀번호 확인">
-					</div>
-				</div>
-				
-				<!-- 비밀번호 유효성 Message 출력 -->
-				<small id="password_Output_ID" class="form-text  mb-4">비밀번호를 정확히 입력해 주세요.</small>
-
-				<div class="form-row mb-4">
-						<!-- 이름 입력 테그 -->
-						<input type="text" id="userName_ID" class="form-control form_name"
-							name="userName" required placeholder="(*) 성명"
-							onkeyup="nameCheck_Function()"
-							auth="false"
-							>
-						
-						<!-- 성별 입력 테그 -->
-						<select id="userGender_ID" form="form" class="form-control form_gender"
-							name="gender" 
-							> 
-  							<option value="남성">남성</option>
-  							<option value="여성">여성</option>
-						</select>
-					<!-- <div class="col">
-						
-						
-					</div> -->
-					<div class="col">
-
-						<!-- 생년월일 입력 테그 -->
-						<input type="text" id="userBirthday_ID" class="form-control form_birth"
-							name="regID" required placeholder="(*) ex) 19001010"
-							auth="false"
-							>
-					</div>
-				</div>
-
-				<!-- 이름 유효성 Message,생년월일 유효성 Message 출력 -->
-				<small id="nameAndBirthDay_Output_ID"
-					class="form-text  mb-4">성명과 생명월일을 정확히 입력해 주세요</small>
-
-				<small class="form-text  mb-4"></small> 
-				
-				<!-- 폰번호 입력 테그 -->
-				<input type="text"
-					id="phoneNumber_ID" class="form-control"
-					placeholder="(*) 휴대폰 번호"
-					aria-describedby="defaultRegisterFormPhoneHelpBlock" name="phone"
-					required
-					onkeyup="phoneNumber_CheckFunction()"
-					auth="false"
-					> 
-				<!-- 폰번호 유효성 출력 테그 -->
-				<small id="phoneNumber_Output_ID"
-					class="form-text  mb-4"> - 를 빼고 입력하세요 </small>
-
-				<!-- 주소검색버튼 -->
-				<input type="button" onClick="goPopup();" value="주소검색"
-					class="btn my-4 btn-block"
-					style="background-color: #ffc828; 
-					font-size: 10px;" height="25px" />
-
-				<div class="form-row mb-4" id="callBackDiv">
-
-					<!-- 우편번호 -->
-					<input type="text" id="zipNo" class="form-control"
-						placeholder="(*) 우편번호" name="zipCode" required
-						aria-describedby="defaultRegisterFormPhoneHelpBlock"
-						readonly="readonly"
-						onkeyup="addressAPI()"
-						>
-
-					<!-- 주소 -->
-					<input type="text" id="roadAddrPart1" class="form-control"
-						placeholder="(*) 주소"
-						aria-describedby="defaultRegisterFormPhoneHelpBlock"
-						name="address1" readonly="readonly">
-
-					<!-- 상세주소 -->
-					<input type="text" id="addrDetail" class="form-control"
-						placeholder="(*) 상세주소"
-						aria-describedby="defaultRegisterFormPhoneHelpBlock"
-						name="address2"
-						auth="false"
-						>
-
-				</div>
-				<!-- 주소API 끝-->
-
-				<small id="addressAPI_Output_ID"
-					class="form-text  mb-4"> 주소를 정확히 입력하세요. 상품 주문시
-					사용됩니다. </small>
-
-
-				<!-- Sign up button -->
-								
-				<div id="member_button">
-               	<input class="btn my-4 btn-block" 
-               	type="button"
-               	style="background-color: #ffc828; 
-               	font-size: 18px;" 
-               	onclick="checkFunction()"
-               	value="회원 가입"
-               	>
-               	회원 가입</input>
-            	</div>
-
-				<!-- Social register -->
-				<p>or sign up with:</p>
-
-				<a type="button" class="light-blue-text mx-2"> <i
-					class="fa fa-facebook"></i>
-				</a> <a type="button" class="light-blue-text mx-2"> <i
-					class="fa fa-twitter"></i>
-				</a> <a type="button" class="light-blue-text mx-2"> <i
-					class="fa fa-linkedin"></i>
-				</a> <a type="button" class="light-blue-text mx-2"> <i
-					class="fa fa-github"></i>
-				</a>
-
-				<hr>
-
-				<p>
-					By clicking <em>Sign up</em> you agree to our <a href=""
-						target="_blank">terms of service</a> and <a href=""
-						target="_blank">terms of service</a>.
-				</p>
-		</div>
-	</div>
 
 
 	<script>
