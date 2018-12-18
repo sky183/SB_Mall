@@ -23,7 +23,7 @@
 									</span>
 							</c:otherwise>
 					</c:choose>
-
+ 
 		</div>
 	 </div>
 	 <div class="headerBottom">
