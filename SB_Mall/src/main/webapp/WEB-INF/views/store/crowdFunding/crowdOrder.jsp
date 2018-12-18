@@ -53,7 +53,8 @@
 				var cardPassword = $('.cardPassword').val();
 				var birthNo = $('.birthNo').val();
 				var zipCode = $('.zipCode').val();
-				var orderAddress = $('.address1').val()+$('.address2').val();
+				var orderAddress1 = $('.address1').val();
+				var orderAddress2 = $('.address2').val();
 				var orderPhone = $('.orderPhone').val();
 				var orderRequest = $('.orderRequest').val();
 				var orderName = $('.orderName').val();
@@ -67,7 +68,8 @@
 					+'<input type="hidden" name="orderDetail.cardPassword" value="'+cardPassword+'">'
 					+'<input type="hidden" name="orderDetail.birthNo" value="'+birthNo+'">'
 					+'<input type="hidden" name="orderDetail.zipCode" value="'+zipCode+'">'
-					+'<input type="hidden" name="orderDetail.orderAddress" value="'+orderAddress+'">'
+					+'<input type="hidden" name="orderDetail.orderAddress1" value="'+orderAddress1+'">'
+					+'<input type="hidden" name="orderDetail.orderAddress2" value="'+orderAddress2+'">'
 					+'<input type="hidden" name="orderDetail.orderPhone" value="'+orderPhone+'">'
 					+'<input type="hidden" name="orderDetail.orderRequest" value="'+orderRequest+'">'
 					+'<input type="hidden" name="orderDetail.orderName" value="'+orderName+'">';

@@ -118,8 +118,8 @@
 	</select>
 	
 	<insert id="insertOrderDetail" parameterType="com.sb.mall.crowd.model.CrowdOrderDetail">
-		insert into CrowdOrderDetail (orderDetailNum, userSeq, orderTime, totalAmount, cardNo, yearDay, cardPassword, birthNo, zipCode, orderAddress, orderPhone, orderRequest, orderName)
-		values(#{orderDetailNum},#{userSeq},now(),#{totalAmount},#{cardNo},#{yearDay},#{cardPassword},#{birthNo},#{zipCode},#{orderAddress},#{orderPhone},#{orderRequest},#{orderName})
+		insert into CrowdOrderDetail (orderDetailNum, userSeq, orderTime, totalAmount, cardNo, yearDay, cardPassword, birthNo, zipCode, orderAddress1,orderAddress2, orderPhone, orderRequest, orderName)
+		values(#{orderDetailNum},#{userSeq},now(),#{totalAmount},#{cardNo},#{yearDay},#{cardPassword},#{birthNo},#{zipCode},#{orderAddress1}, #{orderAddress2}, #{orderPhone},#{orderRequest},#{orderName})
 	</insert>
 	
 	<update id="updateOrderedPriceByOrder">

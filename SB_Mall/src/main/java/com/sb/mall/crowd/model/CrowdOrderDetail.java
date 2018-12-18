@@ -15,15 +15,13 @@ public class CrowdOrderDetail {
 	private int yearDay;
 	private int birthNo;
 	private int zipCode;
-	private String orderAddress;
+	private String orderAddress1;
+	private String orderAddress2;
 	private int orderPhone;
 	private String orderRequest;
 	private String orderName;
 	public int getCrDetailSeq() {
 		return crDetailSeq;
-	}
-	public void setCrDetailSeq(int crDetailSeq) {
-		this.crDetailSeq = crDetailSeq;
 	}
 	public String getOrderDetailNum() {
 		return orderDetailNum;
@@ -91,11 +89,17 @@ public class CrowdOrderDetail {
 	public void setZipCode(int zipCode) {
 		this.zipCode = zipCode;
 	}
-	public String getOrderAddress() {
-		return orderAddress;
+	public String getOrderAddress1() {
+		return orderAddress1;
 	}
-	public void setOrderAddress(String orderAddress) {
-		this.orderAddress = orderAddress;
+	public void setOrderAddress1(String orderAddress1) {
+		this.orderAddress1 = orderAddress1;
+	}
+	public String getOrderAddress2() {
+		return orderAddress2;
+	}
+	public void setOrderAddress2(String orderAddress2) {
+		this.orderAddress2 = orderAddress2;
 	}
 	public int getOrderPhone() {
 		return orderPhone;
@@ -115,15 +119,19 @@ public class CrowdOrderDetail {
 	public void setOrderName(String orderName) {
 		this.orderName = orderName;
 	}
+	public void setCrDetailSeq(int crDetailSeq) {
+		this.crDetailSeq = crDetailSeq;
+	}
 	@Override
 	public String toString() {
 		return "CrowdOrderDetail [crDetailSeq=" + crDetailSeq + ", orderDetailNum=" + orderDetailNum + ", userSeq="
 				+ userSeq + ", payment=" + payment + ", orderTime=" + orderTime + ", status=" + status
 				+ ", totalAmount=" + totalAmount + ", cardNo=" + cardNo + ", cardPassword=" + cardPassword
-				+ ", yearDay=" + yearDay + ", birthNo=" + birthNo + ", zipCode=" + zipCode + ", orderAddress="
-				+ orderAddress + ", orderPhone=" + orderPhone + ", orderRequest=" + orderRequest + ", orderName="
-				+ orderName + "]";
+				+ ", yearDay=" + yearDay + ", birthNo=" + birthNo + ", zipCode=" + zipCode + ", orderAddress1="
+				+ orderAddress1 + ", orderAddress2=" + orderAddress2 + ", orderPhone=" + orderPhone + ", orderRequest="
+				+ orderRequest + ", orderName=" + orderName + "]";
 	}
+	
 	
 
 }
