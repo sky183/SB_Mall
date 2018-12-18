@@ -685,6 +685,7 @@ var removeGoodsList = function(e) {
 	<br>
 	<div id="boardTextContainer">
 		${proAndSal.text}
+		<img id="boardDetailBottom" src="/mall/img/delivery01.png">
 	</div>
 	<br>
 	<div id="boardReplyContainer">

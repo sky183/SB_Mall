@@ -46,7 +46,6 @@ public class OrderCartController {
 			Map<String, List<Order>> map = new HashMap<>();
 			map.put("orders", orderCommand.getOrders());
 			String orders = jackson.writeValueAsString(map);
-			System.out.println(orders);
 			orderCartService.addCart(orders);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,7 +61,6 @@ public class OrderCartController {
 	@ResponseBody
 	public String deleteCart(OrderOrderCommand orderCommand) {
 		List<Order> list = orderCommand.getOrders();
-		System.out.println("DLETE:"+list);
 		try {
 			orderCartService.deleteCart(list);
 		} catch (SQLException e) {
