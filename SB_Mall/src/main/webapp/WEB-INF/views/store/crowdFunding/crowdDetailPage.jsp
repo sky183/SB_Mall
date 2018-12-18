@@ -227,8 +227,8 @@
 								
 							+'	<!-- 상품 가격 -->'
 							+'	<div class="bagPriceBox">'
-							+'		<h4 class="bagHidden totalPrice">'+resultPrice+'</h4>'
 							+'		<h4 class="bagHidden salePrice">'+resultPrice+'</h4>'
+							+'		<h4 class="bagHidden onePrice">'+resultPrice+'</h4>'
 							+'		<h4 class="bagPrice">'+jsPrice+'</h4>'
 							+'		<h4 class="bagPriceWon">원</h4>'
 							+'	</div>'
@@ -251,7 +251,7 @@
 				afterBagAdd();
 				
 				/* 토탈금액 계산 */
-				getTotalPrice();
+				getSalePrice();
 				$('.resultBigBox').show();
 				
 				
@@ -267,17 +267,17 @@
 			$('.bAddMin').on('click',function(){
 				var bAdd = $(this).attr('bAdd');
 				var quan = $('.'+bAdd+'').find('.bAddQuan').html();
-				var price = $('.'+bAdd+'').find('.salePrice').html();
+				var price = $('.'+bAdd+'').find('.onePrice').html();
 				
 				
 				if(quan>1){
 					quan--;
-					var totalPrice = price*quan;
-					var jsPrice = commaUnit(totalPrice); 
+					var salePrice = price*quan;
+					var jsPrice = commaUnit(salePrice); 
 					$('.'+bAdd+'').find('.bAddQuan').html(quan);
-					$('.'+bAdd+'').find('.totalPrice').html(totalPrice);
+					$('.'+bAdd+'').find('.salePrice').html(salePrice);
 					$('.'+bAdd+'').find('.bagPrice').html(jsPrice);
-					getTotalPrice();
+					getSalePrice();
 				}
 				
 			})
@@ -286,16 +286,16 @@
 			$('.bAddPlu').on('click',function(){
 				var bAdd = $(this).attr('bAdd');
 				var quan = $('.'+bAdd+'').find('.bAddQuan').html();
-				var price = $('.'+bAdd+'').find('.salePrice').html();
+				var price = $('.'+bAdd+'').find('.onePrice').html();
 				
 				if(quan<99){
 					quan++;
-					var totalPrice = price*quan;
-					var jsPrice = commaUnit(totalPrice); 
+					var salePrice = price*quan;
+					var jsPrice = commaUnit(salePrice); 
 					$('.'+bAdd+'').find('.bAddQuan').html(quan);
-					$('.'+bAdd+'').find('.totalPrice').html(totalPrice);
+					$('.'+bAdd+'').find('.salePrice').html(salePrice);
 					$('.'+bAdd+'').find('.bagPrice').html(jsPrice);
-					getTotalPrice();
+					getSalePrice();
 				}
 				
 			})
@@ -309,7 +309,7 @@
 					$('.'+bAdd+'').remove();
                     
 					/* bag의 갯수만큼 for문으로 total금액 구하기 */
-                    getTotalPrice();
+                    getSalePrice();
 					
 					/* bag이 없으면 펀딩금액 숨기기 */
 					var bagLength = $('.bag').length;
@@ -364,16 +364,16 @@
 			
 		}
 		
-		function getTotalPrice(){
+		function getSalePrice(){
 			/* 총 펀딩금액 관련 */
 			bagCount = $('.bag');
-			var alltotalPrice=0;
+			var allsalePrice=0;
 			$(".bag").each(function(index){
 				var $this = $(this);
-				var totalPrice = $this.find(".totalPrice").html();
-				alltotalPrice += Number(totalPrice);
+				var salePrice = $this.find(".salePrice").html();
+				allsalePrice += Number(salePrice);
 			})
-			$('.resultPrice').html(commaUnit(alltotalPrice));
+			$('.resultPrice').html(commaUnit(allsalePrice));
 		}
 		
 		
@@ -423,28 +423,28 @@
         			
         			var userSeq = $(this).find('.bagUserSeq').html();
         			var crowdBoardSeq=$(this).find('.bagBoardSeq').html();
-        			var crGoodsNo=$(this).find('.bagGoodsNo').html();
-        			var crGoodsName=$(this).find('.bagGoodsName').html();
+        			var goodsNo=$(this).find('.bagGoodsNo').html();
+        			var goodsName=$(this).find('.bagGoodsName').html();
         			var crGoodsImg=$(this).find('.bagImg').attr('src');
-        			var crOptionSeq=$(this).find('.bagOptSeq').html();
-        			var crOpt1Name=$(this).find('.bagOpt1Name').html();
-        			var crOpt2Name=$(this).find('.bagOpt2Name').html();
+        			var optionSeq=$(this).find('.bagOptSeq').html();
+        			var opt1Name=$(this).find('.bagOpt1Name').html();
+        			var opt2Name=$(this).find('.bagOpt2Name').html();
         			var quantity=$(this).find('.bAddQuan').html();
+        			var onePrice=$(this).find('.onePrice').html();
         			var salePrice=$(this).find('.salePrice').html();
-        			var totalPrice=$(this).find('.totalPrice').html();
         			
         			var inputAdd=
         				'<input type="hidden" name="orders['+inputCnt+'].userSeq" value="'+userSeq+'">'
         				+'<input type="hidden" name="orders['+inputCnt+'].crowdBoardSeq" value="'+crowdBoardSeq+'">'
-        				+'<input type="hidden" name="orders['+inputCnt+'].crGoodsNo" value="'+crGoodsNo+'">'
-        				+'<input type="hidden" name="orders['+inputCnt+'].crGoodsName" value="'+crGoodsName+'">'
+        				+'<input type="hidden" name="orders['+inputCnt+'].goodsNo" value="'+goodsNo+'">'
+        				+'<input type="hidden" name="orders['+inputCnt+'].goodsName" value="'+goodsName+'">'
         				+'<input type="hidden" name="orders['+inputCnt+'].crGoodsImg" value="'+crGoodsImg+'">'
-        				+'<input type="hidden" name="orders['+inputCnt+'].crOptionSeq" value="'+crOptionSeq+'">'
-        				+'<input type="hidden" name="orders['+inputCnt+'].crOpt1Name" value="'+crOpt1Name+'">'
-        				+'<input type="hidden" name="orders['+inputCnt+'].crOpt2Name" value="'+crOpt2Name+'">'
+        				+'<input type="hidden" name="orders['+inputCnt+'].optionSeq" value="'+optionSeq+'">'
+        				+'<input type="hidden" name="orders['+inputCnt+'].opt1Name" value="'+opt1Name+'">'
+        				+'<input type="hidden" name="orders['+inputCnt+'].opt2Name" value="'+opt2Name+'">'
         				+'<input type="hidden" name="orders['+inputCnt+'].quantity" value="'+quantity+'">'
-        				+'<input type="hidden" name="orders['+inputCnt+'].salePrice" value="'+salePrice+'">'
-        				+'<input type="hidden" name="orders['+inputCnt+'].totalPrice" value="'+totalPrice+'">';
+        				+'<input type="hidden" name="orders['+inputCnt+'].onePrice" value="'+onePrice+'">'
+        				+'<input type="hidden" name="orders['+inputCnt+'].salePrice" value="'+salePrice+'">';
         			$('.realForm').append(inputAdd);
         			inputCnt++;
         		})
@@ -626,11 +626,11 @@
 									<!-- 셀렉트 왼쪽 -->
 									<div class="SLleft">
 										<div class="SLbox goodsImgBox">
-											<h6 class="hidden GoodsNo">${goods.crGoodsNo}</h6>
+											<h6 class="hidden GoodsNo">${goods.goodsNo}</h6>
 											<h6 class="hidden ProductSeq">${goods.crProductSeq}</h6>
-											<img class="SLimg goodsImg" src="${goods.crGoodsPhoto}">
+											<img class="SLimg goodsImg" src="${goods.goodsPhoto}">
 										</div>
-										<h3 class="SLname goodsName">${goods.crGoodsName}</h3>
+										<h3 class="SLname goodsName">${goods.goodsName}</h3>
 									</div>
 									
 									<!-- 셀렉트 오른쪽 -->

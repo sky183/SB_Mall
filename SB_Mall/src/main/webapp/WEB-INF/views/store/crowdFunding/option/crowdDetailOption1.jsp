@@ -11,9 +11,9 @@
 		<!-- 셀렉트 왼쪽 -->
 		<div class="SLleft">
 			<div class="SLboxOpt optTitleBox">
-				<h3 class="optname opt1Name">${opt1List.crOpt1Name}</h3>
-				<h6 class="hidden optionSeq">${opt1List.crOptionSeq}</h6>
-				<h6 class="hidden GoodsNoFk">${opt1List.crGoodsNo}</h6>
+				<h3 class="optname opt1Name">${opt1List.opt1Name}</h3>
+				<h6 class="hidden optionSeq">${opt1List.optionSeq}</h6>
+				<h6 class="hidden GoodsNoFk">${opt1List.goodsNo}</h6>
 			</div>
 		</div>
 

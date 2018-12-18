@@ -1,28 +1,28 @@
 package com.sb.mall.crowd.model;
 
 public class CrowdOrder {
-	private int crOrderSeq;
+	private int orderSeq;
 	private String orderDetailNum;
 	private int userSeq;
 	private int crowdBoardSeq;
-	private String crGoodsNo;
-	private int crOptionSeq;
+	private String goodsNo;
+	private int optionSeq;
 	private int quantity;
+	private int onePrice;
 	private int salePrice;
-	private int totalPrice;
 	private int refund;
 	
-	private String crGoodsName;
-	private String crOpt1Name;
-	private String crOpt2Name;
+	private String goodsName;
+	private String opt1Name;
+	private String opt2Name;
 	
 	private String crGoodsImg;
 	private String userName;
-	public int getCrOrderSeq() {
-		return crOrderSeq;
+	public int getOrderSeq() {
+		return orderSeq;
 	}
-	public void setCrOrderSeq(int crOrderSeq) {
-		this.crOrderSeq = crOrderSeq;
+	public void setOrderSeq(int orderSeq) {
+		this.orderSeq = orderSeq;
 	}
 	public String getOrderDetailNum() {
 		return orderDetailNum;
@@ -42,17 +42,17 @@ public class CrowdOrder {
 	public void setCrowdBoardSeq(int crowdBoardSeq) {
 		this.crowdBoardSeq = crowdBoardSeq;
 	}
-	public String getCrGoodsNo() {
-		return crGoodsNo;
+	public String getGoodsNo() {
+		return goodsNo;
 	}
-	public void setCrGoodsNo(String crGoodsNo) {
-		this.crGoodsNo = crGoodsNo;
+	public void setGoodsNo(String goodsNo) {
+		this.goodsNo = goodsNo;
 	}
-	public int getCrOptionSeq() {
-		return crOptionSeq;
+	public int getOptionSeq() {
+		return optionSeq;
 	}
-	public void setCrOptionSeq(int crOptionSeq) {
-		this.crOptionSeq = crOptionSeq;
+	public void setOptionSeq(int optionSeq) {
+		this.optionSeq = optionSeq;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -60,17 +60,17 @@ public class CrowdOrder {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public int getOnePrice() {
+		return onePrice;
+	}
+	public void setOnePrice(int onePrice) {
+		this.onePrice = onePrice;
+	}
 	public int getSalePrice() {
 		return salePrice;
 	}
 	public void setSalePrice(int salePrice) {
 		this.salePrice = salePrice;
-	}
-	public int getTotalPrice() {
-		return totalPrice;
-	}
-	public void setTotalPrice(int totalPrice) {
-		this.totalPrice = totalPrice;
 	}
 	public int getRefund() {
 		return refund;
@@ -78,23 +78,23 @@ public class CrowdOrder {
 	public void setRefund(int refund) {
 		this.refund = refund;
 	}
-	public String getCrGoodsName() {
-		return crGoodsName;
+	public String getGoodsName() {
+		return goodsName;
 	}
-	public void setCrGoodsName(String crGoodsName) {
-		this.crGoodsName = crGoodsName;
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
 	}
-	public String getCrOpt1Name() {
-		return crOpt1Name;
+	public String getOpt1Name() {
+		return opt1Name;
 	}
-	public void setCrOpt1Name(String crOpt1Name) {
-		this.crOpt1Name = crOpt1Name;
+	public void setOpt1Name(String opt1Name) {
+		this.opt1Name = opt1Name;
 	}
-	public String getCrOpt2Name() {
-		return crOpt2Name;
+	public String getOpt2Name() {
+		return opt2Name;
 	}
-	public void setCrOpt2Name(String crOpt2Name) {
-		this.crOpt2Name = crOpt2Name;
+	public void setOpt2Name(String opt2Name) {
+		this.opt2Name = opt2Name;
 	}
 	public String getCrGoodsImg() {
 		return crGoodsImg;
@@ -110,12 +110,14 @@ public class CrowdOrder {
 	}
 	@Override
 	public String toString() {
-		return "CrowdOrder [crOrderSeq=" + crOrderSeq + ", orderDetailNum=" + orderDetailNum + ", userSeq=" + userSeq
-				+ ", crowdBoardSeq=" + crowdBoardSeq + ", crGoodsNo=" + crGoodsNo + ", crOptionSeq=" + crOptionSeq
-				+ ", quantity=" + quantity + ", salePrice=" + salePrice + ", totalPrice=" + totalPrice + ", refund="
-				+ refund + ", crGoodsName=" + crGoodsName + ", crOpt1Name=" + crOpt1Name + ", crOpt2Name=" + crOpt2Name
+		return "CrowdOrder [orderSeq=" + orderSeq + ", orderDetailNum=" + orderDetailNum + ", userSeq=" + userSeq
+				+ ", crowdBoardSeq=" + crowdBoardSeq + ", goodsNo=" + goodsNo + ", optionSeq=" + optionSeq
+				+ ", quantity=" + quantity + ", onePrice=" + onePrice + ", salePrice=" + salePrice + ", refund="
+				+ refund + ", goodsName=" + goodsName + ", opt1Name=" + opt1Name + ", opt2Name=" + opt2Name
 				+ ", crGoodsImg=" + crGoodsImg + ", userName=" + userName + "]";
 	}
+	
+	
 	
 	
 

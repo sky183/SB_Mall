@@ -26,7 +26,7 @@
 			<c:choose>
 				<c:when test="${viewData.isEmpty()}">
 					<tr>
-						<td colspan="10" style="text-align: center; padding: 120px 0;">반품 요청이 없습니다.</td>
+						<td colspan="11" style="text-align: center; padding: 120px 0;">반품 요청이 없습니다.</td>
 					</tr>
 				</c:when>
 				<c:otherwise>

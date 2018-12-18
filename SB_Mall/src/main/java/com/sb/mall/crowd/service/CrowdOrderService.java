@@ -40,13 +40,13 @@ public class CrowdOrderService {
 		// order for
 		for(int i=0; i<orderList.size(); i++) {
 			// DB Price 가격 가져오기
-			int price = crowdDao.getOrderPrice(orderList.get(i).getCrGoodsNo(),orderList.get(i).getCrOptionSeq());
+			int price = crowdDao.getOrderPrice(orderList.get(i).getGoodsNo(),orderList.get(i).getOptionSeq());
 			totalAmount += price;
 			
 			// orderPrice DB 값으로 변경
-			orderList.get(i).setSalePrice(price);
-			System.out.println("totalPrice : "+orderList.get(i).getQuantity()*price);
-			orderList.get(i).setTotalPrice(orderList.get(i).getQuantity()*price);
+			orderList.get(i).setOnePrice(price);
+//			System.out.println("salePrice : "+orderList.get(i).getQuantity()*price);
+			orderList.get(i).setSalePrice(orderList.get(i).getQuantity()*price);
 			
 		}
 		
@@ -75,7 +75,7 @@ public class CrowdOrderService {
 			if(check==1) {
 				orderOk++;
 				// order 추가 후 option amount 줄이기
-				crowdDao.updateOrderedOptionByOrder(orderList.get(i).getQuantity(), orderList.get(i).getCrOptionSeq());
+				crowdDao.updateOrderedOptionByOrder(orderList.get(i).getQuantity(), orderList.get(i).getOptionSeq());
 				
 			}else {
 				orderNo++;

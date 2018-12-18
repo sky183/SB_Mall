@@ -3,18 +3,17 @@ package com.sb.mall.crowd.model;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CrowdGoods {
-	private String crGoodsNo;
+	private String goodsNo;
 	private int crProductSeq;
-	private String crGoodsName;
+	private String goodsName;
 	private int crGoodsPrice;
-	private String crGoodsPhoto;
+	private String goodsPhoto;
 	private MultipartFile goodsFile;
-	
-	public String getCrGoodsNo() {
-		return crGoodsNo;
+	public String getGoodsNo() {
+		return goodsNo;
 	}
-	public void setCrGoodsNo(String crGoodsNo) {
-		this.crGoodsNo = crGoodsNo;
+	public void setGoodsNo(String goodsNo) {
+		this.goodsNo = goodsNo;
 	}
 	public int getCrProductSeq() {
 		return crProductSeq;
@@ -22,11 +21,11 @@ public class CrowdGoods {
 	public void setCrProductSeq(int crProductSeq) {
 		this.crProductSeq = crProductSeq;
 	}
-	public String getCrGoodsName() {
-		return crGoodsName;
+	public String getGoodsName() {
+		return goodsName;
 	}
-	public void setCrGoodsName(String crGoodsName) {
-		this.crGoodsName = crGoodsName;
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
 	}
 	public int getCrGoodsPrice() {
 		return crGoodsPrice;
@@ -34,11 +33,11 @@ public class CrowdGoods {
 	public void setCrGoodsPrice(int crGoodsPrice) {
 		this.crGoodsPrice = crGoodsPrice;
 	}
-	public String getCrGoodsPhoto() {
-		return crGoodsPhoto;
+	public String getGoodsPhoto() {
+		return goodsPhoto;
 	}
-	public void setCrGoodsPhoto(String crGoodsPhoto) {
-		this.crGoodsPhoto = crGoodsPhoto;
+	public void setGoodsPhoto(String goodsPhoto) {
+		this.goodsPhoto = goodsPhoto;
 	}
 	public MultipartFile getGoodsFile() {
 		return goodsFile;
@@ -48,10 +47,11 @@ public class CrowdGoods {
 	}
 	@Override
 	public String toString() {
-		return "crowdGoods [crGoodsNo=" + crGoodsNo + ", crProductSeq=" + crProductSeq + ", crGoodsName=" + crGoodsName
-				+ ", crGoodsPrice=" + crGoodsPrice + ", crGoodsPhoto=" + crGoodsPhoto + ", goodsFile=" + goodsFile
-				+ "]";
+		return "CrowdGoods [goodsNo=" + goodsNo + ", crProductSeq=" + crProductSeq + ", goodsName=" + goodsName
+				+ ", crGoodsPrice=" + crGoodsPrice + ", goodsPhoto=" + goodsPhoto + ", goodsFile=" + goodsFile + "]";
 	}
+	
+	
 	
 	
 }

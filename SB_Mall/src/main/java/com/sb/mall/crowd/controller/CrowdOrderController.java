@@ -29,7 +29,7 @@ public class CrowdOrderController {
 			String userName = orderService.getUserName(orderList.getOrders().get(i).getUserSeq());
 			orderList.getOrders().get(i).setUserName(userName);
 			
-			totalAmount += orderList.getOrders().get(i).getTotalPrice();
+			totalAmount += orderList.getOrders().get(i).getSalePrice();
 		}
 		
 		MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");

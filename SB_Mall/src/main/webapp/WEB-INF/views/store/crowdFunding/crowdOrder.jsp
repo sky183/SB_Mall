@@ -82,21 +82,21 @@
 					var crOrderDetailNoFK = orderDetailNum;
 					var salerSeq = $(this).find('.userSeq').html();
 					var crowdBoardSeq = $(this).find('.crowdBoardSeq').html();
-					var crGoodsNo = $(this).find('.crGoodsNo').html();
-					var crOptionSeq = $(this).find('.crOptionSeq').html();
+					var goodsNo = $(this).find('.goodsNo').html();
+					var optionSeq = $(this).find('.optionSeq').html();
 					var quantity = $(this).find('.quantity').html();
+					var onePrice = $(this).find('.onePrice').html();
 					var salePrice = $(this).find('.salePrice').html();
-					var totalPrice = $(this).find('.totalPrice').html();
 					
 					var orderAppend = 
 						'<input type="hidden" name="orderList['+bagCnt+'].orderDetailNum" value="'+crOrderDetailNoFK+'">'
 						+'<input type="hidden" name="orderList['+bagCnt+'].userSeq" value="'+salerSeq+'">'
 						+'<input type="hidden" name="orderList['+bagCnt+'].crowdBoardSeq" value="'+crowdBoardSeq+'">'
-						+'<input type="hidden" name="orderList['+bagCnt+'].crGoodsNo" value="'+crGoodsNo+'">'
-						+'<input type="hidden" name="orderList['+bagCnt+'].crOptionSeq" value="'+crOptionSeq+'">'
+						+'<input type="hidden" name="orderList['+bagCnt+'].goodsNo" value="'+goodsNo+'">'
+						+'<input type="hidden" name="orderList['+bagCnt+'].optionSeq" value="'+optionSeq+'">'
 						+'<input type="hidden" name="orderList['+bagCnt+'].quantity" value="'+quantity+'">'
-						+'<input type="hidden" name="orderList['+bagCnt+'].salePrice" value="'+salePrice+'">'
-						+'<input type="hidden" name="orderList['+bagCnt+'].totalPrice" value="'+totalPrice+'">';
+						+'<input type="hidden" name="orderList['+bagCnt+'].onePrice" value="'+onePrice+'">'
+						+'<input type="hidden" name="orderList['+bagCnt+'].salePrice" value="'+salePrice+'">';
 						
 					$('#orderDetailForm').append(orderAppend);
 					bagCnt++;
@@ -197,17 +197,17 @@
 		<div class="orderUnitBox orderBag">
 			<h3 class="hidden crowdBoardSeq">${orderList.crowdBoardSeq}</h3>
 			<h3 class="hidden userSeq">${orderList.userSeq}</h3>
-			<h3 class="hidden crGoodsNo">${orderList.crGoodsNo}</h3>
-			<h3 class="hidden crOptionSeq">${orderList.crOptionSeq}</h3>
+			<h3 class="hidden goodsNo">${orderList.goodsNo}</h3>
+			<h3 class="hidden optionSeq">${orderList.optionSeq}</h3>
 			
 			<div class="orderImgbox ib">
 				<img class="orderImg" src="${orderList.crGoodsImg}">
 			</div>
 			
 			<div class="orderTitlebox ib">
-				<h1 class="orderTitle ib">${orderList.crGoodsName}</h1><br>
-				<h3 class="orderSubLine ib">${orderList.crOpt1Name}</h3>
-				<h3 class="orderSubLine ib">${orderList.crOpt2Name}</h3>
+				<h1 class="orderTitle ib">${orderList.goodsName}</h1><br>
+				<h3 class="orderSubLine ib">${orderList.opt1Name}</h3>
+				<h3 class="orderSubLine ib">${orderList.opt2Name}</h3>
 			</div>
 			
 			<div class="quantityBox ib">
@@ -216,16 +216,16 @@
 			</div>
 			
 			<div class="salesBox ib">
-				<h2 class="hidden salePrice">${orderList.salePrice}</h2>
-				<h2 class="salesPriceF ib"><fmt:formatNumber value="${orderList.salePrice}" pattern="#,###"/>원</h2>
+				<h2 class="hidden onePrice">${orderList.onePrice}</h2>
+				<h2 class="salesPriceF ib"><fmt:formatNumber value="${orderList.onePrice}" pattern="#,###"/>원</h2>
 			</div>
 			
 			<div class="totalBox ib">
 				<div class="totalPriceBox ib">
-					<h2 class="hidden totalPrice">${orderList.totalPrice}</h2>
-					<h2 class="totalPriceF ib"><fmt:formatNumber value="${orderList.totalPrice}" pattern="#,###"/>원</h2><br>
+					<h2 class="hidden salePrice">${orderList.salePrice}</h2>
+					<h2 class="totalPriceF ib"><fmt:formatNumber value="${orderList.salePrice}" pattern="#,###"/>원</h2><br>
 				</div>
-				<h4 class="totalPriceD ib">(${orderList.quantity}x<fmt:formatNumber value="${orderList.salePrice}" pattern="#,###"/>원)</h4>
+				<h4 class="totalPriceD ib">(${orderList.quantity}x<fmt:formatNumber value="${orderList.onePrice}" pattern="#,###"/>원)</h4>
 			</div>
 			
 			<div class="salerBox ib">

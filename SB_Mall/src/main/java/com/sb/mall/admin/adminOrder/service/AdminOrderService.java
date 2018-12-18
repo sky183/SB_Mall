@@ -74,7 +74,7 @@ public class AdminOrderService {
 			String tableName = orderBackVO.getTableName();
 			String goodsTable = "Goods";
 			String goodsOptionTable = "GoodsOption"; 
-			if (tableName != null && tableName.equals("") && tableName.equals("CrowdOrderDetail")) {
+			if (tableName != null && !(tableName.equals("")) && tableName.equals("CrowdOrderDetail")) {
 				goodsTable = "Crowd" + goodsTable;
 				goodsOptionTable = "Crowd" + goodsOptionTable;
 			} 

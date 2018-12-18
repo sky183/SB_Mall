@@ -35,16 +35,16 @@
 	<insert id="insertCrowdGoods"
 		parameterType="com.sb.mall.crowd.model.CrowdGoods">
 		
-		insert into CrowdGoods (crGoodsNo,crProductSeq,crGoodsName,crGoodsPrice,crGoodsPhoto) 
- 		value(#{crGoodsNo},#{crProductSeq},#{crGoodsName},#{crGoodsPrice},#{crGoodsPhoto})
+		insert into CrowdGoods (goodsNo,crProductSeq,goodsName,crGoodsPrice,goodsPhoto) 
+ 		value(#{goodsNo},#{crProductSeq},#{goodsName},#{crGoodsPrice},#{goodsPhoto})
 		
 	</insert>
 	
 	<insert id="insertCrowdOption"
 		parameterType="com.sb.mall.crowd.model.CrowdOption">
 		
-		insert into CrowdGoodsOption (crGoodsNo,crOpt1Name,crOptAmount,crOpt1Price,crOpt2Name,crOpt2Price) 
- 		value(#{crGoodsNo},#{crOpt1Name},#{crOptAmount},#{crOpt1Price},#{crOpt2Name},#{crOpt2Price})
+		insert into CrowdGoodsOption (goodsNo,opt1Name,crOptAmount,crOpt1Price,opt2Name,crOpt2Price) 
+ 		value(#{goodsNo},#{opt1Name},#{crOptAmount},#{crOpt1Price},#{opt2Name},#{crOpt2Price})
 		
 	</insert>
 	
@@ -93,11 +93,11 @@
 	</select>
 	
 	<select id="getOpt1" resultType="map">
-		select * from CrowdGoodsOption where crGoodsNo = #{crGoodsNo} group by crOpt1Name
+		select * from CrowdGoodsOption where goodsNo = #{goodsNo} group by opt1Name
 	</select>
 	
 	<select id="getOpt2" resultType="map">
-		select * from CrowdGoodsOption where crGoodsNo = #{param1} and crOpt1Name = #{param2}
+		select * from CrowdGoodsOption where goodsNo = #{param1} and opt1Name = #{param2}
 	</select>
 	
 	<select id="getUserName" resultType="String">
@@ -109,12 +109,12 @@
 	</insert>
 	
 	<insert id="insertOrderList" parameterType="com.sb.mall.crowd.model.CrowdOrder">
-		insert into CrowdOrder (orderDetailNum, userSeq, crowdBoardSeq, crGoodsNo, crOptionSeq, quantity, salePrice, totalPrice)
-		value(#{orderDetailNum},#{userSeq},#{crowdBoardSeq},#{crGoodsNo},#{crOptionSeq},#{quantity},#{salePrice},#{totalPrice})
+		insert into CrowdOrder (orderDetailNum, userSeq, crowdBoardSeq, goodsNo, optionSeq, quantity, onePrice, salePrice)
+		value(#{orderDetailNum},#{userSeq},#{crowdBoardSeq},#{goodsNo},#{optionSeq},#{quantity},#{onePrice},#{salePrice})
 	</insert>
 	
 	<select id="getOrderPrice" resultType="int">
-		select (crGoodsPrice+ crOpt1Price+ crOpt2Price) as price from CrowdGoods g, CrowdGoodsOption o where g.crGoodsNo = #{param1} and g.crGoodsNo=o.crGoodsNo and crOptionSeq=#{param2};
+		select (crGoodsPrice+ crOpt1Price+ crOpt2Price) as price from CrowdGoods g, CrowdGoodsOption o where g.goodsNo = #{param1} and g.goodsNo=o.goodsNo and optionSeq=#{param2};
 	</select>
 	
 	<insert id="insertOrderDetail" parameterType="com.sb.mall.crowd.model.CrowdOrderDetail">
@@ -126,7 +126,7 @@
 		update CrowdBoard set totalOrderPrice=totalOrderPrice+#{param1} where crowdBoardSeq=#{param2}
 	</update>
 	<update id="updateOrderedOptionByOrder">
-		update CrowdGoodsOption set crOptAmount=crOptAmount-#{param1} where crOptionSeq=#{param2}
+		update CrowdGoodsOption set crOptAmount=crOptAmount-#{param1} where optionSeq=#{param2}
 	</update>
 	
 </mapper>

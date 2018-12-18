@@ -124,8 +124,8 @@
 							
 						+'			<div class="crTextBox"><h4 class="crBoardTextH4">상품 이름</h4></div>'
 						+'			<div class="crInputMiniBox">'
-						+'				<input type="hidden" class="goodsNoPk" name="goodsList['+goodsCount+'].crGoodsNo" value="'+goodsNo+'">'
-						+'				<input class="crowdInput goodsName" type="text" remoteNm = "remoteName'+goodsCount+'" name="goodsList['+goodsCount+'].crGoodsName" placeholder="상품의 이름을 입력해주세요">'
+						+'				<input type="hidden" class="goodsNoPk" name="goodsList['+goodsCount+'].goodsNo" value="'+goodsNo+'">'
+						+'				<input class="crowdInput goodsName" type="text" remoteNm = "remoteName'+goodsCount+'" name="goodsList['+goodsCount+'].goodsName" placeholder="상품의 이름을 입력해주세요">'
 						+'			</div>'
 						+'			<br>'
 							
@@ -137,7 +137,7 @@
 							
 						+'			<div class="crTextBox"><h4 class="crBoardTextH4">상품 이미지</h4></div>'
 						+'			<div class="crInputMiniBox">'
-						+'				<input type="hidden" id="goodsPhoto'+goodsCount+'" name="goodsList['+goodsCount+'].crGoodsPhoto">'
+						+'				<input type="hidden" id="goodsPhoto'+goodsCount+'" name="goodsList['+goodsCount+'].goodsPhoto">'
 						+'				<input class="crowdInput" id="firstGoodsPhoto" type="file" onchange="goodsUpload(this, \'goodsPhoto'+goodsCount+'\', \'remoteImg'+goodsCount+'\')">'
 						+'			</div>'
 						+'		</div>'
@@ -157,8 +157,8 @@
 						+'				<!-- option01 -->'
 						+'				<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션1 내용</h4></div>'
 						+'				<div class="crInputOptionBox">'
-						+'					<input type="hidden" class="goodsNoFk" name="optionList['+optionCount+'].crGoodsNo" value="'+goodsNo+'">'
-						+'					<input class="optionInput" type="text" name="optionList['+optionCount+'].crOpt1Name" placeholder="옵션1의 내용">'
+						+'					<input type="hidden" class="goodsNoFk" name="optionList['+optionCount+'].goodsNo" value="'+goodsNo+'">'
+						+'					<input class="optionInput" type="text" name="optionList['+optionCount+'].opt1Name" placeholder="옵션1의 내용">'
 						+'				</div>'
 									
 						+'				<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션1 추가금</h4></div>'
@@ -175,7 +175,7 @@
 						+'				<!-- option02 -->'
 						+'				<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션2 내용</h4></div>'
 						+'				<div class="crInputOptionBox">'
-						+'					<input class="optionInput" type="text" name="optionList['+optionCount+'].crOpt2Name" placeholder="옵션2의 내용">'
+						+'					<input class="optionInput" type="text" name="optionList['+optionCount+'].opt2Name" placeholder="옵션2의 내용">'
 						+'				</div>'
 						+'				<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션2 추가금</h4></div>'
 						+'				<div class="crInputOptionBox">'
@@ -276,8 +276,8 @@
 							+'	<!-- option01 -->'
 							+'		<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션1 내용</h4></div>'
 							+'		<div class="crInputOptionBox">'
-							+'			<input type="hidden" class="goodsNoFk" name="optionList['+optionCount+'].crGoodsNo" value="'+goodsNo+'">'
-							+'			<input class="optionInput" type="text" name="optionList['+optionCount+'].crOpt1Name" placeholder="옵션1의 내용">'
+							+'			<input type="hidden" class="goodsNoFk" name="optionList['+optionCount+'].goodsNo" value="'+goodsNo+'">'
+							+'			<input class="optionInput" type="text" name="optionList['+optionCount+'].opt1Name" placeholder="옵션1의 내용">'
 							+'		</div>'
 							
 							+'		<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션1 추가금</h4></div>'
@@ -292,7 +292,7 @@
 							+'		<!-- option02 -->'
 							+'		<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션2 내용</h4></div>'
 							+'		<div class="crInputOptionBox">'
-							+'			<input class="optionInput" type="text" name="optionList['+optionCount+'].crOpt2Name" placeholder="옵션2의 내용">'
+							+'			<input class="optionInput" type="text" name="optionList['+optionCount+'].opt2Name" placeholder="옵션2의 내용">'
 							+'		</div>'
 							+'		<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션2 추가금</h4></div>'
 							+'		<div class="crInputOptionBox">'
@@ -630,8 +630,8 @@
 						
 						<div class="crTextBox"><h4 class="crBoardTextH4">상품 이름</h4></div>
 							<div class="crInputMiniBox">
-								<input type="hidden" class="goodsNoPk" name="goodsList[0].crGoodsNo" value="">
-								<input class="crowdInput goodsName" type="text" remoteNm = "remoteName0" name="goodsList[0].crGoodsName" placeholder="상품의 이름을 입력해주세요">
+								<input type="hidden" class="goodsNoPk" name="goodsList[0].goodsNo" value="">
+								<input class="crowdInput goodsName" type="text" remoteNm = "remoteName0" name="goodsList[0].goodsName" placeholder="상품의 이름을 입력해주세요">
 							</div>
 						<br>
 						
@@ -643,7 +643,7 @@
 						
 						<div class="crTextBox"><h4 class="crBoardTextH4">상품 이미지</h4></div>
 								<div class="crInputMiniBox">
-									<input type="hidden" id="goodsPhoto0" name="goodsList[0].crGoodsPhoto">
+									<input type="hidden" id="goodsPhoto0" name="goodsList[0].goodsPhoto">
 									<input class="crowdInput" id="firstGoodsPhoto" type="file" onchange="goodsUpload(this, 'goodsPhoto0', 'remoteImg0')">
 								</div>
 					</div>
@@ -663,8 +663,8 @@
 								<!-- option01 -->
 								<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션1 내용</h4></div>
 									<div class="crInputOptionBox">
-										<input type="hidden" class="goodsNoFk" name="optionList[0].crGoodsNo" value="">
-										<input class="optionInput" type="text" name="optionList[0].crOpt1Name" placeholder="옵션1의 내용">
+										<input type="hidden" class="goodsNoFk" name="optionList[0].goodsNo" value="">
+										<input class="optionInput" type="text" name="optionList[0].opt1Name" placeholder="옵션1의 내용">
 									</div>
 								
 								<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션1 추가금</h4></div>
@@ -679,7 +679,7 @@
 								<!-- option02 -->
 								<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션2 내용</h4></div>
 									<div class="crInputOptionBox">
-										<input class="optionInput" type="text" name="optionList[0].crOpt2Name" placeholder="옵션2의 내용">
+										<input class="optionInput" type="text" name="optionList[0].opt2Name" placeholder="옵션2의 내용">
 									</div>
 								<div class="crOptionTextBox"><h4 class="crBoardTextH4">옵션2 추가금</h4></div>
 									<div class="crInputOptionBox">

@@ -37,8 +37,8 @@ public interface CrowdDao {
 	public String getUserName(int userSeq); // 유저 네임 구하기
 	public void insertOrderDetail2(String orders);//order프로시저
 	public int insertOrderList(CrowdOrder crowdOrder);//order추가
-	public int getOrderPrice(String crGoodsNo, int crOptionSeq); //주문한 금액의 값 확인을 위해 goods+option의 가격 조회
+	public int getOrderPrice(String goodsNo, int optionSeq); //주문한 금액의 값 확인을 위해 goods+option의 가격 조회
 	public int insertOrderDetail(CrowdOrderDetail crowdOrderDetail);//orderDetail추가
 	public void updateOrderedPriceByOrder(int totalAmount, int crowdBoardSeq); // order 후 board update
-	public void updateOrderedOptionByOrder(int quantity, int crOptionSeq); // order 후 option update
+	public void updateOrderedOptionByOrder(int quantity, int optionSeq); // order 후 option update
 }
