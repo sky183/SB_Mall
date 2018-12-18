@@ -7,7 +7,7 @@
 							<c:when test='${memberInfo eq null}'>
 									<span>
 										<a id="memberNaviText"
-										href="<%=request.getContextPath()%>/admin/login">로그인</a>
+										href="<%=request.getContextPath()%>/admin/adminLogin">로그인</a>
 									</span>
 							</c:when>
 							<c:otherwise>
