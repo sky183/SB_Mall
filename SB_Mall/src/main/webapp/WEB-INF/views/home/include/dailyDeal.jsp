@@ -87,7 +87,7 @@
 		
 		$('.dailyDealImg').on('click',function(){
 			var alt = $(this).attr('alt');
-			location.href="<%=request.getContextPath()%>/store/board/"+alt;
+			location.href="<%=request.getContextPath()%>/crowd/crowdDetail/"+alt;
 		})
 		
 		
@@ -143,14 +143,32 @@
 <div class="dailyDealMidBox">
   <div class="content">
     <div class="slider center">
-      <c:forEach var="deal" items="${dailyDeal}">
+      <c:forEach var="crowdHome" items="${crowdHome}">
 	      <div>
 	        <div class="sibal">
-				<img class ="dailyDealImg" alt="${deal.salesSeq}" src="${deal.photo}">
-					<h4 class="dailyDeal_h4">${deal.productName}</h4>
+				<img class ="dailyDealImg" alt="${crowdHome.crowdBoardSeq}" src="${crowdHome.crPhoto}">
+					<h4 class="dailyDeal_h4">${crowdHome.title}</h4>
 					<h6 class="dailyDeal_h6">
-					<fmt:formatNumber value="${deal.price}"  pattern="#,###"/>won</h6>
-					<h6 class="dailyDealSale_h6"><fmt:formatNumber value="${deal.price*0.9}"  pattern="#,###"/>won</h6>
+					<fmt:formatNumber value="${crowdHome.targetPrice}"  pattern="#,###"/>원</h6>
+					
+					<span class="homeRatingBar">
+					<c:choose>
+						<c:when test="${crowdHome.achieve<100}">
+							<span class="homeRatingBarInner" style="width:${crowdHome.achieve}%"></span>
+						</c:when>
+						<c:otherwise>
+							<span class="homeRatingBarInner" style="width:100%"></span>
+						</c:otherwise>
+					</c:choose>
+					</span>
+					
+					<h6 class="homeFundingH6">
+						<fmt:formatNumber value="${crowdHome.achieve}"  pattern="#,###"/>%</h6>
+					<h6 class="homeFundingH6-1">
+						<fmt:formatNumber value="${crowdHome.totalOrderPrice}"  pattern="#,###"/>원</h6>
+					
+					<h6 class="viewCntHome">${crowdHome.viewSeq}</h6>
+					<img class="viewImgHome" src="${pageContext.request.contextPath}/img/viewSeq01.png">
 	        </div>
 	      </div>
       </c:forEach>

@@ -15,7 +15,7 @@
 	var viewCnt=0;
 	 $(document).ready(function(){
 		
-	 	function getCrowdBoard(nowPage){
+	 	function getCrowdBoard(nowPage , fgjlkfsdg, fgjlkdj){
 			$.ajax({
 				url:'<%=request.getContextPath()%>/crowd/crowdBoardList',
 				type: "get",
@@ -77,7 +77,7 @@
 			
 		})
 		
-		
+		getCrowdBoard(nowPage , fgjlkfsdg, fgjlkdj)
 		
 		
 		

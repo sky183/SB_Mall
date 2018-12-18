@@ -121,6 +121,9 @@ li {
     background-color: #282828;
     color: #ffc828;
 }
+#memberNaviText{
+	color: #a0a0a0 !important;
+}
 #memberNaviText:hover{
 	color: #ffc828 !important;
 }

@@ -19,10 +19,10 @@
 			<h1 class="fontOpenSans youtube_H1">SB COMPANY</h1>
 			
 			<h4 class="fontOpenSans youtube_h4">
-				Small electric vehicles from foldable bikes and scooters to unicycles<br>
+				Small electric vehicles from foldable bikes and scooters to<br>
 				and hoverboards are becoming more popular as "last mile" <br>
-				tansportation Small electric vehicles from foldable Small electric <br>
-				vehicles from foldable bikes and scooters to unicycles and hoverboards <br>
+				tansportation Small electric vehicles from foldable Small<br>
+				vehicles from foldable bikes and scooters to unicycles and<br>
 				are becoming more popular as good.<br>
 			</h4>
 			<a href="https://www.youtube.com/watch?time_continue=3&v=VeSh9IZgKtk"class="youtubeBtn">Read More</a>

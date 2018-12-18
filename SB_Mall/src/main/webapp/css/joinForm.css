@@ -5,14 +5,15 @@
 /* }  */
 
 .all_Input{
-	margin: 10px 0;
+	margin: 20px 0;
 	font-size:15pt;
 	border: 0px solid #dcdcdc;
     padding: 4px 5px;
 	border-bottom: 2px solid #dcdcdc;
+	box-sizing: border-box;
 }
 .all_input::placeholder {
-	font-weight: bold;
+/* 	font-weight: bold; */
     color: #c8c8c8;
 }
 .all_input:focus {
@@ -63,37 +64,62 @@
 
 #freeboard_Content {
 	text-align: center;
-	
 }
+/* #freeboard_Content *{ */
+/* 	box-sizing: border-box; */
+/* } */
 /*<<Start of freeboard_Content>>*/
 #email_ID_wrap,
 #password_ID_wrap,
 #userName_IDuserBirthday_ID_wrap,
 #phoneNumber_IDuserGender_ID_wrap,
 #content_addressAPI_wrap{
-	margin: 20px;
+	margin: 0 auto;
+    width: 600px;
 }
 
-#email_ID{
-	width: 400px;
-	
+#email_ID, #password_ID,
+#reconfirmPassword_ID{
+	width: 100%;
 }
-
-#zipNo{
-	width: 345px;
+#userName_ID, #userBirthday_ID{
+	width: 48%;
+}
+#phoneNumber_ID, #zipNo{
+	width : 474px;
+}
+#userGender_ID{
+    width: 106px;
+    height: 37px;
+    margin-top: 6px;
+    font-size: 18px;
+    padding-left: 18px;
+}
+#userGender_ID:hover{
+	cursor: pointer;
+}
+#searchZip{
+	border-radius: 0;
+    border: thin solid #a0a0a0;
+    width: 106px;
+    height: 37px;
+    margin-top: 6px;
+    font-size: 15px;
 }
 #roadAddrPart1,
 #addrDetail{
-	width: 450px;
+	width: 100%;
 }
 
 
-#footer_button_Send{
-	width: 110px;
+#footer_button_Send, #footer_button_Cancel{
+	width: 140px;
+    height: 37px;
+    border: thin solid #a0a0a0;
+    border-radius: 0;
+    margin: 0 5px;
 }
-#footer_button_Cancel{
-	width: 110px;
-}
+
 /*<<End of freeboard_Content>>*/
 
 
@@ -105,6 +131,8 @@
 
 .socialRegister_Icon{
 	color: #00aaff;
+    height: 27px;
+    display: inline-block;
 }
 /*<<End of freeboard_Footer>>*/
 

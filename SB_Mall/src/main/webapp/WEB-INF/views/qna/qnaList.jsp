@@ -67,7 +67,9 @@ table .th-lg, table td {
 .topTableBox{
 	border-bottom:3px solid #ffc828;
 	z-index:9999;
-
+}
+.openText{
+	padding-left: 91px !important;
 }
 </style>
 
@@ -129,10 +131,18 @@ table .th-lg, table td {
 					<td class="qnaAnsBox"><a href="" class="qnaAns" name="${ qnaBoard.qnaSeq}" data-toggle="modal" data-target="#modalAnsForm">답글쓰기</a></td>
 				</tr>
 				<tr>
-					<td colspan="6" style="text-align: center;" class="openText" name="${ qnaBoard.qnaSeq}">${ qnaBoard.qtext }</td>
+					<td colspan="6" class="openText" name="${ qnaBoard.qnaSeq}">질문 : ${ qnaBoard.qtext }</td>
 				</tr>
 				<tr>
-					<td colspan="6" style="text-align: center;" class="openText" name="${ qnaBoard.qnaSeq}">${ qnaBoard.atext }</td>
+					<c:choose>
+						<c:when test="${ qnaBoard.atext != null && qnaBoard.atext != '' }">
+							<td colspan="6" class="openText" name="${ qnaBoard.qnaSeq}">답변 : ${ qnaBoard.atext }</td>
+						</c:when>
+						<c:otherwise>
+							<td colspan="6" class="openText" name="${ qnaBoard.qnaSeq}">답변이 없습니다</td>
+						</c:otherwise>
+					</c:choose>
+<%-- 					<td colspan="6" class="openText" name="${ qnaBoard.qnaSeq}">답변 : ${ qnaBoard.atext }</td> --%>
 				</tr>
 			</c:forEach>
 		</c:if>
