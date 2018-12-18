@@ -30,7 +30,7 @@
 				<c:otherwise>
 					<c:forEach var="MemberVO" items="${viewData.objList}">
 						<tr>
-							<td class="mm0"><input type="checkbox" class="check" name="userSeq" value="${MemberVO.userSeq}" gradeNum="${MemberVO.gradeNum}"></td>
+							<td class="mm0"><input type="checkbox" class="check" name="userSeq" value="${MemberVO.userSeq}" data-gradeNum="${MemberVO.gradeNum}"></td>
 							<td class="mm1">${MemberVO.regDate}</td>
 							<td class="mm2">${MemberVO.userSeq}</td>
 							<td class="mm3">${MemberVO.userId}</td>
@@ -169,6 +169,7 @@
 		
 		//loadMemberList.jsp를 불러오는 함수
 		function loadMemberList(pageNumber){
+			$(this).unbind();
 			
 		 	var startDate = $( "#startDate" ).val();
 		 	var endDate = $( "#endDate" ).val();
@@ -191,17 +192,20 @@
 		
 		//페이지 번호를 클릭하면 다시 불러온다.
 		$('.page').click(function() {
+			$(this).unbind();
 			var pageNumber = $(this).attr('name');
 			loadMemberList(pageNumber);
 		});
 		
 		//조회 버튼을 클릭하면 다시 불러온다.
 		$('#select').click(function() {
+			$(this).unbind();
 			loadMemberList(1);
 		});
 		
 		//검색창에서 엔터를 누르면 다시 불러온다.
 		$('#search').keydown(function(key) {
+			$(this).unbind();
 			if (key.keyCode == 13) {
 				loadMemberList(1);
 			}
@@ -209,18 +213,22 @@
 		
 		//all-check를 클릭하면 모든 check가 클릭된다.
 		$(".all-check").change(function () {
+			$(this).unbind();
 		    $(".check").prop('checked', $(this).prop("checked"));
 		});
 		
 		//선택한 항목을 업데이트
 		$('#update').on('click', function(){
+			$(this).unbind();
 			
 		    //로그인된 관리자의 등급
 		    var adminGradeNum = Number(${memberInfo.gradeNum});
-		    console.log(adminGradeNum);
 		    
 		    //올릴 등급
 		    var gradeNum = $('#changeGradeNum').val();
+		    
+		    console.log('내 등급 :' + adminGradeNum);
+		    console.log('올릴 등급 :' + gradeNum);
 		    
 			//선택한 항목을 배열로 만들어준다.
 		    var memberlength = $("input[name='userSeq']:checked").length;
@@ -233,8 +241,10 @@
 			    	
 			    	memberArray[i] = $("input[name='userSeq']:checked")[i].value;
 			    	
-			    	//등급을 체크한다.
-			    	var thisGrade = Number($("input[name='userSeq']:checked")[i].gradeNum);
+			    	//등급을 체크한다. - eq(i) jquery에서 n 번째 배열 요소를 찾는 것
+			    	var thisGrade = Number($("input[name='userSeq']:checked").eq(i).attr('data-gradeNum'));
+			    	
+			    	console.log('현재회원 등급 :' + thisGrade);
 			    	
 			    	//다른 관리자일 경우 수정 불가 - 선택한 회원 중에 나와 같거나 높은 등급이 있거나, 올릴 등급이 3등급 이상이고 내 등급은 4등급 미만이거나, 선택한 회원이 4등급일때
 			    	if ( thisGrade >= adminGradeNum || (gradeNum >= 3 && adminGradeNum < 4) || thisGrade == 4) {
@@ -271,6 +281,7 @@
 		
 		//선택한 회원을 탈퇴처리
 		$('#delete').on('click', function(){
+				$(this).unbind();
 			
 			    //로그인된 관리자의 등급
 			    var adminGradeNum = Number(${memberInfo.gradeNum});

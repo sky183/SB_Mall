@@ -31,7 +31,7 @@ public class AdminMainController {
 	static final int COUNT_PER_PAGE = 10;
 	
 	//관리자페이지 메인
-	@RequestMapping(value="/admin/adminMain", method=RequestMethod.GET)
+	@RequestMapping(value="/admin", method=RequestMethod.GET)
 	public ModelAndView adminMain(@RequestParam(value="page", defaultValue="1") int membPageNum) throws JsonProcessingException {
 		
 		ModelAndView modelAndView = new ModelAndView("/admin/adminMain");

@@ -41,8 +41,11 @@ $(document).ready(function() {
 </script>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<div class="midBannerBox">
-	<h3 class="rowdWriteBannerH3">수정</h3>
+<!-- <div class="midBannerBox"> -->
+<!-- 	<h3 class="rowdWriteBannerH3">수정</h3> -->
+<!-- </div> -->
+<div class="commonBannerBox">
+	<h3 class="rowdCommonBannerH3">수정</h3>
 </div>
 <form method="POST" action="update_over" id="freeBoard_form_id">
 <div id="freeboard_wrap_1">

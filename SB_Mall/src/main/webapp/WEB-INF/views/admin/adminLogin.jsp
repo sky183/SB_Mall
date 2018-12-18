@@ -27,9 +27,9 @@
 				   
 				    <label for="inputPassword" class="sr-only">Password</label>
 				    <input type="password" name="userPw" id="userPw" class="form-control" placeholder="비밀번호" required>
-			
-					${error}
-			
+					<div style="color : #c8c8c8">
+						${error}
+					</div>
 					<!--로그인 버튼  -->
 					<button class="btn btn-lg btn-primary btn-block" type="button"
 						id=login_button>로그인</button>

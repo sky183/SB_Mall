@@ -73,7 +73,7 @@ public class AdminLoginController {
 				
 				if (memberInfo.getGradeNum() >= 3 ) {
 					
-					modelAndView.setViewName("redirect:/admin/adminMain");
+					modelAndView.setViewName("redirect:/admin");
 					
 				} else {
 					modelAndView.setViewName("admin/adminLogin"); // 경로

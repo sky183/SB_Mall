@@ -203,13 +203,9 @@
 		
 		//페이지 번호를 클릭하면 다시 불러온다.
 		$('.page').click(function() {
+			$(this).unbind();
 			var pageNumber = $(this).attr('name');
 			loadOrderList(pageNumber);
-		});
-		
-		//조회 버튼을 클릭하면 다시 불러온다.
-		$('#select').click(function() {
-			loadOrderList(1);
 		});
 		
 		//검색창에서 엔터를 누르면 다시 불러온다.
@@ -219,14 +215,22 @@
 			}
 		});
 		
+		//조회 버튼을 클릭하면 다시 불러온다.
+		$('#select').click(function() {
+			$(this).unbind();
+			loadOrderList(1);
+			
+		});
+		
 		//all-check를 클릭하면 모든 check가 클릭된다.
 		$(".all-check").change(function () {
+			$(this).unbind();
 		    $(".check").prop('checked', $(this).prop("checked"));
 		});
 		
 		//orderResult.jsp를 불러오는 함수
 		function orderResult(orderBackVO){
-						
+			
 			$.ajax({
 				url : '<%=request.getContextPath()%>/admin/adminOrder/orderManager/loadOrderList/orderResult',
 				method : 'POST',
@@ -240,10 +244,13 @@
 					$('#rightContent').html(data);
 				}
 			});
+			
+			
 		}
 		
 		//테이블 td 클릭시 해당 주문 조회
 		$('.orderResult').on('click', function(){
+			$(this).unbind();
 			
 			//POST로 보낼 객체를 생성 후  키 값을 할당한다.
 			var orderBackVO = {};

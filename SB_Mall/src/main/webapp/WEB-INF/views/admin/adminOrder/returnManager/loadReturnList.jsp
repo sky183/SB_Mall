@@ -181,17 +181,20 @@
 		
 		//페이지 번호를 클릭하면 다시 불러온다.
 		$('.page').click(function() {
+			$(this).unbind();
 			var pageNumber = $(this).attr('name');
 			loadReturnList(pageNumber);
 		});
 		
 		//조회 버튼을 클릭하면 다시 불러온다.
 		$('#select').click(function() {
+			$(this).unbind();
 			loadReturnList(1);
 		});
 		
 		//검색창에서 엔터를 누르면 다시 불러온다.
 		$('#search').keydown(function(key) {
+			$(this).unbind();
 			if (key.keyCode == 13) {
 				loadReturnList(1);
 			}
@@ -204,8 +207,9 @@
 		
 		//선택한 항목을 업데이트
 		$('#update').on('click', function(){
-			//선택한 항목을 배열로 만들어준다.
+			$(this).unbind();
 			
+			//선택한 항목을 배열로 만들어준다.
 		    var orderlength = $("input[name='orderSeq']:checked").length;
 		    var orderArray = new Array(orderlength);
 		    for(var i=0; i<orderlength; i++){                          
