@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sb.mall.member.model.MemberInfo;
 import com.sb.mall.member.service.AES256Util;
 import com.sb.mall.member.service.MemberLoginService;
 
@@ -26,7 +27,6 @@ public class AdminLoginController {
 	@Autowired // Spring Framework에서 지원하는 의존주입 용도의 어노테이션
 	private MemberLoginService loginService;
 	
-	/*3.암호화 관련 의존주입 2018.11.16*/
 	@Autowired
 	private AES256Util aes256;
 	
@@ -68,14 +68,25 @@ public class AdminLoginController {
 			userPw = (encryptionPW);
 			
 			if (loginService.login(userId, userPw, session)) {
-
-				modelAndView.setViewName("redirect:/admin/adminMain");
+				
+				MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
+				
+				if (memberInfo.getGradeNum() >= 3 ) {
+					
+					modelAndView.setViewName("redirect:/admin/adminMain");
+					
+				} else {
+					modelAndView.setViewName("admin/adminLogin"); // 경로
+					modelAndView.addObject("error", "관리자만 로그인 가능합니다.");
+					// 세션의 종료
+					session.invalidate();
+				}
 				
 			} else {
 				
 				modelAndView.setViewName("admin/adminLogin"); // 경로
 				modelAndView.addObject("error", "아이디 또는 비밀번호가 틀렸습니다.");
-				
+
 			}
 
 		}
