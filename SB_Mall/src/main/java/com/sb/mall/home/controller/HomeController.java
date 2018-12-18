@@ -36,7 +36,7 @@ public class HomeController {
 		List<Map<String, Object>> dailyList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> newProductList = new ArrayList<Map<String, Object>>();
 		
-		dailyList = homeService.getDailyDeal();
+		dailyList = homeService.getCrowdFunding();
 		
 		newProductList = homeService.getNewProduct();
 		
@@ -48,7 +48,7 @@ public class HomeController {
 		SimpleDateFormat getSec = new SimpleDateFormat("ss");
 		
 		
-		model.addAttribute("dailyDeal", dailyList);
+		model.addAttribute("crowdHome", dailyList);
 		model.addAttribute("newProduct", newProductList);
 		
 		model.addAttribute("hour", getHour.format(date) );

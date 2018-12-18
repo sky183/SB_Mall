@@ -8,6 +8,10 @@
 		select * from SalesBoard s, Product p where s.salesSeq=p.salesSeq order by viewSeq Desc limit 0,5
 	</select>
 	
+	<select id="getHomeCrowdFunding" resultType="map">
+		select * from CrowdBoard b, CrowdProduct p where b.crowdBoardSeq=p.crowdBoardSeq order by viewSeq desc limit 0,6;
+	</select>
+	
 	<select id="selectNewProduct" resultType="map">
 		select * from SalesBoard s, Product p where s.salesSeq=p.salesSeq order by writeDate Desc limit 0,8
 	</select>

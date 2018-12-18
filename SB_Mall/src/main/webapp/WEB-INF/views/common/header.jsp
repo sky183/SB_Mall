@@ -67,7 +67,8 @@
 						<a class="headerDrop">커뮤니티</a>
 						
 						<div class="headerSubDrop">
-							<a class="subDropUnit" href="<%=request.getContextPath()%>/qna">질문게시판</a><br>
+							<a class="subDropUnit" href="<%=request.getContextPath()%>/qna">질문게시판</a>
+							<div class="lineInSub"></div>
 							<a class="subDropUnit" href="<%=request.getContextPath()%>/freeBoard">자유게시판</a>
 						</div>
 						

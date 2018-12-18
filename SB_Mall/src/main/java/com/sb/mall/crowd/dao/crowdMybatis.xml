@@ -128,4 +128,5 @@
 	<update id="updateOrderedOptionByOrder">
 		update CrowdGoodsOption set crOptAmount=crOptAmount-#{param1} where crOptionSeq=#{param2}
 	</update>
+	
 </mapper>
