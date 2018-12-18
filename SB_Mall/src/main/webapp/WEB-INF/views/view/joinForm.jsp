@@ -97,7 +97,7 @@
 	</div><!-- End of password_ID_wrap -->
 	
 	<div id="userName_IDuserBirthday_ID_wrap">
-	<div>
+	<div style="justify-content: space-between; flex-wrap: wrap; display: flex;">
 	<!-- 이름 입력 테그 -->
 	<input type="text" id="userName_ID" class="all_Input"
 			name="userName" required placeholder="성명"
@@ -116,7 +116,7 @@
 	</div><!-- userName_ID&userBirthday_ID_wrap -->
 	
 	<div id="phoneNumber_IDuserGender_ID_wrap">
-	<div>
+	<div style="justify-content: space-between; flex-wrap: wrap; display: flex;">
 		<!-- 폰번호 입력 테그 -->
 		<input type="text"
 			id="phoneNumber_ID" class="all_Input"
@@ -138,27 +138,26 @@
 	</div><!-- End of phoneNumber_IDuserGender_ID_wrap -->
 	
 	<div id="content_addressAPI_wrap">
-	<div>
+	<div style="justify-content: space-between; flex-wrap: wrap; display: flex;">
 		<!-- 우편번호 -->
 		<input type="text" id="zipNo" class="all_Input"
-			placeholder="    우편번호" name="zipCode" required
+			placeholder="우편번호" name="zipCode" required
 			readonly="readonly"
 			onkeyup="addressAPI()">
 		<!-- 주소검색버튼 -->
-		<input type="button" onClick="goPopup();" value="주소검색"
-			class="all_Button"
-			height="25px" />
+		<input type="button" id="searchZip" onClick="goPopup();" value="주소검색"
+			class="all_Button"/>
 	</div>
 	<div>
 		<!-- 주소 -->
 		<input type="text" id="roadAddrPart1" class="all_Input"
-			placeholder="    주소"
+			placeholder="주소"
 			name="address1" readonly="readonly">
 	</div>
 	<div>
 		<!-- 상세주소 -->
 		<input type="text" id="addrDetail" class="all_Input"
-			placeholder="    상세주소"
+			placeholder="상세주소"
 			name="address2"
 			auth="false"
 			>
@@ -181,7 +180,7 @@
 	
 	<div id="freeboard_Footer">
 	<!-- Sign up button -->
-	<div>
+	<div style="margin: 23px 0;">
     <input id="footer_button_Send" class="all_Button" type="button" onclick="checkFunction()" value="회원 가입"></input>
 	<a href="<%=request.getContextPath()%>/freeBoard">
 		<button id="footer_button_Cancel" type="button" class="all_Button">취소</button>
