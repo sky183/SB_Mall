@@ -13,14 +13,22 @@
 	var stationCode=0;
 	var days=1;
 	var fast='n';
+	
+	var mapSize = 1200;
+	
 	$(document).ready(function() {
 		
 		/* 지하철 호선 선택 */
 		$('.selectLine').on('click',function(){
 			$('#selectBox').html('');
+			var line='';
 			
-			for (var i = 1; i <= 9; i++) {
-				var line = '<button class="selectedLine" value='+i+'>'+i+'호선</button>'
+			for (var i = 1; i <= 14; i++) {
+				if(i<10){
+					line = '<button class="selectedLine" value='+i+'>'+i+'호선</button>'
+				}else{
+					line = '<div class="fakeSelected"></div>'
+				}
 				$('#selectBox').append(line);
 			}
 			
@@ -28,6 +36,7 @@
 				LineNum = $(this).val();
 				$('.selectLine').html($(this).html());//지하철 노선 html().
 				$('.selectLine').val($(this).val()); //지하철 value().
+				$('.selectLine').css('background-color','#ffc828');
 				$('#selectBox').html('');
 			})
 			
@@ -49,10 +58,14 @@
 		/* 시간표 보이기 */
 		$('.viewSubwayTime').on('click',function(){
 			if(LineNum !=0 && stationCode!=0){
-			$('#SubwayTimeBigBox').css('display','block');
+				$('#SubwayTimeBigBox').show();
 			}else{
 				alert('노선 또는 역을 선택하지 않으셨습니다.');
 			}
+		})
+		
+		$('.timeClose').on('click',function(){
+			$('#SubwayTimeBigBox').hide();
 		})
 		
 		
@@ -89,30 +102,28 @@
 	function getStations(){
 			$.ajax({
 				url: stationUrl+LineNum,
-				error:console.log("노선선택 = "+stationUrl+LineNum),
 				success : function(data){
 					cnt=1;
 					
 					$(data).find('SearchSTNBySubwayLineService').find('row').each(function(){
 						var st_code = $(this).find('STATION_CD').text();
-						console.log("지하철 코드 = "+st_code);
 						var st_name = $(this).find('STATION_NM').text();
 						
-						
-						if(cnt%5==0){
-							$('#selectBox').append('<button class="stationOn" value="'+st_code+'">'+st_name+'</button><br>');
-						console.log(st_code+', '+st_name);
-						}else{
 							$('#selectBox').append('<button class="stationOn" value="'+st_code+'">'+st_name+'</button>');
-						}
 						cnt++;
 					})
+					if(cnt%7!=0){
+						for(var i=0; i<=7-cnt%7; i++){
+							$('#selectBox').append('<div class="fakeSelected"></div>');
+						}
+					}
 					
 					
 					$('.stationOn').on('click',function(){
 						
 						$('.selectStation').html($(this).html());
 						$('.selectStation').val($(this).val());
+						$('.selectStation').css('background-color','#ffc828');
 						stationCode=$(this).val();
 						$('.viewSubwayTime').css('background-color','#ffc828');
 						
@@ -166,7 +177,6 @@
 				},
 				success:function(data){
 					$('.dirDown').html('');
-					console.log(upUrl);
 					$(data).find('SearchSTNTimeTableByIDService').find('row').each(function(){
 						
 						if($(this).find('EXPRESS_YN').text()=='G'){
@@ -179,13 +189,30 @@
 							$('.dirDown').append(addUpTrain);
 						}
 					})
-					alert($('.dirDown').html().length);
 					if($('.dirDown').html().length==0){
 						$('.dirDown').html('<h3>요청하신 지하철 시간표가 <br>존재하지 않습니다.</h3>');
 					}
 				}
 			})
 		}
+		
+		$('.upBtn').on('click',function(){
+			if(mapSize<2000){
+				mapSize+=100;
+				$('.subwayMapImage').css('width',mapSize+'px');
+			}else{
+				alert('지하철 최대 사이즈 입니다')
+			}
+		})
+		
+		$('.downBtn').on('click',function(){
+			if(mapSize>1000){
+				mapSize-=100;
+				$('.subwayMapImage').css('width',mapSize+'px');
+			}else{
+				alert('지하철 최소 사이즈 입니다')
+			}
+		})
 		
 		
 		
@@ -202,9 +229,15 @@
 	
 </head>
 <body>
-	<div>
-		<button class="SubwaySize">+</button>
-		<button class="SubwaySize">-</button>
+	<div class="commonBannerBox">
+		<h3 class = rowdCommonBannerH3>지하철</h3>
+	</div>
+	
+	<div class="upNdown">
+		<button class="SubwaySize downBtn">-</button>
+		<button class="SubwaySize upBtn">+</button>
+	</div>
+	<div class="subwayMapBox">
 		<div class="SubwayMap">
 			<img class="subwayMapImage" src="<%=request.getContextPath()%>/img/subwayMap-01.png">
 		</div>
@@ -227,6 +260,7 @@
 		<div id="SubwayTimeMidBox">
 			<div id="timeBoxLine">
 				<h1 class="tBoxLineNum"></h1>
+				<h3 class="timeClose">x</h3>
 			</div>
 			<div id="timeBoxOption">
 					<input class="selectDays" type="radio" name="days" checked="checked" value="1">평일
@@ -235,13 +269,13 @@
 					<input class="selectFast" type="checkbox" value="D">급행
 			</div>
 			<div class="timeBoxDir">
-				<h4>상행선</h4>
+				<h4 class="timeBoxDirH4">상행선</h4>
 				<div class="dirUp">
 				
 				</div>
 			</div>
 			<div class="timeBoxDir">
-				<h4>하행선</h4>
+				<h4 class="timeBoxDirH4">하행선</h4>
 				<div class="dirDown">
 				
 				</div>
@@ -250,7 +284,7 @@
 		</div>
 	</div>
 	
-	
-<%-- <%@ include file="/WEB-INF/views/common/header.jsp"%> --%>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 </body>
 </html>

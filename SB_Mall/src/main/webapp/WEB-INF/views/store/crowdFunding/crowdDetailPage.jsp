@@ -744,6 +744,7 @@
 	</div>
 
 <%@ include file="/WEB-INF/views/store/crowdFunding/crowdReply.jsp" %>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 

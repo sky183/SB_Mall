@@ -400,7 +400,7 @@
 		</div>
 		
 		<div id="summernote"></div>
-		<button type="button" class="storeBtn storeWriteBtn" onclick="sendCode();">글쓰기</button>
+		<button type="button" class="storeBtn storeWriteBtn boardEditorBtn" onclick="sendCode();">게시글등록</button>
 	</div>
 </body>
 </html>

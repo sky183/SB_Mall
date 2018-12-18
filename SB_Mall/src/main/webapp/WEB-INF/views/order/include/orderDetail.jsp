@@ -230,7 +230,7 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 <div class="orderSuperBox">
 	
 	<div class="orderHeadBox">
-		<h1 class="orderHeadLine">주문 / 결제</h1>
+		<h2 class="orderHeadLine">주문 / 결제</h2>
 	</div>
 	
 	<div class="OStep1Box">

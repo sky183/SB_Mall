@@ -37,24 +37,6 @@
 		orderDetailNum=0 and userSeq=#{userSeq}
 		</where>
 	</select>
-	
-	<!-- <insert id="insertOrderDetail" parameterType="com.sb.mall.order.model.OrderDetail">
-		insert into `OrderDetail`(orderDetailNum,userSeq,orderTime,totalAmount)
-		value(#{orderDetailNum},#{userSeq},now(),#{totalAmount})
-	</insert>
-	
-	<update id="updateOrders" parameterType="list">
-		update `Order` 
-		<set>
-			orderDetailNum=#{list[0].orderDetailNum} 
-		</set>
-		<where>
-			and userSeq=#{list[0].userSeq} and orderDetailNum=0 and
-		<foreach collection="list" item="orders" open="(" separator="or" close=")" index="index">
-			goodsNo=#{orders.goodsNo} and `optionSeq`=#{orders.optionSeq}
-		</foreach>
-		</where>
-	</update> -->
 
 	<select id="selectCartForOrder" resultType="map">
 		SELECT * FROM `Order` o, Product p where

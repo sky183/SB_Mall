@@ -22,16 +22,4 @@ public class OrderOrderController {
 		return msg; 
 	}
 	
-	/*@RequestMapping(value="order/testOrder",method=RequestMethod.POST)
-	public String testOrder(HttpSession session) {
-		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
-		try {
-			orderService.insertOrdersAndDetail(memberInfo.getUserSeq());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return "redirect:/store"; 
-	}*/
-		
-	
 }

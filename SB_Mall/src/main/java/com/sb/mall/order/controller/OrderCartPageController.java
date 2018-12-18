@@ -15,7 +15,6 @@ public class OrderCartPageController {
 	
 	@RequestMapping(value="order/cart", method=RequestMethod.GET)
 	public String viewCartList() {
-		
 		return "view/orderCart";
 	}
 	

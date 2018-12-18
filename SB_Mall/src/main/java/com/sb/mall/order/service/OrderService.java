@@ -1,9 +1,7 @@
 package com.sb.mall.order.service;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.order.dao.OrderDao;
 import com.sb.mall.order.model.Order;
-import com.sb.mall.order.model.OrderItem;
-import com.sb.mall.order.model.OrderOrderCommand;
 
 @Repository
 public class OrderService {
@@ -26,13 +22,9 @@ public class OrderService {
 	
 	@Transactional
 	public List<Order> getOrderByDetailNum(String orderDetailNum) {
-
 		List<Order> orders = new ArrayList<Order>();
-
 		Dao = sessionTemplate.getMapper(OrderDao.class);
-
 		orders = Dao.select(orderDetailNum);
-		
 		return orders;
 	}
 	
@@ -42,43 +34,4 @@ public class OrderService {
 		Dao.insertOrderSP(orders);
 	}
 	
-	@Transactional
-	public List<Map<String,Object>> getGoodsForOrder(List<OrderItem> orderItems) throws SQLException{
-		Dao = sessionTemplate.getMapper(OrderDao.class);
-		List<Map<String,Object>> orders = Dao.selectGoodsForOrder(orderItems);
-		System.out.println(orders);
-		return orders;
-	}
-	
-	@Transactional
-	public void insertOrderAndDetail(OrderOrderCommand command) throws SQLException {
-		/*String orderDetailNum = new SimpleDateFormat("yyyyMMddssSSS").format(new Date());
-		Dao = sessionTemplate.getMapper(OrderDao.class);
-		OrderDetail orderDetail = command.getOrderDetail();
-		Order order = command.getOrder();
-		orderDetail.setOrderDetailNum(orderDetailNum);
-		order.setOrderDetailNum(orderDetailNum);
-		
-		//Dao.updateUserPoint(orderDetail.getTotalAmount(), order.getUserSeq());
-		Dao.insertOrderDetail(orderDetail);
-		Dao.insertOrder(order);*/
-	}
-	
-	/*@Transactional
-	public void insertOrdersAndDetail(int userSeq) throws SQLException {
-		String orderDetailNum = new SimpleDateFormat("yyyyMMddssSSS").format(new Date());
-		Dao = sessionTemplate.getMapper(OrderDao.class);
-		OrderDetail orderDetail = new OrderDetail();
-		orderDetail.setTotalAmount(0);
-		List<Order> orderList = Dao.selectOrdersAll(userSeq);
-		for(Order order : orderList) {
-			order.setOrderDetailNum(orderDetailNum);
-			orderDetail.setTotalAmount(orderDetail.getTotalAmount()+order.getSalePrice());
-		}
-		orderDetail.setOrderDetailNum(orderDetailNum);
-		orderDetail.setUserSeq(userSeq);
-		
-		Dao.insertOrderDetail(orderDetail);
-		Dao.updateOrders(orderList);
-	}*/
 }

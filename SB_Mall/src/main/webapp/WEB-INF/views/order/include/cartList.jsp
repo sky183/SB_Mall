@@ -249,7 +249,6 @@
 	<div id="carListBox">
 		<div id="cartHeaderBox">
 			<h2>장바구니</h2>
-			<hr>
 		</div>
 		<table id="cartTable">
 			<tr id="cartTableHeader">
@@ -263,15 +262,16 @@
 		</table>
 	</div>
 	<div class="cartSubBtnBox">
-		<input type="button" class="cartdeleteBtn storeBtn" value="선택상품삭제">
+		
 		<span id="cartTotalPriceBox">
-			<span>결제예정금액 : </span>
+			<span>결제예정금액</span>
 			<span id="cartTotalPrice">0</span>
 			<span>원</span>
 		</span>
 	</div>
 	<div class="cartOrderBtnBox">
-		<input type="button" class="cartOrderBtn storeBtn" value="주문하기">
+		<input type="button" class="cartdeleteBtn storeBtn" value="선택상품삭제">
+		<input type="button" class="cartOrderBtn storeBtn" value="선택상품결제">
 	</div>
 	<form id="hCartForm"></form>
 	<form id="hCartForm2"></form>
