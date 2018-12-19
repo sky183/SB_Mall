@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.sb.mall.member.model.MemberInfo;
+
 public class AdminLoginInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
@@ -17,9 +19,9 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter {
 
 		if (session != null) {
 
-			Object obj = session.getAttribute("memberInfo");
+			MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
 
-			if (obj != null) {
+			if (memberInfo != null && memberInfo.getGradeNum() >= 3) {
 				return true;
 			}
 		}
