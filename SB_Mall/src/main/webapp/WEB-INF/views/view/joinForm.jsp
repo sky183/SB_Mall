@@ -182,7 +182,7 @@
 	<!-- Sign up button -->
 	<div style="margin: 23px 0;">
     <input id="footer_button_Send" class="all_Button" type="button" onclick="checkFunction()" value="회원 가입"></input>
-	<a href="<%=request.getContextPath()%>/freeBoard">
+	<a href="<%=request.getContextPath()%>/">
 		<button id="footer_button_Cancel" type="button" class="all_Button">취소</button>
 	</a>
 	</div>

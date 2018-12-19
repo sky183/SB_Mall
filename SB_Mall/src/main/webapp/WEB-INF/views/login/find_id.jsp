@@ -30,19 +30,21 @@
 			<div class="w3-center w3-large w3-margin-top">
 				<h3>아이디 찾기 검색결과</h3>
 			</div>
-			<div>
+			<div style="padding-top: 33px; padding-left: 16px;">
+				고객님의 아이디는 <br>
 			<!--리스트로 받아온 객체를 forEach문으로 각각 표현  -->
 			<c:forEach var="findid" items="${id}">
 			
 			<!--객체뒤에 .찍고 표현하고 싶은 변수를 씀  -->
-				고객님의 아이디는 : ${findid.userId} 입니다. <br>
+				 <br>${findid.userId}<br>
 			</c:forEach>
-				
+				  <br> 입니다. <br>
+			</div>
 				<p class="w3-center">
 					<button type="button" id=loginBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">로그인</button>
-					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
+<!-- 					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button> -->
 				</p>
-			</div>
+			
 		</div>
 	</div>
 </body>

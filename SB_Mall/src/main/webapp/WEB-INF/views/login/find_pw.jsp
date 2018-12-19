@@ -30,14 +30,14 @@
 				<h3>비밀번호 찾기 검색결과</h3>
 			</div>
 			<div>
-				<h5>
+				<h5 style="height: 100px; padding-top: 33px; padding-left: 16px;">
 				<%-- ${pw} --%>
 				등록하신 이메일(id)로 임시 비밀번호를 전송했습니다
 				
 				</h5>
 				<p class="w3-center">
-					<button type="button" id=loginBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">찾기</button>
-					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
+					<button type="button" id=loginBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">로그인</button>
+<!-- 					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button> -->
 				</p>
 			</div>
 		</div>

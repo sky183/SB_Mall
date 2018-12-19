@@ -72,8 +72,10 @@ public class MemberLoginMailService {
          message.setSubject("[SB] 비밀번호 찾기 안내", "utf-8");
          String htmlStr = 
         		 "<B>안녕하세요</B> 고객님 <br> " + 
-        		 "고객님의 임시 비밀번호입니다 <br>"+ 
-        				 "<h1>임시비밀번호:"+pw+"</h1>"+
+        		 "고객님의 임시 비밀번호입니다 <br><br>"+ 
+        		 "<hr><br>" +
+        		 "<h3>임시비밀번호:"+pw+"</h3><br>"+
+        		 "<hr><br>" +
         		 "<a href=\"http://localhost/mall/member/login\">사이트로 이동하시려면 클릭하세요</a>";
 
          message.setText(htmlStr, "utf-8", "html");
