@@ -4,7 +4,7 @@
 	 <div class="headerTop">
 		<div id="adminInfo">
 					<c:choose>
-							<c:when test='${memberInfo eq null}'>
+							<c:when test='${memberInfo eq null || memberInfo.gradeNum < 3}'>
 									<span>
 										<a id="memberNaviText"
 										href="<%=request.getContextPath()%>/admin/adminLogin">로그인</a>
