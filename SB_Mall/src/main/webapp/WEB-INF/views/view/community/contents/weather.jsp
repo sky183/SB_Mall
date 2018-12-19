@@ -690,6 +690,7 @@
 		<!-- container-bottom의 끝 -->
 	<!-- container-all의 끝 -->
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 <script>
 	var weatherArray = new Array();

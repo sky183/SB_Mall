@@ -17,5 +17,6 @@
 <%-- <jsp:include page="../../views/home/include/headerbanner.jsp"/> --%>
 <jsp:include page="../../views/qna/qnaList.jsp"/>
 <jsp:include page="../../views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

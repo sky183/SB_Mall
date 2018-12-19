@@ -21,5 +21,6 @@
 <jsp:include page="include/headerBanner.jsp"/>
 <jsp:include page="include/boardDetail.jsp"/>
 <jsp:include page="reply.jsp"/>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

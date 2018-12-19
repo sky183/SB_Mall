@@ -72,7 +72,7 @@
 	</div><!-- end of <div class="freeboard_wrap_1">-->
 	
 
-	
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 </body>
 </html>

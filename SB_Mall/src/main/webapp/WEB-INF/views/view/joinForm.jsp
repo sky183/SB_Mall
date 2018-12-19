@@ -207,6 +207,7 @@
 		</p>
 	
 	</div><!-- End of div freeboard_footer-->
+	
 </div>
 </div>
 </form>
@@ -536,6 +537,6 @@
 
 	}//End of method /*[6]. Final 유효성 최종 확인 후 submit*/ 
 	</script>
-
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

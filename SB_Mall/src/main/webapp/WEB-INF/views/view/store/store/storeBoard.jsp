@@ -13,5 +13,6 @@
 <jsp:include page="../../../common/header.jsp"/>
 <jsp:include page="../../../store/store/include/headerBanner.jsp"/>
 <jsp:include page="../../../store/store/include/boardList.jsp"/>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

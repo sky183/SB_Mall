@@ -445,7 +445,7 @@ $('.memberDelete').click(function() {
 
 </script>
 
-
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 <!-- Header -->
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
