@@ -143,7 +143,7 @@
 					width="72" height="72"> <br>
 				<h1 class="loginMainFont"
 					style="color: #282828; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: bolder; display: inline-block;">
-					SBCompany
+					SB Company
 				</h1>
 			</div>
 	
