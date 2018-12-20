@@ -66,7 +66,7 @@ public class MemberLoginMailService {
 
 //      System.out.println("Sending Email...<mailSendHtml>");
 //      System.out.println("수신자 : "+email);
-      MimeMessage message = mailSender.createMimeMessage();
+       MimeMessage message = mailSender.createMimeMessage();
 
       try {
          message.setSubject("[SB] 비밀번호 찾기 안내", "utf-8");
@@ -84,7 +84,6 @@ public class MemberLoginMailService {
          
          mailSender.send(message);
       } catch (MessagingException e) {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
       

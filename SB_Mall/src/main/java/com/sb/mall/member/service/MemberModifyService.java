@@ -21,35 +21,41 @@ public class MemberModifyService {
 
 	private MemberDao memberDao;
 
-	public MemberInfo getMember(String id, String pw) {
+	public MemberInfo getMember(String id, String pw) throws Exception{
 		memberDao = sessionTemplate.getMapper(MemberDao.class);
 		MemberInfo memberInfo = new MemberInfo();
 		try {
-			String enPw = aes256Util.encrypt(id);
-			String findPw = memberDao.find_pw(id, pw);
+			String enPw = aes256Util.encrypt(pw);
+			String findPw = memberDao.checkPw(id);
 			if (enPw.equals(findPw)) {
+				System.out.println("check");
 				memberInfo = memberDao.selectById(id);
+				System.out.println(memberInfo);
 			}else {
-				System.out.println("비밀번호 다름");
+				throw new Exception("비밀번호 다름");
 			}
 		} catch (UnsupportedEncodingException | GeneralSecurityException e) {
 		}
 		return memberInfo;
 	}// end of Method(memberModify)
 
-	public String modifyMember(MemberInfo updateMember) {
-		String pw = updateMember.getUserPw();
+	public String modifyMember(MemberInfo memberInfo) {
+		memberDao = sessionTemplate.getMapper(MemberDao.class);
+		memberDao.updateMember(memberInfo);
+		return "회원정보 수정 성공";
+	}// end of Method(memberModify_end)
+	
+	public void modifyMemberPw(MemberInfo memberInfo) {
+		String pw = memberInfo.getUserPw();
 		memberDao = sessionTemplate.getMapper(MemberDao.class);
 		if(pw!=null) {
 			try {
-				updateMember.setUserPw(aes256Util.encrypt(pw));
-				memberDao.update(updateMember);
+				memberInfo.setUserPw(aes256Util.encrypt(pw));
+				memberDao.updatePw(memberInfo);
 			} catch (UnsupportedEncodingException | GeneralSecurityException e) {
 				e.printStackTrace();
-				return "회원정보 수정 실패";
 			}
 		}
-		return "회원정보 수정 성공";
 	}// end of Method(memberModify_end)
 
 }

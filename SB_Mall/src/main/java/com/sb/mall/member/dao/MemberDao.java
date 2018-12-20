@@ -12,7 +12,9 @@ public interface MemberDao {
 
 	public List<MemberInfo> selectAll();
 
-	public int update(MemberInfo memberInfo);
+	public int updateMember(MemberInfo memberInfo);
+	
+	public int updatePw(MemberInfo memberInfo);
 	
 	public int delete(String userId);
 	
@@ -26,4 +28,5 @@ public interface MemberDao {
 	
 	public String find_pw(String userId, String userName);
 	
+	public String checkPw(String id);
 }

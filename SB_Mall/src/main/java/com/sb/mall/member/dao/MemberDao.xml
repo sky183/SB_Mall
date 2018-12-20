@@ -14,7 +14,7 @@
 	
 	<select id="selectById"
 		resultType="com.sb.mall.member.model.MemberInfo">
-		select * from MemberInfo where userid = #{userId}
+		select * from MemberInfo where userId = #{userId}
 	</select>
 
 	<select id="selectAll"
@@ -22,22 +22,27 @@
 		select * from MemberInfo
 	</select>
 
-	<update id="update"
+	<update id="updateMember"
 		parameterType="com.sb.mall.member.model.MemberInfo">
 		update MemberInfo 
 		<set>
 		<if test="${userPw!=null}">
-		userpw=#{userPw},
+		userPw=#{userPw},
 		</if>
-		username=#{userName}, address1=#{address1}, address2=#{address2},zipCode=#{zipCode}, phone=#{phone},
-		gradenum=#{gradeNum}, point=#{point}, useramount=#{userAmount} 
+		userName=#{userName}, address1=#{address1}, address2=#{address2},zipCode=#{zipCode}, phone=#{phone},
+		gradeNum=#{gradeNum}, point=#{point}, userAmount=#{userAmount} 
 		</set>
-		where userid=#{userId}
+		where userId=#{userId}
+	</update>
+	
+	<update id="updatePw"
+		parameterType="com.sb.mall.member.model.MemberInfo">
+		update MemberInfo set userPw=#{userPw} where userId=#{userId}
 	</update>
 
 	<delete id="delete" parameterType="String">
 		delete from MemberInfo where
-		userid = #{userId}
+		userId = #{userId}
 	</delete>
 
 	<select id="selectCount" resultType="int">
@@ -63,23 +68,19 @@
 
 	<!--파라미터 타입은 입력값 ,리설트타입은 출력값 -->
 	<select id="find_id" parameterType="String" resultType="com.sb.mall.member.model.MemberInfo">
-
 		<!-- select userId from MemberInfo where username = #{userName} and phone 
 			= #{phone} -->
 		<!--여러개를 받아올때 param1 -->
-		select * from MemberInfo where username = #{param1} and phone =
-		#{param2}
-
+		select * from MemberInfo where userName = #{param1} and phone = #{param2}
 	</select>
 	
 	<!--비밀번호 찾기 -->
 	<select id="find_pw" parameterType="String" resultType="String">
-		select
-		userPw from MemberInfo where userId = #{param1} and userName =
-		#{param2}
-
+		select userPw from MemberInfo where userId = #{param1} and userName = #{param2}
 	</select>
 
-
-
+	<!--비밀번호 찾기 -->
+	<select id="checkPw" parameterType="String" resultType="String">
+		select userPw from MemberInfo where userId = #{id}
+	</select>
 </mapper>

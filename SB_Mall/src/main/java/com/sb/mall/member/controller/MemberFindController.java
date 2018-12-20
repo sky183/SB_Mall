@@ -21,13 +21,13 @@ public class MemberFindController {
 
 	@Autowired
 	private MemberFindService findService;
-	
+
 	@Autowired
 	private MemberLoginMailService noti2;
-	
+
 	@Autowired
 	private MemberMypageService memberInfoService;
-	
+
 	@Autowired
 	private MemberModifyService memberUpdateSerivce;
 	@Autowired
@@ -37,7 +37,6 @@ public class MemberFindController {
 	// 아이디 찾기 버튼 클릭시 아이디 찾기 폼으로 이동
 	@RequestMapping(value = "/member/find/find_id", method = RequestMethod.GET)
 	public String find_id_form() throws Exception {
-
 		return "login/find_id_form";
 	}
 
@@ -45,59 +44,33 @@ public class MemberFindController {
 	@RequestMapping(value = "/member/find/find_id", method = RequestMethod.POST)
 	public String find_id(HttpServletResponse response, @RequestParam("userName") String userName,
 			@RequestParam("phone") String phone, Model md) throws Exception {
-
-		
 		md.addAttribute("id", findService.findId(response, userName, phone));
-		
-				
 		return "login/find_id";
-
 	}
-	
 
-	
-	
-	
-	@RequestMapping(value= "/member/find/find_pw", method =RequestMethod.GET)
-	public String find_pw_form() throws Exception{
-		
+	@RequestMapping(value = "/member/find/find_pw", method = RequestMethod.GET)
+	public String find_pw_form() throws Exception {
 		return "login/find_pw_form";
-		
 	}
-	
-	
-	@RequestMapping(value ="/member/find/find_pw",method = RequestMethod.POST)
+
+	@RequestMapping(value = "/member/find/find_pw", method = RequestMethod.POST)
 	public String find_pw(HttpServletResponse response, @RequestParam("userId") String userId,
-	@RequestParam("userName") String userName, Model md) throws Exception {
-		
+			@RequestParam("userName") String userName, Model md) throws Exception {
 		MemberInfo memberInfo = new MemberInfo();
-		//String resultpw =findService.findPw(response, userId, userName);
-		
 		String pw = "";
 		for (int i = 0; i < 12; i++) {
 			pw += (char) ((Math.random() * 26) + 97);
 		}
-		//userId로 데이터베이스를 조회해서 memberInfo 가져오기
-		memberInfo=memberInfoService.getMemberInfo(userId);
-//		System.out.println("조회된유저정보"+memberInfo.toString());
-		//난수로 변경된 비밀번호를 암호화해서 저장
+		// userId로 데이터베이스를 조회해서 memberInfo 가져오기
+		memberInfo = memberInfoService.getMemberInfo(userId);
+		// 난수로 변경된 비밀번호를 암호화해서 저장
 		String encryptionPW = aes256.encrypt(pw);
-		
-		//난수로 변경된  비밀번호를 저장 
+		// 난수로 변경된 비밀번호를 저장
 		memberInfo.setUserPw(encryptionPW);
-		
-		//업데이트문
-		memberUpdateSerivce.modifyMember(memberInfo);
-		
-		
-		
-		
-		//메일보내기
-		noti2.mailSendHtml(userId,pw);
-//		//모델객체에 바뀐비밀번호 담기
-//		md.addAttribute("pw",afterPW);
-		
+		// 업데이트문
+		memberUpdateSerivce.modifyMemberPw(memberInfo);
+		// 메일보내기
+		noti2.mailSendHtml(userId, pw);
 		return "login/find_pw";
 	}
-
 }
