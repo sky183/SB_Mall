@@ -29,6 +29,8 @@ public class MemberModifyService {
 			String findPw = memberDao.find_pw(id, pw);
 			if (enPw.equals(findPw)) {
 				memberInfo = memberDao.selectById(id);
+			}else {
+				System.out.println("비밀번호 다름");
 			}
 		} catch (UnsupportedEncodingException | GeneralSecurityException e) {
 		}
@@ -49,19 +51,5 @@ public class MemberModifyService {
 		}
 		return "회원정보 수정 성공";
 	}// end of Method(memberModify_end)
-
-	public int pwValidCheck(String id, String pw) {
-		memberDao = sessionTemplate.getMapper(MemberDao.class);
-		try {
-			String enPw = aes256Util.encrypt(pw);
-			String findPw = memberDao.find_pw(id, pw);
-			if (enPw.equals(findPw)) {
-				return 0;
-			}
-		} catch (UnsupportedEncodingException | GeneralSecurityException e) {
-			return 1;
-		}
-		return 1;
-	}
 
 }

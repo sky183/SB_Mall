@@ -25,7 +25,6 @@ public class MemberModifyController {
 		MemberInfo member = memberModifyService.getMember(id,pw);
 		// View에 로그인한 現 회원정보 담아서 리턴
 		modelAndView.addObject("member", member);
-		
 		return modelAndView;
 	}
 
@@ -40,12 +39,6 @@ public class MemberModifyController {
 			result = "회원번호 수정 실패";
 		}
 		return result;
-	}
-
-	@RequestMapping(value = "/member/memberModify", method = RequestMethod.POST)
-	@ResponseBody
-	public int pwValidCheck(MemberInfo memberInfo) {
-		return memberModifyService.pwValidCheck(memberInfo.getUserId(), memberInfo.getUserPw());
 	}
 
 }
