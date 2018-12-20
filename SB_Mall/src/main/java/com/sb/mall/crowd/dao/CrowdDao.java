@@ -13,7 +13,6 @@ import com.sb.mall.crowd.model.CrowdOrderDetail;
 import com.sb.mall.crowd.model.CrowdProduct;
 import com.sb.mall.crowd.model.CrowdProductPhoto;
 
-@Mapper
 public interface CrowdDao {
 	
 	public int insertCrowdBoard(CrowdBoard crowdBoard); // board 추가

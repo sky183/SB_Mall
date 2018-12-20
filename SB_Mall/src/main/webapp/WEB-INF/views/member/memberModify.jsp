@@ -1,41 +1,81 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-			<tr>
-				<th>아이디</th><td><input type="text" readonly name="userId" value="${member.userId}"></td>
-			</tr>
-			<input type="hidden"  name="userPw" value="${member.userPw}">
-			<tr>
-				<th>회원이름</th><td><input type="text"  name="userName" value="${member.userName}"></td>
-			</tr>
-			<tr>
-				<th>주소1</th><td><input type="text"  name="address1" value="${member.address1}"></td>
-			</tr>
-			<tr>
-				<th>주소2</th><td><input type="text"  name="address2" value="${member.address2}"></td>
-			</tr>
-			<tr>
-				<th>우편번호</th><td><input type="text"  name="zipCode" value="${member.zipCode}"></td>
-			</tr>
-			<tr>
-				<th>전화번호</th><td><input type="text"  name="phone" value="${member.phone}"></td>
-			</tr>
-			<tr>
-				<th>가입일</th><td><input type="text"  name="regDate" readonly value="${member.regDate}"></td>
-			</tr>
-			<tr>
-				<c:if test="${(sessionScope.memberInfo.gradeNum < 4 && member.gradeNum >= 3) || sessionScope.memberInfo.gradeNum < 3}">
-					<c:set var="readonly" value="readonly"></c:set>
-				</c:if>
-				
-				
-				<th>회원등급</th><td><input type="text" name="gradeNum" ${readonly} value="${member.gradeNum}"></td>
-			</tr>
-			<tr>
-				<th>마일리지</th><td><input type="text"  name="point" ${readonly} value="${member.point}"></td>
-			</tr>
-			<tr>
-				<th>총구매액</th><td><input type="text"  name="userAmount" readonly value="${member.userAmount}"></td>
-			</tr>
 
+		<input type="hidden"  name="userPw" value="${member.userPw}">
+		
+		<div class="myModalUnit">
+			<h3 class="myModalH3">아이디</h3>
+			<div class="myInputBox">
+				<input class="myInput" type="text" name="userId" value="${member.userId}" readonly>
+			</div>
+		</div>
+		
+		<div class="myModalUnit">
+			<h3 class="myModalH3">새로운 비밀번호</h3>
+			<div class="myInputBox">
+				<input class="myInput" type="password" name="userId" value="" >
+			</div>
+		</div>
+		
+		<div class="myModalUnit">
+			<h3 class="myModalH3">비밀번호 확인</h3>
+			<div class="myInputBox">
+				<input class="myInput" type="password" name="userId" value="" >
+			</div>
+		</div>
+		
+		<div class="myModalUnit">
+			<h3 class="myModalH3">회원이름</h3>
+			<div class="myInputBox">
+				<input class="myInput" type="text"  name="userName" value="${member.userName}">
+			</div>
+		</div>
+		
+		<div class="myModalUnit">
+			<h3 class="myModalH3">주소</h3>
+			<div class="myInputBox">
+				<input class="myInput" type="text"  name="address1" value="${member.address1}">
+			</div>
+		</div>
+		
+		<div class="myModalUnit">
+			<h3 class="myModalH3">주소2</h3>
+			<div class="myInputBox">
+				<input class="myInput" type="text"  name="address2" value="${member.address2}">
+			</div>
+		</div>
+		
+		<div class="myModalUnit">
+			<h3 class="myModalH3">우편번호</h3>
+			<div class="myInputBox">
+				<input class="myInput" type="text"  name="zipCode" value="${member.zipCode}">
+			</div>
+		</div>
+		
+		<div class="myModalUnit">
+			<h3 class="myModalH3">전화번호</h3>
+			<div class="myInputBox">
+				<input class="myInput" type="text"  name="phone" value="${member.phone}">
+			</div>
+		</div>
+		
+		<div class="myModalUnit">
+			<h3 class="myModalH3">가입일</h3>
+			<div class="myInputBox">
+				<input class="myInput" type="text"  name="regDate" value="${member.regDate}" readonly>
+			</div>
+		</div>
+		
+		<div class="myModalUnit">
+			<h3 class="myModalH3">마일리지</h3>
+			<div class="myInputBox">
+				<input class="myInput" type="text"  name="point" ${readonly} value="${member.point}" readonly>
+			</div>
+		</div>
+		
+		<div class="myModalUnit">
+			<h3 class="myModalH3">총구매액</h3>
+			<div class="myInputBox">
+				<input class="myInput" type="text"  name="userAmount" value="${member.userAmount}" readonly>
+			</div>
+		</div>

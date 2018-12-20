@@ -7,12 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css" rel="stylesheet">
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
@@ -23,17 +17,12 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 <!-- joinForm.css -->
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/css/myPage.css">
-<link rel="stylesheet"	href="<%=request.getContextPath()%>/css/crowd.css">
 </head>
 <body>
 
 <div class="commonBannerBox">
 	<h3 class="rowdCommonBannerH3">마이페이지</h3>
 </div>
-
-<div id="freeboard_wrap_1">
-<div id="freeboard_wrap_2">
-
 
 	<!-- Start of Header : memberInfo.userId-->
 	<div id="freeboard_Header">
@@ -47,6 +36,8 @@
 				<div class="content_Font1">회원이름</div>
 				<div class="content_Font2">${memberInfo.userName}</div>
 			</div>
+			
+			<div class="myLine"></div>
 			
 			<div id="fb_Content_Grade" class="fbContent">
 				<div class="content_Font1">회원등급</div>
@@ -71,10 +62,14 @@
 				</div>
 			</div>
 			
+			<div class="myLine"></div>
+			
 			<div id="fb_Content_Point" class="fbContent">
 				<div class="content_Font1">마일리지</div>
 				<div class="content_Font2">${memberInfo.point} 원</div>
 			</div>
+			
+			<div class="myLine"></div>
 			
 			<div id="fb_Content_Amount" class="fbContent">
 				<div class="content_Font1">총 구매금액</div>
@@ -83,13 +78,13 @@
 			
 			<div id="content_button_wrap">
 				<!-- Sign up button -->
-  				<button class="memberModify all_Button" name="${member.userId}" grade="${member.gradeNum}"
+  				<button class="originModifyBtn all_Button" name="${member.userId}" grade="${member.gradeNum}"
     			data-toggle="modal" data-target="#modalCart">수정하기</button>
    				<button class="memberDelete all_Button" name="${member.userId}" grade="${member.gradeNum}">탈퇴하기</button>
 			</div>
 	</div><!-- End of div freeboard_Content-->
 	
-	
+<%-- 	
 	<!-- Start of footer -->
 	<div id="freeboard_Footer">
 	
@@ -192,10 +187,10 @@
 	<!-- MyPage ID 출력 -->
     <p class="h4 mb-4" style="text-align: center;">${memberInfo.userId}</p>
 
-   <%--  <small class="form-text text-muted mb-1">
+    <small class="form-text text-muted mb-1">
      	  회원 아이디
     </small>
-    <input type="email" id="defaultRegisterFormEmail" class="form-control mb-2" value="${memberInfo.userId}" readonly> --%>
+    <input type="email" id="defaultRegisterFormEmail" class="form-control mb-2" value="${memberInfo.userId}" readonly>
     <small class="form-text text-muted mb-1">
      	  회원이름
     </small>
@@ -346,35 +341,48 @@
 		
     </div>
   </div>
-</div>
+</div> --%>
 
 <!-- Modal: 회원수정 -->
-<div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header" style="border: none">
-        <h4 class="modal-title" id="myModalLabel">회원 수정</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <!--Body-->
-	<form id="memberModify">
-    <div class="modal-body">
-            <table id="popup" class="table table-hover">
-            </table>
-       </div>
-      <!--Footer-->
-      <div class="modal-footer">
-        <input type="button" class="btn btn-outline-primary" data-dismiss="modal" value="닫기">
-        <input type="button" id="modifyButton" class="btn btn-primary" data-dismiss="modal" value="수정">
-      </div>
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<!--Header-->
+		<div class="modal-header" style="border: none">
+		  <h4 class="modal-title" id="myModalLabel">회원 수정</h4>
+		</div>
+		<!--Body-->
+		<form id="memberModify">
+			<div class="modal-body">
+			       
+			</div>
+			<!--Footer-->
+			<div class="modal-footer">
+				<input type="button" class="myModalbtn modalBtnClose" data-dismiss="modal" value="닫기">
+				<input type="button" class="myModalbtn modalBtnModify" data-dismiss="modal" value="수정">
+			</div>
 		
-	</form>
-    </div>
-  </div>
+		</form>
+	</div>
+</div>
+
+<div class="modal1Box">
+	<div class="modal1SubBox">
+		<div class="modal1Unit1">
+			<h3 class="modal1UserId">${memberInfo.userId}</h3>
+		</div>
+		
+		<div class="modal1Unit2">
+			<h4 class="modal1H4">비밀번호 확인</h4>
+			<div class="modal1InputBox">
+				<input class="modal1Input" type="password">
+			</div>
+		</div>
+		
+		<div class="modal1BtnBox">
+			<button class="modal1Btn modalBtnClose">닫기</button>
+			<button class="modal1Btn memberModify">확인</button>
+		</div>
+	</div>
 </div>
 
 
@@ -392,24 +400,48 @@ $('.order').click(function() {
 	});
 });
 
-//회원 수정버튼
+/* modal1 열기 */
+$('.originModifyBtn').on('click',function(){
+	$('.modal1Box').show();
+})
 
+/* modal1 닫기 */
+$('.modalBtnClose').on('click',function(){
+	$('.modal1Box').hide();
+})
+
+/* modal 비밀번호 전송 */
 $('.memberModify').click(function() {
+		
+		console.log('id : '+$('.modal1UserId').html()+', +pw : '+$('.modal1Input').val());
+	
 		$.ajax({
-		url : '<%=request.getContextPath()%>/member/memberModify?userId=' +  '${memberInfo.userId}',
+		url : '<%=request.getContextPath()%>/member/memberModifyCheck',
 		data : {
-			viewType : $(this).val()
+			id : $('.modal1UserId').html(),
+			pw : $('.modal1Input').val()
 		},
+		type: 'POST' ,
 		error : function(error) {
 	        alert("장난치삼?");
 	    },
 		success : function(data) {
-			$('#popup').html(data);
+			console.log(data);
+			$('.modal-body').html(data);
+			$('.modal1Box').hide();
+			$('.modal-dialog').show();
 		}
 	});
 });
 
-$('#modifyButton').click(function() {
+
+
+$('.modalBtnClose').on('click',function(){
+	$('.modal-dialog').hide();
+})
+
+/* modal2 변경버튼 */
+$('.modalBtnModify').click(function() {
 	$.ajax({
 		url : '<%= request.getContextPath() %>/member/memberModify',
 		type : 'POST',

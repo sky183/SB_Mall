@@ -514,7 +514,7 @@
 	border: 1px solid #ffc828;
 }
 .rowAgreeH3{
-	width: 290px;
+	width: 280px;
     font-size: 10pt;
     font-weight: normal;
     display: inline-block;
@@ -539,6 +539,9 @@
 }
 .orderDetailForm{
 	display: none;
+}
+.myLine{
+	
 }
 
 
