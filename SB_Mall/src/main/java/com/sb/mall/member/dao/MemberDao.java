@@ -34,14 +34,17 @@ public interface MemberDao {
 	public String checkPw(String id);
 
 	// 일반 주문 및 크라우드펀딩 주문 갯수
-	public int selectOrderDetailCount(@Param("tableName") String tableName, int userSeq);
+	public int selectOrderDetailVOCount(@Param("tableName") String tableName, int userSeq);
 	
 	// 일반 주문 및 크라우드펀딩 주문 조회
-	public List<Object> selectOrderDetailVOList(@Param("tableName") String tableName, int userSeq, String OrderDetailNum, int firstRow, int endRow);
+	public List<Object> selectOrderDetailVOList(@Param("tableName") String tableName, int userSeq, int firstRow, int endRow);
 	
 	// 상세 상품 조회
-	public List<OrderVO> selectOrderVOList(@Param("tableName") String tableName, String orderDetailNum);
+	public List<Object> selectOrderVOList(@Param("tableName") String tableName, String orderDetailNum);
 	
 	// 반품상태 업데이트
-	public void changeRefund(int orderSeq, int refund);
+	public void changeRefund(@Param("tableName") String tableName, int orderSeq, int refund);
+	
+	// 반품 후 OrderDetail의 totalAmount 업데이트
+	public void changeOrderDetail(@Param("tableName") String tableName, String orderDetailNum);
 }

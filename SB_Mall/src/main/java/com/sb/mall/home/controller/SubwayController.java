@@ -8,7 +8,6 @@ public class SubwayController {
 	
 	@RequestMapping("subway")
 	public String subwayPage() {
-		System.out.println("지하철.");
 		return "view/community/contents/subway"; 
 	}
 	

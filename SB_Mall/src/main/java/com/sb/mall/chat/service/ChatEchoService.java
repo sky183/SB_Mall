@@ -76,7 +76,6 @@ public class ChatEchoService extends TextWebSocketHandler {
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
         String payloadMessage = (String) message.getPayload();
-        System.out.println("서버에 도착한 메시지:"+payloadMessage);
         
         /*ServerHttpRequest requests = null;
         
@@ -96,7 +95,6 @@ public class ChatEchoService extends TextWebSocketHandler {
         
         Map<String, Object> map = session.getAttributes();
         String userName = (String)map.get("userName");
-        System.out.println("전송자 아이디:"+userName);
         
         session.sendMessage(new TextMessage(userName + payloadMessage));
     }

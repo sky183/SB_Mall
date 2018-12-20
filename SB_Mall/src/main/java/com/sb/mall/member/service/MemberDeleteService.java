@@ -15,14 +15,10 @@ public class MemberDeleteService {
 	private MemberDao memberDao;
 	
 	public int memberDelete(String userId) {
-		System.out.println("MemberDeleteService");
-		System.out.println("<**회원 삭제 시작**>");
 		
 		memberDao = sessionTemplate.getMapper(MemberDao.class);
 		
 		int deleteResult = memberDao.delete(userId);
-		
-		System.out.println("<**회원 삭제 완료**>");
 		
 		return deleteResult;
 	}

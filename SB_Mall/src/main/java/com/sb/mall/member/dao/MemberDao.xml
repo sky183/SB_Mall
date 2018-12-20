@@ -95,7 +95,7 @@
 	</select>
 
 	<!-- // 일반 주문 및 크라우드펀딩 주문 갯수 -->
-	<select id="selectOrderDetailCount" resultType="int">
+	<select id="selectOrderDetailVOCount" resultType="int">
 		select count(*) from
 		(select
 		od.orderDetailNum
@@ -121,12 +121,13 @@
 
 	<!-- // 일반 주문 및 크라우드펀딩 주문 조회 -->
 	<select id="selectOrderDetailVOList"
-		resultType="com.sb.mall.admin.adminOrder.model.OrderDetailVO">
+		resultType="com.sb.mall.member.model.OrderDetailVO">
 		select
 		date_format(od.orderTime, '%Y-%m-%d') orderTime,
 		od.orderDetailNum,
 		concat(od.orderAddress1,
-		od.orderAddress2) orderAddress,
+		od.orderAddress2)
+		orderAddress,
 		(case
 		when
 		count(g.goodsName) <![CDATA[>]]>
@@ -158,12 +159,12 @@
 		and mi.userSeq = #{param2}
 		group by od.orderDetailNum order by
 		od.orderTime desc limit #{param3},
-		#{param5};
+		#{param4};
 	</select>
-	
+
 	<!-- 상세 상품 조회 -->
 	<select id="selectOrderVOList"
-		resultType="com.sb.mall.admin.adminOrder.model.OrderVO">
+		resultType="com.sb.mall.member.model.OrderVO">
 		SELECT
 		o.orderDetailNum,
 		o.orderSeq,
@@ -172,37 +173,67 @@
 		g.goodsName,
 		o.quantity,
 		ifnull(go.opt1Name, '') opt1Name,
-		ifnull(go.opt2Name, '') opt2Name,
-		o.salePrice
+		ifnull(go.opt2Name, '')
+		opt2Name,
+		o.salePrice,
+		o.refund
 		FROM
 		<if test="tableName == 'OrderDetail'">
 			`Order` o,
 			Goods g,
-			GoodsOption go
+			GoodsOption go,
 		</if>
 		<if test="tableName == 'CrowdOrderDetail'">
 			CrowdOrder o,
 			CrowdGoods g,
-			CrowdGoodsOption go
+			CrowdGoodsOption go,
 		</if>
-		 MemberInfo	m,
+		MemberInfo m
 		where o.goodsNo = g.goodsNo
 		and
 		o.userSeq = m.userSeq
 		and
 		o.optionSeq = go.optionSeq
 		and
-		orderDetailNum = #{param2};
+		o.orderDetailNum = #{param2};
 	</select>
-	
-		<!-- 반품상태 업데이트 -->
+
+	<!-- 반품상태 업데이트 -->
 	<update id="changeRefund">
-		UPDATE `${param3}` SET
-		`refund` = '${param2}'
+		UPDATE 
+		<if test="tableName == 'OrderDetail'">
+			`Order`
+		</if>
+		<if test="tableName == 'CrowdOrderDetail'">
+			CrowdOrder
+		</if>
+		SET
+		`refund` = '${param3}'
 		WHERE
-		<foreach collection="orderArray" item="orderSeq" open="("
-			close=")" separator=" OR ">
-			`orderSeq` ='${orderSeq}'
-		</foreach>
+		`orderSeq` ='${param2}'
 	</update>
+
+	<!-- // 반품 후 OrderDetail의 totalAmount 업데이트 -->
+	<update id="changeOrderDetail">
+		UPDATE ${tableName}
+		SET totalAmount = (
+		select
+		totalAmount from
+		(SELECT sum(o.salePrice) totalAmount FROM 
+		<if test="tableName == 'OrderDetail'">
+			`Order` o,
+			OrderDetail od
+		</if>
+		<if test="tableName == 'CrowdOrderDetail'">
+			CrowdOrder o,
+			CrowdOrderDetail od
+		</if>
+		where od.orderDetailNum = o.orderDetailNum
+		and
+		od.orderDetailNum = #{param2}
+		and
+		o.refund <![CDATA[<]]> 2) R)
+		WHERE (`orderDetailNum` = #{param2});
+	</update>
+
 </mapper>

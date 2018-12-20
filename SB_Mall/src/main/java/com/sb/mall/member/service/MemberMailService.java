@@ -23,9 +23,8 @@ public class MemberMailService {
 
    // 파일 첨부 보내기, 이미지 본문 첨부
    public void sendMail(String userId, String userName, String filePath, HttpSession session) throws IOException {
-	  System.out.println("<<==MemberMailService==>>");
 
-      MimeMessage message = mailSender.createMimeMessage();
+	  MimeMessage message = mailSender.createMimeMessage();
 
       String file = session.getServletContext().getRealPath("WEB-INF/views") + filePath;
       InputStream is = new FileInputStream(file);

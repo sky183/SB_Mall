@@ -45,19 +45,19 @@
 				<div class="content_Font2">
 				<c:choose>
 				    <c:when test="${memberInfo.gradeNum == 0}">
-				        불가촉천민
+				       	 정회원
 				    </c:when>
 				    <c:when test="${memberInfo.gradeNum == 1}">
-				        평민
+				    	우수회원
 				    </c:when>
 				    <c:when test="${memberInfo.gradeNum == 2}">
-				   		귀족
+				   		VIP
 				    </c:when>
 				    <c:when test="${memberInfo.gradeNum == 3}">
-				   		 다이아
+				   		관리자
 				    </c:when>
 				    <c:when test="${memberInfo.gradeNum == 4}">
-				   		그랜드마스터
+				   		대표
 				    </c:when>    
 				</c:choose>
 				</div>
@@ -85,264 +85,8 @@
 			</div>
 	</div><!-- End of div freeboard_Content-->
 	
-<%-- 	
-	<!-- Start of footer -->
-	<div id="freeboard_Footer">
-	
-	<c:choose>
-	<c:when test="${empty orderDetail}">
-    </c:when>
-	<c:otherwise>
-		<p class="content_Font1" style="text-align: center;">내 주문내역</p>
-		<div class="px-1">
-
-			<div class="table-wrapper" style="width: 700px; text-align: center; margin: 0 auto;">
-				<!--Table-->
-				<table class="memList table table-hover mb-0" style="margin-left: auto;">
-
-					<!--Table head-->
-					<thead>
-						<tr>
-
-							<th class="th-lg">주문상세번호</th>
-							<th class="th-lg">결제수단</th>
-							<th class="th-lg">주문시간</th>
-							<th class="th-lg">결제금액</th>
-							<th class="th-lg">주문상태</th>
-						</tr>
-					</thead>
-					<!--Table head-->
-
-					<!--Table body-->
-					<tbody>
-						<c:forEach var="order" items="${orderDetail}">
-							<tr>
-								<td>${order.orderDetailNum}</td>
-								<td><c:choose>
-										<c:when test="${order.payment == 0}">
-                                     	           무통장
-                                            </c:when>
-										<c:otherwise>
-                                         	       카드
-                                            </c:otherwise>
-									</c:choose></td>
-
-								<td>${order.orderTime}</td>
-								<td>${order.totalAmount}</td>
-								<td style="padding-top: 5px; padding-bottom: 5px; !important">
-								<button class="status btn btn-blue-grey"
-										name="${order.orderDetailNum}" style="padding: 2px 5px; width: 80px;" disabled>
-											<c:choose>
-												<c:when test="${order.status == 0}">
-                                                     	  입금미확인
-                                                    </c:when>
-												<c:when test="${order.status == 1}">
-                                                   	  결제완료
-                                                    </c:when>
-												<c:when test="${order.status == 2}">
-                         	                 	              배송전
-                                                    </c:when>
-												<c:when test="${order.status == 3}">
-                                                	        배송중
-                                                    </c:when>
-												<c:otherwise>
-													배송완료
-												</c:otherwise>
-											</c:choose>
-										</button>
-							<button class="order btn btn-blue-grey"
-										name="${order.orderDetailNum}" data-toggle="modal" data-target="#modalOrder" style="padding: 2px 5px; width: 80px">
-										주문상세</button>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-					<!--Table body-->
-				</table>
-				
-			</div>
-		</div>
-
-	</c:otherwise>
-	</c:choose>
-	
-	</div><!-- End of div freeboard_footer-->
-</div>
-</div>
-
-
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br> 
-	
-<div id="wrapper">
-	<div style="margin: 30px auto 20px auto; width: 600px; margin-bottom: 60px;">
-	
-	<!-- MyPage ID 출력 -->
-    <p class="h4 mb-4" style="text-align: center;">${memberInfo.userId}</p>
-
-    <small class="form-text text-muted mb-1">
-     	  회원 아이디
-    </small>
-    <input type="email" id="defaultRegisterFormEmail" class="form-control mb-2" value="${memberInfo.userId}" readonly>
-    <small class="form-text text-muted mb-1">
-     	  회원이름
-    </small>
-    <input type="text"  class="form-control mb-2" value="${memberInfo.userName}" readonly>
-    
-    <small class="form-text text-muted mb-1">
-     	 회원등급
-    </small>
-    <c:choose>
-    <c:when test="${memberInfo.gradeNum == 0}">
-         <input type="text" class="form-control mb-2" value="불가촉천민" readonly>
-    </c:when>
-    <c:when test="${memberInfo.gradeNum == 1}">
-         <input type="text" class="form-control mb-2" value="평민" readonly>
-    </c:when>
-    <c:when test="${memberInfo.gradeNum == 2}">
-   		 <input type="text" class="form-control mb-2" value="귀족" readonly> 
-    </c:when>
-    <c:when test="${memberInfo.gradeNum == 3}">
-   		 <input type="text" class="form-control mb-2" value="다이아" readonly>
-    </c:when>
-    <c:when test="${memberInfo.gradeNum == 4}">
-   		 <input type="text" class="form-control mb-2" value="그랜드마스터" readonly>
-    </c:when>    
-    </c:choose>
-   
-    <small class="form-text text-muted mb-1">
-     	 마일리지
-    </small>
-    <input type="text" class="form-control mb-2" value="${memberInfo.point}원" readonly>
-   
-    <small class="form-text text-muted mb-1">
-     	총 구매금액 
-    </small>
-    <input type="text" class="form-control mb-4" value="${memberInfo.userAmount}원" readonly>
-    <!-- Sign up button -->
-    <button class="memberModify btn btn-info my-4 btn-block" name="${member.userId}" grade="${member.gradeNum}"
-    	data-toggle="modal" data-target="#modalCart">수정하기</button>
-    	
-    <button class="memberDelete btn btn-info my-4 btn-block" name="${member.userId}" grade="${member.gradeNum}">탈퇴하기</button>
-    <hr>
-    </div>
-    
-
-
-<c:choose>
-	<c:when test="${empty orderDetail}">
-    </c:when>
-	<c:otherwise>
-		<p class="h4 mb-4" style="text-align: center;">내 주문내역</p>
-		<div class="px-1">
-
-			<div class="table-wrapper" style="width: 700px; text-align: center; margin: 0 auto;">
-				<!--Table-->
-				<table class="memList table table-hover mb-0" style="margin-left: auto;">
-
-					<!--Table head-->
-					<thead>
-						<tr>
-
-							<th class="th-lg">주문상세번호</th>
-							<th class="th-lg">결제수단</th>
-							<th class="th-lg">주문시간</th>
-							<th class="th-lg">결제금액</th>
-							<th class="th-lg">주문상태</th>
-						</tr>
-					</thead>
-					<!--Table head-->
-
-					<!--Table body-->
-					<tbody>
-						<c:forEach var="order" items="${orderDetail}">
-							<tr>
-								<td>${order.orderDetailNum}</td>
-								<td><c:choose>
-										<c:when test="${order.payment == 0}">
-                                     	           무통장
-                                            </c:when>
-										<c:otherwise>
-                                         	       카드
-                                            </c:otherwise>
-									</c:choose></td>
-
-								<td>${order.orderTime}</td>
-								<td>${order.totalAmount}</td>
-								<td style="padding-top: 5px; padding-bottom: 5px; !important">
-								<button class="status btn btn-blue-grey"
-										name="${order.orderDetailNum}" style="padding: 2px 5px; width: 80px;" disabled>
-											<c:choose>
-												<c:when test="${order.status == 0}">
-                                                     	  입금미확인
-                                                    </c:when>
-												<c:when test="${order.status == 1}">
-                                                   	  결제완료
-                                                    </c:when>
-												<c:when test="${order.status == 2}">
-                         	                 	              배송전
-                                                    </c:when>
-												<c:when test="${order.status == 3}">
-                                                	        배송중
-                                                    </c:when>
-												<c:otherwise>
-													배송완료
-												</c:otherwise>
-											</c:choose>
-										</button>
-							<button class="order btn btn-blue-grey"
-										name="${order.orderDetailNum}" data-toggle="modal" data-target="#modalOrder" style="padding: 2px 5px; width: 80px">
-										주문상세</button>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-					<!--Table body-->
-				</table>
-				
-			</div>
-		</div>
-
-	</c:otherwise>
-</c:choose>
-
-</div>
-<!-- Card -->
-
-<!-- Modal: 주문상세 -->
-<div class="modal fade" id="modalOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" style="max-width: 900px !important; margin: 30px auto !important;" role="document">
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header" style="border: none">
-        <h4 class="modal-title" id="myModalLabel">주문 내역</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <!--Body-->
-    <div class="modal-body">
-            <table id="popupOrder" class="table table-hover">
-            
-            </table>
-       </div>
-      <!--Footer-->
-      <div class="modal-footer">
-        <input type="button" class="btn btn-outline-primary" data-dismiss="modal" value="닫기">
-      </div>
-		
-    </div>
-  </div>
-</div> --%>
+<!-- 	주문 목록 Ajax로 불러온다.-->
+	<div id="loadOrderDetailList"></div>
 
 <!-- Modal: 회원수정 -->
 <div class="modal-dialog" role="document">
@@ -366,6 +110,7 @@
 	</div>
 </div>
 
+<!-- 회원 수정 전 비번 확인 -->
 <div class="modal1Box">
 	<div class="modal1SubBox">
 		<div class="modal1Unit1">
@@ -386,20 +131,37 @@
 	</div>
 </div>
 
+<!-- Modal2: 주문 내역 -->
+<div class="">
+	<div id="loadOrderList" class="modal2SubBox">
+	</div>
+</div>
+
 
 <script>
 
-$('.order').click(function() {
+//시작시 기본으로 주문목록 불러온다.
+$('#loadOrderDetailList').load('<%=request.getContextPath()%>/member/loadOrderDetailList?pageNumber=1&tableName=OrderDetail&userSeq=' + ${memberInfo.userSeq});
+
+
+//loadOrderList.jsp를 불러오는 함수
+function loadOrderDetailList(pageNumber){
+	
+	var tableName = $('#tableName').val();
+	
 	$.ajax({
-		url : '<%=request.getContextPath()%>' + '/order/orderList/' + $(this).attr('name'),
+		url : '<%=request.getContextPath()%>/member/loadOrderDetailList?pageNumber='+ pageNumber +'&tableName='+ tableName + '&userSeq=' + ${memberInfo.userSeq},
+		type : 'GET',
 		error : function(error) {
 	        alert("Error!");
 	    },
 		success : function(data) {
-			$('#popupOrder').html(data);
+			$('#loadOrderDetailList').html(data);
 		}
 	});
-});
+}
+
+
 
 /* modal1 열기 */
 $('.originModifyBtn').on('click',function(){
@@ -409,7 +171,9 @@ $('.originModifyBtn').on('click',function(){
 /* modal1 닫기 */
 $('.modalBtnClose').on('click',function(){
 	$('.modal1Box').hide();
+	$('.modal-dialog').hide();
 })
+
 
 /* modal 비밀번호 전송 */
 $('.memberModify').click(function() {
@@ -441,11 +205,6 @@ $('.memberModify').click(function() {
 	});
 });
 
-
-
-$('.modalBtnClose').on('click',function(){
-	$('.modal-dialog').hide();
-})
 
 function pwChekcFunc(){
 	$('.pwChk').off();
@@ -483,12 +242,6 @@ $('.modalBtnModify').click(function() {
 	}else{
 		alert("비밀번호가 일치하지 않습니다.");
 	}
-	
-	
-	
-	
-	
-	
 	
 });
 

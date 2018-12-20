@@ -22,8 +22,6 @@ public class MemberDeleteController {
 		
 		httpServletResponse.setHeader("Content-Type", "text/html; charset=utf-8");
 		
-		System.out.println("MemberDeleteController");
-		
 		String result = "";
 		//내 정보 가져오기
 		try {

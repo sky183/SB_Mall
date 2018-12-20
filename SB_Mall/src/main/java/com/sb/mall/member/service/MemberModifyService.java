@@ -29,9 +29,7 @@ public class MemberModifyService {
 			String enPw = aes256Util.encrypt(pw);
 			String findPw = memberDao.checkPw(id);
 			if (enPw.equals(findPw)) {
-				System.out.println("check");
 				memberInfo = memberDao.selectById(id);
-				System.out.println(memberInfo);
 			}else {
 				throw new Exception("비밀번호 다름");
 			}

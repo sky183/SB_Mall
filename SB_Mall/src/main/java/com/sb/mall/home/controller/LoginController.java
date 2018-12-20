@@ -53,7 +53,6 @@ public class LoginController {
 
 	) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 
-		System.out.println(rememberId);
 		ModelAndView modelAndView = new ModelAndView();
 
 		// 아이디저장 버튼이 on일 경우 쿠키생성
@@ -64,16 +63,10 @@ public class LoginController {
 
 		// userId 또는 userPw가 null 이 아닌 경우 
 		if (userId != null && userPw != null) {
-			System.out.println("userId "+userId);
-			System.out.println("userPw "+userPw);
 			
 			/*2018.11.16 암호화 패치*/
-//			System.out.println("/*[5] 2018.11.16 암호화 패치*/");
-//			System.out.println("The Password you inputed :" + userPw);
 			String encryptionPW = aes256.encrypt(userPw);
-//			System.out.println("be encryption password :" + encryptionPW);
 			userPw = (encryptionPW);
-//			System.out.println("암호화 처리 완료");
 			
 			if (loginService.login(userId, userPw, session)) {
 				

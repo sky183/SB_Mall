@@ -55,9 +55,6 @@ public class MemberFindService {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		System.out.println(userId);
-		System.out.println(userName);
-		
 		String pw = Dao.find_pw(userId, userName);
 
 		if (pw == null) {
