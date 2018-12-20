@@ -1,5 +1,6 @@
 package com.sb.mall.member.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,6 +10,9 @@ import com.sb.mall.home.model.PageListView;
 
 @Controller
 public class MemberOrderListController {
+	
+	@Autowired
+	MemberOrderListService memberOrderListService;
 	
 	@RequestMapping(value="/member/orderList",method=RequestMethod.GET)
 	public ModelAndView getOrderList() {
