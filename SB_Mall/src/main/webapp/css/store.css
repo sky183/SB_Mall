@@ -242,7 +242,7 @@ h1,h2,h3{
 }
 #boardSelector li{
 	height: 40px;
-	border: 1px solid #f0f0f0;
+	border: 1px solid #e0e0e0;
 }
 .goodsOptUl>li>label{
 	line-height: 40px;
@@ -281,7 +281,7 @@ h1,h2,h3{
 }
 
 #insCartList>li>div{
-	background-color: #f0f0f0;
+	background-color: #e0e0e0;
 	border: 1px solid #c8c8c8;
 }
 .insCartNumBtn{
@@ -352,7 +352,7 @@ h1,h2,h3{
 	font-size: 18px;
 }
 .boardSelectorHeader{
-	border: 1px solid #f0f0f0;
+	border: 1px solid #e0e0e0;
 	background-color: #c8c8c8;
 	height: 100%;
 	width: 100%;
@@ -626,7 +626,7 @@ h1,h2,h3{
 	height: 32px;
 	padding:2px 5px;
 	color: #707070;
-	border: 2px solid #f0f0f0;
+	border: 2px solid #cccccc;
 	border-radius: 3px;
 }
 #summerTitle{
@@ -639,7 +639,7 @@ h1,h2,h3{
 	width: 100%;
 	padding:10px 20px;
 	margin-top: 10px;
-	border: 2px solid #f0f0f0;
+	border: 2px solid #e0e0e0;
 	border-radius: 3px;
 	font-size:16px;
 }
@@ -651,7 +651,7 @@ h1,h2,h3{
 	flex-flow:wrap row;
 	align-items: stretch;
 	align-content: space-between;
-	border-bottom: 2px solid #f0f0f0;
+	border-bottom: 2px solid #e0e0e0;
 	padding-bottom:20px;
 	margin-bottom:10px;
 }
@@ -665,7 +665,7 @@ h1,h2,h3{
 	width: 75%;
 	height: 32px;
 	vertical-align:middle;
-	border: 2px solid #f0f0f0;
+	border: 2px solid #cccccc;
 	border-radius: 5px;
 	margin:  10px 5px;
 	color: #707070;
@@ -715,7 +715,7 @@ h1,h2,h3{
 #goodsListBox{
 	width: 100%;
 	height: 300px;
-	border: 2px solid #f0f0f0;
+	border: 2px solid #e0e0e0;
 	overflow-y: scroll;
 	padding: 10px 0;
 	margin:10px 0;
@@ -740,7 +740,7 @@ h1,h2,h3{
 	margin: auto 0;
 }
 .goodsListItem:hover{
-	background-color: #f0f0f0 !important;
+	background-color: #e0e0e0 !important;
 }
 /* .goodsListItem button{
 	background-color: white;

@@ -32,7 +32,7 @@ public class MemberModifyController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/member/memberModify", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	@RequestMapping(value = "/member/memberModify", method = RequestMethod.POST)
 	@ResponseBody
 	public String getMemberModify_end(MemberInfo memberInfo) {
 		String result = "";
