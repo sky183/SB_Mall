@@ -224,7 +224,6 @@
 		
 		//all-check를 클릭하면 모든 check가 클릭된다.
 		$(".all-check").change(function () {
-			$(this).unbind();
 		    $(".check").prop('checked', $(this).prop("checked"));
 		});
 		

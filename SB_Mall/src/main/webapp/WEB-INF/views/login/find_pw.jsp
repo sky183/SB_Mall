@@ -23,7 +23,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="commonBannerBox">
 		<h3 class="rowdCommonBannerH3">비밀번호 찾기</h3>
-	</div>>	
+	</div>
 	<div class="w3-content w3-container w3-margin-top">
 		<div class="w3-container w3-card-4">
 			<div class="w3-center w3-large w3-margin-top">
