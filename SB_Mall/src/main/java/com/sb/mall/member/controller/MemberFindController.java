@@ -87,7 +87,7 @@ public class MemberFindController {
 		memberInfo.setUserPw(encryptionPW);
 		
 		//업데이트문
-		memberUpdateSerivce.memberModify_end(memberInfo);
+		memberUpdateSerivce.modifyMember(memberInfo);
 		
 		
 		

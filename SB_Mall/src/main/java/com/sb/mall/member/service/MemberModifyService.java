@@ -1,5 +1,8 @@
 package com.sb.mall.member.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,44 +15,53 @@ public class MemberModifyService {
 
 	@Autowired
 	SqlSessionTemplate sessionTemplate;
-	
+
+	@Autowired
+	private AES256Util aes256Util;
+
 	private MemberDao memberDao;
-	private MemberInfo memberResult;
-	
-	public MemberInfo memberModify(String userId) {
-		
+
+	public MemberInfo getMember(String id, String pw) {
+		memberDao = sessionTemplate.getMapper(MemberDao.class);
 		MemberInfo memberInfo = new MemberInfo();
-		
-		memberDao = sessionTemplate.getMapper(MemberDao.class);
-		
-		memberInfo = memberDao.selectById(userId);
-		
-		if (userId.equals(memberInfo.getUserId())) {
-			memberResult = memberInfo;
-		}else {
-			System.out.println("조회 가능한 member가 없음");
+		try {
+			String enPw = aes256Util.encrypt(id);
+			String findPw = memberDao.find_pw(id, pw);
+			if (enPw.equals(findPw)) {
+				memberInfo = memberDao.selectById(id);
+			}
+		} catch (UnsupportedEncodingException | GeneralSecurityException e) {
 		}
-		
-		return memberResult;
-	}//end of Method(memberModify)
-	
-	public int memberModify_end(MemberInfo updateMember) {
-		
-		int updateMemberCnt;
-		
+		return memberInfo;
+	}// end of Method(memberModify)
+
+	public String modifyMember(MemberInfo updateMember) {
+		String pw = updateMember.getUserPw();
 		memberDao = sessionTemplate.getMapper(MemberDao.class);
-		
-		updateMemberCnt = memberDao.update(updateMember);
-		
-		System.out.println(updateMember);
-		
-		/*if (userId.equals(memberInfo.getUserId())) {
-			memberResult = memberInfo;
-		}else {
-			System.out.println("조회 가능한 member가 없음");
-		}*/
-		
-		return updateMemberCnt;
-	}//end of Method(memberModify_end)
+		if(pw!=null) {
+			try {
+				updateMember.setUserPw(aes256Util.encrypt(pw));
+				memberDao.update(updateMember);
+			} catch (UnsupportedEncodingException | GeneralSecurityException e) {
+				e.printStackTrace();
+				return "회원정보 수정 실패";
+			}
+		}
+		return "회원정보 수정 성공";
+	}// end of Method(memberModify_end)
+
+	public int pwValidCheck(String id, String pw) {
+		memberDao = sessionTemplate.getMapper(MemberDao.class);
+		try {
+			String enPw = aes256Util.encrypt(pw);
+			String findPw = memberDao.find_pw(id, pw);
+			if (enPw.equals(findPw)) {
+				return 0;
+			}
+		} catch (UnsupportedEncodingException | GeneralSecurityException e) {
+			return 1;
+		}
+		return 1;
+	}
 
 }

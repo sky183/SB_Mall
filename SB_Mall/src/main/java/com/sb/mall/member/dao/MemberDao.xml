@@ -24,10 +24,15 @@
 
 	<update id="update"
 		parameterType="com.sb.mall.member.model.MemberInfo">
-		update MemberInfo set userpw=#{userPw},
-		username=#{userName}, address1=#{address1}, address2=#{address2},
-		zipCode=#{zipCode}, phone=#{phone}, gradenum=#{gradeNum},
-		point=#{point}, useramount=#{userAmount} where userid=#{userId}
+		update MemberInfo 
+		<set>
+		<if test="${userPw!=null}">
+		userpw=#{userPw},
+		</if>
+		username=#{userName}, address1=#{address1}, address2=#{address2},zipCode=#{zipCode}, phone=#{phone},
+		gradenum=#{gradeNum}, point=#{point}, useramount=#{userAmount} 
+		</set>
+		where userid=#{userId}
 	</update>
 
 	<delete id="delete" parameterType="String">
