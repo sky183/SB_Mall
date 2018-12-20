@@ -199,14 +199,14 @@ input{
 	
 }
 .crInputMiniBox{
-	border: 2px solid #f0f0f0;
-	width: 350px;
-	padding:10px;
-	display: inline-block;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	border-radius: 5px;
-	vertical-align: middle;
+    border: 1px solid #a0a0a0;
+    width: 350px;
+    padding: 10px;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    vertical-align: middle;
 	
 }
 .crowdInput{
@@ -235,18 +235,18 @@ input::placeholder {
 	display: inline-block;
 }
 .crInputOptionBox{
-	display: inline-block;
-	border: 2px solid #f0f0f0;
-	padding: 10px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	margin-right:10px;
-	width: 250px;
-	border-radius: 5px;
+    display: inline-block;
+    border: 1px solid #a0a0a0;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    width: 250px;
+    border-radius: 5px;
 }
 .crInputOptionBox2{
 	display: inline-block;
-    border: 2px solid #f0f0f0;
+    border: 1px solid #a0a0a0;
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 5px;

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-		<input type="hidden"  name="userPw" value="${member.userPw}">
-		
+	<c:if test="${pwCheck==null}">
 		<div class="myModalUnit">
 			<h3 class="myModalH3">아이디</h3>
-			<div class="myInputBox">
+			<div class="myInputBox rockInputBox">
 				<input class="myInput" type="text" name="userId" value="${member.userId}" readonly>
 			</div>
 		</div>
@@ -13,17 +13,17 @@
 		<div class="myModalUnit">
 			<h3 class="myModalH3">새로운 비밀번호</h3>
 			<div class="myInputBox">
-				<input class="myInput" type="password" name="userId" value="" >
+				<input class="myInput pwChk pwCheckInput1" type="password" name="userPw">
 			</div>
 		</div>
 		
 		<div class="myModalUnit">
 			<h3 class="myModalH3">비밀번호 확인</h3>
 			<div class="myInputBox">
-				<input class="myInput" type="password" name="userId" value="" >
+				<input class="myInput pwChk pwCheckInput2" type="password" name="pwSecond">
 			</div>
 		</div>
-		
+		<div class="pwCheckBox"></div>
 		<div class="myModalUnit">
 			<h3 class="myModalH3">회원이름</h3>
 			<div class="myInputBox">
@@ -61,21 +61,22 @@
 		
 		<div class="myModalUnit">
 			<h3 class="myModalH3">가입일</h3>
-			<div class="myInputBox">
+			<div class="myInputBox rockInputBox">
 				<input class="myInput" type="text"  name="regDate" value="${member.regDate}" readonly>
 			</div>
 		</div>
 		
 		<div class="myModalUnit">
 			<h3 class="myModalH3">마일리지</h3>
-			<div class="myInputBox">
+			<div class="myInputBox rockInputBox">
 				<input class="myInput" type="text"  name="point" ${readonly} value="${member.point}" readonly>
 			</div>
 		</div>
 		
 		<div class="myModalUnit">
 			<h3 class="myModalH3">총구매액</h3>
-			<div class="myInputBox">
+			<div class="myInputBox rockInputBox">
 				<input class="myInput" type="text"  name="userAmount" value="${member.userAmount}" readonly>
 			</div>
 		</div>
+	</c:if>

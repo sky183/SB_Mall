@@ -2,6 +2,7 @@ package com.sb.mall.member.service;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,18 @@ public class MemberModifyService {
 		return memberInfo;
 	}// end of Method(memberModify)
 
-	public String modifyMember(MemberInfo memberInfo) {
+	public String modifyMember(MemberInfo memberInfo) throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 		memberDao = sessionTemplate.getMapper(MemberDao.class);
-		memberDao.updateMember(memberInfo);
-		return "회원정보 수정 성공";
+		memberInfo.setUserPw(aes256Util.encrypt(memberInfo.getUserPw()));
+		
+		String result="회원정보 수정 중 오류가 발생했습니다./n 문제가 계속 발생되면 고객센터로 문의해주세요.";
+		
+		int updateCheck = memberDao.updateMember(memberInfo);
+		if(updateCheck==1) {
+			result = "회원정보 수정을 완료하였습니다.";
+		}
+		
+		return result;
 	}// end of Method(memberModify_end)
 	
 	public void modifyMemberPw(MemberInfo memberInfo) {

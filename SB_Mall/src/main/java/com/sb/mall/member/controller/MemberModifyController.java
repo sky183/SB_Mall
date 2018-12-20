@@ -1,5 +1,9 @@
 package com.sb.mall.member.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,9 +38,8 @@ public class MemberModifyController {
 
 	@RequestMapping(value = "/member/memberModify", method = RequestMethod.POST)
 	@ResponseBody
-	public String getMemberModify_end(MemberInfo memberInfo) {
-		String result = "";
-			result = memberModifyService.modifyMember(memberInfo);
+	public String getMemberModify_end(MemberInfo memberInfo) throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
+		String result = memberModifyService.modifyMember(memberInfo);
 		return result;
 	}
 

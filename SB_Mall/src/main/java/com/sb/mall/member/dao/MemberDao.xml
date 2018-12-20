@@ -28,12 +28,12 @@
 		parameterType="com.sb.mall.member.model.MemberInfo">
 		update MemberInfo
 		<set>
-			<if test="${userPw!=null}">
+			<if test='userPw!=null and !userPw.equals("")'>
 				userPw=#{userPw},
 			</if>
 			userName=#{userName}, address1=#{address1},
 			address2=#{address2},zipCode=#{zipCode}, phone=#{phone},
-			gradeNum=#{gradeNum}, point=#{point}, userAmount=#{userAmount}
+			point=#{point}, userAmount=#{userAmount}
 		</set>
 		where userId=#{userId}
 	</update>

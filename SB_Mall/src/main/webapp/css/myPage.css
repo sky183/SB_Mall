@@ -104,17 +104,19 @@
     border: 1px solid #787878;
     border-radius: 5px;
     width: 300px;
+    box-sizing: border-box;
 }
 .myInput{
     font-size: 10pt;
-    border: none;
     color: #282828;
     width: 100%;
+    background-color: inherit;
+    border: none !important;
 }
 .modal-dialog{
 	display:none;
 	position: fixed;
-    top: 25px;
+    top: 0px;
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.6);
@@ -141,7 +143,7 @@
 }
 .modal-body{
 	margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 .modal-footer{
     display: flex;
@@ -151,10 +153,15 @@
 .myModalbtn{
     width: 220px;
     border: none;
-    background-color: #f0f0f0;
+    background-color: #505050;
+    color: white;
     height: 35px;
     border-radius: 5px;
     font-size: 12pt;
+}
+.myModalbtn:hover{
+	background-color:#282828;
+	color:white;
 }
 .memberModify{
 }
@@ -214,6 +221,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 15px;
+    margin-bottom: 20px;
 }
 .modal1Btn{
 	width: 49%;
@@ -224,11 +232,29 @@
     font-size: 10pt;
     font-weight: 500;
 }
-.modal1Btn:hover {
+.modal1Btn:hover{
 	background-color: #ffc828;
 	color:white;
 }
-
+.pwCheckBox{
+	text-align: center;
+}
+.pwCheckSuccess{
+    color: #ffc828;
+    font-size: 10pt;
+    padding: 0px 0 20px 0;
+    font-weight: normal;
+}
+.pwCheckFail{
+	color: #f03c00;
+    font-size: 10pt;
+    padding: 0px 0 20px 0;
+    font-weight: normal;
+}
+.rockInputBox{
+	background-color: #dcdcdc;
+    border: none;
+}
 
 
 

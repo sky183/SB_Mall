@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,7 @@
 				<div class="content_Font2">
 				<c:choose>
 				    <c:when test="${memberInfo.gradeNum == 0}">
-				         <input type="text" value="불가촉천민" readonly>
+				        불가촉천민
 				    </c:when>
 				    <c:when test="${memberInfo.gradeNum == 1}">
 				        평민
@@ -426,10 +427,16 @@ $('.memberModify').click(function() {
 	        alert("장난치삼?");
 	    },
 		success : function(data) {
-			console.log(data);
-			$('.modal-body').html(data);
+			var size = $(data).filter('.myModalUnit').length;
+			
+			if(size!=0){
+				$('.modal-body').html(data);
+				pwChekcFunc();
+				$('.modal-dialog').show();
+			}else{
+				alert("비밀번호가 일치하지 않습니다.");
+			}
 			$('.modal1Box').hide();
-			$('.modal-dialog').show();
 		}
 	});
 });
@@ -440,19 +447,48 @@ $('.modalBtnClose').on('click',function(){
 	$('.modal-dialog').hide();
 })
 
+function pwChekcFunc(){
+	$('.pwChk').off();
+	$('.pwChk').keyup(function(){
+		var pw1 = $('.pwCheckInput1').val();
+		var pw2 = $('.pwCheckInput2').val();
+		
+		if(pw1==pw2){
+			$('.pwCheckBox').html('<h3 class="pwCheckSuccess">비밀번호가 일치합니다.</h3>');
+		}else{
+			$('.pwCheckBox').html('<h3 class="pwCheckFail">비밀번호가 일치하지 않습니다.</h3>');
+		}
+	})
+}
+
+
 /* modal2 변경버튼 */
 $('.modalBtnModify').click(function() {
-	$.ajax({
-		url : '<%= request.getContextPath() %>/member/memberModify',
-		type : 'POST',
-		data : $('#memberModify').serialize(),
-		error : function(error) {
-			alert("장난치삼?");
-	    },
-		success : function(result) {
-			alert(result);
-		}
-	});
+	var pw1 = $('.pwCheckInput1').val();
+	var pw2 = $('.pwCheckInput2').val();
+	
+	if(pw1==pw2){
+		$.ajax({
+			url : '<%= request.getContextPath() %>/member/memberModify',
+			type : 'POST',
+			data : $('#memberModify').serialize(),
+			error : function(error) {
+				alert("장난치삼?");
+		    },
+			success : function(result) {
+				alert(result);
+				window.location.reload();
+			}
+		});
+	}else{
+		alert("비밀번호가 일치하지 않습니다.");
+	}
+	
+	
+	
+	
+	
+	
 	
 });
 

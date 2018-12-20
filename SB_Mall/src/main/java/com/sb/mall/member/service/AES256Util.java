@@ -59,6 +59,8 @@ public class AES256Util {
 		//System.out.println("<<==AES256Util==>>");
 		//System.out.println("/*encrypt Method*/");
 		
+		if(str == null || "".equals(str)) return "";
+		
 		Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 		c.init(Cipher.ENCRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes()));
 		byte[] encrypted = c.doFinal(str.getBytes("UTF-8"));
