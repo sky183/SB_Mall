@@ -7,7 +7,7 @@ response.setHeader("Content-Description", "JSP Generated Data");
 %>
 <!DOCTYPE html>
 <html>
-<head>
+<head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="utf-8">
 <title>Insert title here</title>
 

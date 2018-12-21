@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/css/crowd.css">
-<head>
+<head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
