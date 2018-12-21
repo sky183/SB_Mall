@@ -24,7 +24,7 @@
 }
 
 .all_Button:hover {
-	background-color: #ffc828;
+	background-color: #505050;
 	color: white;
 	cursor: pointer;
 }
@@ -166,7 +166,7 @@
 .myModalbtn {
 	width: 220px;
 	border: none;
-	background-color: #505050;
+	background-color: #a0a0a0;
 	color: white;
 	height: 35px;
 	border-radius: 5px;
@@ -174,7 +174,7 @@
 }
 
 .myModalbtn:hover {
-	background-color: #282828;
+	background-color: #505050;
 	color: white;
 }
 
@@ -262,15 +262,16 @@
 .modal1Btn {
 	width: 49%;
 	height: 35px;
-	background-color: #f0f0f0;
+	background-color: #a0a0a0;
 	border: none;
 	border-radius: 5px;
 	font-size: 10pt;
 	font-weight: 500;
+	color:white;
 }
 
 .modal1Btn:hover {
-	background-color: #ffc828;
+	background-color: #505050;
 	color: white;
 }
 
@@ -430,6 +431,7 @@
 
 .modOrderPrice {
 	width: 10%;
+	text-align: right;
 }
 
 .myOrderUnit {
@@ -536,7 +538,7 @@
 	margin: 0 auto;
 	position: fixed;
 	top: 0px;
-	padding-top: 25%;
+	padding-top: 150px;
 	background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -608,6 +610,7 @@
 	flex-wrap: wrap;
 	/* vertical-align: middle; */
 	margin-bottom: 10px;
+	width: 900px;
 }
 
 .orderDetailNum {
@@ -621,23 +624,29 @@
 
 .refund {
 	width: 100%;
-	background-color: #a0a0a0;
-	border: none;
-	border-radius: 5px;
-	color: white;
+    background-color: #a0a0a0;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    height: 30px;
+    line-height: initial !important;
 }
-
+.refund:hover{
+	background-color: #505050;
+}
 .olRefundH5 {
 	
 }
 
 .olContentBigBox {
-	
+	width: 915px;
+	max-height: 300px;
+	overflow: auto;
 }
 
 .olCloseBox {
 	text-align: center;
-	margin-top: 15px;
+	margin-top: 5px;
 	padding-top: 25px;
 	border-top: 1px solid #505050;
 }
@@ -649,6 +658,9 @@
 	color: white;
 	border-radius: 5px;
 	border: none;
+}
+.olCloseBtn:hover{
+	background-color: #505050;
 }
 
 .olTopestBox {
@@ -662,6 +674,15 @@
 	border-bottom: 3px solid #ffc828;
 	display: inline-block;
 	color: #282828;
+}
+
+.olTextRight {
+	text-align: right;
+}
+
+.olOverFlowBox {
+	width: 900px;
+	overflow: hidden;
 }
 
 /*<<Start of freeboard_Footer>>*/

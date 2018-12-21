@@ -26,36 +26,39 @@
 					<h3 class="olTop olRefund">반품</h3>
 				</div>
 				
-				<div class="olContentBigBox"> 
-				<c:forEach var="orderVO" items="${orderVOList}">
-					
-					<div class="olUnit">
-						<h5 class="orderDetailNum olOrderNum" name="${orderVO.orderDetailNum}">${orderVO.orderSeq}</h5>
-						<div class="orderDetailNum olGoodsImg" name="${orderVO.orderDetailNum}">
-							<img class="myPageOrderImg" alt="이미지가 없습니다."	onerror="this.src='<%=request.getContextPath()%>/img/noImage.png'"
-										 src="${orderVO.goodsPhoto}">
+				<div class="olOverFlowBox">
+					<div class="olContentBigBox"> 
+					<c:forEach var="orderVO" items="${orderVOList}">
+						
+						<div class="olUnit">
+							<h5 class="orderDetailNum olOrderNum" name="${orderVO.orderDetailNum}">${orderVO.orderSeq}</h5>
+							<div class="orderDetailNum olGoodsImg" name="${orderVO.orderDetailNum}">
+								<img class="myPageOrderImg" alt="이미지가 없습니다."	onerror="this.src='<%=request.getContextPath()%>/img/noImage.png'"
+											 src="${orderVO.goodsPhoto}">
+							</div>
+							<h5 class="orderDetailNum olGoodsNo" name="${orderVO.orderDetailNum}">${orderVO.goodsNo}</h5>
+							<h5 class="orderDetailNum olGoodsName" name="${orderVO.orderDetailNum}">${orderVO.goodsName}</h5>
+							<h5 class="orderDetailNum olQuan" name="${orderVO.orderDetailNum}">${orderVO.quantity}</h5>
+							<h5 class="orderDetailNum olOption1" name="${orderVO.orderDetailNum}">${orderVO.opt1Name}</h5>
+							<h5 class="orderDetailNum olOption2" name="${orderVO.orderDetailNum}">${orderVO.opt2Name}</h5>
+							<h5 class="orderDetailNum olSumPrice olTextRight" name="${orderVO.orderDetailNum}">
+							<fmt:formatNumber value="${orderVO.salePrice}" pattern="#,###"/>원</h5>
+							<div class="orderDetailNum olRefund" name="${orderVO.orderDetailNum}">
+								<c:choose>
+									<c:when test="${orderVO.refund == 0}">
+										<button class="refund" orderDetailNum="${orderVO.orderDetailNum}" orderSeq="${orderVO.orderSeq}" value="1">반품 요청</button>
+									</c:when>
+									<c:when test="${orderVO.refund == 1}">
+										<button class="refund" orderDetailNum="${orderVO.orderDetailNum}" orderSeq="${orderVO.orderSeq}" value="0">반품 철회</button>
+									</c:when>
+									<c:when test="${orderVO.refund == 2}">
+										<h5 class="olRefundH5">반품 완료</h5>
+									</c:when>
+								</c:choose>
+							</div>
 						</div>
-						<h5 class="orderDetailNum olGoodsNo" name="${orderVO.orderDetailNum}">${orderVO.goodsNo}</h5>
-						<h5 class="orderDetailNum olGoodsName" name="${orderVO.orderDetailNum}">${orderVO.goodsName}</h5>
-						<h5 class="orderDetailNum olQuan" name="${orderVO.orderDetailNum}">${orderVO.quantity}</h5>
-						<h5 class="orderDetailNum olOption1" name="${orderVO.orderDetailNum}">${orderVO.opt1Name}</h5>
-						<h5 class="orderDetailNum olOption2" name="${orderVO.orderDetailNum}">${orderVO.opt2Name}</h5>
-						<h5 class="orderDetailNum olSumPrice" name="${orderVO.orderDetailNum}">${orderVO.salePrice}</h5>
-						<div class="orderDetailNum olRefund" name="${orderVO.orderDetailNum}">
-							<c:choose>
-								<c:when test="${orderVO.refund == 0}">
-									<button class="refund" orderDetailNum="${orderVO.orderDetailNum}" orderSeq="${orderVO.orderSeq}" value="1">반품 요청</button>
-								</c:when>
-								<c:when test="${orderVO.refund == 1}">
-									<button class="refund" orderDetailNum="${orderVO.orderDetailNum}" orderSeq="${orderVO.orderSeq}" value="0">반품 철회</button>
-								</c:when>
-								<c:when test="${orderVO.refund == 2}">
-									<h5 class="olRefundH5">반품 완료</h5>
-								</c:when>
-							</c:choose>
-						</div>
+					</c:forEach>
 					</div>
-				</c:forEach>
 				</div>
 				<div class="olCloseBox">
 					<button class="olCloseBtn">닫기</button>
