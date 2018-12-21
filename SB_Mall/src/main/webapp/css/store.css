@@ -242,7 +242,7 @@ h1,h2,h3{
 }
 #boardSelector li{
 	height: 40px;
-	border: 1px solid #e0e0e0;
+	border: 1px solid #f0f0f0;
 }
 .goodsOptUl>li>label{
 	line-height: 40px;
@@ -281,7 +281,7 @@ h1,h2,h3{
 }
 
 #insCartList>li>div{
-	background-color: #e0e0e0;
+	background-color: #f0f0f0;
 	border: 1px solid #c8c8c8;
 }
 .insCartNumBtn{
@@ -626,7 +626,7 @@ h1,h2,h3{
 	height: 32px;
 	padding:2px 5px;
 	color: #707070;
-	border: 2px solid #cccccc;
+	border: 2px solid #f0f0f0;
 	border-radius: 3px;
 }
 #summerTitle{
@@ -665,7 +665,7 @@ h1,h2,h3{
 	width: 75%;
 	height: 32px;
 	vertical-align:middle;
-	border: 2px solid #cccccc;
+	border: 2px solid #f0f0f0;
 	border-radius: 5px;
 	margin:  10px 5px;
 	color: #707070;
@@ -739,15 +739,13 @@ h1,h2,h3{
 .goodsListItem span{
 	margin: auto 0;
 }
-.goodsListItem:hover{
-	background-color: #e0e0e0 !important;
+.goodsListItem span button:nth-child(1){
+	margin-right: 5px;
 }
-/* .goodsListItem button{
-	background-color: white;
-	border: 1px solid #c8c8c8;
-	padding: 5px;
-	margin-right: 10px;
-} */
+.goodsListItem:hover{
+	background-color: #f2f2f2 !important;
+}
+
 .boardEditorBtn{
 	color: white;
 	background-color: #505050;
