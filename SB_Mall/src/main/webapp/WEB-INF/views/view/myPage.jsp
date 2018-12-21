@@ -86,6 +86,12 @@
 	</div><!-- End of div freeboard_Content-->
 	
 <!-- 	주문 목록 Ajax로 불러온다.-->
+	<div class="tableNameBox">
+		<select id="tableName">
+			<option value="OrderDetail" selected="selected">일반주문</option>
+			<option value="CrowdOrderDetail">얼리버드</option>
+		</select>
+	</div>
 	<div id="loadOrderDetailList"></div>
 
 <!-- Modal: 회원수정 -->

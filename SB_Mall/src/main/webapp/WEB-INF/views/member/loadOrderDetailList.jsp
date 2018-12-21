@@ -10,13 +10,6 @@
 	</c:when>
 	<c:otherwise>
 		<div id="orderPage">
-			<div class="tableNameBox">
-				<select id="tableName">
-					<option value="OrderDetail" selected="selected">일반주문</option>
-					<option value="CrowdOrderDetail">얼리버드</option>
-				</select>
-			</div>
-				
 			<div class="modTopBox">
 				<h4 class="modTable modDate">주문일</h4>
 				<h4 class="modTable modOrderNum">주문상세번호</h4>
