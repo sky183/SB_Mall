@@ -161,11 +161,10 @@ $('.page').click(function() {
 	loadOrderDetailList(pageNumber);
 });
 
-//테이블 선택하면 리로딩한다.ㄴ
+//테이블 선택하면 리로딩한다.
 $('#tableName').change(function() {
 	$(this).unbind();
-	var pageNumber = $(this).attr('name');
-	loadOrderDetailList(pageNumber);
+	loadOrderDetailList(1);
 });
 
 //테이블 td 클릭시 해당 주문 조회
