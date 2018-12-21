@@ -14,7 +14,7 @@
 <script>
 	$(function(){
 		$("#loginBtn").click(function(){
-			location.href='/mall/member/login';
+			location.href='<%=request.getContextPath()%>/member/login';
 		})
 	})
 </script>

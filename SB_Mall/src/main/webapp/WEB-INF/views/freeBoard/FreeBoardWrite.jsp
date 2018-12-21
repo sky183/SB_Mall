@@ -44,8 +44,8 @@ function sendCode() {
 </script>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<div class="midBannerBox">
-	<h3 class="rowdWriteBannerH3">글쓰기</h3>
+<div class="commonBannerBox">
+<h3 class="rowdCommonBannerH3">글쓰기</h3>
 </div>
 <form method="POST" action="insert" id="freeBoard_form_id">
 <div id="freeboard_wrap_1">

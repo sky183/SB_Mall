@@ -47,7 +47,7 @@ function sendCode() {
 
 <body>
 <div class="commonBannerBox">
-	<h3 class="rowdCommonBannerH3">자유게시판</h3>
+<h3 class="rowdCommonBannerH3">자유게시판</h3>
 </div>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 

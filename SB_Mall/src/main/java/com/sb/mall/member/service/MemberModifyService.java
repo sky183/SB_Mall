@@ -53,16 +53,16 @@ public class MemberModifyService {
 	}// end of Method(memberModify_end)
 	
 	public void modifyMemberPw(MemberInfo memberInfo) {
-		String pw = memberInfo.getUserPw();
+//		String pw = memberInfo.getUserPw();
 		memberDao = sessionTemplate.getMapper(MemberDao.class);
-		if(pw!=null) {
-			try {
-				memberInfo.setUserPw(aes256Util.encrypt(pw));
+//		if(pw!=null) {
+//			try {
+//				memberInfo.setUserPw(aes256Util.encrypt(pw));
 				memberDao.updatePw(memberInfo);
-			} catch (UnsupportedEncodingException | GeneralSecurityException e) {
-				e.printStackTrace();
-			}
-		}
+//			} catch (UnsupportedEncodingException | GeneralSecurityException e) {
+//				e.printStackTrace();
+//			}
+//		}
 	}// end of Method(memberModify_end)
 
 }
