@@ -86,10 +86,10 @@
 			<ul class="pagination pg-dark">
 				<c:choose>
 					<c:when test="${viewData.currentPageNumber == 1}">
-						<li class="page-item"><a class="page-link">Previous</a></li>
+						<li class="page-item pagePrevious"><a class="page-link">Previous</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="page-item"><a class="page page-link"
+						<li class="page-item pagePrevious"><a class="page page-link"
 							name="${viewData.currentPageNumber - 1}">Previous</a></li>
 					</c:otherwise>
 				</c:choose>
@@ -107,7 +107,7 @@
 								name="${i.index}">${i.index}</a></li>
 							</c:when>
 							<c:otherwise>
-								<li class="page-item"><a class="page page-link"
+								<li class="page-item pageSpare"><a class="page page-link"
 								name="${i.index}">${i.index}</a></li>
 							</c:otherwise>
 							</c:choose>
@@ -117,10 +117,10 @@
 				
 				<c:choose>
 					<c:when test="${viewData.currentPageNumber == viewData.pageTotalCount}">
-						<li class="page-item"><a class="page-link">Next</a></li>
+						<li class="page-item pageNext"><a class="page-link">Next</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="page-item"><a class="page page-link"
+						<li class="page-item pageNext"><a class="page page-link"
 							name="${viewData.currentPageNumber + 1}">Next</a></li>
 					</c:otherwise>
 				</c:choose>
@@ -143,6 +143,7 @@ function loadOrderList(orderDetailNum){
 	    },
 		success : function(data) {
 			$('#loadOrderList').html(data);
+			$('#loadOrderList').show();
 		}
 	});
 };

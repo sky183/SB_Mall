@@ -42,7 +42,7 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>
 
-		<!-- Logging -->
+		<!-- Logging 로그찍기-->
 		<dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -65,7 +65,7 @@
             </exclusions>
         </dependency>
         
-        <!-- sql logger -->
+        <!-- sql logger 로그찍기-->
 		<dependency>
 			<groupId>org.lazyluke</groupId>
 			<artifactId>log4jdbc-remix</artifactId>
