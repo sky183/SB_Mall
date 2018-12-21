@@ -63,11 +63,27 @@
 		base-package="com.sb.mall" />
 
 	<beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!-- 
 		<beans:property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<beans:property name="jdbcUrl" value="jdbc:mysql://sb-mall.cu5prbfi9jue.ap-northeast-2.rds.amazonaws.com/SB_Master?useSSL=false&amp;characterEncoding=utf8" />
+		 -->
+		<beans:property name="driverClass" value="net.sf.log4jdbc.DriverSpy" />
+		<beans:property name="jdbcUrl" value="jdbc:log4jdbc:mysql://sb-mall.cu5prbfi9jue.ap-northeast-2.rds.amazonaws.com/SB_Master?useSSL=false&amp;characterEncoding=utf8" />
+		
 		<beans:property name="user" value="SB_Master" />
 		<beans:property name="password" value="qpqp1010-" />
 	</beans:bean>
+	
+	<!-- 콘솔 로그찍기 -->
+	<beans:bean  id="dataSource_log" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+    	<beans:constructor-arg ref="dataSource" />
+    	<beans:property name="logFormatter">
+    	<beans:bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+    		<beans:property name="loggingType" value="MULTI_LINE" />
+    		<beans:property name="sqlPrefix" value="SQL::: " /> 
+    	</beans:bean> 
+    	</beans:property> 
+	</beans:bean >
 
 
 	<!-- PlatformTransactionManager 빈 설정 -->

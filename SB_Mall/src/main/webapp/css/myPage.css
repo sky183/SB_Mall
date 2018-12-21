@@ -17,8 +17,8 @@
 .all_Button{
     font-weight: bold;
     border-radius: 5px;
-    color: #505050;
-    background-color: #f0f0f0;
+    color: white;
+    background-color: #a0a0a0;
     border: none;
     width: 245px;
     height: 40px;
@@ -217,6 +217,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     width: 260px;
+    box-sizing: border-box;
     border: 1px solid #787878;
 }
 .modal1Input{
@@ -264,14 +265,17 @@
     border: none;
 }
 #orderPage{
-	width: 1000px;
-	margin: 30px auto;
+    width: 1000px;
+    margin: 30px auto;
+    margin-top: 70px;
+    border-bottom: 1px solid #505050;
+    padding-bottom: 10px;
 }
 #orderDetailTable{
 	border-collapse: collapse;
 }
 #orderDetailTable th, #orderDetailTable td{
-	border: thin solid #282828;
+	/* border: thin solid #282828; */
 }
 #orderDetailTable tr:not(:first-child):hover{
 	cursor: pointer;
@@ -287,19 +291,140 @@
 	width: 1000px;
 	margin: 30px auto;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+#orderTable{
+	
+}
+.myOrderTopBox{
+	
+}
+.myOrderContent{
+	
+}
+.orderDetailNum{
+    font-size: 10pt;
+    padding: 5px 10px;
+}
+.myGoodsAddress{
+	width: 35%;
+}
+.myGoodsName{
+	width: 20%;
+}
+.myPageOrderImg{
+	
+}
+.pagination{
+	text-align: center;
+}
+.page-item{
+    display: inline-block;
+    cursor: pointer;
+	
+}
+.page-link{
+    color: #505050;
+}
+#currentPage{
+	line-height: 30px;
+    color: white;
+}
+.tableName{
+	
+}
+.odPrice{
+	
+}
+.modTopBox{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #505050;
+    margin-bottom: 8px;
+    padding-bottom: 3px;
+}
+.modTable{
+	display: inline-block;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14pt;
+}
+.modDate{
+	width: 8%;
+}
+.modOrderNum{
+    width: 12%;
+}
+.modAddress{
+	width: 38%;
+}
+.modGoodsName{
+	width: 12%;
+}
+.modPayment{
+	width: 6%;
+}
+.modStatus{
+	width: 7%;
+}
+.modOrderPrice{
+	width: 10%;
+}
+.myOrderUnit{
+	display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.myOrderUnit:hover{
+	background-color: #dcdcdc;
+	cursor: pointer;
+}
+.myOrderPixel{
+    display: inline-block;
+    padding:10px 0;
+    font-size: 14pt;
+}
+.pixelDate{
+	width: 8%;
+}
+.pixelOrderNum{
+	width: 12%;
+}
+.pixelAddress{
+	width: 38%;
+}
+.pixelGoodsName{
+	width: 12%;
+}
+.pixelPayment{
+	width: 6%;
+	text-align: center;
+}
+.pixelStatus{
+	width: 7%;
+	text-align: center;
+}
+.pixelOrderPrice{
+	width: 10%;
+	text-align: right;
+}
+.myOrderList{
+    font-size: 10pt;
+    font-weight: normal;
+    color: #282828;
+}
+.activePaging{
+	background-color: #505050 !important;
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    /* padding: 5px; */
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+.tableNameBox{
+	
+}
 
 
 
