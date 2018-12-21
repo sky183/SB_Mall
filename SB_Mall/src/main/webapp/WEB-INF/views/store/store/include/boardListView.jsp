@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(document).ready(function() {
-		
+		$('.BoardListViewCnt,.BoardListDetail').addClass('testColor');
 	});
 	function numComma(x) {
     	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

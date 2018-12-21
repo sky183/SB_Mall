@@ -237,6 +237,7 @@ var addGoodsList= function() {
 	}
 	
 	$('<div/>').attr({
+		'class':'testBackGround',
 		id:'insCartBox'+insCnt,
 		style:'overflow:hidden'
 	}).appendTo('#insCartLi'+insCnt);
@@ -413,8 +414,7 @@ var removeGoodsList = function(e) {
 				$('#goodsOpt2List').show('fast');
 			}
 		});
-		
-	});
+	}); // end ready
 	
 	function imgError(e) {
 		e.src='<%=request.getContextPath()%>/img/noImage.png'

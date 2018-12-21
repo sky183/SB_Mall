@@ -28,6 +28,8 @@
         }
 	};
 	$(document).ready(function() { 
+		$('input,textarea').addClass('testBorder');
+		$('input,textarea').css('border-width','2px !important');
 		$('.rowdCommonBannerH3').text('상품등록');
 		$('#summernote').summernote({
 			  height: 750,                 // set editor height
@@ -298,6 +300,7 @@
 			id:'goodsOptionSel'+gi
 		}).appendTo('#goodsName'+gi);
 		$('<button>옵션삭제</button>').attr({
+			'class':'boardEditorBtn',
 			value:gNo,
 			onclick:'deleteOption(this,'+gi+')'
 		}).appendTo('#goodsName'+gi);
@@ -309,6 +312,7 @@
 			id:'goodsBTN'+gi
 		}).appendTo('#goodsList'+gi);
 		$('<button>X</button>').attr({
+			'class':'boardEditorBtn',
 			type:'button',
 			value:gNo,
 			onclick:'deleteGoods(this,'+gi+')'
