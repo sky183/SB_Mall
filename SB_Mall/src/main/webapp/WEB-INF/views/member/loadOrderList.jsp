@@ -26,7 +26,7 @@
 					<h3 class="olTop olRefund">반품</h3>
 				</div>
 				
-				<div class="olContentBigBox">
+				<div class="olContentBigBox"> 
 				<c:forEach var="orderVO" items="${orderVOList}">
 					
 					<div class="olUnit">
