@@ -149,7 +149,7 @@
       	$.ajax({
         	data: form_data,
         	type: "POST",
-        	url: 'http://52.79.226.226/file/upload/product',
+        	url: 'http://ec2-52-79-251-79.ap-northeast-2.compute.amazonaws.com/file/upload/product',
         	cache: false,
         	contentType: false,
         	enctype: 'multipart/form-data',
@@ -170,7 +170,7 @@
 	      $.ajax({
 	        data: form_data,
 	        type: "POST",
-	        url: 'http://52.79.226.226/file/upload/salesboard',
+	        url: 'http://ec2-52-79-251-79.ap-northeast-2.compute.amazonaws.com/file/upload/salesboard',
 	        contentType: false,
 	        processData: false,
 	        enctype: 'multipart/form-data',
@@ -192,7 +192,7 @@
 	      $.ajax({
 	        data: form_data,
 	        type: "POST",
-	        url: 'http://52.79.226.226/file/upload/goods',
+	        url: 'http://ec2-52-79-251-79.ap-northeast-2.compute.amazonaws.com/file/upload/goods',
 	        contentType: false,
 	        processData: false,
 	        enctype: 'multipart/form-data',
