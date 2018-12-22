@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -14,7 +14,7 @@
 <script>
 	$(function(){
 		$("#loginBtn").click(function(){
-			location.href='/mall/member/login';
+			location.href='<%=request.getContextPath()%>/member/login';
 		})
 	})
 </script>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
 </style>
 <title>Insert title here</title>
@@ -47,7 +47,7 @@ function sendCode() {
 
 <body>
 <div class="commonBannerBox">
-	<h3 class="rowdCommonBannerH3">자유게시판</h3>
+<h3 class="rowdCommonBannerH3">자유게시판</h3>
 </div>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 

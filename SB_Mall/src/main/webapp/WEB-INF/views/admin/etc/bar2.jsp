@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
     <meta http-equiv="content-type" content="charset=utf-8;"/>
 	   	<!-- Basic style components -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/jui/jui/dist/ui.min.css" />

@@ -61,7 +61,7 @@ public class MemberLoginMailService {
         		 "<hr><br>" +
         		 "<h3>임시비밀번호:"+pw+"</h3><br>"+
         		 "<hr><br>" +
-        		 "<a href=\"http://localhost/mall/member/login\">사이트로 이동하시려면 클릭하세요</a>";
+        		 "<a href=\"http://http://ec2-52-79-251-79.ap-northeast-2.compute.amazonaws.com/member/login\">사이트로 이동하시려면 클릭하세요</a>";
 
          message.setText(htmlStr, "utf-8", "html");
 

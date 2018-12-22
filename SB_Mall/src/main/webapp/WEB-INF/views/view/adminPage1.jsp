@@ -29,7 +29,7 @@ ArrayList<Object> monthArr = new ArrayList<Object>();
 %>
 <!DOCTYPE html>
 <html>
-<head>
+<head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">

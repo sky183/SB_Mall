@@ -7,7 +7,7 @@ response.setHeader("Content-Disposition","attachment; filename="+new String((fil
 response.setHeader("Content-Description", "JSP Generated Data");
 %>
 <html>
-<head>
+<head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
     <title></title>
     <style>
         * {

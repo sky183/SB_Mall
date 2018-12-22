@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/subway.css">
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>

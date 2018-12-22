@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
 <title>Weather api</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/weather-icons/css/weather-icons-wind.css">

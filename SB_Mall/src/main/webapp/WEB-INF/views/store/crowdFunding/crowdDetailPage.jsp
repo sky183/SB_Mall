@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/crowdDetail.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/crowdReply.css">
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
-<head>
+<head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
 <script type="text/javascript">
 	var goodsList = 0;
