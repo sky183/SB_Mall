@@ -23,12 +23,11 @@ public class VisitCountInterceptor extends HandlerInterceptorAdapter {
 
 		homeDao = sqlSessionTemplate.getMapper(HomeDao.class);
 
-		
 		HttpSession session = request.getSession();
-		//세션에 방문자수 카운트가 되어있으면 통과 없으면 카운트한다.
-		Boolean userCount = (Boolean)session.getAttribute("userCount");
-		
-		if (userCount != null) {
+		// 세션에 방문자수 카운트가 되어있으면 통과 없으면 카운트한다.
+		Boolean userCount = (Boolean) session.getAttribute("userCount");
+
+		if (userCount != null && userCount) {
 			return userCount;
 		}
 
@@ -36,10 +35,15 @@ public class VisitCountInterceptor extends HandlerInterceptorAdapter {
 			homeDao.visitToday();
 		} catch (Exception e) {
 		} finally {
-			homeDao.visitCount();
+			try {
+				homeDao.visitCount();
+				session.setAttribute("userCount", true);
+			} catch (Exception e2) {
+				session.setAttribute("userCount", false);
+			}
 		}
 
-		session.setAttribute("userCount", true);
+		
 
 		return true;
 
