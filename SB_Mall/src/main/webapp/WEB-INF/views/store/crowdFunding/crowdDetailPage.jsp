@@ -524,7 +524,7 @@
 					
 				</div>
 			</div>
-			
+			 
 			<!--  상품 정보  -->
 			<div class="BDInfoLayout">
 				<!-- productNo -->
