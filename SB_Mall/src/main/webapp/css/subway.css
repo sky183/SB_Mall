@@ -4,12 +4,13 @@
 	margin: 0px;
 }
 #SubwayTimeBigBox{
-	    display: none;
+	display: none;
     width: 100%;
     position: fixed;
     height: 100%;
-    top: 10%;
+    top: 0px;
     background-color: rgba(0,0,0,0.5);
+    padding-top: 10%;
 }
 
 #SubwayTimeMidBox{
@@ -87,11 +88,12 @@
 .timeBoxDir{
     display: inline-block;
     width: 300px;
+    
 }
 .dirUp, .dirDown{
 	overflow: auto;
     width: 100%;
-    height: 400px;
+    height: 250px;
     display: inline-block;
     /* border-top: 2px solid #a0a0a0; */
     margin-top: 10px;
