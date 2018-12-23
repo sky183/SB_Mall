@@ -51,7 +51,7 @@
 	      	$.ajax({
 	        	data: form_data,
 	        	type: "POST",
-	        	url: 'http://ec2-52-79-251-79.ap-northeast-2.compute.amazonaws.com/file/upload/crsalesboard',
+	        	url: 'http://sbmallstore.com/file/upload/crsalesboard',
 	        	cache: false,
 	        	contentType: false,
 	        	enctype: 'multipart/form-data',
@@ -402,7 +402,7 @@
 	      	$.ajax({
 	        	data: form_data,
 	        	type: "POST",
-	        	url: 'http://ec2-52-79-251-79.ap-northeast-2.compute.amazonaws.com/file/upload/crproduct',
+	        	url: 'http://sbmallstore.com/file/upload/crproduct',
 	        	contentType: false,
 	        	processData: false,
 	        	enctype: 'multipart/form-data',
@@ -428,7 +428,7 @@
 	      	$.ajax({
 	        	data: form_data,
 	        	type: "POST",
-	        	url: 'http://ec2-52-79-251-79.ap-northeast-2.compute.amazonaws.com/file/upload/crproduct',
+	        	url: 'http://sbmallstore.com/file/upload/crproduct',
 	        	contentType: false,
 	        	processData: false,
 	        	enctype: 'multipart/form-data',
@@ -451,7 +451,7 @@
 	      	$.ajax({
 	        	data: form_data,
 	        	type: "POST",
-	        	url: 'http://ec2-52-79-251-79.ap-northeast-2.compute.amazonaws.com/file/upload/crgoods',
+	        	url: 'http://sbmallstore.com/file/upload/crgoods',
 	        	contentType: false,
 	        	processData: false,
 	        	enctype: 'multipart/form-data',

@@ -518,7 +518,7 @@
 					
 					<c:forEach var="photo" begin="1" end="${photoCnt}" step="1">
 						<div class="thumMiniBox">
-							<img class="thumImg" src="http://ec2-52-79-251-79.ap-northeast-2.compute.amazonaws.com/file/crproduct/1543288924349noImage2.png">
+							<img class="thumImg" src="http://sbmallstore.com/file/crproduct/1543288924349noImage2.png">
 						</div>
 					</c:forEach>
 					
