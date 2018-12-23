@@ -79,7 +79,7 @@
 				</select>
 				<c:if test="${memberInfo.gradeNum>=3}">
 					<a class="storeBtn storeWriteBtn boardEditorBtn" 
-						href="<%=request.getContextPath()%>/store/write">상픔등록</a>
+						href="<%=request.getContextPath()%>/store/write">상품등록</a>
 				</c:if>
 		</div>
 		<div class="storeListView">

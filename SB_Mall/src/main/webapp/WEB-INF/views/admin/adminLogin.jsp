@@ -6,7 +6,7 @@
 <html>
 <head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
-<title>Login</title>
+<title>통합 관리자 : 로그인</title>
 <%@ include file="/WEB-INF/views/admin/common/adminheader.jsp"%>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.cookie.js"></script>

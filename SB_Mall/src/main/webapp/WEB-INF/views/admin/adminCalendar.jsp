@@ -10,7 +10,7 @@
 <html>
 <head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
-<title>매출관리</title>
+<title>통합 관리자 : 일정 관리</title>
 <!-- 헤더 삽입 -->
 <%@ include file="/WEB-INF/views/admin/common/adminheader.jsp"%>
 <link rel="stylesheet"
