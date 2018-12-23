@@ -197,7 +197,7 @@ $('.memberModify').click(function() {
 	        alert("장난치삼?");
 	    },
 		success : function(data) {
-			var size = $(data).filter('.myModalUnit').length;
+			var size = $(data).find('.myModalUnit').length;
 			
 			if(size!=0){
 				$('.modal-body').html(data);
