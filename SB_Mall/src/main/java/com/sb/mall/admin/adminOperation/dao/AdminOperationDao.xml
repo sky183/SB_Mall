@@ -240,7 +240,7 @@
 		SELECT
 		DATE(od.orderTime) orderTime,
 		COUNT(*) orderCount,
-		IFNULL(SUM(vg.visitCount), 0) visitCount,
+		IFNULL(vg.visitCount, 0) visitCount,
 		SUM(od.totalAmount)
 		amount
 		FROM

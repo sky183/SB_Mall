@@ -116,7 +116,7 @@
 	</div><!-- userName_ID&userBirthday_ID_wrap -->
 	
 	<div id="phoneNumber_IDuserGender_ID_wrap">
-	<div style="justify-content: space-between; flex-wrap: wrap; display: flex;">
+	<div style="justify-content: space-between; flex-wrap: wrap;">
 		<!-- 폰번호 입력 테그 -->
 		<input type="text"
 			id="phoneNumber_ID" class="all_Input"
@@ -138,7 +138,7 @@
 	</div><!-- End of phoneNumber_IDuserGender_ID_wrap -->
 	
 	<div id="content_addressAPI_wrap">
-	<div style="justify-content: space-between; flex-wrap: wrap; display: flex;">
+	<div style="justify-content: space-between; flex-wrap: wrap;">
 		<!-- 우편번호 -->
 		<input type="text" id="zipNo" class="all_Input"
 			placeholder="우편번호" name="zipCode" required

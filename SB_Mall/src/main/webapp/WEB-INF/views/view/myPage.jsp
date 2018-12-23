@@ -263,8 +263,7 @@ $('.memberDelete').click(function() {
 	    },
 		success : function(result) {
 			alert(result);
-			$('#viewList').empty();
-			$('#viewList').load('<%=request.getContextPath()%>' + '/memberList');  
+			location.href= '<%=request.getContextPath()%>/';
 		}
 	});
 	}

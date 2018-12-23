@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- 중단 당일 통계 리포트-->
 <div id="mainMid">
-	<div id="dashbord">
+	<div id="dashbord" class="testBorder">
 		<ul>
 			<li class="statTopReport">
 				<div class="utitle fon13">오늘 방문수</div> <strong class="uresult">${visitStatVO.dayCount}</strong>
@@ -16,7 +16,7 @@
 					</c:otherwise>
 				</c:choose>
 			</li>
-			<li class="statTopReport uitem">
+			<li class="statTopReport uitem testBorder">
 				<div class="utitle">월간 방문수</div> <strong class="uresult">${visitStatVO.monthCount}</strong>
 				<c:choose>
 					<c:when test="${today}">
@@ -52,7 +52,7 @@
 		</ul>
 	</div>
 
-	<div id="chartwrap"></div>
+	<div id="chartwrap" class="testBorder"></div>
 
 	<!-- salesReport의 끝 -->
 </div>
