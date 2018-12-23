@@ -4,7 +4,7 @@
 <html>
 <head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
-<title>Cart</title>
+<title>Order Complete</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/store.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>

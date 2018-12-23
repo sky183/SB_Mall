@@ -4,7 +4,7 @@
 <html>
 <head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
-<title>Cart</title>
+<title>Store Modify</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/store.css">
 </head>
