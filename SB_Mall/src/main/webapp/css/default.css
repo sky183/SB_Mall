@@ -25,6 +25,7 @@ body{
 }
 button{
 	line-height: inherit !important;
+	cursor: pointer;
 }
 a {
 	text-decoration: none !important;
@@ -794,7 +795,9 @@ a {
 	
 	
 }
-
+.modal-dialog{
+	top: 25%;
+}
 
 
 
