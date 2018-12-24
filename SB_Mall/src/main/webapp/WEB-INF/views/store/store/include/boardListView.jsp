@@ -21,7 +21,7 @@
 		<c:forEach var="productList" items="${viewList.storeList}">
 			<a href="<%=request.getContextPath()%>/store/board/${productList.salesSeq}"
 				class="nodeco"> 
-			<span class="productListBox"> 
+			<span class="productListBox testHover"> 
 				<img src="${productList.photo}" alt="사진없음" class="productListThumb"
 					onerror="imgError(this)">
 					<span class="BoardListTitle">${productList.title}</span> 

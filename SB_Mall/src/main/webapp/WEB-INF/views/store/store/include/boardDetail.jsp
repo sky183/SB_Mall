@@ -332,7 +332,7 @@ var removeGoodsList = function(e) {
 						var gid = 'GoodsList'+key;
 						$('<li/>').attr({
 							id:gid,
-							'class':'goodsListItem goodsListSelect',
+							'class':'goodsListItem goodsListSelect testHover',
 							value:data[key].goodsNo,
 							onclick:'setGoodsBackColor(this)'
 						}).appendTo('#goodsList');

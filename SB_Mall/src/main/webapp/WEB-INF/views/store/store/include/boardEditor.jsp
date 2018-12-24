@@ -25,6 +25,7 @@
         if($(e).prop('checked')){
             console.log($(e).next().find('.goodsListItem').text());
             $(e).next().find('.goodsListItem').css('background-color', '#f0f0f0');
+            $(e).next().find('.goodsListItem').addClass('testBackGround');
         }
 	};
 	$(document).ready(function() { 
@@ -281,7 +282,7 @@
 			id:'goodsLabel'+gi
 		}).appendTo('#goodsListBox');
 		$('<span/>').attr({
-			'class':'goodsListItem',
+			'class':'goodsListItem testHover',
 			id:'goodsList'+gi
 		}).appendTo('#goodsLabel'+gi);
 		$('<span/>').attr({
@@ -357,11 +358,11 @@
 				<input type="file" name="uploadfile" onchange="fileUpload(this)"><br>
 				<!--  추가된 코드-->
 				<input type="hidden" id="filename" name="product.photo">
-				<span>대표제품이름</span>
+				<span>대표상품이름</span>
 				<input type="text" name="product.productName" id="productName"><br>
 				<span>최소가격</span>
 				<input type="number" name="product.price" value="0" min="0" oninput="mathABS(this)"><br>
-				<span>대표제품설명</span>
+				<span>대표상품설명</span>
 				<textarea rows="3" cols="22" name="product.detail" id="productDetail"></textarea><br>
 				<input type="hidden" name="salesBoard.text" id="text">
 			</form>
@@ -373,12 +374,12 @@
 		<div id="goodsUpload">
 			<div id="goodsFormBox">
 				<form id="goodsForm">
-					<span>제품이름</span>
+					<span>상품이름</span>
 					<input type="text" id="goodsName">
-					<span>제품가격</span>
+					<span>상품가격</span>
 					<input type="number" id="goodsPrice" value="0" min="0" oninput="mathABS(this)">
 					<br/>
-					<span>제품사진</span>
+					<span>상품사진</span>
 					<input type="file" id="goodsPhoto">
 				</form>
 				<button type="button" class="boardEditorBtn" type="button" onclick="addGoods()">상품추가</button>
@@ -404,7 +405,7 @@
 		</div>
 		
 		<div id="summernote"></div>
-		<button type="button" class="storeBtn storeWriteBtn boardEditorBtn" onclick="sendCode();">게시글등록</button>
+		<button type="button" class="storeBtn storeWriteBtn boardEditorBtn" onclick="sendCode();">판매글등록</button>
 	</div>
 </body>
 </html>
