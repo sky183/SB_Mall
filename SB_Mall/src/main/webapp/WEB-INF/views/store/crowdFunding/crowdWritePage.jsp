@@ -100,7 +100,7 @@
 						+'		<img class="rmtImg remoteImg'+goodsCount+'" src="<%=request.getContextPath()%>/img/noImage2.png"> <!-- 상품 이미지 -->'
 						+'	</span>'
 						+'	<span class="remoteNameBox">'
-						+'		<h5 class="rmtNm rmtTitle2">'+(Number(GCnt)+1)+'.&nbsp</h5><h5 class="rmtNm remoteName'+goodsCount+'">상품이름</h5><br>'
+						+'		<h5 class="rmtTitle2">'+(Number(GCnt)+1)+'.&nbsp</h5><h5 class="rmtNm remoteName'+goodsCount+'">상품이름</h5><br>'
 						+'		<h6 class="rmtPri remotePrice'+goodsCount+'">가격</h6>'
 						+'	</span>'
 						+'	<span class="remoteDelBox">'
@@ -706,12 +706,12 @@
 	</form>
 		<textarea name="content" id="summernote"></textarea>
 		<div class="writeCrowdBox">
-				<button class="writeBtn" onclick="sendCode();">글쓰기</button>
+				<button class="writeBtn" onclick="sendCode();">등록하기</button>
 		</div>
 </div>
 
 <div id="writeRemote">
-	<a onclick="addGoods()">상품추가</a>
+	<a class="remoteAddGoods" onclick="addGoods()">상품추가</a>
 	
 	<div class="remoteAddBox"> <!-- 상품 추가 박스 -->
 	
@@ -720,7 +720,7 @@
 				<img class="rmtImg remoteImg0" src="<%=request.getContextPath()%>/img/noImage2.png"> <!-- 상품 이미지 -->
 			</div>
 			<div class="remoteNameBox">
-				<h5 class="rmtNm rmtTitle2">1.&nbsp</h5><h5 class="rmtNm remoteName0">상품이름</h5><br>
+				<h5 class="rmtTitle2">1.&nbsp</h5><h5 class="rmtNm remoteName0">상품이름</h5><br>
 				<h6 class="rmtPri remotePrice0">가격</h6>
 			</div>
 			<div class="remoteDelBox">
