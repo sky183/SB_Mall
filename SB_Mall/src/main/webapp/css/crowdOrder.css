@@ -46,7 +46,7 @@
 }
 .orderUnitBox{
     padding: 15px 0;
-    border-bottom: 1px solid #dcdcdc;
+    border-bottom: 1px solid #a0a0a0;
 }
 .orderHeadBox{
     border-bottom: 3px solid #3c3c3c;
@@ -81,8 +81,8 @@
 	padding: 7px 0;
     /* background-color: #f0f0f0; */
     width: 100%;
-    border-bottom: 1px solid #dcdcdc;
-    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #a0a0a0;
+    border-top: 1px solid #a0a0a0;
 }
 .goodsInfoBox{
     width: 435px;
@@ -258,7 +258,7 @@
 }
 .ODinputBox{
     padding: 10px;
-    border: 1px solid #dcdcdc;
+    border: 1px solid #a0a0a0;
     border-radius: 5px;
     background-color: white;
 }
@@ -274,7 +274,7 @@
 }
 .ODzipCodeBox{
     padding: 10px;
-    border: 1px solid #dcdcdc;
+    border: 1px solid #a0a0a0;
     border-radius: 5px;
     background-color: white;
 }
@@ -285,7 +285,7 @@
 }
 .ODAddressBox{
 	padding: 10px;
-    border: 1px solid #dcdcdc;
+    border: 1px solid #a0a0a0;
     border-radius: 5px;
     background-color: white;
 }
@@ -384,7 +384,7 @@
 }
 .payInput{
     padding: 7px;
-    border: 1px solid #dcdcdc;
+    border: 1px solid #a0a0a0;
     border-radius: 5px;
 }
 .cardNoInput{
@@ -476,7 +476,7 @@
 .rowStep{
     width: 320px;
     padding: 20px;
-    border: 1px solid #dcdcdc;
+    border: 1px solid #a0a0a0;
     overflow: auto;
     height: 150px;
 }
