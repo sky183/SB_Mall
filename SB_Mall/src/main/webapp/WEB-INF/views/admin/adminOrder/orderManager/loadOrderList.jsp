@@ -115,7 +115,7 @@
 			<ul class="pagination pg-dark">
 				<c:choose>
 					<c:when test="${viewData.currentPageNumber == 1}">
-						<li class="page-item"><a class="page-link">Previous</a></li>
+						<li class="page-item"><a class="page-link disabled">Previous</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page page-link"
@@ -125,14 +125,14 @@
 				
 				<c:choose>
 					<c:when test="${viewData.pageTotalCount == 1}">
-						<li class="page-item active" style="back"><a id="currentPage" class="page-link" name="1">1<span class="sr-only">(current)</span></a></li>
+						<li class="page-item active"><a id="currentPage" class="page-link" name="1">1<span class="sr-only">(current)</span></a></li>
 					</c:when>
 					<c:otherwise>
-						<c:forEach varStatus="i" begin="1"
-							end="${viewData.pageTotalCount}">
+						<c:forEach varStatus="i" begin="${viewData.startPage}"
+							end="${viewData.endPage}">
 							<c:choose>
 							<c:when test="${i.index == viewData.currentPageNumber}">
-								<li class="page-item active" style="back"><a id="currentPage" class="page page-link"
+								<li class="page-item active"><a id="currentPage" class="page page-link"
 								name="${i.index}">${i.index}<span class="sr-only">(current)</span></a></li>
 							</c:when>
 							<c:otherwise>
@@ -146,7 +146,7 @@
 				
 				<c:choose>
 					<c:when test="${viewData.currentPageNumber == viewData.pageTotalCount}">
-						<li class="page-item"><a class="page-link">Next</a></li>
+						<li class="page-item"><a class="page-link disabled">Next</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page page-link"
@@ -202,22 +202,20 @@
 		}
 		
 		//페이지 번호를 클릭하면 다시 불러온다.
-		$('.page').click(function() {
-			$(this).unbind();
+		$('.page').off('click').click(function() {
 			var pageNumber = $(this).attr('name');
 			loadOrderList(pageNumber);
 		});
 		
 		//검색창에서 엔터를 누르면 다시 불러온다.
-		$('#search').keydown(function(key) {
+		$('#search').off('keydown').keydown(function(key) {
 			if (key.keyCode == 13) {
 				loadOrderList(1);
 			}
 		});
 		
 		//조회 버튼을 클릭하면 다시 불러온다.
-		$('#select').click(function() {
-			$(this).unbind();
+		$('#select').off('click').click(function() {
 			loadOrderList(1);
 			
 		});
@@ -237,7 +235,8 @@
 				data : JSON.stringify(orderBackVO),
 				contentType: "application/json",
 				error : function(error) {
-			        alert("Error!");
+					console.log(error);
+			        alert("잘못된주문입니다!");
 			    },
 				success : function(data) {
 					$('#rightContent').html(data);
@@ -249,7 +248,6 @@
 		
 		//테이블 td 클릭시 해당 주문 조회
 		$('.orderResult').on('click', function(){
-			$(this).unbind();
 			
 			//POST로 보낼 객체를 생성 후  키 값을 할당한다.
 			var orderBackVO = {};

@@ -95,7 +95,7 @@
 			<ul class="pagination pg-dark">
 				<c:choose>
 					<c:when test="${viewData.currentPageNumber == 1}">
-						<li class="page-item"><a class="page-link">Previous</a></li>
+						<li class="page-item"><a class="page-link disabled">Previous</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page page-link"
@@ -105,14 +105,14 @@
 				
 				<c:choose>
 					<c:when test="${viewData.pageTotalCount == 1}">
-						<li class="page-item active" style="back"><a id="currentPage" class="page-link" name="1">1<span class="sr-only">(current)</span></a></li>
+						<li class="page-item active"><a id="currentPage" class="page-link" name="1">1<span class="sr-only">(current)</span></a></li>
 					</c:when>
 					<c:otherwise>
-						<c:forEach varStatus="i" begin="1"
-							end="${viewData.pageTotalCount}">
+						<c:forEach varStatus="i" begin="${viewData.startPage}"
+							end="${viewData.endPage}">
 							<c:choose>
 							<c:when test="${i.index == viewData.currentPageNumber}">
-								<li class="page-item active" style="back"><a id="currentPage" class="page page-link"
+								<li class="page-item active"><a id="currentPage" class="page page-link"
 								name="${i.index}">${i.index}<span class="sr-only">(current)</span></a></li>
 							</c:when>
 							<c:otherwise>
@@ -126,7 +126,7 @@
 				
 				<c:choose>
 					<c:when test="${viewData.currentPageNumber == viewData.pageTotalCount}">
-						<li class="page-item"><a class="page-link">Next</a></li>
+						<li class="page-item"><a class="page-link disabled">Next</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page page-link"
@@ -180,21 +180,18 @@
 		}
 		
 		//페이지 번호를 클릭하면 다시 불러온다.
-		$('.page').click(function() {
-			$(this).unbind();
+		$('.page').off('click').click(function() {
 			var pageNumber = $(this).attr('name');
 			loadReturnList(pageNumber);
 		});
 		
 		//조회 버튼을 클릭하면 다시 불러온다.
-		$('#select').click(function() {
-			$(this).unbind();
+		$('#select').off('click').click(function() {
 			loadReturnList(1);
 		});
 		
 		//검색창에서 엔터를 누르면 다시 불러온다.
-		$('#search').keydown(function(key) {
-			$(this).unbind();
+		$('#search').off('keydown').keydown(function(key) {
 			if (key.keyCode == 13) {
 				loadReturnList(1);
 			}
@@ -206,8 +203,7 @@
 		});
 		
 		//선택한 항목을 업데이트
-		$('#update').on('click', function(){
-			$(this).unbind();
+		$('#update').off('click').on('click', function(){
 			
 			//선택한 항목을 배열로 만들어준다.
 		    var orderlength = $("input[name='orderSeq']:checked").length;
