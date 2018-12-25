@@ -148,7 +148,7 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					alert("error!");
 				},
 				success : function(data) {
-					alert(data);
+					alert("결제가 완료되었습니다.");
 					location.href="<%=request.getContextPath()%>/store";
 				}
 			});

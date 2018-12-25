@@ -436,7 +436,13 @@ var removeGoodsList = function(e) {
 				        alert("Error!");
 				    },
 					success : function(data) {
-						alert(data);
+						if(data=="200"){
+							alert("상품이 장바구니에 추가되었습니다.");
+						}else if(data=="500"){
+							alert("장바구니 추가에 실패하였습니다.(서버오류)");
+						}else{
+							alert("장바구니 추가에 실패하였습니다.(원인불명)");
+						}
 					}
 				});
 	}

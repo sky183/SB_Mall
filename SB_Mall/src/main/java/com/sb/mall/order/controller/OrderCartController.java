@@ -42,19 +42,17 @@ public class OrderCartController {
 	@ResponseBody
 	public String addCart(OrderOrderCommand orderCommand) {
 		ObjectMapper jackson = new ObjectMapper();
+		String msg = "";
 		try {
 			Map<String, List<Order>> map = new HashMap<>();
 			map.put("orders", orderCommand.getOrders());
 			String orders = jackson.writeValueAsString(map);
-			orderCartService.addCart(orders);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return "장바구니 추가에 실패하였습니다.";
+			msg=orderCartService.addCart(orders);
 		} catch (JsonProcessingException e1) {
 			e1.printStackTrace();
-			return "장바구니 추가에 실패하였습니다.";
+			return "400";
 		}
-		return "상품이 장바구니에 추가되었습니다.";
+		return msg;
 	}
 
 	@RequestMapping(value = "order/carts/delete", method = RequestMethod.POST)

@@ -22,9 +22,9 @@ public class OrderCartService {
 	private OrderDao orderDao;
 	
 	@Transactional
-	public void addCart(String orders) throws SQLException {
+	public String addCart(String orders) {
 		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
-		orderDao.upsertCart(orders);
+		return orderDao.upsertCart(orders).getResult();
 	}
 	
 	@Transactional

@@ -17,8 +17,7 @@ public class OrderOrderController {
 	@RequestMapping(value="order/orders/insert",method=RequestMethod.POST)
 	@ResponseBody
 	public String order(String orders) {
-		String msg = "결제가 완료되었습니다."; 
-		orderService.insertOrders(orders);
+		String msg = orderService.insertOrders(orders);
 		return msg; 
 	}
 	

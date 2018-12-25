@@ -4,8 +4,24 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sb.mall.order.dao.OrderDao">
 
-	<insert id="upsertCart" statementType="CALLABLE">
-		{ call insert_cartJson(#{orders}) }
+<!-- 	<resultMap type="HashMap" id="cartResult">
+		<result property="result" column="result"/>
+	</resultMap> -->
+	
+<!-- 	<parameterMap type="HashMap" id="cartParam">
+		<parameter property="orders" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="result" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+	</parameterMap> -->
+
+	<select id="upsertCart" statementType="CALLABLE" parameterType="com.sb.mall.order.model.OrderCartParam">
+		{call insert_cart(
+			#{orders,mode=IN},
+			#{result,mode=OUT,jdbcType=VARCHAR,javaType=java.lang.String}
+		)}
+	</select>
+	
+	<insert id="insertOrderSP" statementType="CALLABLE">
+		{ call insert_order2(#{orders},#{result,mode=OUT,jdbcType=VARCHAR}) }
 	</insert>
 
 	<delete id="deleteCart" parameterType="list">
@@ -25,11 +41,6 @@
 		and o.goodsNo=g.goodsNo and g.productSeq=p.productSeq and o.optionSeq=go.optionSeq;
 		</where>
 	</select>
-	
-	<insert id="insertOrderSP" statementType="CALLABLE">
-		{ call insert_order(#{orders}) }
-	</insert>
-	
 	
 	<select id="selectOrdersAll" resultType="com.sb.mall.order.model.Order">
 		SELECT * FROM `Order`

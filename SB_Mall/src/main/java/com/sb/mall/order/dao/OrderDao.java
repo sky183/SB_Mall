@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.sb.mall.order.model.Order;
+import com.sb.mall.order.model.OrderCartParam;
 import com.sb.mall.order.model.OrderDetail;
 import com.sb.mall.order.model.OrderItem;
 import com.sb.mall.store.model.Product;
@@ -11,9 +12,9 @@ import com.sb.mall.store.model.Product;
 public interface OrderDao {
 	
 	//사용중
-	public int upsertCart(String orders);
+	public OrderCartParam upsertCart(String orders);
 	public int deleteCart(List<Order> orders);
-	public void insertOrderSP(String orders);
+	public String insertOrderSP(String orders);
 	public int insertOrder(Order order);
 	
 	public List<Map<String,Object>> selectGoodsForOrder(List<OrderItem> orderItems); 

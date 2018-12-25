@@ -28,10 +28,9 @@ public class OrderService {
 		return orders;
 	}
 	
-	@Transactional
-	public void insertOrders(String orders) {
+	public String insertOrders(String orders) {
 		Dao = sessionTemplate.getMapper(OrderDao.class);
-		Dao.insertOrderSP(orders);
+		return Dao.insertOrderSP(orders);
 	}
 	
 }
