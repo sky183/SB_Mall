@@ -36,6 +36,9 @@ li {
     font-weight: normal;
     list-style: none;
 }
+a, li, div{
+	user-select: none;
+}
 /* table, th, td, tr { */
 /* 	border: 1px solid #787878; */
 /* } */

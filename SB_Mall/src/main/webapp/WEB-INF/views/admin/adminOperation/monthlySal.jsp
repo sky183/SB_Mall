@@ -104,26 +104,6 @@
 		//메뉴 및 서브메뉴에 css 적용 - 서브메뉴가 있을 경우 두번째 인자에 서브메뉴 태그 id 또는 클래스명을 넣는다. 0으로 하면 서브메뉴가 없는것
 		removeActive('#salReport', '#monthlySal');
 		
-		//loadMonthlySalReport.jsp를 불러오는 함수
-		function loadMonthlySalReport(pageNumber){
-			
-			var startDate = getFistDate($( "#startDate" ).val());
-			var endDate = getLastDate($( "#endDate" ).val());
-			var tableName = $('#tableName').val();
-			
-			$.ajax({
-				url : '<%=request.getContextPath()%>/admin/adminOperation/monthlySal/loadMonthlySalReport?startDate=' + startDate + '&endDate=' + endDate + '&tableName='+ tableName +'&pageNumber='+ pageNumber,
-				type : 'GET',
-				error : function(error) {
-			        alert("Error!");
-			    },
-				success : function(data) {
-					$('#loadMonthlySalReport').empty();
-					$('#loadMonthlySalReport').append(data);
-				}
-			});
-		}
-		
 		//다운로드 버튼을 누르면 엑셀로 다운받는다.
 		$('#excel').on('click', function(){
 			
