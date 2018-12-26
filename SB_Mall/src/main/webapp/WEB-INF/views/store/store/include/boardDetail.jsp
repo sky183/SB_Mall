@@ -237,7 +237,6 @@ var addGoodsList= function() {
 	}
 	
 	$('<div/>').attr({
-		'class':'testBackGround',
 		id:'insCartBox'+insCnt,
 		style:'overflow:hidden'
 	}).appendTo('#insCartLi'+insCnt);
@@ -266,8 +265,8 @@ var addGoodsList= function() {
 		'data-inscnt':insCnt,
 		oninput:'changeInsCartPrice(this)',
 		value:1,
-		min:0,
-		max:999
+		min:1,
+		max:999,
 	}).appendTo('#insCartNumberBox'+insCnt);
 	$('<button/>').attr({
 		'class':'insCartNumBtn',
@@ -332,7 +331,7 @@ var removeGoodsList = function(e) {
 						var gid = 'GoodsList'+key;
 						$('<li/>').attr({
 							id:gid,
-							'class':'goodsListItem goodsListSelect testHover',
+							'class':'goodsListItem goodsListSelect',
 							value:data[key].goodsNo,
 							onclick:'setGoodsBackColor(this)'
 						}).appendTo('#goodsList');
@@ -545,7 +544,10 @@ var removeGoodsList = function(e) {
 		e.value = Math.abs(e.value); //number 인풋에 자연수만 들어가도록 변경
 		if(e.value>9999){
 			e.value=9999;
+		}else if(e.value<1){
+			e.value=1;
 		}
+		
 		var calprice =$('#insCartPrice'+insCnt).attr('data-price')*e.value;
 		$('#insCartPrice'+insCnt).text(numberWithCommas(calprice)+"원");
 		$('#insCartPrice'+insCnt).attr('data-calprice',calprice);

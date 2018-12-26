@@ -25,11 +25,9 @@
         if($(e).prop('checked')){
             console.log($(e).next().find('.goodsListItem').text());
             $(e).next().find('.goodsListItem').css('background-color', '#f0f0f0');
-            $(e).next().find('.goodsListItem').addClass('testBackGround');
         }
 	};
 	$(document).ready(function() { 
-		$('input,textarea').addClass('testBorder');
 		$('input,textarea').css('border-width','2px !important');
 		$('.rowdCommonBannerH3').text('상품등록');
 		$('#summernote').summernote({
@@ -282,7 +280,7 @@
 			id:'goodsLabel'+gi
 		}).appendTo('#goodsListBox');
 		$('<span/>').attr({
-			'class':'goodsListItem testHover',
+			'class':'goodsListItem',
 			id:'goodsList'+gi
 		}).appendTo('#goodsLabel'+gi);
 		$('<span/>').attr({

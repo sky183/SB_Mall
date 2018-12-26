@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.BoardListViewCnt,.BoardListDetail').addClass('testColor');
 	});
 	function numComma(x) {
     	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -21,7 +20,7 @@
 		<c:forEach var="productList" items="${viewList.storeList}">
 			<a href="<%=request.getContextPath()%>/store/board/${productList.salesSeq}"
 				class="nodeco"> 
-			<span class="productListBox testHover"> 
+			<span class="productListBox"> 
 				<img src="${productList.photo}" alt="사진없음" class="productListThumb"
 					onerror="imgError(this)">
 					<span class="BoardListTitle">${productList.title}</span> 
