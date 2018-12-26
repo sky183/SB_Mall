@@ -4,7 +4,7 @@
 <html>
 <head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Q&A</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
 <link href="https://fonts.googleapis.com/css?family=Audiowide|Gothic+A1:900|Open+Sans:300,300i,400,400i" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">

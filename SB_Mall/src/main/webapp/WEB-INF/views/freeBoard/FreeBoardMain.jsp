@@ -7,7 +7,7 @@
 <html>
 <head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>자유게시판</title>
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/css/crowd.css">
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/css/freeBoardMain.css">
 </head>

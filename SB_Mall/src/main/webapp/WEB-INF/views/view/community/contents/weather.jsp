@@ -4,7 +4,7 @@
 <html>
 <head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
-<title>Weather api</title>
+<title>날씨</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/weather-icons/css/weather-icons-wind.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/weather-icons/css/weather-icons-wind.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/weather-icons/css/weather-icons.css">
