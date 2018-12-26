@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.order.dao.OrderDao;
 import com.sb.mall.order.model.Order;
+import com.sb.mall.order.model.OrderCartParam;
 
 @Repository
 public class OrderService {
@@ -28,9 +29,10 @@ public class OrderService {
 		return orders;
 	}
 	
-	public String insertOrders(String orders) {
+	public String insertOrders(OrderCartParam orderCartParam) {
 		Dao = sessionTemplate.getMapper(OrderDao.class);
-		return Dao.insertOrderSP(orders);
+		Dao.insertOrderSP(orderCartParam);
+		return orderCartParam.getResult();
 	}
 	
 }

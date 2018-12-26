@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sb.mall.order.model.OrderCartParam;
 import com.sb.mall.order.service.OrderService;
 
 @Controller
@@ -16,9 +17,8 @@ public class OrderOrderController {
 	
 	@RequestMapping(value="order/orders/insert",method=RequestMethod.POST)
 	@ResponseBody
-	public String order(String orders) {
-		String msg = orderService.insertOrders(orders);
-		return msg; 
+	public String order(OrderCartParam orderCartParam) {
+		return orderService.insertOrders(orderCartParam); 
 	}
 	
 }

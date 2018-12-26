@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sb.mall.order.model.Order;
+import com.sb.mall.order.model.OrderCartParam;
 import com.sb.mall.order.model.OrderOrderCommand;
 import com.sb.mall.order.service.OrderCartService;
 
@@ -42,12 +43,14 @@ public class OrderCartController {
 	@ResponseBody
 	public String addCart(OrderOrderCommand orderCommand) {
 		ObjectMapper jackson = new ObjectMapper();
+		OrderCartParam orderCartParam = new OrderCartParam();
 		String msg = "";
 		try {
 			Map<String, List<Order>> map = new HashMap<>();
 			map.put("orders", orderCommand.getOrders());
 			String orders = jackson.writeValueAsString(map);
-			msg=orderCartService.addCart(orders);
+			orderCartParam.setOrders(orders);
+			msg=orderCartService.addCart(orderCartParam);
 		} catch (JsonProcessingException e1) {
 			e1.printStackTrace();
 			return "400";

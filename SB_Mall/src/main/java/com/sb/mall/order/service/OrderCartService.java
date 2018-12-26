@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sb.mall.order.dao.OrderDao;
 import com.sb.mall.order.model.Order;
+import com.sb.mall.order.model.OrderCartParam;
 
 @Service
 public class OrderCartService {
@@ -22,9 +23,10 @@ public class OrderCartService {
 	private OrderDao orderDao;
 	
 	@Transactional
-	public String addCart(String orders) {
+	public String addCart(OrderCartParam orderCartParam) {
 		orderDao=sqlSessionTemplate.getMapper(OrderDao.class);
-		return orderDao.upsertCart(orders).getResult();
+		orderDao.upsertCart(orderCartParam);
+		return orderCartParam.getResult();
 	}
 	
 	@Transactional

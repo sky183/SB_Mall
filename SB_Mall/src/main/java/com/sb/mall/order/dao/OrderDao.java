@@ -12,9 +12,9 @@ import com.sb.mall.store.model.Product;
 public interface OrderDao {
 	
 	//사용중
-	public OrderCartParam upsertCart(String orders);
+	public void upsertCart(OrderCartParam orderCartParam);
 	public int deleteCart(List<Order> orders);
-	public String insertOrderSP(String orders);
+	public void insertOrderSP(OrderCartParam orderCartParam);
 	public int insertOrder(Order order);
 	
 	public List<Map<String,Object>> selectGoodsForOrder(List<OrderItem> orderItems); 

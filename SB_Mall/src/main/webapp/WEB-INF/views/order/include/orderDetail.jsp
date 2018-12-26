@@ -125,13 +125,19 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							alert("error!");
 						},
 						success : function(data) {
+							var msg = "결제에 실패하였습니다. DB오류, 에러코드 : "
+								if(data=="200"){
+									alert("결제가 완료되었습니다.");
+								}else{
+									alert(msg+data);
+								}
 							location.href="<%=request.getContextPath()%>/store";
 						}
 					});
 			        
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
+			        msg += '결제오류 : ' + rsp.error_msg;
 			    }
 			    alert(msg);
 			});
@@ -139,7 +145,7 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 			break;
 
 		default:
-			alert('무통결제');
+			alert("무통장 결제의 경우, 전용계좌에 입금하셔야 합니다.")
 			$.ajax({
 				url : '<%=request.getContextPath()%>/order/orders/insert',
 				type : 'POST',
@@ -148,12 +154,20 @@ IMP.init('imp01587367'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					alert("error!");
 				},
 				success : function(data) {
-					alert("결제가 완료되었습니다.");
+					var msg = "주문에 실패하였습니다. DB오류, 에러코드 : "
+						if(data=="200"){
+							alert("주문이 완료되었습니다.");
+						}else{
+							alert(msg+data);
+						}
 					location.href="<%=request.getContextPath()%>/store";
 				}
 			});
 			break;
 		}
+		
+	}
+	function alertOrderResult(data) {
 		
 	}
 	
