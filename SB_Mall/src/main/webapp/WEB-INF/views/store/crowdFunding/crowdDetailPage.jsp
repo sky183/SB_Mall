@@ -316,7 +316,7 @@
 					var bagLength = $('.bag').length;
                     if(bagLength==0){
                         $('.resultBigBox').hide();
-                        $('.fundingBtnBox').css('background-color','#a0a0a0');
+                        $('.fundingBtnBox').css('background-color','#dcdcdc');
                     }
 				}
 			})
@@ -350,13 +350,13 @@
 			/* 상품 관련 초기화 */
 			$('.goodsPickName').html('');
 			$('.goodsPickPrice').html('');
-			$('.goods').css('background-color','#a0a0a0');
+			$('.goods').css('background-color','#dcdcdc');
 			$('.goodsOCity').css('opacity','1');
 			
 			/* opt1 관련 초기화 */
 			$('.opt1PickName').html('');
 			$('.opt1PickPrice').html('');
-			$('.opt1').css('background-color','#a0a0a0');
+			$('.opt1').css('background-color','#dcdcdc');
 			$('.opt1OCity').css('opacity','1');
 			
 			/* 옵션리스트 다시 숨기기 */
@@ -519,8 +519,7 @@
 					
 					<c:forEach var="photo" begin="1" end="${photoCnt}" step="1">
 						<div class="thumMiniBox">
-							<img class="thumImg" src="http://sbmallstore.com/file/crproduct/1545619272741noImage2.png
- ">
+							<img class="thumImg" src="http://sbmallstore.com/file/crproduct/1545810459647noImage2.png">
 						</div>
 					</c:forEach>
 					
