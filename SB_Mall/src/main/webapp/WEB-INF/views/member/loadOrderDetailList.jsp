@@ -96,18 +96,18 @@
 				
 				<c:choose>
 					<c:when test="${viewData.pageTotalCount == 1}">
-						<li class="page-item active"><a id="currentPage" class="page-link" name="1">1<span class="sr-only">(current)</span></a></li>
+						<li class="page-item action"><a id="currentPage" class="page-link" name="1">1</a></li>
 					</c:when>
 					<c:otherwise>
 						<c:forEach varStatus="i" begin="${viewData.startPage}"
 							end="${viewData.endPage}">
 							<c:choose>
 							<c:when test="${i.index == viewData.currentPageNumber}">
-								<li class="page-item active"><a id="currentPage" class="page page-link"
-								name="${i.index}">${i.index}<span class="sr-only">(current)</span></a></li>
+								<li class="page-item action"><a id="currentPage" class="page page-link"
+								name="${i.index}">${i.index}</a></li>
 							</c:when>
 							<c:otherwise>
-								<li class="page-item"><a class="page page-link"
+								<li class="page-item unAction"><a class="unpage page-link unpage"
 								name="${i.index}">${i.index}</a></li>
 							</c:otherwise>
 							</c:choose>

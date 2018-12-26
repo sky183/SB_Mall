@@ -70,11 +70,24 @@ public class CrowdDetailService {
 				
 			top = midResult/10;
 			boardRating.setTop(top);
-			mid = midResult%10;
-			boardRating.setMid(mid);
+			
+			if(top!=5) {
+				mid = midResult%10;
+				boardRating.setMid(mid);
+			}else {
+				boardRating.setMid(0);
+			}
+			
 			if(top<5) {
-				bottom = 5-((int)(top)+1);
+				int midCheck = 0;
+				if(mid!=0) {
+					midCheck=1;
+				}
+				
+				bottom = 5-((int)(top)+midCheck);
 				boardRating.setBottom(bottom);
+			}else {
+				boardRating.setBottom(0);
 			}
 			
 		}else {

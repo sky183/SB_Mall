@@ -548,20 +548,22 @@
 						<c:choose>
 							<c:when test="${Rating.top!=0}">
 								<c:forEach begin="1" end="${Rating.top}" varStatus="count">
-									<img class="ratingImg" alt="${Rating.top}" src="<%=request.getContextPath()%>/img/star.png">
+									<img class="ratingImg ratingTop" alt="${Rating.top}" src="<%=request.getContextPath()%>/img/star.png">
 								</c:forEach>
 								
 								<c:if test="${Rating.mid!=0}">
-									<img class="ratingImg" src="<%=request.getContextPath()%>/img/star${Rating.mid}.png">
+									<img class="ratingImg ratingMid" src="<%=request.getContextPath()%>/img/star${Rating.mid}.png">
 								</c:if>
 								
-								<c:if test="${Rating.mid==0}">
-									<img class="ratingImg" src="<%=request.getContextPath()%>/img/star_em.png">
-								</c:if>
+								<%-- <c:if test="${Rating.mid==0}">
+									<img class="ratingImg ratingMid" src="<%=request.getContextPath()%>/img/star_em.png">
+								</c:if> --%>
 								
-								<c:forEach begin="1" end="${Rating.bottom}">
-									<img class="ratingImg" alt="${Rating.bottom}" src="<%=request.getContextPath()%>/img/star_em.png">
-								</c:forEach>
+								<c:if test="${Rating.bottom!=0}">
+									<c:forEach begin="1" end="${Rating.bottom}">
+										<img class="ratingImg raqtingBottom" alt="${Rating.bottom}" src="<%=request.getContextPath()%>/img/star_em.png">
+									</c:forEach>
+								</c:if>
 							</c:when>
 							<c:when test="${Rating.top==0}">
 								<c:forEach begin="1" end="5" >
