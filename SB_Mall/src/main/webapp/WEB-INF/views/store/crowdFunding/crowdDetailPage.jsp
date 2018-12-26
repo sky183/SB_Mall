@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
 <head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
+<title>EarlyBird</title>
 <script type="text/javascript">
 	var goodsList = 0;
 	var opt1List = 0;

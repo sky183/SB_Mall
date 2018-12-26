@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/crowdOrder.css">
 <head><link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico">
 <meta charset="UTF-8">
+<title>Order</title>
 
 <script>
 	var crOrderDetailNo;

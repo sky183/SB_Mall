@@ -14,7 +14,7 @@
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-<title>Insert title here</title>
+<title>EarltBird Registration</title>
 
 <script>
 	var productCount=1; // 대표상품 이미지 추가 카운트
