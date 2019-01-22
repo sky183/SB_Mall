@@ -284,7 +284,7 @@
 		MemberInfo b ON a.`month` =
 		MONTH(b.regDate)
 		and
-		YEAR(regDate) = YEAR('2018.12.12')
+		YEAR(regDate) = YEAR(#{param1})
 		GROUP BY
 		a.`month`
 		;
