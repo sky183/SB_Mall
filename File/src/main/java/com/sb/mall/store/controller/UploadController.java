@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sb.mall.store.service.UploadService;
 
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="*") //타 도메인에서 접근할 수 있도록 하는 매우 중요한 어노테이션!!
 @Controller
 public class UploadController {
 	
